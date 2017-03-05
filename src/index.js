@@ -1,9 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom'
+import {Router, Route, browserHistory} from 'react-router'
 import App from './App';
-import './index.css';
+import Register from "./components/Register"
+import './styles/css/index.css';
 
-ReactDOM.render(
-  <App txt="this is the prop text"/>,
-  document.getElementById('root')
-);
+
+render((
+    <Router history={browserHistory}>
+        <Route path="/" component={App}/>
+        <Route path="/register" component={Register}/>
+    </Router>
+), document.getElementById('root'));
+

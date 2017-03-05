@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
 import './App.css';
+import FBLogin from './components/FBlogin'
 class App extends Component {
 
     constructor() {
@@ -16,7 +17,7 @@ class App extends Component {
         // let txt = this.props.txt;
         return (
             <div>
-
+                <FBLogin/>
             </div>
             // <div className="App">
             //     <div className="App-header">
