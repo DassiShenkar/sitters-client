@@ -4,8 +4,6 @@ var ageCalculator = require('age-calculator');
 let {AgeFromDateString, AgeFromDate} = require('age-calculator');
 import 'react-select/dist/react-select.css';
 var $ = require('jquery');
-
-// Be sure to include styles at some point, probably during your bootstrapping
 import 'react-select/dist/react-select.css';
 
 var Select = require('react-select');
@@ -32,9 +30,11 @@ class Register extends Component {
             email: usr.email,
             gender: usr.gender,
             profilePicture: usr.profileImage,
-            coverPhoto: usr.coverPhoto,
+            coverPhoto: usr.coverImage,
             location: usr.location,
             timezone: usr.timezone,
+            education: usr.education,
+            currency: usr.currency,
             age: age,
             options : [
                 { value: 'english', label: 'English' },
@@ -49,10 +49,6 @@ class Register extends Component {
             languages : usr.languages
         };
         console.log(this.state);
-        // var options = [
-        //     { value: 'one', label: 'One' },
-        //     { value: 'two', label: 'Two' }
-        // ];
     }
 
     onChange(filterName) {
@@ -87,21 +83,29 @@ class Register extends Component {
         else
             this.setState({workingHours: "All day"});
     }
-    // update(e) {
-    //     // this.setState({txt: e.target.value});
-    // }
 
-    //TODO: send timezone and cover photo from state in ajax
-    handleSubmitSitter(e) {
-        e.preventDefault();
-    }
     handleSubmitParent(e) {
         e.preventDefault();
+        console.log(this.refs);
         let parent = {
             name: this.refs.name.defaultValue,
             email: this.refs.email.defaultValue,
             gender: this.state.genderFilter,
-            age: this.refs.age.defaultValue
+            age: this.refs.age.defaultValue,
+            address: {
+                city: this.refs.city.value,
+                street: this.refs.street.value,
+                houseNumber: this.refs.houseNumber.value
+            },
+            profilePicture: this.state.profilePicture,
+            coverPhoto: this.state.coverPhoto,
+            timezone: this.state.timezone,
+            maxPrice: this.refs.maxPrice.value,
+            languages: this.state.languages,
+            children: {
+                name: this.refs.childName.value,
+                age:  this.refs.childAge.value
+            }
         };
         console.log(parent);
 
@@ -113,16 +117,17 @@ class Register extends Component {
             data: JSON.stringify(parent),
             success: function (data) {
                 console.log(data);
-                console.log("inside ajax");
-                // this.setState({data: data});
-                // location.replace("sitter");
+                location.replace("feed");
+                //TODO move to feed page
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     };
-
+    handleSubmitSitter(e) {// pass education
+        e.preventDefault();
+    }
 
 
     render(){
@@ -145,17 +150,18 @@ class Register extends Component {
                             <label className="login-label" htmlFor="age">Age</label>
                             <input type="number" min="0" max="120" name="age" id="age" ref="age" defaultValue={this.state.age} />
                         </li>
+                        <h4>Address</h4>
                         <li>
                             <label className="login-label" htmlFor="city">City</label>
-                            <input type="text" id="city" ref="city" required placeholder="Tel Aviv"/>
+                            <input type="text" id="city" ref="city" required defaultValue="" placeholder="Tel Aviv"/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="street">Street</label>
-                            <input type="text" id="street" ref="street" required placeholder="Arlozorov"/>
+                            <input type="text" id="street" ref="street" required defaultValue="" placeholder="Arlozorov"/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="houseNumber">House Number</label>
-                            <input type="number" id="houseNumber" ref="houseNumber" required min="0" max="350"
+                            <input type="number" id="houseNumber" ref="houseNumber" defaultValue="" required min="0" max="350"
                                    placeholder="36"/>
                         </li>
                         <h3>Gender</h3>
@@ -188,11 +194,10 @@ class Register extends Component {
                             placeholder="Select your favourite(s)"
                         />
                         <li>
-                            <label className="login-label" htmlFor="partner">Partner Name</label>
-                            <input type="text" name="partner-name" id="partner" ref="partner" placeholder="Moshe Levi"/>
+                            <label className="login-label" htmlFor="maxPrice">Max price for watch</label>
+                            <input type="number" name="maxPrice" defaultValue="" id="maxPrice" ref="maxPrice" placeholder="20" min="0" max="100"/>
                         </li>
-
-                        <li>
+                         <li>
                             <label className="login-label" htmlFor="name">Child Name:</label>
                             <input className="input name" id="name" name="prof1" type="text" placeholder="Beni levi"
                                    ref="childName" required/>
@@ -201,11 +206,6 @@ class Register extends Component {
                             <label className="login-label" htmlFor="age">Child Age</label>
                             <input className="input age" id="age" name="prof1" type="number" placeholder="3"
                                    ref="childAge" required min="0" max="12"/>
-                        </li>
-                        <li>
-                            <label className="login-label" htmlFor="allergies">Allergies</label>
-                            <input className="input allergies" id="allergies" name="prof1" type="text"
-                                   placeholder="avocado,bamba" ref="childAllergies"/>
                         </li>
                     </ul>
                     <input type="submit" className="submit-invite" value="Sign Up"/>
@@ -282,7 +282,6 @@ class Register extends Component {
                     <input type="submit" className="submit-invite" value="Sign Up"/>
                 </form>;
         }
-        // let txt = this.props.txt;
         return (
             <div id="register-page">
                 <section className="invite-info">
@@ -309,16 +308,4 @@ class Register extends Component {
         );
     }
 }
-
-// const Widget = (props) =>
-//     <input type="text" onChange={props.update}/>;
-
-// Register.propTypes = {
-//     user: "hello"
-// };
-//
-// Register.defaultProps = {
-//     txt: "default text"
-// };
-
 export default Register;
