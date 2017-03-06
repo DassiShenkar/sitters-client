@@ -3,26 +3,27 @@ import '../styles/css/register.css'
 var ageCalculator = require('age-calculator');
 let {AgeFromDateString, AgeFromDate} = require('age-calculator');
 import 'react-select/dist/react-select.css';
-let axios = require('axios');
 var $ = require('jquery');
+
+// Be sure to include styles at some point, probably during your bootstrapping
+import 'react-select/dist/react-select.css';
+
+var Select = require('react-select');
+
 
 class Register extends Component {
 
     constructor() {
         super();
-
-
-
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         this.handleSubmitSitter = this.handleSubmitSitter.bind(this);
-        this.logChange          = this.logChange.bind(this);
+        this.handleSelectChange          = this.handleSelectChange.bind(this);
         let usr = JSON.parse(localStorage.getItem('user'));
         console.log(usr);
         if(usr.birthday){ // calculate age from birthday
             let date = usr.birthday.split("/");
             console.log(date);
             var age = (new AgeFromDate(new Date(parseInt(date[2]),parseInt(date[1]) -1, parseInt(date[0]) -1)).age) || 0;
-            // this.state.age = ageFromDate;
         }
         this.state = {
             selectedForm: "parent",
@@ -34,9 +35,24 @@ class Register extends Component {
             coverPhoto: usr.coverPhoto,
             location: usr.location,
             timezone: usr.timezone,
-            age: age
+            age: age,
+            options : [
+                { value: 'english', label: 'English' },
+                { value: 'hebrew', label: 'Hebrew' },
+                { value: 'chinese', label: 'Chinese' },
+                { value: 'russian', label: 'Russian' },
+                { value: 'japanese', label: 'Japanese' },
+                { value: 'german', label: 'German' },
+                { value: 'french', label: 'French' },
+                { value: 'spanish', label: 'Spanish' }
+            ],
+            languages : usr.languages
         };
         console.log(this.state);
+        // var options = [
+        //     { value: 'one', label: 'One' },
+        //     { value: 'two', label: 'Two' }
+        // ];
     }
 
     onChange(filterName) {
@@ -48,8 +64,10 @@ class Register extends Component {
         }
     }
 
-    logChange(val) {
+    handleSelectChange(val) {
+        this.setState({languages: val});
         console.log("Selected: " + val);
+        console.log(this.state.languages);
     }
 
     onChangeGender(gender) {
@@ -79,7 +97,7 @@ class Register extends Component {
     }
     handleSubmitParent(e) {
         e.preventDefault();
-        var parent = {
+        let parent = {
             name: this.refs.name.defaultValue,
             email: this.refs.email.defaultValue,
             gender: this.state.genderFilter,
@@ -108,33 +126,35 @@ class Register extends Component {
 
 
     render(){
+
+
         let parentForm, sitterForm;
         if (this.state.selectedForm === "parent") {
             parentForm =
                 <form id="register-form" onSubmit={this.handleSubmitParent}>
                     <ul className="login-input-fields">
                         <li>
-                            <label className="login-label" for="name">Name</label>
+                            <label className="login-label" htmlFor="name">Name</label>
                             <input type="text" name="name" id="name" ref="name" defaultValue={this.state.name} placeholder="Moshe Levi"/>
                         </li>
                         <li>
-                            <label className="login-label" for="email">Email</label>
+                            <label className="login-label" htmlFor="email">Email</label>
                             <input type="email" name="email" id="email" ref="email" defaultValue={this.state.email} placeholder="example@gmail.com"/>
                         </li>
                         <li>
-                            <label className="login-label" for="age">Age</label>
+                            <label className="login-label" htmlFor="age">Age</label>
                             <input type="number" min="0" max="120" name="age" id="age" ref="age" defaultValue={this.state.age} />
                         </li>
                         <li>
-                            <label className="login-label" for="city">City</label>
+                            <label className="login-label" htmlFor="city">City</label>
                             <input type="text" id="city" ref="city" required placeholder="Tel Aviv"/>
                         </li>
                         <li>
-                            <label className="login-label" for="street">Street</label>
+                            <label className="login-label" htmlFor="street">Street</label>
                             <input type="text" id="street" ref="street" required placeholder="Arlozorov"/>
                         </li>
                         <li>
-                            <label className="login-label" for="houseNumber">House Number</label>
+                            <label className="login-label" htmlFor="houseNumber">House Number</label>
                             <input type="number" id="houseNumber" ref="houseNumber" required min="0" max="350"
                                    placeholder="36"/>
                         </li>
@@ -158,23 +178,32 @@ class Register extends Component {
                                 <img src={this.state.profilePicture} alt="Profile picture"/>
                             </div>
                         </li>
+                        <h4>Languages</h4>
+                        <Select
+                            name="form-field-name"
+                            multi={true}
+                            value={this.state.languages}
+                            options={this.state.options}
+                            onChange={this.handleSelectChange.bind(this)}
+                            placeholder="Select your favourite(s)"
+                        />
                         <li>
-                            <label className="login-label" for="partner">Partner Name</label>
+                            <label className="login-label" htmlFor="partner">Partner Name</label>
                             <input type="text" name="partner-name" id="partner" ref="partner" placeholder="Moshe Levi"/>
                         </li>
 
                         <li>
-                            <label className="login-label" for="name">Child Name:</label>
+                            <label className="login-label" htmlFor="name">Child Name:</label>
                             <input className="input name" id="name" name="prof1" type="text" placeholder="Beni levi"
                                    ref="childName" required/>
                         </li>
                         <li>
-                            <label className="login-label" for="age">Child Age</label>
+                            <label className="login-label" htmlFor="age">Child Age</label>
                             <input className="input age" id="age" name="prof1" type="number" placeholder="3"
                                    ref="childAge" required min="0" max="12"/>
                         </li>
                         <li>
-                            <label className="login-label" for="allergies">Allergies</label>
+                            <label className="login-label" htmlFor="allergies">Allergies</label>
                             <input className="input allergies" id="allergies" name="prof1" type="text"
                                    placeholder="avocado,bamba" ref="childAllergies"/>
                         </li>
@@ -187,30 +216,30 @@ class Register extends Component {
                 <form id="register-form" onSubmit={this.handleSubmitSitter}>
                     <ul className="login-input-fields">
                         <li>
-                            <label for="city" className="login-label" >City</label>
+                            <label htmlFor="city" className="login-label" >City</label>
                             <input type="text" id="city" ref="city" required="true" placeholder="Tel Aviv"/>
                         </li>
                         <li>
-                            <label for="street" className="login-label" >Street</label>
+                            <label htmlFor="street" className="login-label" >Street</label>
                             <input type="text" id="street" ref="street" required="true" placeholder="Arlozorov"/>
                         </li>
                         <li>
-                            <label for="houseNumber" className="login-label" >House Number</label>
+                            <label htmlFor="houseNumber" className="login-label" >House Number</label>
                             <input type="number" id="houseNumber" ref="houseNumber" required="true" min="0" max="350"
                                    placeholder="56"/>
                         </li>
                         <li>
-                            <label for="min-age" className="login-label" >Minimum Age</label>
+                            <label htmlFor="min-age" className="login-label" >Minimum Age</label>
                             <input className="input name" id="min-age" type="number" placeholder="1" ref="minAge"
                                    required="true" min="0" max="12"/>
                         </li>
                         <li>
-                            <label for="max-age" className="login-label" >Maximum Age</label>
+                            <label htmlFor="max-age" className="login-label" >Maximum Age</label>
                             <input className="input age" id="max-age" type="number" placeholder="4" ref="maxAge"
                                    required="true" min="0" max="12"/>
                         </li>
                         <li>
-                            <label for="hour-fee" className="login-label" >Hour Fee</label>
+                            <label htmlFor="hour-fee" className="login-label" >Hour Fee</label>
                             <input className="input age" id="hour-fee" type="number" placeholder="25$" ref="hourFee"
                                    required="true" min="1" max="400"/>
                         </li>
