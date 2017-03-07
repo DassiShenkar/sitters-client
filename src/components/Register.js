@@ -140,7 +140,7 @@ class Register extends Component {
         e.preventDefault();
         console.log(this.refs);
         let sitter = {
-            name: this.refs.name.defaultValue,
+            name: this.refs.name.value,
             email: this.refs.email.defaultValue,
             gender: this.state.genderFilter,
             age: this.refs.age.defaultValue,
@@ -156,16 +156,14 @@ class Register extends Component {
             education: this.state.education,
             minAge: this.refs.minAge.value,
             maxAge: this.refs.maxAge.value,
-            hourFee: this.refs.hourFee.value,
-
-
-
+            hourFee: parseInt(this.refs.hourFee.value),
+            availableNow: this.state.immediateFilter == "true"
         };
         console.log('sitter');
         console.log(sitter);
 
         $.ajax({
-            url: 'localhost:4000/sitter/create',
+            url: 'http://localhost:4000/sitter/create',
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
