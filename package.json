@@ -13,7 +13,8 @@
     "react-dropdown-multiselect": "^1.0.0",
     "react-facebook-login": "^3.5.0",
     "react-router": "^3.0.2",
-    "react-select": "^1.0.0-rc.3"
+    "react-select": "^1.0.0-rc.3",
+    "age-calculator": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

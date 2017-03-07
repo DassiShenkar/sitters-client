@@ -1,28 +1,28 @@
 import React, { PropTypes, Component } from 'react';
-import '../styles/css/register.css'
-var ageCalculator = require('age-calculator');
-let {AgeFromDateString, AgeFromDate} = require('age-calculator');
+import '../styles/css/register.css';
 import 'react-select/dist/react-select.css';
-var $ = require('jquery');
-import 'react-select/dist/react-select.css';
-
-var Select = require('react-select');
-
+var ageCalculator = require('age-calculator'),
+    {AgeFromDateString, AgeFromDate} = require('age-calculator'),
+    $ = require('jquery'),
+    url,
+    localhost = 'http://localhost:4000/',
+    Select = require('react-select'),
+    DEBUG = true,
+    age;
 
 class Register extends Component {
-
     constructor() {
         super();
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         this.handleSubmitSitter = this.handleSubmitSitter.bind(this);
-        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.handleLanguageSelect = this.handleLanguageSelect.bind(this);
         this.onChangeImmediate = this.onChangeImmediate.bind(this);
         let usr = JSON.parse(localStorage.getItem('user'));
-        console.log(usr);
+        if(DEBUG)
+            console.log(usr);
         if(usr.birthday){ // calculate age from birthday
             let date = usr.birthday.split("/");
-            console.log(date);
-            var age = (new AgeFromDate(new Date(parseInt(date[2]),parseInt(date[1]) -1, parseInt(date[0]) -1)).age) || 0;
+            age = (new AgeFromDate(new Date(parseInt(date[2]),parseInt(date[1]) -1, parseInt(date[0]) -1)).age) || 0;
         }
         this.state = {
             selectedForm: "parent",
@@ -38,7 +38,7 @@ class Register extends Component {
             education: usr.education,
             currency: usr.currency,
             age: age,
-            options : [
+            options : [ // array of languages
                 { value: 'english', label: 'English' },
                 { value: 'hebrew', label: 'Hebrew' },
                 { value: 'chinese', label: 'Chinese' },
@@ -50,7 +50,8 @@ class Register extends Component {
             ],
             languages : usr.languages
         };
-        console.log(this.state);
+        if(DEBUG)
+            console.log(this.state);
     }
 
     onChange(filterName) {
@@ -62,10 +63,8 @@ class Register extends Component {
         }
     }
 
-    handleSelectChange(val) {
+    handleLanguageSelect(val) {
         this.setState({languages: val});
-        console.log("Selected: " + val);
-        console.log(this.state.languages);
     }
 
     onChangeGender(gender) {
@@ -85,19 +84,12 @@ class Register extends Component {
             this.setState({immediateFilter: "true"});
         }
     }
-    //
-    // onChangeHours(hours) {
-    //     if (hours === "Mornings")
-    //         this.setState({workingHours: "Mornings"});
-    //     else if (hours === "Evenings")
-    //         this.setState({workingHours: "Evenings"});
-    //     else
-    //         this.setState({workingHours: "All day"});
-    // }
 
-    handleSubmitParent(e) {
+    handleSubmitParent(e) { // get all the form params and create parent
         e.preventDefault();
-        console.log(this.refs);
+        if(DEBUG)
+            console.log(this.refs);
+        //noinspection JSUnresolvedVariable
         let parent = {
             name: this.refs.name.defaultValue,
             email: this.refs.email.defaultValue,
@@ -118,27 +110,35 @@ class Register extends Component {
                 age:  this.refs.childAge.value
             }
         };
-        console.log(parent);
+        if(DEBUG){
+            console.log(parent);
+            url = localhost + 'parent/create';
+        }
+        else{
+            url = "";
+        }
+
 
         $.ajax({
-            url: 'http://localhost:4000/parent/create',
+            url: url,
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(parent),
             success: function (data) {
-                console.log(data);
+                if(DEBUG)
+                    console.log(data);
                 location.replace("feed");
-                //TODO move to feed page
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     };
-    handleSubmitSitter(e) {// pass education
+    handleSubmitSitter(e) {// get all the form params and create sitter
         e.preventDefault();
         console.log(this.refs);
+        //noinspection JSUnresolvedVariable
         let sitter = {
             name: this.refs.name.value,
             email: this.refs.email.defaultValue,
@@ -159,17 +159,23 @@ class Register extends Component {
             hourFee: parseInt(this.refs.hourFee.value),
             availableNow: this.state.immediateFilter == "true"
         };
-        console.log('sitter');
-        console.log(sitter);
+        if(DEBUG){
+            console.log(sitter);
+            url = localhost + 'sitter/create';
+        }
+        else{
+            url = "";
+        }
 
         $.ajax({
-            url: 'http://localhost:4000/sitter/create',
+            url: url,
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(sitter),
             success: function (data) {
-                console.log(data);
+                if(DEBUG)
+                    console.log(data);
                 location.replace("feed");
             }.bind(this),
             error: function (xhr, status, err) {
@@ -179,8 +185,6 @@ class Register extends Component {
     }
 
     render(){
-
-
         let parentForm, sitterForm;
         if (this.state.selectedForm === "parent") {
             parentForm =
@@ -188,15 +192,15 @@ class Register extends Component {
                     <ul className="login-input-fields">
                         <li>
                             <label className="login-label" htmlFor="name">Name</label>
-                            <input type="text" name="name" id="name" ref="name" defaultValue={this.state.name} placeholder="Moshe Levi"/>
+                            <input type="text" name="name" id="name" ref="name" defaultValue={this.state.name} placeholder="Moshe Levi" required/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="email">Email</label>
-                            <input type="email" name="email" id="email" ref="email" defaultValue={this.state.email} placeholder="example@gmail.com"/>
+                            <input type="email" name="email" id="email" ref="email" defaultValue={this.state.email} placeholder="example@gmail.com" required/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="age">Age</label>
-                            <input type="number" min="0" max="120" name="age" id="age" ref="age" defaultValue={this.state.age} />
+                            <input type="number" min="0" max="120" name="age" id="age" ref="age" defaultValue={this.state.age} required/>
                         </li>
                         <h4>Address</h4>
                         <li>
@@ -238,16 +242,16 @@ class Register extends Component {
                             multi={true}
                             value={this.state.languages}
                             options={this.state.options}
-                            onChange={this.handleSelectChange.bind(this)}
+                            onChange={this.handleLanguageSelect.bind(this)}
                             placeholder="Select your favourite(s)"
                         />
 
                         <h4>Child</h4>
                         <li>
                             <label className="login-label" htmlFor="maxPrice">Max price for watch</label>
-                            <input type="number" name="maxPrice" defaultValue="" id="maxPrice" ref="maxPrice" placeholder="20" min="0" max="100"/>
+                            <input type="number" name="maxPrice" defaultValue="" id="maxPrice" ref="maxPrice" placeholder="20" min="0" max="100" required/>
                         </li>
-                         <li>
+                        <li>
                             <label className="login-label" htmlFor="name">Child Name:</label>
                             <input className="input name" id="name" name="prof1" type="text" placeholder="Beni levi"
                                    ref="childName" required/>
@@ -270,15 +274,15 @@ class Register extends Component {
                     <ul className="login-input-fields">
                         <li>
                             <label className="login-label" htmlFor="name">Name</label>
-                            <input type="text" name="name" id="name" ref="name" defaultValue={this.state.name} placeholder="Moshe Levi"/>
+                            <input type="text" name="name" id="name" ref="name" defaultValue={this.state.name} placeholder="Moshe Levi" required/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="email">Email</label>
-                            <input type="email" name="email" id="email" ref="email" defaultValue={this.state.email} placeholder="example@gmail.com"/>
+                            <input type="email" name="email" id="email" ref="email" defaultValue={this.state.email} placeholder="example@gmail.com" required/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="age">Age</label>
-                            <input type="number" min="0" max="120" name="age" id="age" ref="age" defaultValue={this.state.age} />
+                            <input type="number" min="0" max="120" name="age" id="age" ref="age" defaultValue={this.state.age} required />
                         </li>
                         <h4>Address</h4>
                         <li>
@@ -320,16 +324,16 @@ class Register extends Component {
                             multi={true}
                             value={this.state.languages}
                             options={this.state.options}
-                            onChange={this.handleSelectChange.bind(this)}
+                            onChange={this.handleLanguageSelect.bind(this)}
                             placeholder="Select your favourite(s)"
                         />
                         <li>
                             <label className="login-label" htmlFor="age">Minimum age to save children</label>
-                            <input type="number" min="0" max="12" name="minAge" id="minAge" ref="minAge" placeholder="0"/>
+                            <input type="number" min="0" max="12" name="minAge" id="minAge" ref="minAge" placeholder="0" required/>
                         </li>
                         <li>
                             <label className="login-label" htmlFor="age">Maximum age to save children</label>
-                            <input type="number" min="0" max="12" name="maxAge" id="maxAge" ref="maxAge" placeholder="8"/>
+                            <input type="number" min="0" max="12" name="maxAge" id="maxAge" ref="maxAge" placeholder="8" required/>
                         </li>
                         <li>
                             <label htmlFor="hour-fee" className="login-label" >Hour Fee</label>
@@ -353,10 +357,6 @@ class Register extends Component {
                                        onChange={this.onChangeImmediate.bind(this, "false")}/>
                             </li>
                         </ul>
-
-
-
-
                     </ul>
                     <input type="submit" className="submit-invite" value="Sign Up"/>
                 </form>;
@@ -364,7 +364,7 @@ class Register extends Component {
         return (
             <div id="register-page">
                 <section className="invite-info">
-                    <h1 className="login-title">Sign In</h1>
+                    <h1 className="login-title">Sign Up</h1>
                 </section>
                 <ul className="user-select">
                     <li className="user-option">
