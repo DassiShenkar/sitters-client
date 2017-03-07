@@ -1,6 +1,6 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
-import '../styles/css/index.css'
+import '../styles/css/index.scss'
 
 class FBLogin extends React.Component {
     constructor(props) {

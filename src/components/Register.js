@@ -1,12 +1,12 @@
 import React, { PropTypes, Component } from 'react';
-import '../styles/css/register.css';
+import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
 var ageCalculator = require('age-calculator'),
     {AgeFromDateString, AgeFromDate} = require('age-calculator'),
+    Select = require('react-select'),
     $ = require('jquery'),
     url,
     localhost = 'http://localhost:4000/',
-    Select = require('react-select'),
     DEBUG = true,
     age;
 
@@ -383,7 +383,6 @@ class Register extends Component {
                 {parentForm}
                 {sitterForm}
             </div>
-
         );
     }
 }

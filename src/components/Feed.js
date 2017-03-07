@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/css/feed.css'
+import '../styles/css/feed.scss'
 
 class Feed extends React.Component {
     constructor(props) {

@@ -4,7 +4,7 @@ import {Router, Route, browserHistory} from 'react-router'
 import App from './App';
 import Register from "./components/Register"
 import Feed from "./components/Feed"
-import './styles/css/index.css';
+import './styles/css/index.scss';
 
 render((
     <Router history={browserHistory}>
