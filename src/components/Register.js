@@ -181,6 +181,7 @@ class Register extends Component {
             success: function (data) {
                 if(DEBUG)
                     console.log(data);
+                localStorage.setItem('user',parent);
                 location.replace("feed");
             }.bind(this),
             error: function (xhr, status, err) {
@@ -231,6 +232,7 @@ class Register extends Component {
             success: function (data) {
                 if(DEBUG)
                     console.log(data);
+                localStorage.setItem('user',sitter);
                 location.replace("feed");
             }.bind(this),
             error: function (xhr, status, err) {
@@ -428,7 +430,6 @@ class Register extends Component {
                         </li>
 
                         <h4>Working Hours</h4>{/*TODO: think about this component*/}
-                        <TimePicker onChange={this.onChangeSunday} />
                         <h3>Immediate availability</h3>
                         <ul className="user-select">
                             <li className="user-option">
