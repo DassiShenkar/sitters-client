@@ -1,6 +1,9 @@
+'use strict';
 import React, { PropTypes, Component } from 'react';
 import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
+import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
+import baseData from '../data/base';
 var ageCalculator = require('age-calculator'),
     {AgeFromDateString, AgeFromDate} = require('age-calculator'),
     Select = require('react-select'),
@@ -13,10 +16,17 @@ var ageCalculator = require('age-calculator'),
 class Register extends Component {
     constructor() {
         super();
-        this.handleSubmitParent = this.handleSubmitParent.bind(this);
-        this.handleSubmitSitter = this.handleSubmitSitter.bind(this);
-        this.handleLanguageSelect = this.handleLanguageSelect.bind(this);
-        this.onChangeImmediate = this.onChangeImmediate.bind(this);
+        this.handleSubmitParent         = this.handleSubmitParent.bind(this);
+        this.handleSubmitSitter         = this.handleSubmitSitter.bind(this);
+        this.handleLanguageSelect       = this.handleLanguageSelect.bind(this);
+        this.onChangeImmediate          = this.onChangeImmediate.bind(this);
+        this.onChangeChildSpecialNeeds  = this.onChangeChildSpecialNeeds.bind(this);
+        this.onChangeChildHobbies       = this.onChangeChildHobbies.bind(this);
+        this.onChangeChildExpertise     = this.onChangeChildExpertise.bind(this);
+        this.onChangeSitterSpecialNeeds = this.onChangeSitterSpecialNeeds.bind(this);
+        this.onChangeSitterHobbies      = this.onChangeSitterHobbies.bind(this);
+        this.onChangeSitterExpertise    = this.onChangeSitterExpertise.bind(this);
+        this.onChangeSunday             = this.onChangeSunday.bind(this);
         let usr = JSON.parse(localStorage.getItem('user'));
         if(DEBUG)
             console.log(usr);
@@ -38,17 +48,15 @@ class Register extends Component {
             education: usr.education,
             currency: usr.currency,
             age: age,
-            options : [ // array of languages
-                { value: 'english', label: 'English' },
-                { value: 'hebrew', label: 'Hebrew' },
-                { value: 'chinese', label: 'Chinese' },
-                { value: 'russian', label: 'Russian' },
-                { value: 'japanese', label: 'Japanese' },
-                { value: 'german', label: 'German' },
-                { value: 'french', label: 'French' },
-                { value: 'spanish', label: 'Spanish' }
-            ],
-            languages : usr.languages
+            options : baseData.getLanguages(),
+            childSpecialNeeds : [],
+            languages : usr.languages,
+            childHobbies : [],
+            childExpertise: [],
+            sitterExpertise: [],
+            sitterHobbies : [],
+            sitterSpecialNeeds : [],
+            defaultTimeValue: '10:00'
         };
         if(DEBUG)
             console.log(this.state);
@@ -74,6 +82,48 @@ class Register extends Component {
         else {
             this.setState({genderFilter: "female"});
         }
+    }
+    onChangeChildSpecialNeeds (newSpecialNeeds) {
+        this.setState({
+            childSpecialNeeds: newSpecialNeeds
+        });
+        if(DEBUG)
+            console.log(newSpecialNeeds);
+        }
+    onChangeChildHobbies (newHobbies){
+        this.setState({
+            childHobbies: newHobbies
+        });
+        if(DEBUG)
+            console.log(newHobbies);
+    }
+    onChangeChildExpertise(newExpertise){
+        this.setState({
+            childExpertise: newExpertise
+        });
+        if(DEBUG)
+            console.log(newExpertise);
+    }
+    onChangeSitterSpecialNeeds (newSpecialNeeds) {
+        this.setState({
+            sitterSpecialNeeds: newSpecialNeeds
+        });
+        if(DEBUG)
+            console.log(newSpecialNeeds);
+    }
+    onChangeSitterHobbies (newHobbies){
+        this.setState({
+            sitterHobbies: newHobbies
+        });
+        if(DEBUG)
+            console.log(newHobbies);
+    }
+    onChangeSitterExpertise(newExpertise){
+        this.setState({
+            sitterExpertise: newExpertise
+        });
+        if(DEBUG)
+            console.log(newExpertise);
     }
 
     onChangeImmediate (immediate) {
@@ -107,7 +157,10 @@ class Register extends Component {
             languages: this.state.languages,
             children: {
                 name: this.refs.childName.value,
-                age:  this.refs.childAge.value
+                age:  this.refs.childAge.value,
+                expertise: this.state.childExpertise,
+                hobbies: this.state.childHobbies,
+                specialNeeds: this.state.childSpecialNeeds
             }
         };
         if(DEBUG){
@@ -157,7 +210,10 @@ class Register extends Component {
             minAge: this.refs.minAge.value,
             maxAge: this.refs.maxAge.value,
             hourFee: parseInt(this.refs.hourFee.value),
-            availableNow: this.state.immediateFilter == "true"
+            availableNow: this.state.immediateFilter == "true",
+            expertise: this.state.sitterExpertise,
+            hobbies: this.state.sitterHobbies,
+            specialNeeds: this.state.sitterSpecialNeeds
         };
         if(DEBUG){
             console.log(sitter);
@@ -166,7 +222,6 @@ class Register extends Component {
         else{
             url = "";
         }
-
         $.ajax({
             url: url,
             dataType: 'json',
@@ -246,7 +301,7 @@ class Register extends Component {
                             placeholder="Select your favourite(s)"
                         />
 
-                        <h4>Child</h4>
+                        <h3>Child</h3>
                         <li>
                             <label className="login-label" htmlFor="maxPrice">Max price for watch</label>
                             <input type="number" name="maxPrice" defaultValue="" id="maxPrice" ref="maxPrice" placeholder="20" min="0" max="100" required/>
@@ -261,9 +316,40 @@ class Register extends Component {
                             <input className="input age" id="age" name="prof1" type="number" placeholder="3"
                                    ref="childAge" required min="0" max="12"/>
                         </li>
-                        <h4>Expertise</h4>{/*TODO: implement multi checkbox*/}
-                        <h4>Hobbies</h4>{/*TODO: implement multi checkbox*/}
-                        <h4>Special needs</h4>{/*TODO: implement multi checkbox*/}
+                        <h4>Child Expertise</h4>{/*TODO: implement multi checkbox*/}
+                        <CheckboxGroup
+                            name="childExpertise"
+                            value=""
+                            onChange={this.onChangeChildExpertise}>
+                            <label><Checkbox value="Math"/> Math</label>
+                            <label><Checkbox value="English"/> Painting</label>
+                            <label><Checkbox value="Physics"/> Physics</label>
+                        </CheckboxGroup>
+                        <h4>Child Hobbies</h4>{/*TODO: implement multi checkbox*/}
+                        <CheckboxGroup
+                            name="childHobbies"
+                            value=""
+                            onChange={this.onChangeChildHobbies}>
+                            <label><Checkbox value="Reading"/> Reading</label>
+                            <label><Checkbox value="Painting"/> Painting</label>
+                            <label><Checkbox value="Traveling"/> Traveling</label>
+                            <label><Checkbox value="Sports"/> Sports</label>
+                            <label><Checkbox value="Swimming"/> Swimming</label>
+                            <label><Checkbox value="Sleeping"/> Sleeping</label>
+                            <label><Checkbox value="Watching TV"/> Watching TV</label>
+                        </CheckboxGroup>
+                        <h4>Child Special needs</h4>{/*TODO: implement multi checkbox*/}
+                        <CheckboxGroup
+                            name="childSpecialNeeds"
+                            value=""
+                            onChange={this.onChangeChildSpecialNeeds}>
+                            <label><Checkbox value="ADD"/> ADD</label>
+                            <label><Checkbox value="Aphasia/Dysphagia"/> Aphasia/Dysphagia</label>
+                            <label><Checkbox value="Auditory Processing"/> Auditory Processing</label>
+                            <label><Checkbox value="Autism"/> Autism</label>
+                            <label><Checkbox value="Cystic Fibrosis"/> Cystic Fibrosis</label>
+                            <label><Checkbox value="Developmental Delays"/> Developmental Delays</label>
+                        </CheckboxGroup>
                     </ul>
                     <input type="submit" className="submit-invite" value="Sign Up"/>
                 </form>;
@@ -342,7 +428,7 @@ class Register extends Component {
                         </li>
 
                         <h4>Working Hours</h4>{/*TODO: think about this component*/}
-
+                        <TimePicker onChange={this.onChangeSunday} />
                         <h3>Immediate availability</h3>
                         <ul className="user-select">
                             <li className="user-option">
@@ -357,6 +443,40 @@ class Register extends Component {
                                        onChange={this.onChangeImmediate.bind(this, "false")}/>
                             </li>
                         </ul>
+                        <h4>Sitter Expertise</h4>{/*TODO: implement multi checkbox*/}
+                        <CheckboxGroup
+                            name="childExpertise"
+                            value=""
+                            onChange={this.onChangeSitterExpertise}>
+                            <label><Checkbox value="Math"/> Math</label>
+                            <label><Checkbox value="English"/> Painting</label>
+                            <label><Checkbox value="Physics"/> Physics</label>
+                        </CheckboxGroup>
+                        <h4>Sitter Hobbies</h4>{/*TODO: implement multi checkbox*/}
+                        <CheckboxGroup
+                            name="childHobbies"
+                            value=""
+                            onChange={this.onChangeSitterHobbies}>
+                            <label><Checkbox value="Reading"/> Reading</label>
+                            <label><Checkbox value="Painting"/> Painting</label>
+                            <label><Checkbox value="Traveling"/> Traveling</label>
+                            <label><Checkbox value="Sports"/> Sports</label>
+                            <label><Checkbox value="Swimming"/> Swimming</label>
+                            <label><Checkbox value="Sleeping"/> Sleeping</label>
+                            <label><Checkbox value="Watching TV"/> Watching TV</label>
+                        </CheckboxGroup>
+                        <h4>Sitter Special needs</h4>{/*TODO: implement multi checkbox*/}
+                        <CheckboxGroup
+                            name="childSpecialNeeds"
+                            value=""
+                            onChange={this.onChangeSitterSpecialNeeds}>
+                            <label><Checkbox value="ADD"/> ADD</label>
+                            <label><Checkbox value="Aphasia/Dysphagia"/> Aphasia/Dysphagia</label>
+                            <label><Checkbox value="Auditory Processing"/> Auditory Processing</label>
+                            <label><Checkbox value="Autism"/> Autism</label>
+                            <label><Checkbox value="Cystic Fibrosis"/> Cystic Fibrosis</label>
+                            <label><Checkbox value="Developmental Delays"/> Developmental Delays</label>
+                        </CheckboxGroup>
                     </ul>
                     <input type="submit" className="submit-invite" value="Sign Up"/>
                 </form>;
