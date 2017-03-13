@@ -26,7 +26,7 @@ class Register extends Component {
         this.onChangeSitterSpecialNeeds = this.onChangeSitterSpecialNeeds.bind(this);
         this.onChangeSitterHobbies      = this.onChangeSitterHobbies.bind(this);
         this.onChangeSitterExpertise    = this.onChangeSitterExpertise.bind(this);
-        this.onChangeSunday             = this.onChangeSunday.bind(this);
+        // this.onChangeSunday             = this.onChangeSunday.bind(this);
         let usr = JSON.parse(localStorage.getItem('user'));
         if(DEBUG)
             console.log(usr);

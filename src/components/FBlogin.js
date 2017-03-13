@@ -1,6 +1,5 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
-import '../styles/css/index.scss'
 import LoginBase from '../base/LoginBase.js'
 
 class FBLogin extends LoginBase {
