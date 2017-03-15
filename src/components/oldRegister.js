@@ -4,7 +4,7 @@ import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 import baseData from '../data/base';
-import TextInput from './TextInput';
+import TextInput from './controllers/TextInput';
 var ageCalculator = require('age-calculator'),
     {AgeFromDateString, AgeFromDate} = require('age-calculator'),
     Select = require('react-select'),

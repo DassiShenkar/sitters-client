@@ -1,16 +1,9 @@
 import React from 'react';
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
-class CheckBoxInput extends React.Component {// need to get default and types
+import CheckBoxBase from '../../base/controllers/CheckBoxBase.js'
+class CheckBoxInput extends CheckBoxBase { // need to get default and types
     constructor(props) {
         super(props);
-        this.onChange = this.onChange.bind(this);
-    }
-    onChange(newValue){
-        this.setState({checked: newValue});
-        console.log(newValue);
-    }
-    getValue(){
-        return this.state.checked;
     }
     render() {
         const options = this.props.types.map((name) => {

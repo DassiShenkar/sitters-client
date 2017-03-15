@@ -3,9 +3,10 @@ import React, { PropTypes, Component } from 'react';
 import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
 import baseData from '../data/base';
-import TextInput from './TextInput';
-import CheckBoxInput from './CheckBoxInput';
-import Radio from './RadioInput';
+import TextInput from './controllers/TextInput';
+import CheckBoxInput from './controllers/CheckBoxInput';
+import RadioInput from './controllers/RadioInput';
+import Form from './Form'
 var ageCalculator = require('age-calculator'),
     {AgeFromDateString, AgeFromDate} = require('age-calculator'),
     Select = require('react-select'),
@@ -18,7 +19,7 @@ var ageCalculator = require('age-calculator'),
 class Register extends Component {
     constructor() {
         super();
-        this.handleSubmitParent         = this.handleSubmitParent.bind(this);
+
         this.handleSubmitSitter         = this.handleSubmitSitter.bind(this);
         this.handleLanguageSelect       = this.handleLanguageSelect.bind(this);
         //this.onChangeImmediate          = this.onChangeImmediate.bind(this);
@@ -53,11 +54,6 @@ class Register extends Component {
             options : baseData.getLanguages(),
             childSpecialNeeds : [],
             languages : usr.languages,
-            // childHobbies : [],
-            // childExpertise: [],
-            // sitterExpertise: [],
-            // sitterHobbies : [],
-            // sitterSpecialNeeds : [],
             defaultTimeValue: '10:00'
         };
         if(DEBUG)
@@ -144,26 +140,26 @@ class Register extends Component {
         //     console.log(this.refs);
         // //noinspection JSUnresolvedVariable
         let parent = {
-            name: this.refs.name.getValue(),
-            email: this.refs.email.getValue(),
-            age: this.refs.age.getValue(),
+            name: this.refs.name.state.value,
+            email: this.refs.email.state.value,
+            age: this.refs.age.state.value,
             address: {
-                city: this.refs.city.getValue(),
-                street: this.refs.street.getValue(),
-                houseNumber: this.refs.houseNumber.getValue(),
+                city: this.refs.city.state.value,
+                street: this.refs.street.state.value,
+                houseNumber: this.refs.houseNumber.state.value,
             },
-            gender: this.refs.genderRadio.getValue(),
+            gender: this.refs.genderRadio.state.value,
             profilePicture: this.state.profilePicture,
             coverPhoto: this.state.coverPhoto,
             timezone: this.state.timezone,
-            maxPrice: this.refs.maxPrice.getValue(),
+            maxPrice: this.refs.maxPrice.state.value,
             languages: this.state.languages,
             children: {
-                name: this.refs.childName.getValue(),
-                age:  this.refs.childAge.getValue(),
-                expertise: this.refs.childExpertise.getValue(),
-                hobbies: this.refs.childHobbies.getValue(),
-                specialNeeds: this.refs.childSpecialNeed.getValue(),
+                name: this.refs.childName.state.value,
+                age:  this.refs.childAge.state.value,
+                expertise: this.refs.childExpertise.state.value,
+                hobbies: this.refs.childHobbies.state.value,
+                specialNeeds: this.refs.childSpecialNeed.state.value,
             }
         };
         console.log(parent);
@@ -198,27 +194,27 @@ class Register extends Component {
         console.log(this.refs);
         //noinspection JSUnresolvedVariable
         let sitter = {
-            name: this.refs.name.value,
-            email: this.refs.email.defaultValue,
-            gender: this.state.genderFilter,
-            age: this.refs.age.defaultValue,
-            address: {
-                city: this.refs.city.value,
-                street: this.refs.street.value,
-                houseNumber: this.refs.houseNumber.value
-            },
-            profilePicture: this.state.profilePicture,
-            coverPhoto: this.state.coverPhoto,
-            timezone: this.state.timezone,
-            languages: this.state.languages,
-            education: this.state.education,
-            minAge: this.refs.minAge.value,
-            maxAge: this.refs.maxAge.value,
-            hourFee: parseInt(this.refs.hourFee.value),
-            availableNow: this.state.immediateFilter == "true",
-            expertise: this.state.sitterExpertise,
-            hobbies: this.state.sitterHobbies,
-            specialNeeds: this.state.sitterSpecialNeeds
+            name: this.refs.name.props.yoel,
+            // email: this.refs.email.defaultValue,
+            // gender: this.state.genderFilter,
+            // age: this.refs.age.defaultValue,
+            // address: {
+            //     city: this.refs.city.value,
+            //     street: this.refs.street.value,
+            //     houseNumber: this.refs.houseNumber.value
+            // },
+            // profilePicture: this.state.profilePicture,
+            // coverPhoto: this.state.coverPhoto,
+            // timezone: this.state.timezone,
+            // languages: this.state.languages,
+            // education: this.state.education,
+            // minAge: this.refs.minAge.value,
+            // maxAge: this.refs.maxAge.value,
+            // hourFee: parseInt(this.refs.hourFee.value),
+            // availableNow: this.state.immediateFilter == "true",
+            // expertise: this.state.sitterExpertise,
+            // hobbies: this.state.sitterHobbies,
+            // specialNeeds: this.state.sitterSpecialNeeds
         };
         if(DEBUG){
             console.log(sitter);
@@ -248,40 +244,41 @@ class Register extends Component {
     render(){
         let parentForm, sitterForm;
         if (this.state.selectedForm === "parent") {
-            parentForm =
-                <form id="register-form" onSubmit={this.handleSubmitParent}>
-                    <TextInput ref='name' label="Name" placeholder="Moshe Levi"/>
-                    <TextInput ref='email' label="Email" type="email" placeholder="Enter your email" />
-                    <TextInput ref='age' label="Age" type="number" placeholder="25" />
-                    <h4>Address</h4>
-                    <TextInput ref='city' label="City"  placeholder="Tel Aviv" />
-                    <TextInput ref='street' label="Street"  placeholder="Arlozorov" />
-                    <TextInput ref='houseNumber' label="House Number" type="number"  placeholder="4" />
-                    <h3>Gender</h3>
-                    <Radio ref="genderRadio" types={['Male','Female']} default={this.state.gender}/>
-                    <h4>Profile picture</h4>
-                    <img src={this.state.profilePicture} alt="Profile picture"/>
-                    <h4>Languages</h4>
-                    <Select
-                        name="form-field-name"
-                        multi={true}
-                        value={this.state.languages}
-                        options={this.state.options}
-                        onChange={this.handleLanguageSelect.bind(this)}
-                        placeholder="Select your favourite(s)"
-                    />
-                    <h3>Child</h3>
-                    <TextInput ref='maxPrice' label="Max price for watch" type="number"  placeholder="20" />
-                    <TextInput ref='childName' label="Child Name" placeholder="Yoel"/>
-                    <TextInput ref='childAge' label="Age" type="number" placeholder="2" />
-                    <h4>Child Expertise</h4>
-                    <CheckBoxInput name="childExpertise" types={['Math','English','Physics']} ref="childExpertise"/>
-                    <h4>Child Hobbies</h4>
-                    <CheckBoxInput name="childHobbies" types={['Reading','Painting','Traveling','Sports','Swimming','Sleeping','Watching TV']} ref="childHobbies"/>
-                    <h4>Child Special needs</h4>
-                    <CheckBoxInput name="childSpecialNeed" types={['ADD','Aphasia/Dysphagia','Auditory Processing','Autism','Cystic Fibrosis','Developmental Delays']} ref="childSpecialNeed"/>
-                    <input type="submit" className="submit-invite" value="Sign Up"/>
-                </form>;
+            parentForm = <Form/>;
+            // parentForm =
+            //     <form id="register-form" onSubmit={this.handleSubmitParent}>
+            //         <TextInput ref='name' label="Name" placeholder="Moshe Levi"/>
+            //         <TextInput ref='email' label="Email" type="email" placeholder="Enter your email" />
+            //         <TextInput ref='age' label="Age" type="number" placeholder="25" />
+            //         <h4>Address</h4>
+            //         <TextInput ref='city' label="City"  placeholder="Tel Aviv" />
+            //         <TextInput ref='street' label="Street"  placeholder="Arlozorov" />
+            //         <TextInput ref='houseNumber' label="House Number" type="number"  placeholder="4" />
+            //         <h3>Gender</h3>
+            //         <RadioInput ref="genderRadio" types={['Male','Female']} default={this.state.gender} />
+            //         <h4>Profile picture</h4>
+            //         <img src={this.state.profilePicture} alt="Profile picture"/>
+            //         <h4>Languages</h4>
+            //         <Select
+            //             name="form-field-name"
+            //             multi={true}
+            //             value={this.state.languages}
+            //             options={this.state.options}
+            //             onChange={this.handleLanguageSelect.bind(this)}
+            //             placeholder="Select your favourite(s)"
+            //         />
+            //         <h3>Child</h3>
+            //         <TextInput ref='maxPrice' label="Max price for watch" type="number"  placeholder="20" />
+            //         <TextInput ref='childName' label="Child Name" placeholder="Yoel"/>
+            //         <TextInput ref='childAge' label="Age" type="number" placeholder="2" />
+            //         <h4>Child Expertise</h4>
+            //         <CheckBoxInput name="childExpertise" types={['Math','English','Physics']} ref="childExpertise"/>
+            //         <h4>Child Hobbies</h4>
+            //         <CheckBoxInput name="childHobbies" types={['Reading','Painting','Traveling','Sports','Swimming','Sleeping','Watching TV']} ref="childHobbies"/>
+            //         <h4>Child Special needs</h4>
+            //         <CheckBoxInput name="childSpecialNeed" types={['ADD','Aphasia/Dysphagia','Auditory Processing','Autism','Cystic Fibrosis','Developmental Delays']} ref="childSpecialNeed"/>
+            //         <input type="submit" className="submit-invite" value="Sign Up"/>
+            //     </form>;
         }
         if (this.state.selectedForm === "sitter") {
             sitterForm =
@@ -294,7 +291,7 @@ class Register extends Component {
                     <TextInput ref='street' label="Street"  placeholder="Arlozorov" />
                     <TextInput ref='houseNumber' label="House Number" type="number"  placeholder="Arlozorov" />
                     <h3>Gender</h3>
-                    <Radio ref="genderRadio" types={['Male','Female']} default={this.state.gender}/>
+                    <RadioInput ref="genderRadio" types={['Male','Female']} default={this.state.gender}/>
                     <h4>Profile picture</h4>
                     <img src={this.state.profilePicture} alt="Profile picture"/>
                     <h4>Languages</h4>
@@ -311,7 +308,7 @@ class Register extends Component {
                     <TextInput ref='hourFee' label="Age" type="number" placeholder="25" />
                     <h4>Working Hours</h4>{/*TODO: think about this component*/}
                     <h3>Immediate availability</h3>
-                    <Radio types={['True','False']} default="false"/>
+                    <RadioInput types={['True','False']} default="false"/>
                     <h4>Sitter Expertise</h4>{/*TODO: implement multi checkbox*/}
                     <CheckBoxInput name="sitterExpertise" types={['Math','English','Physics']} ref="sitterExpertise"/>
                     <h4>Sitter Hobbies</h4>{/*TODO: implement multi checkbox*/}
