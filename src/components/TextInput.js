@@ -5,15 +5,29 @@ class TextInput extends TextInputBase {
 
     constructor(props) {
         super(props);
-        this.state = {value: 'placeholder'}
+        this.getValue = this.getValue.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        //this.state = {value: ''}
+        console.log(this.props.type);
     };
+
+    getValue(){
+        return this.state.value;
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
 
     render() {
         let label = this.props.label !== '' ? <label>{this.props.label}</label> : '';
+        let type = this.props.type !== '' ?  this.props.type: 'text';
+        let placeholder = this.props.placeholder !== ''? this.props.placeholder : '';
         return (
             <div className="text-input">
                 {label}
-                <input type="text" id="textInput" ref="textInput" value={this.state.value}/>
+                <input type={type} id="textInput" placeholder={placeholder} ref="textInput" onChange={this.handleChange} />
             </div>
         );
     }
