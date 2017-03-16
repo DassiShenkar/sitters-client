@@ -2,6 +2,7 @@ import React from 'react';
 import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
+import WorkingHours from './controllers/WorkingHours';
 import baseData from '../data/base';
 
 var ageCalculator = require('age-calculator'),
@@ -130,6 +131,7 @@ class Form extends React.Component {
                 <TextInput ref='maxAge' label="Maximum age to save children" type="number" placeholder="8" />
                 <TextInput ref='hourFee' label="Age" type="number" placeholder="25" />
                 <h4>Working Hours</h4>{/*TODO: think about this component*/}
+                <WorkingHours days={["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]} />
                 <h3>Immediate availability</h3>
                 <RadioInput ref="availableNow" types={['True','False']} default="False"/>
                 <h4>Sitter Expertise</h4>{/*TODO: implement multi checkbox*/}
