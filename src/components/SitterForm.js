@@ -23,7 +23,7 @@ class Form extends React.Component {
             console.log(usr);
         if(usr.birthday){ // calculate age from birthday
             let date = usr.birthday.split("/");
-            age = (new AgeFromDate(new Date(parseInt(date[2]),parseInt(date[1]) -1, parseInt(date[0]) -1)).age) || 0;
+            age = (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
         }
         this.state = {
             immediateFilter: "false",
@@ -71,7 +71,7 @@ class Form extends React.Component {
             education: this.state.education,
             minAge: this.refs.minAge.state.value,
             maxAge: this.refs.maxAge.state.value,
-            hourFee: parseInt(this.refs.hourFee.state.value),
+            hourFee: parseInt(this.refs.hourFee.state.value,10),
             //availableNow: this.refs.availableNow.state.value == "true",
             expertise: this.refs.sitterExpertise.state.value,
             hobbies: this.refs.sitterHobbies.state.value,
@@ -114,9 +114,9 @@ class Form extends React.Component {
                 <TextInput ref='street' label="Street"  placeholder="Arlozorov" />
                 <TextInput ref='houseNumber' label="House Number" type="number"  placeholder="Arlozorov" />
                 <h3>Gender</h3>
-                <RadioInput ref="genderRadio" types={['Male','Female']} default={this.state.gender}/>
+                <RadioInput ref="genderRadio1" types={['Male','Female']} default={this.state.gender}/>
                 <h4>Profile picture</h4>
-                <img src={this.state.profilePicture} alt="Profile picture"/>
+                <img src={this.state.profilePicture} />
                 <h4>Languages</h4>
                 <Select
                     name="form-field-name"
@@ -131,7 +131,7 @@ class Form extends React.Component {
                 <TextInput ref='hourFee' label="Age" type="number" placeholder="25" />
                 <h4>Working Hours</h4>{/*TODO: think about this component*/}
                 <h3>Immediate availability</h3>
-                <RadioInput ref="availableNow" types={['True','False']} default="false"/>
+                <RadioInput ref="availableNow" types={['True','False']} default="False"/>
                 <h4>Sitter Expertise</h4>{/*TODO: implement multi checkbox*/}
                 <CheckBoxInput name="sitterExpertise" types={['Math','English','Physics']} ref="sitterExpertise"/>
                 <h4>Sitter Hobbies</h4>{/*TODO: implement multi checkbox*/}

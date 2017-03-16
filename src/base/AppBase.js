@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
-class AppBase extends Component {
+class AppBase extends React.Component {
 
     constructor() {
         super();

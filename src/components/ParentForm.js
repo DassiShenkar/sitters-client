@@ -23,11 +23,9 @@ class Form extends React.Component {
             console.log(usr);
         if(usr.birthday){ // calculate age from birthday
             let date = usr.birthday.split("/");
-            age = (new AgeFromDate(new Date(parseInt(date[2]),parseInt(date[1]) -1, parseInt(date[0]) -1)).age) || 0;
+            age = (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
         }
         this.state = {
-            selectedForm: "parent",
-            genderFilter: usr.gender?usr.gender:"female",
             immediateFilter: "false",
             name: usr.name,
             email: usr.email,
@@ -123,7 +121,7 @@ class Form extends React.Component {
                 <h3>Gender</h3>
                 <RadioInput ref="genderRadio" types={['Male', 'Female']} default={this.state.gender}/>
                 <h4>Profile picture</h4>
-                <img src={this.state.profilePicture} alt="Profile picture"/>
+                <img src={this.state.profilePicture} />
                 <h4>Languages</h4>
                 <Select
                     name="form-field-name"

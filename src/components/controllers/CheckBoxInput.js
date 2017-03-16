@@ -8,13 +8,13 @@ class CheckBoxInput extends CheckBoxBase { // need to get default and types
     render() {
         const options = this.props.types.map((name) => {
             return (
-                <label><Checkbox value={name}/> {name}</label>
+                <label key={this.props.types.indexOf(name)}><Checkbox value={name}/> {name}</label>
             )
         });
         return (
             <div>
 
-                <CheckboxGroup name={this.props.name} value="" onChange={this.onChange} children='' >
+                <CheckboxGroup name={this.props.name} onChange={this.onChange} children='' >
                     {options}
                 </CheckboxGroup>
             </div>

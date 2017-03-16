@@ -6,7 +6,7 @@ class RadioInputBase extends React.Component {
         super(props);
         this.state = {
             value: this.props.default.replace(/\b[a-z]/g,function(f){return f.toUpperCase();})// make first letter upper case
-        }
+        };
     };
 
     handleRadio(e) {

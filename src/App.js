@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBase from './base/AppBase.js';
 import FBLogin from './components/FBlogin';
 
 class App extends AppBase {
-
-    constructor() {
-        super();
-    }
 
     render() {
         return (

@@ -11,14 +11,14 @@ class FBLogin extends React.Component {
         let education = [],languages = [];
         if(response.education){
             response.education.forEach(function(edu){
-                if(education.indexOf(edu.type.toLowerCase()) == -1){ // check if string in array
+                if(education.indexOf(edu.type.toLowerCase()) === -1){ // check if string in array
                     education.push(edu.type.toLowerCase());
                 }
             });
         }
         if(response.languages){
             response.languages.forEach(function(lang){
-                if(languages.indexOf(lang.name.toLowerCase()) == -1) { // check if string in array
+                if(languages.indexOf(lang.name.toLowerCase()) === -1) { // check if string in array
                     languages.push(lang.name.toLowerCase());
                 }
             })

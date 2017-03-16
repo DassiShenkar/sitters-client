@@ -1,15 +1,14 @@
-'use strict';
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
 import ParentForm from './ParentForm'
 import SitterForm from './SitterForm'
 
-class Register extends Component {
+class Register extends React.Component {
     constructor() {
         super();
         this.state ={
-            selectedForm: "parent"
+            selectedForm: "sitter"
         }
     }
     onChange(filterName) {
@@ -22,7 +21,6 @@ class Register extends Component {
     }
     render(){
         let form = this.state.selectedForm === 'parent' ? <ParentForm/> : <SitterForm/>;
-
         return (
             <div id="register-page">
                 <section className="invite-info">

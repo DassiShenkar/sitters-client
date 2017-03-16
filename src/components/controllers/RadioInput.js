@@ -6,11 +6,11 @@ class Radio extends RadioInputBase {// need to get default and types
     }
 
     render() {
-        const options = this.props.types.map((loan) => {
+        const options = this.props.types.map((option) => {
             return (
-                <label>
-                    <input type="radio" name="coffeeTypes" id={loan} value={loan} checked={this.state.value == loan} onChange={this.handleRadio.bind(this)}/>
-                    {loan}
+                <label key={this.props.types.indexOf(option)}>
+                    <input type="radio" name="coffeeTypes" id={option} value={option} checked={this.state.value === option} onChange={this.handleRadio.bind(this)}/>
+                    {option}
                 </label>
             )
         });
