@@ -13,7 +13,6 @@ class CheckBoxInput extends CheckBoxBase { // need to get default and types
         });
         return (
             <div>
-
                 <CheckboxGroup name={this.props.name} onChange={this.onChange} children='' >
                     {options}
                 </CheckboxGroup>
