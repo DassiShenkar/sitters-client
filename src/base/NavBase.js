@@ -5,11 +5,18 @@ class NavBase extends React.Component {
 
     constructor() {
         super();
-        this.onClick = this.onClick.bind(this);
+        this.onClickSearch = this.onClickSearch.bind(this);
+        this.onClickMail = this.onClickMail.bind(this);
+        this.onClickNotification = this.onClickNotification.bind(this);
     }
-    onClick(e){
+    onClickSearch(e){
         e.preventDefault();
-        console.log("clicked");
+    }
+    onClickMail(e){
+        e.preventDefault();
+    }
+    onClickNotification(e){
+        e.preventDefault();
     }
 }
 
