@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
 
 class Form extends React.Component {
     constructor(props) {
@@ -23,8 +24,8 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form id="invite" onSubmit={this.sendInvite}>
-                <input type="submit" className="send-invite" value="Send"/>
+            <form id="invite">
+                <Button bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
             </form>
         );
     };

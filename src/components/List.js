@@ -4,10 +4,9 @@ import ListItem from './ListItem';
 
 class List extends ListBase {
     render(){
-        let i = 0;
         const list = this.props.items.map((item) => {
             return (
-                <ListItem key={i++} item={item}/>
+                <ListItem key={this.props.items.indexOf(item)} item={item}/>
             )});
 
         return(

@@ -10,11 +10,9 @@ class CheckBoxInput extends CheckBoxBase {
             )
         });
         return (
-            <div>
-                <CheckboxGroup name={this.props.name} onChange={this.onChange} children=''>
-                    {options}
-                </CheckboxGroup>
-            </div>
+            <CheckboxGroup name={this.props.name} onChange={this.onChange} children=''>
+                {options}
+            </CheckboxGroup>
         )
     }
 }
