@@ -12,7 +12,6 @@
     "rc-dropdown": "^1.4.10",
     "rc-menu": "^5.0.9",
     "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2",
     "react-checkbox-group": "^3.1.0",
     "react-dom": "^15.4.2",
     "react-dropdown": "^1.2.1",
@@ -22,10 +21,6 @@
     "react-radio-group": "^3.0.1",
     "react-router": "^3.0.2",
     "react-select": "^1.0.0-rc.3",
-    "react-simple-dropdown": "^2.0.0",
-    "react-svg": "^2.1.19",
-    "react-svg-loader": "^1.1.1",
-    "reactstrap": "^4.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
