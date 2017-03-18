@@ -1,16 +1,31 @@
 import React from 'react';
 import '../styles/css/feed.scss'
 import Nav from './Nav'
+import SitterList from './SitterList'
 
 class Feed extends React.Component {
     constructor(props) {
         super(props);
     };
     render() {
+        let sitters = [{
+            name: "arel",
+            matchScore: 85,
+            image: "https://pbs.twimg.com/profile_images/646103409314033664/UC8CzXRE.png"
+        },{
+            name: "arel1",
+            matchScore: 80,
+            image: "https://pbs.twimg.com/profile_images/646103409314033664/UC8CzXRE.png"
+        },{
+            name: "arel2",
+            matchScore: 75,
+            image: "https://pbs.twimg.com/profile_images/646103409314033664/UC8CzXRE.png"
+        }];
         return (
             <div>
                 <h1>Feed</h1>
                 <Nav name="Arel" image="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTYLooZuD2jyZ_RGPegqe1mmDhavIfmZeSpjYLsjSfsKRHpXcffHmMrmA"/>
+                <SitterList sitters={sitters} />
             </div>
         )
     }
