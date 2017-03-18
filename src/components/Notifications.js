@@ -1,7 +1,7 @@
 import React from 'react';
 import List from './List';
 
-class Invites  extends React.Component{
+class Notifications  extends React.Component{
 
     constructor() {
         super();
@@ -17,4 +17,4 @@ class Invites  extends React.Component{
     }
 }
 
-export default Invites;
+export default Notifications;

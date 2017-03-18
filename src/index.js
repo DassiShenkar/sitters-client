@@ -5,6 +5,7 @@ import App from './App';
 import Register from "./components/Register"
 import Feed from "./components/Feed"
 import Invites from "./components/Invites"
+import Notifications from "./components/Notifications"
 import './styles/css/index.scss';
 
 render((
@@ -13,6 +14,7 @@ render((
         <Route path="/register" component={Register}/>
         <Route path="/feed" component={Feed}/>
         <Route path="/invites" component={Invites}/>
+        <Route path="/notifications" component={Notifications}/>
     </Router>
 ), document.getElementById('root'));
 
