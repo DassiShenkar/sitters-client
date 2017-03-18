@@ -16,10 +16,9 @@ class SitterList extends SitterListBase {
         }
     }
 
-    nextSitter(e) {
+    nextSitter(e) {// go to next sitter, if its the last sitter, go to the first one
         e.preventDefault();
         this.setState({index: this.state.index == (this.state.sitters.length -1) ? 0: (this.state.index +1)});
-        //console.log(newIndex);
     }
 
     likeSitter(e) {

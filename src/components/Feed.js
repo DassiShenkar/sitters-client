@@ -11,15 +11,15 @@ class Feed extends React.Component {
         let sitters = [{
             name: "arel",
             matchScore: 85,
-            image: "https://pbs.twimg.com/profile_images/646103409314033664/UC8CzXRE.png"
+            image: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png"
         },{
             name: "arel1",
             matchScore: 80,
-            image: "https://pbs.twimg.com/profile_images/646103409314033664/UC8CzXRE.png"
+            image: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png"
         },{
             name: "arel2",
             matchScore: 75,
-            image: "https://pbs.twimg.com/profile_images/646103409314033664/UC8CzXRE.png"
+            image: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Japan_small_icon.png"
         }];
         return (
             <div>
