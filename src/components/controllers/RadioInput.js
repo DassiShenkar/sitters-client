@@ -1,15 +1,14 @@
 import React from 'react';
 import RadioInputBase from '../../base/controllers/RadioInputBase.js';
-class Radio extends RadioInputBase {// need to get default and types
-    constructor(props) {
-        super(props);
-    }
+
+class Radio extends RadioInputBase {
 
     render() {
         const options = this.props.types.map((option) => {
             return (
                 <label key={this.props.types.indexOf(option)}>
-                    <input type="radio"  id={option} value={option} checked={this.state.value === option} onChange={this.handleRadio.bind(this)}/>
+                    <input type="radio" name={option} value={option} checked={this.state.value === option}
+                           onChange={this.handleRadio}/>
                     {option}
                 </label>
             )

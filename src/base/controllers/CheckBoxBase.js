@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/css/index.scss'
 
 class CheckBoxBase extends React.Component {
     constructor(props) {

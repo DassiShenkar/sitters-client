@@ -5,14 +5,10 @@ import RadioInput from './controllers/RadioInput';
 import WorkingHours from './controllers/WorkingHours';
 import baseData from '../data/base';
 
-var ageCalculator = require('age-calculator'),
-    {AgeFromDateString, AgeFromDate} = require('age-calculator'),
-    Select = require('react-select'),
-    $ = require('jquery'),
-    url,
-    localhost = 'http://localhost:4000/',
-    DEBUG = true,
-    age;
+var {AgeFromDate} = require('age-calculator');
+var Select = require('react-select');
+var DEBUG = true;
+var age;
 
 class Form extends React.Component {
     constructor(props) {
@@ -53,55 +49,29 @@ class Form extends React.Component {
 
     handleSubmitSitter(e) {// get all the form params and create sitter
         e.preventDefault();
-        console.log(this.refs);
-        //noinspection JSUnresolvedVariable
-        let sitter = {
-            //gender: this.refs.genderRadio.state.value,
-            name: this.refs.name.state.value,
-            email: this.refs.email.state.value,
-            age: this.refs.age.state.value,
-            address: {
-                city: this.refs.city.state.value,
-                street: this.refs.street.state.value,
-                houseNumber: this.refs.houseNumber.state.value,
-            },
-            profilePicture: this.state.profilePicture,
-            coverPhoto: this.state.coverPhoto,
-            timezone: this.state.timezone,
-            languages: this.state.languages,
-            education: this.state.education,
-            minAge: this.refs.minAge.state.value,
-            maxAge: this.refs.maxAge.state.value,
-            hourFee: parseInt(this.refs.hourFee.state.value,10),
-            //availableNow: this.refs.availableNow.state.value == "true",
-            expertise: this.refs.sitterExpertise.state.value,
-            hobbies: this.refs.sitterHobbies.state.value,
-            specialNeeds: this.refs.sitterSpecialNeeds.state.value
-        };
-        console.log(sitter);
-        {/*if (DEBUG) {*/}
-            {/*console.log(sitter);*/}
-            {/*url = localhost + 'sitter/create';*/}
-        {/*}*/}
-        {/*else {*/}
-        //     url = "";
-        // }
-        // $.ajax({
-        //     url: url,
-        //     dataType: 'json',
-        //     type: 'post',
-        //     contentType: 'application/json',
-        //     data: JSON.stringify(sitter),
-        //     success: function (data) {
-        //         if (DEBUG)
-        //             console.log(data);
-        //         localStorage.setItem('user', sitter);
-        //         location.replace("feed");
-        //     }.bind(this),
-        //     error: function (xhr, status, err) {
-        //         console.error(this.props.url, status, err.toString());
-        //     }.bind(this)
-        // });
+        // let sitter = {
+        //     //gender: this.refs.genderRadio.state.value,
+        //     name: this.refs.name.state.value,
+        //     email: this.refs.email.state.value,
+        //     age: this.refs.age.state.value,
+        //     address: {
+        //         city: this.refs.city.state.value,
+        //         street: this.refs.street.state.value,
+        //         houseNumber: this.refs.houseNumber.state.value,
+        //     },
+        //     profilePicture: this.state.profilePicture,
+        //     coverPhoto: this.state.coverPhoto,
+        //     timezone: this.state.timezone,
+        //     languages: this.state.languages,
+        //     education: this.state.education,
+        //     minAge: this.refs.minAge.state.value,
+        //     maxAge: this.refs.maxAge.state.value,
+        //     hourFee: parseInt(this.refs.hourFee.state.value,10),
+        //     //availableNow: this.refs.availableNow.state.value == "true",
+        //     expertise: this.refs.sitterExpertise.state.value,
+        //     hobbies: this.refs.sitterHobbies.state.value,
+        //     specialNeeds: this.refs.sitterSpecialNeeds.state.value
+        // };
     }
 
     render() {
@@ -117,7 +87,7 @@ class Form extends React.Component {
                 <h3>Gender</h3>
                 <RadioInput ref="genderRadio1" types={['Male','Female']} default={this.state.gender}/>
                 <h4>Profile picture</h4>
-                <img src={this.state.profilePicture} />
+                <img src={this.state.profilePicture} alt={this.state.name}/>
                 <h4>Languages</h4>
                 <Select
                     name="form-field-name"

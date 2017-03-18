@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from 'rc-dropdown';
-import Menu, { Item as MenuItem, Divider } from 'rc-menu';
+import Menu, {Item as MenuItem} from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
 import Arrow from '../styles/icons/Arrow'
 
@@ -13,18 +13,16 @@ class DropdownMenu extends React.Component {
     }
 
     onSelect({key}) {
-        switch(key){
+        switch (key) {
             case "editProfile":
-
                 break;
             case "settings":
-
                 break;
             case "logout":
-
                 break;
             case "about":
-
+                break;
+            default:
                 break;
         }
     }
@@ -42,14 +40,14 @@ class DropdownMenu extends React.Component {
             </Menu>
         );
         return (
-                <Dropdown
-                    trigger={['click']}
-                    overlay={menu}
-                    animation="slide-up"
-                    onVisibleChange={this.onVisibleChange}
-                >
-                    <button><Arrow/></button>
-                </Dropdown>
+            <Dropdown
+                trigger={['click']}
+                overlay={menu}
+                animation="slide-up"
+                onVisibleChange={this.onVisibleChange}
+            >
+                <button><Arrow/></button>
+            </Dropdown>
         );
     }
 }

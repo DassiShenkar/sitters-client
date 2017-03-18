@@ -1,9 +1,7 @@
 import React from 'react';
-import NotificationListBase from '../base/NotificationListBase'
+import NotificationListBase from '../base/NotificationListBase';
+
 class NotificationList extends NotificationListBase {
-    constructor(props) {
-        super(props);
-    }
     render(){
         const notifications = this.props.notifications.map((notification) => {
             return (

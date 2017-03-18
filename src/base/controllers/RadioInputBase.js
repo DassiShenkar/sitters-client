@@ -5,12 +5,15 @@ class RadioInputBase extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: this.props.default.replace(/\b[a-z]/g,function(f){return f.toUpperCase();})// make first letter upper case
+            value: this.props.default.replace(/\b[a-z]/g, function (f) {
+                return f.toUpperCase();
+            })// make first letter upper case
         };
+        this.handleRadio = this.handleRadio.bind(this);
     };
 
     handleRadio(e) {
-        this.setState({ value: e.target.value });
+        this.setState({value: e.target.value});
     }
 }
 

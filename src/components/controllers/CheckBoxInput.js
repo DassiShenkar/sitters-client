@@ -1,10 +1,8 @@
 import React from 'react';
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
-import CheckBoxBase from '../../base/controllers/CheckBoxBase.js'
-class CheckBoxInput extends CheckBoxBase { // need to get default and types
-    constructor(props) {
-        super(props);
-    }
+import CheckBoxBase from '../../base/controllers/CheckBoxBase'
+
+class CheckBoxInput extends CheckBoxBase {
     render() {
         const options = this.props.types.map((name) => {
             return (
@@ -13,7 +11,7 @@ class CheckBoxInput extends CheckBoxBase { // need to get default and types
         });
         return (
             <div>
-                <CheckboxGroup name={this.props.name} onChange={this.onChange} children='' >
+                <CheckboxGroup name={this.props.name} onChange={this.onChange} children=''>
                     {options}
                 </CheckboxGroup>
             </div>

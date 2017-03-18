@@ -1,19 +1,17 @@
 import React from 'react';
 import WorkingHoursBase from '../../base/controllers/WorkingHoursBase';
-class WorkingHours extends WorkingHoursBase {// need to get default and types
-    constructor(props) {
-        super(props);
-    }
+class WorkingHours extends WorkingHoursBase {
+
     render() {
         const days = this.props.days.map((day) => {
             return (
-                <li>
+                <li key={day}>
                     <label key={this.props.days.indexOf(day)}>
                         {day + ' '}
                         From
-                        <input id="day" type="time" value="18:00" />
+                        <input id="day" type="time" defaultValue="18:00"/>
                         To
-                        <input id="day" type="time" value="22:00" />
+                        <input id="day" type="time" defaultValue="22:00"/>
                     </label>
                 </li>
             )

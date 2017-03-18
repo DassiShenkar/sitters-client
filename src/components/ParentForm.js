@@ -4,14 +4,10 @@ import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
 import baseData from '../data/base';
 
-var ageCalculator = require('age-calculator'),
-    {AgeFromDateString, AgeFromDate} = require('age-calculator'),
-    Select = require('react-select'),
-    $ = require('jquery'),
-    url,
-    localhost = 'http://localhost:4000/',
-    DEBUG = true,
-    age;
+var {AgeFromDate} = require('age-calculator');
+var Select = require('react-select');
+var DEBUG = true;
+var age;
 
 class Form extends React.Component {
     constructor(props) {
@@ -19,17 +15,17 @@ class Form extends React.Component {
         this.handleLanguageSelect = this.handleLanguageSelect.bind(this);
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         let usr = JSON.parse(localStorage.getItem('user'));
-        if(DEBUG)
+        if (DEBUG)
             console.log(usr);
-        if(usr.birthday){ // calculate age from birthday
+        if (usr.birthday) { // calculate age from birthday
             let date = usr.birthday.split("/");
-            age = (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
+            age = (new AgeFromDate(new Date(parseInt(date[2], 10), parseInt(date[1], 10) - 1, parseInt(date[0], 10) - 1)).age) || 0;
         }
         this.state = {
             immediateFilter: "false",
             name: usr.name,
             email: usr.email,
-            gender: usr.gender?usr.gender:"female",
+            gender: usr.gender ? usr.gender : "female",
             profilePicture: usr.profileImage,
             coverPhoto: usr.coverImage,
             location: usr.location,
@@ -37,12 +33,12 @@ class Form extends React.Component {
             education: usr.education,
             currency: usr.currency,
             age: age,
-            options : baseData.getLanguages(),
-            childSpecialNeeds : [],
-            languages : usr.languages,
+            options: baseData.getLanguages(),
+            childSpecialNeeds: [],
+            languages: usr.languages,
             defaultTimeValue: '10:00'
         };
-        if(DEBUG)
+        if (DEBUG)
             console.log(this.state);
     };
 
@@ -50,61 +46,31 @@ class Form extends React.Component {
         this.setState({languages: val});
     }
 
-    handleSubmitParent(e) { // get all the form params and create parent
+    handleSubmitParent(e) {
         e.preventDefault();
-        //console.log(this.refs.name.getValue());
-        // if(DEBUG)
-        //     console.log(this.refs);
-        // //noinspection JSUnresolvedVariable
-        let parent = {
-            name: this.refs.name.state.value,
-            email: this.refs.email.state.value,
-            age: this.refs.age.state.value,
-            address: {
-                city: this.refs.city.state.value,
-                street: this.refs.street.state.value,
-                houseNumber: this.refs.houseNumber.state.value,
-            },
-            gender: this.refs.genderRadio.state.value,
-            profilePicture: this.state.profilePicture,
-            coverPhoto: this.state.coverPhoto,
-            timezone: this.state.timezone,
-            maxPrice: this.refs.maxPrice.state.value,
-            languages: this.state.languages,
-            children: {
-                name: this.refs.childName.state.value,
-                age:  this.refs.childAge.state.value,
-                expertise: this.refs.childExpertise.state.value,
-                hobbies: this.refs.childHobbies.state.value,
-                specialNeeds: this.refs.childSpecialNeed.state.value,
-            }
-        };
-        console.log(parent);
-        // if(DEBUG){
-        //     console.log(parent);
-        //     url = localhost + 'parent/create';
-        // }
-        // else{
-        //     url = "";
-        // }
-        //
-        //
-        // $.ajax({
-        //     url: url,
-        //     dataType: 'json',
-        //     type: 'post',
-        //     contentType: 'application/json',
-        //     data: JSON.stringify(parent),
-        //     success: function (data) {
-        //         if(DEBUG)
-        //             console.log(data);
-        //         localStorage.setItem('user',parent);
-        //         location.replace("feed");
-        //     }.bind(this),
-        //     error: function (xhr, status, err) {
-        //         console.error(this.props.url, status, err.toString());
-        //     }.bind(this)
-        // });
+        // let parent = {
+        //     name: this.refs.name.state.value,
+        //     email: this.refs.email.state.value,
+        //     age: this.refs.age.state.value,
+        //     address: {
+        //         city: this.refs.city.state.value,
+        //         street: this.refs.street.state.value,
+        //         houseNumber: this.refs.houseNumber.state.value,
+        //     },
+        //     gender: this.refs.genderRadio.state.value,
+        //     profilePicture: this.state.profilePicture,
+        //     coverPhoto: this.state.coverPhoto,
+        //     timezone: this.state.timezone,
+        //     maxPrice: this.refs.maxPrice.state.value,
+        //     languages: this.state.languages,
+        //     children: {
+        //         name: this.refs.childName.state.value,
+        //         age: this.refs.childAge.state.value,
+        //         expertise: this.refs.childExpertise.state.value,
+        //         hobbies: this.refs.childHobbies.state.value,
+        //         specialNeeds: this.refs.childSpecialNeed.state.value,
+        //     }
+        // };
     };
 
 
@@ -121,7 +87,7 @@ class Form extends React.Component {
                 <h3>Gender</h3>
                 <RadioInput ref="genderRadio" types={['Male', 'Female']} default={this.state.gender}/>
                 <h4>Profile picture</h4>
-                <img src={this.state.profilePicture} />
+                <img src={this.state.profilePicture} alt={this.state.name}/>
                 <h4>Languages</h4>
                 <Select
                     name="form-field-name"

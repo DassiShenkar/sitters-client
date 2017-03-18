@@ -12,13 +12,13 @@ class SitterList extends SitterListBase {
         console.log(props);
         this.state = {
             index: 0,
-            sitters : props.sitters
+            sitters: props.sitters
         }
     }
 
-    nextSitter(e) {// go to next sitter, if its the last sitter, go to the first one
+    nextSitter(e) {
         e.preventDefault();
-        this.setState({index: this.state.index == (this.state.sitters.length -1) ? 0: (this.state.index +1)});
+        this.setState({index: this.state.index === (this.state.sitters.length - 1) ? 0 : (this.state.index + 1)});
     }
 
     likeSitter(e) {
@@ -33,7 +33,7 @@ class SitterList extends SitterListBase {
         return (
             <div>
                 <p className="matchScore">{this.props.sitters[this.state.index].matchScore}% Match!</p>
-                <img src={this.props.sitters[this.state.index].image}/>
+                <img src={this.props.sitters[this.state.index].image} alt={this.props.sitters[this.state.index].name}/>
                 <p className="sitterName">{this.props.sitters[this.state.index].name}</p>
                 <button onClick={this.likeSitter}><Like/></button>
                 <button onClick={this.reviewSitter}><Star/></button>
