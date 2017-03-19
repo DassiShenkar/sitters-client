@@ -1,36 +1,35 @@
 import React from 'react';
-import ReactRating from 'react-rating'
+import PersonalityTestRating from './controllers/PersonalityTestRating'
 
 class PersonalityTest extends React.Component {
     constructor() {
         super();
-        this.onChange = this.onChange.bind(this);
-        this.state = {
-            index: 0
+        this.computeResults = this.computeResults.bind(this);
+    }
+    computeResults(){
+        let questions = [];
+        for (let ref in this.refs) {
+            if(ref.startsWith("question")) {
+                console.log(this.refs[ref]);
+                questions[this.refs[ref].state.key] = {
+                    choice : this.refs[ref].state.rating,
+                    question : this.refs[ref].state.question,
+                    category : this.refs[ref].state.category,
+                    method : this.refs[ref].state.method
+                }
+            }
         }
-
     }
-    onChange(newRating,number){
-        console.log(newRating);
-        console.log(number);
-        this.setState({
-            rating: newRating
-        })
-    }
-
 
     render() {
+        let index = 0;
         const questions = this.props.questions.map((question) => {
+            index += 1;
+            let questionRef = "question" + index;
             return (
-                <div>
+                <div key={index}>
                     <p>{question.question}</p>
-                    1<ReactRating onChange={this.onChange} />5
-                {/*// <label key={this.props.types.indexOf(option)}>*/}
-                {/*//     <input type="radio" name={option} value={option} checked={this.state.value === option}*/}
-                {/*//            onChange={this.handleRadio}/>*/}
-                {/*//     {option}*/}
-                {/*// </label>*/}
-                {/*</label>*/}
+                    <PersonalityTestRating ref={questionRef} id={index} question={question}/>
                 </div>
             )
         });

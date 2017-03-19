@@ -21,4 +21,3 @@ render((
         <Route path="/test" component={Test}/>
     </Router>
 ), document.getElementById('root'));
-
