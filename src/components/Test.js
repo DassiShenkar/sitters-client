@@ -1,5 +1,7 @@
 import React from 'react';
 import PersonalityTest from './PersonalityTest'
+import SearchByTab from './SearchByTab'
+import 'react-tab-panel/index.css'
 class Test extends React.Component {
     render(){
         let questions =[{
@@ -81,7 +83,8 @@ class Test extends React.Component {
         return (
 
             <div>
-                <PersonalityTest questions={questions} />
+                <SearchByTab/>
+                {/*<PersonalityTest questions={questions} />*/}
             </div>
         );
     }
