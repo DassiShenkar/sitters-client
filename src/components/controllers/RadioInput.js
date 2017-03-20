@@ -7,7 +7,7 @@ class Radio extends RadioInputBase {
         const options = this.props.types.map((option) => {
             return (
                 <label key={this.props.types.indexOf(option)}>
-                    <input type="radio" name={option} value={option} checked={this.state.value === option}
+                    <input type="radio" name={this.props.radioName} value={option} checked={this.state.value === option}
                            onChange={this.handleRadio}/>
                     {option}
                 </label>

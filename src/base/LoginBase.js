@@ -21,6 +21,7 @@ class FBLogin extends React.Component {
                 }
             })
         }
+        console.log(response);
         user = {
             name: response.name,
             birthday: response.birthday,

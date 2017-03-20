@@ -5,6 +5,7 @@ import LoginBase from '../base/LoginBase.js'
 class FBLogin extends LoginBase {
 
     render() {
+        console.log(localStorage);
         return (
             <FacebookLogin
                 appId="268453370262293"
@@ -17,6 +18,6 @@ class FBLogin extends LoginBase {
     }
 }
 FBLogin.propTypes = {
-    myFunc: React.PropTypes.func,
+    myFunc: React.PropTypes.func
 };
 export default FBLogin;

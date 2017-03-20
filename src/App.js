@@ -3,6 +3,7 @@ import AppBase from './base/AppBase.js';
 import FBLogin from './components/FBlogin';
 import Nav from './components/Nav'
 import SitterList from './components/SitterList'
+import RadioInput from './components/controllers/RadioInput'
 class App extends AppBase {
     constructor(){
         super();
@@ -37,7 +38,11 @@ class App extends AppBase {
         }];
         let login;
         if(this.state.loggedIn === false){
-            login = <div><FBLogin myFunc={this.changeStatus.bind(this)}/></div>;
+            login = <div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                        <RadioInput ref="userInput" types={['I\'m a Parent' , 'I\'m a Sitter']} default={'I\'m a Parent'} saveInLocalStorage={'true'} radioName="userType"/>
+                        <FBLogin myFunc={this.changeStatus.bind(this)}/>
+                    </div>;
         }
         else {
             login =   <div>
@@ -49,7 +54,7 @@ class App extends AppBase {
             </div>;
         }
         return (<div>
-            {login}
+                {login}
             </div>
         );
     }
