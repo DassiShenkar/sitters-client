@@ -40,4 +40,5 @@ class PersonalityTest extends React.Component {
         );
     }
 }
+
 export default PersonalityTest;

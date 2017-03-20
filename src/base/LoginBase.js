@@ -2,6 +2,8 @@ import React from 'react';
 
 class FBLogin extends React.Component {
 
+
+
     responseFacebook = (response) => {
         let user;
         let education = [], languages = [];
@@ -34,7 +36,15 @@ class FBLogin extends React.Component {
         };
         console.log(user);
         localStorage.setItem('user', JSON.stringify(user));
-        location.replace("register");
+
+        let exist = true;// TODO: check if user exist in DB, if
+        this.props.myFunc();
+        // if(exist){
+        //     location.replace("feed");
+        // }
+        // else{
+        //     location.replace("register");
+        // }
     };
 }
 

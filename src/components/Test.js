@@ -1,9 +1,6 @@
 import React from 'react';
 import PersonalityTest from './PersonalityTest'
 class Test extends React.Component {
-    constructor() {
-        super();
-    }
     render(){
         let questions =[{
             "question": "I consider myself as an investor in his own field",

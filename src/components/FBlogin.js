@@ -16,5 +16,7 @@ class FBLogin extends LoginBase {
         )
     }
 }
-
+FBLogin.propTypes = {
+    myFunc: React.PropTypes.func,
+};
 export default FBLogin;

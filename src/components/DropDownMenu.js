@@ -19,6 +19,9 @@ class DropdownMenu extends React.Component {
             case "settings":
                 break;
             case "logout":
+                localStorage.user = null; // delete the user information from the browser
+                console.log("User logged out");
+                location.replace("/");
                 break;
             case "about":
                 break;
