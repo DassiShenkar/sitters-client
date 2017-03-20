@@ -9,7 +9,7 @@ class FBLogin extends LoginBase {
         return (
             <FacebookLogin
                 appId="268453370262293"
-                autoLoad={true}
+                autoLoad={false}
                 fields="id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
                 scope="user_birthday,public_profile,user_location,user_education_history,user_likes,email"
                 callback={this.responseFacebook}

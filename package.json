@@ -11,6 +11,7 @@
     "lodash": "^4.17.4",
     "rc-dropdown": "^1.4.10",
     "rc-menu": "^5.0.9",
+    "rc-slider": "^6.2.0",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-checkbox-group": "^3.1.0",

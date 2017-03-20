@@ -1,8 +1,26 @@
 import React from 'react';
 import PersonalityTest from './PersonalityTest'
 import SearchByTab from './SearchByTab'
+//import {Range} from 'rc-slider';
 import 'react-tab-panel/index.css'
+import 'rc-slider/assets/index.css';
+const Slider = require('rc-slider');
+const Range = Slider.Range;
 class Test extends React.Component {
+    constructor(){
+        super();
+        this.changeValue = this.changeValue.bind(this);
+        this.state = {
+            min:0,
+            max:100,
+            step:1,
+            currentValue: 50
+        }
+    }
+    changeValue(value){
+        console.log(value);
+
+    }
     render(){
         let questions =[{
             "question": "I consider myself as an investor in his own field",
@@ -82,9 +100,14 @@ class Test extends React.Component {
         }];
         return (
 
-            <div>
-                <SearchByTab/>
+            <div style
+            >
+                {/*<SearchByTab/>*/}
                 {/*<PersonalityTest questions={questions} />*/}
+                <Range allowCross={false}
+                        min={5}
+                        max={50}
+                />
             </div>
         );
     }

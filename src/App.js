@@ -15,6 +15,7 @@ class App extends AppBase {
     componentWillMount(){
         if (localStorage.getItem("user") === null) {
             this.setState({loggedIn : true});
+            //TODO: check if user in db go to feed, else go to register
         }
     }
 
