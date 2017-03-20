@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {Router, Route, browserHistory} from 'react-router';
 import App from './App';
 import Register from "./components/Register";
-import Feed from "./components/Feed";
+import Feed from "./components/OldFeed";
 import Invites from "./components/Invites";
 import Notifications from "./components/Notifications";
 import EditInvite from "./components/EditInvite";

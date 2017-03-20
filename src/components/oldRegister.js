@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
-import baseData from '../data/base';
+import baseData from '../data/BaseData';
 import TextInput from './controllers/TextInput';
 var ageCalculator = require('age-calculator'),
     {AgeFromDateString, AgeFromDate} = require('age-calculator'),

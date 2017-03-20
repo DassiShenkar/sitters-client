@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
-import baseData from '../data/base';
+import baseData from '../data/BaseData';
 
 var {AgeFromDate} = require('age-calculator');
 var Select = require('react-select');
@@ -48,29 +48,29 @@ class Form extends React.Component {
 
     handleSubmitParent(e) {
         e.preventDefault();
-        // let parent = {
-        //     name: this.refs.name.state.value,
-        //     email: this.refs.email.state.value,
-        //     age: this.refs.age.state.value,
-        //     address: {
-        //         city: this.refs.city.state.value,
-        //         street: this.refs.street.state.value,
-        //         houseNumber: this.refs.houseNumber.state.value,
-        //     },
-        //     gender: this.refs.genderRadio.state.value,
-        //     profilePicture: this.state.profilePicture,
-        //     coverPhoto: this.state.coverPhoto,
-        //     timezone: this.state.timezone,
-        //     maxPrice: this.refs.maxPrice.state.value,
-        //     languages: this.state.languages,
-        //     children: {
-        //         name: this.refs.childName.state.value,
-        //         age: this.refs.childAge.state.value,
-        //         expertise: this.refs.childExpertise.state.value,
-        //         hobbies: this.refs.childHobbies.state.value,
-        //         specialNeeds: this.refs.childSpecialNeed.state.value,
-        //     }
-        // };
+        let parent = {
+            name: this.refs.name.state.value,
+            email: this.refs.email.state.value,
+            age: this.refs.age.state.value,
+            address: {
+                city: this.refs.city.state.value,
+                street: this.refs.street.state.value,
+                houseNumber: this.refs.houseNumber.state.value,
+            },
+            gender: this.refs.genderRadio.state.value,
+            profilePicture: this.state.profilePicture,
+            coverPhoto: this.state.coverPhoto,
+            timezone: this.state.timezone,
+            maxPrice: this.refs.maxPrice.state.value,
+            languages: this.state.languages,
+            children: {
+                name: this.refs.childName.state.value,
+                age: this.refs.childAge.state.value,
+                expertise: this.refs.childExpertise.state.value,
+                hobbies: this.refs.childHobbies.state.value,
+                specialNeeds: this.refs.childSpecialNeed.state.value,
+            }
+        };
     };
 
 

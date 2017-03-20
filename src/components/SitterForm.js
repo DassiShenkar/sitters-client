@@ -3,7 +3,8 @@ import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
 import WorkingHours from './controllers/WorkingHours';
-import baseData from '../data/base';
+import BaseData from '../data/BaseData';
+import PersonalityTest from './PersonalityTest'
 
 var {AgeFromDate} = require('age-calculator');
 var Select = require('react-select');
@@ -34,7 +35,7 @@ class Form extends React.Component {
             education: usr.education,
             currency: usr.currency,
             age: age,
-            options : baseData.getLanguages(),
+            options : BaseData.getLanguages(),
             childSpecialNeeds : [],
             languages : usr.languages,
             defaultTimeValue: '10:00'
@@ -110,7 +111,9 @@ class Form extends React.Component {
                 <CheckBoxInput name="sitterHobbies" types={['Reading','Painting','Traveling','Sports','Swimming','Sleeping','Watching TV']} ref="sitterHobbies"/>
                 <h4>Sitter Special needs</h4>{/*TODO: implement multi checkbox*/}
                 <CheckBoxInput name="sitterHobbies" types={['ADD','Aphasia/Dysphagia','Auditory Processing','Autism','Cystic Fibrosis','Developmental Delays']} ref="sitterSpecialNeeds"/>
-                <input type="submit" className="submit-invite" value="Sign Up"/>
+                <h4>Sitter Personality Test:</h4>
+                <PersonalityTest questions={BaseData.getQuestions()}/>
+                <input type="submit" className="submit-invite" value="Sign Up"/>{/*TODO: pass question from server*/}
             </form>
         );
     };
