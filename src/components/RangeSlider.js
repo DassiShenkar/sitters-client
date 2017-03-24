@@ -18,4 +18,7 @@ class RangeSlider extends RangeBase {
         );
     }
 }
+RangeSlider.propTypes = {
+    changeRangeValues: React.PropTypes.func,
+};
 export default RangeSlider;

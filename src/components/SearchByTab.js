@@ -1,33 +1,46 @@
 import React from 'react'
-import TabPanel, { TabStrip } from 'react-tab-panel'
-import 'react-tab-panel/index.css'
 import Location from '../styles/icons/Location'
 import Clock from '../styles/icons/Clock'
 import Dollar from '../styles/icons/Dollar'
 import Range from './RangeSlider'
+import {Tabs, Tab} from 'react-bootstrap-tabs';
 class SearchByTab extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.state = {
+            sittersByLocation   : this.props.sitters,
+            sittersByTime       : this.props.sitters,
+            sittersByHourRate   : this.props.sitters
+        }
     }
 
+    handleRangeValues(values){
+        this.state = {
+            minRange : values[0],
+            maxRange : values[1],
+        };
+        let sitters = [];
+        for(let sitter of this.props.sitters){
+            if(sitter.hourFee >= values[0] && sitter.hourFee <= values[1])
+                sitters.push(sitter);
+        }
+        this.setState({
+            sittersByHourRate : sitters
+        });
+
+        console.log(sitters);
+    }
     render() {
         return (
-            <TabPanel onActivate={(index) => console.log('Tab ' + index + ' was activated!')}>
-                <div tabTitle={<Location/>}>
-
-                    Lorem ipsum Veniam aliquip esse ex nulla anim aliquip et in
-                    dolore consectetur dolor aliqua dolor consectetur fugiat in Excepteur voluptate.
-                </div>
-
-                <div tabTitle={<Clock/>}>
-                    Lorem ipsum Sunt nisi sint.
-                </div>
-
-                <div tabTitle={<Dollar/>}>
+            <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
+                <Tab label={<Location/>}>Tab 1 content</Tab>
+                <Tab label={<Clock/>}>Tab 2 content</Tab>
+                <Tab label={<Dollar/>}>
                     <p>Hour Rare</p>
-                    <Range/>
-                </div>
-            </TabPanel>
+                    <Range changeRangeValues={this.handleRangeValues.bind(this)} min={0} max={50}/>
+                </Tab>
+            </Tabs>
+
         );
     }
 
