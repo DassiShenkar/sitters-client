@@ -3,6 +3,11 @@ import Dropdown from 'rc-dropdown';
 import Menu, {Item as MenuItem} from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
 import Arrow from '../styles/icons/Arrow'
+import Person from '../styles/icons/Person'
+import Settings from '../styles/icons/Settings'
+import Logout from '../styles/icons/Logout'
+import Information from '../styles/icons/Information'
+
 
 class DropdownMenu extends React.Component {
     constructor(props) {
@@ -36,10 +41,10 @@ class DropdownMenu extends React.Component {
     render() {
         const menu = (
             <Menu onSelect={this.onSelect}>
-                <MenuItem key="editProfile">Edit Profile</MenuItem>
-                <MenuItem key="settings">Settings</MenuItem>
-                <MenuItem key="logout">Log Out</MenuItem>
-                <MenuItem key="about">About</MenuItem>
+                <MenuItem key="editProfile"><Person/>Edit Profile</MenuItem>
+                <MenuItem key="settings"><Settings/>Settings</MenuItem>
+                <MenuItem key="logout"><Logout/>Log Out</MenuItem>
+                <MenuItem key="about"><Information/>About</MenuItem>
             </Menu>
         );
         return (

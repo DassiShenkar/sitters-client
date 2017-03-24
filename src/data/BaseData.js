@@ -86,6 +86,340 @@ let questions =[{
     "choice": 0
 }];
 
+let sitters = [
+    {
+        "_id": {
+            "$oid": "58b337c1363032052ce7efb8"
+        },
+        "invites": [],
+        "review": [],
+        "specialNeeds": [],
+        "hobbies": [],
+        "education": [],
+        "rating": 0,
+        "languages": [],
+        "profilePicture": "http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "personalityScore": 80,
+        "experience": 4,
+        "maxAge": 6,
+        "minAge": 0,
+        "mobility": 1,
+        "hourFee": 23,
+        "email": "sitter3@gmail.com",
+        "name": "Wanda Bishop",
+        "gender": "female",
+        "age": 22,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "workingHours": {
+            "sunday": {
+                "start": "09:30",
+                "finish": "12:00"
+            },
+            "monday": {
+                "start": "12:30",
+                "finish": "20:00"
+            },
+            "tuesday": {
+                "start": "18:00",
+                "finish": "23:00"
+            },
+            "wednesday": {
+                "start": "08:00",
+                "finish": "19:00"
+            },
+            "thursday": {
+                "start": "12:00",
+                "finish": "16:00"
+            },
+            "friday": {
+                "start": "13:00",
+                "finish": "18:00"
+            },
+            "saturday": {
+                "start": "08:00",
+                "finish": "23:00"
+            }
+        },
+        "availableNow": true,
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "58d51f77ba78b10ac43bc09a"
+        },
+        "profilePicture": "http://maxpixel.freegreatpicture.com/static/photo/640/Baby-Happy-Fun-Girl-Face-Child-Daughter-Isolated-17346.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "personalityScore": 85,
+        "hourFee": 18,
+        "email": "sitter1@gmail.com",
+        "name": "Barbara Butler",
+        "gender": "female",
+        "age": 23,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "workingHours": {
+            "saturday": {
+                "finish": "16:00",
+                "start": "10:00"
+            },
+            "friday": {
+                "finish": "22:00",
+                "start": "18:00"
+            },
+            "thursday": {
+                "finish": "20:00",
+                "start": "15:00"
+            },
+            "wednesday": {
+                "finish": "19:00",
+                "start": "12:00"
+            },
+            "tuesday": {
+                "finish": "23:00",
+                "start": "20:00"
+            },
+            "monday": {
+                "finish": "21:00",
+                "start": "15:30"
+            },
+            "sunday": {
+                "finish": "23:00",
+                "start": "20:00"
+            }
+        },
+        "availableNow": true,
+        "invites": [],
+        "review": [],
+        "expertise": [],
+        "specialNeeds": [],
+        "mobility": 1,
+        "hobbies": [],
+        "experience": 3,
+        "maxAge": 10,
+        "minAge": 3,
+        "education": [],
+        "rating": 0,
+        "languages": [],
+        "joinedTime": {
+            "$date": "2017-03-24T13:30:31.976Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "58d51fe7ba78b10ac43bc09b"
+        },
+        "profilePicture": "http://maxpixel.freegreatpicture.com/static/photo/640/Family-Baby-Child-Happy-Happiness-Boy-Caucasian-164897.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "personalityScore": 91,
+        "hourFee": 28,
+        "email": "sitter2@gmail.com",
+        "name": "Shirley Clark",
+        "gender": "female",
+        "age": 28,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "workingHours": {
+            "saturday": {
+                "finish": "20:00",
+                "start": "10:00"
+            },
+            "friday": {
+                "finish": "22:00",
+                "start": "18:00"
+            },
+            "thursday": {
+                "finish": "20:00",
+                "start": "10:00"
+            },
+            "wednesday": {
+                "finish": "17:00",
+                "start": "13:00"
+            },
+            "tuesday": {
+                "finish": "13:00",
+                "start": "09:00"
+            },
+            "monday": {
+                "finish": "18:00",
+                "start": "14:30"
+            },
+            "sunday": {
+                "finish": "23:00",
+                "start": "18:00"
+            }
+        },
+        "availableNow": true,
+        "invites": [],
+        "review": [],
+        "expertise": [],
+        "specialNeeds": [],
+        "mobility": 1,
+        "hobbies": [],
+        "experience": 3,
+        "maxAge": 12,
+        "minAge": 4,
+        "education": [],
+        "rating": 0,
+        "languages": [],
+        "joinedTime": {
+            "$date": "2017-03-24T13:32:23.067Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "58d5205cba78b10ac43bc09c"
+        },
+        "profilePicture": "https://cdn.pixabay.com/photo/2016/02/04/04/06/motherhood-1178577_960_720.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "personalityScore": 78,
+        "hourFee": 26,
+        "email": "sitter4@gmail.com",
+        "name": "Kimberly Martin",
+        "gender": "female",
+        "age": 33,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "workingHours": {
+            "saturday": {
+                "finish": "16:00",
+                "start": "10:00"
+            },
+            "friday": {
+                "finish": "22:00",
+                "start": "08:00"
+            },
+            "thursday": {
+                "finish": "20:00",
+                "start": "15:00"
+            },
+            "wednesday": {
+                "finish": "20:00",
+                "start": "16:00"
+            },
+            "tuesday": {
+                "finish": "23:00",
+                "start": "20:00"
+            },
+            "monday": {
+                "finish": "20:00",
+                "start": "14:00"
+            },
+            "sunday": {
+                "finish": "20:00",
+                "start": "12:00"
+            }
+        },
+        "availableNow": true,
+        "invites": [],
+        "review": [],
+        "expertise": [],
+        "specialNeeds": [],
+        "mobility": 1,
+        "hobbies": [],
+        "experience": 3,
+        "maxAge": 8,
+        "minAge": 0,
+        "education": [],
+        "rating": 0,
+        "languages": [],
+        "joinedTime": {
+            "$date": "2017-03-24T13:34:20.491Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "58d520d8ba78b10ac43bc09d"
+        },
+        "profilePicture": "http://www.publicdomainpictures.net/pictures/80000/velka/mother-with-the-baby.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "personalityScore": 82,
+        "hourFee": 29,
+        "email": "sitter5@gmail.com",
+        "name": "Carol Ward",
+        "gender": "female",
+        "age": 25,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "workingHours": {
+            "saturday": {
+                "finish": "16:00",
+                "start": "10:00"
+            },
+            "friday": {
+                "finish": "22:00",
+                "start": "08:00"
+            },
+            "thursday": {
+                "finish": "20:00",
+                "start": "16:00"
+            },
+            "wednesday": {
+                "finish": "20:00",
+                "start": "10:00"
+            },
+            "tuesday": {
+                "finish": "23:00",
+                "start": "08:00"
+            },
+            "monday": {
+                "finish": "19:00",
+                "start": "15:00"
+            },
+            "sunday": {
+                "finish": "22:00",
+                "start": "16:00"
+            }
+        },
+        "availableNow": true,
+        "invites": [],
+        "review": [],
+        "expertise": [],
+        "specialNeeds": [],
+        "mobility": 1,
+        "hobbies": [],
+        "experience": 3,
+        "maxAge": 7,
+        "minAge": 2,
+        "education": [],
+        "rating": 0,
+        "languages": [],
+        "joinedTime": {
+            "$date": "2017-03-24T13:36:24.347Z"
+        },
+        "__v": 0
+    }
+];
+
 exports.getSpecialNeeds = () => {
     return specialNeeds;
 };
@@ -96,5 +430,9 @@ exports.getLanguages = () => {
 
 exports.getQuestions = () => {
     return questions;
+};
+
+exports.getSitters = () => {
+    return sitters;
 };
 
