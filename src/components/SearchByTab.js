@@ -4,6 +4,7 @@ import Clock from '../styles/icons/Clock'
 import Dollar from '../styles/icons/Dollar'
 import Range from './RangeSlider'
 import {Tabs, Tab} from 'react-bootstrap-tabs';
+import SitterList from './SitterList'
 class SearchByTab extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +26,8 @@ class SearchByTab extends React.Component {
                 sitters.push(sitter);
         }
         this.setState({
-            sittersByHourRate : sitters
+            sittersByHourRate : sitters,
+            selected: 2
         });
 
         console.log(sitters);
@@ -38,12 +40,12 @@ class SearchByTab extends React.Component {
                 <Tab label={<Dollar/>}>
                     <p>Hour Rare</p>
                     <Range changeRangeValues={this.handleRangeValues.bind(this)} min={0} max={50}/>
+                    <SitterList sitters={this.state.sittersByHourRate}/>
                 </Tab>
             </Tabs>
 
         );
     }
-
 }
 
 export default SearchByTab;

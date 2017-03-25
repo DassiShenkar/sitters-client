@@ -8,9 +8,11 @@
   "dependencies": {
     "age-calculator": "^1.0.0",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "rc-dropdown": "^1.4.10",
     "rc-menu": "^5.0.9",
     "rc-slider": "^6.2.0",
+    "rc-time-picker": "^2.3.3",
     "rc-tooltip": "^3.4.2",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
@@ -24,7 +26,8 @@
     "react-rating": "^0.6.5",
     "react-router": "^3.0.2",
     "react-select": "^1.0.0-rc.3",
-    "react-tab-panel": "^2.2.7"
+    "react-tab-panel": "^2.2.7",
+    "react-time-input": "0.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

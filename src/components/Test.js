@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBy from './SearchByTab'
+import TimeInput from './controllers/TimeInput'
 import BaseData from '../data/BaseData'
 class Test extends React.Component {
     constructor(){
@@ -11,7 +12,8 @@ class Test extends React.Component {
         return (
 
             <div>
-                <SearchBy sitters={BaseData.getSitters()}/>
+                {/*<SearchBy sitters={BaseData.getSitters()}/>*/}
+                <TimeInput/>
             </div>
         );
     }
