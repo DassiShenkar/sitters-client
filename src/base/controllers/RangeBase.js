@@ -9,7 +9,7 @@ class RangeBase extends React.Component {
         }
     }
     onChange(value){
-        //this.props.changeRangeValues(value);
+        this.props.changeRangeValues(value);
         this.setState({
             minRange:value[0],
             maxRange:value[1]

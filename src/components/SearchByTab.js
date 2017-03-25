@@ -11,9 +11,7 @@ class SearchByTab extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sittersByLocation   : this.props.sitters,
-            sittersByTime       : this.props.sitters,
-            sittersByHourRate   : this.props.sitters
+            sitters   : this.props.sitters,
         }
     }
 
@@ -28,31 +26,36 @@ class SearchByTab extends React.Component {
                 sitters.push(sitter);
         }
         this.setState({
-            sittersByHourRate : sitters,
-            selected: 2
+            sitters : sitters,
         });
-
-        console.log(sitters);
+        this.refs.sitterList.state.sitters = sitters;
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        // You can access `this.props` and `this.state` here
+        // This function should return a boolean, whether the component should re-render.
+        return false;
     }
     render() {
         return (
-            <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
-                <Tab label={<Location/>}>Tab 1 content</Tab>
-                <Tab label={<Clock/>}>
-                    <p>Search by Time</p>
-                    <DatePicker/>
-                    <p>From</p>
-                    <TimeInput/>
-                    <p>To</p>
-                    <TimeInput/>
-                    <SitterList sitters={this.state.sittersByTime}/>
-                </Tab>
-                <Tab label={<Dollar/>}>
-                    <p>Hour Rare</p>
-                    <Range changeRangeValues={this.handleRangeValues.bind(this)} min={0} max={50}/>
-                    <SitterList sitters={this.state.sittersByHourRate}/>
-                </Tab>
-            </Tabs>
+            <div>
+                <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
+                    <Tab label={<Location/>}>Tab 1 content</Tab>
+                    <Tab label={<Clock/>}>
+                        <p>Search by Time</p>
+                        <DatePicker/>
+                        <p>From</p>
+                        <TimeInput/>
+                        <p>To</p>
+                        <TimeInput/>
+
+                    </Tab>
+                    <Tab label={<Dollar/>}>
+                        <p>Hour Rare</p>
+                        <Range ref="hourRateRange"  changeRangeValues={this.handleRangeValues.bind(this)} min={0} max={50}/>
+                    </Tab>
+                </Tabs>
+                <SitterList ref='sitterList' sitters={this.state.sitters}/>
+            </div>
         );
     }
 }
