@@ -8,6 +8,7 @@
   "dependencies": {
     "age-calculator": "^1.0.0",
     "dateformat": "^2.0.0",
+    "google-map-react": "^0.23.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "rc-dropdown": "^1.4.10",
@@ -24,6 +25,7 @@
     "react-dropdown": "^1.2.1",
     "react-dropdown-multiselect": "^1.0.0",
     "react-facebook-login": "^3.5.0",
+    "react-pure-render": "^1.0.2",
     "react-radio-group": "^3.0.1",
     "react-rating": "^0.6.5",
     "react-router": "^3.0.2",

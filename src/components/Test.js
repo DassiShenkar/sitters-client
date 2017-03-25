@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchBy from './SearchByTab'
-import TimeInput from './controllers/TimeInput'
-import DatePicker from './controllers/DatePicker'
-import BaseData from '../data/BaseData'
+import SimpleMap from "./GoogleMaps";
+
+
+
 class Test extends React.Component {
     constructor(){
         super();
@@ -11,11 +11,8 @@ class Test extends React.Component {
     render(){
 
         return (
-
-            <div>
-                {/*<SearchBy sitters={BaseData.getSitters()}/>*/}
-                {/*<TimeInput/>*/}
-                <DatePicker/>
+            <div style={{width: '100%', height: '400px'}}>
+                <SimpleMap/>
             </div>
         );
     }

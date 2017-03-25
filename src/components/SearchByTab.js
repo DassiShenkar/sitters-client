@@ -5,6 +5,8 @@ import Dollar from '../styles/icons/Dollar'
 import Range from './RangeSlider'
 import {Tabs, Tab} from 'react-bootstrap-tabs';
 import SitterList from './SitterList'
+import DatePicker from './controllers/DatePicker'
+import TimeInput from './controllers/TimeInput'
 class SearchByTab extends React.Component {
     constructor(props) {
         super(props);
@@ -36,14 +38,21 @@ class SearchByTab extends React.Component {
         return (
             <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
                 <Tab label={<Location/>}>Tab 1 content</Tab>
-                <Tab label={<Clock/>}>Tab 2 content</Tab>
+                <Tab label={<Clock/>}>
+                    <p>Search by Time</p>
+                    <DatePicker/>
+                    <p>From</p>
+                    <TimeInput/>
+                    <p>To</p>
+                    <TimeInput/>
+                    <SitterList sitters={this.state.sittersByTime}/>
+                </Tab>
                 <Tab label={<Dollar/>}>
                     <p>Hour Rare</p>
                     <Range changeRangeValues={this.handleRangeValues.bind(this)} min={0} max={50}/>
                     <SitterList sitters={this.state.sittersByHourRate}/>
                 </Tab>
             </Tabs>
-
         );
     }
 }
