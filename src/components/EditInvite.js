@@ -1,5 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
+import SimpleMap from "./GoogleMaps";
+import DatePicker from "./controllers/DatePicker";
+import TimeInput from "./controllers/TimeInput";
+import FormControl from 'react-bootstrap/lib/FormControl';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 
 class Form extends React.Component {
     constructor(props) {
@@ -24,9 +29,22 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form id="invite">
-                <Button bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
-            </form>
+            <div>
+                <img src="http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg" alt="sitterName"/>
+                <form id="invite">
+                    <ControlLabel>Date</ControlLabel>
+                    <DatePicker/>
+                    <ControlLabel>Time</ControlLabel>
+                    <TimeInput/>
+                    <ControlLabel>Location</ControlLabel>
+                    <div style={{width: '20%', height: '400px'}}>
+                        <SimpleMap/>
+                    </div>
+                    <ControlLabel>Notes</ControlLabel>
+                    <FormControl componentClass="textarea" placeholder="textarea" />
+                    <Button bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
+                </form>
+            </div>
         );
     };
 }
