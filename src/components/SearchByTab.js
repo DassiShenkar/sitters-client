@@ -7,6 +7,7 @@ import {Tabs, Tab} from 'react-bootstrap-tabs';
 import SitterList from './SitterList'
 import DatePicker from './controllers/DatePicker'
 import TimeInput from './controllers/TimeInput'
+import SimpleMap from "./GoogleMaps";
 class SearchByTab extends React.Component {
     constructor(props) {
         super(props);
@@ -39,7 +40,11 @@ class SearchByTab extends React.Component {
         return (
             <div>
                 <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
-                    <Tab label={<Location/>}>Tab 1 content</Tab>
+                    <Tab label={<Location/>}>
+                        <div style={{width: '250px', height: '250px'}}>
+                         <SimpleMap/>
+                         </div>
+                    </Tab>
                     <Tab label={<Clock/>}>
                         <p>Search by Time</p>
                         <DatePicker/>
