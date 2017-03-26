@@ -1,4 +1,5 @@
 import React from 'react';
+import Badge from '../../node_modules/react-bootstrap/lib/Badge';
 import NavBase from '../base/NavBase'
 import SearchSVG from '../styles/icons/Search'
 import NotificationSVG from '../styles/icons/Notification'
@@ -9,11 +10,11 @@ class Nav extends NavBase {
     render() {
         return (
             <div>
-                <img src={this.props.image} alt={this.props.alt}/>
+                <img src={this.props.profilePicture} alt={this.props.alt}/>
                 <p>Hi,{this.props.name}</p>
                 <button onClick={this.onClickSearch}><SearchSVG/></button>
-                <button onClick={this.onClickMail}><NotificationSVG/></button>
-                <button onClick={this.onClickNotification}><MailSVG/></button>
+                <button onClick={this.onClickMail}><NotificationSVG/><Badge>3</Badge></button>
+                <button onClick={this.onClickNotification}><MailSVG/><Badge>1</Badge></button>
                 <DropdownMenu/>
             </div>
         )

@@ -430,6 +430,75 @@ let sitters = [
     }
 ];
 
+let parents = [
+    {
+        "_id": {
+            "$oid": "58b337c1363032052ce7efb8"
+        },
+        "invites": [],
+        "notifications:": [],
+        "review": [],
+        "specialNeeds": [],
+        "hobbies": [],
+        "education": [],
+        "languages": [],
+        "profilePicture": "http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "maxAge": 6,
+        "minAge": 0,
+        "mobility": 1,
+        "hourFee": 23,
+        "email": "parent@gmail.com",
+        "name": "Wanda Bishop",
+        "gender": "female",
+        "age": 22,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "58d51f77ba78b10ac43bc09a"
+        },
+        "profilePicture": "http://maxpixel.freegreatpicture.com/static/photo/640/Baby-Happy-Fun-Girl-Face-Child-Daughter-Isolated-17346.jpg",
+        "coverPhoto": "",
+        "timezone": "4",
+        "personalityScore": 85,
+        "hourFee": 18,
+        "email": "sitter1@gmail.com",
+        "name": "Barbara Butler",
+        "gender": "female",
+        "age": 23,
+        "currencyType": "USD",
+        "address": {
+            "city": "Ramat Gan",
+            "longitude": 0,
+            "latitude": 0
+        },
+        "invites": [{"title": "invite title"}, {"title": "invite title2"}],
+        "notifications": [{"title": "notification title"}],
+        "review": [],
+        "expertise": [],
+        "specialNeeds": [],
+        "mobility": 1,
+        "hobbies": [],
+        "maxAge": 10,
+        "minAge": 3,
+        "education": [],
+        "languages": [],
+        "joinedTime": {
+            "$date": "2017-03-24T13:30:31.976Z"
+        },
+        "__v": 0
+    }
+];
+
+
 exports.getSpecialNeeds = () => {
     return specialNeeds;
 };
@@ -444,5 +513,9 @@ exports.getQuestions = () => {
 
 exports.getSitters = () => {
     return sitters;
+};
+
+exports.getParents = () => {
+    return parents;
 };
 
