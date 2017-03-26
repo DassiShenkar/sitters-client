@@ -1,9 +1,10 @@
 import React from 'react';
-import BaseData from '../data/BaseData';
 import Nav from '../components/Nav';
 import SitterList from '../components/SitterList';
+import BaseData from '../data/BaseData';
 
 class Feed extends React.Component {
+
 
     render() {
         const style = {
@@ -11,12 +12,15 @@ class Feed extends React.Component {
             margin: 'auto'
         };
         const sitters = BaseData.getSitters();
+        const parent = BaseData.getParents();
         return (
             <div style={style}>
                 <h1>Feed</h1>
-                <Nav name="Arel"
-                     image="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTYLooZuD2jyZ_RGPegqe1mmDhavIfmZeSpjYLsjSfsKRHpXcffHmMrmA"
-                     alt="Arel"/>
+                <Nav name={parent.name}
+                     image={parent.image}
+                     alt={parent.name}
+                     invites={parent.invites}
+                     notifications={parent.notifications}/>
                 <SitterList sitters={sitters}/>
             </div>
         );
