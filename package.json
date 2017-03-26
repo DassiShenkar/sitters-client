@@ -8,9 +8,12 @@
   "dependencies": {
     "age-calculator": "^1.0.0",
     "dateformat": "^2.0.0",
+    "geocoder": "^0.2.3",
     "google-map-react": "^0.23.0",
+    "install": "^0.8.7",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "npm": "^4.4.4",
     "rc-dropdown": "^1.4.10",
     "rc-menu": "^5.0.9",
     "rc-slider": "^6.2.0",

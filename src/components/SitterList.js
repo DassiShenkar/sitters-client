@@ -9,7 +9,6 @@ class SitterList extends SitterListBase {
         this.nextSitter = this.nextSitter.bind(this);
         this.likeSitter = this.likeSitter.bind(this);
         this.reviewSitter = this.reviewSitter.bind(this);
-        console.log(props);
         this.state = {
             index: 0,
             sitters: props.sitters

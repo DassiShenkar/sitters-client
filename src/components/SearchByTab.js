@@ -42,7 +42,7 @@ class SearchByTab extends React.Component {
                 <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
                     <Tab label={<Location/>}>
                         <div style={{width: '250px', height: '250px'}}>
-                         <SimpleMap/>
+                         <SimpleMap sitters={this.props.sitters}/>
                          </div>
                     </Tab>
                     <Tab label={<Clock/>}>

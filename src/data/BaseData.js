@@ -113,9 +113,11 @@ let sitters = [
         "age": 22,
         "currencyType": "USD",
         "address": {
-            "city": "Ramat Gan",
-            "longitude": 0,
-            "latitude": 0
+            "city": "Petah Tikva",
+            "street": "Ben Tsiyon Galis",
+            "houseNumber" : 48,
+            "longitude": 34.888396,
+            "latitude": 32.107225
         },
         "workingHours": {
             "sunday": {
@@ -166,8 +168,10 @@ let sitters = [
         "currencyType": "USD",
         "address": {
             "city": "Ramat Gan",
-            "longitude": 0,
-            "latitude": 0
+            "street": "bialik",
+            "houseNumber" : 140,
+            "longitude": 34.803638,
+            "latitude": 32.088505
         },
         "workingHours": {
             "saturday": {
@@ -232,9 +236,11 @@ let sitters = [
         "age": 28,
         "currencyType": "USD",
         "address": {
-            "city": "Ramat Gan",
-            "longitude": 0,
-            "latitude": 0
+            "city": "Kfar Saba",
+            "street": "Arlozorov",
+            "houseNumber" : 40,
+            "longitude": 34.905312,
+            "latitude": 32.170644
         },
         "workingHours": {
             "saturday": {
@@ -299,9 +305,11 @@ let sitters = [
         "age": 33,
         "currencyType": "USD",
         "address": {
-            "city": "Ramat Gan",
-            "longitude": 0,
-            "latitude": 0
+            "city": "Hadera",
+            "street": "HaTsukim",
+            "houseNumber" : 48,
+            "longitude": 34.884634,
+            "latitude": 32.428906
         },
         "workingHours": {
             "saturday": {
@@ -366,9 +374,11 @@ let sitters = [
         "age": 25,
         "currencyType": "USD",
         "address": {
-            "city": "Ramat Gan",
-            "longitude": 0,
-            "latitude": 0
+            "city": "Petah Tikva",
+            "street": "Ha-Kinamon",
+            "houseNumber" : 2,
+            "longitude": 34.890837,
+            "latitude": 32.155276
         },
         "workingHours": {
             "saturday": {

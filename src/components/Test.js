@@ -2,7 +2,7 @@ import React from 'react';
 import SimpleMap from "./GoogleMaps";
 import SearchBy from "./SearchByTab";
 import BaseData from '../data/BaseData'
-
+var geocoder = require('geocoder');
 
 
 class Test extends React.Component {
@@ -10,16 +10,15 @@ class Test extends React.Component {
         super();
     }
 
-    render(){
+    componentDidMount(){
 
+    }
+
+    render(){
         return (
             <div>
                 <SearchBy sitters={BaseData.getSitters()}/>
             </div>
-            // <div style={{width: '100%', height: '400px'}}>
-            //     <SimpleMap/>
-            // </div>
-            //
         );
     }
 }
