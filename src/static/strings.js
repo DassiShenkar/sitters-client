@@ -1,5 +1,6 @@
 const strings = {
-    APP_DESCRIPTION: "a booking platform for parents and sitters",
+    APP_NAME: "Sitters",
+    APP_DESCRIPTION: "A Booking Platform for Parents and Sitters"
 };
 
 export default strings;
