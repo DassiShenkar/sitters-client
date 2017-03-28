@@ -1,23 +1,32 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router';
-import App from './App';
+import {Router, Route, IndexRoute} from 'react-router';
+import {Provider} from 'react-redux';
+import store, {history} from './store';
+import App from "./components/App";
+import Feed from "./components/Feed";
+import Login from "./components/Login";
 import Register from "./components/Register";
-import Feed from "./components/OldFeed";
 import Invites from "./components/Invites";
 import Notifications from "./components/Notifications";
-import EditInvite from "./components/EditInvite";
-import Test from "./components/Test";
+import Reviews from "./components/Reviews";
+import Review from "./components/Review";
 import './styles/css/index.scss';
 
-render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}/>
-        <Route path="/register" component={Register}/>
-        <Route path="/feed" component={Feed}/>
-        <Route path="/invites" component={Invites}/>
-        <Route path="/notifications" component={Notifications}/>
-        <Route path="/editInvite" component={EditInvite}/>
-        <Route path="/test" component={Test}/>
-    </Router>
-), document.getElementById('root'));
+const router = (
+    <Provider store={store}>
+        <Router history={history}>
+            <Route path="/" component={App}>
+                <IndexRoute component={Feed}/>
+                <Route path="/invites" component={Invites}/>
+                <Route path="/notifications" component={Notifications}/>
+                <Route path="/reviews" component={Reviews}/>
+                <Route path="/reviews/:reviewId" component={Review}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/register" component={Register}/>
+            </Route>
+        </Router>
+    </Provider>
+);
+
+render((router), document.getElementById('root'));
