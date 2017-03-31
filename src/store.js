@@ -1,9 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux';
+import { syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
-
-import mySaga from './sagas';
 
 const reviews = [
     {

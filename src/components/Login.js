@@ -19,13 +19,13 @@ class Login extends React.Component {
 
     login(response) {
         const self = this;
-        const user_type = this.refs.userInput.state.value;
+        // const user_type = this.refs.userInput.state.value || '';
         const user_email = response.email;
         axios.post('https://sitters-server.herokuapp.com/parent/get', {
             email: user_email
         })
             .then(function (response) {
-                if(response) {
+                if(response.data) {
                     self.props.authenticateUser(true);
                     store.dispatch(push('/'));
                 }
