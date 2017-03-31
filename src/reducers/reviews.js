@@ -1,6 +1,14 @@
 function reviews(state = [], action) {
-    console.log(state, action);
-    return state;
+    switch (action.type) {
+        case 'ADD_REVIEW' :
+            return [...state, {
+                author: action.author,
+                content: action.content
+            }];
+        default:
+            return state;
+    }
 }
+
 
 export default reviews;

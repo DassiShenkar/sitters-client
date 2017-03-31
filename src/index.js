@@ -9,9 +9,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Invites from "./components/Invites";
 import Notifications from "./components/Notifications";
-import Reviews from "./components/Reviews";
-import Review from "./components/Review";
+import SitterProfile from "./components/SitterProfile";
+import ReviewList from "./components/ReviewList";
+import SingleReview from "./components/SingleReview";
 import './styles/css/index.scss';
+
 
 const router = (
     <Provider store={store}>
@@ -20,8 +22,9 @@ const router = (
                 <IndexRoute component={Feed}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/notifications" component={Notifications}/>
-                <Route path="/reviews" component={Reviews}/>
-                <Route path="/reviews/:reviewId" component={Review}/>
+                <Route path="/sitter" component={SitterProfile}/>
+                <Route path="/reviews" component={ReviewList}/>
+                <Route path="/review/:reviewId" component={SingleReview}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
             </Route>

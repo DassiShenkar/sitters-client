@@ -1,14 +1,14 @@
-export function increment(index) {
+export function authenticateUser(isAuthenticated) {
     return {
-        type: 'INCREMENT',
-        index
+        type: 'AUTH_USER',
+        isAuthenticated
     }
 }
 
-export function addReview(reviewId, author, content) {
+export function addReview(author, content) {
     return {
         type: 'ADD_REVIEW',
-        reviewId,
+        // reviewId,
         author,
         content
     }

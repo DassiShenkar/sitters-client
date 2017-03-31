@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "age-calculator": "^1.0.0",
+    "axios": "^0.15.3",
     "dateformat": "^2.0.0",
     "geocoder": "^0.2.3",
     "google-map-react": "^0.23.0",
@@ -31,13 +32,14 @@
     "react-pure-render": "^1.0.2",
     "react-radio-group": "^3.0.1",
     "react-rating": "^0.6.5",
+    "react-redux": "latest",
     "react-router": "^3.0.2",
+    "react-router-redux": "latest",
     "react-select": "^1.0.0-rc.3",
     "react-tab-panel": "^2.2.7",
     "react-time-input": "0.0.14",
     "redux": "latest",
-    "react-router-redux": "latest",
-    "react-redux": "latest"
+    "redux-saga": "^0.14.4"
   },
   "scripts": {
     "start": "react-scripts start",
