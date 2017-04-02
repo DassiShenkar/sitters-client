@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Badge from '../../node_modules/react-bootstrap/lib/Badge';
 import NavBase from '../base/NavBase'
 import SearchSVG from '../styles/icons/Search'
@@ -12,9 +13,9 @@ class Nav extends NavBase {
             <div>
                 <img src={this.props.profilePicture} alt={this.props.alt}/>
                 <p>Hi,{this.props.name}</p>
-                <button onClick={this.onClickSearch}><SearchSVG/></button>
-                <button onClick={this.onClickMail}><NotificationSVG/><Badge>3</Badge></button>
-                <button onClick={this.onClickNotification}><MailSVG/><Badge>1</Badge></button>
+                <Link to="/search" onClick={this.onClickSearch}><SearchSVG/></Link>
+                <Link to="/notifications" onClick={this.onClickMail}><NotificationSVG/><Badge>3</Badge></Link>
+                <Link to="/invites" onClick={this.onClickNotification}><MailSVG/><Badge>1</Badge></Link>
                 <DropdownMenu/>
             </div>
         )
