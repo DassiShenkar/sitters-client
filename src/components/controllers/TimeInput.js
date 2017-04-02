@@ -14,5 +14,7 @@ class TimeInput extends TimeInputBase {
         );
     }
 }
-
+TimeInput.propTypes = {
+    changeDateTimeValues: React.PropTypes.func,
+};
 export default TimeInput;

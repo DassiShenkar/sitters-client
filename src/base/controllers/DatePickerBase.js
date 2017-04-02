@@ -14,7 +14,10 @@ class DatePickerBase extends React.Component {
             value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
             formattedValue: formattedValue, // Formatted String, ex: "11/19/2016"
             day: dateFormat(value, "dddd") // dddd = the full day of the week
-        });
+        },
+            this.props.changeDateTimeValues
+        );
+
     }
 }
 
