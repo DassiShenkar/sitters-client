@@ -14,8 +14,8 @@ class Register extends React.Component {
                 <section className="invite-info">
                     <h1 className="login-title">Sign Up</h1>
                 </section>
-                <RadioInput ref="userInput" types={['I\'m a Parent', 'I\'m a Sitter']} default={'I\'m a Parent'}
-                            saveInLocalStorage={'true'} radioName="userType"/>
+                {/*<RadioInput ref="userInput" types={['I\'m a Parent', 'I\'m a Sitter']} default={'I\'m a Parent'}*/}
+                            {/*saveInLocalStorage={'true'} radioName="userType"/>*/}
                 {/*{form}*/}
             </div>
         );

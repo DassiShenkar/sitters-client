@@ -25,12 +25,14 @@ class Login extends React.Component {
             email: user_email
         })
             .then(function (response) {
-                if(response.data) {
+                if(response.data) {  // user exists
                     self.props.authenticateUser(true);
-                    store.dispatch(push('/'));
+                    localStorage.setItem("isAuth", "true");
+                    store.dispatch(push('/feed'));
                 }
-                else {
+                else { // user not exist
                     console.log("unknown user");
+                    store.dispatch(push('/register'));
                 }
             })
             .catch(function (error) {
