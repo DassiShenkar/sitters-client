@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/css/register.scss';
 import 'react-select/dist/react-select.css';
-import ParentForm from './ParentForm';
-import SitterForm from './SitterForm';
+// import ParentForm from './ParentForm';
+// import SitterForm from './SitterForm';
 import RadioInput from '../components/controllers/RadioInput';
 
 class Register extends React.Component {
