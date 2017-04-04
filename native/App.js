@@ -1,22 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './components/FBlogin'
+import { StyleSheet, View, Image } from 'react-native';
+import Login from './components/Login'
+import RadioButtons from './components/RadioButton'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Login/>
+      <View>
+        <Image
+            style={styles.img}
+            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+        />
+        <RadioButtons
+            values={[
+              {label: 'I\'m A Parent', value: 0 },
+              {label: 'I\'m A Sitter', value: 1 }
+            ]}
+        />
+        <Login />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    img: {
+        width: 100,
+        height: 100,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });

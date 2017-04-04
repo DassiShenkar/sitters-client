@@ -4,13 +4,13 @@
   "private": true,
   "devDependencies": {
     "react-scripts": "0.9.0",
-	"babel-jest": "19.0.0",
-	"babel-preset-react-native": "1.9.1",
-	"jest": "19.0.2",
-	"react-test-renderer": "15.4.2"
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "15.4.2"
   },
   "jest": {
-	"preset": "react-native"
+    "preset": "react-native"
   },
   "dependencies": {
     "age-calculator": "^1.0.0",
@@ -28,7 +28,6 @@
     "rc-time-picker": "^2.3.3",
     "rc-tooltip": "^3.4.2",
     "react": "^15.4.2",
-	"react-native": "0.42.3",
     "react-bootstrap": "^0.30.8",
     "react-bootstrap-date-picker": "^5.0.1",
     "react-bootstrap-tabs": "^1.0.0",
@@ -37,6 +36,10 @@
     "react-dropdown": "^1.2.1",
     "react-dropdown-multiselect": "^1.0.0",
     "react-facebook-login": "^3.5.0",
+    "react-native": "0.42.3",
+    "react-native-facebook-login": "^1.4.0",
+    "react-native-simple-radio-button": "^2.5.0-alpha.1",
+    "react-navigation": "^1.0.0-beta.7",
     "react-pure-render": "^1.0.2",
     "react-radio-group": "^3.0.1",
     "react-rating": "^0.6.5",
@@ -46,13 +49,14 @@
     "react-select": "^1.0.0-rc.3",
     "react-tab-panel": "^2.2.7",
     "react-time-input": "0.0.14",
+    "react-vector-icons": "0.0.1",
     "redux": "latest",
     "redux-saga": "^0.14.4"
   },
   "scripts": {
-	"native-start": "react-native run-android",
-	"native-test": "jest",
-	"native-build": "node node_modules/react-native/local-cli/cli.js start",
+    "native-start": "react-native run-android",
+    "native-test": "jest",
+    "native-build": "node node_modules/react-native/local-cli/cli.js start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

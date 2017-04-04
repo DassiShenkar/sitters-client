@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sitters</string>
+    <string name="fb_app_id">1800090996910027</string>
+    <string name="fb_login_protocol_scheme">fb1800090996910027</string>
 </resources>

@@ -330,8 +330,350 @@
                     "startLine": 19,
                     "startColumn": 4,
                     "startOffset": 1879,
+                    "endColumn": 125,
+                    "endOffset": 2000
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 125,
+                        "endOffset": 176
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 2005,
+                    "endColumn": 115,
+                    "endOffset": 2116
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 181,
+                        "endColumn": 115,
+                        "endOffset": 292
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2121,
+                    "endColumn": 127,
+                    "endOffset": 2244
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 297,
+                        "endColumn": 127,
+                        "endOffset": 420
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 2249,
+                    "endColumn": 93,
+                    "endOffset": 2338
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 425,
+                        "endColumn": 93,
+                        "endOffset": 514
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2343,
+                    "endColumn": 68,
+                    "endOffset": 2407
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 519,
+                        "endColumn": 68,
+                        "endOffset": 583
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 2412,
+                    "endColumn": 72,
+                    "endOffset": 2480
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 588,
+                        "endColumn": 72,
+                        "endOffset": 656
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 2485,
+                    "endColumn": 65,
+                    "endOffset": 2546
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 661,
+                        "endColumn": 65,
+                        "endOffset": 722
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 2551,
+                    "endColumn": 74,
+                    "endOffset": 2621
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 727,
+                        "endColumn": 74,
+                        "endOffset": 797
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 2626,
+                    "endColumn": 76,
+                    "endOffset": 2698
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 802,
+                        "endColumn": 76,
+                        "endOffset": 874
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 2703,
+                    "endColumn": 93,
+                    "endOffset": 2792
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 879,
+                        "endColumn": 93,
+                        "endOffset": 968
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 2797,
+                    "endColumn": 73,
+                    "endOffset": 2866
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 973,
+                        "endColumn": 73,
+                        "endOffset": 1042
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 30,
+                    "startColumn": 4,
+                    "startOffset": 2871,
+                    "endColumn": 73,
+                    "endOffset": 2940
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1047,
+                        "endColumn": 73,
+                        "endOffset": 1116
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 31,
+                    "startColumn": 4,
+                    "startOffset": 2945,
+                    "endColumn": 92,
+                    "endOffset": 3033
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1121,
+                        "endColumn": 92,
+                        "endOffset": 1209
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 3038,
+                    "endColumn": 117,
+                    "endOffset": 3151
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1214,
+                        "endColumn": 117,
+                        "endOffset": 1327
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 33,
+                    "startColumn": 4,
+                    "startOffset": 3156,
+                    "endColumn": 63,
+                    "endOffset": 3215
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1332,
+                        "endColumn": 63,
+                        "endOffset": 1391
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 34,
+                    "startColumn": 4,
+                    "startOffset": 3220,
+                    "endColumn": 68,
+                    "endOffset": 3284
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1396,
+                        "endColumn": 68,
+                        "endOffset": 1460
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 35,
+                    "startColumn": 4,
+                    "startOffset": 3289,
+                    "endColumn": 144,
+                    "endOffset": 3429
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1465,
+                        "endColumn": 144,
+                        "endOffset": 1605
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 36,
+                    "startColumn": 4,
+                    "startOffset": 3434,
+                    "endColumn": 60,
+                    "endOffset": 3490
+                },
+                "from": {
+                    "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.12.0\\res\\values-hi\\values-hi.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1610,
+                        "endColumn": 60,
+                        "endOffset": 1666
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 37,
+                    "startColumn": 4,
+                    "startOffset": 3495,
                     "endColumn": 100,
-                    "endOffset": 1975
+                    "endOffset": 3591
                 },
                 "from": {
                     "file": "D:\\Java\\IdeaProjects\\sitters-client\\android\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.1\\res\\values-hi\\values-hi.xml",
