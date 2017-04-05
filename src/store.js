@@ -20,12 +20,12 @@ const defaultState = {
     reviews
 };
 
-// const enhancers = compose(
-//   window.devToolsExtension ? window.devToolsExtension() : f => f
-// );
+const enhancers = compose(
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+);
 
 const middleware = routerMiddleware(browserHistory);
-const store = createStore(rootReducer, defaultState, applyMiddleware(middleware));
+const store = createStore(rootReducer, defaultState,enhancers, applyMiddleware(middleware));
 
 
 export const history = syncHistoryWithStore(browserHistory, store);
