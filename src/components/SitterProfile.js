@@ -29,7 +29,7 @@ class SitterProfile extends SitterProfileBase {
                     {/*<p>{this.props.hourFee}$<span>Hour fee</span></p>*/}
                     {/*<p>{this.props.experience}years<span>Experience</span></p>*/}
                 {/*</section>*/}
-                <ReviewList reviews = {reviews} {...this.props}/>
+                <ReviewList reviews={reviews} {...this.props}/>
                 <form ref="reviewForm" className="reviewForm" onSubmit={this.handleSubmit}>
                     <input type="text" ref="author" placeholder="author"/>
                     <input type="text" ref="review" placeholder="review"/>
