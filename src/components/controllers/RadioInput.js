@@ -8,7 +8,7 @@ class Radio extends RadioInputBase {
             return (
                 <div key={this.props.types.indexOf(option)}>
                     <label>
-                        <input type="radio" name={this.props.radioName} value={option} checked={this.state.value === option}
+                        <input type="radio" name={this.props.radioName} value={option} checked={option === this.props.radios.userType}
                                onChange={this.handleRadio}/>
                         {option}
                     </label>

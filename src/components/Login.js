@@ -57,7 +57,7 @@ class Login extends React.Component {
                 <Jumbotron>
                     <h1>Login</h1>
                     <RadioInput ref="userInput" types={['I\'m a Parent', 'I\'m a Sitter']} default={'I\'m a Parent'}
-                                saveInLocalStorage={'true'} action={this.props.changeUserType} {...this.props}/>
+                                saveInLocalStorage={'true'} action={this.props.changeUserType} radios={this.props.radios} {...this.props}/>
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}

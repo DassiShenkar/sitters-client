@@ -6,7 +6,8 @@ import Main from './Main'
 function mapStateToProps(state) {
     return {
         isAuthenticated: state.isAuthenticated,
-        reviews: state.reviews
+        reviews: state.reviews,
+        radios: state.radios
     }
 }
 

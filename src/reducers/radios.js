@@ -1,4 +1,4 @@
-function radios(state = [], action) {
+function radios(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_USER_TYPE' :
             return {

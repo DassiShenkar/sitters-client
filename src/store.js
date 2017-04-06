@@ -15,7 +15,8 @@ const reviews = [
         content: 'luka is my best friend'
     }
 ];
-const radios = [];
+const radios = {userType: 'meo'};
+
 const defaultState = {
     reviews,
     radios
