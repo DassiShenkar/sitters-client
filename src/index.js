@@ -14,16 +14,11 @@ import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
 import './styles/css/index.scss';
 
-
-function isAuth() {
-    // store.addRadio("male");
-    return localStorage.isAuth === "true";
-}
 const router = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <IndexRoute component={isAuth() ? Feed : Login}/>
+                <IndexRoute component={localStorage.isAuth === "true" ? Feed : Login}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/notifications" component={Notifications}/>
                 <Route path="/sitter" component={SitterProfile}/>

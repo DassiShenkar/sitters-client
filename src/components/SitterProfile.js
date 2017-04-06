@@ -1,9 +1,9 @@
 import React from 'react';
 import SitterProfileBase from '../base/SitterProfileBase'
 import ReviewList from './ReviewList';
-import * as ReviewActions from '../actions/ReviewActions';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+// import * as ReviewActions from '../actions/ReviewActions';
+// import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
 
 class SitterProfile extends SitterProfileBase {
     constructor(props) {
