@@ -1,7 +1,12 @@
+//external sources
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+//actions
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
+
+//components
 import Main from './Main'
 
 function mapStateToProps(state) {
@@ -12,6 +17,10 @@ function mapStateToProps(state) {
         user: state.user
     }
 }
+
+/*
+* bind app to action creators
+* */
 
 function mapDispatchToProps(dispatch) {
     return {

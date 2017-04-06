@@ -1,8 +1,13 @@
+//external sources
 import React from 'react';
 import {render} from 'react-dom';
 import {Router, Route, IndexRoute} from 'react-router';
 import {Provider} from 'react-redux';
+
+//redux store
 import store, {history} from './store';
+
+//components
 import App from "./components/App";
 import Feed from "./components/Feed";
 import Login from "./components/Login";
@@ -12,7 +17,6 @@ import Notifications from "./components/Notifications";
 import SitterProfile from "./components/SitterProfile";
 import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
-import './styles/css/index.scss';
 
 const router = (
     <Provider store={store}>

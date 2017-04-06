@@ -1,39 +1,32 @@
+//external sources
 import { createStore, compose, applyMiddleware } from 'redux';
 import { syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 import { browserHistory } from 'react-router';
+
+//reducers
 import rootReducer from './reducers/index';
 
-const reviews = [
-    {
-        id: 0,
-        author: 'yoel',
-        content: 'luka is a great sitter'
-    },
-    {
-        id: 1,
-        author: 'roi',
-        content: 'luka is my best friend'
-    }
-];
 const radios = {userType: 'meo'};
-const user = {};
 
+//set initial state
 const defaultState = {
-    reviews,
+    reviews: [],
     radios,
-    user
+    user: {}
 };
 
+//enable redux in chrome dev tools
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 const middleware = routerMiddleware(browserHistory);
-const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(middleware));
 
+const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(middleware));
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
+//enable got reload for debugging
 if(module.hot) {
     module.hot.accept('./reducers/', () => {
         const nextRootReducer = require('./reducers/index').default;
