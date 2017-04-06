@@ -27,6 +27,7 @@ const router = (
                 <Route path="/invites" component={Invites}/>
                 <Route path="/notifications" component={Notifications}/>
                 <Route path="/sitter" component={SitterProfile}/>
+                <Route path="/feed" component={Feed}/>
                 <Route path="/reviews" component={ReviewList}/>
                 <Route path="/review/:reviewId" component={SingleReview}/>
                 <Route path="/login" component={Login}/>
