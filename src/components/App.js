@@ -7,7 +7,8 @@ function mapStateToProps(state) {
     return {
         isAuthenticated: state.isAuthenticated,
         reviews: state.reviews,
-        radios: state.radios
+        radios: state.radios,
+        user: state.user
     }
 }
 

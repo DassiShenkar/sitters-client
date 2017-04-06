@@ -36,3 +36,11 @@ export function changeGender(gender) {
         gender
     }
 }
+
+export function createUser(userData) {
+
+    return {
+        type: 'CREATE_USER',
+        userData
+    }
+}

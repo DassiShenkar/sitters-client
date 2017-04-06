@@ -16,11 +16,12 @@ const reviews = [
     }
 ];
 const radios = {userType: 'meo'};
+const user = {};
 
 const defaultState = {
     reviews,
-    radios
-
+    radios,
+    user
 };
 
 const enhancers = compose(
@@ -28,7 +29,7 @@ const enhancers = compose(
 );
 
 const middleware = routerMiddleware(browserHistory);
-const store = createStore(rootReducer, defaultState,enhancers, applyMiddleware(middleware));
+const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(middleware));
 
 
 export const history = syncHistoryWithStore(browserHistory, store);

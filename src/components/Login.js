@@ -7,7 +7,6 @@ import RadioInput from '../components/controllers/RadioInput';
 import strings from '../static/strings';
 import FacebookLogin from 'react-facebook-login';
 import {push} from "react-router-redux";
-import store from "../store";
 
 
 class Login extends React.Component {
@@ -19,23 +18,19 @@ class Login extends React.Component {
 
     login(response) {
         const self = this;
-        //this.props.addRadio("female");
-        // this.props.changeGender("female");
-        // this.props.changeUserType(this.refs.userInput.state.value);
-        // const user_type = this.refs.userInput.state.value || '';
         const user_email = response.email;
         axios.post('https://sitters-server.herokuapp.com/parent/get', {
             email: user_email
         })
-            .then(function (response) {
-                if(response.data) {  // user exists
-                    self.props.authenticateUser(true);
+            .then(function (res) {
+                if(res.data) {  // user exists
                     localStorage.setItem("isAuth", "true");
-                    store.dispatch(push('/feed'));
+                    self.props.router.push('/feed');
                 }
                 else { // user not exist
                     console.log("unknown user");
-                    store.dispatch(push('/register'));
+                    self.props.createUser(response);
+                    self.props.router.push('/register')
                 }
             })
             .catch(function (error) {
