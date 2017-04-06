@@ -6,8 +6,6 @@ import Logo from '../components/Logo';
 import RadioInput from '../components/controllers/RadioInput';
 import strings from '../static/strings';
 import FacebookLogin from 'react-facebook-login';
-import {push} from "react-router-redux";
-
 
 class Login extends React.Component {
 
@@ -29,14 +27,13 @@ class Login extends React.Component {
                 }
                 else { // user not exist
                     console.log("unknown user");
-                    self.props.createUser(response);
+                    self.props.actions.actionCreators.createUser(response);
                     self.props.router.push('/register')
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
-
     }
 
     render() {
@@ -52,7 +49,7 @@ class Login extends React.Component {
                 <Jumbotron>
                     <h1>Login</h1>
                     <RadioInput ref="userInput" types={['I\'m a Parent', 'I\'m a Sitter']} default={'I\'m a Parent'}
-                                saveInLocalStorage={'true'} action={this.props.changeUserType} radios={this.props.radios} {...this.props}/>
+                                saveInLocalStorage={'true'} action={this.props.actions.actionCreators.changeUserType} radios={this.props.radios} {...this.props}/>
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}

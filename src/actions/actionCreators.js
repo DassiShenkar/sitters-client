@@ -5,24 +5,6 @@ export function authenticateUser(isAuthenticated) {
     }
 }
 
-export function addReview(author, content) {
-    return {
-        type: 'ADD_REVIEW',
-        // reviewId,
-        author,
-        content
-    }
-}
-
-export function removeReview(reviewId, index) {
-    return {
-        type: 'REMOVE_REVIEW',
-        reviewId,
-        index
-    }
-}
-
-
 export function changeUserType(userType) {
     return {
         type: 'CHANGE_USER_TYPE',

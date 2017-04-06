@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
+import * as ReviewActions from '../actions/ReviewActions';
 import Main from './Main'
 
 function mapStateToProps(state) {
@@ -13,7 +14,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch);
+    return {
+        actions: {
+            actionCreators: bindActionCreators(actionCreators, dispatch),
+            reviewActions: bindActionCreators(ReviewActions, dispatch)
+        }
+    };
 }
 
 
