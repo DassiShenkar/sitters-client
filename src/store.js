@@ -15,9 +15,11 @@ const reviews = [
         content: 'luka is my best friend'
     }
 ];
-
+const radios = [];
 const defaultState = {
-    reviews
+    reviews,
+    radios
+
 };
 
 const enhancers = compose(

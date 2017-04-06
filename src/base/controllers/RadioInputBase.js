@@ -13,7 +13,7 @@ class RadioInputBase extends React.Component {
     };
 
     handleRadio(e) {
-        this.setState({value: e.target.value});
+        this.props.action(e.target.value);
         if(this.props.saveInLocalStorage === 'true'){ // pass in props if want to save in localStorage
             let radioName = this.props.radioName;
             console.log(radioName);

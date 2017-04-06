@@ -19,6 +19,9 @@ class Login extends React.Component {
 
     login(response) {
         const self = this;
+        //this.props.addRadio("female");
+        // this.props.changeGender("female");
+        // this.props.changeUserType(this.refs.userInput.state.value);
         // const user_type = this.refs.userInput.state.value || '';
         const user_email = response.email;
         axios.post('https://sitters-server.herokuapp.com/parent/get', {
@@ -54,7 +57,7 @@ class Login extends React.Component {
                 <Jumbotron>
                     <h1>Login</h1>
                     <RadioInput ref="userInput" types={['I\'m a Parent', 'I\'m a Sitter']} default={'I\'m a Parent'}
-                                saveInLocalStorage={'true'} radioName="userType"/>
+                                saveInLocalStorage={'true'} action={this.props.changeUserType} {...this.props}/>
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}

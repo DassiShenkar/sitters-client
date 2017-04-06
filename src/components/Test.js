@@ -1,13 +1,11 @@
 import React from 'react';
-import SimpleMap from "./GoogleMaps";
-import SearchBy from "./SearchByTab";
-import BaseData from '../data/BaseData'
-var geocoder = require('geocoder');
-import store, {history} from './store';
+import store from '../store'
+import actions from '../actions/actionCreators'
 
 class Test extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+
     }
 
     componentDidMount(){
@@ -15,9 +13,11 @@ class Test extends React.Component {
     }
 
     render(){
+        this.props.addRadio("female");
         return (
             <div>
-                <SearchBy sitters={BaseData.getSitters()}/>
+                {/*<SearchBy sitters={BaseData.getSitters()}/>*/}
+                <h1>Hello world</h1>
             </div>
         );
     }

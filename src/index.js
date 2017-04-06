@@ -7,6 +7,7 @@ import App from "./components/App";
 import Feed from "./components/Feed";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Test from "./components/Test";
 import Invites from "./components/Invites";
 import Notifications from "./components/Notifications";
 import SitterProfile from "./components/SitterProfile";
@@ -16,6 +17,7 @@ import './styles/css/index.scss';
 
 
 function isAuth() {
+    // store.addRadio("male");
     return localStorage.isAuth === "true";
 }
 const router = (
@@ -30,6 +32,7 @@ const router = (
                 <Route path="/review/:reviewId" component={SingleReview}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
+                <Route path="/test" component={Test}/>
             </Route>
         </Router>
     </Provider>

@@ -21,3 +21,18 @@ export function removeReview(reviewId, index) {
         index
     }
 }
+
+
+export function changeUserType(userType) {
+    return {
+        type: 'CHANGE_USER_TYPE',
+        userType
+    }
+}
+
+export function changeGender(gender) {
+    return {
+        type: 'CHANGE_GENDER',
+        gender
+    }
+}
