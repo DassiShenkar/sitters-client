@@ -20,7 +20,8 @@ class Feed extends React.Component {
                      image={parent.image}
                      alt={parent.name}
                      invites={parent.invites}
-                     notifications={parent.notifications}/>
+                     notifications={parent.notifications}
+                     {...this.props}/>
                 <SitterList sitters={sitters}/>
             </div>
         );

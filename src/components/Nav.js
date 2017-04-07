@@ -16,7 +16,7 @@ class Nav extends NavBase {
                 <Link to="/search" onClick={this.onClickSearch}><SearchSVG/></Link>
                 <Link to="/notifications" onClick={this.onClickMail}><NotificationSVG/><Badge>3</Badge></Link>
                 <Link to="/invites" onClick={this.onClickNotification}><MailSVG/><Badge>1</Badge></Link>
-                <DropdownMenu/>
+                <DropdownMenu {...this.props}/>
             </div>
         )
     }
