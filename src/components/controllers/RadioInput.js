@@ -4,12 +4,11 @@ import RadioInputBase from '../../base/controllers/RadioInputBase.js';
 class Radio extends RadioInputBase {
 
     render() {
-        console.log(this.props);
         const options = this.props.types.map((option) => {
             return (
                 <div key={this.props.types.indexOf(option)}>
                     <label>
-                        <input type="radio" name={this.props.radioName} value={option} checked={option === this.props.user[this.props.radioType]}//this.props.radios.userType
+                        <input type="radio" name={this.props.radioName} value={option} checked={option === this.props[this.props.reducer][this.props.radioType]}//this.props.radios.userType
                                onChange={this.handleRadio}/>
                         {option}
                     </label>

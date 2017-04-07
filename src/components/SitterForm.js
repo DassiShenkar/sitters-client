@@ -5,7 +5,7 @@ import RadioInput from './controllers/RadioInput';
 import WorkingHours from './controllers/WorkingHours';
 import BaseData from '../data/BaseData';
 import PersonalityTest from './PersonalityTest'
-
+import 'react-select/dist/react-select.css';
 var {AgeFromDate} = require('age-calculator');
 var Select = require('react-select');
 var DEBUG = true;

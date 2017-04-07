@@ -6,12 +6,10 @@ import { browserHistory } from 'react-router';
 //reducers
 import rootReducer from './reducers/index';
 
-const radios = {userType: 'meo'};
 
 //set initial state
 const defaultState = {
     reviews: [],
-    radios,
     user: {}
 };
 

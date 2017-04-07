@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 //actions
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
+import * as RegisterActions from '../actions/RegisterActions';
 
 //components
 import Main from './Main'
@@ -13,7 +14,6 @@ function mapStateToProps(state) {
     return {
         isAuthenticated: state.isAuthenticated,
         reviews: state.reviews,
-        // radios: state.radios,
         user: state.user
     }
 }
@@ -26,6 +26,7 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: {
             actionCreators: bindActionCreators(actionCreators, dispatch),
+            registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch)
         }
     };
