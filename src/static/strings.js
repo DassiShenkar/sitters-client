@@ -6,7 +6,8 @@ const strings = {
         "I'm a Sitter"
     ],
     GENDER: [
-        ""
+        "Male",
+        "Female"
     ]
 };
 

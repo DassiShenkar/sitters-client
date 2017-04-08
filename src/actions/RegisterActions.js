@@ -4,3 +4,24 @@ export function changeGender(gender) {
         gender
     }
 }
+
+export function changeName(name) {
+    return {
+        type: 'CHANGE_NAME',
+        name
+    }
+}
+
+export function changeEmail(email) {
+    return {
+        type: 'CHANGE_EMAIL',
+        email
+    }
+}
+
+export function changeAge(age) {
+    return {
+        type: 'CHANGE_AGE',
+        age
+    }
+}

@@ -5,9 +5,8 @@ class TextInputBase extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     };
-
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChange(e) {
+        this.props.action(e.target.value);
     }
 }
 

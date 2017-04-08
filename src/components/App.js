@@ -14,7 +14,8 @@ function mapStateToProps(state) {
     return {
         isAuthenticated: state.isAuthenticated,
         reviews: state.reviews,
-        user: state.user
+        user: state.user,
+        register: state.register
     }
 }
 

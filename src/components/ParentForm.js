@@ -76,21 +76,37 @@ class Form extends React.Component {
 
 
     render() {
+        console.log("here");
         return (
             <form id="register-form" onSubmit={this.handleSubmitParent}>
-                <TextInput ref='name' label="Name" placeholder="Moshe Levi"/>
-                <TextInput ref='email' label="Email" type="email" placeholder="Enter your email"/>
-                <TextInput ref='age' label="Age" type="number" placeholder="25"/>
+                <TextInput label="Name"
+                           placeholder="Moshe Levi"
+                           action={this.props.actions.registerActions.changeName}
+                           inputType={'name'} {...this.props}
+                           reducer={'register'}/>
+                {/*<TextInput ref='email' label="Email" type="email" placeholder="Enter your email"/>*/}
+                <TextInput label="Email"
+                           type="email"
+                           placeholder="Enter your email"
+                           action={this.props.actions.registerActions.changeEmail}
+                           inputType={'email'} {...this.props}
+                           reducer={'register'}/>
+                {/*<TextInput ref='age' label="Age" type="number" placeholder="25"/>*/}
+                <TextInput label="Age"
+                           type="number"
+                           placeholder="25"
+                           action={this.props.actions.registerActions.changeAge}
+                           inputType={'age'} {...this.props}
+                           reducer={'register'}/>
                 <h4>Address</h4>
                 <TextInput ref='city' label="City" placeholder="Tel Aviv"/>
                 <TextInput ref='street' label="Street" placeholder="Arlozorov"/>
                 <TextInput ref='houseNumber' label="House Number" type="number" placeholder="4"/>
                 <h3>Gender</h3>
-                {/*<RadioInput ref="genderRadio" types={['Male', 'Female']} default={this.state.gender}/>*/}
                 <RadioInput ref="userInput" types={strings.GENDER}
-                            action={this.props.actions.actionCreators.changeUserType}
-                            radioType={'userType'} {...this.props}
-                            reducer={'user'}/>
+                            action={this.props.actions.registerActions.changeGender}
+                            radioType={'gender'} {...this.props}
+                            reducer={'register'}/>
                 <h4>Profile picture</h4>
                 {/*<img src={this.state.profilePicture} alt={this.state.name}/>*/}
                 <h4>Languages</h4>
