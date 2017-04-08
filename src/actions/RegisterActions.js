@@ -25,3 +25,57 @@ export function changeAge(age) {
         age
     }
 }
+
+export function changeCity(city) {
+    return {
+        type: 'CHANGE_CITY',
+        city
+    }
+}
+
+export function changeStreet(street) {
+    return {
+        type: 'CHANGE_STREET',
+        street
+    }
+}
+
+export function changeHouseNumber(houseNumber) {
+    return {
+        type: 'CHANGE_HOUSE_NUMBER',
+        houseNumber
+    }
+}
+
+export function changeChildMaxPriceForWatch(childMaxPrice) {
+    return {
+        type: 'CHANGE_CHILD_MAX_PRICE_FOR_WATCH',
+        childMaxPrice
+    }
+}
+export function changeChildName(childName) {
+    return {
+        type: 'CHANGE_CHILD_NAME',
+        childName
+    }
+}
+export function changeChildAge(childAge) {
+    return {
+        type: 'CHANGE_CHILD_AGE',
+        childAge
+    }
+}
+
+export function changeChildExpertise(childExpertise) {
+    return {
+        type: 'CHANGE_CHILD_EXPERTISE',
+        childExpertise
+    }
+}
+
+export function changeChildHobbies(childHobbies) {
+    return {
+        type: 'CHANGE_CHILD_HOBBIES',
+        childHobbies
+    }
+}

@@ -76,7 +76,6 @@ class Form extends React.Component {
 
 
     render() {
-        console.log("here");
         return (
             <form id="register-form" onSubmit={this.handleSubmitParent}>
                 <TextInput label="Name"
@@ -99,9 +98,25 @@ class Form extends React.Component {
                            inputType={'age'} {...this.props}
                            reducer={'register'}/>
                 <h4>Address</h4>
-                <TextInput ref='city' label="City" placeholder="Tel Aviv"/>
-                <TextInput ref='street' label="Street" placeholder="Arlozorov"/>
-                <TextInput ref='houseNumber' label="House Number" type="number" placeholder="4"/>
+                {/*<TextInput ref='city' label="City" placeholder="Tel Aviv"/>*/}
+                <TextInput label="City"
+                           placeholder="Tel Aviv"
+                           action={this.props.actions.registerActions.changeCity}
+                           inputType={'city'} {...this.props}
+                           reducer={'register'}/>
+                {/*<TextInput ref='street' label="Street" placeholder="Arlozorov"/>*/}
+                <TextInput label="Name"
+                           placeholder="Arlozorov"
+                           action={this.props.actions.registerActions.changeStreet}
+                           inputType={'street'} {...this.props}
+                           reducer={'register'}/>
+                {/*<TextInput ref='houseNumber' label="House Number" type="number" placeholder="4"/>*/}
+                <TextInput label="House Number"
+                           type="number"
+                           placeholder="37"
+                           action={this.props.actions.registerActions.changeHouseNumber}
+                           inputType={'houseNumber'} {...this.props}
+                           reducer={'register'}/>
                 <h3>Gender</h3>
                 <RadioInput ref="userInput" types={strings.GENDER}
                             action={this.props.actions.registerActions.changeGender}
@@ -110,6 +125,9 @@ class Form extends React.Component {
                 <h4>Profile picture</h4>
                 {/*<img src={this.state.profilePicture} alt={this.state.name}/>*/}
                 <h4>Languages</h4>
+
+
+
                 {/*<Select*/}
                     {/*name="form-field-name"*/}
                     {/*multi={true}*/}
@@ -118,20 +136,51 @@ class Form extends React.Component {
                     {/*onChange={this.handleLanguageSelect.bind(this)}*/}
                     {/*placeholder="Select your favourite(s)"*/}
                 {/*/>*/}
+
+
+
                 <h3>Child</h3>
-                <TextInput ref='maxPrice' label="Max price for watch" type="number" placeholder="20"/>
-                <TextInput ref='childName' label="Child Name" placeholder="Yoel"/>
-                <TextInput ref='childAge' label="Age" type="number" placeholder="2"/>
+                {/*<TextInput ref='maxPrice' label="Max price for watch" type="number" placeholder="20"/>*/}
+                <TextInput label="Max price for watch"
+                           type="number"
+                           placeholder="20"
+                           action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
+                           inputType={'childMaxPrice'} {...this.props}
+                           reducer={'register'}/>
+                {/*<TextInput ref='childName' label="Child Name" placeholder="Yoel"/>*/}
+                <TextInput label="Child Name"
+                           placeholder="Yoel Levi"
+                           action={this.props.actions.registerActions.changeChildName}
+                           inputType={'childName'} {...this.props}
+                           reducer={'register'}/>
+                {/*<TextInput ref='childAge' label="Age" type="number" placeholder="2"/>*/}
+                <TextInput label="Age"
+                           type="number"
+                           placeholder="2"
+                           action={this.props.actions.registerActions.changeChildAge}
+                           inputType={'childAge'} {...this.props}
+                           reducer={'register'}/>
                 <h4>Child Expertise</h4>
-                <CheckBoxInput name="childExpertise" types={['Math', 'English', 'Physics']} ref="childExpertise"/>
-                <h4>Child Hobbies</h4>
+                <CheckBoxInput name="childExpertise"
+                               types={strings.EXPERTISE}
+                               action={this.props.actions.registerActions.changeChildExpertise}
+                               inputType={'childExpertise'} {...this.props}
+                               reducer={'register'}
+                />
+                {/*<h4>Child Hobbies</h4>*/}
+                {/*<CheckBoxInput name="childHobbies"*/}
+                               {/*types={['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV']}*/}
+                               {/*ref="childHobbies"/>*/}
                 <CheckBoxInput name="childHobbies"
-                               types={['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV']}
-                               ref="childHobbies"/>
-                <h4>Child Special needs</h4>
-                <CheckBoxInput name="childSpecialNeed"
-                               types={['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays']}
-                               ref="childSpecialNeed"/>
+                               types={strings.HOBBIES}
+                               action={this.props.actions.registerActions.changeChildHobbies}
+                               inputType={'childHobbies'} {...this.props}
+                               reducer={'register'}
+                />
+                {/*<h4>Child Special needs</h4>*/}
+                {/*<CheckBoxInput name="childSpecialNeed"*/}
+                               {/*types={['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays']}*/}
+                               {/*ref="childSpecialNeed"/>*/}
                 <input type="submit" className="submit-invite" value="Sign Up"/>
             </form>
         );

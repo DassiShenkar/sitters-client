@@ -20,6 +20,47 @@ function register(state = {}, action) {
                 ...state,
                 age: action.age
             };
+        case 'CHANGE_CITY' :
+            return {
+                ...state,
+                city: action.city
+            };
+        case 'CHANGE_STREET' :
+            return {
+                ...state,
+                street: action.street
+            };
+        case 'CHANGE_HOUSE_NUMBER' :
+            return {
+                ...state,
+                houseNumber: action.houseNumber
+            };
+        case 'CHANGE_CHILD_MAX_PRICE_FOR_WATCH' :
+            return {
+                ...state,
+                childMaxPrice: action.childMaxPrice
+            };
+        case 'CHANGE_CHILD_NAME' :
+            return {
+                ...state,
+                childName: action.childName
+            };
+        case 'CHANGE_CHILD_AGE' :
+            return {
+                ...state,
+                childAge: action.childAge
+            };
+        case 'CHANGE_CHILD_EXPERTISE' :
+            return {
+                ...state,
+                childExpertise:  action.childExpertise
+            };
+        case 'CHANGE_CHILD_HOBBIES' :
+            return {
+                ...state,
+                childHobbies:  action.childHobbies
+            };
+
         default:
             return state;
     }

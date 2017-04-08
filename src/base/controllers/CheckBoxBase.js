@@ -6,7 +6,7 @@ class CheckBoxBase extends React.Component {
         this.onChange = this.onChange.bind(this);
     };
     onChange(newValue){
-        this.setState({value: newValue});
+        this.props.action(newValue);
     }
 }
 

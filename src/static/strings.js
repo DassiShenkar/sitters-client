@@ -8,7 +8,27 @@ const strings = {
     GENDER: [
         "Male",
         "Female"
+    ],
+    EXPERTISE: ['Math',
+                'English',
+                'Physics'
+    ],
+    HOBBIES: ['Reading',
+        'Painting',
+        'Traveling',
+        'Sports',
+        'Swimming',
+        'Sleeping',
+        'Watching TV'
+    ],
+    SPECIAL_NEEDS: ['ADD',
+        'Aphasia/Dysphagia',
+        'Auditory Processing',
+        'Autism',
+        'Cystic Fibrosis',
+        'Developmental Delays'
     ]
+
 };
 
 export default strings;
