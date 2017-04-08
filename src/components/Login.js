@@ -21,7 +21,7 @@ class Login extends React.Component {
             email: user_email
         })
             .then(function (res) {
-                if(res.data) {  // user exists
+                if (res.data) {  // user exists
                     localStorage.setItem("isAuth", "true");
                     self.props.router.push('/feed');
                 }
@@ -34,6 +34,7 @@ class Login extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+
     }
 
     render() {

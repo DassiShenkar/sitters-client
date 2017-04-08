@@ -47,10 +47,10 @@ export function changeHouseNumber(houseNumber) {
     }
 }
 
-export function changeChildMaxPriceForWatch(childMaxPrice) {
+export function changeChildMaxPriceForWatch(watchMaxPrice) {
     return {
         type: 'CHANGE_CHILD_MAX_PRICE_FOR_WATCH',
-        childMaxPrice
+        watchMaxPrice
     }
 }
 export function changeChildName(childName) {

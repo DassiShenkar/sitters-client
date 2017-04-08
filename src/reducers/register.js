@@ -38,7 +38,7 @@ function register(state = {}, action) {
         case 'CHANGE_CHILD_MAX_PRICE_FOR_WATCH' :
             return {
                 ...state,
-                childMaxPrice: action.childMaxPrice
+                watchMaxPrice: action.watchMaxPrice
             };
         case 'CHANGE_CHILD_NAME' :
             return {
