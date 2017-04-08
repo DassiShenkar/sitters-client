@@ -61,6 +61,17 @@ function register(state = {}, action) {
                 childHobbies:  action.childHobbies
             };
 
+        case 'CHANGE_CHILD_SPECIAL_NEEDS' :
+            return {
+                ...state,
+                childSpecialNeeds:  action.childSpecialNeeds
+            };
+        case 'CHANGE_LANGUAGES' :
+            return {
+                ...state,
+                languages:  action.languages
+            };
+
         default:
             return state;
     }

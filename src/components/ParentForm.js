@@ -2,10 +2,11 @@ import React from 'react';
 import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
+import SelectInput from './controllers/SelectInput';
 import baseData from '../data/BaseData';
-import 'react-select/dist/react-select.css';
+
 var {AgeFromDate} = require('age-calculator');
-var Select = require('react-select');
+
 var DEBUG = true;
 var age;
 import strings from '../static/strings';
@@ -13,7 +14,7 @@ import strings from '../static/strings';
 class Form extends React.Component {
     constructor(props) {
         super(props);
-        this.handleLanguageSelect = this.handleLanguageSelect.bind(this);
+        // this.handleLanguageSelect = this.handleLanguageSelect.bind(this);
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         // let usr = JSON.parse(localStorage.getItem('user'));
         // if (DEBUG)
@@ -43,35 +44,35 @@ class Form extends React.Component {
         //     console.log(this.state);
     };
 
-    handleLanguageSelect(val) {
-        this.setState({languages: val});
-    }
+    // handleLanguageSelect(val) {
+    //     this.setState({languages: val});
+    // }
 
     handleSubmitParent(e) {
         e.preventDefault();
-        let parent = {
-            name: this.refs.name.state.value,
-            email: this.refs.email.state.value,
-            age: this.refs.age.state.value,
-            address: {
-                city: this.refs.city.state.value,
-                street: this.refs.street.state.value,
-                houseNumber: this.refs.houseNumber.state.value,
-            },
-            gender: this.refs.genderRadio.state.value,
-            profilePicture: this.state.profilePicture,
-            coverPhoto: this.state.coverPhoto,
-            timezone: this.state.timezone,
-            maxPrice: this.refs.maxPrice.state.value,
-            languages: this.state.languages,
-            children: {
-                name: this.refs.childName.state.value,
-                age: this.refs.childAge.state.value,
-                expertise: this.refs.childExpertise.state.value,
-                hobbies: this.refs.childHobbies.state.value,
-                specialNeeds: this.refs.childSpecialNeed.state.value,
-            }
-        };
+        // let parent = {
+        //     name: this.refs.name.state.value,
+        //     email: this.refs.email.state.value,
+        //     age: this.refs.age.state.value,
+        //     address: {
+        //         city: this.refs.city.state.value,
+        //         street: this.refs.street.state.value,
+        //         houseNumber: this.refs.houseNumber.state.value,
+        //     },
+        //     gender: this.refs.genderRadio.state.value,
+        //     profilePicture: this.state.profilePicture,
+        //     coverPhoto: this.state.coverPhoto,
+        //     timezone: this.state.timezone,
+        //     maxPrice: this.refs.maxPrice.state.value,
+        //     languages: this.state.languages,
+        //     children: {
+        //         name: this.refs.childName.state.value,
+        //         age: this.refs.childAge.state.value,
+        //         expertise: this.refs.childExpertise.state.value,
+        //         hobbies: this.refs.childHobbies.state.value,
+        //         specialNeeds: this.refs.childSpecialNeed.state.value,
+        //     }
+        // };
     };
 
 
@@ -83,14 +84,12 @@ class Form extends React.Component {
                            action={this.props.actions.registerActions.changeName}
                            inputType={'name'} {...this.props}
                            reducer={'register'}/>
-                {/*<TextInput ref='email' label="Email" type="email" placeholder="Enter your email"/>*/}
                 <TextInput label="Email"
                            type="email"
                            placeholder="Enter your email"
                            action={this.props.actions.registerActions.changeEmail}
                            inputType={'email'} {...this.props}
                            reducer={'register'}/>
-                {/*<TextInput ref='age' label="Age" type="number" placeholder="25"/>*/}
                 <TextInput label="Age"
                            type="number"
                            placeholder="25"
@@ -98,19 +97,16 @@ class Form extends React.Component {
                            inputType={'age'} {...this.props}
                            reducer={'register'}/>
                 <h4>Address</h4>
-                {/*<TextInput ref='city' label="City" placeholder="Tel Aviv"/>*/}
                 <TextInput label="City"
                            placeholder="Tel Aviv"
                            action={this.props.actions.registerActions.changeCity}
                            inputType={'city'} {...this.props}
                            reducer={'register'}/>
-                {/*<TextInput ref='street' label="Street" placeholder="Arlozorov"/>*/}
                 <TextInput label="Name"
                            placeholder="Arlozorov"
                            action={this.props.actions.registerActions.changeStreet}
                            inputType={'street'} {...this.props}
                            reducer={'register'}/>
-                {/*<TextInput ref='houseNumber' label="House Number" type="number" placeholder="4"/>*/}
                 <TextInput label="House Number"
                            type="number"
                            placeholder="37"
@@ -123,20 +119,26 @@ class Form extends React.Component {
                             radioType={'gender'} {...this.props}
                             reducer={'register'}/>
                 <h4>Profile picture</h4>
-                {/*<img src={this.state.profilePicture} alt={this.state.name}/>*/}
                 <h4>Languages</h4>
 
 
 
                 {/*<Select*/}
-                    {/*name="form-field-name"*/}
-                    {/*multi={true}*/}
-                    {/*value={this.state.languages}*/}
-                    {/*options={this.state.options}*/}
-                    {/*onChange={this.handleLanguageSelect.bind(this)}*/}
-                    {/*placeholder="Select your favourite(s)"*/}
+                {/*name="form-field-name"*/}
+                {/*multi={true}*/}
+                {/*value={this.state.languages}*/}
+                {/*options={this.state.options}*/}
+                {/*onChange={this.handleLanguageSelect.bind(this)}*/}
+                {/*placeholder="Select your favourite(s)"*/}
                 {/*/>*/}
-
+                <SelectInput
+                    placeholder="Select your languages"
+                    options={baseData.getLanguages()}
+                    {...this.props}
+                    defaultLanguages={this.props.register.languages}
+                    action={this.props.actions.registerActions.changeLanguages}
+                    inputType={'languages'} {...this.props}
+                    reducer={'register'}/>
 
 
                 <h3>Child</h3>
@@ -167,20 +169,26 @@ class Form extends React.Component {
                                inputType={'childExpertise'} {...this.props}
                                reducer={'register'}
                 />
-                {/*<h4>Child Hobbies</h4>*/}
+                <h4>Child Hobbies</h4>
                 {/*<CheckBoxInput name="childHobbies"*/}
-                               {/*types={['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV']}*/}
-                               {/*ref="childHobbies"/>*/}
+                {/*types={['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV']}*/}
+                {/*ref="childHobbies"/>*/}
                 <CheckBoxInput name="childHobbies"
                                types={strings.HOBBIES}
                                action={this.props.actions.registerActions.changeChildHobbies}
                                inputType={'childHobbies'} {...this.props}
                                reducer={'register'}
                 />
-                {/*<h4>Child Special needs</h4>*/}
+                <h4>Child Special needs</h4>
                 {/*<CheckBoxInput name="childSpecialNeed"*/}
-                               {/*types={['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays']}*/}
-                               {/*ref="childSpecialNeed"/>*/}
+                {/*types={['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays']}*/}
+                {/*ref="childSpecialNeed"/>*/}
+                <CheckBoxInput name="childHobbies"
+                               types={strings.SPECIAL_NEEDS}
+                               action={this.props.actions.registerActions.changeChildSpecialNeeds}
+                               inputType={'childSpecialNeeds'} {...this.props}
+                               reducer={'register'}
+                />
                 <input type="submit" className="submit-invite" value="Sign Up"/>
             </form>
         );

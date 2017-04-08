@@ -79,3 +79,17 @@ export function changeChildHobbies(childHobbies) {
         childHobbies
     }
 }
+
+export function changeChildSpecialNeeds(childSpecialNeeds) {
+    return {
+        type: 'CHANGE_CHILD_SPECIAL_NEEDS',
+        childSpecialNeeds
+    }
+}
+
+export function changeLanguages(languages) {
+    return {
+        type: 'CHANGE_LANGUAGES',
+        languages
+    }
+}
