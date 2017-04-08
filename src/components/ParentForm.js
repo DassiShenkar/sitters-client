@@ -23,10 +23,6 @@ class Form extends React.Component {
         // };
     };
 
-    // handleLanguageSelect(val) {
-    //     this.setState({languages: val});
-    // }
-
     handleSubmitParent(e) {
         e.preventDefault();
         let languages = [];
@@ -36,50 +32,46 @@ class Form extends React.Component {
         let parent = {
             name: this.props.register.name,
             email: this.props.register.email,
-            age: this.props.register.age,
+            age: parseInt(this.props.register.age),
             address: {
                 city: this.props.register.city,
                 street: this.props.register.street,
-                houseNumber: this.props.register.houseNumber,
+                houseNumber: parseInt(this.props.register.houseNumber),
             },
             gender: this.props.register.gender.toLowerCase(),
             // profilePicture: this.state.profilePicture,
             // coverPhoto: this.state.coverPhoto,
             // timezone: this.state.timezone,
-            maxPrice: this.props.register.watchMaxPrice,
+            maxPrice: parseInt(this.props.register.watchMaxPrice),
             languages: languages,
             children: {
                 name: this.props.register.childName,
-                age: this.props.register.childAge,
+                age: parseInt(this.props.register.childAge),
                 expertise: this.props.register.childExpertise,
                 hobbies: this.props.register.childHobbies,
                 specialNeeds: this.props.register.childSpecialNeeds,
             }
         };
-        console.log(parent);
-        axios.post('http://localhost:4000/parent/create', {
-            data: JSON.stringify(parent),
-            headers: {'X-Requested-With': 'XMLHttpRequest', 'Access-Control-Allow-Origin' : '*','Content-Type': 'application/json'}
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/parent/create',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: parent
+        }).then(function (res) {
+            console.log(res);
+            if (res.data) {  // user created
+                localStorage.setItem("isAuth", "true");
+                self.props.router.push('/feed');
+            }
+            else { // user not created
+               //TODO: think about error when user not created
+            }
         })
-            .then(function (res) {
-                console.log(res);
-                // if (res.data) {  // user exists
-                //     localStorage.setItem("isAuth", "true");
-                //     self.props.router.push('/feed');
-                // }
-                // else { // user not exist
-                //     console.log("unknown user");
-                //     self.props.actions.actionCreators.createUser(response);
-                //     self.props.router.push('/register')
-                // }
-            })
             .catch(function (error) {
                 console.log(error);
+                //TODO: think about error when user not created
             });
-
-    };
-
-
+    }
     render() {
         return (
             <form id="register-form" onSubmit={this.handleSubmitParent}>
