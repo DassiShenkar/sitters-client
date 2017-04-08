@@ -71,6 +71,43 @@ function register(state = {}, action) {
                 ...state,
                 languages:  action.languages
             };
+        case 'CHANGE_SITTER_MINIMUM_AGE' :
+            return {
+                ...state,
+                sitterMinAge:  action.sitterMinAge
+            };
+        case 'CHANGE_SITTER_MAXIMUM_AGE' :
+            return {
+                ...state,
+                sitterMaxAge:  action.sitterMaxAge
+            };
+        case 'CHANGE_SITTER_HOUR_FEE' :
+            return {
+                ...state,
+                hourFee:  action.hourFee
+            };
+        case 'CHANGE_SITTER_IMMEDIATE_AVAILABILITY' :
+            return {
+                ...state,
+                sitterImmediateAvailability:  action.sitterImmediateAvailability
+            };
+        case 'CHANGE_SITTER_EXPERTISE' :
+            return {
+                ...state,
+                sitterExpertise:  action.sitterExpertise
+            };
+        case 'CHANGE_SITTER_HOBBIES' :
+            return {
+                ...state,
+                sitterHobbies:  action.sitterHobbies
+            };
+
+        case 'CHANGE_SITTER_SPECIAL_NEEDS' :
+            return {
+                ...state,
+                sitterSpecialNeeds:  action.sitterSpecialNeeds
+            };
+
 
         default:
             return state;

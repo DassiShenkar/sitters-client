@@ -93,3 +93,52 @@ export function changeLanguages(languages) {
         languages
     }
 }
+
+export function changeSitterMinimumAge(sitterMinAge) {
+    return {
+        type: 'CHANGE_SITTER_MINIMUM_AGE',
+        sitterMinAge
+    }
+}
+
+export function changeSitterMaximumAge(sitterMaxAge) {
+    return {
+        type: 'CHANGE_SITTER_MAXIMUM_AGE',
+        sitterMaxAge
+    }
+}
+
+export function changeSitterHourFee(hourFee) {
+    return {
+        type: 'CHANGE_SITTER_HOUR_FEE',
+        hourFee
+    }
+}
+
+export function changeSitterImmediateAvailability (sitterImmediateAvailability) {
+    return {
+        type: 'CHANGE_SITTER_IMMEDIATE_AVAILABILITY',
+        sitterImmediateAvailability
+    }
+}
+
+export function changeSitterExpertise(sitterExpertise) {
+    return {
+        type: 'CHANGE_SITTER_EXPERTISE',
+        sitterExpertise
+    }
+}
+
+export function changeSitterHobbies(sitterHobbies) {
+    return {
+        type: 'CHANGE_SITTER_HOBBIES',
+        sitterHobbies
+    }
+}
+
+export function changeSitterSpecialNeeds(sitterSpecialNeeds) {
+    return {
+        type: 'CHANGE_SITTER_SPECIAL_NEEDS',
+        sitterSpecialNeeds
+    }
+}

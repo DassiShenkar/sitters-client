@@ -3,6 +3,7 @@ import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
 import SelectInput from './controllers/SelectInput';
+import BaseForm from './BaseForm';
 import baseData from '../data/BaseData';
 import axios from 'axios';
 var {AgeFromDate} = require('age-calculator');
@@ -75,55 +76,7 @@ class Form extends React.Component {
     render() {
         return (
             <form id="register-form" onSubmit={this.handleSubmitParent}>
-                <TextInput label="Name"
-                           placeholder="Moshe Levi"
-                           action={this.props.actions.registerActions.changeName}
-                           inputType={'name'} {...this.props}
-                           reducer={'register'}/>
-                <TextInput label="Email"
-                           type="email"
-                           placeholder="Enter your email"
-                           action={this.props.actions.registerActions.changeEmail}
-                           inputType={'email'} {...this.props}
-                           reducer={'register'}/>
-                <TextInput label="Age"
-                           type="number"
-                           placeholder="25"
-                           action={this.props.actions.registerActions.changeAge}
-                           inputType={'age'} {...this.props}
-                           reducer={'register'}/>
-                <h4>Address</h4>
-                <TextInput label="City"
-                           placeholder="Tel Aviv"
-                           action={this.props.actions.registerActions.changeCity}
-                           inputType={'city'} {...this.props}
-                           reducer={'register'}/>
-                <TextInput label="Name"
-                           placeholder="Arlozorov"
-                           action={this.props.actions.registerActions.changeStreet}
-                           inputType={'street'} {...this.props}
-                           reducer={'register'}/>
-                <TextInput label="House Number"
-                           type="number"
-                           placeholder="37"
-                           action={this.props.actions.registerActions.changeHouseNumber}
-                           inputType={'houseNumber'} {...this.props}
-                           reducer={'register'}/>
-                <h3>Gender</h3>
-                <RadioInput ref="userInput" types={strings.GENDER}
-                            action={this.props.actions.registerActions.changeGender}
-                            radioType={'gender'} {...this.props}
-                            reducer={'register'}/>
-                <h4>Profile picture</h4>
-                <h4>Languages</h4>
-                <SelectInput
-                    placeholder="Select your languages"
-                    options={baseData.getLanguages()}
-                    {...this.props}
-                    defaultLanguages={this.props.register.languages}
-                    action={this.props.actions.registerActions.changeLanguages}
-                    inputType={'languages'} {...this.props}
-                    reducer={'register'}/>
+                <BaseForm {...this.props}/>
                 <h3>Child</h3>
                 <TextInput label="Max price for watch"
                            type="number"

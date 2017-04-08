@@ -8,11 +8,13 @@ class Register extends React.Component {
         super(props);
     }
     render() {
+        //let form = this.props.user.userType === "I'm a Parent" ?  <ParentForm {...this.props}/> : <SitterForm {...this.props}/>;
         return (
             <div id="register-page">
                 <h1>Sign Up</h1>
                 {/*{this.props.user.userType === "I'm a Parent" ?  <ParentForm {...this.props}/> : <SitterForm {...this.props}/>}*/}
-                <ParentForm {...this.props}/>
+                {/*<ParentForm {...this.props}/>*/}
+                <SitterForm {...this.props}/>
             </div>
         );
     }
