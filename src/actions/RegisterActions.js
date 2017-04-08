@@ -142,3 +142,10 @@ export function changeSitterSpecialNeeds(sitterSpecialNeeds) {
         sitterSpecialNeeds
     }
 }
+
+export function changeSitterExperience(sitterExperience) {
+    return {
+        type: 'CHANGE_SITTER_EXPERIENCE',
+        sitterExperience
+    }
+}

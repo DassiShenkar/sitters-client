@@ -107,6 +107,12 @@ function register(state = {}, action) {
                 ...state,
                 sitterSpecialNeeds:  action.sitterSpecialNeeds
             };
+        case 'CHANGE_SITTER_EXPERIENCE' :
+            return {
+                ...state,
+                sitterExperience:  action.sitterExperience
+            };
+
 
 
         default:

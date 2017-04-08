@@ -3,7 +3,7 @@ function user(state = {}, action) {
         case 'CREATE_USER' :
             return {
                 ...state,
-                user: action.userData
+                facebookData: action.facebookData
             };
         case 'CHANGE_USER_TYPE' :
             return {

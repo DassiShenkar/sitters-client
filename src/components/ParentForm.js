@@ -1,14 +1,11 @@
 import React from 'react';
 import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
-import RadioInput from './controllers/RadioInput';
-import SelectInput from './controllers/SelectInput';
 import BaseForm from './BaseForm';
 import baseData from '../data/BaseData';
 import axios from 'axios';
 var {AgeFromDate} = require('age-calculator');
 
-var DEBUG = true;
 var age;
 import strings from '../static/strings';
 
@@ -17,7 +14,7 @@ class Form extends React.Component {
         super(props);
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         // if (usr.birthday) { // calculate age from birthday
-        //     let date = usr.birthday.split("/");
+        //     let date = usr.birthday.split("/"); TODO: get birthday from facebook and put in redux and age component
         //     age = (new AgeFromDate(new Date(parseInt(date[2], 10), parseInt(date[1], 10) - 1, parseInt(date[0], 10) - 1)).age) || 0;
         // }
         //     defaultTimeValue: '10:00'
@@ -40,9 +37,9 @@ class Form extends React.Component {
                 houseNumber: parseInt(this.props.register.houseNumber),
             },
             gender: this.props.register.gender.toLowerCase(),
-            // profilePicture: this.state.profilePicture,
-            // coverPhoto: this.state.coverPhoto,
-            // timezone: this.state.timezone,
+            coverPhoto: this.props.user.facebookData.cover.source,
+            timezone: this.props.user.facebookData.timezone,
+            profilePicture: this.props.user.facebookData.picture.data.url,
             maxPrice: parseInt(this.props.register.watchMaxPrice),
             languages: languages,
             children: {

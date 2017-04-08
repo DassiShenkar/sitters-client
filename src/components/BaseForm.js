@@ -61,7 +61,6 @@ class BaseForm extends React.Component {
                     action={this.props.actions.registerActions.changeLanguages}
                     inputType={'languages'} {...this.props}
                     reducer={'register'}/>
-                )
             </div>
         )
     };

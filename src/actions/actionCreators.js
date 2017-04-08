@@ -12,10 +12,10 @@ export function changeUserType(userType) {
     }
 }
 
-export function createUser(userData) {
+export function createUser(facebookData) {
 
     return {
         type: 'CREATE_USER',
-        userData
+        facebookData
     }
 }
