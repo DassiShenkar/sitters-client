@@ -3,11 +3,10 @@ import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import BaseForm from './BaseForm';
 import geocoder from'geocoder'
-import baseData from '../data/BaseData';
 import axios from 'axios';
-var {AgeFromDate} = require('age-calculator');
-
-var age;
+// var {AgeFromDate} = require('age-calculator');
+//
+// var age;
 import strings from '../static/strings';
 
 class Form extends React.Component {
@@ -44,21 +43,20 @@ class Form extends React.Component {
         parent = {
             name: this.props.register.name,
             email: this.props.register.email,
-            age: parseInt(this.props.register.age),
+            age: parseInt(this.props.register.age,10),
             address: {
                 city: this.props.register.city,
                 street: this.props.register.street,
-                houseNumber: parseInt(this.props.register.houseNumber),
+                houseNumber: parseInt(this.props.register.houseNumber,10),
             },
             gender: this.props.register.gender.toLowerCase(),
             coverPhoto: this.props.user.facebookData.cover.source,
             timezone: this.props.user.facebookData.timezone,
             profilePicture: this.props.user.facebookData.picture.data.url,
-            maxPrice: parseInt(this.props.register.watchMaxPrice),
-            languages: languages,
+            maxPrice: parseInt(this.props.register.watchMaxPrice,10),
             children: {
                 name: this.props.register.childName,
-                age: parseInt(this.props.register.childAge),
+                age: parseInt(this.props.register.childAge,10),
                 expertise: this.props.register.childExpertise,
                 hobbies: this.props.register.childHobbies,
                 specialNeeds: this.props.register.childSpecialNeeds,

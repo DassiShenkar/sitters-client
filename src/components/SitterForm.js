@@ -2,9 +2,10 @@ import React from 'react';
 import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
-import WorkingHours from './controllers/WorkingHours';
+// import WorkingHours from './controllers/WorkingHours';
 import PersonalityTest from './PersonalityTest'
 import BaseForm from './BaseForm';
+import BaseData from '../data/BaseData';
 // import 'react-select/dist/react-select.css';
 import strings from '../static/strings';
 // var {AgeFromDate} = require('age-calculator');
@@ -45,27 +46,25 @@ class Form extends React.Component {
         sitter = {
             name: this.props.register.name,
             email: this.props.register.email,
-            age: parseInt(this.props.register.age),
+            age: parseInt(this.props.register.age,10),
             address: {
                 city: this.props.register.city,
                 street: this.props.register.street,
-                houseNumber: parseInt(this.props.register.houseNumber),
+                houseNumber: parseInt(this.props.register.houseNumber,10),
             },
             gender: this.props.register.gender.toLowerCase(),
             coverPhoto: this.props.user.facebookData.cover.source,
             timezone: this.props.user.facebookData.timezone,
             profilePicture: this.props.user.facebookData.picture.data.url,
-            languages: languages,
-            experience:  parseInt(this.props.register.experience),
-            minAge:  parseInt(this.props.register.sitterMinAge),
-            maxAge:  parseInt(this.props.register.sitterMaxAge),
+            experience:  parseInt(this.props.register.experience,10),
+            minAge:  parseInt(this.props.register.sitterMinAge,10),
+            maxAge:  parseInt(this.props.register.sitterMaxAge,10),
             hourFee: parseInt(this.props.register.hourFee,10),
             availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
             expertise: this.props.register.sitterExpertise,
             hobbies: this.props.register.sitterHobbies,
             specialNeeds: this.props.register.sitterSpecialNeeds
         };
-        console.log(sitter);
         axios({
             method: 'post',
             url: 'http://localhost:4000/sitter/create',
@@ -142,8 +141,8 @@ class Form extends React.Component {
                                inputType={'sitterSpecialNeeds'} {...this.props}
                                reducer={'register'}
                 />
-                {/*/!*<h4>Sitter Personality Test:</h4>*!/ TODO: convert to redux*/}
-                {/*<PersonalityTest questions={BaseData.getQuestions()}/>*/}
+                <h4>Sitter Personality Test:</h4> TODO: convert to redux
+                <PersonalityTest questions={BaseData.getQuestions()}/>
                 {/*<h4>Working Hours</h4>*/}
                 {/*/!*<WorkingHours days={strings.WEEK_DAYS} />*!/ TODO: think about this component again*/}
                 <input type="submit" className="submit-invite" value="Sign Up"/>
