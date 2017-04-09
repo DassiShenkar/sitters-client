@@ -141,7 +141,7 @@ class Form extends React.Component {
                                inputType={'sitterSpecialNeeds'} {...this.props}
                                reducer={'register'}
                 />
-                <h4>Sitter Personality Test:</h4> TODO: convert to redux
+                <h4>Sitter Personality Test:</h4>
                 <PersonalityTest questions={BaseData.getQuestions()}/>
                 {/*<h4>Working Hours</h4>*/}
                 {/*/!*<WorkingHours days={strings.WEEK_DAYS} />*!/ TODO: think about this component again*/}

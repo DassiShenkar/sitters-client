@@ -4,9 +4,6 @@ class PersonalityTest extends React.Component {
     constructor() {
         super();
         this.computeResults = this.computeResults.bind(this);
-        this.state = {
-            agree: false
-        }
     }
     computeResults(){
         let questions = [];
@@ -35,29 +32,19 @@ class PersonalityTest extends React.Component {
                 </div>
             )
         });
-        let form;
-        if(this.state.agree){
-            form = questions;
-        }
-        else{
-            form = <div>
+        return (
+            <div>
                 <p>The following questionnaire includes statements that describe how you feel and acts during activities, you will have to mark the level of agreement on a scale from 1 (strongly disagree) to 5 (strongly agree).
 
                     It is important to answer the questionnaire of seriousness and sincere manner.
 
                     It is important though that you know that this questionnaire can be answered only once and the results of the questionnaire are not published to the parents, and not delivered to anyone else.
                 </p>
-                <input type='checkbox' label='Checkbox' onChange={() => this.state.agree = true} />
-            </div>;
-        }
-        let showQuestions = this.state.agree? questions:'';
-        return (
-            <div>
-                    {/*It is important though that you know that this questionnaire can be answered only once and the results of the questionnaire are not published to the parents, and not delivered to anyone else.*/}
-                {/*</p>*/}
-                {/*<input type='checkbox' label='Checkbox' onChange={() => this.state.agree = true} />*/}
-                {/*{showQuestions}*/}
-                {form}
+                <p>
+                    It is important though that you know that this questionnaire can be answered only once and the results of the questionnaire are not published to the parents, and not delivered to anyone else.
+                </p>
+                <h3>Questions</h3>
+                {questions}
             </div>
         );
     }
