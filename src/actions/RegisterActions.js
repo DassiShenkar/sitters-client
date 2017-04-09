@@ -149,3 +149,13 @@ export function changeSitterExperience(sitterExperience) {
         sitterExperience
     }
 }
+
+export function changePersonalityTestQuestion(category, method, question, rating) {
+    return {
+        type: 'CHANGE_PERSONALITY_TEST_QUESTIONS',
+        category,
+        method,
+        question,
+        rating
+    }
+}

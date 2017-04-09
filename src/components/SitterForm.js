@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from './controllers/TextInput';
 import CheckBoxInput from './controllers/CheckBoxInput';
 import RadioInput from './controllers/RadioInput';
-// import WorkingHours from './controllers/WorkingHours';
+import WorkingHours from './controllers/WorkingHours';
 import PersonalityTest from './PersonalityTest'
 import BaseForm from './BaseForm';
 import BaseData from '../data/BaseData';
@@ -94,25 +94,25 @@ class Form extends React.Component {
                            type="number"
                            placeholder="0"
                            action={this.props.actions.registerActions.changeSitterExperience}
-                           inputType={'sitterExperience'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
                 <TextInput label="Minimum age to save children"
                            type="number"
                            placeholder="0"
                            action={this.props.actions.registerActions.changeSitterMinimumAge}
-                           inputType={'sitterMinAge'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
                 <TextInput label="Age"
                            type="number"
                            placeholder="25"
                            action={this.props.actions.registerActions.changeSitterMaximumAge}
-                           inputType={'sitterMaxAge'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
                 <TextInput label="Hour Fee"
                            type="number"
                            placeholder="20"
                            action={this.props.actions.registerActions.changeSitterHourFee}
-                           inputType={'hourFee'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
 
                 <h3>Immediate availability</h3>
@@ -124,27 +124,27 @@ class Form extends React.Component {
                 <CheckBoxInput name="sitterExpertise"
                                types={strings.EXPERTISE}
                                action={this.props.actions.registerActions.changeSitterExpertise}
-                               inputType={'sitterExpertise'} {...this.props}
+                               {...this.props}
                                reducer={'register'}
                 />
                 <h4>Sitter Hobbies</h4>
                 <CheckBoxInput name="childHobbies"
                                types={strings.HOBBIES}
                                action={this.props.actions.registerActions.changeSitterHobbies}
-                               inputType={'sitterHobbies'} {...this.props}
+                               {...this.props}
                                reducer={'register'}
                 />
                 <h4>Sitter Special needs</h4>
                 <CheckBoxInput name="childHobbies"
                                types={strings.SPECIAL_NEEDS}
                                action={this.props.actions.registerActions.changeSitterSpecialNeeds}
-                               inputType={'sitterSpecialNeeds'} {...this.props}
+                               {...this.props}
                                reducer={'register'}
                 />
                 <h4>Sitter Personality Test:</h4>
-                <PersonalityTest questions={BaseData.getQuestions()}/>
-                {/*<h4>Working Hours</h4>*/}
-                {/*/!*<WorkingHours days={strings.WEEK_DAYS} />*!/ TODO: think about this component again*/}
+                <PersonalityTest questions={BaseData.getQuestions()} {...this.props}/>
+                <h4>Working Hours</h4>
+                <WorkingHours days={strings.WEEK_DAYS} />
                 <input type="submit" className="submit-invite" value="Sign Up"/>
             </form>
         );

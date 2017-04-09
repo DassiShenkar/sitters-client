@@ -7,10 +7,6 @@ class SelectBase extends React.Component {
         this.onChange = this.onChange.bind(this);
     };
     onChange(langArray){
-        // let languages = [];
-        // langArray.forEach(function(language){
-        //     languages.push(language.value);
-        // });
         this.props.action(langArray);
     }
 }

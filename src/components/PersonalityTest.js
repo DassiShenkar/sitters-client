@@ -28,7 +28,7 @@ class PersonalityTest extends React.Component {
             return (
                 <div key={index}>
                     <p>{question.question}</p>
-                    <PersonalityTestRating ref={questionRef} id={index} question={question}/>
+                    <PersonalityTestRating ref={questionRef} id={index} question={question} {...this.props}/>
                 </div>
             )
         });

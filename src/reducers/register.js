@@ -112,6 +112,13 @@ function register(state = {}, action) {
                 ...state,
                 sitterExperience:  action.sitterExperience
             };
+        case 'CHANGE_PERSONALITY_TEST_QUESTIONS' :
+            return [...state, {
+                category: action.category,
+                question: action.question,
+                rating: action.rating,
+                method: action.method
+            }];
 
 
 

@@ -91,38 +91,38 @@ class Form extends React.Component {
                            type="number"
                            placeholder="20"
                            action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
-                           inputType={'watchMaxPrice'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
                 <TextInput label="Child Name"
                            placeholder="Yoel Levi"
                            action={this.props.actions.registerActions.changeChildName}
-                           inputType={'childName'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
                 <TextInput label="Age"
                            type="number"
                            placeholder="2"
                            action={this.props.actions.registerActions.changeChildAge}
-                           inputType={'childAge'} {...this.props}
+                           {...this.props}
                            reducer={'register'}/>
                 <h4>Child Expertise</h4>
                 <CheckBoxInput name="childExpertise"
                                types={strings.EXPERTISE}
                                action={this.props.actions.registerActions.changeChildExpertise}
-                               inputType={'childExpertise'} {...this.props}
+                               {...this.props}
                                reducer={'register'}
                 />
                 <h4>Child Hobbies</h4>
                 <CheckBoxInput name="childHobbies"
                                types={strings.HOBBIES}
                                action={this.props.actions.registerActions.changeChildHobbies}
-                               inputType={'childHobbies'} {...this.props}
+                               {...this.props}
                                reducer={'register'}
                 />
                 <h4>Child Special needs</h4>
                 <CheckBoxInput name="childHobbies"
                                types={strings.SPECIAL_NEEDS}
                                action={this.props.actions.registerActions.changeChildSpecialNeeds}
-                               inputType={'childSpecialNeeds'} {...this.props}
+                               {...this.props}
                                reducer={'register'}
                 />
                 <input type="submit" className="submit-invite" value="Sign Up"/>

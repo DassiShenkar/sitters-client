@@ -1,13 +1,9 @@
-
 import React from 'react';
 import SelectInputBase from '../../base/controllers/SelectInputBase.js';
 import 'react-select/dist/react-select.css';
-
-// var Select = require('react-select');
 import Select from 'react-select'
 
 class TextInput extends SelectInputBase {
-
     render() {
         return (
                 <Select
