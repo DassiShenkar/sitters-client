@@ -8,30 +8,41 @@ import BaseForm from './BaseForm';
 // import 'react-select/dist/react-select.css';
 import strings from '../static/strings';
 // var {AgeFromDate} = require('age-calculator');
-// var Select = require('react-select');
-// var DEBUG = true;
 // var age;
 import axios from 'axios';
-
+import geocoder from'geocoder';
 class Form extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmitSitter = this.handleSubmitSitter.bind(this);
+        this.getGeoCode = this.getGeoCode.bind(this);
     }
     //     if(usr.birthday){ // calculate age from birthday
     //         let date = usr.birthday.split("/");TODO: get birthday from facebook and put in redux and age component
     //         age = (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
     //     }
     //         defaultTimeValue: '10:00'
-
+    getGeoCode(callback){
+        geocoder.geocode(this.props.register.street + " " + this.props.register.houseNumber + ", " + this.props.register.city , function ( err, data ) {
+            if(err)
+                console.log(err); // TODO: when address is wrong, add callback
+            else{
+                callback(data);
+            }
+        });
+    }
 
     handleSubmitSitter(e) {// get all the form params and create sitter
         e.preventDefault();
-        let languages = [];
+        let sitter = {address: {},languages: []};
         this.props.register.languages.forEach (function(language){
-            languages.push(language.value);
+            sitter.languages.push(language.value);
         });
-        let sitter = {
+        this.getGeoCode(function(data) {
+            sitter.address.longitude = data.results[0].geometry.location.lng;
+            sitter.address.latitude = data.results[0].geometry.location.lat;
+        });
+        sitter = {
             name: this.props.register.name,
             email: this.props.register.email,
             age: parseInt(this.props.register.age),
@@ -54,6 +65,7 @@ class Form extends React.Component {
             hobbies: this.props.register.sitterHobbies,
             specialNeeds: this.props.register.sitterSpecialNeeds
         };
+        console.log(sitter);
         axios({
             method: 'post',
             url: 'http://localhost:4000/sitter/create',

@@ -6,10 +6,6 @@ import SelectInput from './controllers/SelectInput';
 import baseData from '../data/BaseData';
 import strings from '../static/strings';
 class BaseForm extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
     render() {
         return (
             <div>

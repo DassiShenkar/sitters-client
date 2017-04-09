@@ -16,6 +16,7 @@
     "age-calculator": "^1.0.0",
     "axios": "^0.15.3",
     "dateformat": "^2.0.0",
+    "deasync": "^0.1.9",
     "geocoder": "^0.2.3",
     "google-map-react": "^0.23.0",
     "install": "^0.8.7",
