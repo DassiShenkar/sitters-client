@@ -1,15 +1,16 @@
-import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+"use strict";
+import React, {Component} from 'react'
+import {StyleSheet, View, Image} from 'react-native'
 import Login from './components/Login'
 import RadioButtons from './components/RadioButton'
+import Logo from './components/Logo'
 
-export default class App extends React.Component {
-  render() {
+var App = React.createClass({
+  render: function () {
     return (
       <View>
-        <Image
-            style={styles.img}
-            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+        <Logo
+            companyName="Sitters"
         />
         <RadioButtons
             values={[
@@ -17,13 +18,19 @@ export default class App extends React.Component {
               {label: 'I\'m A Sitter', value: 1 }
             ]}
         />
-        <Login />
+        <Login
+            navigation={this.props.navigation}
+        />
       </View>
     );
   }
-}
+});
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     img: {
         width: 100,
         height: 100,
@@ -31,3 +38,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
+
+export default App;
