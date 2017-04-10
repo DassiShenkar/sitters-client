@@ -1,8 +1,11 @@
 "use strict";
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import BaseForm from './BaseForm';
-import RadioButtons from './RadioButton'
+import RadioButtons from './RadioButton';
+import Form from 'react-native-form';
+import PersonalityTest from './PersonalityTest';
+import CheckBox from 'react-native-check-box';
 
 const langArray = ["Hebrew", "English", "Russian", "Spanish", "French"];
 const expertiseArray = ['Math', 'English', 'Physics'];
@@ -31,9 +34,19 @@ var SitterForm = React.createClass({
                 {this.checkBox(hobbiesArray)}
                 <Text>Sitter Special needs</Text>
                 {this.checkBox(needsArray)}
+                <PersonalityTest />
             </Form>
         );
-
+    },
+    checkBox: function (array) {
+        return array.map(function(lang) {
+            return  <CheckBox
+                style={{flex: 1, padding: 10}}
+                onClick={()=>{ alert(lang) } }
+                isChecked={false}
+                leftText={lang}
+            />;
+        });
     }
 });
 

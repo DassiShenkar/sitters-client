@@ -43,7 +43,8 @@ var Login = React.createClass({
                                         console.log(result);
                                         alert('Success fetching data: ' + result.toString());
                                         // navigate('Feed', { userType: 'Parent' });
-                                        navigate('Register', { userType: 'Parent' });
+                                        // navigate('Register', { userType: 'Parent' });
+                                        navigate('Register', { userType: 'Sitter' });
                                     }
                                 };
 

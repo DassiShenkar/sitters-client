@@ -1,6 +1,6 @@
 "use strict";
 import React, {Component} from 'react'
-import {StyleSheet, View, Image} from 'react-native'
+import {StyleSheet, View, Image, Text} from 'react-native'
 import Login from './components/Login'
 import RadioButtons from './components/RadioButton'
 import Logo from './components/Logo'
@@ -12,6 +12,7 @@ var App = React.createClass({
         <Logo
             companyName="Sitters"
         />
+         <Text>A Booking Platform for Parents and Sitters</Text>
         <RadioButtons
             values={[
               {label: 'I\'m A Parent', value: 0 },
@@ -36,6 +37,9 @@ const styles = StyleSheet.create({
         height: 100,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    text: {
+        
     }
 });
 
