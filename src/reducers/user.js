@@ -15,5 +15,4 @@ function user(state = {}, action) {
     }
 }
 
-
 export default user;
