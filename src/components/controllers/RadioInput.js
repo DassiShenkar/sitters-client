@@ -6,9 +6,12 @@ class Radio extends RadioInputBase {
     render() {
         const options = this.props.types.map((option) => {
             return (
-                <div key={this.props.types.indexOf(option)}>
+                <div className="radio-option" key={this.props.types.indexOf(option)}>
                     <label>
-                        <input type="radio" name={this.props.radioName} value={option} checked={option === this.props[this.props.reducer][this.props.radioType]}//this.props.radios.userType
+                        <input type="radio"
+                               name={this.props.radioType}
+                               value={option}
+                               checked={option === this.props[this.props.reducer][this.props.radioType]}
                                onChange={this.handleRadio}/>
                         {option}
                     </label>
@@ -16,7 +19,7 @@ class Radio extends RadioInputBase {
             )
         });
         return (
-            <div>
+            <div className="radio-group">
                 {options}
             </div>
         )

@@ -21,7 +21,7 @@ class Login extends React.Component {
             email: user_email
         })
             .then(function (res) {
-                if(res.data) {  // user exists
+                if (res.data) {  // user exists
                     localStorage.setItem("isAuth", "true");
                     self.props.router.push('/feed');
                 }
@@ -34,6 +34,7 @@ class Login extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
+
     }
 
     render() {
@@ -48,10 +49,11 @@ class Login extends React.Component {
                 </PageHeader>
                 <Jumbotron>
                     <h1>Login</h1>
-                    <RadioInput ref="userInput" types={strings.USER_TYPE}
+                    <RadioInput types={strings.USER_TYPE}
                                 action={this.props.actions.actionCreators.changeUserType}
                                 radioType={'userType'} {...this.props}
-                                reducer={'user'}/>
+                                reducer={'user'}
+                                selected={strings.USER_TYPE[0]}/>
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}
