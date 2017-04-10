@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {View} from 'react-native'
 import Feed from './Feed'
 import Register from './Register'
+import LocalStorage from './LoaclStorage'
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -31,6 +32,7 @@ var Login = React.createClass({
                             alert("Login was successful with permissions: " + result.grantedPermissions);
                             AccessToken.getCurrentAccessToken().then(
                               (data) => {
+                                LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
                                 alert(data.accessToken.toString());
                                 alert("start Graph API Request");
                                 const responseInfoCallback = (error, result) => {
@@ -40,11 +42,8 @@ var Login = React.createClass({
                                     } else {
                                         console.log(result);
                                         alert('Success fetching data: ' + result.toString());
-                                        if(false){
-                                            navigate('Feed', { userType: 'Parent' });
-                                        } else {
-                                            navigate('Register', { userType: 'Parent' });
-                                        }
+                                        // navigate('Feed', { userType: 'Parent' });
+                                        navigate('Register', { userType: 'Parent' });
                                     }
                                 };
 
