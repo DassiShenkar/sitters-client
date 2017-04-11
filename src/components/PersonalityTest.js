@@ -1,9 +1,6 @@
 import React from 'react';
 import PersonalityTestRating from './controllers/PersonalityTestRating'
 class PersonalityTest extends React.Component {
-    constructor() {
-        super();
-    }
 
     render() {
         let index = -1;

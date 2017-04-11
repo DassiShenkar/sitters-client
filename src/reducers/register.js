@@ -1,5 +1,3 @@
-import update from 'react-addons-update'
-
 function register(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_GENDER' :

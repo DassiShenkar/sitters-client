@@ -10,7 +10,9 @@ function user(state = {}, action) {
                 birthday: data.birthday,
                 currency: data.currency,
                 education: data.education,
+                email : data.email,
                 gender: data.gender,
+                languages: data.languages,
                 location: data.location,
                 timezone: data.timezone,
                 picture: data.picture

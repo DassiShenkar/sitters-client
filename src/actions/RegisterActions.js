@@ -154,9 +154,5 @@ export function changePersonalityTestQuestion(question) {
     return {
         type: 'CHANGE_PERSONALITY_TEST_QUESTION',
         question
-        // category,
-        // method,
-        // question,
-        // choice
     }
 }

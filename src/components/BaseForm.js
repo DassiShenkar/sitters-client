@@ -8,13 +8,27 @@ import strings from '../static/strings';
 import {AgeFromDate} from 'age-calculator';
 
 
-
 class BaseForm extends React.Component {
 
     calcAge(birthday) {
         let date = birthday.split("/");
         return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
-}
+    }
+
+    getLanguagesFromFacebook(languages){
+        if(languages){
+            return languages;
+        }
+        else{
+            let langs =  [];
+            this.props.user.languages.forEach(function(language){
+                langs.push({value:language.name.toLowerCase(), label:language.name});
+            });
+            return langs;
+
+        }
+
+    }
 
     render() {
         return (
@@ -68,7 +82,7 @@ class BaseForm extends React.Component {
                     placeholder="Select your languages"
                     options={baseData.getLanguages()}
                     {...this.props}
-                    defaultLanguages={this.props.register.languages}
+                    defaultLanguages={this.getLanguagesFromFacebook(this.props.register.languages)}
                     action={this.props.actions.registerActions.changeLanguages}
                     {...this.props}
                     reducer={'register'}/>
