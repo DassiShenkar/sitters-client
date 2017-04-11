@@ -1,3 +1,5 @@
+import update from 'react-addons-update'
+
 function register(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_GENDER' :
@@ -112,14 +114,13 @@ function register(state = {}, action) {
                 ...state,
                 sitterExperience:  action.sitterExperience
             };
-        case 'CHANGE_PERSONALITY_TEST_QUESTIONS' :
-            return [...state, {
-                category: action.category,
-                question: action.question,
-                rating: action.rating,
-                method: action.method
-            }];
-
+        case 'CHANGE_PERSONALITY_TEST_QUESTION' :
+            let questions = state.personalityTestQuestions;
+            questions[action.question.id] = action.question;
+            return {
+                ...state,
+                personalityTestQuestions : questions
+            };
 
 
         default:

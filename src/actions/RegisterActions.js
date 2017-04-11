@@ -150,12 +150,13 @@ export function changeSitterExperience(sitterExperience) {
     }
 }
 
-export function changePersonalityTestQuestion(category, method, question, rating) {
+export function changePersonalityTestQuestion(question) {
     return {
-        type: 'CHANGE_PERSONALITY_TEST_QUESTIONS',
-        category,
-        method,
-        question,
-        rating
+        type: 'CHANGE_PERSONALITY_TEST_QUESTION',
+        question
+        // category,
+        // method,
+        // question,
+        // choice
     }
 }

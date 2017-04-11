@@ -29,6 +29,7 @@
     "rc-time-picker": "^2.3.3",
     "rc-tooltip": "^3.4.2",
     "react": "^15.4.2",
+    "react-addons-update": "^15.5.2",
     "react-bootstrap": "^0.30.8",
     "react-bootstrap-date-picker": "^5.0.1",
     "react-bootstrap-tabs": "^1.0.0",

@@ -14,7 +14,7 @@ const defaultState = {
     user: {
         userType: strings.USER_TYPE[0]
     },
-    invites: []
+    register : {personalityTestQuestions : []}
 };
 
 //enable redux in chrome dev tools
