@@ -1,11 +1,16 @@
+//external sources
 import React from 'react';
 import axios from 'axios';
+import FacebookLogin from 'react-facebook-login';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
+
+//components
 import Logo from '../components/Logo';
 import RadioInput from '../components/controllers/RadioInput';
+
+//statics
 import strings from '../static/strings';
-import FacebookLogin from 'react-facebook-login';
 
 class Login extends React.Component {
 
@@ -18,12 +23,12 @@ class Login extends React.Component {
         const self = this;
         const user_email = response.email;
         axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            email: user_email
+            id: response.id
         })
             .then(function (res) {
                 if (res.data) {  // user exists
-                    localStorage.setItem("isAuth", "true");
-                    self.props.router.push('/feed');
+                    localStorage.setItem("auth_token", response.id);
+                    self.props.router.push('/');
                 }
                 else { // user not exist
                     console.log("unknown user");
@@ -38,12 +43,8 @@ class Login extends React.Component {
     }
 
     render() {
-        const style = {
-            width: '80%',
-            margin: 'auto'
-        };
         return (
-            <div style={style}>
+            <div>
                 <PageHeader><Logo companyName={strings.APP_NAME}/>
                     <small>{strings.APP_DESCRIPTION}</small>
                 </PageHeader>

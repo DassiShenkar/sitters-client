@@ -17,12 +17,13 @@ import Notifications from "./components/Notifications";
 import SitterProfile from "./components/SitterProfile";
 import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
+import EditInvite from "./components/EditInvite";
 
 const router = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <IndexRoute component={localStorage.isAuth === "true" ? Feed : Login}/>
+                <IndexRoute component={localStorage.getItem('auth_token')  ? Feed : Login}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/notifications" component={Notifications}/>
                 <Route path="/sitter" component={SitterProfile}/>
@@ -31,6 +32,7 @@ const router = (
                 <Route path="/review/:reviewId" component={SingleReview}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
+                <Route path="/editInvite" component={EditInvite}/>
             </Route>
         </Router>
     </Provider>

@@ -62,7 +62,7 @@ class Form extends React.Component {
             console.log(res);
             if (res.data) {  // user created
                 localStorage.setItem("isAuth", "true");
-                self.props.router.push('/feed');
+                self.props.router.push('/');
             }
             else { // user not created
                //TODO: think about error when user not created
