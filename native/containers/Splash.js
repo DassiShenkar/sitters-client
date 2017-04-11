@@ -1,7 +1,7 @@
 import LocalStorage from '../components/LoaclStorage';
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import App from './App'
+import Login from './Login'
 import Feed from './Feed'
 
 const FBSDK = require('react-native-fbsdk');
@@ -19,7 +19,7 @@ export default class Splash extends React.Component {
     render () {
         return (
             <View>
-                {this.ifExists() ? <Feed navigation={this.props.navigation} /> : <App navigation={this.props.navigation} />}
+                {this.ifExists() ? <Feed navigation={this.props.navigation} /> : <Login navigation={this.props.navigation} />}
             </View>
         );
     }

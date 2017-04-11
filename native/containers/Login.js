@@ -1,11 +1,11 @@
 "use strict";
 import React, {Component} from 'react'
 import { View, Image, Text} from 'react-native'
-import Login from '../components/Login'
+import FaceBookLogin from '../components/FaceBookLogin'
 import RadioButtons from '../components/RadioButton'
 import Logo from '../components/Logo'
 
-export default class App extends React.Component {
+export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ export default class App extends React.Component {
                       {label: 'I\'m A Sitter', value: 1 }
                     ]}
                 />
-                <Login
+                <FaceBookLogin
                     navigation={this.props.navigation}
                 />
             </View>

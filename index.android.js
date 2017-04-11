@@ -2,12 +2,14 @@
 import Feed from './native/containers/Feed'
 import Register from './native/containers/Register'
 import Splash from './native/containers/Splash'
+import Login from './native/containers/Login'
 import { AppRegistry } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 const Sitters = StackNavigator({
     Home: {screen: Splash},
     Feed: {screen: Feed},
+    Login: {screen: Login},
     Register: {screen: Register}
 });
 

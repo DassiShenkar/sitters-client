@@ -1,8 +1,8 @@
 "use strict";
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import Feed from './Feed'
-import Register from './Register'
+import Feed from '../containers/Feed'
+import Register from '../containers/Register'
 import LocalStorage from './LoaclStorage'
 
 const FBSDK = require('react-native-fbsdk');
@@ -13,7 +13,7 @@ const {
     AccessToken
 } = FBSDK;
 
-export default class Login extends React.Component {
+export default class FaceBookLogin extends React.Component {
 
     constructor(props) {
         super(props);
