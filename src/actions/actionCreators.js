@@ -19,3 +19,11 @@ export function createUser(facebookData) {
         facebookData
     }
 }
+
+export function getUserData(userData) {
+
+    return {
+        type: 'GET_USER_DATA',
+        userData
+    }
+}

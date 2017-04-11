@@ -21,13 +21,13 @@ class Login extends React.Component {
 
     login(response) {
         const self = this;
-        const user_email = response.email;
         axios.post('https://sitters-server.herokuapp.com/parent/get', {
             id: response.id
         })
             .then(function (res) {
                 if (res.data) {  // user exists
                     localStorage.setItem("auth_token", response.id);
+                    self.props.actions.actionCreators.getUserData(res.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist

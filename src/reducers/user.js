@@ -23,6 +23,12 @@ function user(state = {}, action) {
                 ...state,
                 userType: action.userType
             };
+        case 'GET_USER_DATA' :
+            const userData = action.userData;
+            return {
+                ...state, userData
+
+            };
         default:
             return state;
     }

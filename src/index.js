@@ -22,17 +22,16 @@ import EditInvite from "./components/EditInvite";
 const router = (
     <Provider store={store}>
         <Router history={history}>
-            <Route path="/" component={App}>
-                <IndexRoute component={localStorage.getItem('auth_token')  ? Feed : Login}/>
+            <Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
+                <IndexRoute component={Feed}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/notifications" component={Notifications}/>
                 <Route path="/sitter" component={SitterProfile}/>
-                <Route path="/feed" component={Feed}/>
                 <Route path="/reviews" component={ReviewList}/>
                 <Route path="/review/:reviewId" component={SingleReview}/>
-                <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/editInvite" component={EditInvite}/>
+                <Route path="/login" component={Login}/>
             </Route>
         </Router>
     </Provider>
