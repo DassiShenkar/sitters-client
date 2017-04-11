@@ -19,19 +19,17 @@ export default class Splash extends React.Component {
     render () {
         return (
             <View>
-                {this.ifExists() === true ? <Feed navigation={this.props.navigation} /> : <App navigation={this.props.navigation} />}
+                {this.ifExists() ? <Feed navigation={this.props.navigation} /> : <App navigation={this.props.navigation} />}
             </View>
         );
     }
 
-    ifExists () {
-        let accessToken = LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
+    async ifExists () {
+        let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
         if(accessToken == null) {
             return false;
         } else {
             alert("start Graph API Request");
-            alert(accessToken);
-            alert(accessToken.toString());
             const responseInfoCallback = (error, result) => {
                 if (error) {
                     alert('Error fetching data: ' + error.toString());
@@ -48,7 +46,7 @@ export default class Splash extends React.Component {
                         string: "email"
                     },
                     access_token: {
-                        string: accessToken.toString()
+                        string: accessToken
                     }
                 }
             };
