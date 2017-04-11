@@ -87,24 +87,18 @@ class Form extends React.Component {
             <form id="register-form" onSubmit={this.handleSubmitParent}>
                 <BaseForm {...this.props}/>
                 <h3>Child</h3>
-                <TextInput label="Max price for watch"
-                           type="number"
-                           placeholder="20"
-                           action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
-                           {...this.props}
-                           reducer={'register'}/>
                 <TextInput label="Child Name"
-                           placeholder="Yoel Levi"
+                           placeholder="Child Name"
                            action={this.props.actions.registerActions.changeChildName}
                            {...this.props}
                            reducer={'register'}/>
                 <TextInput label="Age"
                            type="number"
-                           placeholder="2"
+                           placeholder="0"
                            action={this.props.actions.registerActions.changeChildAge}
                            {...this.props}
                            reducer={'register'}/>
-                <h4>Child Expertise</h4>
+                <h4>Child Difficulties</h4>
                 <CheckBoxInput name="childExpertise"
                                types={strings.EXPERTISE}
                                action={this.props.actions.registerActions.changeChildExpertise}
@@ -119,12 +113,18 @@ class Form extends React.Component {
                                reducer={'register'}
                 />
                 <h4>Child Special needs</h4>
-                <CheckBoxInput name="childHobbies"
+                <CheckBoxInput name="childSpecialNeeds"
                                types={strings.SPECIAL_NEEDS}
                                action={this.props.actions.registerActions.changeChildSpecialNeeds}
                                {...this.props}
                                reducer={'register'}
                 />
+                <TextInput label="Max price for babysitting hour (USD)"
+                           type="number"
+                           placeholder="0"
+                           action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
+                           {...this.props}
+                           reducer={'register'}/>
                 <input type="submit" className="submit-invite" value="Sign Up"/>
             </form>
         );
