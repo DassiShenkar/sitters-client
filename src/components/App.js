@@ -6,14 +6,16 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
+import * as InviteActions from '../actions/InviteActions';
+import * as FeedActions from '../actions/FeedActions';
 
 //components
 import Main from './Main'
 
 function mapStateToProps(state) {
     return {
-        isAuthenticated: state.isAuthenticated,
         reviews: state.reviews,
+        invites: state.invites,
         user: state.user,
         register: state.register
     }
@@ -28,7 +30,9 @@ function mapDispatchToProps(dispatch) {
         actions: {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
-            reviewActions: bindActionCreators(ReviewActions, dispatch)
+            inviteActions: bindActionCreators(InviteActions, dispatch),
+            reviewActions: bindActionCreators(ReviewActions, dispatch),
+            feedActions: bindActionCreators(FeedActions, dispatch)
         }
     };
 }
