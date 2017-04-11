@@ -8,14 +8,9 @@ class TimeInput extends TimeInputBase {
             <TimePicker
                 showSecond={false}
                 defaultValue={moment()}
-                className="xxx"
                 onChange={this.onChange}
-
             />
         );
     }
 }
-// TimeInput.propTypes = {
-//     changeDateTimeValues: React.PropTypes.func,
-// };
 export default TimeInput;

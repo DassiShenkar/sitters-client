@@ -12,6 +12,7 @@ import RadioInput from '../components/controllers/RadioInput';
 //statics
 import strings from '../static/strings';
 import TimeInput from "./controllers/TimeInput";
+import DatePicker from "./controllers/DatePicker";
 
 class Login extends React.Component {
 
@@ -64,7 +65,7 @@ class Login extends React.Component {
                         callback={this.login}
                         {...this.props}
                     />
-                    <TimeInput {...this.props} action={this.props.actions.feedActions.changeInviteFromTime}/>
+                    <DatePicker {...this.props} action={this.props.actions.feedActions.changeInviteDate}/>
                 </Jumbotron>
             </div>
         )
