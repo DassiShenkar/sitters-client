@@ -4,16 +4,15 @@ import TextInputBase from '../../base/controllers/TextInputBase.js'
 class TextInput extends TextInputBase {
 
     render() {
-        let label = this.props.label !== '' ? <label>{this.props.label}</label> : '';
-        let type = this.props.type !== '' ? this.props.type : 'text';
-        let placeholder = this.props.placeholder !== '' ? this.props.placeholder : '';
-        let defaultValue = this.props.default !== '' ? this.props.default : '';
+        const value = this.props[this.props.reducer][this.props.inputType]  ? this.props[this.props.reducer][this.props.inputType] : this.props.defaultValue;
         return (
             <div className="text-input">
-                {label}
-                <input type={type} placeholder={placeholder} ref="textInput"
+                <label>{this.props.label}</label>
+                <input type={this.props.type !== '' ? this.props.type : 'text'}
+                       placeholder={this.props.placeholder}
+                       ref="textInput"
                        onChange={this.handleChange}
-                        value={defaultValue}/>
+                       value={value}/>
             </div>
         );
     }
