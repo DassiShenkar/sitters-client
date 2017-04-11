@@ -1,7 +1,7 @@
 "use strict";
-import Feed from './native/components/Feed'
-import Register from './native/components/Register'
-import Splash from './native/components/Splash'
+import Feed from './native/containers/Feed'
+import Register from './native/containers/Register'
+import Splash from './native/containers/Splash'
 import { AppRegistry } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 

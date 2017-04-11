@@ -1,8 +1,8 @@
 "use strict";
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
-import ParentForm from './ParentForm';
-import SitterForm from './SitterForm';
+import ParentForm from '../components/ParentForm';
+import SitterForm from '../components/SitterForm';
 
 export default class Register extends Component {
 

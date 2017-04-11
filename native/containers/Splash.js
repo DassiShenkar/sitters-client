@@ -1,4 +1,4 @@
-import LocalStorage from './LoaclStorage';
+import LocalStorage from '../components/LoaclStorage';
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import App from './App'
@@ -57,4 +57,3 @@ export default class Splash extends React.Component {
 
     }
 }
-// {alert(this.ifExists())}

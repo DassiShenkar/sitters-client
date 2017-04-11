@@ -1,9 +1,9 @@
 "use strict";
 import React, {Component} from 'react'
 import { View, Image, Text} from 'react-native'
-import Login from './Login'
-import RadioButtons from './RadioButton'
-import Logo from './Logo'
+import Login from '../components/Login'
+import RadioButtons from '../components/RadioButton'
+import Logo from '../components/Logo'
 
 export default class App extends React.Component {
 
