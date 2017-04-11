@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import SitterList from '../components/SitterList';
 import BaseData from '../data/BaseData';
 import TimeInput from "./controllers/TimeInput";
+import SearchByTab from "./SearchByTab";
 
 class Feed extends React.Component {
 
@@ -23,6 +24,7 @@ class Feed extends React.Component {
                      invites={parent.invites}
                      notifications={parent.notifications}
                      {...this.props}/>
+                {/*<SearchByTab {...this.props} sitters={BaseData.getSitters()}/>*/}
                 <SitterList sitters={sitters}/>
             </div>
         );

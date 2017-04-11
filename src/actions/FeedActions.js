@@ -12,10 +12,11 @@ export function changeInviteToTime(toTime) {
     }
 }
 
-export function changeInviteDate(inviteDate,inviteDay) {
+export function changeInviteDate(inviteDate,inviteDay,isoValue) {
     return {
         type: 'CHANGE_INVITE_DATE',
         inviteDate,
-        inviteDay
+        inviteDay,
+        isoValue
     }
 }

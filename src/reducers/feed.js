@@ -11,7 +11,8 @@ function feed(state = {}, action) {
         case 'CHANGE_INVITE_DATE' :
             return {...state,
                 inviteDate: action.inviteDate,
-                inviteDay: action.inviteDay
+                inviteDay: action.inviteDay,
+                isoValue: action.isoValue
             };
         default:
             return state;

@@ -13,18 +13,18 @@ export default class SimpleMap extends Component {
     };
 
     render() {
-        // const markers = this.props.sitters.map((sitter) => {
-        //     return (
-        //         <Location lat={sitter.address.latitude} lng={sitter.address.longitude} text={sitter.address.name}/>
-        //     )
-        // });
+        const markers = this.props.sitters.map((sitter) => {
+            return (
+                <Location lat={sitter.address.latitude} lng={sitter.address.longitude} text={sitter.address.name}/>
+            )
+        });
         return (
             <GoogleMap
                 apiKey='AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0'
                 defaultCenter={this.props.center}
                 defaultZoom={this.props.zoom}
             >
-                {/*{markers}*/}
+                {markers}
                 {/*<AnyReactComponent*/}
                     {/*lat={59.955413}*/}
                     {/*lng={30.337844}*/}

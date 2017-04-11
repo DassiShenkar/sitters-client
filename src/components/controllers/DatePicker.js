@@ -10,7 +10,4 @@ class DatePicker extends DatePickerBase {
         );
     }
 }
-// DatePicker.propTypes = {
-//     changeDateTimeValues: React.PropTypes.func,
-// };
 export default DatePicker;
