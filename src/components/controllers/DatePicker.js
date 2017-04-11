@@ -4,8 +4,9 @@ import DatePickerBase from '../../base/controllers/DatePickerBase'
 
 class DatePicker extends DatePickerBase {
     render() {
+        const today = new Date();
         return (
-            <DatePickerBoostrap value={this.state.value} onChange={this.handleChange} />
+            <DatePickerBoostrap value={today.toISOString()} action={this.props.action} onChange={this.handleChange} />
         );
     }
 }
