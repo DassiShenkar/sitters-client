@@ -50,10 +50,10 @@ class Login extends React.Component {
                 <Jumbotron>
                     <h1>Login</h1>
                     <RadioInput types={strings.USER_TYPE}
+                                defaultValue={strings.USER_TYPE[0]}
                                 action={this.props.actions.actionCreators.changeUserType}
                                 radioType={'userType'} {...this.props}
-                                reducer={'user'}
-                                selected={strings.USER_TYPE[0]}/>
+                                reducer={'user'}/>
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}
