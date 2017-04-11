@@ -6,7 +6,8 @@ import WorkingHours from './controllers/WorkingHours';
 import PersonalityTest from './PersonalityTest'
 import BaseForm from './BaseForm';
 import BaseData from '../data/BaseData';
-// import 'react-select/dist/react-select.css';
+import 'react-select/dist/react-select.css';
+import {AgeFromDate} from 'age-calculator';
 import strings from '../static/strings';
 import axios from 'axios';
 import geocoder from'geocoder';
@@ -25,34 +26,43 @@ class Form extends React.Component {
             }
         });
     }
-
+    calcAge(birthday) {
+        let date = birthday.split("/");
+        return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
+    }
     handleSubmitSitter(e) {// get all the form params and create sitter
         e.preventDefault();
+        let self = this;
         let sitter = {address: {},languages: []};
-        this.props.register.languages.forEach (function(language){
-            sitter.languages.push(language.value);
+        let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
+        langs.forEach (function(language){
+            if(self.props.register.languages == null)
+                sitter.languages.push(language.name);
+            else
+                sitter.languages.push(language.value);
         });
         this.getGeoCode(function(data) {
-            sitter.address.longitude = data.results[0].geometry.location.lng;
-            sitter.address.latitude = data.results[0].geometry.location.lat;
+            sitter.address.longitude = data.results[0] != null? data.results[0].geometry.location.lng: 0;
+            sitter.address.latitude = data.results[0] != null? data.results[0].geometry.location.lat: 0;
         });
         sitter = {
-            name: this.props.register.name,
-            email: this.props.register.email,
-            age: parseInt(this.props.register.age,10),
+            _id : this.props.user.facebookID,
+            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
             address: {
-                city: this.props.register.city,
+                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
                 street: this.props.register.street,
-                houseNumber: parseInt(this.props.register.houseNumber,10),
+                houseNumber: Number(this.props.register.houseNumber),
             },
-            gender: this.props.register.gender.toLowerCase(),
-            coverPhoto: this.props.user.facebookData.cover.source,
-            timezone: this.props.user.facebookData.timezone,
-            profilePicture: this.props.user.facebookData.picture.data.url,
-            experience:  parseInt(this.props.register.experience,10),
-            minAge:  parseInt(this.props.register.sitterMinAge,10),
-            maxAge:  parseInt(this.props.register.sitterMaxAge,10),
-            hourFee: parseInt(this.props.register.hourFee,10),
+            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
+            coverPhoto: this.props.user.coverPhoto.source,
+            timezone: this.props.user.timezone,
+            profilePicture: this.props.user.picture.data.url,
+            experience:  Number(this.props.register.experience),
+            minAge:  Number(this.props.register.sitterMinAge),
+            maxAge:  Number(this.props.register.sitterMaxAge),
+            hourFee: Number(this.props.register.hourFee),
             availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
             expertise: this.props.register.sitterExpertise,
             hobbies: this.props.register.sitterHobbies,
@@ -95,7 +105,7 @@ class Form extends React.Component {
                            action={this.props.actions.registerActions.changeSitterMinimumAge}
                            {...this.props}
                            reducer={'register'}/>
-                <TextInput label="Age"
+                <TextInput label="Maximum age to save children"
                            type="number"
                            placeholder="25"
                            action={this.props.actions.registerActions.changeSitterMaximumAge}

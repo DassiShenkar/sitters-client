@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from '../components/Nav';
 import SitterList from '../components/SitterList';
 import BaseData from '../data/BaseData';
+import TimeInput from "./controllers/TimeInput";
 
 class Feed extends React.Component {
 

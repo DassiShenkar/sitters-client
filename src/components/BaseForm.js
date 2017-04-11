@@ -27,7 +27,6 @@ class BaseForm extends React.Component {
             return langs;
 
         }
-        return;
 
     }
 

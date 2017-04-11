@@ -4,8 +4,8 @@ import reviews from './reviews';
 import user from './user';
 import authUser from './login';
 import register from './register';
-import invites from './invites';
+import feed from './feed';
 
-const rootReducer = combineReducers({user, reviews, authUser, register, invites, routing: routerReducer});
+const rootReducer = combineReducers({user, reviews, authUser, register, feed, routing: routerReducer});
 
 export default rootReducer;

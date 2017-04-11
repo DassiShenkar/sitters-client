@@ -10,11 +10,12 @@ class TimeInput extends TimeInputBase {
                 defaultValue={moment()}
                 className="xxx"
                 onChange={this.onChange}
+
             />
         );
     }
 }
-TimeInput.propTypes = {
-    changeDateTimeValues: React.PropTypes.func,
-};
+// TimeInput.propTypes = {
+//     changeDateTimeValues: React.PropTypes.func,
+// };
 export default TimeInput;

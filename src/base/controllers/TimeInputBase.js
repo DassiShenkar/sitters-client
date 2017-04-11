@@ -5,18 +5,19 @@ class TimeInputBase extends React.Component {
     constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
-        this.state = {
-            time: moment().format('HH:mm'),
-            now: moment().hour(0).minute(0),
-            format : 'h:mm'
-        }
+        // this.state = {
+        //     time: moment().format('HH:mm'),
+        //     now: moment().hour(0).minute(0),
+        //     format : 'h:mm'
+        // }
     }
     onChange(value) {
-        this.setState({
-            time: (value && value.format('H:mm')).toString()
-        },
-            this.props.changeDateTimeValues// setState callback
-        );
+       this.props.action((value && value.format('H:mm')).toString());
+        // this.setState({
+        //     time: (value && value.format('H:mm')).toString()
+        // },
+        //     this.props.changeDateTimeValues// setState callback
+        // );
 
     }
 

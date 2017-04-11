@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
+import * as FeedActions from '../actions/FeedActions';
 
 //components
 import Main from './Main'
@@ -28,7 +29,8 @@ function mapDispatchToProps(dispatch) {
         actions: {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
-            reviewActions: bindActionCreators(ReviewActions, dispatch)
+            reviewActions: bindActionCreators(ReviewActions, dispatch),
+            feedActions: bindActionCreators(FeedActions, dispatch)
         }
     };
 }
