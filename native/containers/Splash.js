@@ -1,8 +1,8 @@
-import LocalStorage from '../components/LoaclStorage';
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import Login from './Login'
 import Feed from './Feed'
+import LocalStorage from '../utils/LoaclStorage';
 
 const FBSDK = require('react-native-fbsdk');
 const {

@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {View} from 'react-native'
 import Feed from '../containers/Feed'
 import Register from '../containers/Register'
-import LocalStorage from './LoaclStorage'
+import LocalStorage from '../utils/LoaclStorage'
 
 const FBSDK = require('react-native-fbsdk');
 const {
