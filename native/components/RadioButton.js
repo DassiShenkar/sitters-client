@@ -3,8 +3,7 @@ import { View } from 'react-native';
 import React, { Component } from 'react';
 
 export default class RadioButtons extends Component {
-
-    render() {
+    render () {
         return (
             <RadioForm
                 radio_props={this.props.values}

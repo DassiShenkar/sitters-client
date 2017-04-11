@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, TextInput, Text } from 'react-native';
+import { View, TextInput, Text, TouchableWithoutFeedback } from 'react-native';
 import BaseForm from './BaseForm';
 import RadioButtons from './RadioButton';
 import Form from 'react-native-form';
@@ -14,8 +14,14 @@ const hobbiesArray = ['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 
 const needsArray = ['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays'];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-var SitterForm = React.createClass({
-    render: function () {
+export default class SitterForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        const { navigate } = this.props.navigation;
         return (
             <Form ref="sitterForm">
                 <BaseForm />
@@ -38,10 +44,15 @@ var SitterForm = React.createClass({
                 {this.checkBox(needsArray)}
                 <PersonalityTest />
                 {this.timePicker()}
+                <View>
+                    <TouchableWithoutFeedback onPress={this._onPress}>
+                        <Text>Submit</Text>
+                    </TouchableWithoutFeedback>
+                </View>
             </Form>
         );
-    },
-    checkBox: function (array) {
+    }
+    checkBox (array) {
         return array.map(function(lang) {
             return  <CheckBox
                 style={{flex: 1, padding: 10}}
@@ -50,8 +61,8 @@ var SitterForm = React.createClass({
                 leftText={lang}
             />;
         });
-    },
-    timePicker: function () {
+    }
+    timePicker () {
         return days.map(function (day) {
            return <View>
                     <Text>{day}</Text>
@@ -59,6 +70,7 @@ var SitterForm = React.createClass({
                 </View>;
         });
     }
-});
-
-export default SitterForm;
+    _onPress () {
+        navigate('Feed');
+    }
+}

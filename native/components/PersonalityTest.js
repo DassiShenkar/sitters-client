@@ -21,15 +21,15 @@ const questions = [
     "The boy cursed his brother and will be punished if parents know, so you'd rather not tell his parents of child care"
 ];
 
-var PersonalityTest = React.createClass({
-    render: function () {
+export default class PersonalityTest extends React.Component {
+    render () {
         return (
             <View>
                 {this.question()}
             </View>
         );
-    },
-    question: function (){
+    }
+    question (){
         return questions.map(function (question) {
            return <View>
                     <Text>{question}</Text>
@@ -44,6 +44,4 @@ var PersonalityTest = React.createClass({
                </View>;
         })
     }
-});
-
-export default PersonalityTest
+}

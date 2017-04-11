@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 import { Text, TextInput, Image, View } from 'react-native';
 import RadioButtons from './RadioButton'
 
-var BaseForm = React.createClass({
-    render: function () {
+export default class BaseForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
         return (
             <View>
                 <Text>User</Text>
@@ -26,7 +31,4 @@ var BaseForm = React.createClass({
             </View>
         );
     }
-});
-
-export default BaseForm;
-
+}

@@ -22,9 +22,11 @@ export default class LocalStorage {
                 return value;
             } else {
                 alert('no such key');
+                return null;
             }
         } catch (error) {
             alert('failed to get data');
+            return null;
         }
     }
 }

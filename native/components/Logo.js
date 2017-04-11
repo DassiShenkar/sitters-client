@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text} from 'react-native'
 
-var Logo = React.createClass({
-    render: function () {
+export default class Logo extends React.Component {
+    render () {
         return (
             <Text
                 style={ styles.logo }>
@@ -10,7 +10,7 @@ var Logo = React.createClass({
             </Text>
         );
     }
-});
+}
 
 const styles = StyleSheet.create({
     logo: {
@@ -21,5 +21,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Logo;
 

@@ -13,8 +13,13 @@ const {
     AccessToken
 } = FBSDK;
 
-var Login = React.createClass({
-    render: function () {
+export default class Login extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+    
+    render () {
         const { navigate } = this.props.navigation;
         return (
             <View>
@@ -23,59 +28,52 @@ var Login = React.createClass({
                     // publishPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
                     onLoginFinished={
                         (error, result) => {
-                          alert("click");
-                          if (error) {
-                            alert("Login failed with error: " + result.error);
-                          } else if (result.isCancelled) {
-                            alert("Login was cancelled");
-                          } else {
-                            alert("Login was successful with permissions: " + result.grantedPermissions);
-                            AccessToken.getCurrentAccessToken().then(
-                              (data) => {
-                                LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
-                                alert(data.accessToken.toString());
-                                alert("start Graph API Request");
-                                const responseInfoCallback = (error, result) => {
-                                    if (error) {
-                                        console.log(error);
-                                        alert('Error fetching data: ' + error.toString());
-                                    } else {
-                                        console.log(result);
-                                        alert('Success fetching data: ' + result.toString());
-                                        // navigate('Feed', { userType: 'Parent' });
-                                        // navigate('Register', { userType: 'Parent' });
-                                        navigate('Register', { userType: 'Sitter' });
-                                    }
-                                };
+                            alert("click");
+                            if (error) {
+                                alert("Login failed with error: " + result.error);
+                            } else if (result.isCancelled) {
+                                alert("Login was cancelled");
+                            } else {
+                                alert("Login was successful with permissions: " + result.grantedPermissions);
+                                AccessToken.getCurrentAccessToken().then(
+                                    (data) => {
+                                        LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
+                                        alert(data.accessToken.toString());
+                                        alert("start Graph API Request");
+                                        const responseInfoCallback = (error, result) => {
+                                            if (error) {
+                                                console.log(error);
+                                                alert('Error fetching data: ' + error.toString());
+                                            } else {
+                                                console.log(result);
+                                                alert('Success fetching data: ' + result.toString());
+                                                // navigate('Feed', { userType: 'Parent' });
+                                                navigate('Register', { userType: 'Parent' });
+                                                // navigate('Register', { userType: 'Sitter' });
+                                            }
+                                        };
 
-                                const params = {
-                                    parameters: {
-                                        fields: {
-                                            string: "id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
-                                        },
-                                        access_token: {
-                                            string: data.accessToken.toString()
-                                        }
-                                    }
-                                };
+                                        const params = {
+                                            parameters: {
+                                                fields: {
+                                                    string: "id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
+                                                },
+                                                access_token: {
+                                                    string: data.accessToken.toString()
+                                                }
+                                            }
+                                        };
 
-                                const infoRequest = new GraphRequest(
-                                    '/me',
-                                    params,
-                                    responseInfoCallback
+                                        const infoRequest = new GraphRequest('/me', params, responseInfoCallback);
+                                        new GraphRequestManager().addRequest(infoRequest).start();
+                                    }
                                 );
-
-
-                                new GraphRequestManager().addRequest(infoRequest).start();
-                              }
-                            );
-                          }
-                        }
+                            }
+}
                       }
                     onLogoutFinished={() => alert("User logged out")}/>
             </View>
         );
     }
-});
+}
 
-export default Login;

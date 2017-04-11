@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, Image } from 'react-native';
+import { Text, TextInput, Image, TouchableWithoutFeedback, View  } from 'react-native';
 import Form from 'react-native-form';
 import CheckBox from 'react-native-check-box';
 import BaseForm from './BaseForm';
@@ -10,8 +10,14 @@ const expertiseArray = ['Math', 'English', 'Physics'];
 const hobbiesArray = ['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV'];
 const needsArray = ['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays'];
 
-var ParentForm = React.createClass({
-    render: function () {
+export default class ParentForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        const { navigate } = this.props.navigation;
         return (
             <Form ref="parentForm">
                 <BaseForm />
@@ -27,11 +33,16 @@ var ParentForm = React.createClass({
                 {this.checkBox(hobbiesArray)}
                 <Text>Child Special needs</Text>
                 {this.checkBox(needsArray)}
+                <View>
+                    <TouchableWithoutFeedback onPress={this._onPress}>
+                        <Text>Submit</Text>
+                    </TouchableWithoutFeedback>
+                </View>
             </Form>
-        );
+                );
 
-    },
-    checkBox: function (array) {
+    }
+    checkBox (array) {
         return array.map(function(lang) {
            return  <CheckBox
                style={{flex: 1, padding: 10}}
@@ -41,6 +52,7 @@ var ParentForm = React.createClass({
            />;
         });
     }
-});
-
-export default ParentForm;
+    _onPress () {
+        navigate('Feed');
+    }
+}
