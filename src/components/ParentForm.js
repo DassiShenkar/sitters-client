@@ -4,9 +4,6 @@ import CheckBoxInput from './controllers/CheckBoxInput';
 import BaseForm from './BaseForm';
 import geocoder from'geocoder'
 import axios from 'axios';
-// var {AgeFromDate} = require('age-calculator');
-//
-// var age;
 import strings from '../static/strings';
 
 class Form extends React.Component {
@@ -14,12 +11,6 @@ class Form extends React.Component {
         super(props);
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         this.getGeoCode = this.getGeoCode.bind(this);
-        // if (usr.birthday) { // calculate age from birthday
-        //     let date = usr.birthday.split("/"); TODO: get birthday from facebook and put in redux and age component
-        //     age = (new AgeFromDate(new Date(parseInt(date[2], 10), parseInt(date[1], 10) - 1, parseInt(date[0], 10) - 1)).age) || 0;
-        // }
-        //     defaultTimeValue: '10:00'
-        // };
     };
     getGeoCode(callback){
         geocoder.geocode(this.props.register.street + " " + this.props.register.houseNumber + ", " + this.props.register.city , function ( err, data ) {

@@ -3,22 +3,7 @@ import PersonalityTestRating from './controllers/PersonalityTestRating'
 class PersonalityTest extends React.Component {
     constructor() {
         super();
-        // this.computeResults = this.computeResults.bind(this);
     }
-    // computeResults(){
-    //     let questions = [];
-    //     for (let ref in this.refs) {
-    //         if(ref.startsWith("question")) {
-    //             console.log(this.refs[ref]);
-    //             questions[this.refs[ref].state.key] = {
-    //                 choice : this.refs[ref].state.rating,
-    //                 question : this.refs[ref].state.question,
-    //                 category : this.refs[ref].state.category,
-    //                 method : this.refs[ref].state.method
-    //             }
-    //         }
-    //     }
-    // }
 
     render() {
         let index = -1;
@@ -33,7 +18,6 @@ class PersonalityTest extends React.Component {
                                            action={this.props.actions.registerActions.changePersonalityTestQuestion}/>
                 </div>
             )
-
         });
         return (
             <div>

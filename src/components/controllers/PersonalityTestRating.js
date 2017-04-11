@@ -5,13 +5,6 @@ class PersonalityTestRating extends React.Component {
     constructor(props) {
         super(props);
         this.handleRate = this.handleRate.bind(this);
-        // this.state = {
-        //     key: props.id,
-        //     rating: 0,
-        //     method: this.props.question.method,
-        //     category: this.props.question.category,
-        //     question: this.props.question.question
-        // }
     }
     handleRate(rate){
         let question = this.props.question;
@@ -21,7 +14,7 @@ class PersonalityTestRating extends React.Component {
     }
 
     render() {
-        let initRate = this.props.register.personalityTestQuestions[this.props.question.id] == null ? 0:this.props.register.personalityTestQuestions[this.props.question.id].choice;
+        let initRate = this.props.register.personalityTestQuestions[this.props.question.id] == null ? 0: this.props.register.personalityTestQuestions[this.props.question.id].choice;
         return (
             <div onClick={this.getValue}>
                 <ReactRating onClick={rate => this.handleRate(rate)} initialRate={initRate}/>

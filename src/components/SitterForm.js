@@ -8,8 +8,6 @@ import BaseForm from './BaseForm';
 import BaseData from '../data/BaseData';
 // import 'react-select/dist/react-select.css';
 import strings from '../static/strings';
-// var {AgeFromDate} = require('age-calculator');
-// var age;
 import axios from 'axios';
 import geocoder from'geocoder';
 class Form extends React.Component {
@@ -18,11 +16,6 @@ class Form extends React.Component {
         this.handleSubmitSitter = this.handleSubmitSitter.bind(this);
         this.getGeoCode = this.getGeoCode.bind(this);
     }
-    //     if(usr.birthday){ // calculate age from birthday
-    //         let date = usr.birthday.split("/");TODO: get birthday from facebook and put in redux and age component
-    //         age = (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
-    //     }
-    //         defaultTimeValue: '10:00'
     getGeoCode(callback){
         geocoder.geocode(this.props.register.street + " " + this.props.register.houseNumber + ", " + this.props.register.city , function ( err, data ) {
             if(err)
