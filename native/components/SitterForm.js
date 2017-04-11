@@ -6,11 +6,13 @@ import RadioButtons from './RadioButton';
 import Form from 'react-native-form';
 import PersonalityTest from './PersonalityTest';
 import CheckBox from 'react-native-check-box';
+import AndroidTimePicker from './AndroidTimePicker'
 
 const langArray = ["Hebrew", "English", "Russian", "Spanish", "French"];
 const expertiseArray = ['Math', 'English', 'Physics'];
 const hobbiesArray = ['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV'];
 const needsArray = ['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays'];
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 var SitterForm = React.createClass({
     render: function () {
@@ -35,6 +37,7 @@ var SitterForm = React.createClass({
                 <Text>Sitter Special needs</Text>
                 {this.checkBox(needsArray)}
                 <PersonalityTest />
+                {this.timePicker()}
             </Form>
         );
     },
@@ -46,6 +49,14 @@ var SitterForm = React.createClass({
                 isChecked={false}
                 leftText={lang}
             />;
+        });
+    },
+    timePicker: function () {
+        return days.map(function (day) {
+           return <View>
+                    <Text>{day}</Text>
+                    <AndroidTimePicker />
+                </View>;
         });
     }
 });
