@@ -1,9 +1,20 @@
 function user(state = {}, action) {
     switch (action.type) {
         case 'CREATE_USER' :
+            const data = action.facebookData;
             return {
                 ...state,
-                facebookData: action.facebookData
+                facebookID: data.id,
+                name: data.name,
+                coverPhoto: data.cover,
+                birthday: data.birthday,
+                currency: data.currency,
+                education: data.education,
+                gender: data.gender,
+                location: data.location,
+                timezone: data.timezone,
+                picture: data.picture
+
             };
         case 'CHANGE_USER_TYPE' :
             return {
