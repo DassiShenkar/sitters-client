@@ -19,7 +19,7 @@ class BaseForm extends React.Component {
         if(languages){
             return languages;
         }
-        else{
+        else if(this.props.user.languages){
             let langs =  [];
             this.props.user.languages.forEach(function(language){
                 langs.push({value:language.name.toLowerCase(), label:language.name});
@@ -27,6 +27,7 @@ class BaseForm extends React.Component {
             return langs;
 
         }
+        return;
 
     }
 
