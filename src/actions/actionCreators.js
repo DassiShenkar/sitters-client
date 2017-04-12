@@ -13,10 +13,10 @@ export function createUser(facebookData) {
     }
 }
 
-export function getUserData(userData) {
+export function setUserData(userData) {
 
     return {
-        type: 'GET_USER_DATA',
+        type: 'SET_USER_DATA',
         userData
     }
 }

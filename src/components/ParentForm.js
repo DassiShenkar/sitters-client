@@ -73,7 +73,7 @@ class Form extends React.Component {
             data: parent
         }).then(function (res) {
             if (res.data) {  // user created
-                self.props.actions.actionCreators.getUserData(res.data);
+                self.props.actions.actionCreators.setUserData(res.data);
                 self.props.router.push('/');
             }
             else { // user not created

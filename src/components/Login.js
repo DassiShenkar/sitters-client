@@ -27,7 +27,7 @@ class Login extends React.Component {
             .then(function (res) {
                 if (res.data) {  // user exists
                     localStorage.setItem("auth_token", response.id);
-                    self.props.actions.actionCreators.getUserData(res.data);
+                    self.props.actions.actionCreators.setUserData(res.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist

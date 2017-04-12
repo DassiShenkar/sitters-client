@@ -23,7 +23,7 @@ function user(state = {}, action) {
                 ...state,
                 userType: action.userType
             };
-        case 'GET_USER_DATA' :
+        case 'SET_USER_DATA' :
             const data = action.userData;
             return {
                 ...state,
@@ -42,7 +42,7 @@ function user(state = {}, action) {
                 name: data.name,
                 notifications: data.notifications,
                 profilePicture: data.profilePicture,
-                timezone: data.timezone
+                timezone: data.timezone,
 
             };
         default:

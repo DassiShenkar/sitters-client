@@ -1,10 +1,5 @@
 function feed(state = {}, action) {
     switch (action.type) {
-        case 'GET_MATCHES' :
-            const sitters = action.sitters;
-            return [
-                ...state, sitters
-            ];
         case 'CHANGE_INVITE_FROM_TIME' :
             return {
                 ...state,

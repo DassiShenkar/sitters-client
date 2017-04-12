@@ -8,7 +8,7 @@ import SearchByTab from "./SearchByTab";
 import SitterList from "./SitterList";
 
 class Feed extends React.Component {
-    
+
     componentWillMount() {
         let self = this;
         const userId = localStorage.getItem('auth_token');
@@ -18,8 +18,7 @@ class Feed extends React.Component {
             })
                 .then(function (res) {
                     if (res.data) {  // user exists
-                        console.log(res.data);
-                        self.props.actions.actionCreators.getUserData(res.data);
+                        self.props.actions.actionCreators.setUserData(res.data);
                     }
                     else { // user not exist
                         self.props.router.push('/login');
