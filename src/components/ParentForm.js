@@ -68,13 +68,12 @@ class Form extends React.Component {
         };
         axios({
             method: 'post',
-            url: 'http://localhost:4000/parent/create',
+            url: 'https://sitters-server.herokuapp.com/parent/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {
-            console.log(res);
             if (res.data) {  // user created
-                localStorage.setItem("isAuth", "true");
+                self.props.actions.actionCreators.getUserData(res.data);
                 self.props.router.push('/');
             }
             else { // user not created

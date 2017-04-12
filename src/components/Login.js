@@ -11,10 +11,6 @@ import RadioInput from '../components/controllers/RadioInput';
 
 //statics
 import strings from '../static/strings';
-import TimeInput from "./controllers/TimeInput";
-import DatePicker from "./controllers/DatePicker";
-import SearchByTab from "./SearchByTab";
-import BaseData from '../data/BaseData'
 
 class Login extends React.Component {
 
@@ -35,7 +31,6 @@ class Login extends React.Component {
                     self.props.router.push('/');
                 }
                 else { // user not exist
-                    console.log("unknown user");
                     self.props.actions.actionCreators.createUser(response);
                     self.props.router.push('/register')
                 }

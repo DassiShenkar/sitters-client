@@ -1,21 +1,21 @@
 function user(state = {}, action) {
     switch (action.type) {
         case 'CREATE_USER' :
-            const data = action.facebookData;
+            const facebookData = action.facebookData;
             return {
                 ...state,
-                facebookID: data.id,
-                name: data.name,
-                coverPhoto: data.cover,
-                birthday: data.birthday,
-                currency: data.currency,
-                education: data.education,
-                email : data.email,
-                gender: data.gender,
-                languages: data.languages,
-                location: data.location,
-                timezone: data.timezone,
-                picture: data.picture
+                facebookID: facebookData.id,
+                name: facebookData.name,
+                coverPhoto: facebookData.cover,
+                birthday: facebookData.birthday,
+                currency: facebookData.currency,
+                education: facebookData.education,
+                email : facebookData.email,
+                gender: facebookData.gender,
+                languages: facebookData.languages,
+                location: facebookData.location,
+                timezone: facebookData.timezone,
+                picture: facebookData.picture
 
             };
         case 'CHANGE_USER_TYPE' :
@@ -24,9 +24,25 @@ function user(state = {}, action) {
                 userType: action.userType
             };
         case 'GET_USER_DATA' :
-            const userData = action.userData;
+            const data = action.userData;
             return {
-                ...state, userData
+                ...state,
+                _id: data.id,
+                address: data.address,
+                age: data.age,
+                children: data.children,
+                coverPhoto: data.coverPhoto,
+                email: data.email,
+                gender: data.gender,
+                invites: data.invites,
+                joinedTime: data.joinedTime,
+                languages: data.languages,
+                matches: data.matches,
+                maxPrice: data.maxPrice,
+                name: data.name,
+                notifications: data.notifications,
+                profilePicture: data.profilePicture,
+                timezone: data.timezone
 
             };
         default:

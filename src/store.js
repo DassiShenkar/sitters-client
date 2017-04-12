@@ -12,7 +12,8 @@ import rootReducer from './reducers/index';
 const defaultState = {
     reviews: [],
     user: {
-        userType: strings.USER_TYPE[0]
+        userType: strings.USER_TYPE[0],
+        matches: []
     },
     register : {personalityTestQuestions : []}
 };

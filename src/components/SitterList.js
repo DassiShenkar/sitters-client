@@ -9,15 +9,15 @@ class SitterList extends SitterListBase {
         this.nextSitter = this.nextSitter.bind(this);
         this.likeSitter = this.likeSitter.bind(this);
         this.reviewSitter = this.reviewSitter.bind(this);
-        this.state = {
-            index: 0,
-            sitters: props.sitters
-        }
+        // this.state = {
+        //     index: 0,
+        //     sitters: props.sitters
+        // }
     }
 
     nextSitter(e) {
         e.preventDefault();
-        this.setState({index: this.state.index === (this.state.sitters.length - 1) ? 0 : (this.state.index + 1)});
+        // this.setState({index: this.state.index === (this.state.sitters.length - 1) ? 0 : (this.state.index + 1)});
     }
 
     likeSitter(e) {
