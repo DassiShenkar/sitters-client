@@ -1,42 +1,18 @@
 import React from 'react';
-import SitterListBase from '../base/SitterListBase'
-import Like from '../styles/icons/Like'
-import NextArrow from '../styles/icons/NextArrow'
-import Star from '../styles/icons/Star'
+
+import SitterListBase from '../base/SitterListBase';
+import SitterActionBar from './SitterActionBar';
+
 class SitterList extends SitterListBase {
-    constructor(props) {
-        super(props);
-        this.nextSitter = this.nextSitter.bind(this);
-        this.likeSitter = this.likeSitter.bind(this);
-        this.reviewSitter = this.reviewSitter.bind(this);
-        // this.state = {
-        //     index: 0,
-        //     sitters: props.sitters
-        // }
-    }
-
-    nextSitter(e) {
-        e.preventDefault();
-        // this.setState({index: this.state.index === (this.state.sitters.length - 1) ? 0 : (this.state.index + 1)});
-    }
-
-    likeSitter(e) {
-        e.preventDefault();
-    }
-
-    reviewSitter(e) {
-        e.preventDefault();
-    }
 
     render() {
         return (
-            <div>
-                <p className="matchScore">{this.props.sitters[this.state.index].matchScore}% Match!</p>
-                <img src={this.props.sitters[this.state.index].image} alt={this.props.sitters[this.state.index].name}/>
-                <p className="sitterName">{this.props.sitters[this.state.index].name}</p>
-                <button onClick={this.likeSitter}><Like/></button>
-                <button onClick={this.reviewSitter}><Star/></button>
-                <button onClick={this.nextSitter}><NextArrow/></button>
+            <div className="match">
+                <p className="matchScore">{this.props.sitters.length > 0 ? this.props.sitters[0].matchScore + '% Match!' : 'no matches found'}</p>
+                <img src={this.props.sitters.length > 0 ? this.props.sitters[0].image : ''}
+                     alt={this.props.sitters.length > 0 ? this.props.sitters[0].name : ''}/>
+                <p className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[0].name : ''}</p>
+                {this.props.sitters.length > 0 ? <SitterActionBar/> : ''}
             </div>
         )
     }

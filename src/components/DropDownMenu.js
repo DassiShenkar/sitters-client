@@ -20,6 +20,7 @@ class DropdownMenu extends React.Component {
     onSelect({key}) {
         switch (key) {
             case "editProfile":
+                this.props.router.push('/register');
                 break;
             case "settings":
                 break;

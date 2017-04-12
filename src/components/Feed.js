@@ -1,11 +1,11 @@
+//external sources
 import React from 'react';
 import axios from 'axios';
 
+//components
 import Nav from '../components/Nav';
-import SitterList from '../components/SitterList';
-import BaseData from '../data/BaseData';
-import TimeInput from "./controllers/TimeInput";
 import SearchByTab from "./SearchByTab";
+import SitterList from "./SitterList";
 
 class Feed extends React.Component {
     
@@ -31,8 +31,6 @@ class Feed extends React.Component {
         }
     }
 
-
-
     render() {
         return (
             <div>
@@ -43,8 +41,8 @@ class Feed extends React.Component {
                      invites={this.props.user.invites}
                      notifications={this.props.user.notifications}
                      {...this.props}/>
-                {/*<SearchByTab {...this.props} sitters={BaseData.getSitters()}/>*/}
-                {/*<SitterList sitters={this.props.user.matches}/>*/}
+                {/*<SearchByTab {...this.props} sitters={this.props.user.sitters}/>*/}
+                <SitterList sitters={this.props.user.matches.length > 0 ? this.props.user.matches : []}/>
             </div>
         );
     }
