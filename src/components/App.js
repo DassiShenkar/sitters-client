@@ -15,6 +15,7 @@ function mapStateToProps(state) {
     return {
         reviews: state.reviews,
         user: state.user,
+        feed: state.feed,
         register: state.register
     }
 }

@@ -20,3 +20,10 @@ export function changeInviteDate(inviteDate,inviteDay,isoValue) {
         isoValue
     }
 }
+
+export function setMatches(sitters) {
+    return {
+        type: 'SET_MATCHES',
+        sitters
+    }
+}

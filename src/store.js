@@ -13,6 +13,10 @@ const defaultState = {
     reviews: [],
     user: {
         userType: strings.USER_TYPE[0],
+        invites: [],
+        notifications: [],
+    },
+    feed: {
         matches: []
     },
     register : {personalityTestQuestions : []}

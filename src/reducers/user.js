@@ -27,7 +27,7 @@ function user(state = {}, action) {
             const data = action.userData;
             return {
                 ...state,
-                _id: data.id,
+                _id: data._id,
                 address: data.address,
                 age: data.age,
                 children: data.children,
@@ -37,12 +37,11 @@ function user(state = {}, action) {
                 invites: data.invites,
                 joinedTime: data.joinedTime,
                 languages: data.languages,
-                matches: data.matches,
                 maxPrice: data.maxPrice,
                 name: data.name,
                 notifications: data.notifications,
                 profilePicture: data.profilePicture,
-                timezone: data.timezone,
+                timezone: data.timezone
 
             };
         default:
