@@ -1,28 +1,47 @@
+//external sources
 import React from 'react';
+import axios from 'axios';
+
+//components
 import Nav from '../components/Nav';
-import SitterList from '../components/SitterList';
-import BaseData from '../data/BaseData';
+import SearchByTab from "./SearchByTab";
+import SitterList from "./SitterList";
 
 class Feed extends React.Component {
 
+    componentWillMount() {
+        let self = this;
+        const userId = localStorage.getItem('auth_token');
+        if (userId) {
+            axios.post('https://sitters-server.herokuapp.com/parent/get', {
+                id: userId
+            })
+                .then(function (res) {
+                    if (res.data) {  // user exists
+                        self.props.actions.actionCreators.setUserData(res.data);
+                    }
+                    else { // user not exist
+                        self.props.router.push('/login');
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    }
 
     render() {
-        const style = {
-            width: '80%',
-            margin: 'auto'
-        };
-        const sitters = BaseData.getSitters();
-        const parent = BaseData.getParents();
         return (
-            <div style={style}>
+            <div>
                 <h1>Feed</h1>
-                <Nav name={parent.name}
-                     image={parent.image}
-                     alt={parent.name}
-                     invites={parent.invites}
-                     notifications={parent.notifications}
+                <Nav name={this.props.user.name}
+                     image={this.props.user.profilePicture}
+                     alt={this.props.user.name}
+                     invites={this.props.user.invites}
+                     notifications={this.props.user.notifications}
                      {...this.props}/>
-                <SitterList sitters={sitters}/>
+                {/*<SearchByTab {...this.props} sitters={this.props.user.sitters}/>*/}
+                <SitterList sitters={this.props.user.matches.length > 0 ? this.props.user.matches : []}/>
             </div>
         );
     }

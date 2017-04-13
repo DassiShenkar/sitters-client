@@ -11,8 +11,8 @@ class Nav extends NavBase {
     render() {
         return (
             <div>
-                <img src={this.props.profilePicture} alt={this.props.alt}/>
-                <p>Hi,{this.props.name}</p>
+                <img src={this.props.image} alt={this.props.alt}/>
+                <p>{ " Hi," + this.props.name}</p>
                 <Link to="/search" onClick={this.onClickSearch}><SearchSVG/></Link>
                 <Link to="/notifications" onClick={this.onClickMail}><NotificationSVG/><Badge>3</Badge></Link>
                 <Link to="/invites" onClick={this.onClickNotification}><MailSVG/><Badge>1</Badge></Link>

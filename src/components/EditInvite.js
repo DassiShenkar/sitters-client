@@ -6,19 +6,19 @@ import TimeInput from "./controllers/TimeInput";
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 
-class Form extends React.Component {
+class EditInvite extends React.Component {
     constructor(props) {
         super(props);
         this.sendInvite = this.sendInvite.bind(this);
 
-        this.state = {
-            sitterProfilePicture: 'sitterPic',
-            sitterName: 'sitterName',
-            date: 'inviteDate',
-            time: 'inviteTime',
-            location: 'inviteLocation',
-            notes: 'notes'
-        }
+        // this.state = {
+        //     sitterProfilePicture: 'sitterPic',
+        //     sitterName: 'sitterName',
+        //     date: 'inviteDate',
+        //     time: 'inviteTime',
+        //     location: 'inviteLocation',
+        //     notes: 'notes'
+        // }
     };
 
 
@@ -33,7 +33,7 @@ class Form extends React.Component {
                 <img src="http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg" alt="sitterName"/>
                 <form id="invite">
                     <ControlLabel>Date</ControlLabel>
-                    <DatePicker/>
+                    <DatePicker action={this.props.actions.inviteActions.updateDate}/>
                     <ControlLabel>Time</ControlLabel>
                     <TimeInput/>
                     <ControlLabel>Location</ControlLabel>
@@ -42,11 +42,11 @@ class Form extends React.Component {
                     </div>
                     <ControlLabel>Notes</ControlLabel>
                     <FormControl componentClass="textarea" placeholder="textarea" />
-                    <Button bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
+                    <Button title="Send Invite" bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
                 </form>
             </div>
         );
     };
 }
 
-export default Form;
+export default EditInvite;

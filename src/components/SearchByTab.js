@@ -14,7 +14,7 @@ class SearchByTab extends React.Component {
         super(props);
         this.state = {
             sitters   : this.props.sitters,
-        }
+        };
         this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
     }
 
@@ -75,11 +75,6 @@ class SearchByTab extends React.Component {
 
 
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        // You can access `this.props` and `this.state` here
-        // This function should return a boolean, whether the component should re-render.
-        return false;
-    }
     render() {
         return (
             <div>
@@ -91,12 +86,11 @@ class SearchByTab extends React.Component {
                     </Tab>
                     <Tab label={<Clock/>}>
                         <p>Search by Time</p>
-                        <DatePicker ref="datePicker" changeDateTimeValues={this.handleDateTimeChange.bind(this)}  />
+                        <DatePicker {...this.props} action={this.props.actions.feedActions.changeInviteDate} />
                         <p>From</p>
-                        <TimeInput ref="timePicker1" changeDateTimeValues={this.handleDateTimeChange.bind(this)}/>
+                        <TimeInput {...this.props} action={this.props.actions.feedActions.changeInviteFromTime}/>
                         <p>To</p>
-                        <TimeInput ref="timePicker2" changeDateTimeValues={this.handleDateTimeChange.bind(this)}/>
-
+                        <TimeInput {...this.props} action={this.props.actions.feedActions.changeInviteToTime}/>
                     </Tab>
                     <Tab label={<Dollar/>}>
                         <p>Hour Rare</p>

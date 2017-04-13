@@ -10,8 +10,8 @@ class Radio extends RadioInputBase {
                     <label>
                         <input type="radio"
                                name={this.props.radioType}
-                               value={option}
-                               checked={option === this.props[this.props.reducer][this.props.radioType]}
+                               value={this.props[this.props.reducer][this.props.radioType] !== option ? option : this.props.defaultValue}
+                               checked={this.props[this.props.reducer][this.props.radioType] ? option === this.props[this.props.reducer][this.props.radioType]: this.props.defaultValue === option}
                                onChange={this.handleRadio}/>
                         {option}
                     </label>

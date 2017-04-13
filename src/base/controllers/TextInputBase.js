@@ -5,6 +5,7 @@ class TextInputBase extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
     };
+
     handleChange(e) {
         this.props.action(e.target.value);
     }

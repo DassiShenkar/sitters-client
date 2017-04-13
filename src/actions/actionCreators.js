@@ -1,10 +1,3 @@
-export function authenticateUser(isAuthenticated) {
-    return {
-        type: 'AUTH_USER',
-        isAuthenticated
-    }
-}
-
 export function changeUserType(userType) {
     return {
         type: 'CHANGE_USER_TYPE',
@@ -17,5 +10,13 @@ export function createUser(facebookData) {
     return {
         type: 'CREATE_USER',
         facebookData
+    }
+}
+
+export function setUserData(userData) {
+
+    return {
+        type: 'SET_USER_DATA',
+        userData
     }
 }
