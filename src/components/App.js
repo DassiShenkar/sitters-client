@@ -7,6 +7,7 @@ import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
 import * as FeedActions from '../actions/FeedActions';
+import * as SearchByActions from '../actions/SearchByActions';
 
 //components
 import Main from './Main'
@@ -30,7 +31,8 @@ function mapDispatchToProps(dispatch) {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch),
-            feedActions: bindActionCreators(FeedActions, dispatch)
+            feedActions: bindActionCreators(FeedActions, dispatch),
+            searchByActions: bindActionCreators(SearchByActions, dispatch),
         }
     };
 }

@@ -22,6 +22,11 @@ function feed(state = {}, action) {
                 ...state,
                 matches: action.sitters
             };
+        case 'SET_NAV_VIEW' :
+            return {
+                ...state,
+                navView: action.navView
+            };
         default:
             return state;
     }

@@ -15,7 +15,7 @@ export default class SimpleMap extends Component {
     render() {
         const markers = this.props.sitters.map((sitter) => {
             return (
-                <Location lat={sitter.address.latitude} lng={sitter.address.longitude} text={sitter.address.name}/>
+                <Location key={this.props.sitters.indexOf(sitter)} lat={sitter.address.latitude} lng={sitter.address.longitude} text={sitter.address.name}/>
             )
         });
         return (

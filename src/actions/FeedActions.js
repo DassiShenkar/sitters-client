@@ -27,3 +27,10 @@ export function setMatches(sitters) {
         sitters
     }
 }
+
+export function setNavView(navView) {
+    return {
+        type: 'SET_NAV_VIEW',
+        navView
+    }
+}
