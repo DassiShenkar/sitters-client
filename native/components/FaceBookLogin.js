@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
 import LocalStorage from '../utils/LoaclStorage'
+import axios from 'axios';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -15,6 +16,7 @@ export default class FaceBookLogin extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleResponse = this.handleResponse.bind(this);
     }
     
     render () {
@@ -37,7 +39,7 @@ export default class FaceBookLogin extends React.Component {
                                                 console.log(error);
                                             } else {
                                                 console.log(result);
-                                                this.navigate();
+                                                this.handleResponse(result);
                                             }
                                         };
                                         const params = {
@@ -62,9 +64,8 @@ export default class FaceBookLogin extends React.Component {
         );
     }
 
-    navigate () {
+    handleResponse (response) {
         var id = 'Register';
-        // TODO: authenticate user or create one if needed
         var navObj = {
             id: id,
             passProps: {
@@ -72,7 +73,26 @@ export default class FaceBookLogin extends React.Component {
             },
             type: 'NORMAL'
         };
-        this.props.navigator.push(navObj);
+        const self = this;
+        axios.post('https://sitters-server.herokuapp.com/parent/get', {
+            id: response.id
+        })
+            .then(function (res) {
+                if (res.data) {  // user exists
+                    self.props.actions.actionCreators.setUserData(res.data);
+                    navObj.id = 'Feed';
+                    this.props.navigator.push(navObj)
+                }
+                else { // user not exist
+                    self.props.actions.actionCreators.createUser(response);
+                    navObj.id = 'Register';
+                    this.props.navigator.push(navObj)
+                }
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+
     }
 }
 

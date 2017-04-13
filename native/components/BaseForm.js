@@ -13,13 +13,35 @@ export default class BaseForm extends React.Component {
         return (
             <View>
                 <Text>User</Text>
-                <TextInput type="TextInput" name="name"  placeholder="name"/>
-                <TextInput type="TextInput" name="email" placeholder="email" />
-                <TextInput type="TextInput" name="age" placeholder="age" />
+                <TextInput 
+                    type="TextInput" 
+                    name="name"  
+                    placeholder="Name"
+                    defaultValue={this.props.user.name}
+                    action={this.props.actions.registerActions.changeName}
+                    inputType={'name'} {...this.props}
+                    reducer={'register'}/>
+                <TextInput 
+                    type="TextInput" 
+                    name="email" 
+                    placeholder="email" />
+                <TextInput 
+                    type="TextInput" 
+                    name="age" 
+                    placeholder="age" />
                 <Text>Address</Text>
-                <TextInput type="TextInput" name="city" placeholder="city" />
-                <TextInput type="TextInput" name="street" placeholder="street" />
-                <TextInput type="TextInput" name="houseNumber" placeholder="houseNumber" />
+                <TextInput 
+                    type="TextInput" 
+                    name="city" 
+                    placeholder="city" />
+                <TextInput 
+                    type="TextInput" 
+                    name="street" 
+                    placeholder="street" />
+                <TextInput 
+                    type="TextInput" 
+                    name="houseNumber" 
+                    placeholder="houseNumber" />
                 <Text>Gender</Text>
                 <RadioButtons
                     values={[

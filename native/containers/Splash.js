@@ -24,8 +24,8 @@ export default class Splash extends React.Component {
 
     componentWillMount() {
         var id = 'Login';
-        var ret = this.ifExists();
-        if (ret) id = 'Feed';
+        // var ret = this.ifExists();
+        // if (ret) id = 'Feed';
         // TODO: get user type from db
         var navigator = this.props.navigator;
         setTimeout(() => {

@@ -1,94 +1,51 @@
-/**
- * Created by user on 13/04/2017.
- */
 "use strict";
-import { Navigator } from 'react-native';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import React, { Component } from 'react';
-import Splash from './Splash';
-import Login from './Login';
-import Register from './Register';
-import Feed from './Feed';
-import SitterSendInvite from './SitterSendInvite';
-import GoogleMapView from './GoogleMapView';
+import { createStore, applyMiddleware, combineReducers, bindActionCreators } from 'redux';
+import { Provider, connect } from 'react-redux';
+import thunk from 'redux-thunk';
+
+import Router from './Router'
 import * as reducers from '../../src/reducers';
+import * as actionCreators from '../../src/actions/actionCreators';
+import * as ReviewActions from '../../src/actions/ReviewActions';
+import * as RegisterActions from '../../src/actions/RegisterActions';
+import * as FeedActions from '../../src/actions/FeedActions';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(reducer);
+// const store = createStoreWithMiddleware(reducer);
+const store = createStore(reducer);
 
-export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderScene = this.renderScene.bind(this);
-        this.configureScene = this.configureScene.bind(this)
-    }
-
-    render () {
-        return(
-            <Provider store={store}>
-                <Navigator
-                    style={{ flex:1 }}
-                    configureScene={ this.configureScene }
-                    initialRoute={{ id: 'Main', passProps:{}, type: 'NORMAL' }}
-                    renderScene={ this.renderScene } />
-            </Provider>
-        );
-    }
-
-    renderScene (route, navigator) {
-        var routeId = route.id;
-        if (routeId === 'Main') {
-            return (
-                <Splash
-                    navigator={navigator}
-                    {...route.passProps} />
-            );
-        }
-        if (routeId === 'Login') {
-            return (
-                <Login
-                    navigator={navigator}
-                    {...route.passProps} />
-            );
-        }
-        if (routeId === 'Register') {
-            return (
-                <Register
-                    navigator={navigator}
-                    {...route.passProps} />
-            );
-        }
-        if (routeId === 'Feed') {
-            return (
-                <Feed
-                    navigator={navigator}
-                    {...route.passProps} />
-            );
-        }
-        if (routeId === 'SitterSendInvite') {
-            return (
-                <SitterSendInvite
-                    navigator={navigator}
-                    {...route.passProps} />
-            );
-        }
-        if (routeId === 'GoogleMapView') {
-            return (
-                <GoogleMapView
-                    navigator={navigator}
-                    {...route.passProps} />
-            );
-        }
-    }
-
-    configureScene(route, routeStack){
-        if(route.type === 'NORMAL'){
-            return Navigator.SceneConfigs.PushFromRight;
-        } else {
-            return Navigator.SceneConfigs.FloatFromBottom;
-        }
+function mapStateToProps(state) {
+    return {
+        reviews: state.reviews,
+        user: state.user,
+        register: state.register
     }
 }
+
+/*
+ * bind app to action creators
+ * */
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: {
+            actionCreators: bindActionCreators(actionCreators, dispatch),
+            registerActions: bindActionCreators(RegisterActions, dispatch),
+            reviewActions: bindActionCreators(ReviewActions, dispatch),
+            feedActions: bindActionCreators(FeedActions, dispatch)
+        }
+    };
+}
+
+const MainComponent = connect(mapStateToProps, mapDispatchToProps)(Router);
+
+const App = () => (
+    <Provider store={store}>
+        <MainComponent />
+    </Provider>
+);
+
+export default App;
+
