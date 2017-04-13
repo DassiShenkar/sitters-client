@@ -12,6 +12,7 @@ import Register from './native/containers/Register';
 import Feed from './native/containers/Feed';
 import SitterProfileView from './native/containers/SitterProfileView';
 import SitterSendInvite from './native/containers/SitterSendInvite';
+import RateSitter from './native/containers/RateSitter';
 import GoogleMapView from './native/containers/GoogleMapView';
 import configureStore from './native/store/ConfigureStore'
 
@@ -38,6 +39,7 @@ class Sitters extends React.Component {
                             <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView"/>
                         </Scene>
                         <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite"/>
+                        <Scene key="RateSitter" component={RateSitter} title="RateSitter"/>
                     </Scene>
                 </Router>
             </Provider>
