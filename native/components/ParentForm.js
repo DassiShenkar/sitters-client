@@ -1,6 +1,7 @@
 "use strict";
 import React, { Component } from 'react';
 import { Text, TextInput, Image, TouchableOpacity, View  } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 import Form from 'react-native-form';
 import CheckBox from 'react-native-check-box';
 import BaseForm from './BaseForm';
@@ -51,16 +52,7 @@ export default class ParentForm extends React.Component {
     }
 
     navigate () {
-        var id = 'Feed';
         // TODO: add user to DB
-        var navObj = {
-            id: id,
-            passProps: {
-                userType: 'Parent'
-            },
-            type: 'NORMAL'
-        };
-        alert(id);
-        this.props.navigator.push(navObj);
+        Actions.Feed();
     }
 }

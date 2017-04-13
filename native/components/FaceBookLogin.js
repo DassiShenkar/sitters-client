@@ -1,6 +1,7 @@
 "use strict";
 import React, {Component} from 'react'
 import {View} from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import LocalStorage from '../utils/LoaclStorage'
 import axios from 'axios';
 
@@ -26,6 +27,7 @@ export default class FaceBookLogin extends React.Component {
                 // publishPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
                 onLoginFinished={
                         (error, result) => {
+                            const self = this;
                             if (error) {
                                 alert("Login failed with error: " + result.error);
                             } else if (result.isCancelled) {
@@ -36,10 +38,7 @@ export default class FaceBookLogin extends React.Component {
                                         LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
                                         const responseInfoCallback = (error, result) => {
                                             if (error) {
-                                                console.log(error);
-                                            } else {
-                                                console.log(result);
-                                                this.handleResponse(result);
+                                                self.handleResponse(result);
                                             }
                                         };
                                         const params = {
@@ -65,28 +64,16 @@ export default class FaceBookLogin extends React.Component {
     }
 
     handleResponse (response) {
-        var id = 'Register';
-        var navObj = {
-            id: id,
-            passProps: {
-                userType: 'Parent'
-            },
-            type: 'NORMAL'
-        };
         const self = this;
-        axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            id: response.id
-        })
+        axios.post('https://sitters-server.herokuapp.com/parent/get', { id: response.id })
             .then(function (res) {
                 if (res.data) {  // user exists
                     self.props.actions.actionCreators.setUserData(res.data);
-                    navObj.id = 'Feed';
-                    this.props.navigator.push(navObj)
+                    Actions.Feed();
                 }
                 else { // user not exist
                     self.props.actions.actionCreators.createUser(response);
-                    navObj.id = 'Register';
-                    this.props.navigator.push(navObj)
+                    Actions.Register();
                 }
             })
             .catch(function (error) {

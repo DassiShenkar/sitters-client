@@ -1,3 +1,19 @@
-/**
- * Created by user on 13/04/2017.
- */
+"use strict";
+
+import React, { Component } from 'react';
+import { View } from 'react-native';
+
+export default class SitterProfileView extends React.Component {
+
+    constructor (props) {
+        super(props);
+    }
+
+    render () {
+        return (
+            <View>
+
+            </View>
+        );
+    }
+}
