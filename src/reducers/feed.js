@@ -17,6 +17,11 @@ function feed(state = {}, action) {
                 inviteDay: action.inviteDay,
                 isoValue: action.isoValue
             };
+        case 'SET_MATCHES' :
+            return {
+                ...state,
+                matches: action.sitters
+            };
         default:
             return state;
     }

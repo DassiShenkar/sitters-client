@@ -13,8 +13,7 @@ export function createUser(facebookData) {
     }
 }
 
-export function setUserData(userData) {
-
+export function setParent(userData) {
     return {
         type: 'SET_USER_DATA',
         userData
