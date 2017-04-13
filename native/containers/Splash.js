@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import Login from './Login'
-import Feed from './Feed'
+import { View, BackAndroid, Navigator } from 'react-native';
 import LocalStorage from '../utils/LoaclStorage';
-
+import Logo from '../components/Logo'
 const FBSDK = require('react-native-fbsdk');
 const {
     GraphRequest,
@@ -18,15 +16,46 @@ export default class Splash extends React.Component {
 
     render () {
         return (
+            <Navigator
+                renderScene={this.renderScene.bind(this)}
+                navigator={this.props.navigator} />
+        );
+    }
+
+    componentWillMount() {
+        var id = 'Login';
+        // var ret = this.ifExists();
+        // if (ret) id = 'Login';
+        // TODO: get user type from db
+        var navigator = this.props.navigator;
+        setTimeout(() => {
+            navigator.replace({
+                id: id,
+                passProps: {},
+                type: 'NORMAL'
+            });
+        }, 3000);
+    }
+
+    renderScene(route, navigator) {
+        BackAndroid.addEventListener('hardwareBackPress', () => {
+            if (this.props.navigator.getCurrentRoutes().length === 1  ) {
+                return false;
+            }
+            this.props.navigator.pop();
+            return true;
+        });
+        return (
             <View>
-                {this.ifExists() ? <Feed navigation={this.props.navigation} /> : <Login navigation={this.props.navigation} />}
+                <Logo
+                    companyName='Sitters' />
             </View>
         );
     }
 
     async ifExists () {
         let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
-        if(accessToken == null) {
+        if (accessToken == null) {
             return false;
         } else {
             alert("start Graph API Request");
@@ -54,6 +83,5 @@ export default class Splash extends React.Component {
             const infoRequest = new GraphRequest('/me', params, responseInfoCallback);
             new GraphRequestManager().addRequest(infoRequest).start();
         }
-
     }
 }

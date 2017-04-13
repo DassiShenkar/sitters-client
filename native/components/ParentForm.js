@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, Image, TouchableWithoutFeedback, View  } from 'react-native';
+import { Text, TextInput, Image, TouchableOpacity, View  } from 'react-native';
 import Form from 'react-native-form';
 import CheckBox from 'react-native-check-box';
 import BaseForm from './BaseForm';
@@ -17,7 +17,6 @@ export default class ParentForm extends React.Component {
     }
 
     render () {
-        const { navigate } = this.props.navigation;
         return (
             <Form ref="parentForm">
                 <BaseForm />
@@ -33,11 +32,9 @@ export default class ParentForm extends React.Component {
                 {this.checkBox(hobbiesArray)}
                 <Text>Child Special needs</Text>
                 {this.checkBox(needsArray)}
-                <View>
-                    <TouchableWithoutFeedback onPress={this._onPress}>
-                        <Text>Submit</Text>
-                    </TouchableWithoutFeedback>
-                </View>
+                <TouchableOpacity onPress={this.navigate.bind(this)}>
+                    <Text>Submit</Text>
+                </TouchableOpacity>
             </Form>
                 );
 
@@ -52,7 +49,18 @@ export default class ParentForm extends React.Component {
            />;
         });
     }
-    _onPress () {
-        navigate('Feed');
+
+    navigate () {
+        var id = 'Feed';
+        // TODO: add user to DB
+        var navObj = {
+            id: id,
+            passProps: {
+                userType: 'Parent'
+            },
+            type: 'NORMAL'
+        };
+        alert(id);
+        this.props.navigator.push(navObj);
     }
 }

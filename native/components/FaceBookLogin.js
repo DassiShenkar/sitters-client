@@ -1,8 +1,6 @@
 "use strict";
 import React, {Component} from 'react'
 import {View} from 'react-native'
-import Feed from '../containers/Feed'
-import Register from '../containers/Register'
 import LocalStorage from '../utils/LoaclStorage'
 
 const FBSDK = require('react-native-fbsdk');
@@ -20,13 +18,11 @@ export default class FaceBookLogin extends React.Component {
     }
     
     render () {
-        const { navigate } = this.props.navigation;
         return (
-            <View>
-                <LoginButton
-                    readPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
-                    // publishPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
-                    onLoginFinished={
+            <LoginButton
+                readPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
+                // publishPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
+                onLoginFinished={
                         (error, result) => {
                             alert("click");
                             if (error) {
@@ -47,12 +43,9 @@ export default class FaceBookLogin extends React.Component {
                                             } else {
                                                 console.log(result);
                                                 alert('Success fetching data: ' + result.toString());
-                                                // navigate('Feed', { userType: 'Parent' });
-                                                navigate('Register', { userType: 'Parent' });
-                                                // navigate('Register', { userType: 'Sitter' });
+                                                this.navigate();
                                             }
                                         };
-
                                         const params = {
                                             parameters: {
                                                 fields: {
@@ -69,11 +62,24 @@ export default class FaceBookLogin extends React.Component {
                                     }
                                 );
                             }
-}
-                      }
-                    onLogoutFinished={() => alert("User logged out")}/>
-            </View>
+                        }
+                    }
+                onLogoutFinished={() => alert("User logged out")}/>
         );
+    }
+
+    navigate () {
+        var id = 'Register';
+        // TODO: authenticate user or create one if needed
+        var navObj = {
+            id: id,
+            passProps: {
+                userType: 'Parent'
+            },
+            type: 'NORMAL'
+        };
+        alert(id);
+        this.props.navigator.push(navObj);
     }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import BaseForm from './BaseForm';
 import RadioButtons from './RadioButton';
 import Form from 'react-native-form';
@@ -21,7 +21,6 @@ export default class SitterForm extends React.Component {
     }
 
     render () {
-        const { navigate } = this.props.navigation;
         return (
             <Form ref="sitterForm">
                 <BaseForm />
@@ -44,11 +43,9 @@ export default class SitterForm extends React.Component {
                 {this.checkBox(needsArray)}
                 <PersonalityTest />
                 {this.timePicker()}
-                <View>
-                    <TouchableWithoutFeedback onPress={this._onPress}>
-                        <Text>Submit</Text>
-                    </TouchableWithoutFeedback>
-                </View>
+                <TouchableOpacity onPress={this.navigate.bind(this)}>
+                    <Text>Submit</Text>
+                </TouchableOpacity>
             </Form>
         );
     }
@@ -70,7 +67,18 @@ export default class SitterForm extends React.Component {
                 </View>;
         });
     }
-    _onPress () {
-        navigate('Feed');
+    
+    navigate () {
+        var id = 'Feed';
+        // TODO: add user to DB
+        var navObj = {
+            id: id,
+            passProps: {
+                userType: 'Parent'
+            },
+            type: 'NORMAL'
+        };
+        alert(id);
+        this.props.navigator.push(navObj);
     }
 }
