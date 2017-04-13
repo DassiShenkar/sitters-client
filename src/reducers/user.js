@@ -41,7 +41,7 @@ function user(state = {}, action) {
                 name: data.name,
                 notifications: data.notifications,
                 profilePicture: data.profilePicture,
-                timezone: data.timezone,
+                timezone: data.timezone
 
             };
         default:

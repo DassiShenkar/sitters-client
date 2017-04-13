@@ -18,7 +18,7 @@ class Feed extends React.Component {
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
-                        axios.post('http://sitters-server.herokuapp.com/parent/getMatches' , {
+                        axios.post('http://localhost:4000/parent/getMatches' , {
                             parent: parent.data
                         })
                             .then(function (sitters) {
@@ -46,7 +46,7 @@ class Feed extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="feed">
                 <h1>Feed</h1>
                 <Nav name={this.props.user.name}
                      image={this.props.user.profilePicture}
