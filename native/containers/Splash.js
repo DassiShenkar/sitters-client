@@ -24,8 +24,8 @@ export default class Splash extends React.Component {
 
     componentWillMount() {
         var id = 'Login';
-        // var ret = this.ifExists();
-        // if (ret) id = 'Login';
+        var ret = this.ifExists();
+        if (ret) id = 'Feed';
         // TODO: get user type from db
         var navigator = this.props.navigator;
         setTimeout(() => {
@@ -34,7 +34,7 @@ export default class Splash extends React.Component {
                 passProps: {},
                 type: 'NORMAL'
             });
-        }, 3000);
+        }, 1000);
     }
 
     renderScene(route, navigator) {
@@ -58,13 +58,10 @@ export default class Splash extends React.Component {
         if (accessToken == null) {
             return false;
         } else {
-            alert("start Graph API Request");
             const responseInfoCallback = (error, result) => {
                 if (error) {
-                    alert('Error fetching data: ' + error.toString());
                     return false;
                 } else {
-                    alert('Success fetching data: ' + result.toString());
                     return true;
                 }
             };

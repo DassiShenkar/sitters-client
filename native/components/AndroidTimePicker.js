@@ -6,7 +6,7 @@ var {
     TimePickerAndroid,
     StyleSheet,
     Text,
-    TouchableWithoutFeedback
+    TouchableOpacity
 } = ReactNative;
 
 class AndroidTimePicker extends React.Component {
@@ -35,10 +35,10 @@ class AndroidTimePicker extends React.Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback
+            <TouchableOpacity
                 onPress={this.showPicker.bind(this, 'simple', {})}>
                 <Text style={styles.text}>{this.state.simpleText}</Text>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         );
     }
 }

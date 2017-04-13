@@ -18,14 +18,11 @@ export default class LocalStorage {
         try {
             const value = await AsyncStorage.getItem(key);
             if (value !== null){
-                alert(value);
                 return value;
             } else {
-                alert('no such key');
                 return null;
             }
         } catch (error) {
-            alert('failed to get data');
             return null;
         }
     }

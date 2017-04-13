@@ -24,26 +24,26 @@ export default class Feed extends React.Component {
         return (
             <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <Text>Maching Score</Text>
-                <TouchableOpacity onPress={alert('SitterProfile')}>
+                <TouchableOpacity onPress={console.log('SitterProfile')}>
                     <Image
                         style={{width: 50, height: 50}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
                     />
                 </TouchableOpacity>
                 <Text>Sitter Name</Text>
-                <TouchableOpacity onPress={alert('sendInvite')}>
+                <TouchableOpacity onPress={this.navigateSendInvite.bind(this)}>
                     <Image
                         style={{width: 50, height: 50}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={alert('rate')}>
+                <TouchableOpacity onPress={console.log('rate')}>
                     <Image
                         style={{width: 50, height: 50}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={alert('remove')}>
+                <TouchableOpacity onPress={console.log('remove')}>
                     <Image
                         style={{width: 50, height: 50}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
@@ -52,13 +52,26 @@ export default class Feed extends React.Component {
             </View>
         );
     }
+
+    navigateSendInvite () {
+        var id = 'SitterSendInvite';
+        // TODO: add user to DB
+        var navObj = {
+            id: id,
+            passProps: {
+                userType: 'Parent'
+            },
+            type: 'NORMAL'
+        };
+        this.props.navigator.push(navObj);
+    }
 }
 
 var NavigationBarRouteMapper = {
     LeftButton(route, navigator, index, navState) {
         return (
             <View>
-                <TouchableOpacity onPress={alert('SitterProfile')}>
+                <TouchableOpacity onPress={console.log('user image')}>
                     <Image
                         style={{width: 20, height: 20}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
@@ -72,13 +85,13 @@ var NavigationBarRouteMapper = {
         return (
             <View>
                 <Hamburger />
-                <TouchableOpacity onPress={alert('SitterProfile')}>
+                <TouchableOpacity onPress={console.log('notification')}>
                     <Image
                         style={{width: 10, height: 10}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
                     />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={alert('SitterProfile')}>
+                <TouchableOpacity onPress={console.log('inbox')}>
                     <Image
                         style={{width: 10, height: 10}}
                         source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}

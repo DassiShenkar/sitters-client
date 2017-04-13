@@ -21,10 +21,8 @@ export default class Register extends Component {
     renderScene () {
         return (
             <ScrollView>
-                {alert(this.props.userType)}
                 {this.props.userType === "Parent" ?  <ParentForm {...this.props} /> : <SitterForm {...this.props} />}
             </ScrollView>
         );
-
     }
 }

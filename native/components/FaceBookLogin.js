@@ -24,25 +24,19 @@ export default class FaceBookLogin extends React.Component {
                 // publishPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
                 onLoginFinished={
                         (error, result) => {
-                            alert("click");
                             if (error) {
                                 alert("Login failed with error: " + result.error);
                             } else if (result.isCancelled) {
                                 alert("Login was cancelled");
                             } else {
-                                alert("Login was successful with permissions: " + result.grantedPermissions);
                                 AccessToken.getCurrentAccessToken().then(
                                     (data) => {
                                         LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
-                                        alert(data.accessToken.toString());
-                                        alert("start Graph API Request");
                                         const responseInfoCallback = (error, result) => {
                                             if (error) {
                                                 console.log(error);
-                                                alert('Error fetching data: ' + error.toString());
                                             } else {
                                                 console.log(result);
-                                                alert('Success fetching data: ' + result.toString());
                                                 this.navigate();
                                             }
                                         };
@@ -78,7 +72,6 @@ export default class FaceBookLogin extends React.Component {
             },
             type: 'NORMAL'
         };
-        alert(id);
         this.props.navigator.push(navObj);
     }
 }
