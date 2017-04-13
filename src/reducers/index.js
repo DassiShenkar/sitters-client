@@ -4,7 +4,8 @@ import reviews from './reviews';
 import user from './user';
 import register from './register';
 import feed from './feed';
+import searchBy from './searchBy';
 
-const rootReducer = combineReducers({user, reviews, register, feed, routing: routerReducer});
+const rootReducer = combineReducers({user, reviews, register, feed, searchBy, routing: routerReducer});
 
 export default rootReducer;
