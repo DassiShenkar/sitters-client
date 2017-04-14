@@ -94,11 +94,9 @@ class SearchByTab extends React.Component {
                     </Tab>
                     <Tab label={<Dollar/>}>
                         <p>Hour Rare</p>
-                        {/*<Range min={this.props.searchBy.priceMinRange} max={this.props.searchBy.priceMaxRange} {...this.props} action={this.props.actions.searchByActions.changeRange}/>*/}
                         <Range min={0} max={50} {...this.props} action={this.props.actions.searchByActions.changeRange} changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
                     </Tab>
                 </Tabs>
-                {/*<SitterList ref='sitterList' sitters={this.state.sitters}/>*/}
             </div>
         );
     }
