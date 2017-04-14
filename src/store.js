@@ -3,10 +3,11 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
 import {browserHistory} from 'react-router';
 import strings from './static/strings';
-import dateFormat from 'dateformat'
+import dateFormat from 'dateformat';
 
 //reducers
 import rootReducer from './reducers/index';
+
 
 //set initial state
 const defaultState = {
@@ -21,8 +22,11 @@ const defaultState = {
         filteredMatches: [],
         sitterIndex: 0
     },
-
     register : {personalityTestQuestions : []},
+    settings: {
+        enableNotifications: true,
+        enableSuggestions: true
+    },
     searchBy : {
         priceMinRange:0,
         priceMaxRange:50,

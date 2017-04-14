@@ -6,11 +6,11 @@ import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 
 //components
-import Logo from '../components/Logo';
-import RadioInput from '../components/controllers/RadioInput';
+import Logo from '../Logo';
+import RadioInput from '../controllers/RadioInput';
 
 //statics
-import strings from '../static/strings';
+import strings from '../../static/strings';
 
 class Login extends React.Component {
 
