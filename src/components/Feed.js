@@ -17,12 +17,12 @@ class Feed extends React.Component {
         let self = this;
         const userId = localStorage.getItem('auth_token');
         if (userId) {
-            axios.post('http://localhost:4444/parent/get', {
+            axios.post('https://sitters-server.herokuapp.com/parent/get', {
                 id: userId
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
-                        axios.post('http://localhost:4444/parent/getMatches' ,
+                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches' ,
                             parent.data
                         )
                             .then(function (sitters) {
@@ -70,7 +70,6 @@ class Feed extends React.Component {
                      notifications={this.props.user.notifications}
                      action={this.props.actions.feedActions.setNavView}
                      {...this.props}/>
-                {/*<SearchByTab {...this.props} sitters={this.props.feed.matches}/>*/}
                 {navView}
                 {/*<SitterList sitters={this.props.feed.matches.length > 0 ? this.props.feed.matches : []}/>*/}
             </div>

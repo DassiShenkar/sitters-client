@@ -1,6 +1,5 @@
 //external sources
 import React from 'react';
-import {Link} from 'react-router';
 
 import Badge from '../../node_modules/react-bootstrap/lib/Badge';
 import {Button} from "react-bootstrap";
