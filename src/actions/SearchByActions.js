@@ -1,4 +1,4 @@
-export function chngeRange(priceMinRange,priceMaxRange) {
+export function changeRange(priceMinRange,priceMaxRange) {
     return {
         type: 'CHANGE_RANGE',
         priceMinRange,

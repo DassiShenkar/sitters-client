@@ -10,5 +10,4 @@ function searchBy(state = {}, action) {
     }
 }
 
-
 export default searchBy;

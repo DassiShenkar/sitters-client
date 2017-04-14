@@ -5,16 +5,16 @@ import Dollar from '../styles/icons/Dollar'
 import Range from './RangeSlider'
 import {Tabs, Tab} from 'react-bootstrap-tabs';
 import SitterList from './SitterList'
+import GoogleMaps from './GoogleMaps'
 import DatePicker from './controllers/DatePicker'
 import TimeInput from './controllers/TimeInput'
-import SimpleMap from "./GoogleMaps";
 import moment from 'moment'
 class SearchByTab extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            sitters   : this.props.sitters,
-        };
+        // this.state = {
+        //     sitters   : this.props.sitters,
+        // };
         this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
     }
 
@@ -36,7 +36,7 @@ class SearchByTab extends React.Component {
     handleDateTimeChange(){
         let day = this.refs.datePicker.state.day.toLowerCase();
         let from = this.refs.timePicker1.state.time;
-        let to = this.refs.timePicker2.state.time;
+        // let to = this.refs.timePicker2.state.time;
         let sitters = [];
 
         // let ms = moment(to,"HH:mm").diff(moment(from,"HH:mm"));
@@ -80,8 +80,8 @@ class SearchByTab extends React.Component {
             <div>
                 <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
                     <Tab label={<Location/>}>
-                        <div style={{width: '250px', height: '250px'}}>
-                         <SimpleMap sitters={this.props.sitters}/>
+                        <div style={{width: '400px', height: '400px'}}>
+                         <GoogleMaps sitters={this.props.feed.matches}/>
                          </div>
                     </Tab>
                     <Tab label={<Clock/>}>
@@ -94,10 +94,11 @@ class SearchByTab extends React.Component {
                     </Tab>
                     <Tab label={<Dollar/>}>
                         <p>Hour Rare</p>
-                        <Range ref="hourRateRange"  changeRangeValues={this.handleRangeValues.bind(this)} min={0} max={50}/>
+                        {/*<Range min={this.props.searchBy.priceMinRange} max={this.props.searchBy.priceMaxRange} {...this.props} action={this.props.actions.searchByActions.changeRange}/>*/}
+                        <Range min={0} max={50} {...this.props} action={this.props.actions.searchByActions.changeRange}/>
                     </Tab>
                 </Tabs>
-                <SitterList ref='sitterList' sitters={this.state.sitters}/>
+                {/*<SitterList ref='sitterList' sitters={this.state.sitters}/>*/}
             </div>
         );
     }
