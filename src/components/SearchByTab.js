@@ -75,10 +75,14 @@ class SearchByTab extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         return false;
     }
+
+    onSelect(index,label){
+        this.props.actions.feedActions.setFilteredMatches(this.props.feed.matches); // when tab is pressed, init sitters frm filters
+    }
     render() {
         return (
-            <div>
-                <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
+            <div>9
+                <Tabs onSelect={(index, label) => this.onSelect(index,label)}>
                     <Tab label={<Location/>}>
                         <div style={{width: '400px', height: '400px'}}>
                          <GoogleMaps sitters={this.props.feed.matches}/>
