@@ -1,6 +1,8 @@
 "use strict";
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux'
+
 import BaseForm from './BaseForm';
 import RadioButtons from './RadioButton';
 import Form from 'react-native-form';
@@ -69,16 +71,7 @@ export default class SitterForm extends React.Component {
     }
     
     navigate () {
-        var id = 'Feed';
         // TODO: add user to DB
-        var navObj = {
-            id: id,
-            passProps: {
-                userType: 'Parent'
-            },
-            type: 'NORMAL'
-        };
-        alert(id);
-        this.props.navigator.push(navObj);
+        Actions.Feed();
     }
 }

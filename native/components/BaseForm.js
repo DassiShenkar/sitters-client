@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, Image, View } from 'react-native';
 import RadioButtons from './RadioButton'
-
+// defaultValue={this.props.user.name}
 export default class BaseForm extends React.Component {
 
     constructor(props) {
@@ -16,11 +16,7 @@ export default class BaseForm extends React.Component {
                 <TextInput 
                     type="TextInput" 
                     name="name"  
-                    placeholder="Name"
-                    defaultValue={this.props.user.name}
-                    action={this.props.actions.registerActions.changeName}
-                    inputType={'name'} {...this.props}
-                    reducer={'register'}/>
+                    placeholder="Name" />
                 <TextInput 
                     type="TextInput" 
                     name="email" 

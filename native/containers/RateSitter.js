@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
-export default class SitterProfileView extends React.Component {
+export default class RateSitter extends React.Component {
 
     constructor (props) {
         super(props);

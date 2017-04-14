@@ -1,6 +1,7 @@
 "use strict";
 import React, { Component } from 'react';
 import { View, Modal, Navigator, Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 import AndroidDatePicker from '../components/AndroidDatePicker'
 import AndroidTimePicker from '../components/AndroidTimePicker'
 
@@ -20,19 +21,11 @@ export default class SitterSendInvite extends React.Component {
 
     render () {
         return (
-            <Navigator
-                renderScene={this.renderScene.bind(this)}
-                navigator={this.props.navigator} />
-        );
-    }
-
-    renderScene () {
-        return (
             <View style={{marginTop: 22}}>
                <Modal
                    animationType={"slide"}
                    transparent={false}
-                   visible={this.state.modalVisible}
+                   visible={true}
                    onRequestClose={() => {alert("Modal has been closed.")}}>
                    <Image
                        style={{width: 50, height: 50}}
@@ -52,7 +45,7 @@ export default class SitterSendInvite extends React.Component {
                        onChangeText={(text) => this.setState({text})}
                        value='Notes' />
                    <TouchableOpacity
-                       onPress={this.cancel.bind(this)}>
+                       onPress={Actions.pop}>
                        <Text>Cancel</Text>
                    </TouchableOpacity>
                    <TouchableOpacity
@@ -66,24 +59,12 @@ export default class SitterSendInvite extends React.Component {
 
     send () {
         // TODO: send invaite to sitter
-        this.props.navigator.pop();
-    }
-
-    cancel () {
-        this.props.navigator.pop();
+        Actions.pop()
     }
 
     openMap () {
-        var id = 'GoogleMapView';
-        // TODO: add user to DB
-        var navObj = {
-            id: id,
-            passProps: {
-                userType: 'Parent'
-            },
-            type: 'NORMAL'
-        };
-        this.props.navigator.push(navObj);
+        Actions.GoogleMapView();
+        // TODO: handle location change
     }
 
 }

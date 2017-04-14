@@ -26,7 +26,7 @@ const router = (
                 <IndexRoute component={Feed}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/notifications" component={Notifications}/>
-                <Route path="/sitter" component={SitterProfile}/>
+                <Route path="/sitter/:sitterId" component={SitterProfile}/>
                 <Route path="/reviews" component={ReviewList}/>
                 <Route path="/review/:reviewId" component={SingleReview}/>
                 <Route path="/register" component={Register}/>

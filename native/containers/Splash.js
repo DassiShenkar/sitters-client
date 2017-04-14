@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, BackAndroid, Navigator } from 'react-native';
+import { View, BackAndroid } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 import LocalStorage from '../utils/LoaclStorage';
 import Logo from '../components/Logo'
+import axios from 'axios';
+
 const FBSDK = require('react-native-fbsdk');
 const {
     GraphRequest,
@@ -12,39 +15,17 @@ export default class Splash extends React.Component {
 
     constructor(props) {
         super(props);
+        this.ifExists = this.ifExists.bind(this);
     }
 
-    render () {
-        return (
-            <Navigator
-                renderScene={this.renderScene.bind(this)}
-                navigator={this.props.navigator} />
-        );
-    }
-
-    componentWillMount() {
-        var id = 'Login';
-        // var ret = this.ifExists();
-        // if (ret) id = 'Feed';
-        // TODO: get user type from db
-        var navigator = this.props.navigator;
-        setTimeout(() => {
-            navigator.replace({
-                id: id,
-                passProps: {},
-                type: 'NORMAL'
-            });
+    componentWillMount () {
+        var self = this;
+        setTimeout(function() {
+            self.ifExists();
         }, 1000);
     }
 
-    renderScene(route, navigator) {
-        BackAndroid.addEventListener('hardwareBackPress', () => {
-            if (this.props.navigator.getCurrentRoutes().length === 1  ) {
-                return false;
-            }
-            this.props.navigator.pop();
-            return true;
-        });
+    render() {
         return (
             <View>
                 <Logo
@@ -56,20 +37,33 @@ export default class Splash extends React.Component {
     async ifExists () {
         let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
         if (accessToken == null) {
-            return false;
+            Actions.Login();
         } else {
+            var self = this;
             const responseInfoCallback = (error, result) => {
                 if (error) {
-                    return false;
+                    alert(error.toString());
                 } else {
-                    return true;
+                    axios.post('https://sitters-server.herokuapp.com/parent/get', { id: result.id })
+                        .then(function (res) {
+                            if (res.data) {  // user exists
+                                self.props.actions.actionCreators.setUserData(res.data);
+                                Actions.Feed();
+                            } else { // user not exist
+                                self.props.actions.actionCreators.createUser(result);
+                                Actions.Register();
+                            }
+                        })
+                        .catch(function (error) {
+                            alert(error.toString());
+                        });
                 }
             };
 
             const params = {
                 parameters: {
                     fields: {
-                        string: "email"
+                        string: "id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
                     },
                     access_token: {
                         string: accessToken
