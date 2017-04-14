@@ -64,11 +64,11 @@ class SearchByTab extends React.Component {
             // console.log(parseInt(start[1]));
 
         }
-        this.setState({
-            sitters : sitters,
-        });
-        this.refs.sitterList.state.sitters = sitters;
-        console.log(sitters.length);
+        // this.setState({
+        //     sitters : sitters,
+        // });
+        // this.refs.sitterList.state.sitters = sitters;
+        // console.log(sitters.length);
 
 
     }
@@ -86,11 +86,11 @@ class SearchByTab extends React.Component {
                     </Tab>
                     <Tab label={<Clock/>}>
                         <p>Search by Time</p>
-                        <DatePicker {...this.props} action={this.props.actions.feedActions.changeInviteDate} />
+                        <DatePicker {...this.props} action={this.props.actions.searchByActions.changeInviteDate} changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
                         <p>From</p>
-                        <TimeInput {...this.props} action={this.props.actions.feedActions.changeInviteFromTime}/>
+                        <TimeInput {...this.props} action={this.props.actions.searchByActions.changeInviteFromTime}/>
                         <p>To</p>
-                        <TimeInput {...this.props} action={this.props.actions.feedActions.changeInviteToTime}/>
+                        <TimeInput {...this.props} action={this.props.actions.searchByActions.changeInviteToTime}/>
                     </Tab>
                     <Tab label={<Dollar/>}>
                         <p>Hour Rare</p>

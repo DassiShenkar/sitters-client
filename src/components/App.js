@@ -19,7 +19,6 @@ function mapStateToProps(state) {
         feed: state.feed,
         register: state.register,
         searchBy: state.searchBy,
-
     }
 }
 
