@@ -17,7 +17,9 @@ function mapStateToProps(state) {
         reviews: state.reviews,
         user: state.user,
         feed: state.feed,
-        register: state.register
+        register: state.register,
+        searchBy: state.searchBy,
+
     }
 }
 

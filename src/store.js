@@ -19,7 +19,8 @@ const defaultState = {
     feed: {
         matches: []
     },
-    register : {personalityTestQuestions : []}
+    register : {personalityTestQuestions : []},
+    searchBy : {priceMinRange:0,priceMaxRange:50}
 };
 
 //enable redux in chrome dev tools
