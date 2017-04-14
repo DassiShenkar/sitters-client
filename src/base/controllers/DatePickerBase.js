@@ -24,17 +24,16 @@ class DatePickerBase extends React.Component {
                 let startDuration = moment.duration(startMS);
                 let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
                 console.log(sitter.name + "  " +  startDiff);
-                if(startDiff[0] !== '-'){
+                if(startDiff[0] === '-' || startDiff[0] === '0:00'){
                     console.log(startDiff);
                     let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
                     let finishDuration = moment.duration(finishMS);
                     let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
                     console.log(finishDiff);
-                    if(finishDiff[0] !== '-'){
+                    if(finishDiff[0] === '-'){
                         sitters.push(sitter);
                     }
                 }
-                console.log(sitters);
                 //console.log(s[0] === '-'? "notOk":'ok');
                 //let finishMS = moment(finish,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
                 //let start = sitter.workingHours[day]['start'].split(':');
@@ -47,13 +46,6 @@ class DatePickerBase extends React.Component {
             if(this.props.changeSitters){
                 this.props.changeSitters(sitters);
             }
-            // this.setState({
-            //     sitters : sitters,
-            // });
-            // this.refs.sitterList.state.sitters = sitters;
-            // console.log(sitters.length);
-
-
         }
 
 

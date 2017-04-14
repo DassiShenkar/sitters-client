@@ -27,9 +27,9 @@ const defaultState = {
         priceMinRange:0,
         priceMaxRange:50,
         inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),
-        inviteDay: dateFormat(new Date(), "dddd"),
-        fromTime: dateFormat(new Date(), "HH:MM"),
-        toTime: dateFormat(new Date(), "HH:MM")
+        inviteDay: "sunday",//dateFormat(new Date(), "dddd"),
+        fromTime: "09:36",//dateFormat(new Date(), "HH:MM"),
+        toTime: "11:30"//dateFormat(new Date(), "HH:MM")
     }
 };
 
