@@ -18,8 +18,7 @@ function mapStateToProps(state) {
         reviews: state.reviews,
         user: state.user,
         feed: state.feed,
-        register: state.register,
-        settings: state.settings
+        settings: state.settings,
         register: state.register,
         searchBy: state.searchBy,
     }
@@ -35,8 +34,7 @@ function mapDispatchToProps(dispatch) {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch),
-            feedActions: bindActionCreators(FeedActions, dispatch),
-            settingsActions: bindActionCreators(SettingsActions, dispatch)
+            settingsActions: bindActionCreators(SettingsActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
         }
