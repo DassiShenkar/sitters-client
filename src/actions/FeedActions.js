@@ -41,3 +41,10 @@ export function setNavView(navView) {
         navView
     }
 }
+
+export function setSitterIndex(sitterIndex) {
+    return {
+        type: 'SET_SITTER_INDEX',
+        sitterIndex
+    }
+}

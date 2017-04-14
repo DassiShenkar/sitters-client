@@ -15,6 +15,8 @@ class SitterActionBar extends React.Component {
 
     nextSitter(e) {
         e.preventDefault();
+        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex +1;
+        this.props.actions.feedActions.setSitterIndex(index);
         // this.setState({index: this.state.index === (this.state.sitters.length - 1) ? 0 : (this.state.index + 1)});
     }
 

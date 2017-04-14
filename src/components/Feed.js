@@ -68,7 +68,7 @@ class Feed extends React.Component {
                      action={this.props.actions.feedActions.setNavView}
                      {...this.props}/>
                 {navView}
-                <SitterList sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/>
+                <SitterList {...this.props} sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/>
             </div>
         );
     }

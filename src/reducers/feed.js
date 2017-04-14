@@ -33,6 +33,11 @@ function feed(state = {}, action) {
                 ...state,
                 navView: action.navView
             };
+        case 'SET_SITTER_INDEX' :
+            return {
+                ...state,
+                sitterIndex: action.sitterIndex
+            };
         default:
             return state;
     }
