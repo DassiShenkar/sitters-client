@@ -4,9 +4,9 @@ import Location from './Location';
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default class SimpleMap extends Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     static defaultProps = {
         center: {lat: 32.085300, lng: 34.781768},
         zoom: 11

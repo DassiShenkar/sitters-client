@@ -17,8 +17,10 @@ const defaultState = {
         notifications: [],
     },
     feed: {
-        matches: []
+        matches: [],
+        filteredMatches: []
     },
+
     register : {personalityTestQuestions : []},
     searchBy : {priceMinRange:0,priceMaxRange:50}
 };

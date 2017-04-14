@@ -4,7 +4,7 @@ import Clock from '../styles/icons/Clock'
 import Dollar from '../styles/icons/Dollar'
 import Range from './RangeSlider'
 import {Tabs, Tab} from 'react-bootstrap-tabs';
-import SitterList from './SitterList'
+// import SitterList from './SitterList'
 import GoogleMaps from './GoogleMaps'
 import DatePicker from './controllers/DatePicker'
 import TimeInput from './controllers/TimeInput'
@@ -12,27 +12,24 @@ import moment from 'moment'
 class SearchByTab extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     sitters   : this.props.sitters,
-        // };
         this.handleDateTimeChange = this.handleDateTimeChange.bind(this);
     }
 
-    handleRangeValues(values){
-        this.state = {
-            minRange : values[0],
-            maxRange : values[1],
-        };
-        let sitters = [];
-        for(let sitter of this.props.sitters){
-            if(sitter.hourFee >= values[0] && sitter.hourFee <= values[1])
-                sitters.push(sitter);
-        }
-        this.setState({
-            sitters : sitters,
-        });
-        this.refs.sitterList.state.sitters = sitters;
-    }
+    // handleRangeValues(values){
+    //     this.state = {
+    //         minRange : values[0],
+    //         maxRange : values[1],
+    //     };
+    //     let sitters = [];
+    //     for(let sitter of this.props.sitters){
+    //         if(sitter.hourFee >= values[0] && sitter.hourFee <= values[1])
+    //             sitters.push(sitter);
+    //     }
+    //     this.setState({
+    //         sitters : sitters,
+    //     });
+    //     this.refs.sitterList.state.sitters = sitters;
+    // }
     handleDateTimeChange(){
         let day = this.refs.datePicker.state.day.toLowerCase();
         let from = this.refs.timePicker1.state.time;
@@ -75,6 +72,9 @@ class SearchByTab extends React.Component {
 
 
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        return false;
+    }
     render() {
         return (
             <div>
@@ -95,7 +95,7 @@ class SearchByTab extends React.Component {
                     <Tab label={<Dollar/>}>
                         <p>Hour Rare</p>
                         {/*<Range min={this.props.searchBy.priceMinRange} max={this.props.searchBy.priceMaxRange} {...this.props} action={this.props.actions.searchByActions.changeRange}/>*/}
-                        <Range min={0} max={50} {...this.props} action={this.props.actions.searchByActions.changeRange}/>
+                        <Range min={0} max={50} {...this.props} action={this.props.actions.searchByActions.changeRange} changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
                     </Tab>
                 </Tabs>
                 {/*<SitterList ref='sitterList' sitters={this.state.sitters}/>*/}
