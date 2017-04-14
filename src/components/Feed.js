@@ -18,9 +18,7 @@ class Feed extends React.Component {
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
-                        axios.post('http://localhost:4000/parent/getMatches' , {
-                            parent: parent.data
-                        })
+                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches' , parent.data)
                             .then(function (sitters) {
                                 if(sitters.data.length > 0) {
                                     self.props.actions.feedActions.setMatches(sitters.data);
@@ -32,7 +30,7 @@ class Feed extends React.Component {
                             .catch(function(error) {
                                console.log(error);
                             });
-                        self.props.actions.actionCreators.setParent(parent.data);
+                        self.props.actions.actionCreators.setUserData(parent.data);
                     }
                     else { // user not exist
                         self.props.router.push('/login');
