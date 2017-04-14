@@ -1,11 +1,3 @@
-export function changeRange(priceMinRange,priceMaxRange) {
-    return {
-        type: 'CHANGE_RANGE',
-        priceMinRange,
-        priceMaxRange
-    }
-}
-
 export function changeInviteFromTime(fromTime) {
     return {
         type: 'CHANGE_INVITE_FROM_TIME',
