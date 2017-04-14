@@ -2,14 +2,16 @@
 import React from 'react';
 import axios from 'axios';
 
+
 //components
-import Nav from '../components/Nav';
-import SearchByTab from "./SearchByTab";
-import Notifications from "./Notifications";
-import Invites from "./Invites";
-import SitterList from "./SitterList";
+import Nav from '../Nav';
+import SearchByTab from "../SearchByTab";
+import Notifications from "../Notifications";
+import Invites from "../Invites";
+import SitterList from "../SitterList";
 
 class Feed extends React.Component {
+
     componentWillMount() {
         let self = this;
         const userId = localStorage.getItem('auth_token');

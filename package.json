@@ -61,6 +61,7 @@
     "react-select": "^1.0.0-rc.3",
     "react-tab-panel": "^2.2.7",
     "react-time-input": "0.0.14",
+    "react-toggle": "^3.0.1",
     "react-vector-icons": "0.0.1",
     "redux": "latest",
     "redux-saga": "^0.14.4",

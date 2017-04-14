@@ -7,6 +7,7 @@ import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
 import * as FeedActions from '../actions/FeedActions';
+import * as SettingsActions from '../actions/SettingsActions';
 import * as SearchByActions from '../actions/SearchByActions';
 
 //components
@@ -17,6 +18,7 @@ function mapStateToProps(state) {
         reviews: state.reviews,
         user: state.user,
         feed: state.feed,
+        settings: state.settings,
         register: state.register,
         searchBy: state.searchBy,
     }
@@ -32,6 +34,7 @@ function mapDispatchToProps(dispatch) {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch),
+            settingsActions: bindActionCreators(SettingsActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
         }

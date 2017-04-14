@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ParentForm from './ParentForm';
-import SitterForm from './SitterForm';
+import ParentForm from '../ParentForm';
+import SitterForm from '../SitterForm';
 
 class Register extends React.Component {
     render() {

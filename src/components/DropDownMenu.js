@@ -20,9 +20,10 @@ class DropdownMenu extends React.Component {
     onSelect({key}) {
         switch (key) {
             case "editProfile":
-                this.props.router.push('/register');
+                this.props.router.push('/editProfile');
                 break;
             case "settings":
+                this.props.router.push('/settings');
                 break;
             case "logout":
                 localStorage.removeItem('auth_token');// delete the user information from the browser
