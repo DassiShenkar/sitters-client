@@ -5,9 +5,6 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 import RangeBase from '../base/controllers/RangeBase'
 class RangeSlider extends RangeBase {
-    shouldComponentUpdate(nextProps, nextState) {
-        return true;
-    }
     render(){
 
         let minValue = typeof this.props.searchBy.priceMinRange === "undefined"? this.props.min : this.props.searchBy.priceMinRange;
@@ -16,7 +13,9 @@ class RangeSlider extends RangeBase {
         return (
             <div>
                     <div style={{width: 200, margin: 50 }}>
+                        <p>{minValue}</p>
                         <Range allowCross={false}  min={this.props.min} max={this.props.max} defaultValue={[minValue,maxValue]} onChange={this.onChange} tipFormatter={value => `${value}$`} />
+                        <p>{maxValue}</p>
                     </div>
             </div>
         );

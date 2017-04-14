@@ -7,6 +7,7 @@ import dateFormat from 'dateformat';
 
 //reducers
 import rootReducer from './reducers/index';
+import moment from "moment";
 
 
 //set initial state
@@ -28,12 +29,15 @@ const defaultState = {
         enableSuggestions: true
     },
     searchBy : {
-        priceMinRange:0,
-        priceMaxRange:50,
         inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),
-        inviteDay: "sunday",//dateFormat(new Date(), "dddd"),
-        fromTime: "09:36",//dateFormat(new Date(), "HH:MM"),
-        toTime: "11:30"//dateFormat(new Date(), "HH:MM")
+        inviteDay: dateFormat(new Date(), "dddd"),
+        fromTime: moment(),
+        toTime: moment(),
+        isoValue: new Date().toISOString()
+    },
+    range: {
+        priceMinRange:0,
+        priceMaxRange:50
     }
 };
 
