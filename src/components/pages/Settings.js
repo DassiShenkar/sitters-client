@@ -16,7 +16,7 @@ class Settings extends React.Component {
 
     handleApplyChanges(e) {
         e.preventDefault();
-        let self = this;
+        // let self = this;
         //update user settings in db
     }
 
