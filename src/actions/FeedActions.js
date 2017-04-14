@@ -28,6 +28,13 @@ export function setMatches(sitters) {
     }
 }
 
+export function setFilteredMatches(filteredMatches) {
+    return {
+        type: 'SET_FILTERED_MATCHES',
+        filteredMatches
+    }
+}
+
 export function setNavView(navView) {
     return {
         type: 'SET_NAV_VIEW',

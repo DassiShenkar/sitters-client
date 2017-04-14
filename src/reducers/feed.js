@@ -20,7 +20,13 @@ function feed(state = {}, action) {
         case 'SET_MATCHES' :
             return {
                 ...state,
-                matches: action.sitters
+                matches: action.sitters,
+                filteredMatches: action.sitters
+            };
+        case 'SET_FILTERED_MATCHES' :
+            return {
+                ...state,
+                filteredMatches: action.filteredMatches
             };
         case 'SET_NAV_VIEW' :
             return {

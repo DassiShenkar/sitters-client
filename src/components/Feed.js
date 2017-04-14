@@ -10,9 +10,6 @@ import Invites from "./Invites";
 import SitterList from "./SitterList";
 
 class Feed extends React.Component {
-    constructor(props){
-        super(props);
-    }
     componentWillMount() {
         let self = this;
         const userId = localStorage.getItem('auth_token');
@@ -49,7 +46,7 @@ class Feed extends React.Component {
     }
 
     render() {
-        let navView = <SitterList sitters={this.props.feed.matches.length > 0 ? this.props.feed.matches : []}/>;
+        let navView = null;
         if(this.props.feed.navView !== null){
             let view = this.props.feed.navView;
             if(view === "searchBy")
@@ -71,7 +68,7 @@ class Feed extends React.Component {
                      action={this.props.actions.feedActions.setNavView}
                      {...this.props}/>
                 {navView}
-                {/*<SitterList sitters={this.props.feed.matches.length > 0 ? this.props.feed.matches : []}/>*/}
+                <SitterList sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/>
             </div>
         );
     }
