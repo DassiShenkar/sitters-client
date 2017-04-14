@@ -51,7 +51,8 @@ export default class Splash extends React.Component {
                                 Actions.Feed();
                             } else { // user not exist
                                 self.props.actions.actionCreators.createUser(result);
-                                Actions.Register();
+                                Actions.Feed();
+                                // Actions.Register();
                             }
                         })
                         .catch(function (error) {

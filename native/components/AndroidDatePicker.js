@@ -8,6 +8,7 @@ var {
     Text,
     TouchableOpacity,
 } = ReactNative;
+import TextButton from './TextButton'
 
 class AndroidDatePicker extends React.Component {
     static title = 'DatePickerAndroid';
@@ -37,10 +38,10 @@ class AndroidDatePicker extends React.Component {
 
     render() {
         return (
-            <TouchableOpacity
-                onPress={this.showPicker.bind(this, 'calendar', {date: this.state.calendarDate, mode: 'calendar'})}>
-                <Text style={styles.text}>{this.state.calendarText}</Text>
-            </TouchableOpacity>
+            <TextButton
+                onPress={this.showPicker.bind(this, 'calendar', {date: this.state.calendarDate, mode: 'calendar'})}
+                text={this.state.calendarText}
+                styles={styles.text} />
         );
     }
 }

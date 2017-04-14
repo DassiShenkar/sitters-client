@@ -8,6 +8,7 @@ var {
     Text,
     TouchableOpacity
 } = ReactNative;
+import TextButton from './TextButton';
 
 class AndroidTimePicker extends React.Component {
     static title = 'TimePickerAndroid';
@@ -35,10 +36,10 @@ class AndroidTimePicker extends React.Component {
 
     render() {
         return (
-            <TouchableOpacity
-                onPress={this.showPicker.bind(this, 'simple', {})}>
-                <Text style={styles.text}>{this.state.simpleText}</Text>
-            </TouchableOpacity>
+            <TextButton
+                onPress={this.showPicker.bind(this, 'simple', {})}
+                text={this.state.simpleText}
+                styles={styles.text} />
         );
     }
 }

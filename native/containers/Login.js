@@ -21,8 +21,8 @@ export default class Login extends React.Component {
                 <Picker
                     selectedValue={"I\'m A Parent"}
                     onValueChange={(pick) => {}}>
-                    <Picker.Item label="I'm A Parent" value="Parent" />
-                    <Picker.Item label="I'm A Sitter" value="Sitter" />
+                    <Picker.Item label="I'm A Parent" value="I'm A Parent" />
+                    <Picker.Item label="I'm A Sitter" value="I'm A Sitter" />
                 </Picker>
                 <FaceBookLogin
                     { ...this.props }
