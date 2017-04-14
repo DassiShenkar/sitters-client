@@ -9,7 +9,6 @@ import SearchByTab from "../SearchByTab";
 import Notifications from "../Notifications";
 import Invites from "../Invites";
 import SitterList from "../SitterList";
-
 class Feed extends React.Component {
 
     componentWillMount() {
@@ -33,7 +32,7 @@ class Feed extends React.Component {
                                 }
                             })
                             .catch(function(error) {
-                               console.log(error);
+                                console.log(error);
                             });
                         self.props.actions.actionCreators.setUserData(parent.data);
                     }
@@ -63,15 +62,15 @@ class Feed extends React.Component {
             <div id="feed">
                 <h1>Feed</h1>
                 <Nav name={this.props.user.name}
-                     image={this.props.user.profilePicture}
-                     alt={this.props.user.name}
-                     invites={this.props.user.invites}
-                     notifications={this.props.user.notifications}
-                     action={this.props.actions.feedActions.setNavView}
-                     {...this.props}/>
+                image={this.props.user.profilePicture}
+                alt={this.props.user.name}
+                invites={this.props.user.invites}
+                notifications={this.props.user.notifications}
+                action={this.props.actions.feedActions.setNavView}
+                {...this.props}/>
                 {navView}
                 <SitterList {...this.props} sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/>
-            </div>
+                </div>
         );
     }
 }

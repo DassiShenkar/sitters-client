@@ -8,9 +8,6 @@ import GoogleMaps from './GoogleMaps'
 import DatePicker from './controllers/DatePicker'
 import TimeInput from './controllers/TimeInput'
 class SearchByTab extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div>
