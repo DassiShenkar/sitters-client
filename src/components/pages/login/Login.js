@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/lib/Form';
 
 //components
 import Logo from '../../Logo';
-import RadioInput from '../../controllers/radio/RadioInput';
+import RadioInput from '../../controllers/radio/index';
 
 //statics
 import strings from '../../../static/strings';
