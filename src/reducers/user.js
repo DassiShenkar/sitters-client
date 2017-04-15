@@ -1,5 +1,12 @@
 function user(state = {}, action) {
     switch (action.type) {
+        case 'CHANGE_USER_TYPE' :
+            return {
+                ...state,
+                userType: action.userType
+            };
+
+
         case 'CREATE_USER' :
             const facebookData = action.facebookData;
             return {
@@ -10,7 +17,7 @@ function user(state = {}, action) {
                 birthday: facebookData.birthday,
                 currency: facebookData.currency,
                 education: facebookData.education,
-                email : facebookData.email,
+                email: facebookData.email,
                 gender: facebookData.gender,
                 languages: facebookData.languages,
                 location: facebookData.location,
