@@ -16,6 +16,4 @@ export default class Notifications extends React.Component {
             </View>
         );
     }
-}/**
- * Created by user on 14/04/2017.
- */
+}

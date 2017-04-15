@@ -11,7 +11,9 @@ export default class ImageButton extends React.Component {
 
     render () {
         return (
-            <TouchableHighlight onPress={this.props.onPress}>
+            <TouchableHighlight
+                style={this.props.styles ? this.props.styles : {}}
+                onPress={this.props.onPress}>
                 <Image
                     style={this.props.styles ? this.props.styles : {}}
                     source={this.props.src}
