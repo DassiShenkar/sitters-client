@@ -73,6 +73,10 @@ export default class SitterForm extends React.Component {
     
     navigate () {
         // TODO: add user to DB
-        Actions.PersonalityTestIntro();
+        if(this.props.exists && this.props.exists === true){
+            Actions.Feed();
+        } else {
+            Actions.PersonalityTestIntro();
+        }
     }
 }
