@@ -5,6 +5,7 @@ import Nav from "../Nav";
 // import * as ReviewActions from '../actions/ReviewActions';
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
+import geodist from 'geodist';
 import axios from 'axios';
 class SitterProfile extends SitterProfileBase {
     constructor(props) {
@@ -32,6 +33,10 @@ class SitterProfile extends SitterProfileBase {
             .catch(function (error) {
                 console.log(error);//TODO: in case of sitter wasn't found
             });
+
+        // let parentCoord = {lat: this.props.user.address.latitude, lon: this.props.user.address.longitude};
+        // let sitterCoord =  {lat: this.props.sitterProfile.sitter.address.latitude, lon: this.props.sitterProfile.sitter.address.longitude};;
+        // this.props.actions.sitterProfileActions.setDistance( geodist( parentCoord,sitterCoord, {exact: true, unit: 'meters'}));
     }
     render() {
         // const reviews = this.props.reviews || [];
@@ -48,6 +53,10 @@ class SitterProfile extends SitterProfileBase {
         const hobbies = this.props.sitterProfile.sitter.hobbies.map((hobbie) =>{return(hobbie + ", ")});
         const education = this.props.sitterProfile.sitter.education.map((edu) =>{return(edu + ", ")});
         const languages = this.props.sitterProfile.sitter.languages.map((languages) =>{return(languages + ", ")});
+        let parentCoord = {lat: this.props.user.address.latitude, lon: this.props.user.address.longitude};
+        let sitterCoord =  {lat: this.props.sitterProfile.sitter.address.latitude, lon: this.props.sitterProfile.sitter.address.longitude};;
+        if(typeof sitterCoord.lat !== "undefined")
+            this.props.actions.sitterProfileActions.setDistance( geodist( parentCoord,sitterCoord, { unit: 'meters'}));
         return (
             <div>
                 <Nav name={this.props.user.name}
@@ -64,7 +73,7 @@ class SitterProfile extends SitterProfileBase {
                 </section>
                 <table>
                     <tr>
-                        <td>To be completed</td>
+                        <td>{this.props.sitterProfile.distance + " Meters"}</td>
                         <td>{this.props.sitterProfile.sitter.hourFee + "$"}</td>
                         <td>{this.props.sitterProfile.sitter.experience + " Years"}</td>
                     </tr>

@@ -11,3 +11,10 @@ export function setMatchScore(matchScore) {
         matchScore
     }
 }
+
+export function setDistance(distance) {
+    return {
+        type: 'SET_DISTANCE',
+        distance
+    }
+}

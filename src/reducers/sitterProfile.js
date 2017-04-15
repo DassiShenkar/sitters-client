@@ -10,6 +10,11 @@ function sitterProfile(state = {}, action) {
                 ...state,
                 matchScore: action.matchScore
             };
+        case 'SET_DISTANCE' :
+            return {
+                ...state,
+                distance: action.distance
+            };
 
         default:
             return state;

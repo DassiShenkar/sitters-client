@@ -43,8 +43,11 @@ const defaultState = {
         workingHours:{},
         hobbies: [],
         languages: [],
-        education: []
-    }},
+        education: [],
+        address: {}
+    },
+        distance: ""
+    },
 
 };
 
