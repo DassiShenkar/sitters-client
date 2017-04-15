@@ -178,6 +178,13 @@ export function changeSitterExperience(sitterExperience) {
     }
 }
 
+export function changeSitterEducation(sitterEducation) {
+    return {
+        type: 'CHANGE_SITTER_EDUCATION',
+        sitterEducation
+    }
+}
+
 export function changePersonalityTestQuestion(question) {
     return {
         type: 'CHANGE_PERSONALITY_TEST_QUESTION',

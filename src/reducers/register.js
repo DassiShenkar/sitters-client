@@ -132,6 +132,12 @@ function register(state = {}, action) {
                 ...state,
                 sitterExperience:  action.sitterExperience
             };
+        case 'CHANGE_SITTER_EDUCATION' :
+            return {
+                ...state,
+                sitterEducation:  action.sitterEducation
+            };
+
         case 'CHANGE_PERSONALITY_TEST_QUESTION' :
             let questions = state.personalityTestQuestions;
             questions[action.question.id] = action.question;

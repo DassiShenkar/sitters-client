@@ -67,6 +67,7 @@ class Form extends React.Component {
             expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
             hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
             specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
+            education: this.props.register.sitterEducation? this.props.register.sitterEducation: [],
             mobility: this.props.register.sitterMobility.toLowerCase() === 'true'
         };
         axios({
@@ -136,16 +137,23 @@ class Form extends React.Component {
                                reducer={'register'}
                 />
                 <h4>Sitter Hobbies</h4>
-                <CheckBoxInput name="childHobbies"
+                <CheckBoxInput name="sitterHobbies"
                                types={strings.HOBBIES}
                                action={this.props.actions.registerActions.changeSitterHobbies}
                                {...this.props}
                                reducer={'register'}
                 />
                 <h4>Sitter Special needs</h4>
-                <CheckBoxInput name="childHobbies"
+                <CheckBoxInput name="sitterHobbies"
                                types={strings.SPECIAL_NEEDS}
                                action={this.props.actions.registerActions.changeSitterSpecialNeeds}
+                               {...this.props}
+                               reducer={'register'}
+                />
+                <h4>Education</h4>
+                <CheckBoxInput name="sitterEducation"
+                               types={strings.EDUCATION}
+                               action={this.props.actions.registerActions.changeSitterEducation}
                                {...this.props}
                                reducer={'register'}
                 />
