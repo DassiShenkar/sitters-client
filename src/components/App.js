@@ -9,9 +9,13 @@ import * as FeedActions from '../actions/FeedActions';
 import * as SettingsActions from '../actions/SettingsActions';
 import * as SearchByActions from '../actions/SearchByActions';
 import * as RangeActions from '../actions/RangeActions';
+import * as SitterProfileActions from '../actions/SitterProfileActions';
 
 //components
 import Main from './Main'
+
+//style
+import './App.css';
 
 function mapStateToProps(state) {
     return {
@@ -21,7 +25,8 @@ function mapStateToProps(state) {
         settings: state.settings,
         register: state.register,
         searchBy: state.searchBy,
-        range: state.range
+        range: state.range,
+        sitterProfile: state.sitterProfile
     }
 }
 
@@ -38,7 +43,8 @@ function mapDispatchToProps(dispatch) {
             settingsActions: bindActionCreators(SettingsActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
-            rangeActions: bindActionCreators(RangeActions, dispatch)
+            rangeActions: bindActionCreators(RangeActions, dispatch),
+            sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch)
         }
     };
 }

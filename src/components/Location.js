@@ -1,6 +1,6 @@
 import React from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import LocationIcon from '../styles/icons/Location'
+// import LocationIcon from '../styles/icons/Location'
 import {Image} from "react-bootstrap";
 
 

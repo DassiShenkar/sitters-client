@@ -38,7 +38,14 @@ const defaultState = {
     range: {
         priceMinRange:0,
         priceMaxRange:50
-    }
+    },
+    sitterProfile: {sitter: {
+        workingHours:{},
+        hobbies: [],
+        languages: [],
+        education: []
+    }},
+
 };
 
 //enable redux in chrome dev tools

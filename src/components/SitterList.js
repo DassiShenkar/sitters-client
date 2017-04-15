@@ -4,8 +4,6 @@ import {Link} from 'react-router';
 import SitterListBase from '../base/SitterListBase';
 import SitterActionBar from './SitterActionBar';
 
-
-
 class SitterList extends SitterListBase {
     
 

@@ -10,14 +10,15 @@ import store, {history} from './store';
 //components
 import App from "./components/App";
 import Feed from "./components/pages/Feed";
-import Login from "./components/pages/Login";
+import Login from "./components/pages/login/Login";
 import Register from "./components/pages/Register";
-import Invites from "./components/Invites";
+import Invites from "./components/InvitesList";
 import Notifications from "./components/Notifications";
 import SitterProfile from "./components/pages/SitterProfile";
 import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
 import EditInvite from "./components/EditInvite";
+import SingleInvite from "./components/SingleInvite";
 import EditProfile from "./components/pages/EditProfile";
 import Settings from "./components/pages/Settings";
 import About from "./components/pages/About";
@@ -28,6 +29,7 @@ const router = (
             <Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
                 <IndexRoute component={Feed}/>
                 <Route path="/invites" component={Invites}/>
+                <Route path="/invite/:inviteId" component={SingleInvite}/>
                 <Route path="/settings" component={Settings}/>
                 <Route path="/about" component={About}/>
                 <Route path="/notifications" component={Notifications}/>
