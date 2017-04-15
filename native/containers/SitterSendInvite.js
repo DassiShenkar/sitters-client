@@ -29,7 +29,7 @@ export default class SitterSendInvite extends React.Component {
                    animationType={"slide"}
                    transparent={false}
                    visible={true}
-                   onRequestClose={() => {alert("Modal has been closed.")}}>
+                   onRequestClose={() => {Actions.pop()}}>
                    <Image
                        style={{width: 50, height: 50}}
                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
