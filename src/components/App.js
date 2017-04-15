@@ -13,6 +13,9 @@ import * as RangeActions from '../actions/RangeActions';
 //components
 import Main from './Main'
 
+//style
+import '../App.css';
+
 function mapStateToProps(state) {
     return {
         reviews: state.reviews,
