@@ -30,6 +30,7 @@ class DropdownMenu extends React.Component {
                 this.props.router.push('/login');
                 break;
             case "about":
+                this.props.router.push('/about');
                 break;
             default:
                 break;

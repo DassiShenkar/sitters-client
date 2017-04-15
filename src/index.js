@@ -20,6 +20,7 @@ import SingleReview from "./components/SingleReview";
 import EditInvite from "./components/EditInvite";
 import EditProfile from "./components/pages/EditProfile";
 import Settings from "./components/pages/Settings";
+import About from "./components/pages/About";
 
 const router = (
     <Provider store={store}>
@@ -28,6 +29,7 @@ const router = (
                 <IndexRoute component={Feed}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/settings" component={Settings}/>
+                <Route path="/about" component={About}/>
                 <Route path="/notifications" component={Notifications}/>
                 <Route path="/sitter/:sitterId" component={SitterProfile}/>
                 <Route path="/reviews" component={ReviewList}/>
