@@ -11,16 +11,7 @@ import {Link} from "react-router";
 class SitterProfile extends SitterProfileBase {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        // const { sitterId } = this.props.params;
-        const author = this.refs.author.value;
-        const review = this.refs.review.value;
-        this.props.actions.reviewActions.addReview(author, review);
-        this.refs.reviewForm.reset();
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentWillMount(){
         let sitterID = location.href.split('sitter/')[1];
@@ -83,12 +74,14 @@ class SitterProfile extends SitterProfileBase {
                 </table>
                 <h4>Availability</h4>
                 <table>
+                    <tbody>
                     <tr>
                         <td>Day</td>
                         <td>From</td>
                         <td>To</td>
                     </tr>
                     {workingHours}
+                    </tbody>
                 </table>
                 <h4>Hobbies</h4>
                 {hobbies}
