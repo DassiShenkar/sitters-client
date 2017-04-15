@@ -18,11 +18,6 @@ function user(state = {}, action) {
                 picture: facebookData.picture
 
             };
-        case 'CHANGE_USER_TYPE' :
-            return {
-                ...state,
-                userType: action.userType
-            };
         case 'SET_USER_DATA' :
             const data = action.userData;
             return {
