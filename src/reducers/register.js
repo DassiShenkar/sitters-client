@@ -106,6 +106,11 @@ function register(state = {}, action) {
                 ...state,
                 sitterImmediateAvailability:  action.sitterImmediateAvailability
             };
+        case 'CHANGE_SITTER_MOBILITY' :
+            return {
+                ...state,
+                sitterMobility:  action.sitterMobility
+            };
         case 'CHANGE_SITTER_EXPERTISE' :
             return {
                 ...state,

@@ -62,9 +62,9 @@ class Form extends React.Component {
             children: {
                 name: this.props.register.childName,
                 age: Number(this.props.register.childAge),
-                expertise: this.props.register.childExpertise,
-                hobbies: this.props.register.childHobbies,
-                specialNeeds: this.props.register.childSpecialNeeds,
+                expertise: this.props.register.childExpertise? this.props.register.childExpertise: [],
+                hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
+                specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: [],
             },
             partner:{
                 gender: this.props.register.partnerGender,

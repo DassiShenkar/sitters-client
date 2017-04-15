@@ -64,9 +64,10 @@ class Form extends React.Component {
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
             availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
-            expertise: this.props.register.sitterExpertise,
-            hobbies: this.props.register.sitterHobbies,
-            specialNeeds: this.props.register.sitterSpecialNeeds
+            expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
+            hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
+            specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
+            mobility: this.props.register.sitterMobility.toLowerCase() === 'true'
         };
         axios({
             method: 'post',
@@ -121,6 +122,11 @@ class Form extends React.Component {
                 <RadioInput types={strings.BOOLEAN}
                             action={this.props.actions.registerActions.changeSitterImmediateAvailability}
                             radioType={'sitterImmediateAvailability'} {...this.props}
+                            reducer={'register'}/>
+                <h3>Mobility</h3>
+                <RadioInput types={strings.BOOLEAN}
+                            action={this.props.actions.registerActions.changeSitterMobility}
+                            radioType={'sitterMobility'} {...this.props}
                             reducer={'register'}/>
                 <h4>Sitter Expertise</h4>
                 <CheckBoxInput name="sitterExpertise"

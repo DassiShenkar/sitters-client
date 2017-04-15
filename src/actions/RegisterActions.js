@@ -143,6 +143,13 @@ export function changeSitterImmediateAvailability (sitterImmediateAvailability) 
     }
 }
 
+export function changeSitterMobility(sitterMobility) {
+    return {
+        type: 'CHANGE_SITTER_MOBILITY',
+        sitterMobility
+    }
+}
+
 export function changeSitterExpertise(sitterExpertise) {
     return {
         type: 'CHANGE_SITTER_EXPERTISE',
