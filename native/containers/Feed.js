@@ -14,7 +14,7 @@ export default class Feed extends React.Component {
 
     render () {
         return (
-            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{flex: 1}}>
                 <AppBar />
                 <Text>Maching Score</Text>
                 <ImageButton
