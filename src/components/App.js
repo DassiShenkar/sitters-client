@@ -14,6 +14,9 @@ import * as SitterProfileActions from '../actions/SitterProfileActions';
 //components
 import Main from './Main'
 
+//style
+import '../App.css';
+
 function mapStateToProps(state) {
     return {
         reviews: state.reviews,

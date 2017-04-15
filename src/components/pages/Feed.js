@@ -7,7 +7,7 @@ import axios from 'axios';
 import Nav from '../Nav';
 import SearchByTab from "../SearchByTab";
 import Notifications from "../Notifications";
-import Invites from "../Invites";
+import Invites from "../InvitesList";
 import SitterList from "../SitterList";
 class Feed extends React.Component {
 
