@@ -4,13 +4,14 @@ import axios from 'axios';
 import FacebookLogin from 'react-facebook-login';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
+import Form from 'react-bootstrap/lib/Form';
 
 //components
-import Logo from '../Logo';
-import RadioInput from '../controllers/RadioInput';
+import Logo from '../../Logo';
+import RadioInput from '../../controllers/radio/index';
 
 //statics
-import strings from '../../static/strings';
+import strings from '../../../static/strings';
 
 class Login extends React.Component {
 
@@ -42,18 +43,18 @@ class Login extends React.Component {
     }
 
     render() {
+        const userTypeRadio = <RadioInput types={strings.USER_TYPE}
+                                          defaultValue={strings.USER_TYPE[0]}
+                                          action={this.props.actions.actionCreators.changeUserType}
+                                          radioType={'userType'} {...this.props}
+                                          reducer={'user'}/>;
         return (
-            <div>
+            <div id="login-page">
                 <PageHeader><Logo companyName={strings.APP_NAME}/>
                     <small>{strings.APP_DESCRIPTION}</small>
                 </PageHeader>
-                <Jumbotron>
-                    <h1>Login</h1>
-                    <RadioInput types={strings.USER_TYPE}
-                                defaultValue={strings.USER_TYPE[0]}
-                                action={this.props.actions.actionCreators.changeUserType}
-                                radioType={'userType'} {...this.props}
-                                reducer={'user'}/>
+                <Form horizontal>
+                    {localStorage.getItem('suth_token') ? '' : userTypeRadio}
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}
@@ -62,7 +63,7 @@ class Login extends React.Component {
                         callback={this.login}
                         {...this.props}
                     />
-                </Jumbotron>
+                </Form>
             </div>
         )
     }

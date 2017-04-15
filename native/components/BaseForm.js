@@ -1,8 +1,7 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, Image, View } from 'react-native';
-import RadioButtons from './RadioButton'
-// defaultValue={this.props.user.name}
+import { Text, TextInput, Image, View, Picker } from 'react-native';
+
 export default class BaseForm extends React.Component {
 
     constructor(props) {
@@ -39,11 +38,12 @@ export default class BaseForm extends React.Component {
                     name="houseNumber" 
                     placeholder="houseNumber" />
                 <Text>Gender</Text>
-                <RadioButtons
-                    values={[
-                    {label: 'Male', value: 0 },
-                    {label: 'Female', value: 1 }
-                    ]} />
+                <Picker
+                    selectedValue={"Male"}
+                    onValueChange={(pick) => {}}>
+                    <Picker.Item label="Male" value="male" />
+                    <Picker.Item label="Female" value="female" />
+                </Picker>
                 <Text>Profile picture</Text>
                 <Image />
             </View>

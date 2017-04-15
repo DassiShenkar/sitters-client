@@ -12,6 +12,7 @@ class SingleInvite extends React.Component{
                 <p>{'Location: ' + invite.location}</p>
                 <p>{'Time: ' + invite.startTime + '-' + invite.endTime}</p>
                 <p>{'Notes: ' + invite.notes}</p>
+                <p>{'Status: ' + invite.status}</p>
             </form>
         )
     }

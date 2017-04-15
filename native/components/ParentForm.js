@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import Form from 'react-native-form';
 import CheckBox from 'react-native-check-box';
 import BaseForm from './BaseForm';
+import TextButton from './TextButton';
 
 const langArray = ["Hebrew", "English", "Russian", "Spanish", "French"];
 const expertiseArray = ['Math', 'English', 'Physics'];
@@ -15,6 +16,7 @@ export default class ParentForm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.navigate = this.navigate.bind(this);
     }
 
     render () {
@@ -33,11 +35,11 @@ export default class ParentForm extends React.Component {
                 {this.checkBox(hobbiesArray)}
                 <Text>Child Special needs</Text>
                 {this.checkBox(needsArray)}
-                <TouchableOpacity onPress={this.navigate.bind(this)}>
-                    <Text>Submit</Text>
-                </TouchableOpacity>
+                <TextButton
+                    onPress={this.navigate}
+                    text="Submit" />
             </Form>
-                );
+        );
 
     }
     checkBox (array) {

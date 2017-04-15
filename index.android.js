@@ -12,8 +12,16 @@ import Register from './native/containers/Register';
 import Feed from './native/containers/Feed';
 import SitterProfileView from './native/containers/SitterProfileView';
 import SitterSendInvite from './native/containers/SitterSendInvite';
+import Notifications from './native/containers/Notifications';
+import Inbox from './native/containers/Inbox';
+import About from './native/containers/About';
+import Settings from './native/containers/Settings';
+import Search from './native/containers/Search';
+import PersonalityTestIntro from './native/containers/PersonalityTestIntro';
+import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import GoogleMapView from './native/containers/GoogleMapView';
+
 import configureStore from './native/store/ConfigureStore'
 
 const store = configureStore();
@@ -36,6 +44,13 @@ class Sitters extends React.Component {
                             <Scene key="Register" component={Register} title="Register" hideNavBar={true}/>
                             <Scene key="Feed" component={Feed} title="Feed"/>
                             <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView"/>
+                            <Scene key="Notifications" component={Notifications} title="Notifications"/>
+                            <Scene key="Inbox" component={Inbox} title="Inbox"/>
+                            <Scene key="PersonalityTestIntro" component={PersonalityTestIntro} title="PersonalityTestIntro"/>
+                            <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest"/>
+                            <Scene key="Search" component={Search} title="Search"/>
+                            <Scene key="About" component={About} title="About"/>
+                            <Scene key="Settings" component={Settings} title="Settings"/>
                             <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView"/>
                         </Scene>
                         <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite"/>

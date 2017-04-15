@@ -16,7 +16,7 @@ import * as InviteActions from '../actions/InviteActions';
 import Main from './Main'
 
 //style
-import '../App.css';
+import './App.css';
 
 function mapStateToProps(state) {
     return {
@@ -51,7 +51,6 @@ function mapDispatchToProps(dispatch) {
         }
     };
 }
-
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 

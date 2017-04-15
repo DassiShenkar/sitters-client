@@ -1,7 +1,7 @@
 import React from 'react';
 import SitterProfileBase from '../../base/SitterProfileBase'
 import ReviewList from '../ReviewList';
-import Nav from "../Nav";
+import Nav from "../nav/index";
 // import * as ReviewActions from '../actions/ReviewActions';
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';

@@ -1,14 +1,14 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, Picker } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
 import BaseForm from './BaseForm';
-import RadioButtons from './RadioButton';
 import Form from 'react-native-form';
-import PersonalityTest from './PersonalityTest';
 import CheckBox from 'react-native-check-box';
+
 import AndroidTimePicker from './AndroidTimePicker'
+import TextButton from './TextButton';
 
 const langArray = ["Hebrew", "English", "Russian", "Spanish", "French"];
 const expertiseArray = ['Math', 'English', 'Physics'];
@@ -20,6 +20,7 @@ export default class SitterForm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.navigate = this.navigate.bind(this);
     }
 
     render () {
@@ -30,11 +31,12 @@ export default class SitterForm extends React.Component {
                 <TextInput type="TextInput" name="MinimumAge"  placeholder="Minimum age to save children"/>
                 <TextInput type="TextInput" name="hourFee"  placeholder="Hour Fee"/>
                 <Text>Immediate availability?</Text>
-                <RadioButtons
-                    values={[
-                    {label: 'Yes', value: 0 },
-                    {label: 'No', value: 1 }
-                    ]} />
+                <Picker
+                    selectedValue={"Yes"}
+                    onValueChange={(pick) => {}}>
+                    <Picker.Item label="Yes" value="yes" />
+                    <Picker.Item label="No" value="no" />
+                </Picker>
                 <Text>Languages</Text>
                 {this.checkBox(langArray)}
                 <Text>Sitter Expertise</Text>
@@ -43,11 +45,10 @@ export default class SitterForm extends React.Component {
                 {this.checkBox(hobbiesArray)}
                 <Text>Sitter Special needs</Text>
                 {this.checkBox(needsArray)}
-                <PersonalityTest />
                 {this.timePicker()}
-                <TouchableOpacity onPress={this.navigate.bind(this)}>
-                    <Text>Submit</Text>
-                </TouchableOpacity>
+                <TextButton
+                    onPress={this.navigate}
+                    text="Submit" />
             </Form>
         );
     }
@@ -72,6 +73,10 @@ export default class SitterForm extends React.Component {
     
     navigate () {
         // TODO: add user to DB
-        Actions.Feed();
+        if(this.props.exists && this.props.exists === true){
+            Actions.Feed();
+        } else {
+            Actions.PersonalityTestIntro();
+        }
     }
 }
