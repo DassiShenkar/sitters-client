@@ -5,10 +5,9 @@ class ListItem extends React.Component {
         let item = this.props.item;
             return (
                 <li>
-                    <img src={item.image} alt={item.name}/>
-                    <p>{item.name}</p>
-                    <p>{item.text}</p>
-                    <p>{item.time}</p>
+                    <img src={item.sitterImage} alt={item.sitterID}/>
+                    <p>{item.sitterName}</p>
+                    <p>{item.status}</p>
                 </li>
             );
     }
