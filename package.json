@@ -24,6 +24,7 @@
     "geocoder": "^0.2.3",
     "google": "^2.1.0",
     "google-map-react": "^0.23.0",
+    "google-maps-react": "^1.0.19",
     "immutable": "^3.8.1",
     "install": "^0.8.7",
     "lodash": "^4.17.4",
