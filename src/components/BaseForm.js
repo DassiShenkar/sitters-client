@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from './controllers/TextInput';
-import RadioInput from './controllers/RadioInput';
+import RadioInput from './controllers/radio/RadioInput';
 import 'react-select/dist/react-select.css';
 import SelectInput from './controllers/SelectInput';
 import baseData from '../data/BaseData';

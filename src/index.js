@@ -10,7 +10,7 @@ import store, {history} from './store';
 //components
 import App from "./components/App";
 import Feed from "./components/pages/Feed";
-import Login from "./components/pages/Login";
+import Login from "./components/pages/login/Login";
 import Register from "./components/pages/Register";
 import Invites from "./components/InvitesList";
 import Notifications from "./components/Notifications";

@@ -15,7 +15,7 @@ import * as SitterProfileActions from '../actions/SitterProfileActions';
 import Main from './Main'
 
 //style
-import '../App.css';
+import './App.css';
 
 function mapStateToProps(state) {
     return {

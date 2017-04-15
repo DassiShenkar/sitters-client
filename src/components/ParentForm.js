@@ -6,7 +6,7 @@ import geocoder from 'geocoder'
 import axios from 'axios';
 import strings from '../static/strings';
 import {AgeFromDate} from 'age-calculator';
-import RadioInput from "./controllers/RadioInput";
+import RadioInput from "./controllers/radio/RadioInput";
 
 
 class Form extends React.Component {

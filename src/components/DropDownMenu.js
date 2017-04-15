@@ -45,8 +45,8 @@ class DropdownMenu extends React.Component {
             <Menu onSelect={this.onSelect}>
                 <MenuItem key="editProfile"><Person/>Edit Profile</MenuItem>
                 <MenuItem key="settings"><Settings/>Settings</MenuItem>
-                <MenuItem key="logout"><Logout/>Log Out</MenuItem>
                 <MenuItem key="about"><Information/>About</MenuItem>
+                <MenuItem key="logout"><Logout/>Log Out</MenuItem>
             </Menu>
         );
         return (

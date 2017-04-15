@@ -1,5 +1,11 @@
+//external sources
 import React from 'react';
-import RadioInputBase from '../../base/controllers/RadioInputBase.js';
+
+//base component
+import RadioInputBase from '../../../base/controllers/RadioInputBase.js';
+
+//style
+import './radio.css';
 
 class Radio extends RadioInputBase {
 
