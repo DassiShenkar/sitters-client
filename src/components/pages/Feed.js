@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 //components
-import Nav from '../Nav';
+import Nav from '../nav/index';
 import SearchByTab from "../SearchByTab";
 import Notifications from "../Notifications";
 import Invites from "../InvitesList";
@@ -60,7 +60,6 @@ class Feed extends React.Component {
 
         return (
             <div id="feed">
-                <h1>Feed</h1>
                 <Nav name={this.props.user.name}
                 image={this.props.user.profilePicture}
                 alt={this.props.user.name}

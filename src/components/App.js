@@ -49,7 +49,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 
