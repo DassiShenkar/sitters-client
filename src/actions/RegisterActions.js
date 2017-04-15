@@ -87,6 +87,27 @@ export function changeChildSpecialNeeds(childSpecialNeeds) {
     }
 }
 
+export function changePartnerName(partnerName) {
+    return {
+        type: 'CHANGE_PARTNER_NAME',
+        partnerName
+    }
+}
+
+export function changePartnerEmail(partnerEmail) {
+    return {
+        type: 'CHANGE_PARTNER_EMAIL',
+        partnerEmail
+    }
+}
+
+export function changePartnerGender(partnerGender) {
+    return {
+        type: 'CHANGE_PARTNER_GENDER',
+        partnerGender
+    }
+}
+
 export function changeLanguages(languages) {
     return {
         type: 'CHANGE_LANGUAGES',

@@ -6,6 +6,7 @@ import geocoder from 'geocoder'
 import axios from 'axios';
 import strings from '../static/strings';
 import {AgeFromDate} from 'age-calculator';
+import RadioInput from "./controllers/RadioInput";
 
 
 class Form extends React.Component {
@@ -64,6 +65,11 @@ class Form extends React.Component {
                 expertise: this.props.register.childExpertise,
                 hobbies: this.props.register.childHobbies,
                 specialNeeds: this.props.register.childSpecialNeeds,
+            },
+            partner:{
+                gender: this.props.register.partnerGender,
+                email:  this.props.register.partnerEmail,
+                name:  this.props.register.partnerName
             }
         };
         axios({
@@ -128,6 +134,26 @@ class Form extends React.Component {
                            action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
                            {...this.props}
                            reducer={'register'}/>
+                <h4>Partner</h4>
+                <TextInput label="Partner Name"
+                           placeholder='Name'
+                           defaultValue={this.props.register.partnerName}
+                           action={this.props.actions.registerActions.changePartnerName}
+                           {...this.props}
+                           reducer={'register'}/>
+                <TextInput label="Partner Email"
+                           type="email"
+                           placeholder='Email'
+                           defaultValue={this.props.register.partnerEmail ? this.props.user.partnerEmail : ''}
+                           action={this.props.actions.registerActions.changePartnerEmail}
+                           {...this.props}
+                           reducer={'register'}/>
+                <h4>Partner Gender</h4>
+                    <RadioInput types={strings.GENDER}
+                            defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
+                            action={this.props.actions.registerActions.changePartnerGender}
+                            radioType={'partnerGender'} {...this.props}
+                            reducer={'register'}/>
                 <input type="submit" className="submit-invite" value="Sign Up"/>
             </form>
         );

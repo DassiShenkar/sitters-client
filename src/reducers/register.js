@@ -66,6 +66,21 @@ function register(state = {}, action) {
                 ...state,
                 childSpecialNeeds:  action.childSpecialNeeds
             };
+        case 'CHANGE_PARTNER_NAME' :
+            return {
+                ...state,
+                partnerName:  action.partnerName
+            };
+        case 'CHANGE_PARTNER_EMAIL' :
+            return {
+                ...state,
+                partnerEmail:  action.partnerEmail
+            };
+        case 'CHANGE_PARTNER_GENDER' :
+            return {
+                ...state,
+                partnerGender:  action.partnerGender
+            };
         case 'CHANGE_LANGUAGES' :
             return {
                 ...state,

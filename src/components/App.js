@@ -1,7 +1,6 @@
 //external sources
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 //actions
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
