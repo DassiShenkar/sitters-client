@@ -1,7 +1,11 @@
 "use strict";
 import React, {Component} from 'react'
-import {View, Text} from 'react-native'
+import {View, ScrollView, Text} from 'react-native'
+import { Actions } from 'react-native-router-flux';
+
 import Rating from 'react-native-easy-rating';
+
+import ImageButton from '../components/ImageButton'
 
 const questions = [
     "I consider myself as an investor in his own field",
@@ -24,24 +28,28 @@ const questions = [
 export default class PersonalityTest extends React.Component {
     render () {
         return (
-            <View>
+            <ScrollView>
                 {this.question()}
-            </View>
+                <ImageButton
+                    onPress={Actions.Feed}
+                    styles={{width: 50, height: 50}}
+                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
+            </ScrollView>
         );
     }
     question (){
         return questions.map(function (question) {
-           return <View>
-                    <Text>{question}</Text>
-                    <Rating
-                       rating={1}
-                       max={5}
-                       iconWidth={24}
-                       iconHeight={24}
-                       iconSelected={require('../style/icons/full.png')}
-                       iconUnselected={require('../style/icons/empty.png')}
-                       onRate={(rating) => {alert(rating);}} />
-               </View>;
+            return <View>
+                <Text>{question}</Text>
+                <Rating
+                    rating={1}
+                    max={5}
+                    iconWidth={24}
+                    iconHeight={24}
+                    iconSelected={require('../style/icons/full.png')}
+                    iconUnselected={require('../style/icons/empty.png')}
+                    onRate={(rating) => {alert(rating);}} />
+            </View>;
         })
     }
 }

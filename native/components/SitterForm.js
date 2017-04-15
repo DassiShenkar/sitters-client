@@ -5,8 +5,8 @@ import { Actions } from 'react-native-router-flux'
 
 import BaseForm from './BaseForm';
 import Form from 'react-native-form';
-import PersonalityTest from './PersonalityTest';
 import CheckBox from 'react-native-check-box';
+
 import AndroidTimePicker from './AndroidTimePicker'
 import TextButton from './TextButton';
 
@@ -45,7 +45,6 @@ export default class SitterForm extends React.Component {
                 {this.checkBox(hobbiesArray)}
                 <Text>Sitter Special needs</Text>
                 {this.checkBox(needsArray)}
-                <PersonalityTest />
                 {this.timePicker()}
                 <TextButton
                     onPress={this.navigate}
@@ -74,6 +73,6 @@ export default class SitterForm extends React.Component {
     
     navigate () {
         // TODO: add user to DB
-        Actions.Feed();
+        Actions.PersonalityTestIntro();
     }
 }

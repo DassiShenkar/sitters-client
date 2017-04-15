@@ -15,6 +15,8 @@ import SitterSendInvite from './native/containers/SitterSendInvite';
 import Notifications from './native/containers/Notifications';
 import Inbox from './native/containers/Inbox';
 import Search from './native/containers/Search';
+import PersonalityTestIntro from './native/containers/PersonalityTestIntro';
+import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import GoogleMapView from './native/containers/GoogleMapView';
 
@@ -42,6 +44,8 @@ class Sitters extends React.Component {
                             <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView"/>
                             <Scene key="Notifications" component={Notifications} title="Notifications"/>
                             <Scene key="Inbox" component={Inbox} title="Inbox"/>
+                            <Scene key="PersonalityTestIntro" component={PersonalityTestIntro} title="PersonalityTestIntro"/>
+                            <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest"/>
                             <Scene key="Search" component={Search} title="Search"/>
                             <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView"/>
                         </Scene>
