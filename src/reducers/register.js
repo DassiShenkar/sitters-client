@@ -66,6 +66,21 @@ function register(state = {}, action) {
                 ...state,
                 childSpecialNeeds:  action.childSpecialNeeds
             };
+        case 'CHANGE_PARTNER_NAME' :
+            return {
+                ...state,
+                partnerName:  action.partnerName
+            };
+        case 'CHANGE_PARTNER_EMAIL' :
+            return {
+                ...state,
+                partnerEmail:  action.partnerEmail
+            };
+        case 'CHANGE_PARTNER_GENDER' :
+            return {
+                ...state,
+                partnerGender:  action.partnerGender
+            };
         case 'CHANGE_LANGUAGES' :
             return {
                 ...state,
@@ -91,6 +106,11 @@ function register(state = {}, action) {
                 ...state,
                 sitterImmediateAvailability:  action.sitterImmediateAvailability
             };
+        case 'CHANGE_SITTER_MOBILITY' :
+            return {
+                ...state,
+                sitterMobility:  action.sitterMobility
+            };
         case 'CHANGE_SITTER_EXPERTISE' :
             return {
                 ...state,
@@ -112,6 +132,12 @@ function register(state = {}, action) {
                 ...state,
                 sitterExperience:  action.sitterExperience
             };
+        case 'CHANGE_SITTER_EDUCATION' :
+            return {
+                ...state,
+                sitterEducation:  action.sitterEducation
+            };
+
         case 'CHANGE_PERSONALITY_TEST_QUESTION' :
             let questions = state.personalityTestQuestions;
             questions[action.question.id] = action.question;

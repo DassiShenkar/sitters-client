@@ -87,6 +87,27 @@ export function changeChildSpecialNeeds(childSpecialNeeds) {
     }
 }
 
+export function changePartnerName(partnerName) {
+    return {
+        type: 'CHANGE_PARTNER_NAME',
+        partnerName
+    }
+}
+
+export function changePartnerEmail(partnerEmail) {
+    return {
+        type: 'CHANGE_PARTNER_EMAIL',
+        partnerEmail
+    }
+}
+
+export function changePartnerGender(partnerGender) {
+    return {
+        type: 'CHANGE_PARTNER_GENDER',
+        partnerGender
+    }
+}
+
 export function changeLanguages(languages) {
     return {
         type: 'CHANGE_LANGUAGES',
@@ -122,6 +143,13 @@ export function changeSitterImmediateAvailability (sitterImmediateAvailability) 
     }
 }
 
+export function changeSitterMobility(sitterMobility) {
+    return {
+        type: 'CHANGE_SITTER_MOBILITY',
+        sitterMobility
+    }
+}
+
 export function changeSitterExpertise(sitterExpertise) {
     return {
         type: 'CHANGE_SITTER_EXPERTISE',
@@ -147,6 +175,13 @@ export function changeSitterExperience(sitterExperience) {
     return {
         type: 'CHANGE_SITTER_EXPERIENCE',
         sitterExperience
+    }
+}
+
+export function changeSitterEducation(sitterEducation) {
+    return {
+        type: 'CHANGE_SITTER_EDUCATION',
+        sitterEducation
     }
 }
 

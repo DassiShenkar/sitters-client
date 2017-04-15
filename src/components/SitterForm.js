@@ -64,9 +64,11 @@ class Form extends React.Component {
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
             availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
-            expertise: this.props.register.sitterExpertise,
-            hobbies: this.props.register.sitterHobbies,
-            specialNeeds: this.props.register.sitterSpecialNeeds
+            expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
+            hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
+            specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
+            education: this.props.register.sitterEducation? this.props.register.sitterEducation: [],
+            mobility: this.props.register.sitterMobility.toLowerCase() === 'true'
         };
         axios({
             method: 'post',
@@ -122,6 +124,11 @@ class Form extends React.Component {
                             action={this.props.actions.registerActions.changeSitterImmediateAvailability}
                             radioType={'sitterImmediateAvailability'} {...this.props}
                             reducer={'register'}/>
+                <h3>Mobility</h3>
+                <RadioInput types={strings.BOOLEAN}
+                            action={this.props.actions.registerActions.changeSitterMobility}
+                            radioType={'sitterMobility'} {...this.props}
+                            reducer={'register'}/>
                 <h4>Sitter Expertise</h4>
                 <CheckBoxInput name="sitterExpertise"
                                types={strings.EXPERTISE}
@@ -130,16 +137,23 @@ class Form extends React.Component {
                                reducer={'register'}
                 />
                 <h4>Sitter Hobbies</h4>
-                <CheckBoxInput name="childHobbies"
+                <CheckBoxInput name="sitterHobbies"
                                types={strings.HOBBIES}
                                action={this.props.actions.registerActions.changeSitterHobbies}
                                {...this.props}
                                reducer={'register'}
                 />
                 <h4>Sitter Special needs</h4>
-                <CheckBoxInput name="childHobbies"
+                <CheckBoxInput name="sitterHobbies"
                                types={strings.SPECIAL_NEEDS}
                                action={this.props.actions.registerActions.changeSitterSpecialNeeds}
+                               {...this.props}
+                               reducer={'register'}
+                />
+                <h4>Education</h4>
+                <CheckBoxInput name="sitterEducation"
+                               types={strings.EDUCATION}
+                               action={this.props.actions.registerActions.changeSitterEducation}
                                {...this.props}
                                reducer={'register'}
                 />
