@@ -7,6 +7,7 @@ class ReviewItem extends React.Component {
         return (
             <div className="review-item">
                 <Link to={`/review/${index}`}>
+                    <img src={review.authorImage} alt={review.author}/>
                     <strong>{review.author}</strong>
                     <p>{review.content}</p>
                 </Link>

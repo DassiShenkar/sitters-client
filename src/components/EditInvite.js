@@ -30,20 +30,20 @@ class EditInvite extends React.Component {
     render() {
         return (
             <div>
-                <img src="http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg" alt="sitterName"/>
-                <form id="invite">
-                    <ControlLabel>Date</ControlLabel>
-                    <DatePicker action={this.props.actions.inviteActions.updateDate}/>
-                    <ControlLabel>Time</ControlLabel>
-                    <TimeInput/>
-                    <ControlLabel>Location</ControlLabel>
-                    <div style={{width: '20%', height: '400px'}}>
-                        <SimpleMap/>
-                    </div>
-                    <ControlLabel>Notes</ControlLabel>
-                    <FormControl componentClass="textarea" placeholder="textarea" />
-                    <Button title="Send Invite" bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
-                </form>
+                {/*<img src="http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg" alt="sitterName"/>*/}
+                {/*<form id="invite">*/}
+                    {/*<ControlLabel>Date</ControlLabel>*/}
+                    {/*<DatePicker action={this.props.actions.inviteActions.updateDate}/>*/}
+                    {/*<ControlLabel>Time</ControlLabel>*/}
+                    {/*<TimeInput/>*/}
+                    {/*<ControlLabel>Location</ControlLabel>*/}
+                    {/*<div style={{width: '20%', height: '400px'}}>*/}
+                        {/*<SimpleMap/>*/}
+                    {/*</div>*/}
+                    {/*<ControlLabel>Notes</ControlLabel>*/}
+                    {/*<FormControl componentClass="textarea" placeholder="textarea" />*/}
+                    {/*<Button title="Send Invite" bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>*/}
+                {/*</form>*/}
             </div>
         );
     };
