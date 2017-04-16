@@ -70,6 +70,8 @@ class Feed extends React.Component {
 
         }
 
+
+
         return (
             <div id="feed-page">
                 <Nav name={this.props.user.name}
