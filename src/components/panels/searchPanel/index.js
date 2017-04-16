@@ -2,15 +2,18 @@
 import React from 'react'
 
 import {Nav, NavItem, PageHeader} from 'react-bootstrap';
-import Range from './RangeSlider'
-import GoogleMaps from './GoogleMaps';
+import Range from '../../RangeSlider'
+import GoogleMaps from '../../GoogleMaps';
 
 //components
-import Location from '../styles/icons/Location'
-import Clock from '../styles/icons/Clock'
-import Dollar from '../styles/icons/Dollar'
-import DatePicker from './controllers/DatePicker';
-import TimeInput from './controllers/TimeInput';
+import Location from '../../../styles/icons/Location'
+import Clock from '../../../styles/icons/Clock'
+import Dollar from '../../../styles/icons/Dollar'
+import DatePicker from '../../controllers/DatePicker';
+import TimeInput from '../../controllers/TimeInput';
+
+//style
+import './style.css';
 
 class SearchByTab extends React.Component {
 
@@ -25,8 +28,7 @@ class SearchByTab extends React.Component {
         if (this.props.searchBy.searchView !== null) {
             let view = this.props.searchBy.searchView;
             if (view === "location") {
-                navView = <div style={{width: '400px', height: '400px'}}><GoogleMaps sitters={this.props.feed.matches}/>
-                </div>;
+                navView = <div className="google-map" style={{width: '100%', height: '480px'}}><GoogleMaps sitters={this.props.feed.matches}/></div>;
             }
             else if (view === "time") {
                 navView = <div>

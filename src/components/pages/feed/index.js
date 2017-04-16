@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //components
 import Nav from '../../panels/nav/index';
-import SearchByTab from "../../SearchByTab";
+import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../Notifications";
 import Invites from "../../InvitesList";
 import SitterList from "../../sitterList/index";
@@ -24,18 +24,18 @@ class Feed extends React.Component {
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
-                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches' ,
+                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
                             parent.data
                         )
                             .then(function (sitters) {
-                                if(sitters.data.length > 0) {
+                                if (sitters.data.length > 0) {
                                     self.props.actions.feedActions.setMatches(sitters.data);
                                 }
                                 else {
                                     console.log('no matches found');
                                 }
                             })
-                            .catch(function(error) {
+                            .catch(function (error) {
                                 console.log(error);
                             });
                         self.props.actions.actionCreators.setUserData(parent.data);
@@ -53,17 +53,17 @@ class Feed extends React.Component {
     render() {
         let navView = null;
         let showSitters = true;
-        if(this.props.feed.navView !== null){
+        if (this.props.feed.navView !== null) {
             let view = this.props.feed.navView;
-            if(view === "searchBy"){
+            if (view === "searchBy") {
                 showSitters = true;
                 navView = <SearchByTab {...this.props} sitters={this.props.user.sitters}/>;
             }
-            else if(view === "notifications"){
+            else if (view === "notifications") {
                 showSitters = false;
                 navView = <Notifications {...this.props} />
             }
-            else if(view === "invites"){
+            else if (view === "invites") {
                 showSitters = false;
                 navView = <Invites {...this.props} />
             }
@@ -71,20 +71,21 @@ class Feed extends React.Component {
         }
 
 
-
         return (
             <div id="feed-page">
                 <Nav name={this.props.user.name}
-                image={this.props.user.profilePicture}
-                alt={this.props.user.name}
-                invites={this.props.user.invites}
-                notifications={this.props.user.notifications}
-                action={this.props.actions.feedActions.setNavView}
-                {...this.props}/>
+                     image={this.props.user.profilePicture}
+                     alt={this.props.user.name}
+                     invites={this.props.user.invites}
+                     notifications={this.props.user.notifications}
+                     action={this.props.actions.feedActions.setNavView}
+                     {...this.props}/>
                 {navView}
-                {showSitters? <SitterList {...this.props} sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> :""}
-                {showSitters? this.props.feed.filteredMatches.length >  0 ? <SitterActionBar {...this.props}/> : '' : ''}
-                </div>
+                {showSitters ? <SitterList {...this.props}
+                                           sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
+                {showSitters ? this.props.feed.filteredMatches.length > 0 ?
+                        <SitterActionBar {...this.props}/> : '' : ''}
+            </div>
         );
     }
 }
