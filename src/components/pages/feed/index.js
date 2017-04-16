@@ -2,7 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 //components
 import Nav from '../../panels/nav/index';
 import SearchByTab from "../../SearchByTab";
