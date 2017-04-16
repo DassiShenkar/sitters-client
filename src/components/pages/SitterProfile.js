@@ -90,7 +90,7 @@ class SitterProfile extends SitterProfileBase {
                 {education}
                 <h4>Languages</h4>
                 {languages}
-                <ReviewList reviews={this.props.sitterProfile.sitter.review} {...this.props}/>
+                <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
                 <Link to="/editInvite">
                     <Button title="Send Invite" bsStyle="primary" >Send Invite</Button>
                 </Link>
