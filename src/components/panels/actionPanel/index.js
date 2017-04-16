@@ -3,9 +3,11 @@ import React from 'react';
 import Like from '../../../styles/icons/Like';
 import Star from '../../../styles/icons/Star';
 import NextArrow from '../../../styles/icons/NextArrow';
+import {Link} from "react-router";
+import {Button} from "react-bootstrap";
 
 //style
-import './style.css';
+// import './style.css';
 
 class SitterActionBar extends React.Component {
 
@@ -33,7 +35,9 @@ class SitterActionBar extends React.Component {
     render() {
         return (
             <div id="sitterActionBar">
-                <button onClick={this.likeSitter}><Like id="like"/></button>
+                <Link to="/editInvite">
+                    <Button title="Send Invite" bsStyle="primary" ><Like id="like"/></Button>
+                </Link>
                 <button onClick={this.reviewSitter}><Star id="star"/></button>
                 <button onClick={this.nextSitter}><NextArrow id="next"/></button>
             </div>

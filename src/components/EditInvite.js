@@ -45,7 +45,7 @@ class EditInvite extends React.Component {
         }).then(function (res) {
             console.log(res);
             if (res.data) {  // invite created
-                self.props.router.push('/');//TODO: push invite into redux state
+                self.props.router.push('/');//
             }
             else { // invite not created
                 //TODO: think about error when user not created

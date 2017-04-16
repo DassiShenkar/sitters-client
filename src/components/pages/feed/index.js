@@ -53,14 +53,22 @@ class Feed extends React.Component {
 
     render() {
         let navView = null;
+        let showSitters = true;
         if(this.props.feed.navView !== null){
             let view = this.props.feed.navView;
-            if(view === "searchBy")
+            if(view === "searchBy"){
+                showSitters = true;
                 navView = <SearchByTab {...this.props} sitters={this.props.user.sitters}/>;
-            else if(view === "notifications")
+            }
+            else if(view === "notifications"){
+                showSitters = false;
                 navView = <Notifications {...this.props} />
-            else if(view === "invites")
+            }
+            else if(view === "invites"){
+                showSitters = false;
                 navView = <Invites {...this.props} />
+            }
+
         }
 
         return (
@@ -73,8 +81,8 @@ class Feed extends React.Component {
                 action={this.props.actions.feedActions.setNavView}
                 {...this.props}/>
                 {navView}
-                <SitterList {...this.props} sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/>
-                {this.props.feed.filteredMatches.length >  0 ? <SitterActionBar {...this.props}/> : ''}
+                {showSitters? <SitterList {...this.props} sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> :""}
+                {showSitters? this.props.feed.filteredMatches.length >  0 ? <SitterActionBar {...this.props}/> : '' : ''}
                 </div>
         );
     }
