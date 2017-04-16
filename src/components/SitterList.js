@@ -4,7 +4,6 @@ import {Link} from 'react-router';
 import {Image} from 'react-bootstrap/lib';
 
 import SitterListBase from '../base/SitterListBase';
-import SitterActionBar from './SitterActionBar';
 
 class SitterList extends SitterListBase {
 
@@ -24,7 +23,6 @@ class SitterList extends SitterListBase {
                            alt={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''} circle/>
                     <p className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</p>
                 </div>
-                    {this.props.sitters.length > 0 ? <SitterActionBar {...this.props}/> : ''}
             </Link>
         )
     }

@@ -9,6 +9,7 @@ import SearchByTab from "../../SearchByTab";
 import Notifications from "../../Notifications";
 import Invites from "../../InvitesList";
 import SitterList from "../../SitterList";
+import SitterActionBar from "../../SitterActionBar";
 
 //style
 import './style.css';
@@ -73,6 +74,7 @@ class Feed extends React.Component {
                 {...this.props}/>
                 {navView}
                 <SitterList {...this.props} sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/>
+                {this.props.feed.filteredMatches.length >  0 ? <SitterActionBar {...this.props}/> : ''}
                 </div>
         );
     }
