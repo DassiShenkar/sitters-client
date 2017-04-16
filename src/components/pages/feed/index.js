@@ -8,7 +8,7 @@ import Nav from '../../panels/nav/index';
 import SearchByTab from "../../SearchByTab";
 import Notifications from "../../Notifications";
 import Invites from "../../InvitesList";
-import SitterList from "../../SitterList";
+import SitterList from "../../sitterList/index";
 import SitterActionBar from "../../panels/actionPanel/index";
 
 //style
