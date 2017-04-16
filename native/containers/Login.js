@@ -9,6 +9,10 @@ export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
+        this.pick = this.pick.bind(this);
+        this.state = {
+            userType: "I'm A Parent"
+        }
     }
 
     render () {
@@ -19,22 +23,23 @@ export default class Login extends React.Component {
                 />
                  <Text>A Booking Platform for Parents and Sitters</Text>
                 <Picker
-                    selectedValue={"I\'m A Parent"}
-                    onValueChange={(pick) => {}}>
+                    selectedValue={ this.state.userType }
+                    onValueChange={ this.pick }>
                     <Picker.Item label="I'm A Parent" value="I'm A Parent" />
                     <Picker.Item label="I'm A Sitter" value="I'm A Sitter" />
                 </Picker>
                 <FaceBookLogin
+                    userType = { this.state.userType }
                     { ...this.props }
                 />
             </View>
         );
-  }
-}
+    }
 
-// <RadioButtons
-//     values={[
-//                       { label: 'I\'m A Parent', value: 0 },
-//                       { label: 'I\'m A Sitter', value: 1 }
-//                     ]}
-// />
+    pick (pick) {
+        var newState = {};
+        alert(pick.value);
+        newState.userType = pick.value;
+        this.setState(newState)
+    }
+}
