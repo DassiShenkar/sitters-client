@@ -31,20 +31,23 @@ class SearchByTab extends React.Component {
                 navView = <div className="google-map" style={{width: '100%', height: '480px'}}><GoogleMaps sitters={this.props.feed.matches}/></div>;
             }
             else if (view === "time") {
-                navView = <div>
-                    <p>Search by Time</p>
+                navView = <form id="time-search">
+                    <label>Date
                     <DatePicker defaultValue={this.props.searchBy.isoValue} {...this.props}
                                 action={this.props.actions.searchByActions.changeInviteDate}
                                 changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
-                    <p>From</p>
+                    </label>
+                    <label>Start Time
                     <TimeInput defaultValue={this.props.searchBy.fromTime} {...this.props}
                                action={this.props.actions.searchByActions.changeInviteFromTime}
                                changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
-                    <p>To</p>
+                    </label>
+                    <label>End Time
                     <TimeInput defaultValue={this.props.searchBy.toTime} {...this.props}
                                action={this.props.actions.searchByActions.changeInviteToTime}
                                changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
-                </div>;
+                    </label>
+                </form>;
             }
             else if (view === "rate") {
                 navView = <div>
