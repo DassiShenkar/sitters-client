@@ -1,0 +1,16 @@
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- package.json	(revision b7d5f3231bcef1b6f5cbd4d2491ccb63c6b8a432)
++++ package.json	(revision )
+@@ -55,7 +55,7 @@
+     "react-rating": "^0.6.5",
+     "react-redux": "latest",
+     "react-router": "^3.0.2",
+-    "react-router-redux": "latest",
++    "react-router-redux": "^4.0.8",
+     "react-select": "^1.0.0-rc.3",
+     "react-tab-panel": "^2.2.7",
+     "react-time-input": "0.0.14",

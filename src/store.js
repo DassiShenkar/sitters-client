@@ -35,6 +35,13 @@ const defaultState = {
         toTime: moment(),
         isoValue: new Date().toISOString()
     },
+    invite: {
+        inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),
+        inviteDay: dateFormat(new Date(), "dddd"),
+        fromTime: moment(),
+        toTime: moment(),
+        isoValue: new Date().toISOString()
+    },
     range: {
         priceMinRange:0,
         priceMaxRange:50
@@ -43,8 +50,12 @@ const defaultState = {
         workingHours:{},
         hobbies: [],
         languages: [],
-        education: []
-    }},
+        education: [],
+        address: {},
+        reviews: []
+    },
+        distance: ""
+    },
 
 };
 

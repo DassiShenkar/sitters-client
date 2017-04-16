@@ -13,12 +13,20 @@ export default class SimpleMap extends Component {
     };
 
     render() {
-        const markers = this.props.sitters.map((sitter) => {
-            return (
 
-                <Location key={this.props.sitters.indexOf(sitter)} lat={sitter.address.latitude} lng={sitter.address.longitude} text={sitter.address.name} sitter={sitter}/>
-            )
-        });
+        let markers;
+        if(this.props.oneMarker === true){
+            markers = <Location key={this.props.sitter} lat={this.props.sitter.address.latitude} lng={this.props.sitter.address.longitude} text={this.props.sitter.address.name} sitter={this.props.sitter}/>
+
+        }
+        else{
+           markers = this.props.sitters.map((sitter) => {
+               return (
+                   <Location key={this.props.sitters.indexOf(sitter)} lat={sitter.address.latitude} lng={sitter.address.longitude} text={sitter.address.name} sitter={sitter}/>
+               )
+           });
+        }
+
         return (
             <GoogleMap
                 apiKey='AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0'

@@ -21,6 +21,7 @@
     "dateformat": "^2.0.0",
     "deasync": "^0.1.9",
     "geocoder": "^0.2.3",
+    "geodist": "^0.2.1",
     "google-map-react": "^0.23.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",

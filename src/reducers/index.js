@@ -7,8 +7,9 @@ import feed from './feed';
 import settings from './settings';
 import searchBy from './searchBy';
 import range from './range';
+import invite from './invite';
 import sitterProfile from './sitterProfile';
 
-const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, routing: routerReducer});
+const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, routing: routerReducer});
 
 export default rootReducer;
