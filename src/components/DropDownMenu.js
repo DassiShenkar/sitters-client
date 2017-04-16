@@ -17,7 +17,7 @@ class DropdownMenu extends React.Component {
 
     render() {
         return (
-            <NavDropdown>
+            <NavDropdown id="actions-dropdown" title="Actions">
                 <MenuItem><Link to="/editProfile"><Person/>Edit Profile</Link></MenuItem>
                 <MenuItem><Link to="/settings"><Settings/>Settings</Link></MenuItem>
                 <MenuItem><Link to="/about"><Information/>About</Link></MenuItem>
