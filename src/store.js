@@ -51,7 +51,8 @@ const defaultState = {
         hobbies: [],
         languages: [],
         education: [],
-        address: {}
+        address: {},
+        review: []
     },
         distance: ""
     },

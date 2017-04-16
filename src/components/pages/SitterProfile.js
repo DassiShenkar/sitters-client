@@ -8,6 +8,7 @@ import Nav from "../nav/index";
 // import geodist from 'geodist';
 import axios from 'axios';
 import {Link} from "react-router";
+import {Button} from "react-bootstrap";
 class SitterProfile extends SitterProfileBase {
     constructor(props) {
         super(props);
@@ -16,7 +17,7 @@ class SitterProfile extends SitterProfileBase {
     componentWillMount(){
         let sitterID = location.href.split('sitter/')[1];
         let self = this;
-        axios.post('http://localhost:4444/sitter/get', {//TODO: change to server
+        axios.post('https://sitters-server.herokuapp.com/sitter/get', {
             _id: sitterID
         })
             .then(function (sitter) {
@@ -53,11 +54,11 @@ class SitterProfile extends SitterProfileBase {
                      notifications={this.props.user.notifications}
                      action={this.props.actions.feedActions.setNavView}
                      {...this.props}/>
-                <Link to="/editInvite">
+                <section>
                     <img src={this.props.sitterProfile.sitter.profilePicture}
                          alt={this.props.sitterProfile.sitter.name}/>
                     <p>{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</p>
-                </Link>
+                </section>
                 <table>
                     <tbody>
                     <tr>
@@ -90,6 +91,9 @@ class SitterProfile extends SitterProfileBase {
                 <h4>Languages</h4>
                 {languages}
                 <ReviewList reviews={this.props.sitterProfile.sitter.review} {...this.props}/>
+                <Link to="/editInvite">
+                    <Button title="Send Invite" bsStyle="primary" >Send Invite</Button>
+                </Link>
             </div>
         )
     }
