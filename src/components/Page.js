@@ -1,6 +1,6 @@
 import React from "react";
 
-import Nav from './nav/index';
+import Nav from './panels/nav/index';
 
 
 class Page extends React.Component {
