@@ -1,0 +1,15 @@
+#main-nav .navbar-brand {
+  float: right;
+  cursor: pointer; }
+
+#main-nav img {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  cursor: pointer; }
+
+#main-nav .navbar-nav {
+  float: right; }
+
+#main-nav .dropdown-menu svg {
+  margin-right: 8px; }
