@@ -7,7 +7,7 @@ import {Link} from "react-router";
 import {Button} from "react-bootstrap";
 
 //style
-// import './style.css';
+import './style.css';
 
 class SitterActionBar extends React.Component {
 
@@ -35,9 +35,7 @@ class SitterActionBar extends React.Component {
     render() {
         return (
             <div id="sitterActionBar">
-                <Link to="/editInvite">
-                    <Button title="Send Invite" bsStyle="primary" ><Like id="like"/></Button>
-                </Link>
+                <button title="Send Invite"><Like id="like"/></button>
                 <button onClick={this.reviewSitter}><Star id="star"/></button>
                 <button onClick={this.nextSitter}><NextArrow id="next"/></button>
             </div>
