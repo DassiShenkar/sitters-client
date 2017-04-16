@@ -11,7 +11,6 @@ import './style.css';
 
 class SitterList extends SitterListBase {
 
-
     render() {
         let sitterIndex = this.props.feed.sitterIndex;
         const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : '';
