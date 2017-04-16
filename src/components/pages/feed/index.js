@@ -4,11 +4,15 @@ import axios from 'axios';
 
 
 //components
-import Nav from '../nav/index';
-import SearchByTab from "../SearchByTab";
-import Notifications from "../Notifications";
-import Invites from "../InvitesList";
-import SitterList from "../SitterList";
+import Nav from '../../nav/index';
+import SearchByTab from "../../SearchByTab";
+import Notifications from "../../Notifications";
+import Invites from "../../InvitesList";
+import SitterList from "../../SitterList";
+
+//style
+import './style.css';
+
 class Feed extends React.Component {
 
     componentWillMount() {
@@ -59,7 +63,7 @@ class Feed extends React.Component {
         }
 
         return (
-            <div id="feed">
+            <div id="feed-page">
                 <Nav name={this.props.user.name}
                 image={this.props.user.profilePicture}
                 alt={this.props.user.name}
