@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 
 import {Image} from 'react-bootstrap/lib';
 
-
 import SitterListBase from '../../base/SitterListBase';
 
 //style
