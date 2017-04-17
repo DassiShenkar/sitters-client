@@ -59,7 +59,7 @@
     "react-rating": "^0.6.5",
     "react-redux": "latest",
     "react-router": "^3.0.2",
-    "react-router-redux": "latest",
+    "react-router-redux": "^4.0.8",
     "react-select": "^1.0.0-rc.3",
     "react-tab-panel": "^2.2.7",
     "react-time-input": "0.0.14",
