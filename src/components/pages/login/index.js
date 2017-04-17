@@ -2,7 +2,6 @@
 import React from 'react';
 import axios from 'axios';
 import FacebookLogin from 'react-facebook-login';
-import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import Form from 'react-bootstrap/lib/Form';
 

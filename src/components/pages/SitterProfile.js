@@ -10,10 +10,6 @@ import axios from "axios";
 import {Link} from "react-router";
 import {Button} from "react-bootstrap";
 class SitterProfile extends SitterProfileBase {
-    constructor(props) {
-        super(props);
-        // this.handleSubmit = this.handleSubmit.bind(this);
-    }
     componentWillMount(){
         let sitterID = location.href.split('sitter/')[1];
         let self = this;
