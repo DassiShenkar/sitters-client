@@ -16,7 +16,6 @@ export default class ParentForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.navigate = this.navigate.bind(this);
     }
 
     render () {
@@ -26,10 +25,27 @@ export default class ParentForm extends React.Component {
                     { ...this.props }/>
                 <Text>Languages</Text>
                 {this.checkBox(langArray)}
-                <Text>Child</Text>
-                <TextInput type="TextInput" name="maxPrice" placeholder="maxPrice" />
-                <TextInput type="TextInput" name="childName" placeholder="childName" />
-                <TextInput type="TextInput" name="childAge" placeholder="childAge" />
+                <Text>Max price</Text>
+                <TextInput
+                    type="TextInput"
+                    name="maxPrice"
+                    value={ this.props.user.watchMaxPrice ? this.props.user.watchMaxPrice : 0 }
+                    onFocus={(text) => this.props.actions.registerActions.changeChildMaxPriceForWatch(' ')}
+                    onChangeText={(text) => this.props.actions.registerActions.changeChildMaxPriceForWatch(text)} />
+                <Text>Child name</Text>
+                <TextInput
+                    type="TextInput"
+                    name="childName"
+                    value={ this.props.user.childName ? this.props.user.childName : 0 }
+                    onFocus={(text) => this.props.actions.registerActions.changeChildName(' ')}
+                    onChangeText={(text) => this.props.actions.registerActions.changeChildName(text)} />
+                <Text>Child age</Text>
+                <TextInput
+                    type="TextInput"
+                    name="childAge"
+                    value={ this.props.user.childAge ? this.props.user.childAge : 0 }
+                    onFocus={(text) => this.props.actions.registerActions.changeChildAge(' ')}
+                    onChangeText={(text) => this.props.actions.registerActions.changeChildAge(text)} />
                 <Text>Child Expertise</Text>
                 {this.checkBox(expertiseArray)}
                 <Text>Child Hobbies</Text>
@@ -37,7 +53,7 @@ export default class ParentForm extends React.Component {
                 <Text>Child Special needs</Text>
                 {this.checkBox(needsArray)}
                 <TextButton
-                    onPress={this.navigate}
+                    onPress={ this.props.callback }
                     text="Submit" />
             </Form>
         );
@@ -47,15 +63,10 @@ export default class ParentForm extends React.Component {
         return array.map(function(lang) {
            return  <CheckBox
                style={{flex: 1, padding: 10}}
-               onClick={()=>{ alert(lang) } }
+               onClick={()=>{ } }
                isChecked={false}
                leftText={lang}
            />;
         });
-    }
-
-    navigate () {
-        // TODO: add user to DB
-        Actions.Feed();
     }
 }
