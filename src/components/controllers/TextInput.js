@@ -14,12 +14,6 @@ class TextInput extends TextInputBase {
                        {/*ref="textInput"*/}
                        {/*onChange={this.handleChange}*/}
                        {/*value={value}/>*/}
-                {/*<FieldGroup*/}
-                    {/*id="formControlsText"*/}
-                    {/*type="text"*/}
-                    {/*label="Text"*/}
-                    {/*placeholder="Enter text"*/}
-                {/*/>*/}
                 <FormControl type={this.props.type !== '' ? this.props.type : 'text'}
                              placeholder={this.props.placeholder}
                              onChange={this.handleChange}
