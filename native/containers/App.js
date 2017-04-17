@@ -12,16 +12,38 @@ import * as FeedActions from '../../src/actions/FeedActions';
 import * as SettingsActions from '../../src/actions/SettingsActions';
 import * as SearchByActions from '../../src/actions/SearchByActions';
 import * as RangeActions from '../../src/actions/RangeActions';
+import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
+import * as InviteActions from '../../src/actions/InviteActions';
+
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render () {
+        const { states, actions } = this.props;
+        return (
+            <Splash
+                {...states}
+                {...actions}/>
+        );
+    }
+}
 
 function mapStateToProps(state) {
     return {
-        reviews: state.reviews,
-        user: state.user,
-        feed: state.feed,
-        settings: state.settings,
-        register: state.register,
-        searchBy: state.searchBy,
-        range: state.range
+        states: {
+            reviews: state.reviews,
+            user: state.user,
+            feed: state.feed,
+            settings: state.settings,
+            register: state.register,
+            searchBy: state.searchBy,
+            range: state.range,
+            sitterProfile: state.sitterProfile,
+            invite: state.invite
+        }
     }
 }
 
@@ -38,10 +60,11 @@ function mapDispatchToProps(dispatch) {
             settingsActions: bindActionCreators(SettingsActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
-            rangeActions: bindActionCreators(RangeActions, dispatch)
+            rangeActions: bindActionCreators(RangeActions, dispatch),
+            sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
+            inviteActions: bindActionCreators(InviteActions, dispatch)
         }
     };
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Splash);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

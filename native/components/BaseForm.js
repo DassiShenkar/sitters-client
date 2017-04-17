@@ -9,21 +9,22 @@ export default class BaseForm extends React.Component {
     }
 
     render () {
+        alert(this.props.user.picture);
         return (
             <View>
                 <Text>User</Text>
                 <TextInput 
                     type="TextInput" 
-                    name="name"  
-                    placeholder="Name" />
+                    name="name"
+                    value={ this.props.user.name }/>
                 <TextInput 
                     type="TextInput" 
-                    name="email" 
-                    placeholder="email" />
+                    name="email"
+                    value={ this.props.user.email }/>
                 <TextInput 
                     type="TextInput" 
-                    name="age" 
-                    placeholder="age" />
+                    name="age"
+                    value={ this.props.user.birthday }/> 
                 <Text>Address</Text>
                 <TextInput 
                     type="TextInput" 
@@ -39,13 +40,15 @@ export default class BaseForm extends React.Component {
                     placeholder="houseNumber" />
                 <Text>Gender</Text>
                 <Picker
-                    selectedValue={"Male"}
+                    selectedValue={ this.props.user.gender }
                     onValueChange={(pick) => {}}>
                     <Picker.Item label="Male" value="male" />
                     <Picker.Item label="Female" value="female" />
                 </Picker>
                 <Text>Profile picture</Text>
-                <Image />
+                <Image 
+                    source={{url:this.props.user.picture}}
+                    style={{width: 50, height: 50}} />
             </View>
         );
     }

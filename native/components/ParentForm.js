@@ -22,7 +22,8 @@ export default class ParentForm extends React.Component {
     render () {
         return (
             <Form ref="parentForm">
-                <BaseForm />
+                <BaseForm
+                    { ...this.props }/>
                 <Text>Languages</Text>
                 {this.checkBox(langArray)}
                 <Text>Child</Text>

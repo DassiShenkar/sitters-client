@@ -2,8 +2,9 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import LocalStorage from '../utils/LoaclStorage'
 import axios from 'axios';
+
+import LocalStorage from '../utils/LoaclStorage'
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -21,13 +22,13 @@ export default class FaceBookLogin extends React.Component {
     }
     
     render () {
+        const self = this;
         return (
             <LoginButton
                 readPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
                 // publishPermissions={["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]}
                 onLoginFinished={
                         (error, result) => {
-                            const self = this;
                             if (error) {
                                 alert("Login failed with error: " + result.error);
                             } else if (result.isCancelled) {
@@ -38,6 +39,8 @@ export default class FaceBookLogin extends React.Component {
                                         LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
                                         const responseInfoCallback = (error, result) => {
                                             if (error) {
+                                                alert(error);
+                                            } else {
                                                 self.handleResponse(result);
                                             }
                                         };
@@ -58,7 +61,7 @@ export default class FaceBookLogin extends React.Component {
                                 );
                             }
                         }
-                    }
+                }
                 onLogoutFinished={() => alert("User logged out")}/>
         );
     }
@@ -68,11 +71,11 @@ export default class FaceBookLogin extends React.Component {
         axios.post('https://sitters-server.herokuapp.com/parent/get', { id: response.id })
             .then(function (res) {
                 if (res.data) {  // user exists
-                    self.props.actions.actionCreators.setUserData(res.data);
+                    self.props.actionCreators.setUserData(res.data);
                     Actions.Feed();
                 }
                 else { // user not exist
-                    self.props.actions.actionCreators.createUser(response);
+                    self.props.actionCreators.createUser(response);
                     Actions.Register();
                 }
             })

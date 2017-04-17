@@ -26,7 +26,8 @@ export default class SitterForm extends React.Component {
     render () {
         return (
             <Form ref="sitterForm">
-                <BaseForm />
+                <BaseForm 
+                    { ...this.props }/>
                 <TextInput type="TextInput" name="experience"  placeholder="Years of experience"/>
                 <TextInput type="TextInput" name="MinimumAge"  placeholder="Minimum age to save children"/>
                 <TextInput type="TextInput" name="hourFee"  placeholder="Hour Fee"/>
