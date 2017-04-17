@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ParentForm from '../ParentForm';
+import ParentForm from '../panels/forms/ParentForm';
 import SitterForm from '../SitterForm';
 
 class Register extends React.Component {

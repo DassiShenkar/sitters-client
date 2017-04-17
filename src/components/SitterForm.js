@@ -11,6 +11,8 @@ import {AgeFromDate} from 'age-calculator';
 import strings from '../static/strings';
 import axios from 'axios';
 import geocoder from'geocoder';
+import {Button} from "react-bootstrap";
+
 class Form extends React.Component {
     constructor(props) {
         super(props);
@@ -119,12 +121,12 @@ class Form extends React.Component {
                            {...this.props}
                            reducer={'register'}/>
 
-                <h3>Immediate availability</h3>
+                <h4>Immediate availability</h4>
                 <RadioInput types={strings.BOOLEAN}
                             action={this.props.actions.registerActions.changeSitterImmediateAvailability}
                             radioType={'sitterImmediateAvailability'} {...this.props}
                             reducer={'register'}/>
-                <h3>Mobility</h3>
+                <h4>Mobility</h4>
                 <RadioInput types={strings.BOOLEAN}
                             action={this.props.actions.registerActions.changeSitterMobility}
                             radioType={'sitterMobility'} {...this.props}
@@ -161,7 +163,9 @@ class Form extends React.Component {
                 <PersonalityTest questions={BaseData.getQuestions()} {...this.props}/>
                 <h4>Working Hours</h4>
                 <WorkingHours days={strings.WEEK_DAYS} />
-                <input type="submit" className="submit-invite" value="Sign Up"/>
+                <div className="submit">
+                    <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
+                </div>
             </form>
         );
     };
