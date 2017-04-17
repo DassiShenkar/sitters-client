@@ -71,7 +71,7 @@ class BaseForm extends React.Component {
                            action={this.props.actions.registerActions.changeHouseNumber}
                            inputType={'houseNumber'} {...this.props}
                            reducer={'register'}/>
-                <h3>Gender</h3>
+                <h4>Gender</h4>
                 <RadioInput types={strings.GENDER}
                             defaultValue={this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female'}
                             action={this.props.actions.registerActions.changeGender}

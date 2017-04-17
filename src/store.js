@@ -33,7 +33,8 @@ const defaultState = {
         inviteDay: dateFormat(new Date(), "dddd"),
         fromTime: moment(),
         toTime: moment(),
-        isoValue: new Date().toISOString()
+        isoValue: new Date().toISOString(),
+        searchView: 'location'
     },
     invite: {
         inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),

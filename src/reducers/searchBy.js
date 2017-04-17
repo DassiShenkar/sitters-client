@@ -22,6 +22,11 @@ function searchBy(state = {}, action) {
                 inviteDay: action.inviteDay,
                 isoValue: action.isoValue
             };
+        case 'SET_VIEW' :
+            return {
+                ...state,
+                searchView: action.searchView,
+            };
         default:
             return state;
     }

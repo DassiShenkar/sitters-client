@@ -1,13 +1,16 @@
 import React from 'react';
-import TextInput from './controllers/TextInput';
-import CheckBoxInput from './controllers/CheckBoxInput';
-import BaseForm from './BaseForm';
+import TextInput from '../../controllers/TextInput';
+import CheckBoxInput from '../../controllers/CheckBoxInput';
+import BaseForm from '../../BaseForm';
 import geocoder from 'geocoder'
 import axios from 'axios';
-import strings from '../static/strings';
+import strings from '../../../static/strings';
 import {AgeFromDate} from 'age-calculator';
-import RadioInput from "./controllers/radio/index";
+import RadioInput from "../../controllers/radio/index";
+import {Button, ControlLabel} from "react-bootstrap";
 
+//style
+import './style.css';
 
 class Form extends React.Component {
     constructor(props) {
@@ -148,13 +151,15 @@ class Form extends React.Component {
                            action={this.props.actions.registerActions.changePartnerEmail}
                            {...this.props}
                            reducer={'register'}/>
-                <h4>Partner Gender</h4>
-                    <RadioInput types={strings.GENDER}
+                <ControlLabel>Partner Gender</ControlLabel>
+                <RadioInput types={strings.GENDER}
                             defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
                             action={this.props.actions.registerActions.changePartnerGender}
                             radioType={'partnerGender'} {...this.props}
                             reducer={'register'}/>
-                <input type="submit" className="submit-invite" value="Sign Up"/>
+                <div className="submit">
+                    <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
+                </div>
             </form>
         );
     };

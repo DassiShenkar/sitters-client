@@ -16,7 +16,6 @@ class EditInvite extends React.Component {
 
     sendInvite(e) {   //TODO: send to server with axios and move to feed
         e.preventDefault();
-
         let invite = {
             _id:        "abcd",
             address:    {
@@ -45,7 +44,7 @@ class EditInvite extends React.Component {
         }).then(function (res) {
             console.log(res);
             if (res.data) {  // invite created
-                self.props.router.push('/');//TODO: push invite into redux state
+                self.props.router.push('/');//
             }
             else { // invite not created
                 //TODO: think about error when user not created
@@ -63,7 +62,7 @@ handleChange(event){
 render() {
     return (
         <div>
-            <img src="http://i.dailymail.co.uk/i/pix/2016/01/12/15/30169FCF00000578-3395841-image-a-4_1452613242890.jpg" alt="sitterName"/>
+            <img src={this.props.sitterProfile.sitter.profilePicture} alt={this.props.sitterProfile.sitter.name}/>
             <form id="invite">
                 <ControlLabel>Date</ControlLabel>
                 <DatePicker defaultValue={this.props.invite.isoValue} {...this.props} action={this.props.actions.inviteActions.changeInviteDate} />

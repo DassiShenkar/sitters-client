@@ -12,6 +12,13 @@ export function changeInviteToTime(toTime) {
     }
 }
 
+export function setView(searchView) {
+    return {
+        type: 'SET_VIEW',
+        searchView
+    }
+}
+
 export function changeInviteDate(inviteDate,inviteDay,isoValue) {
     return {
         type: 'CHANGE_INVITE_DATE',

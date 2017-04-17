@@ -1,0 +1,30 @@
+#sitterActionBar {
+  width: 180px;
+  margin: 24px auto;
+
+  button {
+    border: none;
+    background: #fff;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  svg {
+    height: 48px;
+    width: 48px;
+  }
+
+  #like path {
+    fill: #88d685;
+  }
+
+  #next path {
+    fill: #7ad0f8;
+  }
+
+  #star path {
+    fill: #e57373;
+  }
+}

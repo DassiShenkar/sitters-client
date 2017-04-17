@@ -1,19 +1,15 @@
-import React from 'react';
-import SitterProfileBase from '../../base/SitterProfileBase'
-import ReviewList from '../ReviewList';
+import React from "react";
+import SitterProfileBase from "../../base/SitterProfileBase";
+import ReviewList from "../ReviewList";
 import Nav from "../panels/nav/index";
 // import * as ReviewActions from '../actions/ReviewActions';
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
-// import geodist from 'geodist';
-import axios from 'axios';
+import geodist from "geodist";
+import axios from "axios";
 import {Link} from "react-router";
 import {Button} from "react-bootstrap";
 class SitterProfile extends SitterProfileBase {
-    constructor(props) {
-        super(props);
-        // this.handleSubmit = this.handleSubmit.bind(this);
-    }
     componentWillMount(){
         let sitterID = location.href.split('sitter/')[1];
         let self = this;
@@ -22,10 +18,14 @@ class SitterProfile extends SitterProfileBase {
         })
             .then(function (sitter) {
                 self.props.actions.sitterProfileActions.setSitter(sitter.data);
+                let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
+                let sitterCoord =  {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};;
+                self.props.actions.sitterProfileActions.setDistance( geodist( parentCoord,sitterCoord, { unit: 'meters'}));
             })
             .catch(function (error) {
                 console.log(error);//TODO: in case of sitter wasn't found
             });
+
     }
     render() {
         let self = this;
@@ -41,10 +41,6 @@ class SitterProfile extends SitterProfileBase {
         const hobbies = this.props.sitterProfile.sitter.hobbies.map((hobbie) =>{return(hobbie + ", ")});
         const education = this.props.sitterProfile.sitter.education.map((edu) =>{return(edu + ", ")});
         const languages = this.props.sitterProfile.sitter.languages.map((languages) =>{return(languages + ", ")});
-        // let parentCoord = {lat: this.props.user.address.latitude, lon: this.props.user.address.longitude};
-        // let sitterCoord =  {lat: this.props.sitterProfile.sitter.address.latitude, lon: this.props.sitterProfile.sitter.address.longitude};;
-        // if(typeof sitterCoord.lat !== "undefined") // TODO: working but giving a lot of warnings in console
-        //     this.props.actions.sitterProfileActions.setDistance( geodist( parentCoord,sitterCoord, { unit: 'meters'}));
         return (
             <div>
                 <Nav name={this.props.user.name}
@@ -84,11 +80,11 @@ class SitterProfile extends SitterProfileBase {
                     {workingHours}
                     </tbody>
                 </table>
-                <h4>Hobbies</h4>
+                {hobbies.length>0? <h4>Hobbies</h4>: ""}
                 {hobbies}
-                <h4>Education</h4>
+                {education.length> 0? <h4>Education</h4>: ""}
                 {education}
-                <h4>Languages</h4>
+                {languages.length> 0? <h4>Languages</h4>: ""}
                 {languages}
                 <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
                 <Link to="/editInvite">
