@@ -21,7 +21,8 @@ const defaultState = {
     feed: {
         matches: [],
         filteredMatches: [],
-        sitterIndex: 0
+        sitterIndex: 0,
+        show: false
     },
     register : {personalityTestQuestions : []},
     settings: {

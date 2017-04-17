@@ -25,3 +25,10 @@ export function setSitterIndex(sitterIndex) {
         sitterIndex
     }
 }
+
+export function showInvitePopup(show) {
+    return {
+        type: 'SHOW_INVITE_POPUP',
+        show
+    }
+}

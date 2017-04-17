@@ -2,14 +2,12 @@ import React from "react";
 import SitterProfileBase from "../../base/SitterProfileBase";
 import ReviewList from "../ReviewList";
 import Nav from "../panels/nav/index";
-// import * as ReviewActions from '../actions/ReviewActions';
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
 import geodist from "geodist";
 import axios from "axios";
-import {Link} from "react-router";
 import {Button} from "react-bootstrap";
+import Invite from "../panels/invite/Invite";
 class SitterProfile extends SitterProfileBase {
+
     componentWillMount(){
         let sitterID = location.href.split('sitter/')[1];
         let self = this;
@@ -25,8 +23,16 @@ class SitterProfile extends SitterProfileBase {
             .catch(function (error) {
                 console.log(error);//TODO: in case of sitter wasn't found
             });
-
     }
+
+    inviteSitter(e) {
+        e.preventDefault();
+        let sitter;
+        sitter = this.props.feed.filteredMatches[this.props.feed.sitterIndex];
+        this.props.actions.sitterProfileActions.setSitter(sitter);
+        this.props.actions.feedActions.showInvitePopup(true);
+    }
+
     render() {
         let self = this;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function(key, index) {
@@ -87,9 +93,8 @@ class SitterProfile extends SitterProfileBase {
                 {languages.length> 0? <h4>Languages</h4>: ""}
                 {languages}
                 <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
-                <Link to="/editInvite">
-                    <Button title="Send Invite" bsStyle="primary" >Send Invite</Button>
-                </Link>
+                <Button onClick={this.inviteSitter.bind(this)} title="Send Invite" bsStyle="primary" >Send Invite</Button>
+                <Invite {...this.props}/>
             </div>
         )
     }

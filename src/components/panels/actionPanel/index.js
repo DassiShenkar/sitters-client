@@ -3,12 +3,13 @@ import React from 'react';
 import Like from '../../../styles/icons/Like';
 import Star from '../../../styles/icons/Star';
 import NextArrow from '../../../styles/icons/NextArrow';
-import {history} from '../../../store';
 
 //style
 import './style.css';
+import EditInvite from "../invite/oldInvite";
+import Invite from "../invite/Invite";
 
-class SitterActionBar extends React.Component {
+class SitterActionBar extends EditInvite {
 
     constructor(props) {
         super(props);
@@ -22,24 +23,16 @@ class SitterActionBar extends React.Component {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex +1;
         this.props.actions.feedActions.setSitterIndex(index);
     }
+    handleChange(event){
+        this.props.actions.inviteActions.setNotes(event.target.value);
+    }
 
     inviteSitter(e) {
         e.preventDefault();
-       let sitter;
-       sitter = this.props.feed.filteredMatches[this.props.feed.sitterIndex];
+        let sitter;
+        sitter = this.props.feed.filteredMatches[this.props.feed.sitterIndex];
         this.props.actions.sitterProfileActions.setSitter(sitter);
-        history.push('/editInvite');
-        //let self = this;
-        // axios.post('https://sitters-server.herokuapp.com/sitter/get', {
-        //     _id: this.props.feed.filteredMatches[this.props.feed.sitterIndex]._id
-        // })
-        //     .then(function (sitter) {
-        //         self.props.actions.sitterProfileActions.setSitter(sitter.data);
-        //         history.push('/editInvite');
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);//TODO: in case of sitter wasn't found
-        //     });
+        this.props.actions.feedActions.showInvitePopup(true);
     }
 
     reviewSitter(e) {
@@ -48,10 +41,13 @@ class SitterActionBar extends React.Component {
 
     render() {
         return (
-            <div id="sitterActionBar">
-                <button onClick={this.inviteSitter}><Like id="like"/></button>
-                <button onClick={this.reviewSitter}><Star id="star"/></button>
-                <button onClick={this.nextSitter}><NextArrow id="next"/></button>
+            <div>
+                <div id="sitterActionBar">
+                    <button onClick={this.inviteSitter}><Like id="like"/></button>
+                    <button onClick={this.reviewSitter}><Star id="star"/></button>
+                    <button onClick={this.nextSitter}><NextArrow id="next"/></button>
+                </div>
+                <Invite {...this.props}/>
             </div>
         )
     }
