@@ -21,6 +21,12 @@ function feed(state = {}, action) {
                 ...state,
                 sitterIndex: action.sitterIndex
             };
+        case 'SHOW_INVITE_POPUP' :
+            return {
+                ...state,
+                show: action.show
+            };
+
         default:
             return state;
     }

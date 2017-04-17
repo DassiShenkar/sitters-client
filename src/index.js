@@ -17,7 +17,7 @@ import Notifications from "./components/Notifications";
 import SitterProfile from "./components/pages/SitterProfile";
 import ReviewList from "./components/ReviewList";
 import SingleReview from "./components/SingleReview";
-import EditInvite from "./components/EditInvite";
+import EditInvite from "./components/panels/invite/EditInvite";
 import SingleInvite from "./components/SingleInvite";
 import EditProfile from "./components/pages/EditProfile";
 import Settings from "./components/pages/Settings";
