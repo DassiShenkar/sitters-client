@@ -16,7 +16,7 @@
   margin: 0 auto;
   border-radius: 50%; }
 
-h4 {
+h4.sitter-name {
   text-align: center; }
 
 .modal-body .rc-time-picker {

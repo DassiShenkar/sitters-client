@@ -82,7 +82,7 @@ class Invite extends React.Component {
                     <Modal.Body>
                         <div>
                             <Image className="sitter-image" src={this.props.sitterProfile.sitter.profilePicture} alt={this.props.sitterProfile.sitter.name} circle={true}/>
-                            <h4>{this.props.sitterProfile.sitter.name}</h4>
+                            <h4 className="sitter-name">{this.props.sitterProfile.sitter.name}</h4>
                             <form id="invite">
                                 <ControlLabel>Date</ControlLabel>
                                 <DatePicker className="date-picker" defaultValue={this.props.invite.isoValue} {...this.props} action={this.props.actions.inviteActions.changeInviteDate} />
