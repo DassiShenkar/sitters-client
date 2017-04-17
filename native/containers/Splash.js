@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { View, BackAndroid } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import { bindActionCreators } from 'redux';
+import {  connect } from 'react-redux';
+import axios from 'axios';
+
 import LocalStorage from '../utils/LoaclStorage';
 import Logo from '../components/Logo'
-import axios from 'axios';
+import * as actionCreators from '../../src/actions/actionCreators';
+
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -11,11 +16,10 @@ const {
     GraphRequestManager,
 } = FBSDK;
 
-export default class Splash extends React.Component {
+class Splash extends React.Component {
 
     constructor(props) {
         super(props);
-        this.ifExists = this.ifExists.bind(this);
     }
 
     componentWillMount () {
@@ -35,11 +39,11 @@ export default class Splash extends React.Component {
     }
 
     async ifExists () {
+        var self = this;
         let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
         if (accessToken == null) {
-            Actions.Login();
+            Actions.Login({...self.props});
         } else {
-            var self = this;
             const responseInfoCallback = (error, result) => {
                 if (error) {
                     alert(error.toString());
@@ -47,11 +51,11 @@ export default class Splash extends React.Component {
                     axios.post('https://sitters-server.herokuapp.com/parent/get', { id: result.id })
                         .then(function (res) {
                             if (res.data) {  // user exists
-                                self.props.actions.actionCreators.setUserData(res.data);
+                                self.props.actionCreators.setUserData(res.data);
                                 Actions.Feed();
                             } else { // user not exist
-                                self.props.actions.actionCreators.createUser(result);
-                                Actions.Feed();
+                                self.props.actionCreators.createUser(result);
+                                Actions.Login();
                                 // Actions.Register();
                             }
                         })
@@ -77,3 +81,17 @@ export default class Splash extends React.Component {
         }
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actionCreators: bindActionCreators(actionCreators, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
