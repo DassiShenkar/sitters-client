@@ -1,11 +1,14 @@
 import React from "react";
-import SitterProfileBase from "../../base/SitterProfileBase";
-import ReviewList from "../ReviewList";
-import Nav from "../panels/nav/index";
+import SitterProfileBase from "../../../base/SitterProfileBase";
+import ReviewList from "../../ReviewList";
+import Nav from "../../panels/nav/index";
 import geodist from "geodist";
 import axios from "axios";
-import {Button} from "react-bootstrap";
-import Invite from "../panels/invite/Invite";
+import {Button, Image} from "react-bootstrap";
+import Invite from "../../panels/invite/Invite";
+
+import './style.css';
+
 class SitterProfile extends SitterProfileBase {
 
     componentWillMount(){
@@ -47,6 +50,10 @@ class SitterProfile extends SitterProfileBase {
         const hobbies = this.props.sitterProfile.sitter.hobbies.map((hobbie) =>{return(hobbie + ", ")});
         const education = this.props.sitterProfile.sitter.education.map((edu) =>{return(edu + ", ")});
         const languages = this.props.sitterProfile.sitter.languages.map((languages) =>{return(languages + ", ")});
+        const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : '';
+        const style = {
+            backgroundImage: 'url(' + coverPhoto + ')'
+        };
         return (
             <div>
                 <Nav name={this.props.user.name}
@@ -56,11 +63,20 @@ class SitterProfile extends SitterProfileBase {
                      notifications={this.props.user.notifications}
                      action={this.props.actions.feedActions.setNavView}
                      {...this.props}/>
-                <section>
-                    <img src={this.props.sitterProfile.sitter.profilePicture}
-                         alt={this.props.sitterProfile.sitter.name}/>
-                    <p>{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</p>
-                </section>
+                <div className="match" style={style}>
+                        <div className="sitter-info">
+                            <Image className="profilePic"
+                                   src={this.props.sitterProfile.sitter.profilePicture ? this.props.sitterProfile.sitter.profilePicture : ''}
+                                   alt={this.props.sitterProfile.sitter.name ? this.props.sitterProfile.sitter.name : ''} circle/>
+                            <h3 className="sitterName">{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</h3>
+                        </div>
+                </div>
+
+                {/*<section>*/}
+                    {/*<Image className="profilePic" src={this.props.sitterProfile.sitter.profilePicture}*/}
+                         {/*alt={this.props.sitterProfile.sitter.name} circle/>*/}
+                    {/*<p>{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</p>*/}
+                {/*</section>*/}
                 <table>
                     <tbody>
                     <tr>
