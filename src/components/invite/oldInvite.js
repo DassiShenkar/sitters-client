@@ -1,12 +1,9 @@
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import GoogleMaps from "../../GoogleMaps";
-import DatePicker from "../../controllers/DatePicker";
-import TimeInput from "../../controllers/TimeInput";
-import FormControl from 'react-bootstrap/lib/FormControl';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import GoogleMaps from "../GoogleMaps";
+import DatePicker from "../controllers/DatePicker";
+import TimeInput from "../controllers/TimeInput";
 import axios from 'axios';
-import {Image, Modal} from "react-bootstrap";
+import {Button, Image, Modal, FormControl, ControlLabel} from "react-bootstrap";
 
 import './style.css'
 class EditInvite extends React.Component {

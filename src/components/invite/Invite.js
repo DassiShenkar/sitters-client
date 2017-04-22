@@ -3,9 +3,9 @@ import React from 'react';
 //style
 import './style.css';
 import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
-import DatePicker from "../../controllers/DatePicker";
-import TimeInput from "../../controllers/TimeInput";
-import GoogleMaps from "../../GoogleMaps";
+import DatePicker from "../controllers/DatePicker";
+import TimeInput from "../controllers/TimeInput";
+import GoogleMaps from "../GoogleMaps";
 import axios from 'axios';
 
 

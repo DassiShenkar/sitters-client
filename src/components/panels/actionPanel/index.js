@@ -6,8 +6,8 @@ import NextArrow from '../../../styles/icons/NextArrow';
 
 //style
 import './style.css';
-import EditInvite from "../invite/oldInvite";
-import Invite from "../invite/Invite";
+import EditInvite from "../../invite/oldInvite";
+import Invite from "../../invite/Invite";
 
 class SitterActionBar extends EditInvite {
 

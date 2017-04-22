@@ -1,12 +1,12 @@
 import React from 'react';
-import TextInput from '../../controllers/TextInput';
-import CheckBoxInput from '../../controllers/CheckBoxInput';
-import BaseForm from '../../BaseForm';
+import TextInput from '../controllers/TextInput';
+import CheckBoxInput from '../controllers/CheckBoxInput';
+import BaseForm from '../BaseForm';
 import geocoder from 'geocoder'
 import axios from 'axios';
-import strings from '../../../static/strings';
+import strings from '../../static/strings';
 import {AgeFromDate} from 'age-calculator';
-import RadioInput from "../../controllers/radio/index";
+import RadioInput from "../controllers/radio/index";
 import {Button, ControlLabel} from "react-bootstrap";
 
 //style

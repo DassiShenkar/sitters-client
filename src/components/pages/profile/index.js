@@ -1,11 +1,11 @@
 import React from "react";
 import SitterProfileBase from "../../../base/SitterProfileBase";
-import ReviewList from "../../ReviewList";
+import ReviewList from "../../reviewList/index";
 import Nav from "../../panels/nav/index";
 import geodist from "geodist";
 import axios from "axios";
 import {Button, Image} from "react-bootstrap";
-import Invite from "../../panels/invite/Invite";
+import Invite from "../../invite/Invite";
 
 import './style.css';
 
