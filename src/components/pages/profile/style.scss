@@ -25,28 +25,26 @@ img.profilePic {
 #sitter-profile {
 
   #info-table {
-    margin: 0 0  24px 0;
+    margin: 0 0 24px 0;
+    th, td {
+      text-align: center;
+      border-right: 1px solid #eee;
+      width: 33%;
+    }
+    th {
+      border-bottom: none;
+      font-size: 24px;
+    }
+    tbody > tr > td {
+      border-top: none;
+      text-align: center;
+    }
+
+    th:last-child, td:last-child {
+      border-right: none;
+    }
   }
 
-  #info-table th, td {
-    text-align: center;
-    border-right: 1px solid #eee;
-    width: 33%;
-  }
-
-  #info-table th {
-    border-bottom: none;
-    font-size: 24px;
-  }
-
-  #info-table > tbody > tr > td {
-    border-top: none;
-    text-align: center;
-  }
-
-  #info-table th:last-child, td:last-child {
-    border-right: none;
-  }
   .panel-heading, .panel-group, .panel {
     background: #fff;
     border: none;
