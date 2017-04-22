@@ -1,7 +1,7 @@
 import React from 'react';
 
+import CircledMail from '../../../styles/icons/CircledMail';
 import Like from '../../../styles/icons/Like';
-import Star from '../../../styles/icons/Star';
 import NextArrow from '../../../styles/icons/NextArrow';
 
 //style
@@ -43,9 +43,9 @@ class SitterActionBar extends EditInvite {
         return (
             <div>
                 <div id="sitterActionBar">
-                    <button onClick={this.inviteSitter}><Like id="like"/></button>
-                    <button onClick={this.reviewSitter}><Star id="star"/></button>
-                    <button onClick={this.nextSitter}><NextArrow id="next"/></button>
+                    <button id="mail" onClick={this.inviteSitter}><CircledMail id="mail-icon"/></button>
+                    <button onClick={this.reviewSitter}><Like id="like-icon"/></button>
+                    <button onClick={this.nextSitter}><NextArrow id="next-icon"/></button>
                 </div>
                 <Invite {...this.props}/>
             </div>
