@@ -10,6 +10,7 @@ import SitterProfileBase from "../../../base/SitterProfileBase";
 import ReviewList from "../../reviewList/index";
 import Nav from "../../panels/nav/index";
 import Invite from "../../invite/Invite";
+import Mail from "../../../styles/icons/Mail";
 
 // style
 import './style.css';
@@ -43,6 +44,7 @@ class SitterProfile extends SitterProfileBase {
 
     render() {
         let self = this;
+        const id = this.props.params.sitterId;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
             return (
                 <tr key={index}>
@@ -75,6 +77,9 @@ class SitterProfile extends SitterProfileBase {
                      {...this.props}/>
                 <div className="match" style={style}>
                     <div className="sitter-info">
+                        <h1 className="matchScore">{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
+                                return sitter._id === id;
+                            }).matchScore + '% Match!' : 'no matches found'}</h1>
                         <Image className="profilePic"
                                src={this.props.sitterProfile.sitter.profilePicture ? this.props.sitterProfile.sitter.profilePicture : ''}
                                alt={this.props.sitterProfile.sitter.name ? this.props.sitterProfile.sitter.name : ''}
@@ -84,18 +89,18 @@ class SitterProfile extends SitterProfileBase {
                 </div>
                 <Table id="info-table" responsive>
                     <thead>
-                        <tr>
-                            <th>{this.props.sitterProfile.distance > 999 ?  this.props.sitterProfile.distance/1000 + ' KM' : + this.props.sitterProfile.distance + " Meters"}</th>
-                            <th>{this.props.sitterProfile.sitter.hourFee + "$"}</th>
-                            <th>{this.props.sitterProfile.sitter.experience + " Years"}</th>
-                        </tr>
+                    <tr>
+                        <th>{this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters"}</th>
+                        <th>{this.props.sitterProfile.sitter.hourFee + "$"}</th>
+                        <th>{this.props.sitterProfile.sitter.experience + " Years"}</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Proximity</td>
-                            <td>Hour Fee</td>
-                            <td>Experience</td>
-                        </tr>
+                    <tr>
+                        <td>Proximity</td>
+                        <td>Hour Fee</td>
+                        <td>Experience</td>
+                    </tr>
                     </tbody>
                 </Table>
                 <Accordion>
@@ -124,8 +129,10 @@ class SitterProfile extends SitterProfileBase {
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
                     </Panel>
                 </Accordion>
-                <Button onClick={this.inviteSitter.bind(this)} title="Send Invite" bsStyle="primary">Send
-                    Invite</Button>
+                <button id="invite-button" onClick={this.inviteSitter.bind(this)}>
+                    <Mail id="mail-icon"/>
+                    <span>Send Invite</span>
+                </button>
                 <Invite {...this.props}/>
             </div>
         )
