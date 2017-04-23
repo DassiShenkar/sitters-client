@@ -12,16 +12,12 @@ import TextButton from './TextButton';
 import strings from '../../src/static/strings';
 
 const LANGUAGES = ["Hebrew", "English", "Russian", "Spanish", "French"];
-const expertiseArray = ['Math', 'English', 'Physics'];
-const hobbiesArray = ['Reading', 'Painting', 'Traveling', 'Sports', 'Swimming', 'Sleeping', 'Watching TV'];
-const needsArray = ['ADD', 'Aphasia/Dysphagia', 'Auditory Processing', 'Autism', 'Cystic Fibrosis', 'Developmental Delays'];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 export default class SitterForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.navigate = this.navigate.bind(this);
         this.languagesOnClick = this.languagesOnClick.bind(this);
         this.expertiseOnClick = this.expertiseOnClick.bind(this);
         this.hobbiesOnClick = this.hobbiesOnClick.bind(this);
@@ -89,10 +85,12 @@ export default class SitterForm extends React.Component {
             </Form>
         );
     }
+    
     languagesCheckBox () {
         const self = this;
         return LANGUAGES.map(function(data) {
             return  <CheckBox
+                key={ data }
                 style={{flex: 1, padding: 10}}
                 onClick={ ()=>self.languagesOnClick(data)}
                 isChecked={false}
@@ -117,6 +115,7 @@ export default class SitterForm extends React.Component {
         const self = this;
         return strings.EXPERTISE.map(function(data) {
             return  <CheckBox
+                key={ data }
                 style={{flex: 1, padding: 10}}
                 onClick={ ()=>self.expertiseOnClick(data) }
                 isChecked={false}
@@ -141,6 +140,7 @@ export default class SitterForm extends React.Component {
         const self = this;
         return strings.HOBBIES.map(function(data) {
             return  <CheckBox
+                key={ data }
                 style={{flex: 1, padding: 10}}
                 onClick={ ()=>self.hobbiesOnClick(data) }
                 isChecked={false}
@@ -165,6 +165,7 @@ export default class SitterForm extends React.Component {
         const self = this;
         return strings.SPECIAL_NEEDS.map(function(data) {
             return  <CheckBox
+                key={ data }
                 style={{flex: 1, padding: 10}}
                 onClick={ ()=>self.specialOnClick(data) }
                 isChecked={false}

@@ -1,6 +1,6 @@
 "use strict";
 import React, {Component} from 'react'
-import { View, Image, Text, Picker } from 'react-native'
+import { View, Image, Text, Picker, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 
@@ -18,10 +18,10 @@ class Login extends React.Component {
 
     render () {
         return (
-            <View>
+            <View style={ styles.container }>
                 <Logo
                     companyName="Sitters" />
-                 <Text>A Booking Platform for Parents and Sitters</Text>
+                <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
                 <Picker
                     selectedValue={ this.props.user.userType }
                     onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
@@ -35,6 +35,19 @@ class Login extends React.Component {
     }
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 40
+    },
+    text: {
+        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontSize: 16,
+        color: '#f7a1a1'
+    }
+});
 
 function mapStateToProps(state) {
     return {

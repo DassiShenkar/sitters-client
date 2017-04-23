@@ -18,6 +18,7 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.responseCallback = this.responseCallback.bind(this);
+        this.setUserInDB = this.setUserInDB.bind(this);
         // this.getGeoCode = this.getGeoCode.bind(this);
     }
     
@@ -67,7 +68,7 @@ class Register extends Component {
         //     parent.address.latitude = data.results[0] != null? data.results[0].geometry.location.lat: 0;
         // });
         parent = {
-            _id : this.props.user.facebookID,
+            _id : this.props.user.facebookID.toString(),
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
@@ -78,7 +79,7 @@ class Register extends Component {
             },
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto.source,
-            timezone: this.props.user.timezone,
+            timezone: this.props.user.timezone.toString(),
             profilePicture: this.props.user.picture.data.url,
             maxPrice: Number(this.props.register.watchMaxPrice),
             children: {
@@ -87,18 +88,24 @@ class Register extends Component {
                 expertise: this.props.register.childExpertise? this.props.register.childExpertise: [],
                 hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
                 specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: [],
-            },
-            partner:{
-                gender: this.props.register.partnerGender,
-                email:  this.props.register.partnerEmail,
-                name:  this.props.register.partnerName
-            }
+            }//,
+            // partner:{
+            //     gender: this.props.register.partnerGender,
+            //     email:  this.props.register.partnerEmail,
+            //     name:  this.props.register.partnerName
+            // }
         };
+        self.setUserInDB(parent);
+    }
+
+    async setUserInDB(data) {
+        const self = this;
+        //alert(JSON.stringify(data));
         axios({
             method: 'post',
             url: 'https://sitters-server.herokuapp.com/parent/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: parent
+            data: data
         }).then(function (res) {
             if (res.data) {  // user created
                 self.props.actions.actionCreators.setUserData(res.data);
@@ -108,11 +115,10 @@ class Register extends Component {
                 alert("user not created");
                 //TODO: think about error when user not created
             }
-        })
-            .catch(function (error) {
-                alert(error);
-                //TODO: think about error when user not created
-            });
+        }).catch(function (error) {
+            alert(JSON.stringify(error));
+            //TODO: think about error when user not created
+        });
     }
 }
 

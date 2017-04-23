@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { View, BackAndroid } from 'react-native';
+import { View, BackAndroid, StyleSheet, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 import axios from 'axios';
 
-import LocalStorage from '../utils/LoaclStorage';
+import LocalStorage from '../utils/LocalStorage';
 import Logo from '../components/Logo'
 import * as actionCreators from '../../src/actions/actionCreators';
-
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -20,6 +19,8 @@ class Splash extends React.Component {
 
     constructor(props) {
         super(props);
+        this.getUserFromDb = this.getUserFromDb.bind(this);
+        this.ifExists = this.ifExists.bind(this);
     }
 
     componentWillMount () {
@@ -31,15 +32,17 @@ class Splash extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={ styles.container }>
                 <Logo
-                    companyName='Sitters' />
+                    companyName="Sitters"
+                    description="A Booking Platform for Parents and Sitters" />
+                <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
             </View>
         );
     }
 
     async ifExists () {
-        var self = this;
+        const self = this;
         let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
         if (accessToken == null) {
             Actions.Login({...self.props});
@@ -48,20 +51,7 @@ class Splash extends React.Component {
                 if (error) {
                     alert(error.toString());
                 } else {
-                    axios.post('https://sitters-server.herokuapp.com/parent/get', { id: result.id })
-                        .then(function (res) {
-                            if (res.data) {  // user exists
-                                self.props.actionCreators.setUserData(res.data);
-                                Actions.Feed();
-                            } else { // user not exist
-                                self.props.actionCreators.createUser(result);
-                                Actions.Login();
-                                // Actions.Register();
-                            }
-                        })
-                        .catch(function (error) {
-                            alert(error.toString());
-                        });
+                    self.getUserFromDb(self, result);
                 }
             };
 
@@ -80,7 +70,38 @@ class Splash extends React.Component {
             new GraphRequestManager().addRequest(infoRequest).start();
         }
     }
+
+    async getUserFromDb(self, result) {
+        axios.post(
+            'https://sitters-server.herokuapp.com/parent/get',
+            { id: result.id.toString() }
+        ).then(function (res) {
+            if (res.data) {  // user exists
+                self.props.actionCreators.setUserData(res.data);
+                Actions.Feed();
+            } else { // user not exist
+                self.props.actionCreators.createUser(result);
+                Actions.Register();
+            }
+        }).catch(function (error) {
+            alert(error.toString());
+        });
+    }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 40
+    },
+    text: {
+        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontSize: 16,
+        color: '#f7a1a1'
+    }
+});
 
 function mapStateToProps(state) {
     return {

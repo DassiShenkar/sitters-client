@@ -4,7 +4,7 @@ import {View} from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import axios from 'axios';
 
-import LocalStorage from '../utils/LoaclStorage'
+import LocalStorage from '../utils/LocalStorage'
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -41,6 +41,8 @@ export default class FaceBookLogin extends React.Component {
                                             if (error) {
                                                 alert(error);
                                             } else {
+                                                alert(JSON.stringify(result));
+                                                LocalStorage.setToLocalStorage(LocalStorage.USER_KEY, result.id.toString());
                                                 self.handleResponse(result);
                                             }
                                         };
@@ -66,23 +68,22 @@ export default class FaceBookLogin extends React.Component {
         );
     }
 
-    handleResponse (response) {
+    async handleResponse (result) {
         const self = this;
-        axios.post('https://sitters-server.herokuapp.com/parent/get', { id: response.id })
+        axios.post('https://sitters-server.herokuapp.com/parent/get', { id: result.id.toString() })
             .then(function (res) {
                 if (res.data) {  // user exists
                     self.props.actionCreators.setUserData(res.data);
                     Actions.Feed();
                 }
                 else { // user not exist
-                    self.props.actionCreators.createUser(response);
+                    self.props.actionCreators.createUser(result);
                     Actions.Register();
                 }
             })
             .catch(function (error) {
                 alert(error);
             });
-
     }
 }
 

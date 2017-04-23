@@ -3,9 +3,13 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import { MenuContext} from 'react-native-menu';
 
 import DropDownMenu from './DropDownMenu'
 import ImageButton from './ImageButton'
+import SearchIcon from '../../src/styles/icons/Search'
+import NotificationIcon from '../../src/styles/icons/Notification'
+import MailIcon from '../../src/styles/icons/Mail'
 
 export default class AppBar extends React.Component {
 
@@ -15,25 +19,30 @@ export default class AppBar extends React.Component {
 
     render () {
         return (
-            <View style={{flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 15}}>
+            <View style={{ flexDirection: 'row-reverse', margin: 15,justifyContent: 'space-between'}}>
                 <ImageButton
                     onPress={Actions.Feed}
-                    styles={{width: 30, height: 30}}
-                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
-                <Text>Hi, User</Text>
-                <ImageButton
-                    onPress={Actions.Search}
-                    styles={{width: 30, height: 30}}
-                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
-                <ImageButton
-                    onPress={Actions.Inbox}
-                    styles={{width: 30, height: 30}}
-                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
-                <ImageButton
-                    onPress={Actions.Notifications}
-                    styles={{width: 30, height: 30}}
-                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
-                <DropDownMenu />
+                    styles={{width: 50, height: 50,borderRadius:100}}
+                    src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png' }}  />
+                <Text style={{marginLeft: 90, marginTop:20}}>Hi, { this.props.user.name.split(" ")[0] }</Text>
+                <View style={{ flexDirection: 'row-reverse'}}>
+                    <ImageButton
+                        onPress={Actions.Search}
+                        styles={{width: 30, height: 30, marginRight: 10}}
+                        src={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                    <ImageButton
+                        onPress={Actions.Inbox}
+                        styles={{width: 30, height: 30, marginRight: 10}}
+                        src={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                    <ImageButton
+                        onPress={Actions.Notifications}
+                        styles={{width: 30, height: 30, marginRight: 10}}
+                        src={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                    <MenuContext style={{ flex: 1 }}>
+                        <DropDownMenu />
+                    </MenuContext>
+                </View>
+
             </View>
         );
     }

@@ -38,12 +38,12 @@ class Sitters extends React.Component {
                 <Router>
                     <Scene key="modal" component={Modal}>
                         <Scene key="root">
-                            <Scene key="App" component={App} title="App" initial={true} hideNavBar={true}/>
+                            <Scene key="App" component={App} title="App" initial={true} hideNavBar={true} />
                             <Scene key="Splash" component={Splash} title="Splash"/>
                             <Scene key="Login" component={Login} title="Login"/>
                             <Scene key="Register" component={Register} title="Register"/>
-                            <Scene key="Feed" component={Feed} title="Feed"/>
-                            <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView"/>
+                            <Scene key="Feed" component={Feed} title="Feed" passProps={true}/>
+                            <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView" passProps={true} />
                             <Scene key="Notifications" component={Notifications} title="Notifications"/>
                             <Scene key="Inbox" component={Inbox} title="Inbox"/>
                             <Scene key="PersonalityTestIntro" component={PersonalityTestIntro} title="PersonalityTestIntro"/>
