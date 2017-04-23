@@ -1,11 +1,13 @@
+// external sources
 import React from 'react';
 import {Link} from 'react-router';
 
-import {Navbar} from 'react-bootstrap';
+import {Navbar, PageHeader} from 'react-bootstrap';
 import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 
-import BackArrow from '../../styles/icons/BackArrow';
+//components
+import BackArrow from '../../../styles/icons/BackArrow';
 
 // function onChange(value) {
 //     console.log(value);
@@ -39,6 +41,7 @@ class Settings extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Navbar>
+                <PageHeader>Settings</PageHeader>
                 <form id="settings-form" onSubmit={this.handleApplyChanges.bind(this)}>
                         <label htmlFor="notifications-switch">Allow Notifications
                             <Toggle

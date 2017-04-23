@@ -53,5 +53,29 @@ img.profilePic {
   #availability-table th, td {
     text-align: left;
   }
+
+  #invite-button {
+    background: #fff;
+    color: #88d685;
+    border: 2px solid #88d685;
+    border-radius: 18px;
+  }
+
+  #invite-button:hover {
+    background: #88d685;
+    color: #fff;
+  }
+
+  #invite-button:focus {
+    outline: none;
+  }
+
+  #invite-button:hover #mail-icon path{
+    fill: #fff;
+  }
+
+  #mail-icon path {
+    fill: #88d685;;
+  }
 }
 

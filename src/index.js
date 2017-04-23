@@ -18,9 +18,9 @@ import SitterProfile from "./components/pages/profile/index";
 import ReviewList from "./components/reviewList/index";
 import SingleReview from "./components/SingleReview";
 import SingleInvite from "./components/SingleInvite";
-import EditProfile from "./components/pages/EditProfile";
-import Settings from "./components/pages/Settings";
-import About from "./components/pages/About";
+import EditProfile from "./components/pages/editProfile/index";
+import Settings from "./components/pages/settings/index";
+import About from "./components/pages/about/index";
 
 const router = (
     <Provider store={store}>
