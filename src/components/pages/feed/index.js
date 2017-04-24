@@ -2,12 +2,13 @@
 import React from 'react';
 import axios from 'axios';
 
+import {PageHeader} from 'react-bootstrap';
+
 //components
 import Nav from '../../panels/nav/index';
 import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../Notifications";
 import Invites from "../../InvitesList";
-import SitterPieMatch from "../../pie/SitterPieMatch";
 import SitterList from "../../sitterList/index";
 import SitterActionBar from "../../panels/actionPanel/index";
 
@@ -21,12 +22,12 @@ class Feed extends React.Component {
         const userId = localStorage.getItem('auth_token');
         if (userId) {
             //axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            axios.post('http://localhost:3333/parent/get', {
+            axios.post('http://localhost:4444/parent/get', {
                 id: userId
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
-                        axios.post('http://localhost:3333/parent/getMatches',
+                        axios.post('http://localhost:4444/parent/getMatches',
                             parent.data
                         )
                             .then(function (sitters) {
@@ -69,9 +70,11 @@ class Feed extends React.Component {
                 showSitters = false;
                 navView = <Invites {...this.props} />
             }
-
+            else {
+                showSitters = true;
+                navView = <PageHeader>Sitters</PageHeader>;
+            }
         }
-
 
         return (
             <div id="feed-page">
@@ -86,7 +89,7 @@ class Feed extends React.Component {
                 {showSitters ? <SitterList {...this.props}
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
 
-                                           {showSitters ? this.props.feed.filteredMatches.length > 0 ?
+                {showSitters ? this.props.feed.filteredMatches.length > 0 ?
                         <SitterActionBar {...this.props}/> : '' : ''}
 
             </div>
