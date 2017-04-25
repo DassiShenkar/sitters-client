@@ -21,13 +21,14 @@ import SingleInvite from "./components/SingleInvite";
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
 import About from "./components/pages/about/index";
-import Nav from './components/panels/nav/index'
+import Test from "./components/Test";
 
 
 const router = (
     <Provider store={store}>
         <Router history={history}>
-            <Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
+            {/*<Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>*/}
+            <Route path="/" component={Test}>
                     <IndexRoute component={Feed}/>
                     <Route path="/invites" component={Invites}/>
                     <Route path="/invite/:inviteId" component={SingleInvite}/>
@@ -40,6 +41,7 @@ const router = (
                     <Route path="/register" component={Register}/>
                     <Route path="/editProfile" component={EditProfile}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/test" component={Test}/>
             </Route>
         </Router>
     </Provider>

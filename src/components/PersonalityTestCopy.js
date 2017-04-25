@@ -1,20 +1,18 @@
 import React from 'react';
 import PersonalityTestRating from './controllers/PersonalityTestRating'
-import BaseData from '../data/BaseData'
-import {ControlLabel} from "react-bootstrap";
-class Test extends React.Component {
+class PersonalityTest extends React.Component {
 
     render() {
         let index = -1;
-        const questions = BaseData.getQuestions().map((question) => {
+        const questions = this.props.questions.map((question) => {
             index += 1;
             return (
                 <div key={index}>
-                    <ControlLabel>{question.question}</ControlLabel>
+                    <p>{question.question}</p>
                     <PersonalityTestRating id={index}
                                            question={question}
-                                           {...this.props}/>
-                    <ControlLabel>{question.question}</ControlLabel>
+                                           {...this.props}
+                                           action={this.props.actions.registerActions.changePersonalityTestQuestion}/>
                 </div>
             )
         });
@@ -36,4 +34,4 @@ class Test extends React.Component {
     }
 }
 
-export default Test;
+export default PersonalityTest;
