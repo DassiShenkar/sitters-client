@@ -21,26 +21,37 @@ import SingleInvite from "./components/SingleInvite";
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
 import About from "./components/pages/about/index";
+import Nav from './components/panels/nav/index'
+
 
 const router = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
-                <IndexRoute component={Feed}/>
-                <Route path="/invites" component={Invites}/>
-                <Route path="/invite/:inviteId" component={SingleInvite}/>
-                <Route path="/settings" component={Settings}/>
-                <Route path="/about" component={About}/>
-                <Route path="/notifications" component={Notifications}/>
-                <Route path="/sitter/:sitterId" component={SitterProfile}/>
-                <Route path="/reviews" component={ReviewList}/>
-                <Route path="/review/:reviewId" component={SingleReview}/>
-                <Route path="/register" component={Register}/>
-                <Route path="/editProfile" component={EditProfile}/>
-                <Route path="/login" component={Login}/>
+                    <IndexRoute component={Feed}/>
+                    <Route path="/invites" component={Invites}/>
+                    <Route path="/invite/:inviteId" component={SingleInvite}/>
+                    <Route path="/settings" component={Settings}/>
+                    <Route path="/about" component={About}/>
+                    <Route path="/notifications" component={Notifications}/>
+                    <Route path="/sitter/:sitterId" component={SitterProfile}/>
+                    <Route path="/reviews" component={ReviewList}/>
+                    <Route path="/review/:reviewId" component={SingleReview}/>
+                    <Route path="/register" component={Register}/>
+                    <Route path="/editProfile" component={EditProfile}/>
+                    <Route path="/login" component={Login}/>
             </Route>
         </Router>
     </Provider>
 );
-
+// const nav =    (<Nav name={this.props.user.name}
+//                     image={this.props.user.profilePicture}
+//                     alt={this.props.user.name}
+//                     invites={this.props.user.invites}
+//                     notifications={this.props.user.notifications}
+//                     action={this.props.actions.feedActions.setNavView}
+//                     {...this.props}/>);
+//
+//
+// render((nav), document.getElementById('root'));
 render((router), document.getElementById('root'));

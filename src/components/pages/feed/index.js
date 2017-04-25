@@ -5,7 +5,7 @@ import axios from 'axios';
 import {PageHeader} from 'react-bootstrap';
 
 //components
-import Nav from '../../panels/nav/index';
+// import Nav from '../../panels/nav/index'; Do not delete until check nav functionality
 import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../Notifications";
 import Invites from "../../InvitesList";
@@ -80,13 +80,14 @@ class Feed extends React.Component {
 
         return (
             <div id="feed-page">
-                <Nav name={this.props.user.name}
-                     image={this.props.user.profilePicture}
-                     alt={this.props.user.name}
-                     invites={this.props.user.invites}
-                     notifications={this.props.user.notifications}
-                     action={this.props.actions.feedActions.setNavView}
-                     {...this.props}/>
+                {/*DO NOT delete until check all nav functionality*/}
+                {/*<Nav name={this.props.user.name}*/}
+                     {/*image={this.props.user.profilePicture}*/}
+                     {/*alt={this.props.user.name}*/}
+                     {/*invites={this.props.user.invites}*/}
+                     {/*notifications={this.props.user.notifications}*/}
+                     {/*action={this.props.actions.feedActions.setNavView}*/}
+                     {/*{...this.props}/>*/}
                 {navView}
                 {showSitters ? <SitterList {...this.props}
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
