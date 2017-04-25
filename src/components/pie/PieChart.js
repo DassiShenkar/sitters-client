@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ReactD3 from "react-d3-components";
-var PieChart1 = ReactD3.PieChart;
+var ReactD3PieChart = ReactD3.PieChart;
 import './style.css'
 
 
@@ -9,7 +9,7 @@ class PieChart extends React.Component {
     render(){
         let data = {label: 'Matcher Pie Chart', values: []};
         let sitter = {};
-        if(typeof this.props.sitter !== "undefined") {
+        if(typeof this.props.sitter !== "undefined" && typeof this.props.sitter.match !== "undefined") {
             sitter = this.props.sitter;
             delete sitter.match['matchScore'];
             for (let k in sitter.match) {
@@ -18,7 +18,7 @@ class PieChart extends React.Component {
             }
         }
         return (
-                <PieChart1
+                <ReactD3PieChart
                     data={data}
                     width={800}
                     height={600}
