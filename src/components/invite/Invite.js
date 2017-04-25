@@ -44,7 +44,8 @@ class Invite extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/invite/create',
+            // url: 'https://sitters-server.herokuapp.com/invite/create',
+            url: 'http://localhost:4444/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {

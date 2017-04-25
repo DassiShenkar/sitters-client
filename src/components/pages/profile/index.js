@@ -3,7 +3,7 @@ import React from "react";
 import geodist from "geodist";
 import axios from "axios";
 
-import {Button, Image, Table, Panel, Accordion} from "react-bootstrap";
+import {Button, Image, Table, Panel, Accordion, ControlLabel} from "react-bootstrap";
 
 // components
 import SitterProfileBase from "../../../base/SitterProfileBase";
@@ -87,6 +87,8 @@ class SitterProfile extends SitterProfileBase {
                         <h3 className="sitterName">{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</h3>
                     </div>
                 </div>
+                <ControlLabel>Last Invited:</ControlLabel>
+                <p>{this.props.sitterProfile.sitter.lastInvite}</p>
                 <Table id="info-table" responsive>
                     <thead>
                     <tr>
