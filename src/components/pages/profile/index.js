@@ -17,6 +17,47 @@ import './style.css';
 
 class SitterProfile extends SitterProfileBase {
 
+    median(values) {
+
+    values.sort( function(a,b) {return a - b;} );
+
+    var half = Math.floor(values.length/2);
+
+    if(values.length % 2)
+        return values[half];
+    else
+        return (values[half-1] + values[half]) / 2.0;
+}
+
+    componentDidMount(){
+        let parent = this.props.user;
+        const id = this.props.params.sitterId;
+        parent.matchBI.matchScores.push(this.props.feed.matches.find(function (sitter) {
+            return sitter._id === id;
+        }).matchScore);
+        parent.matchBI.median = this.median(parent.matchBI.matchScores);
+        console.log(parent);
+        // let self = this;
+        axios({
+            method: 'post',
+            url: 'http://localhost:4444/parent/update',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: parent
+        }).then(function (res) {
+            if (res.data) {  // user created
+                console.log('updated parentBI');
+                //self.props.router.push('/');
+            }
+            else {
+                console.log("parentBI not updated");
+                //TODO: think about error
+            }
+        })
+            .catch(function (error) {
+                alert(error);
+                //TODO: think about error
+            });
+    }
     componentWillMount() {
         let sitterID = location.href.split('sitter/')[1];
         let self = this;
