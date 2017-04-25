@@ -1,0 +1,7 @@
+.review-item {
+  border-bottom: 1px solid #eee;
+  padding: 16px 0; }
+  .review-item img.profilePic {
+    width: 96px;
+    height: 96px;
+    margin: 0; }
