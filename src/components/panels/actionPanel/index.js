@@ -30,14 +30,13 @@ class SitterActionBar extends EditInvite {
         //axios.post('https://sitters-server.herokuapp.com/parent/get', {
         axios({
             method: 'post',
-            url: 'http://localhost:4444/parent/update',
+            // url: 'http://localhost:4444/parent/update',
+            url: 'https://sitters-server.herokuapp.com/parent/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {
             if (res.data) {  // user created
                 console.log('updated blacklist');
-               // self.props.actions.actionCreators.setUserData(res.data);
-               //  Actions.Feed();
             }
             else { // user not created
                 console.log("user not created");

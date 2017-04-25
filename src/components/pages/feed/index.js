@@ -21,15 +21,16 @@ class Feed extends React.Component {
         let self = this;
         const userId = localStorage.getItem('auth_token');
         if (userId) {
-            //axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            axios.post('http://localhost:4444/parent/get', {
+            axios.post('https://sitters-server.herokuapp.com/parent/get', {
+            // axios.post('http://localhost:4444/parent/get', {
                 id: userId
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
                         self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                         self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
-                        axios.post('http://localhost:4444/parent/getMatches',
+                        // axios.post('http://localhost:4444/parent/getMatches',
+                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
                             parent.data
                         )
                             .then(function (sitters) {

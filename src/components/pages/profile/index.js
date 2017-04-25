@@ -41,7 +41,8 @@ class SitterProfile extends SitterProfileBase {
         // let self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:4444/parent/update',
+            // url: 'http://localhost:4444/parent/update',
+            url: 'https://sitters-server.herokuapp.com/parent/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {
@@ -98,7 +99,8 @@ class SitterProfile extends SitterProfileBase {
         let self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:4444/sitter/update',
+            // url: 'http://localhost:4444/sitter/update',
+            url: 'https://sitters-server.herokuapp.com/sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {
