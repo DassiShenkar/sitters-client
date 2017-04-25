@@ -60,13 +60,13 @@ class Settings extends React.Component {
     render() {
         return (
             <div id="settings-page">
-                <Navbar>
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <Link to='/'><BackArrow/>Settings</Link>
-                        </Navbar.Brand>
-                    </Navbar.Header>
-                </Navbar>
+                {/*<Navbar>*/}
+                    {/*<Navbar.Header>*/}
+                        {/*<Navbar.Brand>*/}
+                            {/*<Link to='/'><BackArrow/>Settings</Link>*/}
+                        {/*</Navbar.Brand>*/}
+                    {/*</Navbar.Header>*/}
+                {/*</Navbar>*/}
                 <PageHeader>Settings</PageHeader>
                 <form id="settings-form" onSubmit={this.handleApplyChanges.bind(this)}>
                         <label htmlFor="notifications-switch">Allow Notifications

@@ -144,13 +144,13 @@ class SitterProfile extends SitterProfileBase {
         };
         return (
             <div id="sitter-profile">
-                <Nav name={this.props.user.name}
-                     image={this.props.user.profilePicture}
-                     alt={this.props.user.name}
-                     invites={this.props.user.invites}
-                     notifications={this.props.user.notifications}
-                     action={this.props.actions.feedActions.setNavView}
-                     {...this.props}/>
+                {/*<Nav name={this.props.user.name}*/}
+                     {/*image={this.props.user.profilePicture}*/}
+                     {/*alt={this.props.user.name}*/}
+                     {/*invites={this.props.user.invites}*/}
+                     {/*notifications={this.props.user.notifications}*/}
+                     {/*action={this.props.actions.feedActions.setNavView}*/}
+                     {/*{...this.props}/>*/}
                 <div className="match" style={style}>
                     <div className="sitter-info">
                         <h1 className="matchScore">{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {

@@ -49,7 +49,6 @@ function user(state = {}, action) {
                 settings: data.settings,
                 matchBI: data.matchBI,
                 reviews: data.reviews
-
             };
         default:
             return state;
