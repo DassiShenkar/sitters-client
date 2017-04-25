@@ -66,6 +66,8 @@ class SitterActionBar extends EditInvite {
 
     reviewSitter(e) {
         e.preventDefault();
+        this.props.actions.sitterProfileActions.setExpandReview(true);
+        this.props.router.push('/sitter/' + this.props.feed.matches[this.props.feed.sitterIndex]._id);
     }
 
     render() {

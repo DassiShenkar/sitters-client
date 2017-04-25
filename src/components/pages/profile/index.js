@@ -3,7 +3,7 @@ import React from "react";
 import geodist from "geodist";
 import axios from "axios";
 
-import {Button, Image, Table, Panel, Accordion, ControlLabel} from "react-bootstrap";
+import {Button, Image, Table, Panel, Accordion, ControlLabel, FormControl} from "react-bootstrap";
 
 // components
 import SitterProfileBase from "../../../base/SitterProfileBase";
@@ -30,6 +30,7 @@ class SitterProfile extends SitterProfileBase {
 }
 
     componentDidMount(){
+        //this.refs.textareareview.focus();
         let parent = this.props.user;
         const id = this.props.params.sitterId;
         parent.matchBI.matchScores.push(this.props.feed.matches.find(function (sitter) {
@@ -74,6 +75,9 @@ class SitterProfile extends SitterProfileBase {
                 console.log(error);//TODO: in case of sitter wasn't found
             });
     }
+    handleChangeReview(e){
+        this.props.actions.sitterProfileActions.setReviewDescription(e.target.value);
+    }
 
     inviteSitter(e) {
         e.preventDefault();
@@ -81,6 +85,37 @@ class SitterProfile extends SitterProfileBase {
         sitter = this.props.feed.filteredMatches[this.props.feed.sitterIndex];
         this.props.actions.sitterProfileActions.setSitter(sitter);
         this.props.actions.feedActions.showInvitePopup(true);
+    }
+    addReview(){
+        let sitter = this.props.sitterProfile.sitter;
+        let review = {
+            parentID:       this.props.user._id,
+            sitterID:       sitter._id,
+            description:  this.props.sitterProfile.reviewDescription,
+            parentImage: this.props.user.profilePicture
+        };
+        sitter.reviews.push(review);
+        let self = this;
+        axios({
+            method: 'post',
+            url: 'http://localhost:4444/sitter/update',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: sitter
+        }).then(function (res) {
+            if (res.data) {
+                console.log('Added review');
+                self.props.actions.sitterProfileActions.setReviewDescription(' ');
+                self.props.actions.sitterProfileActions.setExpandReview(false);
+            }
+            else {
+                console.log("user not created");
+                //TODO: think about error when user not created
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+                //TODO: think about error when user not created
+            });
     }
 
     render() {
@@ -170,6 +205,13 @@ class SitterProfile extends SitterProfileBase {
                 <Accordion>
                     <Panel header="+ Reviews" eventKey="reviews">
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
+                    </Panel>
+                </Accordion>
+                <Accordion defaultExpanded={this.props.sitterProfile.expandReview}>
+                    <Panel header="+ Add Review"  >
+                        <ControlLabel>{'Your story with ' + this.props.sitterProfile.sitter.name}</ControlLabel>
+                        <FormControl autoFocus={this.props.sitterProfile.expandReview}  componentClass="textarea" placeholder="textarea" onChange={this.handleChangeReview.bind(this)} />
+                        <Button className="add-review" title="Add Review" bsStyle="primary" onClick={this.addReview.bind(this)}>Add Review</Button>
                     </Panel>
                 </Accordion>
                 <button id="invite-button" onClick={this.inviteSitter.bind(this)}>

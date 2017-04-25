@@ -18,3 +18,18 @@ export function setDistance(distance) {
         distance
     }
 }
+
+export function setReviewDescription(reviewDescription) {
+    return {
+        type: 'SET_REVIEW_DESCRIPTION',
+        reviewDescription
+    }
+}
+
+export function setExpandReview(expandReview) {
+    return {
+        type: 'SET_EXPAND_REVIEW',
+        expandReview
+    }
+}
+

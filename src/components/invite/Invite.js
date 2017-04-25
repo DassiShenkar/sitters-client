@@ -16,8 +16,8 @@ class Invite extends React.Component {
         this.sendInvite = this.sendInvite.bind(this);
     }
 
-    handleChange(event){
-        this.props.actions.inviteActions.setNotes(event.target.value);
+    handleChange(e){
+        this.props.actions.inviteActions.setNotes(e.target.value);
     }
 
     sendInvite(e) {   //TODO: send to server with axios and move to feed

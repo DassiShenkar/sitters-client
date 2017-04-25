@@ -47,7 +47,8 @@ function user(state = {}, action) {
                 timezone: data.timezone,
                 blacklist: data.blacklist,
                 settings: data.settings,
-                matchBI: data.matchBI
+                matchBI: data.matchBI,
+                reviews: data.reviews
 
             };
         default:
