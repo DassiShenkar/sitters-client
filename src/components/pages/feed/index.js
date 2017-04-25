@@ -27,6 +27,8 @@ class Feed extends React.Component {
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
+                        self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
+                        self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
                         axios.post('http://localhost:4444/parent/getMatches',
                             parent.data
                         )

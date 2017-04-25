@@ -46,7 +46,7 @@ function user(state = {}, action) {
                 profilePicture: data.profilePicture,
                 timezone: data.timezone,
                 blacklist: data.blacklist,
-                joinedTime: data.joinedTime
+                settings: data.settings
 
             };
         default:

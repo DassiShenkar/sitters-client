@@ -1,13 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
-
 import {Image} from 'react-bootstrap';
-
 import SitterListBase from '../../base/SitterListBase';
 
 //style
 import './style.css';
-import SitterPieMatch from "../pie/SitterPieMatch";
 import PieChart from "../pie/PieChart";
 
 class SitterList extends SitterListBase {
@@ -30,7 +27,6 @@ class SitterList extends SitterListBase {
                         <h3 className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</h3>
                     </div>
                 </Link>
-                    {/*<SitterPieMatch sitter={this.props.sitters[sitterIndex]} {...this.props}/>*/}
                     <PieChart sitter={this.props.sitters[sitterIndex]} />
             </div>
         )

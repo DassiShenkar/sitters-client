@@ -1,13 +1,10 @@
 import React from 'react';
-var PieChart1 = ReactD3.PieChart;
-// react pie chart - https://www.npmjs.com/package/react-d3-components
-import './style.css'
 import * as ReactD3 from "react-d3-components";
+var PieChart1 = ReactD3.PieChart;
+import './style.css'
+
 
 class PieChart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render(){
         let data = {label: 'Matcher Pie Chart', values: []};
