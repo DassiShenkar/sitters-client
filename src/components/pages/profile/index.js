@@ -139,12 +139,6 @@ class SitterProfile extends SitterProfileBase {
             education = <StringsAccordion header="+ Education" data={this.props.sitterProfile.sitter.education}/>;
         if(this.props.sitterProfile.sitter.expertise.length > 0 )
             expertise = <StringsAccordion header="+ Expertise" data={this.props.sitterProfile.sitter.expertise}/>;
-        // const education = this.props.sitterProfile.sitter.education.map((edu) => {
-        //     return (edu + ", ")
-        // });
-        // const languages = this.props.sitterProfile.sitter.languages.map((languages) => {
-        //     return (languages + ", ")
-        // });
         const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : '';
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'

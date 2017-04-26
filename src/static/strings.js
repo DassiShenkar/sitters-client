@@ -53,6 +53,4 @@ const strings = {
         value: 0
     }]
 };
-
-
 export default strings;

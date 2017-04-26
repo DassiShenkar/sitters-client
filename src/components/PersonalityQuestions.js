@@ -1,14 +1,20 @@
 import React from "react";
+import {ReactRating} from "react-rating";
+import {ControlLabel} from "react-bootstrap";
 
 
 class PersonalityQuestions extends React.Component {
     render() {
         const questions = this.props.questions.map((question) => {
-            return(
-                <p key={this.props.questions.indexOf(question)}>{question.start + " " + question.end}</p>
+            return (
+                <div>
+                    <ControlLabel>{question.start}</ControlLabel>
+                    {/*<ReactRating initialRate={question.value.toString()} onClick={rate => console.log(rate)} />*/}
+                    <ControlLabel>{question.end}</ControlLabel>
+                </div>
             );
         });
-        return(
+        return (
             <div>
                 {questions}
             </div>
