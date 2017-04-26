@@ -130,13 +130,15 @@ class SitterProfile extends SitterProfileBase {
                 </tr>
             )
         });
-        let hobbies = null, education = null, languages = null;
+        let hobbies = null, education = null, languages = null, expertise= null;
         if(this.props.sitterProfile.sitter.hobbies.length > 0 )
             hobbies = <StringsAccordion header="+ Hobbies" data={this.props.sitterProfile.sitter.hobbies}/>;
         if(this.props.sitterProfile.sitter.languages.length > 0 )
             languages = <StringsAccordion header="+ Languages" data={this.props.sitterProfile.sitter.languages}/>;
         if(this.props.sitterProfile.sitter.education.length > 0 )
             education = <StringsAccordion header="+ Education" data={this.props.sitterProfile.sitter.education}/>;
+        if(this.props.sitterProfile.sitter.expertise.length > 0 )
+            expertise = <StringsAccordion header="+ Expertise" data={this.props.sitterProfile.sitter.expertise}/>;
         // const education = this.props.sitterProfile.sitter.education.map((edu) => {
         //     return (edu + ", ")
         // });
@@ -224,7 +226,7 @@ class SitterProfile extends SitterProfileBase {
                 {education}
                 {languages}
                 {hobbies}
-
+                {expertise}
                 <Accordion>
                     <Panel header="+ Reviews" eventKey="reviews">
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>

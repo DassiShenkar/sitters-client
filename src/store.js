@@ -55,6 +55,7 @@ const defaultState = {
         education: [],
         address: {},
         reviews: [],
+        expertise: [],
         expandReview: false
     },
         distance: ""
