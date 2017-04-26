@@ -16,8 +16,8 @@ class Invite extends React.Component {
         this.sendInvite = this.sendInvite.bind(this);
     }
 
-    handleChange(event){
-        this.props.actions.inviteActions.setNotes(event.target.value);
+    handleChange(e){
+        this.props.actions.inviteActions.setNotes(e.target.value);
     }
 
     sendInvite(e) {   //TODO: send to server with axios and move to feed
@@ -45,6 +45,7 @@ class Invite extends React.Component {
         axios({
             method: 'post',
             url: 'https://sitters-server.herokuapp.com/invite/create',
+            // url: 'http://localhost:4444/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {

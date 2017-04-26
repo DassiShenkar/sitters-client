@@ -54,7 +54,9 @@ const defaultState = {
         languages: [],
         education: [],
         address: {},
-        reviews: []
+        reviews: [],
+        expertise: [],
+        expandReview: false
     },
         distance: ""
     },

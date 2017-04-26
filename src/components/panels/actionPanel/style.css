@@ -9,9 +9,9 @@
   #sitterActionBar svg {
     height: 48px;
     width: 48px; }
-  #sitterActionBar #like path {
+  #sitterActionBar #mail-icon path {
     fill: #88d685; }
-  #sitterActionBar #next path {
+  #sitterActionBar #next-icon path {
     fill: #7ad0f8; }
-  #sitterActionBar #star path {
+  #sitterActionBar #like-icon path {
     fill: #e57373; }

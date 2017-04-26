@@ -15,6 +15,16 @@ function sitterProfile(state = {}, action) {
                 ...state,
                 distance: action.distance
             };
+        case 'SET_REVIEW_DESCRIPTION':
+            return {
+                ...state,
+                reviewDescription: action.reviewDescription
+            };
+        case 'SET_EXPAND_REVIEW':
+            return {
+                ...state,
+                expandReview: action.expandReview
+            };
 
         default:
             return state;

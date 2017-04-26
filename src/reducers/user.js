@@ -30,6 +30,7 @@ function user(state = {}, action) {
             return {
                 ...state,
                 _id: data._id,
+                userType: data.userType,
                 address: data.address,
                 age: data.age,
                 children: data.children,
@@ -43,8 +44,11 @@ function user(state = {}, action) {
                 name: data.name,
                 notifications: data.notifications,
                 profilePicture: data.profilePicture,
-                timezone: data.timezone
-
+                timezone: data.timezone,
+                blacklist: data.blacklist,
+                settings: data.settings,
+                matchBI: data.matchBI,
+                reviews: data.reviews
             };
         default:
             return state;

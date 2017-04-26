@@ -18,3 +18,44 @@ img.profilePic {
   height: 171px;
   margin: 0 auto;
   border: 8px solid #fff; }
+
+#sitter-profile #info-table {
+  margin: 0 0 24px 0; }
+  #sitter-profile #info-table th, #sitter-profile #info-table td {
+    text-align: center;
+    border-right: 1px solid #eee;
+    width: 33%; }
+  #sitter-profile #info-table th {
+    border-bottom: none;
+    font-size: 24px; }
+  #sitter-profile #info-table tbody > tr > td {
+    border-top: none;
+    text-align: center; }
+  #sitter-profile #info-table th:last-child, #sitter-profile #info-table td:last-child {
+    border-right: none; }
+
+#sitter-profile .panel-heading, #sitter-profile .panel-group, #sitter-profile .panel {
+  background: #fff;
+  border: none; }
+
+#sitter-profile #availability-table th, #sitter-profile td {
+  text-align: left; }
+
+#sitter-profile #invite-button {
+  background: #fff;
+  color: #88d685;
+  border: 2px solid #88d685;
+  border-radius: 18px; }
+
+#sitter-profile #invite-button:hover {
+  background: #88d685;
+  color: #fff; }
+
+#sitter-profile #invite-button:focus {
+  outline: none; }
+
+#sitter-profile #invite-button:hover #mail-icon path {
+  fill: #fff; }
+
+#sitter-profile #mail-icon path {
+  fill: #88d685; }
