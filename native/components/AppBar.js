@@ -19,7 +19,7 @@ export default class AppBar extends React.Component {
 
     render () {
         return (
-            <View style={{ flexDirection: 'row-reverse', margin: 15,justifyContent: 'space-between'}}>
+            <View style={{ flexDirection: 'row-reverse', padding: 5,justifyContent: 'space-between', shadowColor: '#000', borderBottomColor: '#000', borderStyle: 'solid', borderWidth: 1}}>
                 <ImageButton
                     onPress={Actions.Feed}
                     styles={{width: 50, height: 50,borderRadius:100}}

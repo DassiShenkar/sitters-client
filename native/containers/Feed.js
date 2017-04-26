@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,14 +18,13 @@ class Feed extends React.Component {
         super(props);
     }
 
-    async componentWillMount() {
+    componentWillMount() {
         const self = this;
-        const userId = await LocalStorage.getFromLocalStorage(LocalStorage.USER_KEY);
-        if (userId) {
-            axios.post('https://sitters-server.herokuapp.com/parent/get', {
-                id: userId.toString()
-            })
-                .then(function (parent) {
+        AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
+            if (userId) {
+                axios.post('https://sitters-server.herokuapp.com/parent/get', {
+                    id: userId.toString()
+                }).then(function (parent) {
                     if (parent.data) {  // user exists
                         axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
                             parent.data
@@ -47,11 +46,11 @@ class Feed extends React.Component {
                         alert('user not exist');
                         Actions.Login();
                     }
-                })
-                .catch(function (error) {
+                }).catch(function (error) {
                     alert(JSON.stringify(error));
                 });
-        }
+            }
+        });
     }
 
     render () {

@@ -1,11 +1,12 @@
 "use strict";
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes  } from 'react';
 import { ScrollView, Image, Text, View, ListView, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import LocalStorage from '../utils/LocalStorage'
 import AppBar from '../components/AppBar';
 import Review from '../components/Review';
 import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
@@ -20,12 +21,12 @@ class SitterProfileView extends React.Component {
         };
         this.renderRow = this.renderRow.bind(this);
     }
-
+    
     componentWillMount() {
         let sitterID = this.props.sitterId;
         let self = this;
         axios.post('https://sitters-server.herokuapp.com/sitter/get', {
-            _id: sitterID
+            _id: sitterID.toString()
         })
             .then(function (sitter) {
                 self.props.sitterProfileActions.setSitter(sitter.data);
@@ -38,28 +39,29 @@ class SitterProfileView extends React.Component {
                 this.setState(newState);
             })
             .catch(function (error) {
-                // alert(JSON.stringify(error));//TODO: in case of sitter wasn't found
+                alert(JSON.stringify(error));//TODO: in case of sitter wasn't found
             });
     }
 
     render () {
-        const proximity = '500m\nProximity';
-        const hourFee = '12$\nHour Fee';
-        const experience = '2 Years\nExperience';
+        const id = this.props.sitterId;
         return (
             <ScrollView>
                 <AppBar
                     { ...this.props }/>
                 <Image
-                    styles={{width: 200, height: 200, justifyContent: 'center', borderRadius:100}}
+                    style={{width: 200, height: 200, justifyContent: 'center', borderRadius:100}}
                     source={this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png'}}
                 />
-                <Text>Name, Age</Text>
-                <Text>100% Match!</Text>
+                <Text>{ this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }</Text>
+                <Text>{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
+                        return sitter._id === id;
+                    }).matchScore + '% Match!' : 'no matches found'}
+                </Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Text>{ proximity }</Text>
-                    <Text>{ hourFee }</Text>
-                    <Text>{ experience }</Text>
+                    <Text>{ this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }</Text>
+                    <Text>{ this.props.sitterProfile.sitter.hourFee + "$" }</Text>
+                    <Text>{ this.props.sitterProfile.sitter.experience + " Years" }</Text>
                 </View>
                 <Text>Availability</Text>
                 <Text>Sunday - Saturday</Text>
@@ -104,7 +106,9 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        sitterProfile: state.sitterProfile,
+        feed: state.feed
     }
 }
 
