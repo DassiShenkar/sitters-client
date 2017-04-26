@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, TouchebleHighlight } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-import ModalDropdown from 'react-native-modal-dropdown';
+import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
 
-const DROPDOWN_OPTIONS = ['Edit Profile', 'Settings', 'Log Out', 'About'];
 
 export default class DropDownMenu extends React.Component {
 
@@ -15,9 +14,25 @@ export default class DropDownMenu extends React.Component {
 
     render () {
         return (
-            <ModalDropdown
-                options={DROPDOWN_OPTIONS}
-                onSelect={this._onSelect}/>
+            <Menu onSelect={this._onSelect}>
+                <MenuTrigger>
+                    <Text style={{ fontSize: 20 }}>&#8942;</Text>
+                </MenuTrigger>
+                <MenuOptions>
+                    <MenuOption value={1}>
+                        <Text>Edit Profile</Text>
+                    </MenuOption>
+                    <MenuOption value={2}>
+                        <Text>Settings</Text>
+                    </MenuOption>
+                    <MenuOption value={3}>
+                        <Text>Log Out</Text>
+                    </MenuOption>
+                    <MenuOption value={4}>
+                        <Text>About</Text>
+                    </MenuOption>
+                </MenuOptions>
+            </Menu>
         );
     }
 
@@ -25,18 +40,18 @@ export default class DropDownMenu extends React.Component {
 
     }
 
-    _onSelect (idx, value) {
+    _onSelect (value) {
         switch(value) {
-            case 'Edit Profile':
+            case 1:
                 Actions.Register({ exists:true });
                 break;
-            case 'Settings':
+            case 2:
                 Actions.Settings();
                 break;
-            case 'Log Out':
+            case 3:
                 this.logOut();
                 break;
-            case 'About':
+            case 4:
                 Actions.About();
                 break;
         }

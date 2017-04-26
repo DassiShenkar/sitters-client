@@ -46,6 +46,7 @@ export default class RateSitter extends React.Component {
             <View>
                 <Text>{ item }</Text>
                 <Rating
+                    key={ item }
                     rating={1}
                     max={5}
                     iconWidth={24}

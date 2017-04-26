@@ -1,56 +1,67 @@
 "use strict";
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes  } from 'react';
 import { ScrollView, Image, Text, View, ListView, StyleSheet } from 'react-native'
-import AppBar from '../components/AppBar'
-import Review from '../components/Review'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-export default class SitterProfileView extends React.Component {
+import LocalStorage from '../utils/LocalStorage'
+import AppBar from '../components/AppBar';
+import Review from '../components/Review';
+import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
+
+class SitterProfileView extends React.Component {
 
     constructor (props) {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows([{
-                id: 0,
-                name: 'Michael',
-                date: '12/04/17',
-                stars: 5,
-                image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-                review: 'Lorem ipsum dolor sit amet, ius ad pertinax oportere accommodare, an vix civibus corrumpit referrentur. Te nam case ludus inciderint, te mea facilisi adipiscing.'
-            }, {
-                id: 1,
-                name: 'Michael',
-                date: '12/04/17',
-                stars: 5,
-                image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-                review: 'Lorem ipsum dolor sit amet, ius ad pertinax oportere accommodare, an vix civibus corrumpit referrentur. Te nam case ludus inciderint, te mea facilisi adipiscing.'
-            }, {
-                id: 2,
-                name: 'Michael',
-                date: '12/04/17',
-                stars: 5,
-                image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-                review: 'Lorem ipsum dolor sit amet, ius ad pertinax oportere accommodare, an vix civibus corrumpit referrentur. Te nam case ludus inciderint, te mea facilisi adipiscing.'
-            }])
+            dataSource: ds.cloneWithRows(['No reviews yet'])
         };
         this.renderRow = this.renderRow.bind(this);
     }
+    
+    componentWillMount() {
+        let sitterID = this.props.sitterId;
+        let self = this;
+        axios.post('https://sitters-server.herokuapp.com/sitter/get', {
+            _id: sitterID.toString()
+        })
+            .then(function (sitter) {
+                self.props.sitterProfileActions.setSitter(sitter.data);
+                let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
+                let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
+                self.props.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
+                var newState = {
+                    dataSource: ds.cloneWithRows(this.props.sitterProfile.sitter.reviews)
+                };
+                this.setState(newState);
+            })
+            .catch(function (error) {
+                alert(JSON.stringify(error));//TODO: in case of sitter wasn't found
+            });
+    }
 
     render () {
-        const proximity = '500m\nProximity';
-        const hourFee = '12$\nHour Fee';
-        const experience = '2 Years\nExperience';
+        const id = this.props.sitterId;
         return (
             <ScrollView>
-                <AppBar />
-                <Image />
-                <Text>Name, Age</Text>
-                <Text>100% Match!</Text>
+                <AppBar
+                    { ...this.props }/>
+                <Image
+                    style={{width: 200, height: 200, justifyContent: 'center', borderRadius:100}}
+                    source={this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                />
+                <Text>{ this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }</Text>
+                <Text>{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
+                        return sitter._id === id;
+                    }).matchScore + '% Match!' : 'no matches found'}
+                </Text>
                 <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Text>{ proximity }</Text>
-                    <Text>{ hourFee }</Text>
-                    <Text>{ experience }</Text>
+                    <Text>{ this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }</Text>
+                    <Text>{ this.props.sitterProfile.sitter.hourFee + "$" }</Text>
+                    <Text>{ this.props.sitterProfile.sitter.experience + " Years" }</Text>
                 </View>
                 <Text>Availability</Text>
                 <Text>Sunday - Saturday</Text>
@@ -89,6 +100,22 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
-        backgroundColor: '#8E8E8E',
+        backgroundColor: '#8E8E8E'
     },
 });
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+        sitterProfile: state.sitterProfile,
+        feed: state.feed
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        sitterProfileActions: bindActionCreators(sitterProfileActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SitterProfileView);

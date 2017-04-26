@@ -13,7 +13,7 @@ export default class BaseForm extends React.Component {
 
     render () {
         return (
-            <View>
+            <View style={{ margin: 20 }}>
                 <Text>User</Text>
                 <TextInput 
                     type="TextInput" 
@@ -30,7 +30,7 @@ export default class BaseForm extends React.Component {
                 <TextInput 
                     type="TextInput" 
                     name="age"
-                    value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday) : "Enter Your Age" }
+                    value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : "Enter Your Age" }
                     onFocus={(text) => this.props.actions.registerActions.changeAge(' ')}
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)} />
                 <Text>Address</Text>
@@ -61,7 +61,7 @@ export default class BaseForm extends React.Component {
                 </Picker>
                 <Text>Profile picture</Text>
                 <Image
-                    source={this.props.user.picture ? {uri: this.props.user.picture.source} : ''}
+                    source={this.props.user.picture ? {uri: this.props.user.picture.data.url} : ''}
                     style={{width: 50, height: 50}} />
             </View>
         );
@@ -69,6 +69,6 @@ export default class BaseForm extends React.Component {
 
     calcAge(birthday) {
         let date = birthday.split("/");
-        return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
+        return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || '0';
     }
 }
