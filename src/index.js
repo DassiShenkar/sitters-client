@@ -27,8 +27,8 @@ import Test from "./components/Test";
 const router = (
     <Provider store={store}>
         <Router history={history}>
-            {/*<Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>*/}
-            <Route path="/" component={Test}>
+            <Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
+            {/*<Route path="/" component={Test}>*/}
                     <IndexRoute component={Feed}/>
                     <Route path="/invites" component={Invites}/>
                     <Route path="/invite/:inviteId" component={SingleInvite}/>

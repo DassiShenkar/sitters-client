@@ -14,31 +14,30 @@ import Mail from "../../../styles/icons/Mail";
 
 // style
 import './style.css';
+import PersonalityQuestions from "../../PersonalityQuestions";
+import StringsAccordion from "../../StringsAccordion";
 
 class SitterProfile extends SitterProfileBase {
 
     median(values) {
 
-    values.sort( function(a,b) {return a - b;} );
+        values.sort( function(a,b) {return a - b;} );
 
-    var half = Math.floor(values.length/2);
+        var half = Math.floor(values.length/2);
 
-    if(values.length % 2)
-        return values[half];
-    else
-        return (values[half-1] + values[half]) / 2.0;
-}
+        if(values.length % 2)
+            return values[half];
+        else
+            return (values[half-1] + values[half]) / 2.0;
+    }
 
     componentDidMount(){
-        //this.refs.textareareview.focus();
         let parent = this.props.user;
         const id = this.props.params.sitterId;
         parent.matchBI.matchScores.push(this.props.feed.matches.find(function (sitter) {
             return sitter._id === id;
         }).matchScore);
         parent.matchBI.median = this.median(parent.matchBI.matchScores);
-        console.log(parent);
-        // let self = this;
         axios({
             method: 'post',
             // url: 'http://localhost:4444/parent/update',
@@ -131,28 +130,48 @@ class SitterProfile extends SitterProfileBase {
                 </tr>
             )
         });
-        const hobbies = this.props.sitterProfile.sitter.hobbies.map((hobbie) => {
-            return (hobbie + ", ")
-        });
-        const education = this.props.sitterProfile.sitter.education.map((edu) => {
-            return (edu + ", ")
-        });
-        const languages = this.props.sitterProfile.sitter.languages.map((languages) => {
-            return (languages + ", ")
-        });
+        let hobbies = null, education = null, languages = null;
+        if(this.props.sitterProfile.sitter.hobbies.length > 0 )
+            hobbies = <StringsAccordion header="+ Hobbies" data={this.props.sitterProfile.sitter.hobbies}/>;
+        if(this.props.sitterProfile.sitter.languages.length > 0 )
+            languages = <StringsAccordion header="+ Languages" data={this.props.sitterProfile.sitter.languages}/>;
+        if(this.props.sitterProfile.sitter.education.length > 0 )
+            education = <StringsAccordion header="+ Education" data={this.props.sitterProfile.sitter.education}/>;
+        // const education = this.props.sitterProfile.sitter.education.map((edu) => {
+        //     return (edu + ", ")
+        // });
+        // const languages = this.props.sitterProfile.sitter.languages.map((languages) => {
+        //     return (languages + ", ")
+        // });
         const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : '';
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
+        let personalitySameQuestions = null;
+        console.log('x');
+        if(this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0){
+            // personalitySameQuestions = this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions;
+            personalitySameQuestions =
+                <div>
+                    <Accordion>
+                        <Panel header="+ Same Questions" eventKey="questions">
+                            <PersonalityQuestions questions={this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions} />
+                        </Panel>
+                    </Accordion>
+                </div>;
+
+        }
+        console.log(personalitySameQuestions);
+
         return (
             <div id="sitter-profile">
                 {/*<Nav name={this.props.user.name}*/}
-                     {/*image={this.props.user.profilePicture}*/}
-                     {/*alt={this.props.user.name}*/}
-                     {/*invites={this.props.user.invites}*/}
-                     {/*notifications={this.props.user.notifications}*/}
-                     {/*action={this.props.actions.feedActions.setNavView}*/}
-                     {/*{...this.props}/>*/}
+                {/*image={this.props.user.profilePicture}*/}
+                {/*alt={this.props.user.name}*/}
+                {/*invites={this.props.user.invites}*/}
+                {/*notifications={this.props.user.notifications}*/}
+                {/*action={this.props.actions.feedActions.setNavView}*/}
+                {/*{...this.props}/>*/}
                 <div className="match" style={style}>
                     <div className="sitter-info">
                         <h1 className="matchScore">{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
@@ -196,14 +215,16 @@ class SitterProfile extends SitterProfileBase {
                             {workingHours}
                             </tbody>
                         </Table>
-                        {hobbies.length > 0 ? <h4>Hobbies</h4> : ""}
-                        {hobbies}
-                        {education.length > 0 ? <h4>Education</h4> : ""}
-                        {education}
-                        {languages.length > 0 ? <h4>Languages</h4> : ""}
-                        {languages}
+                        {/*{hobbies.length > 0 ? <h4>Hobbies</h4> : ""}*/}
+                        {/*{hobbies}*/}
+                        {/*{education.length > 0 ? <h4>Education</h4> : ""}*/}
+                        {/*{languages.length > 0 ? <h4>Languages</h4> : ""}*/}
                     </Panel>
                 </Accordion>
+                {education}
+                {languages}
+                {hobbies}
+
                 <Accordion>
                     <Panel header="+ Reviews" eventKey="reviews">
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
@@ -216,6 +237,7 @@ class SitterProfile extends SitterProfileBase {
                         <Button className="add-review" title="Add Review" bsStyle="primary" onClick={this.addReview.bind(this)}>Add Review</Button>
                     </Panel>
                 </Accordion>
+                {personalitySameQuestions}
                 <button id="invite-button" onClick={this.inviteSitter.bind(this)}>
                     <Mail id="mail-icon"/>
                     <span>Send Invite</span>

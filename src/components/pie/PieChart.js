@@ -11,9 +11,9 @@ class PieChart extends React.Component {
         let sitter = {};
         if(typeof this.props.sitter !== "undefined" && typeof this.props.sitter.match !== "undefined") {
             sitter = this.props.sitter;
-            delete sitter.match['matchScore'];
+            //delete sitter.match['matchScore'];
             for (let k in sitter.match) {
-                if (sitter.match.hasOwnProperty(k))
+                if (sitter.match.hasOwnProperty(k) && k !== "testScore" && k !== "matchScore" && k !== "personalityQuestions")
                      data.values.push({x: sitter.match[k].label+ ' ' + sitter.match[k].value + '%', y: sitter.match[k].value})
             }
         }
