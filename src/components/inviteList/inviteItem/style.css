@@ -1,0 +1,21 @@
+.invite-item {
+  background: #f8f8f8;
+  margin-bottom: 4px;
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: row; }
+
+.invite-item img {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px; }
+
+.invite-item .invite-info, .invite-item .invite-status {
+  flex: 1; }
+
+.invite-item .invite-info {
+  display: flex;
+  flex-direction: row; }
+
+.invite-item .invite-status {
+  text-align: right; }

@@ -1,0 +1,39 @@
+Index: src/components/pages/feed/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/pages/feed/index.js	(revision 2adcd2660198dbc9d59cb5611832ca0925a675b0)
++++ src/components/pages/feed/index.js	(revision )
+@@ -19,12 +19,14 @@
+         let self = this;
+         const userId = localStorage.getItem('auth_token');
+         if (userId) {
+-            axios.post('https://sitters-server.herokuapp.com/parent/get', {
++            // axios.post('https://sitters-server.herokuapp.com/parent/get', {
++            axios.post('http://localhost:4444/parent/get', {
+                 id: userId
+             })
+                 .then(function (parent) {
+                     if (parent.data) {  // user exists
+-                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
++                        // axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
++                        axios.post('http://localhost:4444/parent/getMatches',
+                             parent.data
+                         )
+                             .then(function (sitters) {
+Index: src/components/panels/actionPanel/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/panels/actionPanel/index.js	(revision 2adcd2660198dbc9d59cb5611832ca0925a675b0)
++++ src/components/panels/actionPanel/index.js	(revision )
+@@ -21,6 +21,7 @@
+     nextSitter(e) {
+         e.preventDefault();
+         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex +1;
++        //Todo: call blacklistSitter(parentID, sitterID) for this parent
+         this.props.actions.feedActions.setSitterIndex(index);
+     }
+     handleChange(event){
