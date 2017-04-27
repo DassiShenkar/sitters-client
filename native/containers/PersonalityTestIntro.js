@@ -1,8 +1,8 @@
 "use strict";
 import React, {Component} from 'react';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import CheckBox from 'react-native-check-box';
+import { Checkbox } from 'react-native-material-design';
 
 import ImageButton from '../components/ImageButton';
 
@@ -20,25 +20,46 @@ export default class PersonalityTestIntro extends React.Component {
 
     constructor (props) {
         super(props);
+        this.checkChecked = this.checkChecked.bind(this);
+        this.navToPersonalityTest = this.navToPersonalityTest.bind(this);
+        this.state = {
+            checked: false
+        }
     }
 
     render () {
         return (
             <ScrollView>
-                <Text>Test Instructions</Text>
-                <Text>{ greeting }</Text>
-                <CheckBox
-                    style={{flex: 1, padding: 10}}
-                    onClick={()=>{ alert('Agree') } }
-                    isChecked={false}
-                    leftText={boxText}
-                />
-                <ImageButton
-                    onPress={Actions.PersonalityTest}
-                    styles={{width: 50, height: 50}}
-                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
+                <View style={{ margin: 20 }}>
+                    <Text>Test Instructions</Text>
+                    <Text>{ greeting }</Text>
+                    <Checkbox
+                        label={ boxText }
+                        value={ boxText }
+                        onCheck={ this.checkChecked }
+                        checked={this.state.checked}
+                    />
+                    <ImageButton
+                        onPress={this.navToPersonalityTest}
+                        styles={{width: 50, height: 50,borderRadius:100}}
+                        src={require('../style/icons/next.png')} />
+                </View>
             </ScrollView>
-
         );
+    }
+
+    checkChecked() {
+        var newState = {
+            checked: !this.state.checked
+        };
+        this.setState(newState);
+    }
+
+    navToPersonalityTest() {
+        if(this.state.checked === true) {
+            Actions.PersonalityTest({questionNum: 1, callback: this.props.callback})
+        } else {
+            alert('Please Check "I Agree"');
+        }
     }
 }

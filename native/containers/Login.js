@@ -8,8 +8,6 @@ import FaceBookLogin from '../components/FaceBookLogin'
 import Logo from '../components/Logo'
 import * as actionCreators from '../../src/actions/actionCreators';
 
-
-
 class Login extends React.Component {
 
     constructor(props) {
@@ -22,12 +20,15 @@ class Login extends React.Component {
                 <Logo
                     companyName="Sitters" />
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
-                <Picker
-                    selectedValue={ this.props.user.userType }
-                    onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-                    <Picker.Item label="I'm A Parent" value="I'm a Parent" />
-                    <Picker.Item label="I'm A Sitter" value="I'm a Sitter" />
-                </Picker>
+                <View style={{ marginBottom: 15 }}>
+                    <Picker
+                        style={{ width: 200 }}
+                        selectedValue={ this.props.user.userType }
+                        onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
+                        <Picker.Item label="I'm A Parent" value="I'm a Parent" />
+                        <Picker.Item label="I'm A Sitter" value="I'm a Sitter" />
+                    </Picker>
+                </View>
                 <FaceBookLogin
                     { ...this.props } />
             </View>
@@ -40,12 +41,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 40
+        marginBottom: 40,
+        flexDirection: 'column'
     },
     text: {
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
         fontSize: 16,
-        color: '#f7a1a1'
+        color: '#f7a1a1',
+        marginBottom: 15
     }
 });
 

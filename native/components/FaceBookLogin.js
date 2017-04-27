@@ -30,18 +30,19 @@ export default class FaceBookLogin extends React.Component {
                 onLoginFinished={
                         (error, result) => {
                             if (error) {
-                                alert("Login failed with error: " + result.error);
+                                console.log("Login failed with error: " + result.error);
+                                Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook login Error, please try again later'});
                             } else if (result.isCancelled) {
-                                alert("Login was cancelled");
+                                console.log("Login was cancelled");
                             } else {
                                 AccessToken.getCurrentAccessToken().then(
                                     (data) => {
                                         LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
                                         const responseInfoCallback = (error, result) => {
                                             if (error) {
-                                                alert(error);
+                                                console.log(error);
+                                                Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook login Error, please try again later'});
                                             } else {
-                                                alert(JSON.stringify(result));
                                                 LocalStorage.setToLocalStorage(LocalStorage.USER_KEY, result.id.toString());
                                                 self.handleResponse(result);
                                             }
@@ -64,7 +65,7 @@ export default class FaceBookLogin extends React.Component {
                             }
                         }
                 }
-                onLogoutFinished={() => alert("User logged out")}/>
+                onLogoutFinished={() => console.log("User logged out")}/>
         );
     }
 
@@ -82,7 +83,8 @@ export default class FaceBookLogin extends React.Component {
                 }
             })
             .catch(function (error) {
-                alert(error);
+                console.log(error);
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
             });
     }
 }

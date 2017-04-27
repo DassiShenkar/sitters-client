@@ -33,6 +33,7 @@ class SitterProfileView extends React.Component {
                 let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
                 let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
                 self.props.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
+                alert(JSON.stringify(this.props.sitterProfile.sitter.reviews));
                 var newState = {
                     dataSource: ds.cloneWithRows(this.props.sitterProfile.sitter.reviews)
                 };
@@ -49,36 +50,38 @@ class SitterProfileView extends React.Component {
             <ScrollView>
                 <AppBar
                     { ...this.props }/>
-                <Image
-                    style={{width: 200, height: 200, justifyContent: 'center', borderRadius:100}}
-                    source={this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                />
-                <Text>{ this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }</Text>
-                <Text>{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
-                        return sitter._id === id;
-                    }).matchScore + '% Match!' : 'no matches found'}
-                </Text>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Text>{ this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }</Text>
-                    <Text>{ this.props.sitterProfile.sitter.hourFee + "$" }</Text>
-                    <Text>{ this.props.sitterProfile.sitter.experience + " Years" }</Text>
-                </View>
-                <Text>Availability</Text>
-                <Text>Sunday - Saturday</Text>
-                <Text>17:00 - 24:00</Text>
-                <Text>Hobbies</Text>
-                <Text>Horse Riding, Reading, Traveling</Text>
-                <Text>Education</Text>
-                <Text>Rabin High School, Kfar saba</Text>
-                <Text>Languages</Text>
-                <Text>Hebrew, English</Text>
-                <Text>Reviews(Num of Reviews)</Text>
-                <View>
-                    <ListView
-                        dataSource={this.state.dataSource}
-                        renderRow={(data) => <Review {...data} />}
-                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                <View style={{ flex:1, margin: 15 }} >
+                    <Image
+                        style={{width: 200, height: 200, justifyContent: 'center', borderRadius:100}}
+                        source={this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png'}}
                     />
+                    <Text>{ this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }</Text>
+                    <Text>{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
+                            return sitter._id === id;
+                        }).matchScore + '% Match!' : 'no matches found'}
+                    </Text>
+                    <View style={{flex: 1, flexDirection: 'row'}}>
+                        <Text>{ this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }</Text>
+                        <Text>{ this.props.sitterProfile.sitter.hourFee + "$" }</Text>
+                        <Text>{ this.props.sitterProfile.sitter.experience + " Years" }</Text>
+                    </View>
+                    <Text>Availability</Text>
+                    <Text>Sunday - Saturday</Text>
+                    <Text>17:00 - 24:00</Text>
+                    <Text>Hobbies</Text>
+                    <Text>Horse Riding, Reading, Traveling</Text>
+                    <Text>Education</Text>
+                    <Text>Rabin High School, Kfar saba</Text>
+                    <Text>Languages</Text>
+                    <Text>Hebrew, English</Text>
+                    <Text>Reviews(Num of Reviews)</Text>
+                    <View>
+                        <ListView
+                            dataSource={this.state.dataSource}
+                            renderRow={(data) => <Review {...data} />}
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                        />
+                    </View>
                 </View>
             </ScrollView>
         );

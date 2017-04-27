@@ -21,6 +21,7 @@ class Feed extends React.Component {
     componentWillMount() {
         const self = this;
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
+            console.log(userId);
             if (userId) {
                 axios.post('https://sitters-server.herokuapp.com/parent/get', {
                     id: userId.toString()
@@ -39,6 +40,7 @@ class Feed extends React.Component {
                             })
                             .catch(function (error) {
                                 console.log(error);
+                                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
                             });
                         self.props.actionCreators.setUserData(parent.data);
                     }
@@ -47,8 +49,11 @@ class Feed extends React.Component {
                         Actions.Login();
                     }
                 }).catch(function (error) {
-                    alert(JSON.stringify(error));
+                    console.log(error);
+                    Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
                 });
+            } else {
+                Actions.Login();
             }
         });
     }
