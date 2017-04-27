@@ -8,7 +8,7 @@ import {PageHeader} from 'react-bootstrap';
 // import Nav from '../../panels/nav/index'; Do not delete until check nav functionality
 import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../Notifications";
-import Invites from "../../InvitesList";
+import Invites from "../../inviteList/index";
 import SitterList from "../../sitterList/index";
 import SitterActionBar from "../../panels/actionPanel/index";
 
@@ -29,8 +29,8 @@ class Feed extends React.Component {
                     if (parent.data) {  // user exists
                         self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                         self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
-                        axios.post('http://localhost:4444/parent/getMatches',
-                        // axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
+                        // axios.post('http://localhost:4444/parent/getMatches',
+                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
                             parent.data
                         )
                             .then(function (sitters) {
