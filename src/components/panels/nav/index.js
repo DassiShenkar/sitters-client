@@ -20,10 +20,9 @@ class MainNav extends NavBase {
         return (
             <Navbar id="main-nav">
                 <Navbar.Header>
-                    <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle
-                           onClick={this.onClick.bind(this, "main")}/>
-                    <Navbar.Brand
-                        onClick={this.onClick.bind(this, "main")}>{'Hi, ' + this.props.user.name}</Navbar.Brand>
+                    <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
+                    {/*<Navbar.Brand*/}
+                        {/*onClick={this.onClick.bind(this, "main")}>{'Hi, ' + this.props.user.name}</Navbar.Brand>*/}
                 </Navbar.Header>
                 <Nav>
                     <NavItem onClick={this.onClick.bind(this, "searchBy")}>
@@ -37,6 +36,7 @@ class MainNav extends NavBase {
                         <MailSVG/>
                         <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
                     </NavItem>
+                    <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle/>
                     <DropdownMenu {...this.props}/>
                 </Nav>
             </Navbar>

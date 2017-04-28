@@ -88,15 +88,7 @@ class Feed extends React.Component {
         }
 
         return (
-            <div id="feed-page">
-                {/*DO NOT delete until check all nav functionality*/}
-                {/*<Nav name={this.props.user.name}*/}
-                     {/*image={this.props.user.profilePicture}*/}
-                     {/*alt={this.props.user.name}*/}
-                     {/*invites={this.props.user.invites}*/}
-                     {/*notifications={this.props.user.notifications}*/}
-                     {/*action={this.props.actions.feedActions.setNavView}*/}
-                     {/*{...this.props}/>*/}
+            <div id="feed-page" className="page">
                 {navView}
                 {showSitters ? <SitterList {...this.props}
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}

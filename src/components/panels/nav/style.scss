@@ -1,20 +1,33 @@
-#main-nav {
+nav#main-nav {
+
+  background: #fff;
+  border: none;
+  box-shadow: 0 1px 5px 0 rgba(41,85,115,.21);
+
+  .container {
+    width: 100%;
+  }
 
   .navbar-brand {
     float: right;
     cursor: pointer;
-  }
-
-  img {
-    width: 48px;
-    height: 48px;
-    margin-right: 12px;
-    cursor: pointer;
+    color: #f7a1a1;
   }
 
   .navbar-nav {
     float: right;
   }
+
+  .navbar-nav>li>a {
+    padding-bottom: 0;
+  }
+
+  img {
+    width: 36px;
+    height: 36px;
+    margin-top: 8px;
+  }
+
 
   .dropdown-menu {
     svg {
