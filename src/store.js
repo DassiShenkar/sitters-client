@@ -23,7 +23,7 @@ const defaultState = {
         filteredMatches: [],
         sitterIndex: 0,
         show: false,
-        showNotifications: false,
+        showNotificationsPopup: false,
         showInvitesPopup: false
     },
     register : {personalityTestQuestions : []},

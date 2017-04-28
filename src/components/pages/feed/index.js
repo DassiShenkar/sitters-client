@@ -7,7 +7,7 @@ import {PageHeader} from 'react-bootstrap';
 //components
 // import Nav from '../../panels/nav/index'; Do not delete until check nav functionality
 import SearchByTab from "../../panels/searchPanel/index";
-import Notifications from "../../Notifications";
+import Notifications from "../../notifications/index";
 import Invites from "../../inviteList/index";
 import SitterList from "../../sitterList/index";
 import SitterActionBar from "../../panels/actionPanel/index";
@@ -73,16 +73,6 @@ class Feed extends React.Component {
                 showSitters = true;
                 navView = <SearchByTab {...this.props} sitters={this.props.user.sitters}/>;
             }
-            else if (view === "notifications") {
-                showSitters = false;
-                navView = <Notifications {...this.props} />
-            }
-            else if (view === "invites") {
-                showSitters = false;
-                // navView = <Invites {...this.props} />
-                // this.props.actions.feedActions.showInvitePopup(true);
-                // navView =  <Invites {...this.props} />
-            }
             else {
                 showSitters = true;
                 navView = <PageHeader>Sitters</PageHeader>;
@@ -96,8 +86,9 @@ class Feed extends React.Component {
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
 
                 {showSitters ? this.props.feed.filteredMatches.length > 0 ?
-                        <SitterActionBar {...this.props}/> : '' : ''}
+                    <SitterActionBar {...this.props}/> : '' : ''}
                 <Invites {...this.props} />
+                <Notifications {...this.props}/>
             </div>
         );
     }

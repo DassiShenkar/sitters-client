@@ -4,12 +4,12 @@ import '../styles/css/nav.sass';
 class NavBase extends React.Component {
 
     onClick(view) {
-        if(view !== 'invites')
             this.props.action(view);
-        else{
+        if(view === "invites")
             this.props.actions.feedActions.showInvitesPopup(true);
-        }
-            this.props.router.push('/'); // always back to feed with the view chosen
+        else if(view === "notifications")
+            this.props.actions.feedActions.showNotificationsPopup(true);
+        this.props.router.push('/'); // always back to feed with the view chosen
     }
 }
 

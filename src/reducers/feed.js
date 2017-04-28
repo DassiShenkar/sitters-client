@@ -29,7 +29,7 @@ function feed(state = {}, action) {
         case 'SHOW_NOTIFICATIONS_POPUP' :
             return {
                 ...state,
-                showNotifications: action.showNotifications
+                showNotificationsPopup: action.showNotificationsPopup
             };
         case 'SHOW_INVITES_POPUP' :
             return {

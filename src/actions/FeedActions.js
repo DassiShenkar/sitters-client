@@ -33,10 +33,10 @@ export function showInvitePopup(show) {
     }
 }
 
-export function showNotificationsPopup(showNotifications) {
+export function showNotificationsPopup(showNotificationsPopup) {
     return {
         type: 'SHOW_NOTIFICATIONS_POPUP',
-        showNotifications
+        showNotificationsPopup
     }
 }
 

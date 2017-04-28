@@ -13,7 +13,7 @@ import Feed from "./components/pages/feed/index";
 import Login from "./components/pages/login/index";
 import Register from "./components/pages/Register";
 import Invites from "./components/inviteList/index";
-import Notifications from "./components/Notifications";
+import Notifications from "./components/notifications/Notifications";
 import SitterProfile from "./components/pages/profile/index";
 import ReviewList from "./components/reviewList/index";
 import SingleReview from "./components/SingleReview";
