@@ -21,17 +21,19 @@ class SitterProfile extends SitterProfileBase {
 
     median(values) {
 
-        values.sort( function(a,b) {return a - b;} );
+        values.sort(function (a, b) {
+            return a - b;
+        });
 
-        var half = Math.floor(values.length/2);
+        var half = Math.floor(values.length / 2);
 
-        if(values.length % 2)
+        if (values.length % 2)
             return values[half];
         else
-            return (values[half-1] + values[half]) / 2.0;
+            return (values[half - 1] + values[half]) / 2.0;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let parent = this.props.user;
         const id = this.props.params.sitterId;
         parent.matchBI.matchScores.push(this.props.feed.matches.find(function (sitter) {
@@ -59,11 +61,16 @@ class SitterProfile extends SitterProfileBase {
                 //TODO: think about error
             });
     }
+
     componentWillMount() {
-        let sitterID = location.href.split('sitter/')[1];
         let self = this;
-        axios.post('https://sitters-server.herokuapp.com/sitter/get', {
-            _id: sitterID
+        let sitterID = location.href.split('sitter/')[1];
+
+        axios({
+            method: 'post',
+            url: 'https://sitters-server.herokuapp.com/sitter/get',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: sitterID
         })
             .then(function (sitter) {
                 self.props.actions.sitterProfileActions.setSitter(sitter.data);
@@ -75,7 +82,8 @@ class SitterProfile extends SitterProfileBase {
                 console.log(error);//TODO: in case of sitter wasn't found
             });
     }
-    handleChangeReview(e){
+
+    handleChangeReview(e) {
         this.props.actions.sitterProfileActions.setReviewDescription(e.target.value);
     }
 
@@ -86,12 +94,13 @@ class SitterProfile extends SitterProfileBase {
         this.props.actions.sitterProfileActions.setSitter(sitter);
         this.props.actions.feedActions.showInvitePopup(true);
     }
-    addReview(){
+
+    addReview() {
         let sitter = this.props.sitterProfile.sitter;
         let review = {
-            parentID:       this.props.user._id,
-            sitterID:       sitter._id,
-            description:  this.props.sitterProfile.reviewDescription,
+            parentID: this.props.user._id,
+            sitterID: sitter._id,
+            description: this.props.sitterProfile.reviewDescription,
             parentImage: this.props.user.profilePicture
         };
         sitter.reviews.push(review);
@@ -130,14 +139,14 @@ class SitterProfile extends SitterProfileBase {
                 </tr>
             )
         });
-        let hobbies = null, education = null, languages = null, expertise= null;
-        if(this.props.sitterProfile.sitter.hobbies.length > 0 )
+        let hobbies = null, education = null, languages = null, expertise = null;
+        if (this.props.sitterProfile.sitter.hobbies.length > 0)
             hobbies = <StringsAccordion header="+ Hobbies" data={this.props.sitterProfile.sitter.hobbies}/>;
-        if(this.props.sitterProfile.sitter.languages.length > 0 )
+        if (this.props.sitterProfile.sitter.languages.length > 0)
             languages = <StringsAccordion header="+ Languages" data={this.props.sitterProfile.sitter.languages}/>;
-        if(this.props.sitterProfile.sitter.education.length > 0 )
+        if (this.props.sitterProfile.sitter.education.length > 0)
             education = <StringsAccordion header="+ Education" data={this.props.sitterProfile.sitter.education}/>;
-        if(this.props.sitterProfile.sitter.expertise.length > 0 )
+        if (this.props.sitterProfile.sitter.expertise.length > 0)
             expertise = <StringsAccordion header="+ Expertise" data={this.props.sitterProfile.sitter.expertise}/>;
         const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : '';
         const style = {
@@ -145,13 +154,14 @@ class SitterProfile extends SitterProfileBase {
         };
         let personalitySameQuestions = null;
         console.log('x');
-        if(this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0){
+        if (this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0) {
             // personalitySameQuestions = this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions;
             personalitySameQuestions =
                 <div>
                     <Accordion>
                         <Panel header="+ Same Questions" eventKey="questions">
-                            <PersonalityQuestions questions={this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions} />
+                            <PersonalityQuestions
+                                questions={this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions}/>
                         </Panel>
                     </Accordion>
                 </div>;
@@ -227,10 +237,12 @@ class SitterProfile extends SitterProfileBase {
                     </Panel>
                 </Accordion>
                 <Accordion defaultExpanded={this.props.sitterProfile.expandReview}>
-                    <Panel header="+ Add Review"  >
+                    <Panel header="+ Add Review">
                         <ControlLabel>{'Your story with ' + this.props.sitterProfile.sitter.name}</ControlLabel>
-                        <FormControl autoFocus={this.props.sitterProfile.expandReview}  componentClass="textarea" placeholder="textarea" onChange={this.handleChangeReview.bind(this)} />
-                        <Button className="add-review" title="Add Review" bsStyle="primary" onClick={this.addReview.bind(this)}>Add Review</Button>
+                        <FormControl autoFocus={this.props.sitterProfile.expandReview} componentClass="textarea"
+                                     placeholder="textarea" onChange={this.handleChangeReview.bind(this)}/>
+                        <Button className="add-review" title="Add Review" bsStyle="primary"
+                                onClick={this.addReview.bind(this)}>Add Review</Button>
                     </Panel>
                 </Accordion>
                 {personalitySameQuestions}
