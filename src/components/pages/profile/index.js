@@ -152,28 +152,9 @@ class SitterProfile extends SitterProfileBase {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
-        // let personalitySameQuestions;
-        // if(this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0){
-        //     personalitySameQuestions =
-        //         <div>
-        //             <Accordion>
-        //                 <Panel header="+ Same Questions" eventKey="questions">
-        //                     <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true} secondQuestions={strings.QUESTIONS} />
-        //                     </Panel>
-        //             </Accordion>
-        //         </div>;
-        //
-        // }
-
+        const sitterAddress = this.props.sitterProfile.sitter.address.street + " " +  this.props.sitterProfile.sitter.address.houseNumber + ", " + this.props.sitterProfile.sitter.address.city;
         return (
             <div id="sitter-profile">
-                {/*<Nav name={this.props.user.name}*/}
-                {/*image={this.props.user.profilePicture}*/}
-                {/*alt={this.props.user.name}*/}
-                {/*invites={this.props.user.invites}*/}
-                {/*notifications={this.props.user.notifications}*/}
-                {/*action={this.props.actions.feedActions.setNavView}*/}
-                {/*{...this.props}/>*/}
                 <div className="match" style={style}>
                     <div className="sitter-info">
                         <h1 className="matchScore">{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
@@ -186,8 +167,6 @@ class SitterProfile extends SitterProfileBase {
                         <h3 className="sitterName">{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</h3>
                     </div>
                 </div>
-                <ControlLabel>Last Invited:</ControlLabel>
-                <p>{this.props.sitterProfile.sitter.lastInvite}</p>
                 <Table id="info-table" responsive>
                     <thead>
                     <tr>
@@ -217,31 +196,30 @@ class SitterProfile extends SitterProfileBase {
                             {workingHours}
                             </tbody>
                         </Table>
-                        {/*{hobbies.length > 0 ? <h4>Hobbies</h4> : ""}*/}
-                        {/*{hobbies}*/}
-                        {/*{education.length > 0 ? <h4>Education</h4> : ""}*/}
-                        {/*{languages.length > 0 ? <h4>Languages</h4> : ""}*/}
                     </Panel>
                 </Accordion>
                 {education}
                 {languages}
                 {hobbies}
                 {expertise}
+                <ControlLabel>Address</ControlLabel>
+                <p>{sitterAddress}</p>
+                <ControlLabel>Last Invited:</ControlLabel>
+                <p>{this.props.sitterProfile.sitter.lastInvite}</p>
                 <Accordion>
                     <Panel header="+ Reviews" eventKey="reviews">
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
                     </Panel>
                 </Accordion>
-                <Accordion defaultExpanded={this.props.sitterProfile.expandReview}>
-                    <Panel header="+ Add Review">
+                <Accordion defaultExpanded={this.props.sitterProfile.expandReview? this.props.sitterProfile.expandReview: false}>
+                    <Panel header="+ Add Review" eventKey="addReview">
                         <ControlLabel>{'Your story with ' + this.props.sitterProfile.sitter.name}</ControlLabel>
-                        <FormControl autoFocus={this.props.sitterProfile.expandReview} componentClass="textarea"
+                        <FormControl autoFocus={this.props.sitterProfile.expandReview?this.props.sitterProfile.expandReview:false} componentClass="textarea"
                                      placeholder="textarea" onChange={this.handleChangeReview.bind(this)}/>
                         <Button className="add-review" title="Add Review" bsStyle="primary"
                                 onClick={this.addReview.bind(this)}>Add Review</Button>
                     </Panel>
                 </Accordion>
-                {/*{personalitySameQuestions}*/}
                 <button id="invite-button" onClick={this.inviteSitter.bind(this)}>
                     <Mail id="mail-icon"/>
                     <span>Send Invite</span>

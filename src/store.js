@@ -58,9 +58,9 @@ const defaultState = {
         address: {},
         reviews: [],
         expertise: [],
-        expandReview: false
     },
-        distance: ""
+        distance: "",
+        expandReview: false
     },
 
 };
