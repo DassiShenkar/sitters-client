@@ -1,6 +1,6 @@
+import Slider from "rc-slider";
 import React from 'react';
 import 'rc-slider/assets/index.css'
-const Slider = require('rc-slider');
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 import RangeBase from '../base/controllers/RangeBase'
@@ -13,7 +13,7 @@ class RangeSlider extends RangeBase {
         return (
             <div id="search-range">
                 <Range allowCross={false} min={this.props.min} max={this.props.max} defaultValue={[minValue, maxValue]}
-                       onChange={this.onChange} tipFormatter={value => `${value}$`}/>
+                       onChange={this.onChange} tipFormatter={value => `${value}$`} disabled/>
                 <label>{'Price Range: ' + minValue + '-' + maxValue}</label>
             </div>
         );

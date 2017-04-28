@@ -6,6 +6,8 @@ import SitterListBase from '../../base/SitterListBase';
 //style
 import './style.css';
 import PieChart from "../pie/PieChart";
+import PersonalityQuestions from "../PersonalityQuestions";
+import strings from "../../static/strings";
 
 class SitterList extends SitterListBase {
 
@@ -15,6 +17,8 @@ class SitterList extends SitterListBase {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
+        const text = this.props.feed.matches.length > 0 ?
+            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true} secondQuestions={strings.QUESTIONS} disabled={true} />:';';
         return (
             <div>
                 <Link className="match" style={style}
@@ -27,7 +31,8 @@ class SitterList extends SitterListBase {
                         <h3 className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</h3>
                     </div>
                 </Link>
-                    <PieChart sitter={this.props.sitters[sitterIndex]} />
+                {text}
+                <PieChart sitter={this.props.sitters[sitterIndex]}/>
             </div>
         )
     }

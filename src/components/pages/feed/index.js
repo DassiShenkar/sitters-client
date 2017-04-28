@@ -25,14 +25,27 @@ class Feed extends React.Component {
             // axios.post('http://localhost:4444/parent/get', {
                 id: userId
             })
+            // axios({
+            //     method: 'post',
+            //     url: 'https://sitters-server.herokuapp.com/parent/get',
+            //     headers: {'Access-Control-Allow-Origin': '*'},
+            //     data: {id: userId}
+            // })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
                         self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                         self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
-                        axios.post('http://localhost:4444/parent/getMatches',
+
+                        // axios.post('http://localhost:4444/parent/getMatches',
                         // axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
-                            parent.data
-                        )
+                        //     parent.data
+                        // )
+                        axios({
+                            method: 'post',
+                            url: 'http://localhost:4444/parent/getMatches',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent.data
+                        })
                             .then(function (sitters) {
                                 if (sitters.data.length > 0) {
                                     self.props.actions.feedActions.setMatches(sitters.data);

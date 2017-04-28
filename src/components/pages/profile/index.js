@@ -4,6 +4,8 @@ import geodist from "geodist";
 import axios from "axios";
 
 import {Button, Image, Table, Panel, Accordion, ControlLabel, FormControl} from "react-bootstrap";
+import strings from '../../../static/strings'
+
 
 // components
 import SitterProfileBase from "../../../base/SitterProfileBase";
@@ -14,7 +16,7 @@ import Mail from "../../../styles/icons/Mail";
 
 // style
 import './style.css';
-import PersonalityQuestions from "../../PersonalityQuestions";
+import PersonalityQuestions from "./../../PersonalityQuestions";
 import StringsAccordion from "../../StringsAccordion";
 
 class SitterProfile extends SitterProfileBase {
@@ -143,21 +145,18 @@ class SitterProfile extends SitterProfileBase {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
-        let personalitySameQuestions = null;
-        console.log('x');
+        let personalitySameQuestions;
         if(this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0){
-            // personalitySameQuestions = this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions;
             personalitySameQuestions =
                 <div>
                     <Accordion>
                         <Panel header="+ Same Questions" eventKey="questions">
-                            <PersonalityQuestions questions={this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions} />
-                        </Panel>
+                            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true} secondQuestions={strings.QUESTIONS} />
+                            </Panel>
                     </Accordion>
                 </div>;
 
         }
-        console.log(personalitySameQuestions);
 
         return (
             <div id="sitter-profile">
