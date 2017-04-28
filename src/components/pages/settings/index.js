@@ -1,13 +1,11 @@
 // external sources
 import React from 'react';
-import {Link} from 'react-router';
 import axios from 'axios';
-import {Navbar, PageHeader} from 'react-bootstrap';
+import {PageHeader} from 'react-bootstrap';
 import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 
 //components
-import BackArrow from '../../../styles/icons/BackArrow';
 
 // function onChange(value) {
 //     console.log(value);

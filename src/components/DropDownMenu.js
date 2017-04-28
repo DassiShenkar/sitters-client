@@ -17,7 +17,7 @@ class DropdownMenu extends React.Component {
 
     render() {
         return (
-            <NavDropdown id="actions-dropdown" title={this.props.user.name}>
+            <NavDropdown id="actions-dropdown" title={this.props.user.name?this.props.user.name:''}>
                 <MenuItem><Link to="/editProfile"><Person/>Edit Profile</Link></MenuItem>
                 <MenuItem><Link to="/settings"><Settings/>Settings</Link></MenuItem>
                 <MenuItem><Link to="/about"><Information/>About</Link></MenuItem>

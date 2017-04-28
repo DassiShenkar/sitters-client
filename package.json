@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "age-calculator": "^1.0.0",
+    "ajv": "^5.0.0",
     "axios": "^0.15.3",
     "clone": "^2.1.1",
     "d3": "^4.8.0",

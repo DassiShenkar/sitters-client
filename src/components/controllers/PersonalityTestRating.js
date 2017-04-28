@@ -2,9 +2,6 @@ import React from 'react';
 import ReactRating from 'react-rating'
 
 class PersonalityTestRating extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     handleRate(rate){
         let question = this.props.question;
         question.choice = rate;

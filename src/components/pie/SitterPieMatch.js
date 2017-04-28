@@ -10,7 +10,6 @@ class SitterPieMatch extends React.Component {
         this.state = {
             expandedSector: null,
         };
-        console.log(props.sitter);
     };
     handleMouseEnterOnSector(sector) {
         this.setState({ expandedSector: sector })

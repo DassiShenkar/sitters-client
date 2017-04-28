@@ -1,11 +1,7 @@
 import React from "react";
-import {render} from 'react-dom';
 import Nav from './panels/nav/index'
 import './panels/nav/style.css'
 class Main extends React.Component {
-    constructor(props){
-        super(props);
-    }
     render() {
         let nav = null;
         if(location.href.split('/')[location.href.split('/').length -1 ] !== 'login'){

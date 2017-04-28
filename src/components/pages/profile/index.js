@@ -4,19 +4,16 @@ import geodist from "geodist";
 import axios from "axios";
 
 import {Button, Image, Table, Panel, Accordion, ControlLabel, FormControl} from "react-bootstrap";
-import strings from '../../../static/strings'
 
 
 // components
 import SitterProfileBase from "../../../base/SitterProfileBase";
 import ReviewList from "../../reviewList/index";
-import Nav from "../../panels/nav/index";
 import Invite from "../../invite/Invite";
 import Mail from "../../../styles/icons/Mail";
 
 // style
 import './style.css';
-import PersonalityQuestions from "./../../PersonalityQuestions";
 import StringsAccordion from "../../StringsAccordion";
 
 class SitterProfile extends SitterProfileBase {
@@ -50,8 +47,6 @@ class SitterProfile extends SitterProfileBase {
             data: parent
         }).then(function (res) {
             if (res.data) {  // user created
-                console.log('updated parentBI');
-                //self.props.router.push('/');
             }
             else {
                 console.log("parentBI not updated");
@@ -73,13 +68,15 @@ class SitterProfile extends SitterProfileBase {
             // url: 'https://sitters-server.herokuapp.com/sitter/get',
             url: 'http://localhost:4444/sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: sitterID
+            data: {_id: sitterID}
         })
             .then(function (sitter) {
+                if(sitter.data){
                 self.props.actions.sitterProfileActions.setSitter(sitter.data);
                 let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
                 let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
                 self.props.actions.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
+                }
             })
             .catch(function (error) {
                 console.log(error);//TODO: in case of sitter wasn't found
@@ -155,19 +152,18 @@ class SitterProfile extends SitterProfileBase {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
-        let personalitySameQuestions;
-        if(this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0){
-            personalitySameQuestions =
-                <div>
-                    <Accordion>
-                        <Panel header="+ Same Questions" eventKey="questions">
-                            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true} secondQuestions={strings.QUESTIONS} />
-                            </Panel>
-                    </Accordion>
-                </div>;
-
-        }
-        console.log(personalitySameQuestions);
+        // let personalitySameQuestions;
+        // if(this.props.feed.matches[this.props.feed.sitterIndex].match.personalityQuestions.length > 0){
+        //     personalitySameQuestions =
+        //         <div>
+        //             <Accordion>
+        //                 <Panel header="+ Same Questions" eventKey="questions">
+        //                     <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true} secondQuestions={strings.QUESTIONS} />
+        //                     </Panel>
+        //             </Accordion>
+        //         </div>;
+        //
+        // }
 
         return (
             <div id="sitter-profile">
@@ -245,7 +241,7 @@ class SitterProfile extends SitterProfileBase {
                                 onClick={this.addReview.bind(this)}>Add Review</Button>
                     </Panel>
                 </Accordion>
-                {personalitySameQuestions}
+                {/*{personalitySameQuestions}*/}
                 <button id="invite-button" onClick={this.inviteSitter.bind(this)}>
                     <Mail id="mail-icon"/>
                     <span>Send Invite</span>

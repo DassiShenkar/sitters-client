@@ -21,7 +21,6 @@ class SitterActionBar extends EditInvite {
 
     nextSitter(e) {
         e.preventDefault();
-        let self = this;
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         let parent = this.props.user;
         parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);

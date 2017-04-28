@@ -1,15 +1,20 @@
-#main-nav .navbar-brand {
-  float: right;
-  cursor: pointer; }
-
-#main-nav img {
-  width: 48px;
-  height: 48px;
-  margin-right: 12px;
-  cursor: pointer; }
-
-#main-nav .navbar-nav {
-  float: right; }
-
-#main-nav .dropdown-menu svg {
-  margin-right: 8px; }
+nav#main-nav {
+  background: #fff;
+  border: none;
+  box-shadow: 0 1px 5px 0 rgba(41, 85, 115, 0.21); }
+  nav#main-nav .container {
+    width: 100%; }
+  nav#main-nav .navbar-brand {
+    float: right;
+    cursor: pointer;
+    color: #f7a1a1; }
+  nav#main-nav .navbar-nav {
+    float: right; }
+  nav#main-nav .navbar-nav > li > a {
+    padding-bottom: 0; }
+  nav#main-nav img {
+    width: 36px;
+    height: 36px;
+    margin-top: 8px; }
+  nav#main-nav .dropdown-menu svg {
+    margin-right: 8px; }

@@ -1,6 +1,5 @@
 // external sources
 import React from 'react';
-import {Link} from 'react-router';
 
 // components
 import {Image} from 'react-bootstrap';
