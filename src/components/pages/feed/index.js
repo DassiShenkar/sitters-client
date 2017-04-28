@@ -21,18 +21,25 @@ class Feed extends React.Component {
         let self = this;
         const userId = localStorage.getItem('auth_token');
         if (userId) {
-            axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            // axios.post('http://localhost:4444/parent/get', {
-                id: userId
+            axios({
+                method: 'post',
+                url: 'https://sitters-server.herokuapp.com/parent/get',
+                // url: 'http://localhost:4444/parent/get',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                data: userId
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
                         self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                         self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
-                        // axios.post('http://localhost:4444/parent/getMatches',
-                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
-                            parent.data
-                        )
+
+                        axios({
+                            method: 'post',
+                            url: 'https://sitters-server.herokuapp.com/parent/getMatches',
+                            // url: 'http://localhost:4444/parent/getMatches',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent.data
+                        })
                             .then(function (sitters) {
                                 if (sitters.data.length > 0) {
                                     self.props.actions.feedActions.setMatches(sitters.data);
