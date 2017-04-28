@@ -8,6 +8,7 @@ import './style.css';
 import PieChart from "../pie/PieChart";
 import PersonalityQuestions from "../PersonalityQuestions";
 import strings from "../../static/strings";
+import RainbowChart from "../RainbowChart";
 
 class SitterList extends SitterListBase {
 
@@ -33,6 +34,7 @@ class SitterList extends SitterListBase {
                 </Link>
                 {text}
                 <PieChart sitter={this.props.sitters[sitterIndex]}/>
+                <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
             </div>
         )
     }

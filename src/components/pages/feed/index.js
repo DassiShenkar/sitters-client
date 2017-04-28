@@ -14,6 +14,7 @@ import SitterActionBar from "../../panels/actionPanel/index";
 
 //style
 import './style.css';
+import RainbowChart from "../../RainbowChart";
 
 class Feed extends React.Component {
 
@@ -103,6 +104,7 @@ class Feed extends React.Component {
 
                 {showSitters ? this.props.feed.filteredMatches.length > 0 ?
                         <SitterActionBar {...this.props}/> : '' : ''}
+
             </div>
         );
     }
