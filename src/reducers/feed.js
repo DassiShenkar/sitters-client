@@ -26,6 +26,16 @@ function feed(state = {}, action) {
                 ...state,
                 show: action.show
             };
+        case 'SHOW_NOTIFICATIONS_POPUP' :
+            return {
+                ...state,
+                showNotifications: action.showNotifications
+            };
+        case 'SHOW_INVITES_POPUP' :
+            return {
+                ...state,
+                showInvitesPopup: action.showInvitesPopup
+            };
 
         default:
             return state;

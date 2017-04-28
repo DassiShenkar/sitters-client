@@ -32,3 +32,18 @@ export function showInvitePopup(show) {
         show
     }
 }
+
+export function showNotificationsPopup(showNotifications) {
+    return {
+        type: 'SHOW_NOTIFICATIONS_POPUP',
+        showNotifications
+    }
+}
+
+
+export function showInvitesPopup(showInvitesPopup) {
+    return {
+        type: 'SHOW_INVITES_POPUP',
+        showInvitesPopup
+    }
+}

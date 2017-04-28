@@ -79,7 +79,9 @@ class Feed extends React.Component {
             }
             else if (view === "invites") {
                 showSitters = false;
-                navView = <Invites {...this.props} />
+                // navView = <Invites {...this.props} />
+                // this.props.actions.feedActions.showInvitePopup(true);
+                // navView =  <Invites {...this.props} />
             }
             else {
                 showSitters = true;
@@ -95,7 +97,7 @@ class Feed extends React.Component {
 
                 {showSitters ? this.props.feed.filteredMatches.length > 0 ?
                         <SitterActionBar {...this.props}/> : '' : ''}
-
+                <Invites {...this.props} />
             </div>
         );
     }
