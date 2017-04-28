@@ -1,15 +1,16 @@
 "use strict";
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
-// import geocoder from 'geocoder'
+import Geocoder from '../utils/GeoCoder'
 import axios from 'axios';
 import {AgeFromDate} from 'age-calculator';
 import { Actions } from 'react-native-router-flux'
 
 import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
+import AppBar from '../components/AppBar';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
 
@@ -19,34 +20,34 @@ class Register extends Component {
         super(props);
         this.responseCallback = this.responseCallback.bind(this);
         this.setUserInDB = this.setUserInDB.bind(this);
-        // this.getGeoCode = this.getGeoCode.bind(this);
+        this.getGeoCode = this.getGeoCode.bind(this);
     }
     
     render () {
+        let appbar = this.props.registered ? <AppBar { ...this.props }/> : null;
         return (
-            <ScrollView>
-                {this.props.user.userType === "I'm a Parent" ?
-                    <ParentForm
-                        {...this.props}
-                        callback={ this.responseCallback } /> :
-                    <SitterForm
-                        {...this.props}
-                        callback={ this.responseCallback } />
-                }
-            </ScrollView>
+            <View>
+                { appbar }
+                <ScrollView>
+                    <View style={{ margin: 20 }}>
+                        {this.props.user.userType === "I'm a Parent" ?
+                            <ParentForm
+                                {...this.props}
+                                callback={ this.responseCallback } /> :
+                            <SitterForm
+                                {...this.props}
+                                callback={ this.responseCallback } />
+                        }
+                    </View>
+                </ScrollView>
+            </View>
         );
     }
 
-    // getGeoCode(callback){
-    //     let city = this.props.register.city != null ? this.props.register.city != null : this.props.user.location.name.split(',')[0];
-    //     geocoder.geocode(this.props.register.street + " " + this.props.register.houseNumber + ", " + city , function ( err, data ) {
-    //         if(err)
-    //             console.log(err); // TODO: when address is wrong, add callback
-    //         else{
-    //             callback(data);
-    //         }
-    //     });
-    // }
+    getGeoCode(callback){
+        let city = this.props.register.city != null ? this.props.register.city != null : this.props.user.location.name.split(',')[0];
+        callback(Geocoder.getLatLng(this.props.register.street + " " + this.props.register.houseNumber + ", " + city));
+    }
 
     calcAge(birthday) {
         let date = birthday.split("/");
@@ -61,12 +62,12 @@ class Register extends Component {
             if(self.props.register.languages == null)
                 parent.languages.push(language.name);
             else
-                parent.languages.push(language.value);
+                parent.languages.push(language.name.toLowerCase());
         });
-        // this.getGeoCode(function(data) {
-        //     parent.address.longitude = data.results[0] != null? data.results[0].geometry.location.lng: 0;
-        //     parent.address.latitude = data.results[0] != null? data.results[0].geometry.location.lat: 0;
-        // });
+        this.getGeoCode(function(data) {
+            parent.address.longitude = data != null ? data.lng: 0;
+            parent.address.latitude = data != null ? data.lat: 0;
+        });
         parent = {
             _id : this.props.user.facebookID.toString(),
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
@@ -87,20 +88,20 @@ class Register extends Component {
                 age: Number(this.props.register.childAge),
                 expertise: this.props.register.childExpertise? this.props.register.childExpertise: [],
                 hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
-                specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: [],
-            }//,
-            // partner:{
-            //     gender: this.props.register.partnerGender,
-            //     email:  this.props.register.partnerEmail,
-            //     name:  this.props.register.partnerName
-            // }
+                specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: []
+            },
+            partner:{
+                gender: this.props.register.partnerGender,
+                email:  this.props.register.partnerEmail,
+                name:  this.props.register.partnerName
+            }
         };
+        //TODO: add personality test scores and parter data
         self.setUserInDB(parent);
     }
 
     async setUserInDB(data) {
         const self = this;
-        //alert(JSON.stringify(data));
         axios({
             method: 'post',
             url: 'https://sitters-server.herokuapp.com/parent/create',
@@ -112,12 +113,11 @@ class Register extends Component {
                 Actions.Feed();
             }
             else { // user not created
-                alert("user not created");
-                //TODO: think about error when user not created
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
             }
         }).catch(function (error) {
-            alert(JSON.stringify(error));
-            //TODO: think about error when user not created
+            console.log(error);
+            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
         });
     }
 }

@@ -8,7 +8,7 @@ import {PageHeader} from 'react-bootstrap';
 // import Nav from '../../panels/nav/index'; Do not delete until check nav functionality
 import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../Notifications";
-import Invites from "../../InvitesList";
+import Invites from "../../inviteList/index";
 import SitterList from "../../sitterList/index";
 import SitterActionBar from "../../panels/actionPanel/index";
 
@@ -20,28 +20,23 @@ class Feed extends React.Component {
     componentWillMount() {
         let self = this;
         const userId = localStorage.getItem('auth_token');
-        if (userId) {
-            axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            // axios.post('http://localhost:4444/parent/get', {
-                id: userId
+        if (!userId) {
+        } else {
+            axios({
+                method: 'post',
+                // url: 'https://sitters-server.herokuapp.com/parent/get',
+                url: 'http://localhost:4444/parent/get',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                data: {id: userId}
             })
-            // axios({
-            //     method: 'post',
-            //     url: 'https://sitters-server.herokuapp.com/parent/get',
-            //     headers: {'Access-Control-Allow-Origin': '*'},
-            //     data: {id: userId}
-            // })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
                         self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                         self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
 
-                        // axios.post('http://localhost:4444/parent/getMatches',
-                        // axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
-                        //     parent.data
-                        // )
                         axios({
                             method: 'post',
+                            // url: 'https://sitters-server.herokuapp.com/parent/getMatches',
                             url: 'http://localhost:4444/parent/getMatches',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent.data

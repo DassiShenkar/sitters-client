@@ -14,11 +14,11 @@ export default class LocalStorage {
         }
     }
 
-    static async getFromLocalStorage(key){
+    static async getFromLocalStorage(key) {
         try {
             const value = await AsyncStorage.getItem(key);
             if (value !== null){
-                return value;
+                return await value;
             } else {
                 return null;
             }

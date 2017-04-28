@@ -1,5 +1,4 @@
 "use strict";
-
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
@@ -25,19 +24,19 @@ export default class AppBar extends React.Component {
                     styles={{width: 50, height: 50,borderRadius:100}}
                     src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png' }}  />
                 <Text style={{marginLeft: 90, marginTop:20}}>Hi, { this.props.user.name.split(" ")[0] }</Text>
-                <View style={{ flexDirection: 'row-reverse'}}>
+                <View style={{ flexDirection: 'row-reverse', marginTop: 10, marginRight: 10}}>
                     <ImageButton
                         onPress={Actions.Search}
                         styles={{width: 30, height: 30, marginRight: 10}}
-                        src={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                        src={require('../style/icons/search.png')} />
                     <ImageButton
                         onPress={Actions.Inbox}
                         styles={{width: 30, height: 30, marginRight: 10}}
-                        src={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                        src={require('../style/icons/inbox.png')} />
                     <ImageButton
                         onPress={Actions.Notifications}
                         styles={{width: 30, height: 30, marginRight: 10}}
-                        src={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }} />
+                        src={require('../style/icons/notification.png')} />
                     <MenuContext style={{ flex: 1 }}>
                         <DropDownMenu />
                     </MenuContext>

@@ -44,12 +44,14 @@ class Splash extends React.Component {
     async ifExists () {
         const self = this;
         let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
-        if (accessToken == null) {
-            Actions.Login({...self.props});
+        let userId = await LocalStorage.getFromLocalStorage(LocalStorage.USER_KEY);
+        if (accessToken == null || userId == null) {
+            Actions.Login();
         } else {
             const responseInfoCallback = (error, result) => {
                 if (error) {
-                    alert(error.toString());
+                    console.log(error);
+                    Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook Error, please try again later'});
                 } else {
                     self.getUserFromDb(self, result);
                 }
@@ -84,7 +86,8 @@ class Splash extends React.Component {
                 Actions.Register();
             }
         }).catch(function (error) {
-            alert(error.toString());
+            console.log(error);
+            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
         });
     }
 }

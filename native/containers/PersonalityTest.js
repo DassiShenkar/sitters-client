@@ -2,45 +2,43 @@
 import React, {Component} from 'react'
 import {View, ScrollView, Text} from 'react-native'
 import { Actions } from 'react-native-router-flux';
-
+import { bindActionCreators } from 'redux';
+import {  connect } from 'react-redux';
 import Rating from 'react-native-easy-rating';
 
+import * as RegisterActions from '../../src/actions/RegisterActions';
+import strings from '../../src/static/strings';
 import ImageButton from '../components/ImageButton'
 
-const questions = [
-    "I consider myself as an investor in his own field",
-    "I consider myself a responsible person",
-    "I consider myself as having a sensitivity to the needs of others",
-    "I used to invest mainly in the things I'm good, and to give up when I'm having difficulty",
-    "I consider myself as a creative person who can provide children with an interest",
-    "It is important for me to know everything you expect me to clearly and completely",
-    "I consider myself punctual times",
-    "I believe I can fulfill the expectations of parents",
-    "It is important to me that parents will be satisfied with my work",
-    "I expect myself to demonstrate assertiveness in cases where children have demonstrated a lack of discipline",
-    "Especially problematic situations of stress I can't handle",
-    "I think that all people in the world are honest",
-    "At least once in life I took an object that belongs to someone without permission",
-    "In the case of an extreme lack of knowledge of how to correctly operate, I will be relying on my intuition and not call to ask the parents.",
-    "The boy cursed his brother and will be punished if parents know, so you'd rather not tell his parents of child care"
-];
+class PersonalityTest extends React.Component {
 
-export default class PersonalityTest extends React.Component {
-    render () {
+    constructor(props) {
+        super(props);
+        this.navigate = this.navigate.bind(this);
+        this.questions = this.questions.bind(this);
+    }
+
+    render() {
+        let questions = this.questions();
         return (
             <ScrollView>
-                {this.question()}
+                {questions[this.props.questionNum]}
                 <ImageButton
-                    onPress={Actions.Feed}
-                    styles={{width: 50, height: 50}}
-                    src={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
+                    onPress={this.navigate}
+                    styles={{width: 50, height: 50,borderRadius:100}}
+                    src={require('../style/icons/next.png')} />
             </ScrollView>
         );
     }
-    question (){
-        return questions.map(function (question) {
+
+    questions() {
+        const self = this;
+        return strings.QUESTIONS.map(function (question) {
             return <View>
-                <Text>{question}</Text>
+                <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
+                    <Text>{question.label1}</Text>
+                    <Text>{question.label2}</Text>
+                </View>
                 <Rating
                     rating={1}
                     max={5}
@@ -48,8 +46,35 @@ export default class PersonalityTest extends React.Component {
                     iconHeight={24}
                     iconSelected={require('../style/icons/full.png')}
                     iconUnselected={require('../style/icons/empty.png')}
-                    onRate={(rating) => {alert(rating);}} />
+                    onRate={(rating) => {
+                        question.value = rating;
+                        self.props.registerActions.changePersonalityTestQuestion(question);
+                     }} />
             </View>;
         })
     }
+
+    navigate() {
+        let index = this.props.questionNum;
+        if(index >= 9) {
+            this.props.callback();
+        } else {
+            Actions.refresh({questionNum: index + 1, callback: this.props.callback});
+        }
+    }
 }
+
+function mapStateToProps(state) {
+    return {
+        register: state.register
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        registerActions: bindActionCreators(RegisterActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalityTest);
+

@@ -21,6 +21,7 @@ import PersonalityTestIntro from './native/containers/PersonalityTestIntro';
 import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import GoogleMapView from './native/containers/GoogleMapView';
+import ErrorPage from './native/containers/ErrorPage';
 
 import configureStore from './native/store/ConfigureStore'
 
@@ -52,6 +53,7 @@ class Sitters extends React.Component {
                             <Scene key="About" component={About} title="About"/>
                             <Scene key="Settings" component={Settings} title="Settings"/>
                             <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView"/>
+                            <Scene key="ErrorPage" component={ErrorPage} title="ErrorPage"/>
                         </Scene>
                         <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite"/>
                         <Scene key="RateSitter" component={RateSitter} title="RateSitter"/>
