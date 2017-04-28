@@ -19,26 +19,29 @@ class Login extends React.Component {
         this.login = this.login.bind(this);
     }
 
-    login(response) {
+    login(user) {
         const self = this;
-        axios.post('https://sitters-server.herokuapp.com/parent/get', {
-            id: response.id
+        axios({
+            method: 'post',
+            url: 'https://sitters-server.herokuapp.com/parent/get',
+            // url: 'https://localhost:4444/parent/get',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: user.id
         })
-            .then(function (res) {
-                if (res.data) {  // user exists
-                    localStorage.setItem("auth_token", response.id);
-                    self.props.actions.actionCreators.setUserData(res.data);
+            .then(function (response) {
+                if (response.data) {  // user exists
+                    localStorage.setItem("auth_token", user.id);
+                    self.props.actions.actionCreators.setUserData(response.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist
-                    self.props.actions.actionCreators.createUser(response);
+                    self.props.actions.actionCreators.createUser(user);
                     self.props.router.push('/register')
                 }
             })
             .catch(function (error) {
                 console.log(error);
             });
-
     }
 
     render() {
