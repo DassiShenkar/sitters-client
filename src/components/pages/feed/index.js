@@ -75,7 +75,7 @@ class Feed extends React.Component {
             }
             else {
                 showSitters = true;
-                navView = <PageHeader>Sitters</PageHeader>;
+                navView = <PageHeader>Matches</PageHeader>;
             }
         }
 

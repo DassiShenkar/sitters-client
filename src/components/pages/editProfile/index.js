@@ -11,7 +11,7 @@ class Register extends React.Component {
     render() {
         let form = this.props.user.userType === "I'm a Parent" ?  <ParentForm {...this.props}/> : <SitterForm {...this.props}/>;
         return (
-            <div id="editProfile-page">
+            <div id="editProfile-page" className="page">
                 <PageHeader>Edit Profile</PageHeader>
                 {form}
             </div>

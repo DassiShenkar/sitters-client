@@ -13,7 +13,7 @@ import strings from '../../../static/strings';
 class About extends React.Component {
     render() {
         return (
-            <div id="about-page">
+            <div id="about-page" className="page">
                 <PageHeader>About</PageHeader>
                 <Logo companyName="Sitters"/>
                 <h2>{'Sitters Version: ' + strings.VERSION}</h2>
