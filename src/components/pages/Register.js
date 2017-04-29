@@ -5,7 +5,7 @@ import { PageHeader } from 'react-bootstrap';
 
 // components
 import ParentForm from '../forms/ParentForm';
-import SitterForm from '../SitterForm';
+import SitterForm from '../forms/SitterForm';
 
 class Register extends React.Component {
     render() {

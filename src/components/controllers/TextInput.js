@@ -18,6 +18,7 @@ class TextInput extends TextInputBase {
                              placeholder={this.props.placeholder}
                              onChange={this.handleChange}
                              value={value}
+                             required={this.props.required?this.props.required:false}
                 />
             </div>
         );

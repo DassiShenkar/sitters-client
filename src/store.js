@@ -26,7 +26,12 @@ const defaultState = {
         showNotificationsPopup: false,
         showInvitesPopup: false
     },
-    register : {personalityTestQuestions : []},
+    register : {
+        personalityTestQuestions : [],
+        childHobbies: [],
+        childExpertise: [],
+        childSpecialNeeds: []
+    },
     settings: {
         enableNotifications: true,
         enableSuggestions: true

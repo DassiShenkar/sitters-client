@@ -6,8 +6,8 @@ class SelectBase extends React.Component {
         super(props);
         this.onChange = this.onChange.bind(this);
     };
-    onChange(langArray){
-        this.props.action(langArray);
+    onChange(values){
+        this.props.action(values);
     }
 }
 

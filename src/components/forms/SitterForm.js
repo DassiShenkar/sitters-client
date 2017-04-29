@@ -1,14 +1,14 @@
 import React from 'react';
-import TextInput from './controllers/TextInput';
-import CheckBoxInput from './controllers/CheckBoxInput';
-import RadioInput from './controllers/radio/index';
-import WorkingHours from './controllers/WorkingHours';
-import PersonalityTest from './PersonalityTest'
+import TextInput from '../controllers/TextInput';
+import CheckBoxInput from '../controllers/CheckBoxInput';
+import RadioInput from '../controllers/radio/index';
+import WorkingHours from '../controllers/WorkingHours';
+import PersonalityTest from '../PersonalityTest'
 import BaseForm from './BaseForm';
-import BaseData from '../data/BaseData';
+import BaseData from '../../data/BaseData';
 import 'react-select/dist/react-select.css';
 import {AgeFromDate} from 'age-calculator';
-import strings from '../static/strings';
+import strings from '../../static/strings';
 import axios from 'axios';
 import geocoder from'geocoder';
 import {Button} from "react-bootstrap";

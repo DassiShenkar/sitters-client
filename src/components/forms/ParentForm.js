@@ -1,7 +1,6 @@
 import React from 'react';
 import TextInput from '../controllers/TextInput';
-import CheckBoxInput from '../controllers/CheckBoxInput';
-import BaseForm from '../BaseForm';
+import BaseForm from './BaseForm';
 import geocoder from 'geocoder'
 import axios from 'axios';
 import strings from '../../static/strings';
@@ -11,6 +10,8 @@ import {Button, ControlLabel} from "react-bootstrap";
 
 //style
 import './style.css';
+import SelectInput from "../controllers/SelectInput";
+import PersonalityQuestions from "../PersonalityQuestions";
 
 class Form extends React.Component {
     constructor(props) {
@@ -103,40 +104,64 @@ class Form extends React.Component {
                            placeholder="Child Name"
                            action={this.props.actions.registerActions.changeChildName}
                            {...this.props}
-                           reducer={'register'}/>
+                           reducer={'register'}
+                           required={true}/>
                 <TextInput label="Age"
                            type="number"
                            placeholder="0"
                            action={this.props.actions.registerActions.changeChildAge}
                            {...this.props}
-                           reducer={'register'}/>
+                           reducer={'register'}
+                           required={true}/>
                 <h4>Child Difficulties</h4>
-                <CheckBoxInput name="childExpertise"
-                               types={strings.EXPERTISE}
-                               action={this.props.actions.registerActions.changeChildExpertise}
-                               {...this.props}
-                               reducer={'register'}
-                />
+                <SelectInput
+                    placeholder="Select child Difficulties"
+                    options={strings.EXPERTISE}
+                    {...this.props}
+                    action={this.props.actions.registerActions.changeChildExpertise}
+                    reducer={'register'}
+                    defaultValues={this.props.register.childExpertise}/>
+                {/*<CheckBoxInput name="childExpertise"*/}
+                               {/*types={strings.EXPERTISE}*/}
+                               {/*action={this.props.actions.registerActions.changeChildExpertise}*/}
+                               {/*{...this.props}*/}
+                               {/*reducer={'register'}*/}
+                {/*/>*/}
                 <h4>Child Hobbies</h4>
-                <CheckBoxInput name="childHobbies"
-                               types={strings.HOBBIES}
-                               action={this.props.actions.registerActions.changeChildHobbies}
-                               {...this.props}
-                               reducer={'register'}
-                />
+                <SelectInput
+                    placeholder="Select child Hobbies"
+                    options={strings.HOBBIES}
+                    {...this.props}
+                    action={this.props.actions.registerActions.changeChildHobbies}
+                    reducer={'register'}
+                    defaultValues={this.props.register.childHobbies}/>
+                {/*<CheckBoxInput name="childHobbies"*/}
+                               {/*types={strings.HOBBIES}*/}
+                               {/*action={this.props.actions.registerActions.changeChildHobbies}*/}
+                               {/*{...this.props}*/}
+                               {/*reducer={'register'}*/}
+                {/*/>*/}
                 <h4>Child Special needs</h4>
-                <CheckBoxInput name="childSpecialNeeds"
-                               types={strings.SPECIAL_NEEDS}
-                               action={this.props.actions.registerActions.changeChildSpecialNeeds}
-                               {...this.props}
-                               reducer={'register'}
-                />
+                <SelectInput
+                    placeholder="Select child Hobbies"
+                    options={strings.SPECIAL_NEEDS}
+                    {...this.props}
+                    action={this.props.actions.registerActions.changeChildSpecialNeeds}
+                    reducer={'register'}
+                    defaultValues={this.props.register.childSpecialNeeds}/>
+                {/*<CheckBoxInput name="childSpecialNeeds"*/}
+                               {/*types={strings.SPECIAL_NEEDS}*/}
+                               {/*action={this.props.actions.registerActions.changeChildSpecialNeeds}*/}
+                               {/*{...this.props}*/}
+                               {/*reducer={'register'}*/}
+                {/*/>*/}
                 <TextInput label="Max price for babysitting hour (USD)"
                            type="number"
                            placeholder="0"
                            action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
                            {...this.props}
-                           reducer={'register'}/>
+                           reducer={'register'}
+                           required={true}/>
                 <h4>Partner</h4>
                 <TextInput label="Partner Name"
                            placeholder='Name'
@@ -157,6 +182,7 @@ class Form extends React.Component {
                             action={this.props.actions.registerActions.changePartnerGender}
                             radioType={'partnerGender'} {...this.props}
                             reducer={'register'}/>
+                <PersonalityQuestions/>
                 <div className="submit">
                     <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
                 </div>
