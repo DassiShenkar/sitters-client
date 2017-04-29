@@ -71,7 +71,7 @@ export default class FaceBookLogin extends React.Component {
 
     async handleResponse (result) {
         const self = this;
-        axios.post('https://sitters-server.herokuapp.com/parent/get', { id: result.id.toString() })
+        axios.post('https://sittersdev.herokuapp.com/parent/get', { id: result.id.toString() })
             .then(function (res) {
                 if (res.data) {  // user exists
                     self.props.actionCreators.setUserData(res.data);

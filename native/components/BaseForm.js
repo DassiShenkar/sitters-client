@@ -6,14 +6,6 @@ import { CheckboxGroup } from 'react-native-material-design';
 
 import strings from '../../src/static/strings';
 
-const LANGUAGES = [
-    {value: "hebrew", label: "Hebrew"},
-    {value: "english", label: "English"},
-    {value: "russian", label: "Russian"},
-    {value: "spanish", label: "Spanish"},
-    {value: "french", label: "French"}
-];
-
 export default class BaseForm extends React.Component {
 
     constructor(props) {
@@ -29,7 +21,7 @@ export default class BaseForm extends React.Component {
         let selected = function(){
             if(self.props.user.languages) {
                 let selected = [];
-                LANGUAGES.forEach(function(language) {
+                strings.LANGUAGES.forEach(function(language) {
                     languages.forEach(function(lang) {
                         if(lang.label === language.label) {
                             selected.push(language.value);
@@ -90,7 +82,7 @@ export default class BaseForm extends React.Component {
                 <CheckboxGroup
                     onSelect={ (values) => self.languagesChecked }
                     checked={ selected() }
-                    items={ LANGUAGES } />
+                    items={ strings.LANGUAGES } />
             </View>
         );
     }

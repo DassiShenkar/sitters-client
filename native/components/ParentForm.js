@@ -17,27 +17,6 @@ export default class ParentForm extends React.Component {
     render () {
         const callback = this.props.callback;
         const self = this;
-        let expertise = function() {
-            let array = [];
-            strings.EXPERTISE.map(function (expertise) {
-                array.push({value: expertise.toLowerCase(), label: expertise})
-            });
-            return array;
-        };
-        let hobbies = function() {
-            let array = [];
-            strings.HOBBIES.map(function (hobby) {
-                array.push({value: hobby.toLowerCase(), label: hobby})
-            });
-            return array;
-        };
-        let needs = function() {
-            let array = [];
-            strings.SPECIAL_NEEDS.map(function (need) {
-                array.push({value: need.toLowerCase(), label: need})
-            });
-            return array;
-        };
         return (
             <Form ref="parentForm">
                 <BaseForm
@@ -46,50 +25,50 @@ export default class ParentForm extends React.Component {
                 <TextInput
                     type="TextInput"
                     name="maxPrice"
-                    value={ this.props.user.watchMaxPrice ? this.props.user.watchMaxPrice : null}
+                    value={ this.props.register.watchMaxPrice ? this.props.register.watchMaxPrice : null}
                     onChangeText={(text) => this.props.actions.registerActions.changeChildMaxPriceForWatch(text)} />
                 <Text>Child name</Text>
                 <TextInput
                     type="TextInput"
                     name="childName"
-                    value={ this.props.user.childName ? this.props.user.childName : null}
+                    value={ this.props.register.childName ? this.props.register.childName : null}
                     onChangeText={(text) => this.props.actions.registerActions.changeChildName(text)} />
                 <Text>Child age</Text>
                 <TextInput
                     type="TextInput"
                     name="childAge"
-                    value={ this.props.user.childAge ? this.props.user.childAge : null }
+                    value={ this.props.register.childAge ? this.props.register.childAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeChildAge(text)} />
                 <Text>Child Expertise</Text>
                 <CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeChildExpertise(values) }
                     checked={ [] }
-                    items={ expertise() } />
+                    items={ strings.EXPERTISE } />
                 <Text>Child Hobbies</Text>
                 <CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeChildHobbies(values) }
                     checked={ [] }
-                    items={ hobbies() } />
+                    items={ strings.HOBBIES } />
                 <Text>Child Special needs</Text>
                 <CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeChildSpecialNeeds(values) }
                     checked={ [] }
-                    items={ needs() } />
+                    items={ strings.SPECIAL_NEEDS } />
                 <Text>Partner name</Text>
                 <TextInput
                     type="TextInput"
-                    name="maxPrice"
-                    value={ this.props.user.partnerName ? this.props.user.partnerName : null}
+                    name="parnterName"
+                    value={ this.props.register.partnerName ? this.props.register.partnerName : null}
                     onChangeText={(text) => this.props.actions.registerActions.changePartnerName(text)} />
                 <Text>Partner email</Text>
                 <TextInput
                     type="TextInput"
-                    name="childName"
-                    value={ this.props.user.parterEmail ? this.props.user.parterEmail : null}
+                    name="parnterEmail"
+                    value={ this.props.register.parterEmail ? this.props.register.parterEmail : null}
                     onChangeText={(text) => this.props.actions.registerActions.changePartnerEmail(text)} />
                 <Text>Partner gender</Text>
                 <Picker
-                    selectedValue={ this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1) : 'Female' }
+                    selectedValue={ this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.user.partnerGender.slice(1) : 'Female' }
                     onValueChange={(gender) => { this.props.actions.registerActions.changePartnerGender(gender) }}>
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] } />
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] } />

@@ -18,7 +18,8 @@ class Register extends Component {
 
     constructor(props) {
         super(props);
-        this.responseCallback = this.responseCallback.bind(this);
+        this.parentCallback = this.parentCallback.bind(this);
+        this.sitterCallback = this.sitterCallback.bind(this);
         this.setUserInDB = this.setUserInDB.bind(this);
         this.getGeoCode = this.getGeoCode.bind(this);
     }
@@ -33,10 +34,10 @@ class Register extends Component {
                         {this.props.user.userType === "I'm a Parent" ?
                             <ParentForm
                                 {...this.props}
-                                callback={ this.responseCallback } /> :
+                                callback={ this.parentCallback } /> :
                             <SitterForm
                                 {...this.props}
-                                callback={ this.responseCallback } />
+                                callback={ this.sitterCallback } />
                         }
                     </View>
                 </ScrollView>
@@ -54,9 +55,9 @@ class Register extends Component {
         return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
     }
 
-    responseCallback () {
+    parentCallback () {
         let self = this;
-        let parent = {address:{},languages: []};
+        let parent = {address:{},languages: [], matchBI: {}};
         let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
         langs.forEach (function(language){
             if(self.props.register.languages == null)
@@ -91,20 +92,65 @@ class Register extends Component {
                 specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: []
             },
             partner:{
-                gender: this.props.register.partnerGender,
-                email:  this.props.register.partnerEmail,
-                name:  this.props.register.partnerName
+                gender: this.props.register.partnerGender ? this.props.register.partnerGender : 'Female',
+                email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
+                name:  this.props.register.partnerName ? this.props.register.partnerName : ' '
             }
         };
-        //TODO: add personality test scores and parter data
-        self.setUserInDB(parent);
+        //TODO: add personality test scores
+        console.log(parent);
+        self.setUserInDB(parent, 'parent/create');
     }
 
-    async setUserInDB(data) {
+    sitterCallback() {// get all the form params and create sitter
+        let self = this;
+        let sitter = {address: {},languages: []};
+        let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
+        langs.forEach (function(language){
+            if(self.props.register.languages == null)
+                sitter.languages.push(language.name);
+            else
+                sitter.languages.push(language.value);
+        });
+        this.getGeoCode(function(data) {
+            sitter.address.longitude = data != null ? data.lng: 0;
+            sitter.address.latitude = data != null ? data.lat: 0;
+        });
+        sitter = {
+            _id : this.props.user.facebookID.toString(),
+            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
+            address: {
+                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
+                street: this.props.register.street,
+                houseNumber: Number(this.props.register.houseNumber),
+            },
+            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
+            coverPhoto: this.props.user.coverPhoto.source,
+            timezone: this.props.user.timezone,
+            profilePicture: this.props.user.picture.data.url,
+            experience:  Number(this.props.register.experience),
+            minAge:  Number(this.props.register.sitterMinAge),
+            maxAge:  Number(this.props.register.sitterMaxAge),
+            hourFee: Number(this.props.register.hourFee),
+            availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
+            expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
+            hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
+            specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
+            education: this.props.register.sitterEducation? this.props.register.sitterEducation: [],
+            mobility: this.props.register.sitterMobility.toLowerCase() === 'true'
+        };
+        //TODO: add personality test scores
+        console.log(sitter);
+        self.setUserInDB(sitter, 'sitter/create');
+    }
+
+    async setUserInDB(data, path) {
         const self = this;
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/parent/create',
+            url: 'https://sittersdev.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: data
         }).then(function (res) {
@@ -113,6 +159,7 @@ class Register extends Component {
                 Actions.Feed();
             }
             else { // user not created
+                console.log('user not created');
                 Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
             }
         }).catch(function (error) {

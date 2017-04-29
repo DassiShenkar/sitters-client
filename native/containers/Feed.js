@@ -23,29 +23,33 @@ class Feed extends React.Component {
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             console.log(userId);
             if (userId) {
-                axios.post('https://sitters-server.herokuapp.com/parent/get', {
-                    id: userId.toString()
+                axios({
+                    method: 'post',
+                    url: 'https://sittersdev.herokuapp.com/parent/get',
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    data: {_id: userId.toString()}
                 }).then(function (parent) {
                     if (parent.data) {  // user exists
-                        axios.post('https://sitters-server.herokuapp.com/parent/getMatches',
-                            parent.data
-                        )
-                            .then(function (sitters) {
-                                if (sitters.data.length > 0) {
-                                    self.props.feedActions.setMatches(sitters.data);
-                                }
-                                else {
-                                    alert('no matches found');
-                                }
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                            });
+                        axios({
+                            method: 'post',
+                            url: 'https://sittersdev.herokuapp.com/parent/getMatches',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent.data
+                        }).then(function (sitters) {
+                            if (sitters.data.length > 0) {
+                                self.props.feedActions.setMatches(sitters.data);
+                            }
+                            else {
+                                alert('no matches found');
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        });
                         self.props.actionCreators.setUserData(parent.data);
                     }
                     else { // user not exist
-                        alert('user not exist');
+                        console.log('user not exist');
                         Actions.Login();
                     }
                 }).catch(function (error) {
