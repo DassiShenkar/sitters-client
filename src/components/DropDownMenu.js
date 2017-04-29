@@ -18,9 +18,9 @@ class DropdownMenu extends React.Component {
     render() {
         return (
             <NavDropdown id="actions-dropdown" title={this.props.user.name?this.props.user.name:''}>
-                <MenuItem><Link to="/editProfile"><Person/>Edit Profile</Link></MenuItem>
-                <MenuItem><Link to="/settings"><Settings/>Settings</Link></MenuItem>
-                <MenuItem><Link to="/about"><Information/>About</Link></MenuItem>
+                <li><Link to="/editProfile"><Person/>Edit Profile</Link></li>
+                <li><Link to="/settings"><Settings/>Settings</Link></li>
+                <li><Link to="/about"><Information/>About</Link></li>
                 <MenuItem divider />
                 <MenuItem onClick={this.logout.bind(this)}><Logout/>Log Out</MenuItem>
             </NavDropdown>
