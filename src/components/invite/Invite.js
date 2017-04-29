@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 
 //style
 import './style.css';
@@ -20,18 +21,18 @@ class Invite extends React.Component {
         this.props.actions.inviteActions.setNotes(e.target.value);
     }
 
-    sendInvite(e) {   //TODO: send to server with axios and move to feed
+    sendInvite(e) {
         e.preventDefault();
         let invite = {
-            _id:        "abcd",
+            _id: uuid.v1(),
             address:    {
-                city: this.props.user.address.city,//"Tel Aviv",
-                street: this.props.user.address.street,//"Arlozorov",
+                city: this.props.user.address.city,
+                street: this.props.user.address.street,
                 houseNumber: this.props.user.address.houseNumber
             },
-            startTime:  this.props.invite.fromTime.format('HH:mm'),//"10:30",
-            endTime:    this.props.invite.toTime.format('HH:mm'),//"12:45",
-            date:       this.props.invite.inviteDate,//"10/05/2017",
+            startTime:  this.props.invite.fromTime.format('HH:mm'),
+            endTime:    this.props.invite.toTime.format('HH:mm'),
+            date:       this.props.invite.inviteDate,
             status:     "waiting",
             wasRead: false,
             sitterID:   this.props.sitterProfile.sitter._id,

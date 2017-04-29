@@ -26,7 +26,7 @@ class Login extends React.Component {
             // url: 'https://sitters-server.herokuapp.com/parent/get',
             url: 'https://localhost:4444/parent/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: user.id
+            data: {_id: user.id}
         })
             .then(function (response) {
                 if (response.data) {  // user exists

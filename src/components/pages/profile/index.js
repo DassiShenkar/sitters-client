@@ -211,7 +211,7 @@ class SitterProfile extends SitterProfileBase {
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
                     </Panel>
                 </Accordion>
-                <Accordion defaultExpanded={this.props.sitterProfile.expandReview? this.props.sitterProfile.expandReview: false}>
+                <Accordion defaultExpanded={this.props.sitterProfile.expandReview ? this.props.sitterProfile.expandReview: false}>
                     <Panel header="+ Add Review" eventKey="addReview">
                         <ControlLabel>{'Your story with ' + this.props.sitterProfile.sitter.name}</ControlLabel>
                         <FormControl autoFocus={this.props.sitterProfile.expandReview?this.props.sitterProfile.expandReview:false} componentClass="textarea"

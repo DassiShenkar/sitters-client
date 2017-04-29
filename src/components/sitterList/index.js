@@ -33,7 +33,7 @@ class SitterList extends SitterListBase {
                     </div>
                 </Link>
                 {text}
-                <PieChart sitter={this.props.sitters[sitterIndex]}/>
+                {/*<PieChart sitter={this.props.sitters[sitterIndex]}/>*/}
                 <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
             </div>
         )

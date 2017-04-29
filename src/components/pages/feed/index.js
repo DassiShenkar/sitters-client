@@ -24,10 +24,10 @@ class Feed extends React.Component {
         } else {
             axios({
                 method: 'post',
-                url: 'https://sitters-server.herokuapp.com/parent/get',
-                // url: 'http://localhost:4444/parent/get',
+                // url: 'https://sitters-server.herokuapp.com/parent/get',
+                url: 'http://localhost:4444/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {id: userId}
+                data: {_id: userId}
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists

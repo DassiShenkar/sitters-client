@@ -7,10 +7,9 @@ import axios from 'axios';
 
 //style
 import './style.css';
-import EditInvite from "../../invite/oldInvite";
 import Invite from "../../invite/Invite";
 
-class SitterActionBar extends EditInvite {
+class SitterActionBar extends React.Component {
 
     constructor(props) {
         super(props);
