@@ -69,12 +69,10 @@ class SitterActionBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <div id="sitterActionBar">
+            <div id="sitterActionBar">
                     <button id="mail" onClick={this.inviteSitter}><CircledMail id="mail-icon"/></button>
                     <button onClick={this.reviewSitter}><Like id="like-icon"/></button>
                     <button onClick={this.nextSitter}><NextArrow id="next-icon"/></button>
-                </div>
                 <Invite {...this.props}/>
             </div>
         )
