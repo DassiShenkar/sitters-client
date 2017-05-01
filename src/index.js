@@ -27,7 +27,6 @@ const router = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App} onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
-            {/*<Route path="/" component={Test}>*/}
                     <IndexRoute component={Feed}/>
                     <Route path="/invites" component={Invites}/>
                     <Route path="/invite/:inviteId" component={SingleInvite}/>
@@ -44,14 +43,5 @@ const router = (
         </Router>
     </Provider>
 );
-// const nav =    (<Nav name={this.props.user.name}
-//                     image={this.props.user.profilePicture}
-//                     alt={this.props.user.name}
-//                     invites={this.props.user.invites}
-//                     notifications={this.props.user.notifications}
-//                     action={this.props.actions.feedActions.setNavView}
-//                     {...this.props}/>);
-//
-//
-// render((nav), document.getElementById('root'));
+
 render((router), document.getElementById('root'));

@@ -4,9 +4,10 @@ import CheckBoxBase from '../../base/controllers/CheckBoxBase'
 
 class CheckBoxInput extends CheckBoxBase {
     render() {
-        const options = this.props.types.map((name) => {
+        let index = 0;
+        const options = this.props.types.map((option) => {
             return (
-                <label key={this.props.types.indexOf(name)}><Checkbox value={name}/> {name}</label>
+                <label key= {index++}><Checkbox value={option.label}/> {option.label}</label>
             )
         });
         return (

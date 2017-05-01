@@ -74,10 +74,12 @@ class Splash extends React.Component {
     }
 
     async getUserFromDb(self, result) {
-        axios.post(
-            'https://sitters-server.herokuapp.com/parent/get',
-            { id: result.id.toString() }
-        ).then(function (res) {
+        axios({
+            method: 'post',
+            url: 'https://sittersdev.herokuapp.com/parent/get',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: {_id: result.id.toString()}
+        }).then(function (res) {
             if (res.data) {  // user exists
                 self.props.actionCreators.setUserData(res.data);
                 Actions.Feed();

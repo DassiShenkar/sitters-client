@@ -18,31 +18,12 @@ export default class SitterForm extends React.Component {
     constructor(props) {
         super(props);
         this.timePickerCallback = this.timePickerCallback.bind(this);
+        this.timePicker = this.timePicker.bind(this);
     }
 
     render () {
+        const callback = this.props.callback;
         const self = this;
-        let expertise = function() {
-            let array = [];
-            strings.EXPERTISE.map(function (expertise) {
-                array.push({value: expertise.toLowerCase(), label: expertise})
-            });
-            return array;
-        };
-        let hobbies = function() {
-            let array = [];
-            strings.HOBBIES.map(function (hobby) {
-                array.push({value: hobby.toLowerCase(), label: hobby})
-            });
-            return array;
-        };
-        let needs = function() {
-            let array = [];
-            strings.SPECIAL_NEEDS.map(function (need) {
-                array.push({value: need.toLowerCase(), label: need})
-            });
-            return array;
-        };
         return (
             <Form ref="sitterForm">
                 <BaseForm 
@@ -82,17 +63,17 @@ export default class SitterForm extends React.Component {
                 <CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeSitterExpertise(values) }
                     checked={ [] }
-                    items={ expertise() } />
+                    items={ strings.EXPERTISE } />
                 <Text>Sitter Hobbies</Text>
                 <CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeSitterHobbies(values) }
                     checked={ [] }
-                    items={ hobbies() } />
+                    items={ strings.HOBBIES } />
                 <Text>Sitter Special needs</Text>
                 <CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeSitterSpecialNeeds(values) }
                     checked={ [] }
-                    items={ needs() } />
+                    items={ strings.SPECIAL_NEEDS } />
                 <Text>Availble on:</Text>
                 {this.timePicker()}
                 <TextButton
@@ -106,6 +87,18 @@ export default class SitterForm extends React.Component {
                     text="Submit" />
             </Form>
         );
+    }
+
+    timePicker () {
+        const self = this;
+        return days.map(function (day) {
+            return <View>
+                <Text>{day}</Text>
+                <AndroidTimePicker
+                    callback={ self.timePickerCallback }
+                    day={ day }/>
+            </View>;
+        });
     }
 
     timePickerCallback (day, time) {

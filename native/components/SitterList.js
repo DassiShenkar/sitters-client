@@ -20,25 +20,24 @@ export default class Feed extends React.Component {
         let sitterIndex = this.props.feed.sitterIndex;
         const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
         let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
-        console.log(sitterId);
         return (
             <View style={{ flex:1, justifyContent: 'center', alignItems: 'center' }}>
                 <Image source={{ uri: coverPhoto }} style={{width: null, height: null, resizeMode:'stretch'}}>
                     <Text
-                        style={{color: '#fff', fontSize: 40, fontWeight: 'bold', marginTop: 20 }}>
+                        style={{width: '100%', color: '#fff', fontSize: 40, fontWeight: 'bold', marginTop: 20, marginRight: 135 }}>
                         { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].matchScore + '% Match!' : 'no matches found' }
                     </Text>
-                    <View style={{width: '100%',marginTop:30 }}>
+                    <View style={{width: '100%',marginTop:30, marginLeft:155}}>
                         <ImageButton
                             onPress={ (e) => this.navToProfile(e, sitterId) }
                             styles={{width: 200, height: 200, borderRadius:100}}
                             src={this.props.sitters.length > 0 ? { uri: this.props.sitters[sitterIndex].profilePicture } : {} } />
                     </View>
                     <Text
-                        style={{color: '#fff', fontSize: 22, marginTop: 20 }}>
+                        style={{color: '#fff', fontSize: 22, marginTop: 20, marginRight: 185}}>
                         { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '' }
                     </Text>
-                    <View style={{ flex: 1, flexDirection: 'row', width: 200, justifyContent: 'space-between', marginTop: 100 }}>
+                    <View style={{ flex: 1, flexDirection: 'row', width: 200, justifyContent: 'space-between', marginTop: 100, marginLeft:160}}>
                         <ImageButton
                             onPress={ (e) => this.navToInvite(e, sitterId) }
                             styles={{ width: 50, height: 50, borderRadius:100}}
