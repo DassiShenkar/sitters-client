@@ -10,12 +10,11 @@ var {
 } = ReactNative;
 import TextButton from './TextButton'
 
-class AndroidDatePicker extends React.Component {
+export default class AndroidDatePicker extends React.Component {
     static title = 'DatePickerAndroid';
-    static description = 'Standard Android date picker dialog';
 
     state = {
-        calendarDate: new Date(2020, 4, 5),
+        calendarDate: new Date(),
         calendarText: 'pick a date'
     };
 
@@ -29,6 +28,7 @@ class AndroidDatePicker extends React.Component {
                 var date = new Date(year, month, day);
                 newState[stateKey + 'Text'] = date.toLocaleDateString();
                 newState[stateKey + 'Date'] = date;
+                this.props.callback(date);
             }
             this.setState(newState);
         } catch ({code, message}) {
@@ -52,4 +52,3 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = AndroidDatePicker;

@@ -25,7 +25,7 @@ class AndroidTimePicker extends React.Component {
                 newState[stateKey + 'Text'] = _formatTime(hour, minute);
                 newState[stateKey + 'Hour'] = hour;
                 newState[stateKey + 'Minute'] = minute;
-                this.props.callback(this.props.day, _formatTime(hour, minute));
+                this.props.callback(_formatTime(hour, minute));
             } else if (action === TimePickerAndroid.dismissedAction) {
                 newState[stateKey + 'Text'] = 'dismissed';
             }
