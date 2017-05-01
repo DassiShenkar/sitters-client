@@ -138,12 +138,21 @@ function register(state = {}, action) {
                 sitterEducation:  action.sitterEducation
             };
 
-        case 'CHANGE_PERSONALITY_TEST_QUESTION' :
-            let questions = state.personalityTestQuestions;
-            questions[action.question.id] = action.question;
+        // case 'CHANGE_PERSONALITY_TEST_QUESTION' :
+        //     let questions = state.personalityTestQuestions;
+        //     questions[action.question.id] = action.question;
+        //     return {
+        //         ...state,
+        //         personalityTestQuestions : questions
+        //     };
+        case 'CHANGE_PERSONALITY_QUESTION' :
+            let questions = state.personalityQuestions;
+            let index = action.question.index;
+            delete action.question['index'];
+            questions[index] = action.question;
             return {
                 ...state,
-                personalityTestQuestions : questions
+                personalityQuestions : questions
             };
 
 

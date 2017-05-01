@@ -75,7 +75,7 @@ const strings = {
         {value: 'vietnamese', label: 'Vietnamese'}
     ],
     HOBBIES:[
-        {value: 'air sports', label: 'air sports'},
+        {value: 'air sports', label: 'Air sports'},
         {value: 'baking', label: 'Baking'},
         {value: 'balloon twisting', label: 'Balloon Twisting'},
         {value: 'baseball', label: 'Baseball'},
@@ -144,6 +144,14 @@ const strings = {
         {value: 'english', label: 'English'},
         {value: 'physics', label: 'Physics'},
         {value: 'history', label: 'History'},
+        {value: 'languages', label: 'Languages'},
+        {value: 'science', label: 'Science'},
+        {value: 'art', label: 'Art'},
+        {value: 'music', label: 'Music'},
+        {value: 'drama', label: 'Drama'},
+        {value: 'sports', label: 'Sports'},
+        {value: 'tech', label: 'Tech'},
+        {value: 'social studies', label: 'Social Studies'},
     ]
 };
 export default strings;

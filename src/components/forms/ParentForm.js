@@ -37,6 +37,7 @@ class Form extends React.Component {
         e.preventDefault();
         let self = this;
         let parent = {address:{},languages: []};
+        let expertise = [], hobbies = [], specialNeeds= [];
         let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
         langs.forEach (function(language){
             if(self.props.register.languages == null)
@@ -48,6 +49,38 @@ class Form extends React.Component {
             parent.address.longitude = data.results[0] != null? data.results[0].geometry.location.lng: 0;
             parent.address.latitude = data.results[0] != null? data.results[0].geometry.location.lat: 0;
         });
+        if(this.props.register.childExpertise.length > 0){
+            this.props.register.childExpertise.forEach(function(o){
+                expertise.push(o.value);
+            })
+        }
+        if(this.props.register.childSpecialNeeds.length > 0){
+            this.props.register.childSpecialNeeds.forEach(function(o){
+                specialNeeds.push(o.value);
+            })
+        }
+        if(this.props.register.childHobbies.length > 0){
+            this.props.register.childHobbies.forEach(function(o){
+                hobbies.push(o.value);
+            })
+        }
+        let totalScore = 0;
+        this.props.register.personalityQuestions.forEach(function(question){
+            totalScore += question.value;
+        });
+        let partner;
+        if(this.props.register.partnerName){
+            partner = {
+                gender: this.props.register.partnerGender,
+                    email:  this.props.register.partnerEmail,
+                    name:  this.props.register.partnerName
+            };
+            parent.partner = partner;
+        }
+
+
+
+
         parent = {
             _id : this.props.user.facebookID,
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
@@ -66,24 +99,37 @@ class Form extends React.Component {
             children: {
                 name: this.props.register.childName,
                 age: Number(this.props.register.childAge),
-                expertise: this.props.register.childExpertise? this.props.register.childExpertise: [],
-                hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
-                specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: [],
+                expertise: expertise,
+                hobbies: hobbies,
+                specialNeeds: specialNeeds,
             },
-            partner:{
-                gender: this.props.register.partnerGender,
-                email:  this.props.register.partnerEmail,
-                name:  this.props.register.partnerName
+            userType: "I'm a parent",
+            personalityTest: {
+                questions: this.props.register.personalityQuestions,
+                totalScore: totalScore
+            },
+            notifications: [],
+            invites: [],
+            blacklist: [],
+            matchBI: {
+                matchScores: [],
+                median: 0
+            },
+            settings: {
+                allowNotification: true,
+                allowSuggestions: true
             }
         };
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/parent/create',
+            // url: 'https://sitters-server.herokuapp.com/parent/create',
+            url: 'http://localhost:4444/parent/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {
             if (res.data) {  // user created
-                self.props.actions.actionCreators.setUserData(res.data);
+                localStorage.auth_token = parent._id;
+                //self.props.actions.actionCreators.setUserData(res.data);
                 self.props.router.push('/');
             }
             else { // user not created
@@ -182,7 +228,7 @@ class Form extends React.Component {
                             action={this.props.actions.registerActions.changePartnerGender}
                             radioType={'partnerGender'} {...this.props}
                             reducer={'register'}/>
-                <PersonalityQuestions/>
+                <PersonalityQuestions {...this.props}/>
                 <div className="submit">
                     <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
                 </div>

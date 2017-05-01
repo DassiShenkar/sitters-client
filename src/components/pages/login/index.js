@@ -9,6 +9,9 @@ import Form from 'react-bootstrap/lib/Form';
 import Logo from '../../Logo';
 import RadioInput from '../../controllers/radio/index';
 
+//style
+import './style.css';
+
 //statics
 import strings from '../../../static/strings';
 
@@ -52,10 +55,9 @@ class Login extends React.Component {
                                           reducer={'user'}/>;
         return (
             <div id="login-page">
-                <PageHeader><Logo companyName={strings.APP_NAME}/>
-                    <small>{strings.APP_DESCRIPTION}</small>
+                <PageHeader>{strings.APP_NAME}<h3>{strings.APP_DESCRIPTION}</h3>
                 </PageHeader>
-                <Form horizontal>
+                <Form className="login-form" horizontal>
                     {localStorage.getItem('suth_token') ? '' : userTypeRadio}
                     <FacebookLogin
                         appId="268453370262293"
