@@ -75,7 +75,6 @@ class Feed extends React.Component {
             }
             else {
                 showSitters = true;
-                navView = <PageHeader>Matches</PageHeader>;
             }
         }
 
@@ -84,9 +83,6 @@ class Feed extends React.Component {
                 {navView}
                 {showSitters ? <SitterList {...this.props}
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
-
-                {showSitters ? this.props.feed.filteredMatches.length > 0 ?
-                    <SitterActionBar {...this.props}/> : '' : ''}
                 <Invites {...this.props} />
                 <Notifications {...this.props}/>
             </div>
