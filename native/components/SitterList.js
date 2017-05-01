@@ -60,18 +60,20 @@ export default class Feed extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e, sitterId) {
+    navToInvite(e) {
         let sitterIndex = this.props.feed.sitterIndex;
         let sitter = this.props.sitters[sitterIndex];
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    navToRate(e, sitterId) {
-        Actions.RateSitter({ sitterId: sitterId });
+    navToRate(e) {
+        let sitterIndex = this.props.feed.sitterIndex;
+        let sitter = this.props.sitters[sitterIndex];
+        Actions.RateSitter({ sitter: sitter });
     }
 
     removeSitter(e) {
-        let index = this.props.feed.sitterIndex;
+        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.refresh();
     }

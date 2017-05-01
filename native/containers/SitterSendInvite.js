@@ -25,14 +25,6 @@ class SitterSendInvite extends React.Component {
         this.endCallback = this.endCallback.bind(this);
     }
 
-    state = {
-        modalVisible: true
-    };
-
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
-    }
-
     sendInvite(e) {
         e.preventDefault();
         let invite = {
@@ -95,7 +87,7 @@ class SitterSendInvite extends React.Component {
                             justifyContent: 'center',
                             alignItems: 'center',
                             width: '80%',
-                            height: '60%',
+                            height: '70%',
                             margin: 15,
                             backgroundColor: 'rgba(255, 255, 255, 1)',
                             borderRadius: 20
@@ -105,37 +97,39 @@ class SitterSendInvite extends React.Component {
                            source={{uri: profilePicture}}
                        />
                        <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text>Date</Text>
+                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Date</Text>
                            <AndroidDatePicker
                                 callback={ this.dateCallback }/>
                        </View>
                        <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text>Start Watch</Text>
+                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Start Watch</Text>
                            <AndroidTimePicker
                                callback={ this.startCallback }/>
                        </View>
                        <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text>End Watch</Text>
+                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>End Watch</Text>
                            <AndroidTimePicker
                                callback={ this.endCallback }/>
                        </View>
-                       <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text>Watch Place: </Text>
+                       <View style={{ width: '100%', justifyContent: 'flex-start', marginBottom: 15 }}>
+                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Watch Place: </Text>
                            <Text>{ this.props.user.address ? this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : '' }</Text>
                        </View>
-                       <Text style={{ width: '100%', justifyContent: 'flex-start' }}>Notes</Text>
+                       <Text style={{ width: '100%', justifyContent: 'flex-start', color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Notes</Text>
                        <TextInput
                            style={{  width: '100%', justifyContent: 'flex-start', marginBottom: 15 }}
                            onChangeText={(text) => this.props.inviteActions.setNotes(text)}
                            placeHolder='Notes' />
-                       <TextButton
-                           onPress={Actions.pop}
-                           styles={{ fontSize: 20, marginBottom: 10 }}
-                           text='Cancel' />
-                       <TextButton
-                           onPress={this.sendInvite}
-                           styles={{ fontSize: 20}}
-                           text='Send' />
+                       <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
+                           <TextButton
+                               onPress={Actions.pop}
+                               styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                               text='Cancel' />
+                           <TextButton
+                               onPress={this.sendInvite}
+                               styles={{ fontSize: 20, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                               text='Send' />
+                       </View>
                    </View>
                </View>
            </Modal>
