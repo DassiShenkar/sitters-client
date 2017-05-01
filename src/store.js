@@ -9,7 +9,6 @@ import dateFormat from 'dateformat';
 import rootReducer from './reducers/index';
 import moment from "moment";
 
-
 //set initial state
 const defaultState = {
     reviews: [],
@@ -27,7 +26,7 @@ const defaultState = {
         showInvitesPopup: false
     },
     register : {
-        personalityTestQuestions : [],
+        personalityQuestions : strings.QUESTIONS,
         childHobbies: [],
         childExpertise: [],
         childSpecialNeeds: []

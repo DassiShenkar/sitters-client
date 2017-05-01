@@ -18,7 +18,6 @@ class Main extends React.Component {
             <div id="main">
                 {nav}
                 {React.cloneElement(this.props.children, this.props)}
-
             </div>
         );
     }
