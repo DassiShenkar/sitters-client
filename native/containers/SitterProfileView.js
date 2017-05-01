@@ -5,97 +5,145 @@ import { ScrollView, Image, Text, View, ListView, StyleSheet } from 'react-nativ
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import geodist from "geodist";
+import { Actions } from 'react-native-router-flux';
 
-import LocalStorage from '../utils/LocalStorage'
 import AppBar from '../components/AppBar';
 import Review from '../components/Review';
 import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
+import ImageButton from '../components/ImageButton';
 
 class SitterProfileView extends React.Component {
 
     constructor (props) {
         super(props);
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-            dataSource: ds.cloneWithRows(['No reviews yet'])
-        };
-        this.renderRow = this.renderRow.bind(this);
+        this.navToInvite = this.navToInvite.bind(this);
     }
     
     componentWillMount() {
         let sitterID = this.props.sitterId;
         let self = this;
-        axios.post('https://sitters-server.herokuapp.com/sitter/get', {
-            _id: sitterID.toString()
-        })
-            .then(function (sitter) {
-                self.props.sitterProfileActions.setSitter(sitter.data);
-                let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
-                let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
-                self.props.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
-                alert(JSON.stringify(this.props.sitterProfile.sitter.reviews));
-                var newState = {
-                    dataSource: ds.cloneWithRows(this.props.sitterProfile.sitter.reviews)
-                };
-                this.setState(newState);
-            })
-            .catch(function (error) {
-                alert(JSON.stringify(error));//TODO: in case of sitter wasn't found
-            });
+        axios({
+            method: 'post',
+            url: 'https://sittersdev.herokuapp.com/sitter/get',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: {_id: sitterID}
+        }).then(function (sitter) {
+            self.props.sitterProfileActions.setSitter(sitter.data);
+            let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
+            let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
+            self.props.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
+            console.log(sitter);
+        }).catch(function (error) {
+            console.log(error);//TODO: in case of sitter wasn't found
+        });
     }
 
     render () {
         const id = this.props.sitterId;
-        return (
-            <ScrollView>
-                <AppBar
-                    { ...this.props }/>
-                <View style={{ flex:1, margin: 15 }} >
-                    <Image
-                        style={{width: 200, height: 200, justifyContent: 'center', borderRadius:100}}
-                        source={this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                    />
-                    <Text>{ this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }</Text>
-                    <Text>{this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
-                            return sitter._id === id;
-                        }).matchScore + '% Match!' : 'no matches found'}
-                    </Text>
-                    <View style={{flex: 1, flexDirection: 'row'}}>
-                        <Text>{ this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }</Text>
-                        <Text>{ this.props.sitterProfile.sitter.hourFee + "$" }</Text>
-                        <Text>{ this.props.sitterProfile.sitter.experience + " Years" }</Text>
-                    </View>
-                    <Text>Availability</Text>
-                    <Text>Sunday - Saturday</Text>
-                    <Text>17:00 - 24:00</Text>
-                    <Text>Hobbies</Text>
-                    <Text>Horse Riding, Reading, Traveling</Text>
-                    <Text>Education</Text>
-                    <Text>Rabin High School, Kfar saba</Text>
-                    <Text>Languages</Text>
-                    <Text>Hebrew, English</Text>
-                    <Text>Reviews(Num of Reviews)</Text>
-                    <View>
-                        <ListView
-                            dataSource={this.state.dataSource}
-                            renderRow={(data) => <Review {...data} />}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                        />
-                    </View>
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : null;
+        const self = this;
+        const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
+            return (
+                <View key={index}>
+                    <Text>{key[0].toUpperCase() + key.slice(1)}</Text>
+                    <Text>{self.props.sitterProfile.sitter.workingHours[key].start + '-' + self.props.sitterProfile.sitter.workingHours[key].finish}</Text>
                 </View>
-            </ScrollView>
+            )
+        });
+        return (
+            <View style={{ flex:1 }}>
+                <ScrollView>
+                    <AppBar
+                        { ...this.props }/>
+                    <View style={{ flex:1 }} >
+                        <View>
+                            <Image source={{ uri: coverPhoto }} style={{width: null, height: null, resizeMode:'stretch'}}>
+                                <Image
+                                    style={{width: 150, height: 150, justifyContent: 'center', borderRadius:100, marginLeft: 110, marginTop: 70}}
+                                    source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
+                                />
+                                <Text style={{ color: '#fff', fontSize: 20, fontWeight: 'bold', marginTop: 50, marginRight: 90 }}>
+                                    { this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }
+                                </Text>
+                                <Text style={{ color: '#fff', fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 20, marginRight: 120 }}>
+                                    {this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
+                                        return sitter._id === id;
+                                    }).matchScore + '% Match!' : 'no matches found'}
+                                </Text>
+                            </Image>
+                            <View style={{flex: 1, flexDirection: 'row-reverse', padding: 10, justifyContent: 'space-between', width: '100%', backgroundColor: '#f7a1a1'}}>
+                                <Text style={{ fontSize: 20, color: '#fff' }}>
+                                    { this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }
+                                </Text>
+                                <Text style={{ fontSize: 20, color: '#fff' }}>
+                                    { this.props.sitterProfile.sitter.hourFee + "$" }
+                                </Text>
+                                <Text style={{ fontSize: 20, color: '#fff' }}>
+                                    { this.props.sitterProfile.sitter.experience + " Years" }
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{ margin: 15 }}>
+                            <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Availability</Text>
+                            { workingHours }
+                            {this.props.sitterProfile.sitter.hobbies ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Hobbies</Text> : null}
+                            <View style={{ flexDirection: "row-reverse" }}>
+                                {
+                                    this.props.sitterProfile.sitter.hobbies ? this.props.sitterProfile.sitter.hobbies.map(function(hobbie) {
+                                        return <Text key={ hobbie }>{ hobbie + ' ' }</Text>;
+                                    }) : <Text>No hobbies</Text>
+                                }
+                            </View>
+                            {this.props.sitterProfile.sitter.education ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Education</Text> : null}
+                            <View style={{ flexDirection: "row-reverse" }}>
+                                {
+                                    this.props.sitterProfile.sitter.education ? this.props.sitterProfile.sitter.education.map(function(education) {
+                                        return <Text key={ education }>{ education + ' ' }</Text>;
+                                    }) : <Text>No languages</Text>
+                                }
+                            </View>
+                            {this.props.sitterProfile.sitter.languages ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Languages</Text> : null}
+                            <View style={{ flexDirection: "row-reverse" }}>
+                                {
+                                    this.props.sitterProfile.sitter.languages ? this.props.sitterProfile.sitter.languages.map(function(lang) {
+                                        return <Text key={ lang }>{ lang + ' ' }</Text>;
+                                    }) : <Text>No education</Text>
+                                }
+                            </View>
+                            {this.props.sitterProfile.sitter.expertise ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Expertise</Text> : null}
+                            <View style={{ flexDirection: "row-reverse" }}>
+                                {
+                                    this.props.sitterProfile.sitter.expertise ? this.props.sitterProfile.sitter.expertise.map(function(expertise) {
+                                        return <Text key={ expertise }>{ expertise + ' '}</Text>;
+                                    }) : <Text>No expertise</Text>
+                                }
+                            </View>
+                            <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Reviews({ this.props.sitterProfile.sitter.reviews.length })</Text>
+                            <View>
+                                <ListView
+                                    enableEmptySections={true}
+                                    dataSource={ ds.cloneWithRows(this.props.sitterProfile.sitter.reviews) }
+                                    renderRow={(data) => <Review {...data} />}
+                                    renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                />
+                            </View>
+                        </View>
+                    </View>
+                </ScrollView>
+                <View style={{ margin: 5 }}>
+                    <ImageButton
+                        onPress={ (e) =>  this.navToInvite(e, id) }
+                        styles={{width: 50, height: 50, borderRadius:100}}
+                        src={require('../style/icons/inbox.png')} />
+                </View>
+            </View>
         );
     }
 
-    renderRow (rowData) {
-        return (
-            <Review
-                name={ rowData.name }
-                date={ rowData.date }
-                stars={ rowData.stars }
-                image={ rowData.image }
-                review={ rowData.review } />
-        );
+    navToInvite(e, sitterId) {
+        Actions.SitterSendInvite({ sitterId: sitterId });
     }
 }
 

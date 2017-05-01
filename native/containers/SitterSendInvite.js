@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { View, Modal, Navigator, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import AndroidDatePicker from '../components/AndroidDatePicker'
 import AndroidTimePicker from '../components/AndroidTimePicker'
 import TextButton from '../components/TextButton'

@@ -74,14 +74,12 @@ class Splash extends React.Component {
     }
 
     async getUserFromDb(self, result) {
-        console.log(result.id);
         axios({
             method: 'post',
             url: 'https://sittersdev.herokuapp.com/parent/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: result.id.toString()}
         }).then(function (res) {
-            console.log(JSON.stringify(res));
             if (res.data) {  // user exists
                 self.props.actionCreators.setUserData(res.data);
                 Actions.Feed();
@@ -90,7 +88,7 @@ class Splash extends React.Component {
                 Actions.Register();
             }
         }).catch(function (error) {
-            console.log(JSON.stringify(error));
+            console.log(error);
             Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
         });
     }
