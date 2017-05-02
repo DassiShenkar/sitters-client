@@ -28,7 +28,7 @@ class SearchByTab extends React.Component {
         if (this.props.searchBy.searchView !== null) {
             let view = this.props.searchBy.searchView;
             if (view === "location") {
-                navView = <div className="google-map" style={{width: '100%', height: '480px'}}><GoogleMaps sitters={this.props.feed.matches}/></div>;
+                navView = <div className="google-map" style={{width: '100%', height: '240px'}}><GoogleMaps sitters={this.props.feed.matches}/></div>;
             }
             else if (view === "time") {
                 navView = <form id="time-search">

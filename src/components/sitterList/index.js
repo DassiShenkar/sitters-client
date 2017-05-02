@@ -18,9 +18,6 @@ class SitterList extends React.Component {
 
     render() {
         let sitterIndex = this.props.feed.sitterIndex;
-        const text = this.props.feed.matches.length > 0 ?
-            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true}
-                                  secondQuestions={strings.QUESTIONS} disabled={true}/> : '';
         return (
             <div className="match">
                 <PageHeader>
@@ -40,7 +37,11 @@ class SitterList extends React.Component {
                     </div>
                     <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
                 </div>
-                {text}
+                <h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers herself:' : ''}</h3>
+                {this.props.feed.matches.length > 0 ? <PersonalityQuestions questions={strings.QUESTIONS}
+                                                                            addSameQuestionsClass={true}
+                                                                            secondQuestions={strings.QUESTIONS}
+                                                                            disabled={true}/> : ''};
             </div>
         )
     }
