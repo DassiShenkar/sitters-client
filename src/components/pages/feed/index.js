@@ -14,6 +14,8 @@ import SitterActionBar from "../../panels/actionPanel/index";
 
 //style
 import './style.css';
+import Rating from "react-rating";
+import Review from "../../review/index";
 
 class Feed extends React.Component {
 
@@ -24,8 +26,8 @@ class Feed extends React.Component {
         } else {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'http://localhost:4444/parent/get',
+                url: 'https://sitters-server.herokuapp.com/parent/get',
+                // url: 'http://localhost:4444/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId}
             })
@@ -36,8 +38,8 @@ class Feed extends React.Component {
 
                         axios({
                             method: 'post',
-                            // url: 'https://sitters-server.herokuapp.com/parent/getMatches',
-                            url: 'http://localhost:4444/parent/getMatches',
+                            url: 'https://sitters-server.herokuapp.com/parent/getMatches',
+                            // url: 'http://localhost:4444/parent/getMatches',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent.data
                         })
@@ -85,6 +87,7 @@ class Feed extends React.Component {
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
                 <Invites {...this.props} />
                 <Notifications {...this.props}/>
+                {/*<Review {...this.props} />*/}
             </div>
         );
     }

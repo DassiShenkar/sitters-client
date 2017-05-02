@@ -1,0 +1,12 @@
+#feed-page .page-header {
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
+#feed-page h3 {
+  color: #555;
+  text-align: left;
+  margin-bottom: 64px;
+  padding: 0; }
+
+#feed-page label {
+  color: #555; }

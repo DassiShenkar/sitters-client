@@ -1,6 +1,44 @@
-.submit{
-  text-align: center;
-}
-form{
-  margin: 35px 0;
+.register-form, .sitter-form {
+
+  color: #555;
+
+  .rc-slider-track {
+    background-color: #e9e9e9;
+  }
+
+  input {
+    margin: 8px 0;
+  }
+
+  h4 {
+    margin: 24px 0;
+    font-size: 28px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .answer {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 24px 0;
+
+    label {
+      width: 200px;
+    }
+
+    .right-label {
+      text-align: right;
+    }
+
+  }
+
+  .rc-slider-dot {
+    border-color: #96dbfa;
+  }
+
+  .submit {
+    margin-bottom: 96px;
+    text-align: center;
+  }
 }
