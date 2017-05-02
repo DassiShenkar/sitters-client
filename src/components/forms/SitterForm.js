@@ -139,7 +139,7 @@ class Form extends React.Component {
         }).then(function (res) {
             console.log(res);
             if (res.data) {  // user created
-                self.props.router.push('/');
+                // self.props.router.push('/');// TODO : Move to feed page
             }
             else { // user not created
                 //TODO: think about error when user not created

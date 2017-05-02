@@ -4,7 +4,7 @@ import './panels/nav/style.css'
 class Main extends React.Component {
     render() {
         let nav = null;
-        if(location.href.split('/')[location.href.split('/').length -1 ] !== 'login'){
+        if(location.href.split('/')[location.href.split('/').length -1 ] !== 'login' && location.href.split('/')[location.href.split('/').length -1 ] !== 'register' ){
             nav =
                 <Nav name={this.props.user.name}
                      image={this.props.user.profilePicture}
