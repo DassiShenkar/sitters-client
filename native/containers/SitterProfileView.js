@@ -12,6 +12,7 @@ import AppBar from '../components/AppBar';
 import Review from '../components/Review';
 import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
 import ImageButton from '../components/ImageButton';
+import TextButton from '../components/TextButton';
 
 class SitterProfileView extends React.Component {
 
@@ -132,7 +133,11 @@ class SitterProfileView extends React.Component {
                         </View>
                     </View>
                 </ScrollView>
-                <View style={{ margin: 5 }}>
+                <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', margin: 5 }}>
+                    <TextButton
+                        onPress={Actions.pop}
+                        styles={{ fontSize: 20, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10, margin: 5, marginRight: 15 }}
+                        text='Cancel' />
                     <ImageButton
                         onPress={ (e) =>  this.navToInvite(e, id) }
                         styles={{width: 50, height: 50, borderRadius:100}}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
 
@@ -43,7 +43,7 @@ export default class DropDownMenu extends React.Component {
     _onSelect (value) {
         switch(value) {
             case 1:
-                Actions.Register({ exists:true });
+                Actions.Register({ registered: true });
                 break;
             case 2:
                 Actions.Settings();

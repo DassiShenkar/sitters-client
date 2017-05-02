@@ -37,7 +37,7 @@ export default class Feed extends React.Component {
                         style={{color: '#fff', fontSize: 22, marginTop: 20, marginRight: 185}}>
                         { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '' }
                     </Text>
-                    <View style={{ flex: 1, flexDirection: 'row', width: 200, justifyContent: 'space-between', marginTop: 100, marginLeft:160}}>
+                    <View style={{ flex: 1, flexDirection: 'row-reverse', width: 200, justifyContent: 'space-between', marginTop: 100, marginRight:160}}>
                         <ImageButton
                             onPress={ (e) => this.navToInvite(e, sitterId) }
                             styles={{ width: 50, height: 50, borderRadius:100}}
@@ -60,16 +60,20 @@ export default class Feed extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e, sitterId) {
-        Actions.SitterSendInvite({ sitterId: sitterId });
+    navToInvite(e) {
+        let sitterIndex = this.props.feed.sitterIndex;
+        let sitter = this.props.sitters[sitterIndex];
+        Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    navToRate(e, sitterId) {
-        Actions.RateSitter({ sitterId: sitterId });
+    navToRate(e) {
+        let sitterIndex = this.props.feed.sitterIndex;
+        let sitter = this.props.sitters[sitterIndex];
+        Actions.RateSitter({ sitter: sitter });
     }
 
     removeSitter(e) {
-        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex +1;
+        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.refresh();
     }
