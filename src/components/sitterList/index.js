@@ -18,13 +18,11 @@ class SitterList extends React.Component {
 
     render() {
         let sitterIndex = this.props.feed.sitterIndex;
-        const text = this.props.feed.matches.length > 0 ?
-            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true}
-                                  secondQuestions={strings.QUESTIONS} disabled={true}/> : '';
         return (
             <div className="match">
                 <PageHeader>
-                    <Link className="sitter-link" to={this.props.sitters.length > 0 ? '/sitter/' + this.props.sitters[sitterIndex]._id : '#'}>
+                    <Link className="sitter-link"
+                          to={this.props.sitters.length > 0 ? '/sitter/' + this.props.sitters[sitterIndex]._id : '#'}>
                         <Image className="sitter-profile-pic"
                                src={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : ''}
                                alt={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''} circle/>
@@ -33,11 +31,17 @@ class SitterList extends React.Component {
                     <SitterActionBar {...this.props}/>
                 </PageHeader>
                 <div className="match-info">
-                    <h1 className="match-score">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].match.matchScore + '%' : ''}</h1>
-                    <h1>{this.props.sitters.length > 0 ? 'Match' : ''}</h1>
+                    <div className="score">
+                        <h1 className="match-score">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].match.matchScore + '%' : ''}</h1>
+                        <h1>{this.props.sitters.length > 0 ? 'Match' : ''}</h1>
+                    </div>
                     <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
                 </div>
-                {text}
+                <h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers herself:' : ''}</h3>
+                {this.props.feed.matches.length > 0 ? <PersonalityQuestions questions={strings.QUESTIONS}
+                                                                            addSameQuestionsClass={true}
+                                                                            secondQuestions={strings.QUESTIONS}
+                                                                            disabled={true}/> : ''};
             </div>
         )
     }

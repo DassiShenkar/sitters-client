@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush|Emblema+One|Galada|Kaushan+Script|Knewave|Lemon|Lobster|Playball|Purple+Purse|Risque|Sniglet|Unna');
+
 .match {
 
   .page-header {
@@ -19,7 +21,7 @@
     }
 
     a {
-      color: rgb(131, 166, 237);
+      color: #7ad0f8;
     }
   }
 
@@ -31,10 +33,90 @@
 
   .match-info {
     color: #000000;
-    .match-score {
-      font-size: 96px;
-      font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    margin-top: 48px;
+    .recharts-wrapper {
+      flex: 1;
+    }
+    .score {
+      flex: 1;
+
+      h1 {
+        color: #88d685;
+        font-size: 64px;
+        margin: 0;
+        //font-family: 'Lobster', cursive;
+        //font-family: 'Kaushan Script', cursive;
+        //font-family: 'Unna', serif;
+        font-family: 'Galada', cursive;
+      }
+
+      .match-score {
+        //font-family: 'Knewave', cursive;
+        //font-family: 'Purple Purse', cursive;
+        //font-family: 'Emblema One', cursive;
+        //font-family: 'Lemon', cursive;
+        //font-family: 'Lobster', cursive;
+        //font-family: 'Kaushan Script', cursive;
+        //font-family: 'Sniglet', cursive;
+        //font-family: 'Unna', serif;
+        //font-family: 'Risque', cursive;
+        //font-family: 'Galada', cursive;
+        //font-family: 'Caveat Brush', cursive;
+        font-family: 'Playball', cursive;
+        font-size: 96px;
+        //font-weight: bold;
+      }
     }
   }
+
+  .rc-slider {
+    height: 20px;
+    display: flex;
+  }
+
+  .rc-slider-disabled {
+    background-color: transparent;
+  }
+
+  .rc-slider-rail {
+    height: 9px;
+  }
+
+  .rc-slider-track {
+    background-color: #e9e9e9;
+  }
+
+  .rc-slider-handle {
+    width: 20px;
+    height: 20px;
+
+  }
+
+  .answer {
+    display: flex;
+    margin-bottom: 24px;
+  }
+
+  .same-answer {
+    .rc-slider-handle {
+      border-color: #88d685;
+
+    }
+  }
+
+  .right-label {
+    text-align: right;
+    margin-left: 12px;
+    width: 160px;
+  }
+
+  .left-label {
+    text-align: left;
+    margin-right: 12px;
+    width: 96px;
+  }
+
 }
 

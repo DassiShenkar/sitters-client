@@ -21,10 +21,10 @@ class PersonalityQuestions extends React.Component {
                 rangeClass = question.value === this.props.secondQuestions[key].value? "same-answer": "";
             }
             return (
-                <div key={key} className={rangeClass}>
-                    <ControlLabel>{question.label1}</ControlLabel>
+                <div key={key} className={'answer ' + rangeClass}>
+                    <label className="left-label">{question.label1}</label>
                     <Slider disabled={this.props.disabled}  min={0} max={5}  step={1}   defaultValue={question.value} onChange={this.onChange.bind(this,question,key)}/>
-                    <ControlLabel>{question.label2}</ControlLabel>
+                    <label className="right-label">{question.label2}</label>
                 </div>
             );
         });
