@@ -14,6 +14,7 @@ import './style.css';
 
 //statics
 import strings from '../../../static/strings';
+import Rating from "react-rating";
 
 class Login extends React.Component {
 
@@ -48,17 +49,18 @@ class Login extends React.Component {
     }
 
     render() {
-        const userTypeRadio = <RadioInput types={strings.USER_TYPE}
-                                          defaultValue={strings.USER_TYPE[0]}
-                                          action={this.props.actions.actionCreators.changeUserType}
-                                          radioType={'userType'} {...this.props}
-                                          reducer={'user'}/>;
+        // const userTypeRadio = <RadioInput types={strings.USER_TYPE} //TODO: do not delete - for beta
+        //                                   defaultValue={strings.USER_TYPE[1]}
+        //                                   action={this.props.actions.actionCreators.changeUserType}
+        //                                   radioType={'userType'} {...this.props}
+        //                                   reducer={'user'}
+        //                                   required={true}/>;  //TODO: do not delete - for beta
         return (
             <div id="login-page">
                 <PageHeader>{strings.APP_NAME}<h3>{strings.APP_DESCRIPTION}</h3>
                 </PageHeader>
                 <Form className="login-form" horizontal>
-                    {localStorage.getItem('suth_token') ? '' : userTypeRadio}
+                    {/*{localStorage.getItem('suth_token') ? '' : userTypeRadio}*/}
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}

@@ -13,7 +13,7 @@ import moment from "moment";
 const defaultState = {
     reviews: [],
     user: {
-        userType: strings.USER_TYPE[0],
+        userType: strings.USER_TYPE[1],
         invites: [],
         notifications: [],
     },
@@ -23,7 +23,16 @@ const defaultState = {
         sitterIndex: 0,
         show: false,
         showNotificationsPopup: false,
-        showInvitesPopup: false
+        showInvitesPopup: false,
+        review: {
+            text:'',
+            rates: {
+                punctioal: 0,
+                behavior: 0,
+                connection: 0,
+                general: 0
+            }
+        }
     },
     register : {
         personalityQuestions : strings.QUESTIONS,

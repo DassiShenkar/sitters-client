@@ -58,9 +58,9 @@ class Form extends React.Component {
         let self = this;
         let sitter = {address: {},languages: []};
         let expertise = [], hobbies = [], specialNeeds= [], education= [];
-        let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
+        let langs = this.props.register.languages? this.props.user.languages : this.props.register.languages;
         langs.forEach (function(language){
-            if(self.props.register.languages == null)
+            if(self.props.register.languages)
                 sitter.languages.push(language.name);
             else
                 sitter.languages.push(language.value);
@@ -139,6 +139,8 @@ class Form extends React.Component {
         }).then(function (res) {
             console.log(res);
             if (res.data) {  // user created
+                alert('Registered successfully, thank you');
+                window.close();
                 // self.props.router.push('/');// TODO : Move to feed page
             }
             else { // user not created
@@ -270,8 +272,8 @@ class Form extends React.Component {
                 <h4>Sitter Personality Test:</h4>
                 {/*<PersonalityTest questions={BaseData.getQuestions()} {...this.props}/>*/}
                 <PersonalityQuestions {...this.props}/>
-                <h4>Working Hours</h4>
-                <WorkingHours days={strings.WEEK_DAYS} />
+                {/*<h4>Working Hours</h4>*/}
+                {/*<WorkingHours days={strings.WEEK_DAYS} />*/}
                 <div className="submit">
                     <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
                 </div>

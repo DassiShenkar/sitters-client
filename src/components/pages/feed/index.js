@@ -14,6 +14,8 @@ import SitterActionBar from "../../panels/actionPanel/index";
 
 //style
 import './style.css';
+import Rating from "react-rating";
+import Review from "../../review/index";
 
 class Feed extends React.Component {
 
@@ -85,6 +87,7 @@ class Feed extends React.Component {
                                            sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
                 <Invites {...this.props} />
                 <Notifications {...this.props}/>
+                {/*<Review {...this.props} />*/}
             </div>
         );
     }

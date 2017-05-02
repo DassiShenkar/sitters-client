@@ -15,3 +15,13 @@ export function removeReview(reviewId, index) {
     }
 }
 
+export function changeCategoryRate(category,rate) {
+    return {
+        type: 'CHANGE_REVIEW_RATE',
+        category,
+        rate
+    }
+}
+
+
+

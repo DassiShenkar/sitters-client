@@ -47,3 +47,18 @@ export function showInvitesPopup(showInvitesPopup) {
         showInvitesPopup
     }
 }
+
+export function changeReviewRate(category,rate) {
+    return {
+        type: 'CHANGE_REVIEW_RATE',
+        category,
+        rate
+    }
+}
+
+export function changeReviewText(text) {
+    return {
+        type: 'CHANGE_REVIEW_TEXT',
+        text
+    }
+}
