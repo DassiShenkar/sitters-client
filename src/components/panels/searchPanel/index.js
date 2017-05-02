@@ -50,7 +50,7 @@ class SearchByTab extends React.Component {
                 </form>;
             }
             else if (view === "rate") {
-                navView = <div>
+                navView = <div id="range-search">
                     <label>Hour Rate
                     <Range min={0} max={50} {...this.props} action={this.props.actions.rangeActions.changeRange}
                            changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
