@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/forms/SitterForm.js" afterPath="$PROJECT_DIR$/src/components/forms/SitterForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/forms/style.css" afterPath="$PROJECT_DIR$/src/components/forms/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/feed/style.css" afterPath="$PROJECT_DIR$/src/components/pages/feed/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/login/index.js" afterPath="$PROJECT_DIR$/src/components/pages/login/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/nav/style.css" afterPath="$PROJECT_DIR$/src/components/panels/nav/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" afterPath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/style.css" afterPath="$PROJECT_DIR$/src/components/sitterList/style.css" />
     </list>
     <list id="b6fc7344-35c2-4ab5-b893-c0b2721335bb" name="Added pie chart to sitter profile" comment="" />
     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
@@ -20,14 +27,112 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/feed/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="28" column="96" lean-forward="false" selection-start-line="28" selection-start-column="96" selection-end-line="28" selection-end-column="96" />
+            <state relative-caret-position="338">
+              <caret line="85" column="37" lean-forward="false" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
               <folding>
                 <element signature="e#19#45#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/sitterList/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="40" column="65" lean-forward="false" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SitterForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/forms/SitterForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-267">
+              <caret line="127" column="57" lean-forward="true" selection-start-line="127" selection-start-column="57" selection-end-line="127" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/forms/BaseForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+              <folding>
+                <element signature="e#20#46#0" expanded="true" />
+                <element signature="e#106#150#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Register.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/pages/Register.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding>
+                <element signature="e#20#46#0" expanded="true" />
+                <element signature="e#109#154#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/pages/login/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="31" column="55" lean-forward="false" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/forms/style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/static/strings.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="41" column="8" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonalityQuestions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/PersonalityQuestions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,11 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>f</find>
-      <find>feed</find>
-      <find>feed/</find>
-      <find>m</find>
-      <find>ma</find>
       <find>match.remove</find>
       <find>match.remov</find>
       <find>match.remo</find>
@@ -74,6 +174,11 @@
       <find>header</find>
       <find>localhost:4444</find>
       <find>axios</find>
+      <find>languages</find>
+      <find>special</find>
+      <find>expert</find>
+      <find>hourfee</find>
+      <find>hour</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Shenkar\finalProject\sitters-client\src\components</dir>
@@ -91,13 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/styles/icons/Search.js" />
-        <option value="$PROJECT_DIR$/src/styles/icons/Settings.js" />
-        <option value="$PROJECT_DIR$/src/styles/icons/Information.js" />
-        <option value="$PROJECT_DIR$/src/styles/icons/Logout.js" />
-        <option value="$PROJECT_DIR$/src/components/nav/style.scss" />
-        <option value="$PROJECT_DIR$/src/components/pages/feed/Feed.js" />
-        <option value="$PROJECT_DIR$/src/components/SitterList.js" />
         <option value="$PROJECT_DIR$/src/components/Page.js" />
         <option value="$PROJECT_DIR$/Profile" />
         <option value="$PROJECT_DIR$/src/styles/icons/Like.js" />
@@ -116,7 +214,6 @@
         <option value="$PROJECT_DIR$/src/reducers/sitterProfile.js" />
         <option value="$PROJECT_DIR$/src/actions/SitterProfileActions.js" />
         <option value="$PROJECT_DIR$/src/store.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/Main.js" />
         <option value="$PROJECT_DIR$/src/base/NavBase.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
@@ -138,10 +235,18 @@
         <option value="$PROJECT_DIR$/src/components/inviteList/inviteItem/index.js" />
         <option value="$PROJECT_DIR$/src/components/inviteList/inviteItem/style.scss" />
         <option value="$PROJECT_DIR$/src/components/invite/Invite.js" />
-        <option value="$PROJECT_DIR$/src/components/pages/login/index.js" />
         <option value="$PROJECT_DIR$/src/components/pages/profile/index.js" />
         <option value="$PROJECT_DIR$/src/components/panels/actionPanel/index.js" />
         <option value="$PROJECT_DIR$/src/components/pages/feed/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Thanks.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/components/pages/Register.js" />
+        <option value="$PROJECT_DIR$/src/components/forms/BaseForm.js" />
+        <option value="$PROJECT_DIR$/src/components/PersonalityQuestions.js" />
+        <option value="$PROJECT_DIR$/src/components/forms/style.scss" />
+        <option value="$PROJECT_DIR$/src/static/strings.js" />
+        <option value="$PROJECT_DIR$/src/components/forms/SitterForm.js" />
+        <option value="$PROJECT_DIR$/src/components/pages/login/index.js" />
       </list>
     </option>
   </component>
@@ -182,9 +287,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -251,31 +353,56 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sitters-client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sitters-client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
-    <property name="SearchEverywhereHistoryKey" value="feed&#9;null&#9;null&#10;nav&#9;null&#9;null&#10;invites&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/InvitesList.js&#10;pa&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;actio&#9;null&#9;null&#10;register&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/register.js&#10;SF&#9;null&#9;null&#10;Regi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/Register.js&#10;Feed&#9;null&#9;null&#10;Next&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/styles/icons/NextArrow.js&#10;pac&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;index&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;App.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.js&#10;Main&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/Main.js&#10;Nav&#9;null&#9;null&#10;SitterA&#9;null&#9;null&#10;App&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.scss&#10;DD&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/DropDownMenu.js&#10;user&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/user.js&#10;action&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/actions/actionCreators.js&#10;Login&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/login/Login.js&#10;index.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/index.js&#10;store&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;Radio&#9;null&#9;null&#10;sto&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;.git&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/.gitignore&#10;Register&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;Revi&#9;null&#9;null&#10;Reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js&#10;reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js" />
+    <property name="SearchEverywhereHistoryKey" value="Login&#9;null&#9;null&#10;strings&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/static/strings.js&#10;Regi&#9;null&#9;null&#10;Sitter&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/SitterForm.js&#10;Logo&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;BaseF&#9;null&#9;null&#10;sitterForm&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/SitterForm.js&#10;sitter&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/sitterProfile.js&#10;feed&#9;null&#9;null&#10;nav&#9;null&#9;null&#10;invites&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/InvitesList.js&#10;pa&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;actio&#9;null&#9;null&#10;register&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/register.js&#10;SF&#9;null&#9;null&#10;Feed&#9;null&#9;null&#10;Next&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/styles/icons/NextArrow.js&#10;pac&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;index&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;App.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.js&#10;Main&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/Main.js&#10;Nav&#9;null&#9;null&#10;SitterA&#9;null&#9;null&#10;App&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.scss&#10;DD&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/DropDownMenu.js&#10;user&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/user.js&#10;action&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/actions/actionCreators.js&#10;index.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/index.js&#10;store&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;Radio&#9;null&#9;null&#10;sto&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;.git&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/.gitignore&#10;Register&#9;null&#9;null&#10;Revi&#9;null&#9;null&#10;Reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js&#10;reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js" />
     <property name="js.eslint.eslintPackage" value="D:\Shenkar\finalProject\sitters-client\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Shenkar\finalProject\sitters-client\src\components" />
+      <recent name="D:\Shenkar\finalProject\sitters-client\src\base\pages" />
+      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\pages" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Shenkar\finalProject\sitters-client\src\components\inviteList\inviteItem" />
       <recent name="D:\Shenkar\finalProject\sitters-client\src\components\inviteList" />
       <recent name="D:\Shenkar\finalProject\sitters-client\src\components\sitterList" />
       <recent name="D:\Shenkar\finalProject\sitters-client\src\components\panels\nav" />
       <recent name="D:\Shenkar\finalProject\sitters-client\src\components\panels\actionPanel" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components" />
-      <recent name="D:\Shenkar\finalProject\sitters-client\src\base\pages" />
-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\pages" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -292,22 +419,15 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.android.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/AppBar.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/BaseForm.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/FaceBookLogin.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/ParentForm.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/SitterForm.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/SitterList.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Feed.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Login.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/PersonalityTest.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/PersonalityTestIntro.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Register.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/SitterProfileView.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Splash.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/utils/LocalStorage.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/package.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/actions/FeedActions.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/actions/ReviewActions.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/forms/SitterForm.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pages/feed/index.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pages/login/index.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pages/login/style.scss</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/reducers/feed.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/reducers/reviews.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/store.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -315,15 +435,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/ErrorPage.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/crying.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/inbox.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/next.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/notification.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/search.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/star.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/v.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/utils/GeoCoder.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/review/index.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/review/style.scss</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -903,6 +1016,7 @@
       <workItem from="1492458401900" duration="1533000" />
       <workItem from="1493094734837" duration="29179000" />
       <workItem from="1493231402593" duration="12172000" />
+      <workItem from="1493743530469" duration="7008000" />
     </task>
     <task id="LOCAL-00001" summary="Added about page and dropdown navigation">
       <created>1492261771649</created>
@@ -1079,14 +1193,28 @@
       <option name="project" value="LOCAL" />
       <updated>1493371545040</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="forms ready for data">
+      <created>1493750636213</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1493750636213</updated>
+    </task>
+    <task id="LOCAL-00027" summary="chnaged local calls to remote for login and sitterform">
+      <created>1493750821658</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1493750821658</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89523000" />
+    <option name="totallyTimeSpent" value="96531000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1105,12 +1233,11 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26977247" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29035753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23027718" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
@@ -1121,6 +1248,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1184,7 +1312,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added about page and dropdown navigation" />
     <MESSAGE value="my pkg json" />
     <MESSAGE value="added invites logic. Need to update server and schemas" />
     <MESSAGE value="added scss support - &quot;npm start&quot; now also transpiles scss to css" />
@@ -1208,7 +1335,9 @@
     <MESSAGE value="invites styling" />
     <MESSAGE value="updated axios call" />
     <MESSAGE value="fixed some axios call. Should continue to make sure the right params are passed in the right form" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some axios call. Should continue to make sure the right params are passed in the right form" />
+    <MESSAGE value="forms ready for data" />
+    <MESSAGE value="chnaged local calls to remote for login and sitterform" />
+    <option name="LAST_COMMIT_MESSAGE" value="chnaged local calls to remote for login and sitterform" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1222,64 +1351,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/panels/nav/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/panels/forms/ParentForm.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/pages/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="72" lean-forward="true" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/SitterProfile.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/controllers/WorkingHours.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pie/SitterPieMatch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="579" column="32" lean-forward="false" selection-start-line="579" selection-start-column="25" selection-end-line="579" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/BaseData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
-          <caret line="93" column="9" lean-forward="false" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/SitterListBase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/actionCreators.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1291,9 +1362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1301,15 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-49">
           <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/sitterProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1358,13 +1417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/FeedActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1376,23 +1428,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SitterForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SitterForm.js" />
     <entry file="file://$PROJECT_DIR$/src/components/Single.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1400,7 +1443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1408,7 +1450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="33" column="54" lean-forward="false" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1424,28 +1465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding>
-            <marker date="1493365964416" expanded="true" signature="580:2412" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="662:2402" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="767:781" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="793:934" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="959:1989" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="998:1814" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="1228:1577" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="1291:1411" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="1449:1547" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="1631:1714" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="1840:1971" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="2014:2083" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="2436:2751" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="2467:2734" ph="&lt;View/&gt;" />
-            <marker date="1493365964416" expanded="true" signature="2508:2556" ph="&lt;AppBar/&gt;" />
-            <marker date="1493365964416" expanded="true" signature="2573:2714" ph="&lt;SitterList/&gt;" />
-            <marker date="1493365964416" expanded="true" signature="2787:2860" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="2800:2858" ph="{&quot;user&quot;: state.user...}" />
-            <marker date="1493365964416" expanded="true" signature="2900:3056" ph="{...}" />
-            <marker date="1493365964416" expanded="true" signature="2913:3053" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1463,25 +1482,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/invite/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1022">
-          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/invite/index.js" />
     <entry file="file://$PROJECT_DIR$/src/components/pages/about/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#20#46#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1529,7 +1537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1537,7 +1544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1545,9 +1551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding>
-            <element signature="e#20#46#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1555,15 +1558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1575,19 +1569,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/sitterList/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/native/components/FaceBookLogin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="73" column="8" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1595,15 +1580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="47" column="42" lean-forward="false" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/login/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1611,9 +1587,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="112" column="38" lean-forward="false" selection-start-line="112" selection-start-column="38" selection-end-line="112" selection-end-column="38" />
-          <folding>
-            <element signature="e#20#46#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1625,13 +1598,143 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/sitterProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.ios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="27" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Logo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="55" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Thanks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/feed/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" column="96" lean-forward="false" selection-start-line="28" selection-start-column="96" selection-end-line="28" selection-end-column="96" />
+        <state relative-caret-position="338">
+          <caret line="85" column="37" lean-forward="false" selection-start-line="85" selection-start-column="37" selection-end-line="85" selection-end-column="37" />
           <folding>
             <element signature="e#19#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PersonalityQuestions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/sitterList/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="40" column="65" lean-forward="false" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/static/strings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="41" column="8" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/SitterForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-267">
+          <caret line="127" column="57" lean-forward="true" selection-start-line="127" selection-start-column="57" selection-end-line="127" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/BaseForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding>
+            <element signature="e#20#46#0" expanded="true" />
+            <element signature="e#106#150#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/Register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#20#46#0" expanded="true" />
+            <element signature="e#109#154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/login/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="31" column="55" lean-forward="false" selection-start-line="31" selection-start-column="55" selection-end-line="31" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

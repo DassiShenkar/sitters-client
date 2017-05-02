@@ -1,0 +1,1399 @@
+Index: src/components/sitterList/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/sitterList/index.js	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ src/components/sitterList/index.js	(revision )
+@@ -1,40 +1,58 @@
++// external sources
+ import React from 'react';
+ import {Link} from 'react-router';
+-import {Image} from 'react-bootstrap';
++
++//components
++import {Image, PageHeader} from 'react-bootstrap';
++import RainbowChart from "../RainbowChart";
++
+ import SitterListBase from '../../base/SitterListBase';
++import PersonalityQuestions from "../forms/personality";
++
+ 
+ //style
+ import './style.css';
+-import PieChart from "../pie/PieChart";
+-import PersonalityQuestions from "../PersonalityQuestions";
+ import strings from "../../static/strings";
+-import RainbowChart from "../RainbowChart";
+ 
+ class SitterList extends SitterListBase {
+ 
+     render() {
+         let sitterIndex = this.props.feed.sitterIndex;
+-        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : '';
+-        const style = {
+-            backgroundImage: 'url(' + coverPhoto + ')'
+-        };
+-        const text = this.props.feed.matches.length > 0 ?
+-            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true} secondQuestions={strings.QUESTIONS} disabled={true} />:';';
++        const sitterPersonality = this.props.feed.matches.length > 0 ?
++            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true}
++                                  secondQuestions={strings.QUESTIONS} disabled={true}/> : '';
++        const expectedPersonality = this.props.feed.matches.length > 0 ?
++            <PersonalityQuestions questions={strings.QUESTIONS} addSameQuestionsClass={true}
++                                  secondQuestions={strings.QUESTIONS} disabled={true}/> : '';
+         return (
+-            <div>
+-                <Link className="match" style={style}
+-                      to={this.props.sitters.length > 0 ? '/sitter/' + this.props.sitters[sitterIndex]._id : '#'}>
+-                    <div className="sitter-info">
+-                        <h1 className="matchScore">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].match.matchScore + '% Match!' : 'no matches found'}</h1>
+-                        <Image className="profilePic"
+-                               src={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : ''}
+-                               alt={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''} circle/>
+-                        <h3 className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</h3>
+-                    </div>
+-                </Link>
+-                {text}
+-                {/*<PieChart sitter={this.props.sitters[sitterIndex]}/>*/}
+-                <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
++            <div className="sitter-item">
++                <div className="match-info">
++                    <PageHeader
++                        className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</PageHeader>
++                    <div className="sitter-score">
++                        <div className="match-score">
++                            <h1 className="score">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].match.matchScore + '%' : ''}</h1>
++                            <h1>{this.props.sitters.length > 0 ? 'Match' : ''}</h1>
++                        </div>
++                        <RainbowChart className="match-chart" sitter={this.props.sitters[sitterIndex]}/>
++                        <Link className="sitter-image"
++                              to={this.props.sitters.length > 0 ? '/sitter/' + this.props.sitters[sitterIndex]._id : '/'}>
++                            <Image className="profilePic"
++                                   src={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : ''}
++                                   alt={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}/>
++                        </Link>
++                    </div>
++                    <div className="personality-match">
++                        <div className="sitter-personality">
++                            <h3>Carol</h3>
++                            {sitterPersonality}
++                        </div>
++                        <div className="expected-personality">
++                            <h3>Your Dream Sitter</h3>
++                            {expectedPersonality}
++                        </div>
++                    </div>
++                </div>
+             </div>
+         )
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ .idea/workspace.xml	(revision )
+@@ -2,9 +2,16 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
++      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/forms/personality/style.scss" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/feed/index.js" afterPath="$PROJECT_DIR$/src/components/pages/feed/index.js" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/nav/style.css" afterPath="$PROJECT_DIR$/src/components/panels/nav/style.css" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/index.js" afterPath="$PROJECT_DIR$/src/components/sitterList/index.js" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/style.css" afterPath="$PROJECT_DIR$/src/components/sitterList/style.css" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/style.scss" afterPath="$PROJECT_DIR$/src/components/sitterList/style.scss" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/user.js" afterPath="$PROJECT_DIR$/src/reducers/user.js" />
++      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/PersonalityQuestions.js" afterPath="$PROJECT_DIR$/src/components/forms/personality/index.js" />
+     </list>
+-    <list id="b6fc7344-35c2-4ab5-b893-c0b2721335bb" name="Added pie chart to sitter profile" comment="" />
+     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
+     <ignored path="D:\projects\final project\sitters-client\.idea\shelf/" />
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+@@ -20,18 +27,72 @@
+   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+   <component name="FileEditorManager">
+     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
++      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+         <entry file="file://$PROJECT_DIR$/src/components/pages/feed/index.js">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="408">
+-              <caret line="28" column="96" lean-forward="false" selection-start-line="28" selection-start-column="96" selection-end-line="28" selection-end-column="96" />
++            <state relative-caret-position="338">
++              <caret line="83" column="36" lean-forward="false" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
++              <folding />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/src/components/sitterList/index.js">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="593">
++              <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="5" />
+               <folding>
+-                <element signature="e#19#45#0" expanded="true" />
++                <element signature="e#20#46#0" expanded="true" />
++                <element signature="e#96#146#0" expanded="true" />
++                <element signature="e#315#336#0" expanded="true" />
+               </folding>
+             </state>
+           </provider>
+         </entry>
+       </file>
++      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/components/sitterList/style.scss">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="482">
++              <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="16" />
++              <folding />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/components/forms/personality/index.js">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="287">
++              <caret line="21" column="55" lean-forward="false" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
++              <folding>
++                <element signature="e#0#26#0" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="style.scss" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/components/forms/personality/style.scss">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="306">
++              <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
++              <folding />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file leaf-file-name="strings.js" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/static/strings.js">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="209">
++              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
++              <folding />
++            </state>
++          </provider>
++        </entry>
++      </file>
+     </leaf>
+   </component>
+   <component name="FileTemplateManagerImpl">
+@@ -44,7 +105,6 @@
+   </component>
+   <component name="FindInProjectRecents">
+     <findStrings>
+-      <find>f</find>
+       <find>feed</find>
+       <find>feed/</find>
+       <find>m</find>
+@@ -74,13 +134,14 @@
+       <find>header</find>
+       <find>localhost:4444</find>
+       <find>axios</find>
++      <find>EditInvite</find>
+     </findStrings>
+     <dirStrings>
+       <dir>D:\Shenkar\finalProject\sitters-client\src\components</dir>
+     </dirStrings>
+   </component>
+   <component name="Git.Settings">
+-    <option name="UPDATE_TYPE" value="REBASE" />
++    <option name="UPDATE_TYPE" value="MERGE" />
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GradleLocalSettings">
+@@ -91,12 +152,6 @@
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+-        <option value="$PROJECT_DIR$/src/styles/icons/Search.js" />
+-        <option value="$PROJECT_DIR$/src/styles/icons/Settings.js" />
+-        <option value="$PROJECT_DIR$/src/styles/icons/Information.js" />
+-        <option value="$PROJECT_DIR$/src/styles/icons/Logout.js" />
+-        <option value="$PROJECT_DIR$/src/components/nav/style.scss" />
+-        <option value="$PROJECT_DIR$/src/components/pages/feed/Feed.js" />
+         <option value="$PROJECT_DIR$/src/components/SitterList.js" />
+         <option value="$PROJECT_DIR$/src/components/Page.js" />
+         <option value="$PROJECT_DIR$/Profile" />
+@@ -107,7 +162,6 @@
+         <option value="$PROJECT_DIR$/src/components/sitterList/SitterList.js" />
+         <option value="$PROJECT_DIR$/src/components/pages/feed/style.scss" />
+         <option value="$PROJECT_DIR$/src/components/App.scss" />
+-        <option value="$PROJECT_DIR$/src/components/sitterList/style.scss" />
+         <option value="$PROJECT_DIR$/src/components/panels/nav/style.css" />
+         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+         <option value="$PROJECT_DIR$/src/components/EditInvite.js" />
+@@ -123,25 +177,32 @@
+         <option value="$PROJECT_DIR$/src/components/DropDownMenu.js" />
+         <option value="$PROJECT_DIR$/src/components/panels/nav/style.scss" />
+         <option value="$PROJECT_DIR$/src/components/pie/PieChart.js" />
+-        <option value="$PROJECT_DIR$/src/reducers/user.js" />
+-        <option value="$PROJECT_DIR$/src/components/sitterList/index.js" />
+         <option value="$PROJECT_DIR$/src/components/Test.js" />
+-        <option value="$PROJECT_DIR$/src/components/pages/settings/index.js" />
+         <option value="$PROJECT_DIR$/native/containers/Feed.js" />
+         <option value="$PROJECT_DIR$/native/components/FaceBookLogin.js" />
+         <option value="$PROJECT_DIR$/native/containers/Register.js" />
+         <option value="$PROJECT_DIR$/src/components/forms/ParentForm.js" />
+-        <option value="$PROJECT_DIR$/src/components/pages/about/index.js" />
+         <option value="$PROJECT_DIR$/src/components/inviteList/InvitesList.js" />
+         <option value="$PROJECT_DIR$/src/components/inviteList/index.js" />
+         <option value="$PROJECT_DIR$/src/components/inviteList/style.scss" />
+         <option value="$PROJECT_DIR$/src/components/inviteList/inviteItem/index.js" />
+         <option value="$PROJECT_DIR$/src/components/inviteList/inviteItem/style.scss" />
+         <option value="$PROJECT_DIR$/src/components/invite/Invite.js" />
++        <option value="$PROJECT_DIR$/src/components/panels/actionPanel/index.js" />
+         <option value="$PROJECT_DIR$/src/components/pages/login/index.js" />
+         <option value="$PROJECT_DIR$/src/components/pages/profile/index.js" />
+-        <option value="$PROJECT_DIR$/src/components/panels/actionPanel/index.js" />
++        <option value="$PROJECT_DIR$/src/components/pages/editProfile/index.js" />
++        <option value="$PROJECT_DIR$/src/components/pages/settings/index.js" />
++        <option value="$PROJECT_DIR$/src/components/pages/about/index.js" />
++        <option value="$PROJECT_DIR$/src/reducers/user.js" />
++        <option value="$PROJECT_DIR$/src/components/RainbowChart.js" />
++        <option value="$PROJECT_DIR$/src/components/forms/PersonalityQuestions.js" />
++        <option value="$PROJECT_DIR$/src/components/forms/personality/PersonalityQuestions.js" />
++        <option value="$PROJECT_DIR$/src/components/forms/personality/index.js" />
++        <option value="$PROJECT_DIR$/src/components/forms/personality/style.scss" />
+         <option value="$PROJECT_DIR$/src/components/pages/feed/index.js" />
++        <option value="$PROJECT_DIR$/src/components/sitterList/style.scss" />
++        <option value="$PROJECT_DIR$/src/components/sitterList/index.js" />
+       </list>
+     </option>
+   </component>
+@@ -225,6 +286,24 @@
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+             <PATH_ELEMENT>
++              <option name="myItemId" value="reducers" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++          </PATH>
++          <PATH>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="sitters-client" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="sitters-client" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="src" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
+               <option name="myItemId" value="components" />
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+@@ -247,7 +326,55 @@
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+             <PATH_ELEMENT>
+-              <option name="myItemId" value="pages" />
++              <option name="myItemId" value="sitterList" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++          </PATH>
++          <PATH>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="sitters-client" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="sitters-client" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="src" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="components" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="forms" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++          </PATH>
++          <PATH>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="sitters-client" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="sitters-client" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="src" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="components" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="forms" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="personality" />
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+           </PATH>
+@@ -259,24 +386,24 @@
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+     <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
+-    <property name="SearchEverywhereHistoryKey" value="feed&#9;null&#9;null&#10;nav&#9;null&#9;null&#10;invites&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/InvitesList.js&#10;pa&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;actio&#9;null&#9;null&#10;register&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/register.js&#10;SF&#9;null&#9;null&#10;Regi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/Register.js&#10;Feed&#9;null&#9;null&#10;Next&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/styles/icons/NextArrow.js&#10;pac&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;index&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;App.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.js&#10;Main&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/Main.js&#10;Nav&#9;null&#9;null&#10;SitterA&#9;null&#9;null&#10;App&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.scss&#10;DD&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/DropDownMenu.js&#10;user&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/user.js&#10;action&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/actions/actionCreators.js&#10;Login&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/login/Login.js&#10;index.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/index.js&#10;store&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;Radio&#9;null&#9;null&#10;sto&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;.git&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/.gitignore&#10;Register&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;Revi&#9;null&#9;null&#10;Reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js&#10;reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js" />
++    <property name="SearchEverywhereHistoryKey" value="Login&#9;null&#9;null&#10;Sitter&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/SitterForm.js&#10;Regis&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/native/containers/Register.js&#10;person&#9;null&#9;null&#10;store&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;Feed&#9;null&#9;null&#10;Pa&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/ParentForm.js&#10;register&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/native/containers/Register.js&#10;feed&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/native/containers/Feed.js&#10;profile&#9;null&#9;null&#10;Rain&#9;null&#9;null&#10;nav&#9;null&#9;null&#10;invites&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/InvitesList.js&#10;pa&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;actio&#9;null&#9;null&#10;SF&#9;null&#9;null&#10;Regi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/Register.js&#10;Next&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/styles/icons/NextArrow.js&#10;pac&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;index&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;App.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.js&#10;Main&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/Main.js&#10;Nav&#9;null&#9;null&#10;SitterA&#9;null&#9;null&#10;App&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/App.scss&#10;DD&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/DropDownMenu.js&#10;user&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/user.js&#10;action&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/actions/actionCreators.js&#10;index.js&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/index.js&#10;Radio&#9;null&#9;null&#10;sto&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/store.js&#10;.git&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/.gitignore&#10;Register&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;Revi&#9;null&#9;null&#10;Reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js&#10;reviews&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/reviews.js" />
+     <property name="js.eslint.eslintPackage" value="D:\Shenkar\finalProject\sitters-client\node_modules\eslint" />
+     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
+     <property name="list.type.of.created.stylesheet" value="SCSS" />
+   </component>
+   <component name="RecentsManager">
+-    <key name="MoveFile.RECENT_KEYS">
+-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\inviteList\inviteItem" />
+-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\inviteList" />
+-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\sitterList" />
+-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\panels\nav" />
+-      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\panels\actionPanel" />
+-    </key>
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="D:\Shenkar\finalProject\sitters-client\src\components" />
+       <recent name="D:\Shenkar\finalProject\sitters-client\src\base\pages" />
+       <recent name="D:\Shenkar\finalProject\sitters-client\src\components\pages" />
+     </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\forms\personality" />
++      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\forms" />
++      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\inviteList\inviteItem" />
++      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\inviteList" />
++      <recent name="D:\Shenkar\finalProject\sitters-client\src\components\sitterList" />
++    </key>
+   </component>
+   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+     <UpdatedFiles>
+@@ -292,22 +419,26 @@
+           <option name="mySupportsDeletion" value="false" />
+           <option name="myCanBeAbsent" value="false" />
+           <option name="myId" value="UPDATED" />
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.android.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/AppBar.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/BaseForm.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/FaceBookLogin.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/ParentForm.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/SitterForm.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/components/SitterList.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Feed.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Login.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/PersonalityTest.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/PersonalityTestIntro.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Register.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/SitterProfileView.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/Splash.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/utils/LocalStorage.js</PATH>
+           <PATH vcs="Git" revision="">$PROJECT_DIR$/package.json</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/actions/FeedActions.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/base/NavBase.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/App.css</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/DropDownMenu.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/Main.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/PersonalityQuestions.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/controllers/PersonalityTestRating.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/inviteList/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/inviteList/inviteItem/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pages/feed/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pages/profile/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pages/settings/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/panels/actionPanel/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/panels/nav/style.css</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/pie/SitterPieMatch.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/sitterList/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/index.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/reducers/feed.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/store.js</PATH>
+         </FILE-GROUP>
+         <FILE-GROUP>
+           <option name="myUpdateName" value="Created" />
+@@ -315,15 +446,8 @@
+           <option name="mySupportsDeletion" value="false" />
+           <option name="myCanBeAbsent" value="false" />
+           <option name="myId" value="CREATED" />
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/containers/ErrorPage.js</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/crying.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/inbox.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/next.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/notification.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/search.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/star.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/style/icons/v.png</PATH>
+-          <PATH vcs="Git" revision="">$PROJECT_DIR$/native/utils/GeoCoder.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/RainbowChart.js</PATH>
++          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/notifications/index.js</PATH>
+         </FILE-GROUP>
+         <FILE-GROUP>
+           <option name="myUpdateName" value="Deleted" />
+@@ -903,6 +1027,7 @@
+       <workItem from="1492458401900" duration="1533000" />
+       <workItem from="1493094734837" duration="29179000" />
+       <workItem from="1493231402593" duration="12172000" />
++      <workItem from="1493458559855" duration="19881000" />
+     </task>
+     <task id="LOCAL-00001" summary="Added about page and dropdown navigation">
+       <created>1492261771649</created>
+@@ -1079,11 +1204,39 @@
+       <option name="project" value="LOCAL" />
+       <updated>1493371545040</updated>
+     </task>
+-    <option name="localTasksCounter" value="26" />
++    <task id="LOCAL-00026" summary="fixed some axios call. added uid generator to invite">
++      <created>1493464481487</created>
++      <option name="number" value="00026" />
++      <option name="presentableId" value="LOCAL-00026" />
++      <option name="project" value="LOCAL" />
++      <updated>1493464481487</updated>
++    </task>
++    <task id="LOCAL-00027" summary="fixed dropdown links bug">
++      <created>1493464892923</created>
++      <option name="number" value="00027" />
++      <option name="presentableId" value="LOCAL-00027" />
++      <option name="project" value="LOCAL" />
++      <updated>1493464892923</updated>
++    </task>
++    <task id="LOCAL-00028" summary="centered pages">
++      <created>1493464914155</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
++      <option name="project" value="LOCAL" />
++      <updated>1493464914155</updated>
++    </task>
++    <task id="LOCAL-00029" summary="removed oldInvite">
++      <created>1493464925539</created>
++      <option name="number" value="00029" />
++      <option name="presentableId" value="LOCAL-00029" />
++      <option name="project" value="LOCAL" />
++      <updated>1493464925539</updated>
++    </task>
++    <option name="localTasksCounter" value="30" />
+     <servers />
+   </component>
+   <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="89523000" />
++    <option name="totallyTimeSpent" value="109404000" />
+   </component>
+   <component name="ToolWindowManager">
+     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+@@ -1114,7 +1267,7 @@
+       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23027718" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+@@ -1184,9 +1337,6 @@
+     <option name="myLimit" value="2678400000" />
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="Added about page and dropdown navigation" />
+-    <MESSAGE value="my pkg json" />
+-    <MESSAGE value="added invites logic. Need to update server and schemas" />
+     <MESSAGE value="added scss support - &quot;npm start&quot; now also transpiles scss to css" />
+     <MESSAGE value="login page basic styling" />
+     <MESSAGE value="radio refactor" />
+@@ -1208,429 +1358,418 @@
+     <MESSAGE value="invites styling" />
+     <MESSAGE value="updated axios call" />
+     <MESSAGE value="fixed some axios call. Should continue to make sure the right params are passed in the right form" />
+-    <option name="LAST_COMMIT_MESSAGE" value="fixed some axios call. Should continue to make sure the right params are passed in the right form" />
++    <MESSAGE value="fixed some axios call. added uid generator to invite" />
++    <MESSAGE value="fixed dropdown links bug" />
++    <MESSAGE value="centered pages" />
++    <MESSAGE value="removed oldInvite" />
++    <option name="LAST_COMMIT_MESSAGE" value="removed oldInvite" />
++    <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="javascript">
+-          <url>file://$PROJECT_DIR$/src/components/panels/actionPanel/index.js</url>
+-        </line-breakpoint>
+-      </breakpoints>
+       <option name="time" value="2" />
+     </breakpoint-manager>
+     <watches-manager />
+   </component>
+   <component name="editorHistoryManager">
+-    <entry file="file://$PROJECT_DIR$/src/components/panels/nav/style.css">
++    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="238">
+-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
++        <state relative-caret-position="0">
++          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#0#40#0" expanded="false" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/panels/forms/ParentForm.js" />
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/Register.js">
++    <entry file="file://$PROJECT_DIR$/src/reducers/feed.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="119">
+-          <caret line="7" column="72" lean-forward="true" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
++        <state relative-caret-position="-49">
++          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/SitterProfile.js" />
+-    <entry file="file://$PROJECT_DIR$/src/components/controllers/WorkingHours.js">
++    <entry file="file://$PROJECT_DIR$/src/actions/SitterProfileActions.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="119">
+-          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
++        <state relative-caret-position="240">
++          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="31" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pie/SitterPieMatch.js">
++    <entry file="file://$PROJECT_DIR$/src/base/NavBase.js">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="102">
+-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
++          <caret line="7" column="84" lean-forward="false" selection-start-line="7" selection-start-column="84" selection-end-line="7" selection-end-column="84" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/Page.js">
++    <entry file="file://$PROJECT_DIR$/public/index.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="119">
+-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
++        <state relative-caret-position="221">
++          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
++    <entry file="file://$PROJECT_DIR$/src/components/DropDownMenu.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="97">
+-          <caret line="579" column="32" lean-forward="false" selection-start-line="579" selection-start-column="25" selection-end-line="579" selection-end-column="32" />
++        <state relative-caret-position="153">
++          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/data/BaseData.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pie/PieChart.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="1581">
+-          <caret line="93" column="9" lean-forward="false" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
++        <state relative-caret-position="119">
++          <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
++          <folding>
++            <element signature="e#0#26#0" expanded="false" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/base/SitterListBase.js">
++    <entry file="file://$PROJECT_DIR$/src/components/Main.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="34">
+-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
++        <state relative-caret-position="102">
++          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/actions/actionCreators.js">
++    <entry file="file://$PROJECT_DIR$/src/actions/FeedActions.js">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="0">
+           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/Single.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding>
+-            <element signature="e#0#40#0" expanded="false" />
+-          </folding>
++        <state relative-caret-position="153">
++          <caret line="9" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/reducers/feed.js">
++    <entry file="file://$PROJECT_DIR$/src/components/Test.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-49">
+-          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+-          <folding />
++        <state relative-caret-position="51">
++          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/reducers/sitterProfile.js">
++    <entry file="file://$PROJECT_DIR$/package.json">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="260">
+-          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="31" />
++        <state relative-caret-position="143">
++          <caret line="64" column="29" lean-forward="true" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/actions/SitterProfileActions.js">
++    <entry file="file://$PROJECT_DIR$/src/base/AppBase.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="240">
+-          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="31" />
++        <state relative-caret-position="0">
++          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/feed/style.scss">
++    <entry file="file://$PROJECT_DIR$/src/components/invite/index.js" />
++    <entry file="file://$PROJECT_DIR$/src/components/panels/nav/style.scss">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="51">
+-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
++        <state relative-caret-position="204">
++          <caret line="12" column="3" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/base/NavBase.js">
++    <entry file="file://$PROJECT_DIR$/src/components/panels/nav/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="102">
+-          <caret line="7" column="84" lean-forward="false" selection-start-line="7" selection-start-column="84" selection-end-line="7" selection-end-column="84" />
++        <state relative-caret-position="134">
++          <caret line="23" column="70" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/public/index.html">
++    <entry file="file://$PROJECT_DIR$/src/components/inviteList/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="221">
+-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
++        <state relative-caret-position="119">
++          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/DropDownMenu.js">
++    <entry file="file://$PROJECT_DIR$/src/components/inviteList/style.scss">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="153">
+-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
++        <state relative-caret-position="68">
++          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pie/PieChart.js">
++    <entry file="file://$PROJECT_DIR$/src/components/inviteList/inviteItem/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="119">
+-          <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+-          <folding>
+-            <element signature="e#0#26#0" expanded="false" />
+-          </folding>
++        <state relative-caret-position="272">
++          <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/Main.js">
++    <entry file="file://$PROJECT_DIR$/src/components/inviteList/inviteItem/style.scss">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="102">
+-          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
++        <state relative-caret-position="221">
++          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/actions/FeedActions.js">
++    <entry file="file://$PROJECT_DIR$/src/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++        <state relative-caret-position="255">
++          <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/reducers/user.js">
++    <entry file="file://$PROJECT_DIR$/src/components/App.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="272">
+-          <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+-          <folding />
++        <state relative-caret-position="612">
++          <caret line="54" column="6" lean-forward="false" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/SitterForm.js">
++    <entry file="file://$PROJECT_DIR$/native/components/FaceBookLogin.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="986">
+-          <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+-          <folding />
++        <state relative-caret-position="197">
++          <caret line="73" column="8" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/Single.js">
++    <entry file="file://$PROJECT_DIR$/src/components/invite/oldInvite.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="153">
+-          <caret line="9" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
++        <state relative-caret-position="-1411">
++          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/Test.js">
++    <entry file="file://$PROJECT_DIR$/src/reducers/sitterProfile.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="51">
+-          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
++        <state relative-caret-position="170">
++          <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/settings/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/panels/actionPanel/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="476">
+-          <caret line="33" column="54" lean-forward="false" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+-          <folding />
++        <state relative-caret-position="425">
++          <caret line="75" column="42" lean-forward="false" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
++          <folding>
++            <element signature="e#229#250#0" expanded="false" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/package.json">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/profile/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="143">
+-          <caret line="64" column="29" lean-forward="true" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
++        <state relative-caret-position="2975">
++          <caret line="213" column="82" lean-forward="false" selection-start-line="213" selection-start-column="82" selection-end-line="213" selection-end-column="82" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/native/containers/Feed.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/editProfile/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="129">
+-          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
++        <state relative-caret-position="102">
++          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+           <folding>
+-            <marker date="1493365964416" expanded="true" signature="580:2412" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="662:2402" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="767:781" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="793:934" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="959:1989" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="998:1814" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="1228:1577" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="1291:1411" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="1449:1547" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="1631:1714" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="1840:1971" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="2014:2083" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="2436:2751" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="2467:2734" ph="&lt;View/&gt;" />
+-            <marker date="1493365964416" expanded="true" signature="2508:2556" ph="&lt;AppBar/&gt;" />
+-            <marker date="1493365964416" expanded="true" signature="2573:2714" ph="&lt;SitterList/&gt;" />
+-            <marker date="1493365964416" expanded="true" signature="2787:2860" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="2800:2858" ph="{&quot;user&quot;: state.user...}" />
+-            <marker date="1493365964416" expanded="true" signature="2900:3056" ph="{...}" />
+-            <marker date="1493365964416" expanded="true" signature="2913:3053" ph="{...}" />
++            <marker date="1493464687650" expanded="true" signature="239:573" ph="{...}" />
++            <marker date="1493464687650" expanded="true" signature="254:571" ph="{...}" />
++            <marker date="1493464687650" expanded="true" signature="414:554" ph="&lt;div/&gt;" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/native/containers/Register.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/settings/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="231">
+-          <caret line="105" column="55" lean-forward="false" selection-start-line="105" selection-start-column="55" selection-end-line="105" selection-end-column="55" />
+-          <folding>
+-            <element signature="e#230#256#0" expanded="false" />
+-          </folding>
++        <state relative-caret-position="164">
++          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/base/AppBase.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/about/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++        <state relative-caret-position="153">
++          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/invite/index.js">
++    <entry file="file://$PROJECT_DIR$/native/containers/Feed.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-1022">
+-          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
++        <state relative-caret-position="-87">
++          <caret line="35" column="24" lean-forward="false" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/about/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/feed/style.scss">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="68">
+-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+-          <folding>
+-            <element signature="e#20#46#0" expanded="false" />
+-          </folding>
++        <state relative-caret-position="51">
++          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/editProfile/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/invite/Invite.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++        <state relative-caret-position="209">
++          <caret line="85" column="46" lean-forward="false" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/forms/ParentForm.js">
++    <entry file="file://$PROJECT_DIR$/src/store.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="221">
+-          <caret line="82" column="32" lean-forward="true" selection-start-line="82" selection-start-column="32" selection-end-line="82" selection-end-column="32" />
++        <state relative-caret-position="17">
++          <caret line="57" column="20" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/store.js">
++    <entry file="file://$PROJECT_DIR$/native/containers/Register.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-2">
+-          <caret line="57" column="22" lean-forward="true" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
++        <state relative-caret-position="1222">
++          <caret line="134" column="12" lean-forward="false" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/panels/nav/style.scss">
++    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="204">
+-          <caret line="12" column="3" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
++        <state relative-caret-position="209">
++          <caret line="581" column="0" lean-forward="false" selection-start-line="581" selection-start-column="0" selection-end-line="581" selection-end-column="0" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/panels/nav/index.js">
++    <entry file="file://$PROJECT_DIR$/src/reducers/register.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="134">
+-          <caret line="23" column="70" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
++        <state relative-caret-position="-1855">
++          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/inviteList/index.js">
++    <entry file="file://$PROJECT_DIR$/src/actions/RegisterActions.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="119">
+-          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
++        <state relative-caret-position="474">
++          <caret line="189" column="47" lean-forward="false" selection-start-line="189" selection-start-column="15" selection-end-line="189" selection-end-column="47" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/inviteList/style.scss">
++    <entry file="file://$PROJECT_DIR$/src/components/forms/ParentForm.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="68">
+-          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
++        <state relative-caret-position="345">
++          <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/inviteList/inviteItem/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/RainbowChart.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="272">
+-          <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
++        <state relative-caret-position="153">
++          <caret line="9" column="60" lean-forward="true" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+           <folding>
+-            <element signature="e#20#46#0" expanded="false" />
++            <element signature="e#0#26#0" expanded="false" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/inviteList/inviteItem/style.scss">
++    <entry file="file://$PROJECT_DIR$/src/components/SitterForm.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="221">
+-          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
++        <state relative-caret-position="-46">
++          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/Register.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="255">
+-          <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
++        <state relative-caret-position="306">
++          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/App.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/login/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="612">
+-          <caret line="54" column="6" lean-forward="false" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
++        <state relative-caret-position="283">
++          <caret line="31" column="52" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/sitterList/index.js">
++    <entry file="file://$PROJECT_DIR$/src/reducers/user.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="85">
+-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
++        <state relative-caret-position="66">
++          <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/native/components/FaceBookLogin.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/profile/style.css">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="197">
+-          <caret line="73" column="8" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
++        <state relative-caret-position="0">
++          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/invite/Invite.js">
++    <entry file="file://$PROJECT_DIR$/src/static/strings.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="248">
+-          <caret line="47" column="42" lean-forward="false" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
++        <state relative-caret-position="209">
++          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/login/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/pages/feed/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="248">
+-          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
++        <state relative-caret-position="338">
++          <caret line="83" column="36" lean-forward="false" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/profile/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/forms/personality/index.js">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="265">
+-          <caret line="112" column="38" lean-forward="false" selection-start-line="112" selection-start-column="38" selection-end-line="112" selection-end-column="38" />
++        <state relative-caret-position="287">
++          <caret line="21" column="55" lean-forward="false" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+           <folding>
+-            <element signature="e#20#46#0" expanded="false" />
++            <element signature="e#0#26#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/panels/actionPanel/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/forms/personality/style.scss">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="170">
+-          <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
++        <state relative-caret-position="306">
++          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/components/pages/feed/index.js">
++    <entry file="file://$PROJECT_DIR$/src/components/sitterList/style.scss">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="408">
+-          <caret line="28" column="96" lean-forward="false" selection-start-line="28" selection-start-column="96" selection-end-line="28" selection-end-column="96" />
++        <state relative-caret-position="482">
++          <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="16" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/components/sitterList/index.js">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="593">
++          <caret line="57" column="5" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="5" />
+           <folding>
+-            <element signature="e#19#45#0" expanded="true" />
++            <element signature="e#20#46#0" expanded="true" />
++            <element signature="e#96#146#0" expanded="true" />
++            <element signature="e#315#336#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+Index: src/components/sitterList/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/sitterList/style.css	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ src/components/sitterList/style.css	(revision )
+@@ -1,24 +1,38 @@
+-.match {
+-  height: 360px;
+-  display: block;
+-  text-align: center;
+-  color: #fff;
+-  background-position: center center;
+-  background-repeat: no-repeat;
+-  background-size: cover; }
+-
+-a.match:hover {
+-  color: #fff;
+-  text-decoration: none; }
+-
+-.sitter-info {
+-  padding: 36px 0;
++.sitter-item {
+   display: flex;
+-  flex-direction: column; }
++  flex-direction: row; }
+ 
+-img.profilePic {
++.sitter-item .sitter-info {
++  flex: 1; }
++
++.sitter-item .match-info {
++  flex: 1;
++  flex-direction: row; }
++
++.sitter-item .sitter-score {
++  display: flex;
++  flex-direction: row;
++  text-align: center; }
++
++.sitter-item .sitter-score .match-score {
++  flex: 1; }
++
++.sitter-item .sitter-score .match-chart {
++  flex: 1; }
++
++.sitter-item .personality-match {
++  display: flex;
++  flex-direction: row; }
++
++.sitter-item .personality-match .sitter-personality, .sitter-item .personality-match .expected-personality {
++  flex: 1; }
++
++.sitter-item .sitter-image {
++  flex: 1; }
++
++.sitter-item .sitter-image img.profilePic {
+   display: block;
+-  width: 180px;
+-  height: 171px;
++  width: 480px;
++  height: 480px;
+   margin: 0 auto;
+   border: 8px solid #fff; }
+Index: src/components/PersonalityQuestions.js
+===================================================================
+--- src/components/PersonalityQuestions.js	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ src/components/forms/personality/index.js	(revision )
+@@ -1,8 +1,11 @@
+ import React from "react";
+ import {ControlLabel} from "react-bootstrap";
+-import strings from '../static/strings'
++import strings from '../../../static/strings'
+ import Slider from 'rc-slider'
+ 
++// style
++import './style.css';
++
+ class PersonalityQuestions extends React.Component {
+     handleRate(rate){
+         console.log(rate);
+@@ -12,18 +15,18 @@
+             let key = strings.QUESTIONS.indexOf(question);
+             let rangeClass = '';
+             if(this.props.addSameQuestionsClass){
+-                rangeClass = question.value === this.props.secondQuestions[key].value? "same-answer": "";
++                rangeClass = question.value === this.props.secondQuestions[key].value? "question same-answer": "question";
+             }
+             return (
+                 <div key={key} className={rangeClass}>
+-                    <ControlLabel>{question.label1}</ControlLabel>
++                    <ControlLabel className="left-label">{question.label1}</ControlLabel>
+                     <Slider disabled={this.props.disabled}  min={0} max={5}  step={1}   defaultValue={question.value} />
+-                    <ControlLabel>{question.label2}</ControlLabel>
++                    <ControlLabel className="right-label">{question.label2}</ControlLabel>
+                 </div>
+             );
+         });
+         return (
+-            <div>
++            <div className="personality-test">
+                 {questions}
+             </div>
+         );
+Index: src/components/forms/personality/style.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/forms/personality/style.scss	(revision )
++++ src/components/forms/personality/style.scss	(revision )
+@@ -0,0 +1,29 @@
++.question {
++  display: flex;
++  flex-direction: row;
++
++  .control-label {
++    width: 96px;
++  }
++
++  .right-label {
++    margin-left: 12px;
++  }
++
++  .right-label {
++    margin-right: 12px;
++  }
++
++  .rc-slider {
++    width: 200px;
++    margin: 8px 0;
++  }
++
++  .rc-slider-disabled {
++    background-color: #fff;
++  }
++
++  .rc-slider-track, .rc-slider-rail {
++    background-color: #f7a1a1;
++  }
++}
+\ No newline at end of file
+Index: src/reducers/user.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/reducers/user.js	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ src/reducers/user.js	(revision )
+@@ -48,7 +48,8 @@
+                 blacklist: data.blacklist,
+                 settings: data.settings,
+                 matchBI: data.matchBI,
+-                reviews: data.reviews
++                reviews: data.reviews,
++                personalityTest: data.personalityTest
+             };
+         default:
+             return state;
+Index: src/components/sitterList/style.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/sitterList/style.scss	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ src/components/sitterList/style.scss	(revision )
+@@ -1,28 +1,61 @@
+-.match {
+-  height: 360px;
+-  display: block;
+-  text-align: center;
+-  color: #fff;
+-  background-position: center center;
+-  background-repeat: no-repeat;
+-  background-size: cover;
+-}
++.sitter-item {
+ 
+-a.match:hover {
+-  color: #fff;
+-  text-decoration: none;
+-}
++  display: flex;
++  flex-direction: row;
+ 
+-.sitter-info {
+-  padding: 36px 0;
+-  display: flex;
+-  flex-direction: column;
+-}
++  .sitter-info {
++    flex: 1;
++  }
++
++  .match-info {
++    flex: 1;
++    flex-direction: row;
++  }
++
++  .sitter-score {
++    display: flex;
++    flex-direction: row;
++    text-align: center;
++
++    .match-score {
++      flex: 1;
++    }
+ 
+-img.profilePic {
+-  display: block;
+-  width: 180px;
+-  height: 171px;
+-  margin: 0 auto;
+-  border: 8px solid #fff;
+-}
+\ No newline at end of file
++    .match-chart {
++      flex: 1;
++    }
++  }
++
++  .personality-match {
++    display: flex;
++    flex-direction: row;
++
++    .sitter-personality, .expected-personality {
++      flex: 1;
++    }
++  }
++
++  .sitter-image {
++    flex: 1;
++    img.profilePic {
++      display: block;
++      width: 480px;
++      height: 480px;
++      margin: 0 auto;
++      border: 8px solid #fff;
++    }
++  }
++
++}
++
++//a.match:hover {
++//  color: #fff;
++//  text-decoration: none;
++//}
++
++//.sitter-info {
++//  padding: 36px 0;
++//  display: flex;
++//  flex-direction: column;
++//}
++
+Index: src/components/pages/feed/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/pages/feed/index.js	(revision ad6ab557d3de552332eb5dc6eea58a7eb45f0cf5)
++++ src/components/pages/feed/index.js	(revision )
+@@ -75,7 +75,6 @@
+             }
+             else {
+                 showSitters = true;
+-                navView = <PageHeader>Matches</PageHeader>;
+             }
+         }
+ 
