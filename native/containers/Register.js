@@ -31,7 +31,7 @@ class Register extends Component {
                 { appbar }
                 <ScrollView>
                     <View style={{ margin: 20 }}>
-                        {this.props.user.userType === "I'm a Parent" ?
+                        {this.props.user.userType === "I'm a parent" ?
                             <ParentForm
                                 {...this.props}
                                 callback={ this.parentCallback } /> :

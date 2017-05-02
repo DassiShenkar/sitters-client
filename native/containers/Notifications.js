@@ -3,57 +3,32 @@
 import React, { Component } from 'react';
 import { ScrollView, View, ListView, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import { bindActionCreators } from 'redux';
+import {  connect } from 'react-redux';
 
 import ListItem from '../components/ListItem'
+import * as actionCreators from '../../src/actions/actionCreators';
 
-export default class Notifications extends React.Component {
+class Notifications extends React.Component {
 
     constructor (props) {
         super(props);
-        this._onPress = this._onPress.bind(this);
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.state = {
-            dataSource: ds.cloneWithRows([{
-                id: 0,
-                name: 'Michael',
-                msg: 'Pending invitation',
-                date: '12/04/17',
-                image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-                onPress: this._onPress
-            }, {
-                id: 1,
-                name: 'Michael',
-                msg: 'Pending invitation',
-                date: '12/04/17',
-                image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-                onPress: this._onPress
-            }, {
-                id: 2,
-                name: 'Michael',
-                msg: 'Pending invitation',
-                date: '12/04/17',
-                image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-                onPress: this._onPress
-            }])
-        };
     }
 
     render () {
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        let dataSource = ds.cloneWithRows(this.props.user.invites);
         return (
             <ScrollView>
                 <View>
                     <ListView
-                        dataSource={this.state.dataSource}
+                        dataSource={dataSource}
                         renderRow={(data) => <ListItem {...data} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
             </ScrollView>
         );
-    }
-
-    _onPress () {
-        Actions.Suggested();
     }
 }
 
@@ -64,3 +39,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#8E8E8E',
     },
 });
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actionCreators: bindActionCreators(actionCreators, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

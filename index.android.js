@@ -20,6 +20,8 @@ import Search from './native/containers/Search';
 import PersonalityTestIntro from './native/containers/PersonalityTestIntro';
 import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
+import Menu from './native/containers/Menu';
+import LoadingScreen from './native/containers/LoadingScreen';
 import GoogleMapView from './native/containers/GoogleMapView';
 import ErrorPage from './native/containers/ErrorPage';
 
@@ -39,24 +41,26 @@ class Sitters extends React.Component {
                 <Router>
                     <Scene key="modal" component={Modal}>
                         <Scene key="root">
-                            <Scene key="App" component={App} title="App" initial={true} hideNavBar={true} />
-                            <Scene key="Splash" component={Splash} title="Splash"/>
-                            <Scene key="Login" component={Login} title="Login"/>
-                            <Scene key="Register" component={Register} title="Register"/>
-                            <Scene key="Feed" component={Feed} title="Feed" passProps={true}/>
-                            <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView" passProps={true} />
-                            <Scene key="Notifications" component={Notifications} title="Notifications"/>
-                            <Scene key="Inbox" component={Inbox} title="Inbox"/>
-                            <Scene key="PersonalityTestIntro" component={PersonalityTestIntro} title="PersonalityTestIntro"/>
-                            <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest"/>
-                            <Scene key="Search" component={Search} title="Search"/>
-                            <Scene key="About" component={About} title="About"/>
-                            <Scene key="Settings" component={Settings} title="Settings"/>
-                            <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView"/>
-                            <Scene key="ErrorPage" component={ErrorPage} title="ErrorPage"/>
+                            <Scene key="App" component={App} title="App" initial={true} hideNavBar={true} animation='fade'/>
+                            <Scene key="Splash" component={Splash} title="Splash" animation='fade'/>
+                            <Scene key="Login" component={Login} title="Login" animation='fade'/>
+                            <Scene key="Register" component={Register} title="Register" animation='fade'/>
+                            <Scene key="Feed" component={Feed} title="Feed" passProps={true} animation='fade'/>
+                            <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView" passProps={true} animation='fade'/>
+                            <Scene key="Notifications" component={Notifications} title="Notifications" animation='fade'/>
+                            <Scene key="Inbox" component={Inbox} title="Inbox" animation='fade'/>
+                            <Scene key="PersonalityTestIntro" component={PersonalityTestIntro} title="PersonalityTestIntro" animation='fade'/>
+                            <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest" animation='fade'/>
+                            <Scene key="Search" component={Search} title="Search" animation='fade'/>
+                            <Scene key="About" component={About} title="About" animation='fade'/>
+                            <Scene key="Settings" component={Settings} title="Settings" animation='fade'/>
+                            <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView" animation='fade'/>
+                            <Scene key="ErrorPage" component={ErrorPage} title="ErrorPage" animation='fade'/>
                         </Scene>
-                        <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite"/>
-                        <Scene key="RateSitter" component={RateSitter} title="RateSitter"/>
+                        <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite" animation='fade'/>
+                        <Scene key="RateSitter" component={RateSitter} title="RateSitter" animation='fade'/>
+                        <Scene key="LoadingScreen" component={LoadingScreen} title="LoadingScreen" animation='fade'/>
+                        <Scene key="Menu" component={Menu} title="Menu" animation='fade'/>
                     </Scene>
                 </Router>
             </Provider>
