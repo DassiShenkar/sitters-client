@@ -23,7 +23,7 @@ class PersonalityQuestions extends React.Component {
             return (
                 <div key={key} className={'answer ' + rangeClass}>
                     <label className="left-label">{question.label1}</label>
-                    <Slider disabled={this.props.disabled}  min={0} max={5}  step={1}   defaultValue={question.value} onChange={this.onChange.bind(this,question,key)}/>
+                    <Slider dots={true} disabled={this.props.disabled}  min={0} max={4}  step={1}   defaultValue={question.value} onChange={this.onChange.bind(this,question,key)}/>
                     <label className="right-label">{question.label2}</label>
                 </div>
             );
