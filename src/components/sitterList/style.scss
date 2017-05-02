@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush|Emblema+One|Galada|Kaushan+Script|Knewave|Lemon|Lobster|Playball|Purple+Purse|Risque|Sniglet|Unna');
+
 .match {
 
   .page-header {
@@ -19,7 +21,7 @@
     }
 
     a {
-      color: rgb(131, 166, 237);
+      color: #7ad0f8;
     }
   }
 
@@ -31,9 +33,41 @@
 
   .match-info {
     color: #000000;
-    .match-score {
-      font-size: 96px;
-      font-weight: 400;
+    display: flex;
+    flex-direction: row;
+      margin-top: 48px;
+    .recharts-wrapper {
+      flex: 1;
+    }
+    .score {
+      flex: 1;
+
+      h1 {
+        color: #88d685;
+        font-size: 64px;
+        margin: 0;
+        //font-family: 'Lobster', cursive;
+        //font-family: 'Kaushan Script', cursive;
+        //font-family: 'Unna', serif;
+        font-family: 'Galada', cursive;
+      }
+
+      .match-score {
+        //font-family: 'Knewave', cursive;
+        //font-family: 'Purple Purse', cursive;
+        //font-family: 'Emblema One', cursive;
+        //font-family: 'Lemon', cursive;
+        //font-family: 'Lobster', cursive;
+        //font-family: 'Kaushan Script', cursive;
+        //font-family: 'Sniglet', cursive;
+        //font-family: 'Unna', serif;
+        //font-family: 'Risque', cursive;
+        //font-family: 'Galada', cursive;
+        //font-family: 'Caveat Brush', cursive;
+        font-family: 'Playball', cursive;
+        font-size: 96px;
+        //font-weight: bold;
+      }
     }
   }
 }
