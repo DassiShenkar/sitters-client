@@ -7,9 +7,6 @@ const strings = {
     GENDER: ["Male", "Female"],
     BOOLEAN: ["True", "False"],
     WEEK_DAYS: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    EDUCATION: ["High School", "Bachelor"],
-    QUESTIONS1: [["Mature", "Youthful", 3], ["Playful", "Sophisticated", 3]],
-
     QUESTIONS: [{
         label1: "Mature",
         label2: "Youthful",
@@ -51,6 +48,13 @@ const strings = {
         label2: "Authoritative",
         value: 3
     }],
+    EDUCATION: [
+        {value: 'high school', label: 'High School'},
+        {value: 'college', label: 'College'},
+        {value: 'graduate', label: 'Graduate'},
+        {value: 'bachelor', label: 'Bachelor'},
+        {value: 'master', label: 'Master'}
+    ],
     LANGUAGES: [
         {value: 'bengali', label: 'Bengali'},
         {value: 'chinese', label: 'Chinese'},

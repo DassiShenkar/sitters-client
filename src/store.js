@@ -29,7 +29,11 @@ const defaultState = {
         personalityQuestions : strings.QUESTIONS,
         childHobbies: [],
         childExpertise: [],
-        childSpecialNeeds: []
+        childSpecialNeeds: [],
+        sitterHobbies: [],
+        sitterExpertise: [],
+        sitterSpecialNeeds: [],
+        sitterEducation: []
     },
     settings: {
         enableNotifications: true,

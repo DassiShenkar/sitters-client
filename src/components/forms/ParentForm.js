@@ -189,7 +189,7 @@ class Form extends React.Component {
                 {/*/>*/}
                 <h4>Child Special needs</h4>
                 <SelectInput
-                    placeholder="Select child Hobbies"
+                    placeholder="Select child Special Needs"
                     options={strings.SPECIAL_NEEDS}
                     {...this.props}
                     action={this.props.actions.registerActions.changeChildSpecialNeeds}
