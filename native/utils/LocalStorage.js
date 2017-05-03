@@ -26,4 +26,12 @@ export default class LocalStorage {
             return null;
         }
     }
+
+    static async clearAll() {
+        try {
+            AsyncStorage.multiRemove([this.FACEBOOK_KEY, this.USER_KEY], function(err) {
+               if(err) console.log(err);
+            });
+        }
+    }
 }

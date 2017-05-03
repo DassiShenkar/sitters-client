@@ -7,7 +7,8 @@ import {  connect } from 'react-redux';
 var FBLoginManager = require('NativeModules').FBLoginManager;
 
 import MenuItem from '../components/MenuItem';
-import * as RouterActions from '../actions/RouterActions'
+import * as RouterActions from '../actions/RouterActions';
+import LocalStorage from '../utils/LocalStorage';
 
 class Menu extends React.Component {
      
@@ -65,6 +66,7 @@ class Menu extends React.Component {
     }
 
     logoutCallback() {
+        LocalStorage.clearAll();
         FBLoginManager.logOut();
         console.log('logout');
         this.props.routerActions.changeValidFlag(true);

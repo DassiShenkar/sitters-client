@@ -12,13 +12,11 @@ class Inbox extends React.Component {
 
     constructor (props) {
         super(props);
-        this.updateInvites = this.updateInvites.bind(this);
     }
 
     render () {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         let dataSource = ds.cloneWithRows(this.props.user.invites);
-        this.updateInvites(this.props.user.invites);
         return (
             <ScrollView>
                 <View>
@@ -30,10 +28,6 @@ class Inbox extends React.Component {
                 </View>
             </ScrollView>
         );
-    }
-
-    updateInvites(invites) {
-        invites.map(function(invite){});
     }
 }
 

@@ -67,6 +67,10 @@ class Register extends Component {
             parent.address.longitude = data != null ? data.lng: 0;
             parent.address.latitude = data != null ? data.lat: 0;
         });
+        let totalScore = 0;
+        this.props.register.personalityQuestions.forEach(function (question) {
+            totalScore += question.value;
+        });
         parent = {
             _id : this.props.user.facebookID.toString(),
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
@@ -88,6 +92,10 @@ class Register extends Component {
                 expertise: this.props.register.childExpertise? this.props.register.childExpertise: [],
                 hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
                 specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: []
+            },
+            personalityTest: {
+                questions: this.props.register.personalityQuestions,
+                totalScore: totalScore
             },
             partner:{
                 gender: this.props.register.partnerGender ? this.props.register.partnerGender : 'Female',
@@ -114,6 +122,10 @@ class Register extends Component {
             sitter.address.longitude = data != null ? data.lng: 0;
             sitter.address.latitude = data != null ? data.lat: 0;
         });
+        let totalScore = 0;
+        this.props.register.personalityQuestions.forEach(function (question) {
+            totalScore += question.value;
+        });
         sitter = {
             _id : this.props.user.facebookID.toString(),
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
@@ -132,6 +144,10 @@ class Register extends Component {
             minAge:  Number(this.props.register.sitterMinAge),
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
+            personalityTest: {
+                questions: this.props.register.personalityQuestions,
+                totalScore: totalScore
+            },
             availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
             expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
             hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
