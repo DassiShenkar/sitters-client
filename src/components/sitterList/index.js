@@ -16,7 +16,10 @@ import './style.css';
 class SitterList extends React.Component {
 
     render() {
+
         let sitterIndex = this.props.feed.sitterIndex;
+        const consider = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' also considers '+ (this.props.sitters[sitterIndex].gender === 'male'? 'himself:': 'herself:') : '';
+
         return (
             <div className="match">
                 <PageHeader>
@@ -36,11 +39,13 @@ class SitterList extends React.Component {
                     </div>
                     <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
                 </div>
-                <h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers '+ (this.props.sitters[sitterIndex].gender === 'male'? 'himself': 'herself') : ''}</h3>
+                {/*<h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers '+ (this.props.sitters[sitterIndex].gender === 'male'? 'himself:': 'herself:') : ''}</h3>*/}
                 <PersonalityQuestions questions={this.props.sitters.length > 0 ?this.props.sitters[this.props.feed.sitterIndex].personalityTest.questions: ''}
-                                      addSameQuestionsClass={false}
+                                      addSameQuestionsClass={true}
                                       secondQuestions={this.props.user.personalityTest.questions}
                                       disabled={true}
+                                      title={consider}
+                                      sitterName={this.props.sitters.length > 0? this.props.sitters[this.props.feed.sitterIndex].name: ''}
                                       {...this.props}/>
             </div>
         )
