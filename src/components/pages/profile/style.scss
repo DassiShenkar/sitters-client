@@ -54,28 +54,32 @@ img.profilePic {
     text-align: left;
   }
 
-  #invite-button {
+  #invite-button, #review-button{
     background: #fff;
     color: #88d685;
     border: 2px solid #88d685;
     border-radius: 18px;
   }
 
-  #invite-button:hover {
+  #invite-button:hover, #review-button:hover {
     background: #88d685;
     color: #fff;
   }
 
-  #invite-button:focus {
+  #invite-button:focus, #review-button:focus {
     outline: none;
   }
 
-  #invite-button:hover #mail-icon path{
+  #invite-button:hover #mail-icon path, #review-button:hover #like-icon path{
     fill: #fff;
   }
 
-  #mail-icon path {
+  #mail-icon path ,#like-icon path{
     fill: #88d685;;
+  }
+
+  #invite-button svg, #review-button svg{
+    width: 20px;
   }
 }
 

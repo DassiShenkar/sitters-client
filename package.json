@@ -50,6 +50,7 @@
     "react-google-map": "^3.0.1",
     "react-google-maps": "^6.0.1",
     "react-google-maps-loader": "^2.0.2",
+    "react-loading-overlay": "^0.2.4",
     "react-minimal-pie-chart": "^1.1.0",
     "react-native": "0.42.3",
     "react-native-easy-rating": "^0.1.3",

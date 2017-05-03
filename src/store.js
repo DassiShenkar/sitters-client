@@ -16,6 +16,7 @@ const defaultState = {
         userType: strings.USER_TYPE[1],
         invites: [],
         notifications: [],
+        personalityTest : []
     },
     feed: {
         matches: [],

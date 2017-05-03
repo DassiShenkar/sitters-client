@@ -1,9 +1,11 @@
 const strings = {
     APP_NAME: "Sitters",
     VERSION: "Alpha",
-    DEBUG: true,
     LOCALHOST: "http://localhost:4444/",
     WEBSITE: "https://sitters-platform.herokuapp.com/",
+    DEBUG: true,
+    ACTIVATE_BLACKLIST: false,
+    ACTIVATE_MEDIAN: false,
     DEVELOPERS: "Arel Gindos, Dassi Rosen, Gregory K",
     APP_DESCRIPTION: "A Booking Platform for Parents and Sitters",
     USER_TYPE: ["I'm a Parent", "I'm a Sitter"],
@@ -59,6 +61,7 @@ const strings = {
         {value: 'master', label: 'Master'}
     ],
     LANGUAGES: [
+        {value: 'arabic', label: 'Arabic'},
         {value: 'bengali', label: 'Bengali'},
         {value: 'chinese', label: 'Chinese'},
         {value: 'dutch', label: 'Dutch'},

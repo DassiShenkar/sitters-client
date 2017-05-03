@@ -48,7 +48,8 @@ function user(state = {}, action) {
                 blacklist: data.blacklist,
                 settings: data.settings,
                 matchBI: data.matchBI,
-                reviews: data.reviews
+                reviews: data.reviews,
+                personalityTest: data.personalityTest
             };
         default:
             return state;

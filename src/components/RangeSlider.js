@@ -13,7 +13,7 @@ class RangeSlider extends RangeBase {
         return (
             <div id="search-range">
                 <Range allowCross={false} min={this.props.min} max={this.props.max} defaultValue={[minValue, maxValue]}
-                       onChange={this.onChange} tipFormatter={value => `${value}$`} disabled/>
+                       onChange={this.onChange} tipFormatter={value => `${value}$`} disabled={this.props.disabled}/>
                 <label>{'Price Range: ' + minValue + '-' + maxValue}</label>
             </div>
         );

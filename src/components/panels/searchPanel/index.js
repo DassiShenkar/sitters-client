@@ -53,7 +53,7 @@ class SearchByTab extends React.Component {
                 navView = <div id="range-search">
                     <label>Hour Rate
                     <Range min={0} max={50} {...this.props} action={this.props.actions.rangeActions.changeRange}
-                           changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
+                           changeSitters={this.props.actions.feedActions.setFilteredMatches} disabled={false}/>
                     </label>
                 </div>
             }
