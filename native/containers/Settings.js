@@ -9,17 +9,13 @@ import { connect } from 'react-redux';
 import AppBar from '../components/AppBar'
 import TextButton from '../components/TextButton'
 import * as actionCreators from '../../src/actions/actionCreators';
+import * as SettingsActions from '../../src/actions/SettingsActions';
 
 
 class Settings extends React.Component {
 
     constructor (props) {
         super(props);
-        this.state = {
-            notifications: true,
-            suggestions: true,
-            show: true,
-        };
     }
 
     render () {
@@ -29,17 +25,22 @@ class Settings extends React.Component {
                     { ...this.props }/>
                 <Text>Allow Notifications</Text>
                 <Switch
-                    onValueChange={(value) => this.setState({notifications: value})}
-                    value={this.state.notifications} />
+                    onValueChange={(value) => this.props.settingsActions.setNotifications(value)}
+                    value={this.props.settings.enableNotifications} />
                 <Text>Allow Suggestions</Text>
                 <Switch
-                    onValueChange={(value) => this.setState({suggestions: value})}
-                    value={this.state.suggestions} />
-                <Text>Show on search</Text>
-                <Switch
-                    style={ this.props.userType === "I'm a Parent" ? styles.hiddenContainer : null }
-                    onValueChange={(value) => this.setState({show: value})}
-                    value={this.state.show} />
+                    onValueChange={(value) => this.props.settingsActions.setSuggestions(value)}
+                    value={this.props.settings.enableSuggestions} />
+                {
+                    this.props.userType === "I'm a parent" ?
+                    <View>
+                        <Text>Show on search</Text>
+                        <Switch
+                            onValueChange={(value) => {}}
+                            value={true}/>
+                    </View>
+                    : null
+                }
                 <TextButton
                     onPress={Actions.pop}
                     styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
@@ -60,13 +61,15 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        settings: state.settings
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actionCreators: bindActionCreators(actionCreators, dispatch)
+        actionCreators: bindActionCreators(actionCreators, dispatch),
+        settingsActions: bindActionCreators(SettingsActions, dispatch)
     };
 }
 

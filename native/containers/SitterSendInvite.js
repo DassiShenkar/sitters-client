@@ -13,6 +13,7 @@ import TextButton from '../components/TextButton'
 import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
 import * as InviteActions from '../../src/actions/InviteActions';
 import * as actionCreators from '../../src/actions/actionCreators';
+import * as RouterActions from '../actions/RouterActions';
 
 class SitterSendInvite extends React.Component {
 
@@ -51,12 +52,14 @@ class SitterSendInvite extends React.Component {
         let self = this;
         axios({
             method: 'post',
+            // url: 'https://sitters-server.herokuapp.com/invite/create',
             url: 'https://sittersdev.herokuapp.com/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
             console.log(res);
             if (res.data) {  // invite created
+                self.props.routerActions.changeValidFlag(true);
                 Actions.pop();
             }
             else { // invite not created
@@ -159,7 +162,8 @@ function mapStateToProps(state) {
     return {
         sitterProfile: state.sitterProfile,
         invite: state.invite,
-        user: state.user
+        user: state.user,
+        router: state.router
     }
 }
 
@@ -167,7 +171,8 @@ function mapDispatchToProps(dispatch) {
     return {
         actionCreators: bindActionCreators(actionCreators, dispatch),
         sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
-        inviteActions: bindActionCreators(InviteActions, dispatch)
+        inviteActions: bindActionCreators(InviteActions, dispatch),
+        routerActions: bindActionCreators(RouterActions, dispatch)
     };
 }
 

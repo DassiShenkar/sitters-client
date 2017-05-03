@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import dateFormat from 'dateformat'
+import moment from "moment";
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -13,10 +15,12 @@ export default class TimeSearch extends React.Component {
 
     constructor (props) {
         super(props);
-        this.filter = this.filter.bind(this);
         this.navToProfile = this.navToProfile.bind(this);
         this.navToInvite = this.navToInvite.bind(this);
         this.removeSitter = this.removeSitter.bind(this);
+        this.dateCallback = this.dateCallback.bind(this);
+        this.startCallback = this.startCallback.bind(this);
+        this.endCallback = this.endCallback.bind(this);
     }
 
     render () {
@@ -34,40 +38,45 @@ export default class TimeSearch extends React.Component {
                     <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
                         <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Date</Text>
                         <AndroidDatePicker
-                            callback={ this.dateCallback }/>
+                            pickerCallback={ this.dateCallback }/>
                     </View>
                     <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
                         <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Start Watch</Text>
                         <AndroidTimePicker
-                            callback={ this.startCallback }/>
+                            pickerCallback={ this.startCallback }/>
                     </View>
                     <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
                         <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>End Watch</Text>
                         <AndroidTimePicker
-                            callback={ this.endCallback }/>
+                            pickerCallback={ this.endCallback }/>
                     </View>
                 </View>
-                <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
-                    <ImageButton
-                        onPress={ (e) => this.navToProfile(e, sitterId) }
-                        styles={{width: 100, height: 100, borderRadius:100}}
-                        src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
-                    <View style={{ paddingTop: 10 }}>
-                        <Text>{name + ', ' + age}</Text>
-                        { availableNow ? <Text>Available now!</Text> : null}
-                        <Text>{ hourFee + '$' }</Text>
+                { this.props.sitters.length > 0 ?
+                    <View>
+                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
+                            <ImageButton
+                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                styles={{width: 100, height: 100, borderRadius:100}}
+                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                            <View style={{ paddingTop: 10 }}>
+                                <Text>{name + ', ' + age}</Text>
+                                { availableNow ? <Text>Available now!</Text> : null}
+                                <Text>{ hourFee + '$' }</Text>
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
+                            <ImageButton
+                                onPress={ (e) => this.navToInvite }
+                                styles={{ width: 50, height: 50, borderRadius:100}}
+                                src={require('../style/icons/v.png')}/>
+                            <ImageButton
+                                onPress={ (e) => this.removeSitter }
+                                styles={{width: 50, height: 50, borderRadius:100}}
+                                src={require('../style/icons/next.png')}/>
+                        </View>
                     </View>
-                </View>
-                <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
-                    <ImageButton
-                        onPress={ (e) => this.navToInvite(e, sitterId) }
-                        styles={{ width: 50, height: 50, borderRadius:100}}
-                        src={require('../style/icons/v.png')} />
-                    <ImageButton
-                        onPress={ (e) => this.removeSitter(e) }
-                        styles={{width: 50, height: 50, borderRadius:100}}
-                        src={require('../style/icons/next.png')} />
-                </View>
+                    : <Text>No matches found!</Text>
+                }
             </View>
         );
     }
@@ -89,24 +98,76 @@ export default class TimeSearch extends React.Component {
     }
 
     dateCallback(value) {
-        this.props.searchByActions.changeInviteDate(value);
-        this.filter();
+        console.log(value);
+        console.log(dateFormat(value, "dddd"));
+        console.log(value);
+        this.props.searchByActions.changeInviteDate(value,dateFormat(value, "dddd"),value);
+        let day = this.props.searchBy.inviteDay.toLowerCase();
+        let from = this.props.searchBy.fromTime;
+        let to = this.props.searchBy.toTime;
+        let sitters = [];
+        for(let sitter of this.props.feed.matches){
+            let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
+            let startDuration = moment.duration(startMS);
+            let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
+            if(startDiff[0] === '-' || startDiff[0] === '0:00'){
+                let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
+                let finishDuration = moment.duration(finishMS);
+                let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
+                if(finishDiff[0] === '-'){
+                    sitters.push(sitter);
+                }
+            }
+        }
+        this.props.feedActions.setFilteredMatches(sitters);
+        Actions.Search({index: this.props.pageIndex});
     }
 
     startCallback(value) {
+        console.log(value);
         this.props.searchByActions.changeInviteFromTime(value);
-        this.filter();
+        let day = this.props.searchBy.inviteDay.toLowerCase();
+        let from = this.props.searchBy.fromTime;
+        let to = this.props.searchBy.toTime;
+        let sitters = [];
+        for(let sitter of this.props.feed.matches){
+            let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
+            let startDuration = moment.duration(startMS);
+            let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
+            if(startDiff[0] === '-' || startDiff[0] === '0:00'){
+                let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
+                let finishDuration = moment.duration(finishMS);
+                let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
+                if(finishDiff[0] === '-'){
+                    sitters.push(sitter);
+                }
+            }
+        }
+        this.props.feedActions.setFilteredMatches(sitters);
+        Actions.Search({index: this.props.pageIndex});
     }
 
     endCallback(value) {
+        console.log(value);
         this.props.searchByActions.changeInviteToTime(value);
-        this.filter();
-    }
-
-    filter(value) {
-        console.log(Math.abs(value));
-        let sitters = this.props.feed.matches;
-        this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.abs(value)));
-        Actions.refresh();
+        let day = this.props.searchBy.inviteDay.toLowerCase();
+        let from = this.props.searchBy.fromTime;
+        let to = this.props.searchBy.toTime;
+        let sitters = [];
+        for(let sitter of this.props.feed.matches){
+            let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
+            let startDuration = moment.duration(startMS);
+            let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
+            if(startDiff[0] === '-' || startDiff[0] === '0:00'){
+                let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
+                let finishDuration = moment.duration(finishMS);
+                let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
+                if(finishDiff[0] === '-'){
+                    sitters.push(sitter);
+                }
+            }
+        }
+        this.props.feedActions.setFilteredMatches(sitters);
+        Actions.Search({index: this.props.pageIndex});
     }
 }

@@ -21,6 +21,10 @@ export default function configureStore() {
 
     //set initial state
     const defaultState = {
+        router: {
+            state: '',
+            validFlag: false
+        },
         reviews: [],
         user: {
             userType: strings.USER_TYPE[0],

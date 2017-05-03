@@ -32,27 +32,32 @@ export default class LocationSearch extends React.Component {
                 <View style={{ justifyContent: 'flex-start', marginBottom: 100 }}>
 
                 </View>
-                <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
-                    <ImageButton
-                        onPress={ (e) => this.navToProfile(e, sitterId) }
-                        styles={{width: 100, height: 100, borderRadius:100}}
-                        src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
-                    <View style={{ paddingTop: 10 }}>
-                        <Text>{name + ', ' + age}</Text>
-                        { availableNow ? <Text>Available now!</Text> : null}
-                        <Text>{ hourFee + '$' }</Text>
+                { this.props.sitters.length > 0 ?
+                    <View>
+                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
+                            <ImageButton
+                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                styles={{width: 100, height: 100, borderRadius:100}}
+                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                            <View style={{ paddingTop: 10 }}>
+                                <Text>{name + ', ' + age}</Text>
+                                { availableNow ? <Text>Available now!</Text> : null}
+                                <Text>{ hourFee + '$' }</Text>
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
+                            <ImageButton
+                                onPress={ (e) => this.navToInvite }
+                                styles={{ width: 50, height: 50, borderRadius:100}}
+                                src={require('../style/icons/v.png')}/>
+                            <ImageButton
+                                onPress={ (e) => this.removeSitter }
+                                styles={{width: 50, height: 50, borderRadius:100}}
+                                src={require('../style/icons/next.png')}/>
+                        </View>
                     </View>
-                </View>
-                <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
-                    <ImageButton
-                        onPress={ (e) => this.navToInvite(e, sitterId) }
-                        styles={{ width: 50, height: 50, borderRadius:100}}
-                        src={require('../style/icons/v.png')} />
-                    <ImageButton
-                        onPress={ (e) => this.removeSitter(e) }
-                        styles={{width: 50, height: 50, borderRadius:100}}
-                        src={require('../style/icons/next.png')} />
-                </View>
+                    : <Text>No matches found!</Text>
+                }
             </View>
         );
     }

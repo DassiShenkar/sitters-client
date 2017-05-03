@@ -1,6 +1,5 @@
 import Geocoder from 'react-native-geocoding';
 
-
 class GeoCoder {
     static getLatLng(location) {
         Geocoder.setApiKey('AIzaSyBkehiU2z9ie_W9tqcEW_i-YBKxxv9kwyE');
