@@ -143,7 +143,7 @@ class Form extends React.Component {
         };
         axios({
             method: 'post',
-            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'sitter/create',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {

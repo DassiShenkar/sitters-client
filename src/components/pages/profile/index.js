@@ -42,7 +42,7 @@ class SitterProfile extends SitterProfileBase {
         parent.matchBI.median = this.median(parent.matchBI.matchScores);
         axios({
             method: 'post',
-            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/update',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {
@@ -65,7 +65,7 @@ class SitterProfile extends SitterProfileBase {
 
         axios({
             method: 'post',
-            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'sitter/get',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: sitterID}
         })
@@ -106,7 +106,7 @@ class SitterProfile extends SitterProfileBase {
         let self = this;
         axios({
             method: 'post',
-            url: strings.DEBUG? strings.LOCALHOST : strings.WEBSITE + 'sitter/update',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {

@@ -27,7 +27,7 @@ class Feed extends React.Component {
         } else {
             axios({
                 method: 'post',
-                url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/get',
+                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId}
             })
@@ -38,7 +38,7 @@ class Feed extends React.Component {
 
                         axios({
                             method: 'post',
-                            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/getMatches',
+                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/getMatches',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent.data
                         })

@@ -24,10 +24,11 @@ class Login extends React.Component {
     }
 
     login(user) {
+        console.log((strings.DEBUG?strings.LOCALHOST : strings.WEBSITE )+ 'parent/get');
         const self = this;
         axios({
             method: 'post',
-            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/get',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: user.id}
         })

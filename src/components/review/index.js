@@ -40,7 +40,7 @@ class Review extends React.Component {
             let self = this;
             axios({
                 method: 'post',
-                url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'sitter/update',
+                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/update',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: sitter
             }).then(function (res) {

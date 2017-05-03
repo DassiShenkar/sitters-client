@@ -29,7 +29,7 @@ class Settings extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/update',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {

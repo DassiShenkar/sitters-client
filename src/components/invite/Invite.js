@@ -46,7 +46,7 @@ class Invite extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'invite/create',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
