@@ -12,9 +12,18 @@ class ReviewItem extends React.Component {
         const { review, index } = this.props;
         const date = new Date(review.date);
         const rates = Object.keys(review.rates).map(function(key) {
+            let category = key;
+            if(key === "punctioal")
+                category = 'Punctioal';
+            else if(key === "behavior")
+                category = 'Behavior with child';
+            else if(key === "connection")
+                category = "Connection with child";
+                else
+                category = "General behavior";
             return (
                 <div>
-                    <h4>{key}</h4>
+                    <h4>{category}</h4>
                     <Rating
                         empty="glyphicon glyphicon-heart-empty"
                         full="glyphicon glyphicon-heart"
@@ -30,9 +39,9 @@ class ReviewItem extends React.Component {
                        src={review.parentImage}
                        alt={review.parentName} circle/>
                 <strong>{review.parentName}</strong>
-                <h4>Rates</h4>
-                {rates}
                 <p>{date.toLocaleDateString()}</p>
+                {rates}
+
             </div>
         )
     }

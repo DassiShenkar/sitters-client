@@ -219,15 +219,6 @@ class SitterProfile extends SitterProfileBase {
                         <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
                     </Panel>
                 </Accordion>:''}
-                {/*<Accordion defaultExpanded={this.props.sitterProfile.expandReview ? this.props.sitterProfile.expandReview: false}>*/}
-                    {/*<Panel header="+ Add Review" eventKey="addReview">*/}
-                        {/*<ControlLabel>{'Your story with ' + this.props.sitterProfile.sitter.name}</ControlLabel>*/}
-                        {/*<FormControl autoFocus={this.props.sitterProfile.expandReview?this.props.sitterProfile.expandReview:false} componentClass="textarea"*/}
-                                     {/*placeholder="textarea" onChange={this.handleChangeReview.bind(this)}/>*/}
-                        {/*<Button className="add-review" title="Add Review" bsStyle="primary"*/}
-                                {/*onClick={this.addReview.bind(this)}>Add Review</Button>*/}
-                    {/*</Panel>*/}
-                {/*</Accordion>*/}
                 <button id="review-button" onClick={this.addReview.bind(this)}>
                     <Like id="like-icon"/>
                     <span>Write Review</span>

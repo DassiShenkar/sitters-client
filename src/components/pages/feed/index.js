@@ -2,19 +2,14 @@
 import React from 'react';
 import axios from 'axios';
 
-import {PageHeader} from 'react-bootstrap';
-
 //components
-// import Nav from '../../panels/nav/index'; Do not delete until check nav functionality
 import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../notifications/index";
 import Invites from "../../inviteList/index";
 import SitterList from "../../sitterList/index";
-import SitterActionBar from "../../panels/actionPanel/index";
 import Loadable from 'react-loading-overlay'
 //style
 import './style.css';
-import Rating from "react-rating";
 import Review from "../../review/index";
 import strings from "../../../static/strings";
 
@@ -88,7 +83,7 @@ class Feed extends React.Component {
                 <Loadable
                     active={this.props.feed.showSpinner}
                     spinner
-                    text='Finding you matches with 20 Sitters...'
+                    text={this.props.feed.spinnerText}
                 >
                     {navView}
                     {showSitters ? <SitterList {...this.props}
@@ -96,7 +91,6 @@ class Feed extends React.Component {
                     <Invites {...this.props} />
                     <Notifications {...this.props}/>
                     <Review {...this.props} />
-
                 </Loadable>
             </div>
         );

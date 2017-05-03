@@ -47,8 +47,7 @@ class Review extends React.Component {
                 console.log(res);
                 if (res.data) {
                     console.log("review added");
-                    // self.props.actions.feedActions.showInvitePopup(false);
-                    // self.props.router.push('/');
+                    this.props.actions.feedActions.showReviewPopup(false);
                 }
                 else { // invite not created
                     //TODO: think about error when user not created
@@ -58,31 +57,6 @@ class Review extends React.Component {
                     console.log(error);
                     //TODO: think about error when user not created
                 });
-        // let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
-        // let parent = this.props.user;
-        // parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
-        // this.props.actions.actionCreators.setUserData(parent);
-        // //Todo: call blacklistSitter(parentID, sitterID) for this parent
-        // //axios.post('https://sitters-server.herokuapp.com/parent/get', {
-        // axios({
-        //     method: 'post',
-        //     url: 'http://localhost:4444/parent/update',
-        //     // url: 'https://sitters-server.herokuapp.com/parent/update',
-        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //     data: parent
-        // }).then(function (res) {
-        //     if (res.data) {  // user created
-        //         console.log('updated blacklist');
-        //     }
-        //     else { // user not created
-        //         console.log("user not created");
-        //         //TODO: think about error when user not created
-        //     }
-        // })
-        //     .catch(function (error) {
-        //         alert(error);
-        //         //TODO: think about error when user not created
-        //     });
     };
 
     closePopup(){
