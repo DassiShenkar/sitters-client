@@ -1,6 +1,6 @@
 "use strict";
 import React, {Component} from 'react'
-import {View, ScrollView, Text} from 'react-native'
+import {View, ScrollView, Text, Slider} from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
@@ -14,7 +14,6 @@ class PersonalityTest extends React.Component {
 
     constructor(props) {
         super(props);
-        this.navigate = this.navigate.bind(this);
         this.questions = this.questions.bind(this);
     }
 
@@ -22,9 +21,10 @@ class PersonalityTest extends React.Component {
         let questions = this.questions();
         return (
             <ScrollView>
-                {questions[this.props.questionNum]}
+                <Text style={{ color: '#f7a1a1', fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>Tell us about yourself</Text>
+                {questions}
                 <ImageButton
-                    onPress={this.navigate}
+                    onPress={this.props.callback}
                     styles={{width: 50, height: 50,borderRadius:100}}
                     src={require('../style/icons/next.png')} />
             </ScrollView>
@@ -33,34 +33,29 @@ class PersonalityTest extends React.Component {
 
     questions() {
         const self = this;
+        var index = 0;
         return strings.QUESTIONS.map(function (question) {
             return <View>
-                <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
+                <View style={{ flex: 1, flexDirection: 'row-reverse',justifyContent: 'space-between', margin: 10 }}>
                     <Text>{question.label1}</Text>
+                    <Slider
+                        value={ question.value ? question.value : 2 }
+                        style={{ width: '50%' }}
+                        dots={true}
+                        maximumTrackTintColor="#f7a1a1"
+                        thumbTintColor="#f7a1a1"
+                        maximumValue={4}
+                        minimummValue={0}
+                        onSlidingComplete={(value) => {
+                            question.index = index;
+                            index++;
+                            question.value = value;
+                            self.props.registerActions.changePersonalityTestQuestion(question);
+                        }} />
                     <Text>{question.label2}</Text>
                 </View>
-                <Rating
-                    rating={1}
-                    max={5}
-                    iconWidth={24}
-                    iconHeight={24}
-                    iconSelected={require('../style/icons/full.png')}
-                    iconUnselected={require('../style/icons/empty.png')}
-                    onRate={(rating) => {
-                        question.value = rating;
-                        self.props.registerActions.changePersonalityTestQuestion(question);
-                     }} />
             </View>;
         })
-    }
-
-    navigate() {
-        let index = this.props.questionNum;
-        if(index >= 9) {
-            this.props.callback();
-        } else {
-            Actions.refresh({questionNum: index + 1, callback: this.props.callback});
-        }
     }
 }
 

@@ -78,7 +78,7 @@ export default class ParentForm extends React.Component {
                         if(self.props.registered) {
                              callback();
                         } else {
-                             Actions.PersonalityTestIntro({callback: callback})
+                             Actions.PersonalityTest({callback: callback})
                         }
                     }}
                     text="Submit" />
