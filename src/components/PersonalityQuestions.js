@@ -14,18 +14,19 @@ class PersonalityQuestions extends React.Component {
     }
     render() {
         let  questions;
+        const self = this;
         if(this.props.feed.filteredMatches.length >0)
             questions = this.props.feed.filteredMatches[this.props.feed.sitterIndex].personalityTest.questions.map((question) => {
-                let key = this.props.questions.indexOf(question);
+                let key = self.props.questions.indexOf(question);
                 let rangeClass = '';
                 if(this.props.addSameQuestionsClass){
-                    rangeClass = question.value === this.props.secondQuestions[key].value? "same-answer": "";
+                    rangeClass = question.value === self.props.secondQuestions[key].value? "same-answer": "";
                 }
 
                 return (
                     <div key={key} className={'answer ' + rangeClass}>
                         <label className="left-label">{question.label1}</label>
-                        <Slider dots={true} disabled={this.props.disabled}  min={0} max={4}  step={1}   defaultValue={question.value} onChange={this.onChange.bind(this,question,key)}/>
+                        <Slider dots={true} disabled={self.props.disabled}  min={0} max={4}  step={1}  value={question.value} defaultValue={2}/>
                         <label className="right-label">{question.label2}</label>
                     </div>
                 );
