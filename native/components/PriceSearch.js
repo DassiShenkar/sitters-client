@@ -88,13 +88,13 @@ export default class PriceSearch extends React.Component {
     removeSitter() {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
-        Actions.Search({index: this.props.pageIndex});
+        Actions.SearchByPrice();
     }
 
     filter(value) {
         let sitters = this.props.feed.matches;
         this.props.rangeActions.changeRange(1, Math.floor(value));
         this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.floor(value)));
-        Actions.Search({index: this.props.pageIndex});
+        Actions.SearchByPrice();
     }
 }

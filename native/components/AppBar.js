@@ -13,7 +13,7 @@ class AppBar extends React.Component {
 
     constructor (props) {
         super(props);
-        this.search = this.search.bind(this);
+        // this.search = this.search.bind(this);
         this.menu = this.menu.bind(this);
     }
 
@@ -71,7 +71,7 @@ class AppBar extends React.Component {
                 <View
                     style={{ width: 160, flexDirection: 'row-reverse', justifyContent: 'space-between', marginTop: 10 }}>
                     <ImageButton
-                        onPress={this.search}
+                        onPress={Actions.SearchByPrice}
                         styles={ styles.icons }
                         src={require('../style/icons/search.png')}/>
                     <ImageButton
@@ -97,9 +97,9 @@ class AppBar extends React.Component {
         );
     }
 
-    search() {
-        Actions.Search({index: 0});
-    }
+    // search() {
+    //     Actions.Search({index: 0});
+    // }
 
     menu() {
         Actions.Menu({hide: false});

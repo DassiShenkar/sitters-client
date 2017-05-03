@@ -17,7 +17,9 @@ import Notifications from './native/containers/Notifications';
 import Inbox from './native/containers/Inbox';
 import About from './native/containers/About';
 import Settings from './native/containers/Settings';
-import Search from './native/containers/Search';
+import SearchByPrice from './native/containers/SearchByPrice';
+import SearchByTime from './native/containers/SearchByTime';
+import SearchByLocation from './native/containers/SearchByLocation';
 import PersonalityTestIntro from './native/containers/PersonalityTestIntro';
 import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
@@ -53,7 +55,9 @@ class Sitters extends React.Component {
                             <Scene key="Inbox" component={Inbox} title="Inbox" animation='fade'/>
                             <Scene key="PersonalityTestIntro" component={PersonalityTestIntro} title="PersonalityTestIntro" animation='fade'/>
                             <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest" animation='fade'/>
-                            <Scene key="Search" component={Search} title="Search" animation='fade'/>
+                            <Scene key="SearchByPrice" component={SearchByPrice} title="SearchByPrice" animation='fade'/>
+                            <Scene key="SearchByTime" component={SearchByTime} title="SearchByTime" animation='fade'/>
+                            <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade'/>
                             <Scene key="About" component={About} title="About" animation='fade'/>
                             <Scene key="Settings" component={Settings} title="Settings" animation='fade'/>
                             <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView" animation='fade'/>

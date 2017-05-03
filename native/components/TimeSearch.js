@@ -101,10 +101,10 @@ export default class TimeSearch extends React.Component {
         console.log(value);
         console.log(dateFormat(value, "dddd"));
         console.log(value);
-        this.props.searchByActions.changeInviteDate(value,dateFormat(value, "dddd"),value);
+        this.props.searchByActions.changeInviteDate(dateFormat(value, "mm/dd/yyyy"),dateFormat(value, "dddd"),value.toISOString());
         let day = this.props.searchBy.inviteDay.toLowerCase();
-        let from = this.props.searchBy.fromTime;
-        let to = this.props.searchBy.toTime;
+        let from = this.props.searchBy.fromTime.format('H:mm');
+        let to = this.props.searchBy.toTime.format('H:mm');
         let sitters = [];
         for(let sitter of this.props.feed.matches){
             let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
@@ -120,15 +120,15 @@ export default class TimeSearch extends React.Component {
             }
         }
         this.props.feedActions.setFilteredMatches(sitters);
-        Actions.Search({index: this.props.pageIndex});
+        Actions.SearchByTime();
     }
 
     startCallback(value) {
         console.log(value);
-        this.props.searchByActions.changeInviteFromTime(value);
+        this.props.searchByActions.changeInviteFromTime(moment(value,"H:mm"));
         let day = this.props.searchBy.inviteDay.toLowerCase();
-        let from = this.props.searchBy.fromTime;
-        let to = this.props.searchBy.toTime;
+        let from = this.props.searchBy.fromTime.format('H:mm');
+        let to = this.props.searchBy.toTime.format('H:mm');
         let sitters = [];
         for(let sitter of this.props.feed.matches){
             let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
@@ -144,15 +144,15 @@ export default class TimeSearch extends React.Component {
             }
         }
         this.props.feedActions.setFilteredMatches(sitters);
-        Actions.Search({index: this.props.pageIndex});
+        Actions.SearchByTime();
     }
 
     endCallback(value) {
         console.log(value);
-        this.props.searchByActions.changeInviteToTime(value);
+        this.props.searchByActions.changeInviteToTime(moment(value,"H:mm"));
         let day = this.props.searchBy.inviteDay.toLowerCase();
-        let from = this.props.searchBy.fromTime;
-        let to = this.props.searchBy.toTime;
+        let from = this.props.searchBy.fromTime.format('H:mm');
+        let to = this.props.searchBy.toTime.format('H:mm');
         let sitters = [];
         for(let sitter of this.props.feed.matches){
             let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
@@ -168,6 +168,6 @@ export default class TimeSearch extends React.Component {
             }
         }
         this.props.feedActions.setFilteredMatches(sitters);
-        Actions.Search({index: this.props.pageIndex});
+        Actions.SearchByTime();
     }
 }

@@ -56,6 +56,12 @@ class SitterProfileView extends React.Component {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : null;
         const self = this;
+        const sitterAddress = this.props.sitterProfile.sitter.address.street + " " +  this.props.sitterProfile.sitter.address.houseNumber + ", " + this.props.sitterProfile.sitter.address.city;
+        const lastInvite = this.props.sitterProfile.lastInvite?
+            <View>
+                <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Last Invited:</Text>
+                <Text>{this.props.sitterProfile.sitter.lastInvite}</Text>
+            </View> : null;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
             return (
                 <View key={index}>
@@ -99,6 +105,9 @@ class SitterProfileView extends React.Component {
                             </View>
                         </View>
                         <View style={{ margin: 15 }}>
+                            <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Address</Text>
+                            <Text>{ sitterAddress }</Text>
+                            {lastInvite}
                             <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Availability</Text>
                             { workingHours }
                             {this.props.sitterProfile.sitter.hobbies ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Hobbies</Text> : null}
@@ -106,7 +115,7 @@ class SitterProfileView extends React.Component {
                                 {
                                     this.props.sitterProfile.sitter.hobbies ? this.props.sitterProfile.sitter.hobbies.map(function(hobbie) {
                                         return <Text key={ hobbie }>{ hobbie + ' ' }</Text>;
-                                    }) : <Text>No hobbies</Text>
+                                    }) : null
                                 }
                             </View>
                             {this.props.sitterProfile.sitter.education ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Education</Text> : null}
@@ -114,7 +123,7 @@ class SitterProfileView extends React.Component {
                                 {
                                     this.props.sitterProfile.sitter.education ? this.props.sitterProfile.sitter.education.map(function(education) {
                                         return <Text key={ education }>{ education + ' ' }</Text>;
-                                    }) : <Text>No languages</Text>
+                                    }) : null
                                 }
                             </View>
                             {this.props.sitterProfile.sitter.languages ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Languages</Text> : null}
@@ -122,7 +131,7 @@ class SitterProfileView extends React.Component {
                                 {
                                     this.props.sitterProfile.sitter.languages ? this.props.sitterProfile.sitter.languages.map(function(lang) {
                                         return <Text key={ lang }>{ lang + ' ' }</Text>;
-                                    }) : <Text>No education</Text>
+                                    }) : null
                                 }
                             </View>
                             {this.props.sitterProfile.sitter.expertise ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Expertise</Text> : null}
@@ -130,7 +139,7 @@ class SitterProfileView extends React.Component {
                                 {
                                     this.props.sitterProfile.sitter.expertise ? this.props.sitterProfile.sitter.expertise.map(function(expertise) {
                                         return <Text key={ expertise }>{ expertise + ' '}</Text>;
-                                    }) : <Text>No expertise</Text>
+                                    }) : null
                                 }
                             </View>
                             <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Reviews({ this.props.sitterProfile.sitter.reviews.length })</Text>
