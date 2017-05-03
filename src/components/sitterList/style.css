@@ -38,27 +38,45 @@
 
 .match .rc-slider {
   height: 20px;
-  display: flex; }
+  display: flex;
+  width: 60%;
+  margin: 0 auto; }
 
 .match .rc-slider-disabled {
   background-color: transparent; }
 
-.match .rc-slider-rail {
-  height: 9px; }
-
 .match .rc-slider-track {
-  background-color: #e9e9e9; }
+  background: #e9e9e9; }
 
 .match .rc-slider-handle {
   width: 20px;
-  height: 20px; }
+  height: 20px;
+  margin-top: -7px;
+  border-width: 4px;
+  border-color: #f7a1a1; }
+
+.match .slider-dot {
+  width: 9px;
+  height: 9px;
+  bottom: -4px;
+  border-width: 2px; }
 
 .match .answer {
   display: flex;
   margin-bottom: 24px; }
 
+.match .personality-profile h3:last-of-type {
+  margin-top: 48px; }
+
 .match .same-answer .rc-slider-handle {
-  border-color: #88d685; }
+  border-color: #88d685;
+  background: #fff; }
+
+.match .same-answer .rc-slider-track {
+  background: #88d685; }
+
+.match .same-answer .rc-slider-rail {
+  background: #88d685; }
 
 .match .right-label {
   text-align: right;
