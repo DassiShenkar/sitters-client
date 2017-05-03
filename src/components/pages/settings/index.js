@@ -4,6 +4,7 @@ import axios from 'axios';
 import {PageHeader} from 'react-bootstrap';
 import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
+import strings from "../../../static/strings";
 
 //components
 
@@ -28,8 +29,7 @@ class Settings extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            // url: 'http://localhost:4444/parent/update',
-            url: 'https://sitters-server.herokuapp.com/parent/update',
+            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {

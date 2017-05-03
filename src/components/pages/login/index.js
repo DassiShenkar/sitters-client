@@ -27,8 +27,7 @@ class Login extends React.Component {
         const self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/parent/get',
-            url: 'http://localhost:4444/parent/get',
+            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: user.id}
         })

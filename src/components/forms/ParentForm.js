@@ -123,7 +123,7 @@ class Form extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/parent/create',
-            url: 'http://localhost:4444/parent/create',
+            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'parent/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: parent
         }).then(function (res) {

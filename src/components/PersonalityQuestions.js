@@ -28,6 +28,7 @@ class PersonalityQuestions extends React.Component {
                 </div>
             );
         });
+
         return (
             <div>
                 {questions}

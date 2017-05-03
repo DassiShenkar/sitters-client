@@ -9,6 +9,7 @@ import TimeInput from "../controllers/TimeInput";
 import GoogleMaps from "../GoogleMaps";
 import axios from 'axios';
 import Rating from "react-rating";
+import strings from "../../static/strings";
 
 
 class Review extends React.Component {
@@ -24,37 +25,30 @@ class Review extends React.Component {
 
     sendReview(e) {
         e.preventDefault();
-            let invite = {
+        let sitter = this.props.feed.filteredMatches[this.props.feed.sitterIndex];
+            let review = {
                 _id: uuid.v1(),
-                address:    {
-                    city: this.props.user.address.city,
-                    street: this.props.user.address.street,
-                    houseNumber: this.props.user.address.houseNumber
-                },
-                startTime:  this.props.invite.fromTime.format('HH:mm'),
-                endTime:    this.props.invite.toTime.format('HH:mm'),
-                date:       this.props.invite.inviteDate,
-                status:     "waiting",
-                wasRead: false,
-                sitterID:   this.props.sitterProfile.sitter._id,
+                sitterID:   sitter._id,
                 parentID:   this.props.user._id,
-                notes: this.props.invite.notes? this.props.invite.notes: "",
-                sitterName: this.props.sitterProfile.sitter.name,
-                sitterImage: this.props.sitterProfile.sitter.profilePicture
-
+                parentImage:    this.props.user.profilePicture,
+                parentName: this.props.user.name,
+                description:  this.props.feed.review.text,
+                rates: this.props.feed.review.rates
             };
+            sitter.reviews.push(review);
+
             let self = this;
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/invite/create',
-                url: 'http://localhost:4444/invite/create',
+                url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'sitter/update',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: invite
+                data: sitter
             }).then(function (res) {
                 console.log(res);
-                if (res.data) {  // invite created
-                    self.props.actions.feedActions.showInvitePopup(false);
-                    self.props.router.push('/');
+                if (res.data) {
+                    console.log("review added");
+                    // self.props.actions.feedActions.showInvitePopup(false);
+                    // self.props.router.push('/');
                 }
                 else { // invite not created
                     //TODO: think about error when user not created
@@ -92,11 +86,10 @@ class Review extends React.Component {
     };
 
     closePopup(){
-        this.props.actions.feedActions.showInvitePopup(false)
+        this.props.actions.feedActions.showReviewPopup(false)
     }
     onChangeRate(category,rate){
         this.props.actions.feedActions.changeReviewRate(category,rate)
-        // console.log(rate + "  " + category);
     }
 
     render() {
@@ -105,8 +98,7 @@ class Review extends React.Component {
         return (
             <div>
                 <Modal
-                    // show={this.props.feed.show}
-                    show={true}
+                     show={this.props.feed.showReviewPopup}
                     onHide={this.closePopup.bind(this)}
                     container={this}
                     aria-labelledby="contained-modal-title"

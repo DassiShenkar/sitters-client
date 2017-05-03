@@ -51,6 +51,11 @@ function feed(state = {}, action) {
                 ...state,
                 review: review
             };
+        case 'SHOW_REVIEW_POPUP' :
+            return {
+                ...state,
+                showReviewPopup: action.showReviewPopup
+            };
         default:
             return state;
     }

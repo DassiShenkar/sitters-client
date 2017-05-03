@@ -62,3 +62,10 @@ export function changeReviewText(text) {
         text
     }
 }
+
+export function showReviewPopup(showReviewPopup) {
+    return {
+        type: 'SHOW_REVIEW_POPUP',
+        showReviewPopup
+    }
+}

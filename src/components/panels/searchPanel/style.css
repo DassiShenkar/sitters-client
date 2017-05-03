@@ -1,8 +1,14 @@
 #time-search {
-  width: 50%;
-  margin: 48px 0; }
+  margin: 0;
+  padding: 0;
+  height: 240px; }
   #time-search label {
     margin: 16px 0; }
+
+#range-search {
+  height: 240px;
+  padding: 0;
+  margin: 0; }
 
 #search-range {
   width: 360px;

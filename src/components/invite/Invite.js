@@ -8,6 +8,7 @@ import DatePicker from "../controllers/DatePicker";
 import TimeInput from "../controllers/TimeInput";
 import GoogleMaps from "../GoogleMaps";
 import axios from 'axios';
+import strings from "../../static/strings";
 
 
 class Invite extends React.Component {
@@ -45,8 +46,7 @@ class Invite extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/invite/create',
-            url: 'http://localhost:4444/invite/create',
+            url: strings.DEBUG?strings.LOCALHOST : strings.WEBSITE + 'invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {

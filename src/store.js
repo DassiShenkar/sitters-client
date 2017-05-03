@@ -24,6 +24,7 @@ const defaultState = {
         show: false,
         showNotificationsPopup: false,
         showInvitesPopup: false,
+        showReviewPopup: false,
         review: {
             text:'',
             rates: {
