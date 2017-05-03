@@ -56,6 +56,16 @@ function feed(state = {}, action) {
                 ...state,
                 showReviewPopup: action.showReviewPopup
             };
+        case 'SHOW_SPINNER' :
+            return {
+                ...state,
+                showSpinner: action.showSpinner
+            };
+        case 'SET_SPINNER_TEXT' :
+            return {
+                ...state,
+                spinnerText: action.spinnerText
+            };
         default:
             return state;
     }

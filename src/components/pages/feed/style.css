@@ -10,3 +10,6 @@
 
 #feed-page label {
   color: #555; }
+
+#feed-page ._loading-overlay {
+  position: static !important; }

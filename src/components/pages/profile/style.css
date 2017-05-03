@@ -41,21 +41,24 @@ img.profilePic {
 #sitter-profile #availability-table th, #sitter-profile td {
   text-align: left; }
 
-#sitter-profile #invite-button {
+#sitter-profile #invite-button, #sitter-profile #review-button {
   background: #fff;
   color: #88d685;
   border: 2px solid #88d685;
   border-radius: 18px; }
 
-#sitter-profile #invite-button:hover {
+#sitter-profile #invite-button:hover, #sitter-profile #review-button:hover {
   background: #88d685;
   color: #fff; }
 
-#sitter-profile #invite-button:focus {
+#sitter-profile #invite-button:focus, #sitter-profile #review-button:focus {
   outline: none; }
 
-#sitter-profile #invite-button:hover #mail-icon path {
+#sitter-profile #invite-button:hover #mail-icon path, #sitter-profile #review-button:hover #like-icon path {
   fill: #fff; }
 
-#sitter-profile #mail-icon path {
+#sitter-profile #mail-icon path, #sitter-profile #like-icon path {
   fill: #88d685; }
+
+#sitter-profile #invite-button svg, #sitter-profile #review-button svg {
+  width: 20px; }

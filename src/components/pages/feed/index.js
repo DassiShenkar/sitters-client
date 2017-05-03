@@ -11,7 +11,7 @@ import Notifications from "../../notifications/index";
 import Invites from "../../inviteList/index";
 import SitterList from "../../sitterList/index";
 import SitterActionBar from "../../panels/actionPanel/index";
-
+import Loadable from 'react-loading-overlay'
 //style
 import './style.css';
 import Rating from "react-rating";
@@ -21,6 +21,8 @@ import strings from "../../../static/strings";
 class Feed extends React.Component {
 
     componentWillMount() {
+        this.props.actions.feedActions.setSpinnetText("Finding you matches with 20 Sitters...");
+        this.props.actions.feedActions.showSpinner(true);
         let self = this;
         const userId = localStorage.getItem('auth_token');
         if (!userId) {
@@ -33,6 +35,7 @@ class Feed extends React.Component {
             })
                 .then(function (parent) {
                     if (parent.data) {  // user exists
+                        self.props.actions.feedActions.showSpinner(true);
                         self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                         self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
 
@@ -49,6 +52,7 @@ class Feed extends React.Component {
                                 else {
                                     console.log('no matches found');
                                 }
+                               self.props.actions.feedActions.showSpinner(false);
                             })
                             .catch(function (error) {
                                 console.log(error);
@@ -81,12 +85,19 @@ class Feed extends React.Component {
 
         return (
             <div id="feed-page" className="page">
-                {navView}
-                {showSitters ? <SitterList {...this.props}
-                                           sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
-                <Invites {...this.props} />
-                <Notifications {...this.props}/>
-                <Review {...this.props} />
+                <Loadable
+                    active={this.props.feed.showSpinner}
+                    spinner
+                    text='Finding you matches with 20 Sitters...'
+                >
+                    {navView}
+                    {showSitters ? <SitterList {...this.props}
+                                               sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
+                    <Invites {...this.props} />
+                    <Notifications {...this.props}/>
+                    <Review {...this.props} />
+
+                </Loadable>
             </div>
         );
     }

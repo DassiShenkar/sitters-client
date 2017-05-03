@@ -69,3 +69,17 @@ export function showReviewPopup(showReviewPopup) {
         showReviewPopup
     }
 }
+
+export function showSpinner(showSpinner) {
+    return {
+        type: 'SHOW_SPINNER',
+        showSpinner
+    }
+}
+
+export function setSpinnetText(spinnerText) {
+    return {
+        type: 'SET_SPINNER_TEXT',
+        spinnerText
+    }
+}

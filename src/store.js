@@ -26,6 +26,8 @@ const defaultState = {
         showNotificationsPopup: false,
         showInvitesPopup: false,
         showReviewPopup: false,
+        showSpinner: false,
+        spinnerText: '',
         review: {
             text:'',
             rates: {
