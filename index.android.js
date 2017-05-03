@@ -9,6 +9,7 @@ import App from './native/containers/App';
 import Splash from './native/containers/Splash';
 import Login from './native/containers/Login';
 import Register from './native/containers/Register';
+import EditProfile from './native/containers/EditProfile';
 import Feed from './native/containers/Feed';
 import SitterProfileView from './native/containers/SitterProfileView';
 import SitterSendInvite from './native/containers/SitterSendInvite';
@@ -42,9 +43,10 @@ class Sitters extends React.Component {
                     <Scene key="modal" component={Modal}>
                         <Scene key="root">
                             <Scene key="App" component={App} title="App" initial={true} hideNavBar={true} animation='fade'/>
-                            <Scene key="Splash" component={Splash} title="Splash" animation='fade'/>
-                            <Scene key="Login" component={Login} title="Login" animation='fade'/>
-                            <Scene key="Register" component={Register} title="Register" animation='fade'/>
+                            <Scene key="Splash" component={Splash} title="Splash" animation='fade' hideNavBar={true}/>
+                            <Scene key="Login" component={Login} title="Login" animation='fade' hideNavBar={true}/>
+                            <Scene key="Register" component={Register} title="Register" animation='fade' hideNavBar={true}/>
+                            <Scene key="EditProfile" component={EditProfile} title="EditProfile" animation='fade'/>
                             <Scene key="Feed" component={Feed} title="Feed" passProps={true} animation='fade'/>
                             <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView" passProps={true} animation='fade'/>
                             <Scene key="Notifications" component={Notifications} title="Notifications" animation='fade'/>

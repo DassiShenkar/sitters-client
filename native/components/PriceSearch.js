@@ -24,11 +24,13 @@ export default class PriceSearch extends React.Component {
         const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
         const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
         const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
-        let value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 100 : this.props.searchBy.priceMaxRange;
+        let value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : this.props.searchBy.priceMaxRange;
         return (
             <View style={{ margin: 15, alignItems: 'center', width: '100%' }}>
                 <View style={{ justifyContent: 'flex-start', marginBottom: 100 }}>
-                    <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 10, paddingTop: 10}}>Max Hour rate</Text>
+                    <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 10, paddingTop: 10}}>
+                        Max Hour rate: {typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : Math.floor(this.props.searchBy.priceMaxRange)}$
+                    </Text>
                     <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '80%' }}>
                         <Text style={{ fontSize: 12, color: '#f7a1a1', paddingTop: 10}}>1</Text>
                         <Text style={{ fontSize: 12, color: '#f7a1a1', paddingTop: 10}}>50</Text>
@@ -37,15 +39,17 @@ export default class PriceSearch extends React.Component {
                         value={ value }
                         style={{ width: '80%' }}
                         {...this.props}
+                        maximumTrackTintColor="#f7a1a1"
+                        thumbTintColor="#f7a1a1"
                         maximumValue={50}
                         minimummValue={1}
-                        onValueChange={(value) => this.filter(value)} />
+                        onSlidingComplete={(value) => this.filter(value)} />
                 </View>
                 { this.props.sitters.length > 0 ?
                     <View>
                         <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
                             <ImageButton
-                                onPress={ (e) => this.navToProfile(e, sitterId) }
+                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
                                 styles={{width: 100, height: 100, borderRadius:100}}
                                 src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
                             <View style={{ paddingTop: 10 }}>
@@ -56,11 +60,11 @@ export default class PriceSearch extends React.Component {
                         </View>
                         <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
                             <ImageButton
-                                onPress={ (e) => this.navToInvite(e, sitterId) }
+                                onPress={ (e) => this.navToInvite }
                                 styles={{ width: 50, height: 50, borderRadius:100}}
                                 src={require('../style/icons/v.png')}/>
                             <ImageButton
-                                onPress={ (e) => this.removeSitter(e) }
+                                onPress={ (e) => this.removeSitter }
                                 styles={{width: 50, height: 50, borderRadius:100}}
                                 src={require('../style/icons/next.png')}/>
                         </View>
@@ -75,23 +79,22 @@ export default class PriceSearch extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e) {
+    navToInvite() {
         let sitterIndex = this.props.feed.sitterIndex;
         let sitter = this.props.sitters[sitterIndex];
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    removeSitter(e) {
+    removeSitter() {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
-        Actions.Search({index: 2, sitters: this.props.sitters});
+        Actions.Search({index: this.props.pageIndex});
     }
 
     filter(value) {
-        console.log(Math.abs(value));
         let sitters = this.props.feed.matches;
-        this.props.rangeActions.changeRange(1, Math.abs(value));
-        this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.abs(value)));
-        Actions.Search({index: 2, sitters: this.props.sitters});
+        this.props.rangeActions.changeRange(1, Math.floor(value));
+        this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.floor(value)));
+        Actions.Search({index: this.props.pageIndex});
     }
 }

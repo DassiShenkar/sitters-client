@@ -14,11 +14,13 @@ import * as actionCreators from '../../src/actions/actionCreators';
 import * as SearchByActions from '../../src/actions/SearchByActions';
 import * as RangeActions from '../../src/actions/RangeActions';
 import * as FeedActions from '../../src/actions/FeedActions';
+import * as RouterActions from '../actions/RouterActions';
 
 class Search extends React.Component {
 
     constructor(props) {
         super(props);
+        this._renderScene = this._renderScene.bind(this);
     }
 
     state = {
@@ -27,7 +29,7 @@ class Search extends React.Component {
             { key: '1', title: 'Location' },
             { key: '2', title: 'Time' },
             { key: '3', title: 'Price' }
-        ]
+        ],
     };
 
     _handleChangeTab = (index) => {
@@ -53,18 +55,21 @@ class Search extends React.Component {
                 return <View>
                     <LocationSearch
                         sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : [] }
+                        pageIndex={this.state.index}
                         { ...this.props } />
                 </View>;
             case '2':
                 return <View>
                     <TimeSearch
                         sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : [] }
+                        pageIndex={this.state.index}
                         { ...this.props }  />
                 </View>;
             case '3':
                 return <View>
                     <PriceSearch
                         sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : [] }
+                        pageIndex={this.state.index}
                         { ...this.props }  />
                 </View>;
             default:
@@ -89,7 +94,8 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         feed: state.feed,
-        searchBy: state.searchBy
+        searchBy: state.searchBy,
+        router: state.router
     }
 }
 
@@ -98,7 +104,8 @@ function mapDispatchToProps(dispatch) {
         actionCreators: bindActionCreators(actionCreators, dispatch),
         feedActions: bindActionCreators(FeedActions, dispatch),
         searchByActions: bindActionCreators(SearchByActions, dispatch),
-        rangeActions: bindActionCreators(RangeActions, dispatch)
+        rangeActions: bindActionCreators(RangeActions, dispatch),
+        routerActions: bindActionCreators(RouterActions, dispatch)
     };
 }
 

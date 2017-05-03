@@ -76,6 +76,7 @@ class Splash extends React.Component {
     async getUserFromDb(self, result) {
         axios({
             method: 'post',
+            // url: 'https://sitters-server.herokuapp.com/parent/get',
             url: 'https://sittersdev.herokuapp.com/parent/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: result.id.toString()}

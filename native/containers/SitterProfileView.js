@@ -11,6 +11,7 @@ import { Actions } from 'react-native-router-flux';
 import AppBar from '../components/AppBar';
 import Review from '../components/Review';
 import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
+import * as RouterActions from '../actions/RouterActions';
 import ImageButton from '../components/ImageButton';
 import TextButton from '../components/TextButton';
 
@@ -26,6 +27,7 @@ class SitterProfileView extends React.Component {
         let self = this;
         axios({
             method: 'post',
+            // url: 'https://sitters-server.herokuapp.com/sitter/get',
             url: 'https://sittersdev.herokuapp.com/sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: sitterID}
@@ -38,6 +40,15 @@ class SitterProfileView extends React.Component {
         }).catch(function (error) {
             console.log(error);//TODO: in case of sitter wasn't found
         });
+    }
+
+    componentDidUpdate () {
+        var self = this;
+        console.log(self.props.router.validFlag);
+        if(self.props.router.validFlag) {
+            this.props.routerActions.changeValidFlag(false);
+            Actions.Feed();
+        }
     }
 
     render () {
@@ -53,6 +64,7 @@ class SitterProfileView extends React.Component {
                 </View>
             )
         });
+        // TODO: add address and last invite
         return (
             <View style={{ flex:1 }}>
                 <ScrollView>
@@ -164,13 +176,15 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         sitterProfile: state.sitterProfile,
-        feed: state.feed
+        feed: state.feed,
+        router: state.router
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        sitterProfileActions: bindActionCreators(sitterProfileActions, dispatch)
+        sitterProfileActions: bindActionCreators(sitterProfileActions, dispatch),
+        routerActions: bindActionCreators(RouterActions, dispatch)
     };
 }
 

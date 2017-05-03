@@ -28,7 +28,7 @@ export default class AndroidDatePicker extends React.Component {
                 var date = new Date(year, month, day);
                 newState[stateKey + 'Text'] = date.toLocaleDateString();
                 newState[stateKey + 'Date'] = date;
-                this.props.callback(date);
+                this.props.pickerCallback(date);
             }
             this.setState(newState);
         } catch ({code, message}) {

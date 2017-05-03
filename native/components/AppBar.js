@@ -17,76 +17,84 @@ class AppBar extends React.Component {
         this.menu = this.menu.bind(this);
     }
 
-    render () {
-        if(this.props.router.validFlag) {
+    componentDidUpdate () {
+        var self = this;
+        console.log(self.props.router.validFlag);
+        if(self.props.router.validFlag) {
             this.props.routerActions.changeValidFlag(false);
-            switch(this.props.router.scene) {
-                case 'register':
-                    Actions.Register({ registered: true });
-                    break;
-                case 'settings':
-                    Actions.Settings();
-                    break;
-                case 'about':
-                    Actions.About();
-                    break;
-                case 'login':
-                    Actions.Login();
-                    break;
-                default:
-                    break;
-            }
-            return null;
-        } else {
-            let notify = function() {
-                if(this.props.user.invites && this.props.feed.invites.length > 0) {
-                    this.props.feed.invites.map(function(invite) {
-                        if(!invite.wasRead) {
-                            return true;
-                        }
-                    });
-                    return false;
-                } else {
-                    return false;
-                }
-            };
-
-            return (
-                <View style={ styles.container }>
-                    <ImageButton
-                        onPress={ Actions.Feed }
-                        styles={ styles.profilePic }
-                        src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png' }}/>
-                    <Text
-                        style={{marginLeft: 30, marginRight: 10, marginTop:20}}>Hi, { this.props.user.name.split(" ")[0] }</Text>
-                    <View
-                        style={{ width: 160, flexDirection: 'row-reverse', justifyContent: 'space-between', marginTop: 10 }}>
-                        <ImageButton
-                            onPress={this.search}
-                            styles={ styles.icons }
-                            src={require('../style/icons/search.png')}/>
-                        <ImageButton
-                            onPress={Actions.Inbox}
-                            styles={ styles.icons }
-                            src={require('../style/icons/inbox.png')}>
-                            {notify ? <Image style={ styles.inboxBadge }
-                                             source={require('../style/icons/redCircle.png')}/> : null}
-                        </ImageButton>
-                        <ImageButton
-                            onPress={Actions.Notifications}
-                            styles={ styles.icons }
-                            src={require('../style/icons/notification.png')}>
-                            {notify ? <Image style={ styles.notificationBadge }
-                                             source={require('../style/icons/redCircle.png')}/> : null}
-                        </ImageButton>
-                        <ImageButton
-                            onPress={this.menu}
-                            styles={ styles.icons }
-                            src={require('../style/icons/menu.png')}/>
-                    </View>
-                </View>
-            );
+            self.route(self.props.router.scene);
         }
+    }
+
+    route(scene) {
+        console.log(scene);
+        switch(scene) {
+            case 'register':
+                Actions.EditProfile();
+                break;
+            case 'settings':
+                Actions.Settings();
+                break;
+            case 'about':
+                Actions.About();
+                break;
+            case 'login':
+                Actions.Login({type: "reset"});
+                break;
+            default:
+                break;
+        }
+    }
+
+    render () {
+        let notify = function() {
+            if(this.props.user.invites && this.props.feed.invites.length > 0) {
+                this.props.feed.invites.map(function(invite) {
+                    if(!invite.wasRead) {
+                        return true;
+                    }
+                });
+                return false;
+            } else {
+                return false;
+            }
+        };
+
+        return (
+            <View style={ styles.container }>
+                <ImageButton
+                    onPress={ Actions.Feed }
+                    styles={ styles.profilePic }
+                    src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png' }}/>
+                <Text
+                    style={{marginLeft: 30, marginRight: 10, marginTop:20}}>Hi, { this.props.user.name.split(" ")[0] }</Text>
+                <View
+                    style={{ width: 160, flexDirection: 'row-reverse', justifyContent: 'space-between', marginTop: 10 }}>
+                    <ImageButton
+                        onPress={this.search}
+                        styles={ styles.icons }
+                        src={require('../style/icons/search.png')}/>
+                    <ImageButton
+                        onPress={Actions.Inbox}
+                        styles={ styles.icons }
+                        src={require('../style/icons/inbox.png')}>
+                        {notify ? <Image style={ styles.inboxBadge }
+                                         source={require('../style/icons/redCircle.png')}/> : null}
+                    </ImageButton>
+                    <ImageButton
+                        onPress={Actions.Notifications}
+                        styles={ styles.icons }
+                        src={require('../style/icons/notification.png')}>
+                        {notify ? <Image style={ styles.notificationBadge }
+                                         source={require('../style/icons/redCircle.png')}/> : null}
+                    </ImageButton>
+                    <ImageButton
+                        onPress={this.menu}
+                        styles={ styles.icons }
+                        src={require('../style/icons/menu.png')}/>
+                </View>
+            </View>
+        );
     }
 
     search() {

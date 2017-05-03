@@ -1,11 +1,8 @@
 "use strict";
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
-import Geocoder from '../utils/GeoCoder'
-import axios from 'axios';
-import {AgeFromDate} from 'age-calculator';
 import { Actions } from 'react-native-router-flux'
 
 import ParentForm from '../components/ParentForm';
@@ -13,8 +10,23 @@ import SitterForm from '../components/SitterForm';
 import AppBar from '../components/AppBar';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
-
-class Register extends Component {
+/*
+*
+ <ScrollView>
+ <View style={{ margin: 20 }}>
+ {this.props.user.userType === "I'm a parent" ?
+ <ParentForm
+ {...this.props}
+ callback={ this.parentCallback } /> :
+ <SitterForm
+ {...this.props}
+ callback={ this.sitterCallback } />
+ }
+ </View>
+ </ScrollView>
+*
+* */
+class EditProfile extends Component {
 
     constructor(props) {
         super(props);
@@ -23,22 +35,12 @@ class Register extends Component {
         this.setUserInDB = this.setUserInDB.bind(this);
         this.getGeoCode = this.getGeoCode.bind(this);
     }
-    
+
     render () {
         return (
             <View>
-                <ScrollView>
-                    <View style={{ margin: 20 }}>
-                        {this.props.user.userType === "I'm a parent" ?
-                            <ParentForm
-                                {...this.props}
-                                callback={ this.parentCallback } /> :
-                            <SitterForm
-                                {...this.props}
-                                callback={ this.sitterCallback } />
-                        }
-                    </View>
-                </ScrollView>
+                <AppBar { ...this.props }/>
+                <Text>This will be the edit profile page</Text>
             </View>
         );
     }
@@ -97,7 +99,7 @@ class Register extends Component {
         };
         //TODO: add personality test scores
         console.log(parent);
-        self.setUserInDB(parent, 'parent/create');
+        self.setUserInDB(parent, 'parent/update');
     }
 
     sitterCallback() {// get all the form params and create sitter
@@ -141,15 +143,14 @@ class Register extends Component {
         };
         //TODO: add personality test scores
         console.log(sitter);
-        self.setUserInDB(sitter, 'sitter/create');
+        self.setUserInDB(sitter, 'sitter/update');
     }
 
     async setUserInDB(data, path) {
         const self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/' + path,
-            url: 'https://sittersdev.herokuapp.com/' + path,
+            url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: data
         }).then(function (res) {
@@ -184,4 +185,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
