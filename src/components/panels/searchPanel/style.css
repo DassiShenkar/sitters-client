@@ -13,3 +13,11 @@
 #search-range {
   width: 360px;
   margin: 48px 0; }
+
+.nav path {
+  fill: #f7a1a1; }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #f7a1a1; }
+  .nav > li > a:hover path, .nav > li > a:focus path {
+    fill: #fff; }

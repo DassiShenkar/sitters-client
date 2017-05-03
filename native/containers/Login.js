@@ -25,8 +25,8 @@ class Login extends React.Component {
                         style={{ width: 200 }}
                         selectedValue={ this.props.user.userType }
                         onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-                        <Picker.Item label="I'm A Parent" value="I'm a Parent" />
-                        <Picker.Item label="I'm A Sitter" value="I'm a Sitter" />
+                        <Picker.Item label="I'm A Parent" value="I'm a parent" />
+                        <Picker.Item label="I'm A Sitter" value="I'm a sitter" />
                     </Picker>
                 </View>
                 <FaceBookLogin

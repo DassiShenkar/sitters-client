@@ -66,7 +66,8 @@ class Feed extends React.Component {
             <View style={{flex: 1}}>
                 <AppBar
                     { ...this.props } />
-                <SitterList { ...this.props }
+                <SitterList
+                    { ...this.props }
                     sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : [] }/>
             </View>
         );

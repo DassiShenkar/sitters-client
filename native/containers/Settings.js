@@ -2,10 +2,16 @@
 
 import React, { Component } from 'react';
 import { View, Text, Switch, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import AppBar from '../components/AppBar'
+import TextButton from '../components/TextButton'
+import * as actionCreators from '../../src/actions/actionCreators';
 
-export default class PriceSearch extends React.Component {
+
+class Settings extends React.Component {
 
     constructor (props) {
         super(props);
@@ -19,7 +25,8 @@ export default class PriceSearch extends React.Component {
     render () {
         return (
             <View>
-                <AppBar />
+                <AppBar
+                    { ...this.props }/>
                 <Text>Allow Notifications</Text>
                 <Switch
                     onValueChange={(value) => this.setState({notifications: value})}
@@ -30,9 +37,13 @@ export default class PriceSearch extends React.Component {
                     value={this.state.suggestions} />
                 <Text>Show on search</Text>
                 <Switch
-                    style={ this.props.userType === 'Parent' ? styles.hiddenContainer : {} }
+                    style={ this.props.userType === "I'm a Parent" ? styles.hiddenContainer : null }
                     onValueChange={(value) => this.setState({show: value})}
                     value={this.state.show} />
+                <TextButton
+                    onPress={Actions.pop}
+                    styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                    text='Cancel' />
             </View>
         );
     }
@@ -46,3 +57,18 @@ const styles = StyleSheet.create({
         bottom: -window.height
     }
 });
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actionCreators: bindActionCreators(actionCreators, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+

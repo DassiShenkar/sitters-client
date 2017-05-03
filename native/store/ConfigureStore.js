@@ -1,10 +1,20 @@
-import { createStore, compose, applyMiddleware } from 'redux'
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux';
 import thunk from 'redux-thunk'
 import dateFormat from 'dateformat';
 import moment from "moment";
 
-import rootReducer from '../../src/reducers/index';
 import strings from '../../src/static/strings';
+import router from '../reducers/router'
+import reviews from '../../src/reducers/reviews';
+import user from '../../src/reducers/user';
+import register from '../../src/reducers/register';
+import feed from '../../src/reducers/feed';
+import settings from '../../src/reducers/settings';
+import searchBy from '../../src/reducers/searchBy';
+import range from '../../src/reducers/range';
+import invite from '../../src/reducers/invite';
+import sitterProfile from '../../src/reducers/sitterProfile';
 
 
 export default function configureStore() {
@@ -20,9 +30,21 @@ export default function configureStore() {
         feed: {
             matches: [],
             filteredMatches: [],
-            sitterIndex: 0
+            sitterIndex: 0,
+            show: false,
+            showNotificationsPopup: false,
+            showInvitesPopup: false
         },
-        register : {personalityTestQuestions : []},
+        register : {
+            personalityQuestions : strings.QUESTIONS,
+            childHobbies: [],
+            childExpertise: [],
+            childSpecialNeeds: [],
+            sitterHobbies: [],
+            sitterExpertise: [],
+            sitterSpecialNeeds: [],
+            sitterEducation: []
+        },
         settings: {
             enableNotifications: true,
             enableSuggestions: true
@@ -32,7 +54,8 @@ export default function configureStore() {
             inviteDay: dateFormat(new Date(), "dddd"),
             fromTime: moment(),
             toTime: moment(),
-            isoValue: new Date().toISOString()
+            isoValue: new Date().toISOString(),
+            searchView: 'location'
         },
         invite: {
             inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),
@@ -51,9 +74,11 @@ export default function configureStore() {
             languages: [],
             education: [],
             address: {},
-            reviews: []
+            reviews: [],
+            expertise: [],
         },
-            distance: ""
+            distance: "",
+            expandReview: false
         },
 
     };
@@ -61,6 +86,8 @@ export default function configureStore() {
     const enhancers = compose(
         window.devToolsExtension ? window.devToolsExtension() : f => f
     );
+
+    const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, router, routing: routerReducer});
 
     const store = createStore(
         rootReducer,

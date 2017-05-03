@@ -13,43 +13,43 @@ const strings = {
     QUESTIONS: [{
         label1: "Mature",
         label2: "Youthful",
-        value: 3
+        value: 2
     }, {
         label1: "Playful",
         label2: "Sophisticated",
-        value: 3
+        value: 2
     }, {
         label1: "Patient",
         label2: "Witty",
-        value: 3
+        value: 2
     }, {
         label1: "Soft",
         label2: "Strict",
-        value: 3
+        value: 2
     }, {
         label1: "Stay-at-home",
         label2: "Outdoorsy",
-        value: 3
+        value: 2
     }, {
         label1: "Funny",
         label2: "Serious",
-        value: 3
+        value: 2
     }, {
         label1: "Adventurous",
         label2: "Laid back",
-        value: 3
+        value: 2
     }, {
         label1: "Religious\\Spiritual",
         label2: "Atheistic",
-        value: 3
+        value: 2
     }, {
         label1: "Gracious",
         label2: "Loud",
-        value: 3
+        value: 2
     }, {
         label1: "Sensitive",
         label2: "Authoritative",
-        value: 3
+        value: 2
     }],
     EDUCATION: [
         {value: 'high school', label: 'High School'},

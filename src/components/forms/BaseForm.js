@@ -1,11 +1,19 @@
+// external sources
 import React from 'react';
+import {AgeFromDate} from 'age-calculator';
+
+// components
+import 'react-select/dist/react-select.css';
+
 import TextInput from '../controllers/TextInput';
 import RadioInput from '../controllers/radio/index';
-import 'react-select/dist/react-select.css';
 import SelectInput from '../controllers/SelectInput';
-// import baseData from '../../data/BaseData';
+
+// statics
 import strings from '../../static/strings';
-import {AgeFromDate} from 'age-calculator';
+
+// style
+import './style.css';
 
 
 class BaseForm extends React.Component {
@@ -32,7 +40,7 @@ class BaseForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="register-form">
                 <TextInput label="Name"
                            placeholder='Name'
                            defaultValue={this.props.user.name}
@@ -42,7 +50,7 @@ class BaseForm extends React.Component {
                            required={true}/>
                 <TextInput label="Email"
                            type="email"
-                           placeholder='Email'
+                           placeholder='example@gmail.com'
                            defaultValue={this.props.user.email ? this.props.user.email : ''}
                            action={this.props.actions.registerActions.changeEmail}
                            inputType={'email'} {...this.props}

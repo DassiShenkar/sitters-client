@@ -31,10 +31,20 @@ nav#main-nav {
     margin-top: 8px;
   }
 
+  path {
+    fill: #555;
+  }
+
+  .badge {
+    background-color: #f7a1a1;
+    border-radius: 50%;
+  }
+
 
   .dropdown-menu {
     svg {
       margin-right: 8px;
+
     }
   }
 }

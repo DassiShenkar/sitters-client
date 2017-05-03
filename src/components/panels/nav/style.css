@@ -19,5 +19,10 @@ nav#main-nav {
     width: 36px;
     height: 36px;
     margin-top: 8px; }
+  nav#main-nav path {
+    fill: #555; }
+  nav#main-nav .badge {
+    background-color: #f7a1a1;
+    border-radius: 50%; }
   nav#main-nav .dropdown-menu svg {
     margin-right: 8px; }

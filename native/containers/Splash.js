@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, BackAndroid, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
