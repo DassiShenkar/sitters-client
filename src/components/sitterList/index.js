@@ -12,19 +12,11 @@ import PersonalityQuestions from "../PersonalityQuestions";
 import './style.css';
 
 // statics
-import strings from "../../static/strings";
 
 class SitterList extends React.Component {
 
     render() {
         let sitterIndex = this.props.feed.sitterIndex;
-        // let personality ;
-        // if(this.props.sitters.length > 0 )
-        //     personality = <PersonalityQuestions questions={this.props.sitters[sitterIndex].personalityTest.questions}
-        //                                           addSameQuestionsClass={false}
-        //                                           secondQuestions={this.props.user.personalityTest.questions}
-        //                                           disabled={true}
-        //                                         {...this.props}/>;
         return (
             <div className="match">
                 <PageHeader>
@@ -44,9 +36,8 @@ class SitterList extends React.Component {
                     </div>
                     <RainbowChart sitter={this.props.sitters[sitterIndex]}/>
                 </div>
-                <h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers herself:' : ''}</h3>
-
-                <PersonalityQuestions questions={this.props.sitters.length > 0 ?this.props.sitters[sitterIndex].personalityTest.questions: ''}
+                <h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers '+ (this.props.sitters[sitterIndex].gender === 'male'? 'himself': 'herself') : ''}</h3>
+                <PersonalityQuestions questions={this.props.sitters.length > 0 ?this.props.sitters[this.props.feed.sitterIndex].personalityTest.questions: ''}
                                       addSameQuestionsClass={false}
                                       secondQuestions={this.props.user.personalityTest.questions}
                                       disabled={true}

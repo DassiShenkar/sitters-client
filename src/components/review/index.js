@@ -4,9 +4,6 @@ import uuid from 'uuid';
 //style
 import './style.css';
 import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
-import DatePicker from "../controllers/DatePicker";
-import TimeInput from "../controllers/TimeInput";
-import GoogleMaps from "../GoogleMaps";
 import axios from 'axios';
 import Rating from "react-rating";
 import strings from "../../static/strings";

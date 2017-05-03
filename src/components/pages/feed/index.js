@@ -16,7 +16,7 @@ import strings from "../../../static/strings";
 class Feed extends React.Component {
 
     componentWillMount() {
-        this.props.actions.feedActions.setSpinnetText("Finding you matches with 20 Sitters...");
+        this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
         this.props.actions.feedActions.showSpinner(true);
         let self = this;
         const userId = localStorage.getItem('auth_token');
