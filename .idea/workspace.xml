@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/feed/style.css" afterPath="$PROJECT_DIR$/src/components/pages/feed/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/profile/style.css" afterPath="$PROJECT_DIR$/src/components/pages/profile/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" afterPath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/review/style.css" afterPath="$PROJECT_DIR$/src/components/review/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/reviewList/reviewItem/style.css" afterPath="$PROJECT_DIR$/src/components/reviewList/reviewItem/style.css" />
-    </list>
-    <list id="85a6bbbf-6823-4eaa-9f01-6d5066ec34c3" name="Not important" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/Before_shelve_pie_chart.xml" afterPath="$PROJECT_DIR$/.idea/shelf/Before_shelve_pie_chart.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/Merge_branch__master__of_https___github_com_DassiShenkar_sitters_client____Conflicts_____i.xml" afterPath="$PROJECT_DIR$/.idea/shelf/Merge_branch__master__of_https___github_com_DassiShenkar_sitters_client____Conflicts_____i.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/dd.xml" afterPath="$PROJECT_DIR$/.idea/shelf/dd.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/feed.xml" afterPath="$PROJECT_DIR$/.idea/shelf/feed.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/searchBy.xml" afterPath="$PROJECT_DIR$/.idea/shelf/searchBy.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/some_changes.xml" afterPath="$PROJECT_DIR$/.idea/shelf/some_changes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/wtf.xml" afterPath="$PROJECT_DIR$/.idea/shelf/wtf.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+    <list id="85a6bbbf-6823-4eaa-9f01-6d5066ec34c3" name="Not important" comment="" />
     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
     <ignored path="D:\projects\final project\sitters-client\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/src/static/strings.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+              <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -983,7 +970,7 @@
       <workItem from="1493094734837" duration="29179000" />
       <workItem from="1493231402593" duration="12172000" />
       <workItem from="1493743530469" duration="7008000" />
-      <workItem from="1493884557499" duration="5603000" />
+      <workItem from="1493884557499" duration="6253000" />
     </task>
     <task id="LOCAL-00001" summary="Added about page and dropdown navigation">
       <created>1492261771649</created>
@@ -1216,11 +1203,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493890185818</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Deploy">
+      <created>1493890893414</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1493890893414</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120041000" />
+    <option name="totallyTimeSpent" value="120691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -1731,7 +1725,7 @@
     <entry file="file://$PROJECT_DIR$/src/static/strings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
           <folding />
         </state>
       </provider>
