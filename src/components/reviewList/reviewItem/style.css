@@ -5,3 +5,7 @@
     width: 96px;
     height: 96px;
     margin: 0; }
+  .review-item .review-rates {
+    display: block; }
+  .review-item .review-item span {
+    display: block; }

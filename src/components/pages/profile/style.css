@@ -21,18 +21,22 @@ img.profilePic {
 
 #sitter-profile #info-table {
   margin: 0 0 24px 0; }
-  #sitter-profile #info-table th, #sitter-profile #info-table td {
-    text-align: center;
-    border-right: 1px solid #eee;
-    width: 33%; }
-  #sitter-profile #info-table th {
-    border-bottom: none;
-    font-size: 24px; }
-  #sitter-profile #info-table tbody > tr > td {
-    border-top: none;
-    text-align: center; }
-  #sitter-profile #info-table th:last-child, #sitter-profile #info-table td:last-child {
-    border-right: none; }
+
+#sitter-profile #info-table th, #sitter-profile #info-table td {
+  text-align: center;
+  border-right: 1px solid #eee;
+  width: 33%; }
+
+#sitter-profile #info-table th {
+  border-bottom: none;
+  font-size: 24px; }
+
+#sitter-profile #info-table tbody > tr > td {
+  border-top: none;
+  text-align: center; }
+
+#sitter-profile #info-table th:last-child, #sitter-profile #info-table td:last-child {
+  border-right: none; }
 
 #sitter-profile .panel-heading, #sitter-profile .panel-group, #sitter-profile .panel {
   background: #fff;
@@ -47,9 +51,16 @@ img.profilePic {
   border: 2px solid #88d685;
   border-radius: 18px; }
 
+#sitter-profile #review-button {
+  color: #f7a1a1;
+  border-color: #f7a1a1; }
+
 #sitter-profile #invite-button:hover, #sitter-profile #review-button:hover {
   background: #88d685;
   color: #fff; }
+
+#sitter-profile #review-button:hover {
+  background: #f7a1a1; }
 
 #sitter-profile #invite-button:focus, #sitter-profile #review-button:focus {
   outline: none; }
@@ -57,8 +68,26 @@ img.profilePic {
 #sitter-profile #invite-button:hover #mail-icon path, #sitter-profile #review-button:hover #like-icon path {
   fill: #fff; }
 
-#sitter-profile #mail-icon path, #sitter-profile #like-icon path {
+#sitter-profile #mail-icon path {
   fill: #88d685; }
+
+#sitter-profile #like-icon path {
+  fill: #f7a1a1; }
 
 #sitter-profile #invite-button svg, #sitter-profile #review-button svg {
   width: 20px; }
+
+#sitter-profile .sitter-details {
+  margin-left: 96px; }
+
+#sitter-profile .last-invited {
+  margin-left: 15px; }
+
+#sitter-profile #review-button, #sitter-profile #invite-button {
+  display: flex;
+  height: 32px;
+  margin-right: 24px; }
+
+#sitter-profile .profile-buttons {
+  display: flex;
+  flex-direction: row; }
