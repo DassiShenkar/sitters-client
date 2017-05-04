@@ -57,7 +57,7 @@ class Sitters extends React.Component {
                             <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest" animation='fade'/>
                             <Scene key="SearchByPrice" component={SearchByPrice} title="SearchByPrice" animation='fade'/>
                             <Scene key="SearchByTime" component={SearchByTime} title="SearchByTime" animation='fade'/>
-                            <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade'/>
+                            <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade' hideNavBar={true}/>
                             <Scene key="About" component={About} title="About" animation='fade'/>
                             <Scene key="Settings" component={Settings} title="Settings" animation='fade'/>
                             <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView" animation='fade'/>

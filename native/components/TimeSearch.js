@@ -66,11 +66,11 @@ export default class TimeSearch extends React.Component {
                         </View>
                         <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
                             <ImageButton
-                                onPress={ (e) => this.navToInvite }
+                                onPress={ (e) => {this.navToInvite()} }
                                 styles={{ width: 50, height: 50, borderRadius:100}}
                                 src={require('../style/icons/v.png')}/>
                             <ImageButton
-                                onPress={ (e) => this.removeSitter }
+                                onPress={ (e) => {this.removeSitter()} }
                                 styles={{width: 50, height: 50, borderRadius:100}}
                                 src={require('../style/icons/next.png')}/>
                         </View>

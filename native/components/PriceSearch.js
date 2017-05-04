@@ -18,7 +18,7 @@ export default class PriceSearch extends React.Component {
 
     render () {
         let sitterIndex = this.props.feed.sitterIndex;
-        let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
+        let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex].id : 0;
         const profilePicture = this.props.sitters.length ? this.props.sitters[sitterIndex].profilePicture : null;
         const name = this.props.sitters.length ? this.props.sitters[sitterIndex].name : null;
         const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
@@ -60,11 +60,11 @@ export default class PriceSearch extends React.Component {
                         </View>
                         <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
                             <ImageButton
-                                onPress={ (e) => this.navToInvite }
+                                onPress={ (e) => {this.navToInvite()} }
                                 styles={{ width: 50, height: 50, borderRadius:100}}
                                 src={require('../style/icons/v.png')}/>
                             <ImageButton
-                                onPress={ (e) => this.removeSitter }
+                                onPress={ (e) => {this.removeSitter()} }
                                 styles={{width: 50, height: 50, borderRadius:100}}
                                 src={require('../style/icons/next.png')}/>
                         </View>

@@ -29,12 +29,16 @@ export default class TabButtons extends React.Component {
                 </View>
                 <View>
                     <ImageButton
-                        onPress={ Actions.SearchByLocation }
+                        onPress={ this.location }
                         styles={styles.image}
                         src={require('../style/icons/location.png')} />
                 </View>
             </View>
         );
+    }
+
+    location() {
+        Actions.SearchByLocation({type: 'reset'});
     }
 }
 
