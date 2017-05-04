@@ -39,7 +39,7 @@ class AppBar extends React.Component {
                 Actions.About();
                 break;
             case 'login':
-                Actions.Login({type: "reset"});
+                Actions.Login();
                 break;
             default:
                 break;

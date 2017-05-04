@@ -28,10 +28,8 @@ export default class LocalStorage {
     }
 
     static async clearAll() {
-        try {
-            AsyncStorage.multiRemove([this.FACEBOOK_KEY, this.USER_KEY], function(err) {
-               if(err) console.log(err);
-            });
-        }
+        AsyncStorage.multiRemove([this.FACEBOOK_KEY, this.USER_KEY], function(err) {
+           if(err) console.log(err);
+        });
     }
 }

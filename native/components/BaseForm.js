@@ -35,54 +35,60 @@ export default class BaseForm extends React.Component {
         };
         return (
             <View>
-                <Text>User</Text>
+                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>User</Text>
                 <TextInput
                     type="TextInput"
                     name="name"
+                    placeholder="name"
                     value={ this.props.user.name ? this.props.user.name : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeName(text)}/>
                 <TextInput
                     type="TextInput"
                     name="email"
+                    placeholder="email"
                     value={ this.props.user.email ? this.props.user.email : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeEmail(text)}/>
                 <TextInput
                     type="TextInput"
                     name="age"
+                    placeholder="age"
                     value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)}/>
-                <Text>Address</Text>
+                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Address</Text>
                 <TextInput
                     type="TextInput"
                     name="city"
+                    placeholder="city"
                     value={ this.props.user.location ? this.props.user.location.name.split(',')[0] : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeCity(text)}/>
                 <TextInput
                     type="TextInput"
                     name="street"
+                    placeholder="street"
                     value={ this.props.user.location ? this.props.user.location.name.split(',')[1] : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeStreet(text)}/>
                 <TextInput
                     type="TextInput"
                     name="houseNumber"
+                    placeholder="houseNumber"
                     value={ this.props.user.location ? this.props.user.location.name.split(',')[2] : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeHouseNumber(text)}/>
-                <Text>Gender</Text>
+                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Gender</Text>
                 <Picker
                     selectedValue={ this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female' }
                     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
                 </Picker>
-                <Text>Profile picture</Text>
+                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Profile picture</Text>
                 <Image
                     source={this.props.user.picture ? {uri: this.props.user.picture.data.url} : null}
                     style={{width: 100, height: 100, borderRadius: 100}}/>
-                <Text>Languages</Text>
-                <CheckboxGroup
+                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Languages</Text>
+                {<CheckboxGroup
                     onSelect={ (values) => self.languagesChecked }
                     checked={ selected() }
-                    items={ strings.LANGUAGES } />
+                    items={ strings.LANGUAGES } />}
             </View>
         );
     }
