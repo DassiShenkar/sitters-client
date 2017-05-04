@@ -2,7 +2,7 @@ const strings = {
     APP_NAME: "Sitters",
     VERSION: "Alpha",
     LOCALHOST: "http://localhost:4444/",
-    WEBSITE: "https://sitters-platform.herokuapp.com/",
+    WEBSITE: "https://sitters-server.herokuapp.com/",
     DEBUG: false,
     ACTIVATE_BLACKLIST: true,
     ACTIVATE_MEDIAN: false,
