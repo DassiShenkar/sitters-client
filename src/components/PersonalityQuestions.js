@@ -5,9 +5,6 @@ import Slider from 'rc-slider'
 
 class PersonalityQuestions extends React.Component {
     onChange(question, index, rate) {
-        console.log(rate);
-        console.log(question);
-        console.log(index);
         question.value = rate;
         question.index = index;
         this.props.actions.registerActions.changePersonalityQuestion(question);
@@ -41,9 +38,6 @@ class PersonalityQuestions extends React.Component {
                         </div>)
                     }
                 }
-
-                console.log(sameQuestions);
-
                 return (
                     <div key={key} className={'answer ' + rangeClass}>
                         <label className="left-label">{question.label1}</label>

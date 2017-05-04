@@ -152,8 +152,8 @@ class SitterProfile extends SitterProfileBase {
         if (this.props.sitterProfile.sitter.expertise.length > 0)
             expertise = <StringsAccordion header="+ Expertise" data={this.props.sitterProfile.sitter.expertise}/>;
         const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : '';
-        const lastInvite = this.props.sitterProfile.lastInvite?
-            <div>
+        const lastInvite = this.props.sitterProfile.sitter?
+            <div className="last-invited">
                 <ControlLabel>Last Invited:</ControlLabel>
                 <p>{this.props.sitterProfile.sitter.lastInvite}</p>
             </div>:'';
@@ -191,44 +191,49 @@ class SitterProfile extends SitterProfileBase {
                     </tr>
                     </tbody>
                 </Table>
-                <Accordion>
-                    <Panel header="+ Availability" eventKey="availability">
-                        <Table id="availability-table" responsive>
-                            <thead>
-                            <tr>
-                                <th>Day</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {workingHours}
-                            </tbody>
-                        </Table>
-                    </Panel>
-                </Accordion>
-                {education}
-                {languages}
-                {hobbies}
-                {expertise}
-                <ControlLabel>Address</ControlLabel>
-                <p>{sitterAddress}</p>
-                {lastInvite}
-                {this.props.sitterProfile.sitter.reviews.length > 0?
-                <Accordion>
-                    <Panel header="+ Reviews" eventKey="reviews">
-                        <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
-                    </Panel>
-                </Accordion>:''}
-                <button id="review-button" onClick={this.addReview.bind(this)}>
-                    <Like id="like-icon"/>
-                    <span>Write Review</span>
-                </button>
-                <button id="invite-button" onClick={this.inviteSitter.bind(this)}>
-                    <Mail id="mail-icon"/>
-                    <span>Send Invite</span>
-                </button>
-                <Invite {...this.props}/>
-                <Review {...this.props} />
+                <div className="sitter-details">
+                    {lastInvite}
+                    <Accordion>
+                        <Panel header="+ Availability" eventKey="availability">
+                            <Table id="availability-table" responsive>
+                                <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {workingHours}
+                                </tbody>
+                            </Table>
+                        </Panel>
+                    </Accordion>
+                    {education}
+                    {languages}
+                    {hobbies}
+                    {expertise}
+                    {/*<ControlLabel>Address</ControlLabel>*/}
+                    {/*<p>{sitterAddress}</p>*/}
+
+                    {this.props.sitterProfile.sitter.reviews.length > 0?
+                        <Accordion>
+                            <Panel header="+ Reviews" eventKey="reviews">
+                                <ReviewList reviews={this.props.sitterProfile.sitter.reviews} {...this.props}/>
+                            </Panel>
+                        </Accordion>:''}
+                    <div className="profile-buttons">
+                        <button id="review-button" onClick={this.addReview.bind(this)}>
+                            <Like id="like-icon"/>
+                            <span>Write Review</span>
+                        </button>
+                        <button id="invite-button" onClick={this.inviteSitter.bind(this)}>
+                            <Mail id="mail-icon"/>
+                            <span>Send Invite</span>
+                        </button>
+                    </div>
+                    <Invite {...this.props}/>
+                    <Review {...this.props} />
+                </div>
             </div>
         )
     }

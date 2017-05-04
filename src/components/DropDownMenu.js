@@ -16,7 +16,8 @@ class DropdownMenu extends React.Component {
     }
 
     editProfile() {
-        this.props.router.push('/editProfile');
+        // this.props.router.push('/editProfile');
+        this.props.router.push('/');
     }
 
     settings() {

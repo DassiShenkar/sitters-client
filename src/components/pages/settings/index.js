@@ -1,11 +1,11 @@
 // external sources
 import React from 'react';
 import axios from 'axios';
-import {PageHeader} from 'react-bootstrap';
+import {Button, PageHeader} from 'react-bootstrap';
 import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 import strings from "../../../static/strings";
-
+import './style.css'
 //components
 
 // function onChange(value) {
@@ -61,19 +61,20 @@ class Settings extends React.Component {
             <div id="settings-page" className="page">
                 <PageHeader>Settings</PageHeader>
                 <form id="settings-form" onSubmit={this.handleApplyChanges.bind(this)}>
-                        <label htmlFor="notifications-switch">Allow Notifications
-                            <Toggle
-                                defaultChecked={this.props.settings.enableNotifications}
-                                onChange={this.handleNotificationChange.bind(this)}
-                            />
-                        </label>
-                        <label htmlFor="suggestions-switch">Allow Suggestions
-                            <Toggle
-                                defaultChecked={this.props.settings.enableSuggestions}
-                                onChange={this.handleSuggestionsChange.bind(this)}
-                            />
-                        </label>
-                        <input type="submit" className="submit-settings" value="Apply Changes"/>
+                    <label htmlFor="notifications-switch">Allow Notifications
+                        <Toggle
+                            defaultChecked={this.props.settings.enableNotifications}
+                            onChange={this.handleNotificationChange.bind(this)}
+                        />
+                    </label>
+                    <label htmlFor="suggestions-switch">Allow Suggestions
+                        <Toggle
+                            defaultChecked={this.props.settings.enableSuggestions}
+                            onChange={this.handleSuggestionsChange.bind(this)}
+                        />
+                    </label>
+                    {/*<input type="submit" className="submit-settings" value="Apply Changes"/>*/}
+                    <Button className="submit-settings" title="Send Review" bsStyle="primary" onClick={this.handleApplyChanges.bind(this)}>Apply Changes</Button>
                 </form>
             </div>
         );

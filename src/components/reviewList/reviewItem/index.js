@@ -11,28 +11,31 @@ class ReviewItem extends React.Component {
     render() {
         const { review, index } = this.props;
         const date = new Date(review.date);
-        const rates = Object.keys(review.rates).map(function(key) {
-            let category = key;
-            if(key === "punctioal")
-                category = 'Punctioal';
-            else if(key === "behavior")
-                category = 'Behavior with child';
-            else if(key === "connection")
-                category = "Connection with child";
+        let rates;
+        if(review.rates) {
+            rates = Object.keys(review.rates).map(function (key) {
+                let category = key;
+                if (key === "punctioal")
+                    category = 'Punctioal';
+                else if (key === "behavior")
+                    category = 'Behavior with child';
+                else if (key === "connection")
+                    category = "Connection with child";
                 else
-                category = "General behavior";
-            return (
-                <div>
-                    <h4>{category}</h4>
-                    <Rating
-                        empty="glyphicon glyphicon-heart-empty"
-                        full="glyphicon glyphicon-heart"
-                        className="pink"
-                        initialRate={review.rates[key]}
-                        readonly={true}/>
-                </div>
-            )
-        });
+                    category = "General behavior";
+                return (
+                    <div>
+                        <h4>{category}</h4>
+                        <Rating
+                            empty="glyphicon glyphicon-heart-empty"
+                            full="glyphicon glyphicon-heart"
+                            className="pink"
+                            initialRate={review.rates[key]}
+                            readonly={true}/>
+                    </div>
+                )
+            });
+        }
         return (
             <div className="review-item">
                 <Image className="profilePic"

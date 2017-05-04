@@ -61,9 +61,18 @@ img.profilePic {
     border-radius: 18px;
   }
 
+  #review-button{
+    color: #f7a1a1;
+    border-color: #f7a1a1;
+  }
+
   #invite-button:hover, #review-button:hover {
     background: #88d685;
     color: #fff;
+  }
+
+  #review-button:hover {
+    background: #f7a1a1;
   }
 
   #invite-button:focus, #review-button:focus {
@@ -74,12 +83,34 @@ img.profilePic {
     fill: #fff;
   }
 
-  #mail-icon path ,#like-icon path{
-    fill: #88d685;;
+  #mail-icon path {
+    fill: #88d685;
+  }
+  #like-icon path{
+    fill: #f7a1a1;
   }
 
   #invite-button svg, #review-button svg{
     width: 20px;
+  }
+
+  .sitter-details{
+    margin-left: 96px;
+  }
+
+  .last-invited{
+    margin-left: 15px;
+  }
+
+  #review-button, #invite-button{
+    display: flex;
+    height:32px;
+    margin-right: 24px;
+  }
+
+  .profile-buttons{
+    display:flex;
+    flex-direction: row;
   }
 }
 

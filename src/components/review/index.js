@@ -44,7 +44,7 @@ class Review extends React.Component {
                 console.log(res);
                 if (res.data) {
                     console.log("review added");
-                    this.props.actions.feedActions.showReviewPopup(false);
+                    self.props.actions.feedActions.showReviewPopup(false);
                 }
                 else { // invite not created
                     //TODO: think about error when user not created
@@ -78,7 +78,7 @@ class Review extends React.Component {
                         <Modal.Title id="contained-modal-title">Send Review</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div>
+                        <div className="review-modal">
                             <form>
                                 <Image className="sitter-image" src={sitter? sitter.profilePicture: ''}  circle={true}/>
                                 <h4 className="sitter-name">{sitter? sitter.name: ''}</h4>
