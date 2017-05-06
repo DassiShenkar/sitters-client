@@ -1,13 +1,18 @@
+// external sources
 import React from 'react';
-import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
-import CheckBoxBase from '../base/controllers/CheckBoxBase'
 
-class CheckBoxInput extends CheckBoxBase {
+// components
+import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
+
+import CheckBoxBase from '../../base/controllers/checkboxBase/index'
+
+export default class CheckBoxInput extends CheckBoxBase {
     render() {
-        let index = 0;
         const options = this.props.types.map((option) => {
             return (
-                <label key= {index++}><Checkbox value={option.label}/> {option.label}</label>
+                <label key= {this.props.types.indexOf(option)}>
+                    <Checkbox value={option.label}/> {option.label}
+                </label>
             )
         });
         return (
@@ -17,4 +22,3 @@ class CheckBoxInput extends CheckBoxBase {
         )
     }
 }
-export default CheckBoxInput;

@@ -2,14 +2,14 @@
 import React from 'react'
 
 import {Nav, NavItem, PageHeader} from 'react-bootstrap';
-import Range from '../../controllers/RangeSlider'
-import GoogleMaps from '../../controllers/GoogleMaps';
+import Range from '../../controllers/slider/index'
+import GoogleMaps from '../../controllers/maps/GoogleMaps';
 
 //components
 import Location from '../../icons/Location'
 import Clock from '../../icons/Clock'
 import Dollar from '../../icons/Dollar'
-import DatePicker from '../../controllers/DatePicker';
+import DatePicker from '../../controllers/datePicker/index';
 import TimeInput from '../../controllers/TimeInput';
 
 //style
