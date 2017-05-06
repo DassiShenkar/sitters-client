@@ -11,7 +11,7 @@ import {Button, ControlLabel} from "react-bootstrap";
 //style
 import './style.css';
 import SelectInput from "../controllers/SelectInput";
-import PersonalityQuestions from "../PersonalityQuestions";
+import PersonalityQuestions from "./personality/PersonalityQuestions";
 
 class Form extends React.Component {
     constructor(props) {

@@ -4,11 +4,11 @@ import React from 'react';
 import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
 
 //Components
-import NavBase from '../../../base/NavBase';
-import Search from '../../../styles/icons/Search';
-import NotificationSVG from '../../../styles/icons/Notification';
-import MailSVG from '../../../styles/icons/Mail';
-import DropdownMenu from '../../DropDownMenu';
+import NavBase from '../../base/NavBase';
+import Search from '../../icons/Search';
+import NotificationSVG from '../../icons/Notification';
+import MailSVG from '../../icons/Mail';
+import DropdownMenu from '../../controllers/DropDownMenu';
 
 //style
 import './style.css';

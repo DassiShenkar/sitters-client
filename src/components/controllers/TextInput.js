@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInputBase from '../../base/controllers/TextInputBase.js'
+import TextInputBase from '../base/controllers/TextInputBase.js'
 import {ControlLabel, FormControl} from 'react-bootstrap'
 class TextInput extends TextInputBase {
 

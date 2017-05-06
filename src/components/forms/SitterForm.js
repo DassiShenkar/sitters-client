@@ -10,7 +10,7 @@ import axios from 'axios';
 import geocoder from'geocoder';
 import {Button} from "react-bootstrap";
 import SelectInput from "../controllers/SelectInput";
-import PersonalityQuestions from "../PersonalityQuestions";
+import PersonalityQuestions from "./personality/PersonalityQuestions";
 
 import './style.css';
 

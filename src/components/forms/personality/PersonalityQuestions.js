@@ -1,6 +1,6 @@
 import React from "react";
 import {ControlLabel} from "react-bootstrap";
-import strings from '../static/strings'
+import strings from '../../../static/strings'
 import Slider from 'rc-slider'
 
 class PersonalityQuestions extends React.Component {

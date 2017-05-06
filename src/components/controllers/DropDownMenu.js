@@ -2,10 +2,10 @@ import React from 'react';
 import {Link} from 'react-router';
 import 'rc-dropdown/assets/index.css';
 import {NavDropdown, MenuItem}  from 'react-bootstrap/lib';
-import Person from '../styles/icons/Person';
-import Settings from '../styles/icons/Settings';
-import Information from '../styles/icons/Information';
-import Logout from '../styles/icons/Logout';
+import Person from '../icons/Person';
+import Settings from '../icons/Settings';
+import Information from '../icons/Information';
+import Logout from '../icons/Logout';
 
 
 class DropdownMenu extends React.Component {

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/css/nav.sass';
 
 class NavBase extends React.Component {
 

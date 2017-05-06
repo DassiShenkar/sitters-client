@@ -21,22 +21,18 @@ img.profilePic {
 
 #sitter-profile #info-table {
   margin: 0 0 24px 0; }
-
-#sitter-profile #info-table th, #sitter-profile #info-table td {
-  text-align: center;
-  border-right: 1px solid #eee;
-  width: 33%; }
-
-#sitter-profile #info-table th {
-  border-bottom: none;
-  font-size: 24px; }
-
-#sitter-profile #info-table tbody > tr > td {
-  border-top: none;
-  text-align: center; }
-
-#sitter-profile #info-table th:last-child, #sitter-profile #info-table td:last-child {
-  border-right: none; }
+  #sitter-profile #info-table th, #sitter-profile #info-table td {
+    text-align: center;
+    border-right: 1px solid #eee;
+    width: 33%; }
+  #sitter-profile #info-table th {
+    border-bottom: none;
+    font-size: 24px; }
+  #sitter-profile #info-table tbody > tr > td {
+    border-top: none;
+    text-align: center; }
+  #sitter-profile #info-table th:last-child, #sitter-profile #info-table td:last-child {
+    border-right: none; }
 
 #sitter-profile .panel-heading, #sitter-profile .panel-group, #sitter-profile .panel {
   background: #fff;

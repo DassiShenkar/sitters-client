@@ -6,7 +6,6 @@ import PageHeader from 'react-bootstrap/lib/PageHeader';
 import Form from 'react-bootstrap/lib/Form';
 
 //components
-import Logo from '../../Logo';
 import RadioInput from '../../controllers/radio/index';
 
 //style

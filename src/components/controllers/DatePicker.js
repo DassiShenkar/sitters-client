@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePickerBoostrap from 'react-bootstrap-date-picker'
-import DatePickerBase from '../../base/controllers/DatePickerBase'
+import DatePickerBase from '../base/controllers/DatePickerBase'
 
 class DatePicker extends DatePickerBase {
     render() {

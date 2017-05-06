@@ -1,6 +1,6 @@
 import React from 'react';
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
-import CheckBoxBase from '../../base/controllers/CheckBoxBase'
+import CheckBoxBase from '../base/controllers/CheckBoxBase'
 
 class CheckBoxInput extends CheckBoxBase {
     render() {

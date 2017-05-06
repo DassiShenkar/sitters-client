@@ -2,7 +2,7 @@
 import React from 'react';
 
 //base component
-import RadioInputBase from '../../../base/controllers/RadioInputBase.js';
+import RadioInputBase from '../../base/controllers/RadioInputBase.js';
 
 //style
 import './style.css';

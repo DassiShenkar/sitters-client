@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectInputBase from '../../base/controllers/SelectInputBase.js';
+import SelectInputBase from '../base/controllers/SelectInputBase.js';
 import 'react-select/dist/react-select.css';
 import Select from 'react-select'
 

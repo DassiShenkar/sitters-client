@@ -1,8 +1,8 @@
 import React from "react";
 
-import CircledMail from "../../../styles/icons/CircledMail";
-import Like from "../../../styles/icons/Like";
-import NextArrow from "../../../styles/icons/NextArrow";
+import CircledMail from "../../icons/CircledMail";
+import Like from "../../icons/Like";
+import NextArrow from "../../icons/NextArrow";
 import axios from "axios";
 //style
 import "./style.css";

@@ -7,19 +7,18 @@ import {Button, Image, Table, Panel, Accordion, ControlLabel, FormControl} from 
 
 
 // components
-import SitterProfileBase from "../../../base/SitterProfileBase";
 import ReviewList from "../../reviewList/index";
 import Invite from "../../invite/Invite";
-import Mail from "../../../styles/icons/Mail";
+import Mail from "../../icons/Mail";
 
 // style
 import './style.css';
-import StringsAccordion from "../../StringsAccordion";
+import StringsAccordion from "../../controllers/StringsAccordion";
 import strings from "../../../static/strings";
 import Review from "../../review/index";
-import Like from "../../../styles/icons/Like";
+import Like from "../../icons/Like";
 
-class SitterProfile extends SitterProfileBase {
+class SitterProfile extends React.Component {
 
     median(values) {
 

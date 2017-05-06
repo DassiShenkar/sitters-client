@@ -6,7 +6,7 @@ import './style.css';
 import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
 import DatePicker from "../controllers/DatePicker";
 import TimeInput from "../controllers/TimeInput";
-import GoogleMaps from "../GoogleMaps";
+import GoogleMaps from "../controllers/GoogleMaps";
 import axios from 'axios';
 import strings from "../../static/strings";
 

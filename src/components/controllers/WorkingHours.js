@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkingHoursBase from '../../base/controllers/WorkingHoursBase';
+import WorkingHoursBase from '../base/controllers/WorkingHoursBase';
 class WorkingHours extends WorkingHoursBase {
 
     render() {
