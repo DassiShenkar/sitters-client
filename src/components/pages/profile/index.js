@@ -3,7 +3,7 @@ import React from "react";
 import geodist from "geodist";
 import axios from "axios";
 
-import {Button, Image, Table, Panel, Accordion, ControlLabel, FormControl} from "react-bootstrap";
+import { Image, Table, Panel, Accordion, ControlLabel} from "react-bootstrap";
 
 
 // components
@@ -13,7 +13,7 @@ import Mail from "../../icons/Mail";
 
 // style
 import './style.css';
-import StringsAccordion from "../../controllers/StringsAccordion";
+import AccordionPanel from "../../controllers/accordion/index";
 import strings from "../../../static/strings";
 import Review from "../../review/index";
 import Like from "../../icons/Like";
@@ -143,13 +143,13 @@ class SitterProfile extends React.Component {
         });
         let hobbies = null, education = null, languages = null, expertise = null;
         if (this.props.sitterProfile.sitter.hobbies.length > 0)
-            hobbies = <StringsAccordion header="+ Hobbies" data={this.props.sitterProfile.sitter.hobbies}/>;
+            hobbies = <AccordionPanel header="+ Hobbies" list={this.props.sitterProfile.sitter.hobbies}/>;
         if (this.props.sitterProfile.sitter.languages.length > 0)
-            languages = <StringsAccordion header="+ Languages" data={this.props.sitterProfile.sitter.languages}/>;
+            languages = <AccordionPanel header="+ Languages" list={this.props.sitterProfile.sitter.languages}/>;
         if (this.props.sitterProfile.sitter.education.length > 0)
-            education = <StringsAccordion header="+ Education" data={this.props.sitterProfile.sitter.education}/>;
+            education = <AccordionPanel header="+ Education" list={this.props.sitterProfile.sitter.education}/>;
         if (this.props.sitterProfile.sitter.expertise.length > 0)
-            expertise = <StringsAccordion header="+ Expertise" data={this.props.sitterProfile.sitter.expertise}/>;
+            expertise = <AccordionPanel header="+ Expertise" list={this.props.sitterProfile.sitter.expertise}/>;
         const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : '';
         const lastInvite = this.props.sitterProfile.sitter?
             <div className="last-invited">
@@ -159,7 +159,7 @@ class SitterProfile extends React.Component {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
-        const sitterAddress = this.props.sitterProfile.sitter.address.street + " " +  this.props.sitterProfile.sitter.address.houseNumber + ", " + this.props.sitterProfile.sitter.address.city;
+        //const sitterAddress = this.props.sitterProfile.sitter.address.street + " " +  this.props.sitterProfile.sitter.address.houseNumber + ", " + this.props.sitterProfile.sitter.address.city;
         return (
             <div id="sitter-profile">
                 <div className="match" style={style}>

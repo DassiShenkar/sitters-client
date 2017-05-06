@@ -1,6 +1,8 @@
+// external sources
 import React from 'react';
 
-class TextInputBase extends React.Component {
+export default class TextInputBase extends React.Component {
+
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -20,5 +22,3 @@ TextInputBase.defaultProps = {
     label: 'label',
     value: 'name'
 };
-
-export default TextInputBase;

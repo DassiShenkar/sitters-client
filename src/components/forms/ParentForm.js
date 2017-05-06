@@ -5,12 +5,12 @@ import geocoder from 'geocoder'
 import axios from 'axios';
 import strings from '../../static/strings';
 import {AgeFromDate} from 'age-calculator';
-import RadioInput from "../controllers/radio/index";
+import RadioGroup from "../controllers/radio/radioGroup/index";
 import {Button, ControlLabel} from "react-bootstrap";
 
 //style
 import './style.css';
-import SelectInput from "../controllers/SelectInput";
+import SelectInput from "../controllers/select/SelectInput";
 import PersonalityQuestions from "./personality/PersonalityQuestions";
 
 class Form extends React.Component {
@@ -222,12 +222,12 @@ class Form extends React.Component {
                            {...this.props}
                            reducer={'register'}/>
                 <ControlLabel>Partner Gender</ControlLabel>
-                <RadioInput types={strings.GENDER}
+                <RadioGroup options={strings.GENDER}
                             defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
                             action={this.props.actions.registerActions.changePartnerGender}
-                            radioType={'partnerGender'} {...this.props}
-                            reducer={'register'}/>
-                <PersonalityQuestions {...this.props}/>
+                            radioType={'partnerGender'}
+                            value={this.props.user.gender}/>
+                {/*<PersonalityQuestions {...this.props}/>*/}
                 <div className="submit">
                     <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
                 </div>

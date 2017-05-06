@@ -6,8 +6,8 @@ import {AgeFromDate} from 'age-calculator';
 import 'react-select/dist/react-select.css';
 
 import TextInput from '../controllers/TextInput';
-import RadioInput from '../controllers/radio/index';
-import SelectInput from '../controllers/SelectInput';
+import RadioGroup from '../controllers/radio/radioGroup/index';
+import SelectInput from '../controllers/select/SelectInput';
 
 // statics
 import strings from '../../static/strings';
@@ -86,11 +86,12 @@ class BaseForm extends React.Component {
                            reducer={'register'}
                            required={true}/>
                 <h4>Gender</h4>
-                <RadioInput types={strings.GENDER}
+                <RadioGroup options={strings.GENDER}
                             defaultValue={this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female'}
                             action={this.props.actions.registerActions.changeGender}
                             radioType={'gender'} {...this.props}
-                            reducer={'register'}/>
+                            value={ this.props.user.userType }
+                            />
                 <h4>Languages</h4>
                 <SelectInput
                     placeholder="Select your languages"

@@ -1,9 +1,15 @@
+// external sources
 import React from 'react';
-import SelectInputBase from '../base/controllers/SelectInputBase.js';
-import 'react-select/dist/react-select.css';
+
+// components
 import Select from 'react-select'
 
-class SelectInput extends SelectInputBase {
+import SelectInputBase from '../../base/controllers/selectBase/index.js';
+
+// style
+import 'react-select/dist/react-select.css';
+
+export default class SelectInput extends SelectInputBase {
     render() {
         return (
                 <Select
@@ -17,5 +23,3 @@ class SelectInput extends SelectInputBase {
         );
     }
 }
-
-export default SelectInput;

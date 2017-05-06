@@ -6,9 +6,6 @@ import {Modal} from "react-bootstrap";
 
 class Notifications extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
 
     closePopup(){
         this.props.actions.feedActions.showNotificationsPopup(false)

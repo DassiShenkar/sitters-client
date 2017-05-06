@@ -5,11 +5,8 @@ import { Image } from 'react-bootstrap';
 import './style.css';
 import Rating from "react-rating";
 class ReviewItem extends React.Component {
-    constructor(props){
-        super(props);
-    }
     render() {
-        const { review, index } = this.props;
+        const { review } = this.props;
         const date = new Date(review.date);
         let rates;
         if(review.rates) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from '../controllers/TextInput';
-import RadioInput from '../controllers/radio/index';
-import WorkingHours from '../controllers/WorkingHours';
+import RadioInput from '../controllers/radio/radioGroup/index';
+// import WorkingHours from '../controllers/WorkingHours';
 import BaseForm from './BaseForm';
 import 'react-select/dist/react-select.css';
 import {AgeFromDate} from 'age-calculator';
@@ -9,7 +9,7 @@ import strings from '../../static/strings';
 import axios from 'axios';
 import geocoder from'geocoder';
 import {Button} from "react-bootstrap";
-import SelectInput from "../controllers/SelectInput";
+import SelectInput from "../controllers/select/SelectInput";
 import PersonalityQuestions from "./personality/PersonalityQuestions";
 
 import './style.css';
@@ -197,16 +197,16 @@ class Form extends React.Component {
                            required={true}/>
 
                 <h4>Immediate Availability</h4>
-                <RadioInput types={strings.BOOLEAN}
+                <RadioInput options={strings.BOOLEAN}
                             action={this.props.actions.registerActions.changeSitterImmediateAvailability}
-                            radioType={'sitterImmediateAvailability'} {...this.props}
-                            reducer={'register'}
+                            radioType={'sitterImmediateAvailability'}
+                            value={this.props.user.sitterImmediateAvailability}
                             required={true}/>
                 <h4>Mobility</h4>
-                <RadioInput types={strings.BOOLEAN}
+                <RadioInput options={strings.BOOLEAN}
                             action={this.props.actions.registerActions.changeSitterMobility}
-                            radioType={'sitterMobility'} {...this.props}
-                            reducer={'register'}
+                            radioType={'sitterMobility'}
+                            value={this.props.user.sitterMobility}
                             required={true}/>
                 <h4>Education</h4>
                 <SelectInput
@@ -283,7 +283,7 @@ class Form extends React.Component {
                 <p>Drag the handle to the adjective that describes you best</p>
                 <p>If you feel no connection to the words, leave the handle in the middle</p>
                 {/*<PersonalityTest questions={BaseData.getQuestions()} {...this.props}/>*/}
-                <PersonalityQuestions {...this.props}/>
+                {/*<PersonalityQuestions {...this.props}/>*/}
                 {/*<h4>Working Hours</h4>*/}
                 {/*<WorkingHours days={strings.WEEK_DAYS} />*/}
                 <div className="submit">

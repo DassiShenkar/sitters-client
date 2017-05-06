@@ -1,25 +1,27 @@
+// external sources
 import React from "react";
+
+// components
 import {Accordion, Panel} from "react-bootstrap";
 
 
-class StringsAccordion extends React.Component {
+class AccordionPanel extends React.Component {
     render() {
-        const dataArr = this.props.data.map((str) => {
+        const list = this.props.list.map((item) => {
             return(
-                <p key={this.props.data.indexOf(str)}>{str}</p>
+                <p key={this.props.list.indexOf(item)}>{item}</p>
             );
         });
         return(
-            <div>
+            <div className="accordion-panel">
                 <Accordion>
                     <Panel header={this.props.header} eventKey={this.props.header.toLowerCase()}>
-                        {dataArr}
+                        {list}
                     </Panel>
                 </Accordion>
-
             </div>
         );
     }
 }
 
-export default StringsAccordion;
+export default AccordionPanel;

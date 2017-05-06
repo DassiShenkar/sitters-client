@@ -38,14 +38,14 @@ function feed(state = {}, action) {
                 showInvitesPopup: action.showInvitesPopup
             };
         case 'CHANGE_REVIEW_RATE' :
-            review = state.review;
+             review = state.review;
             review.rates[action.category] = action.rate;
             return {
                 ...state,
                 review : review
             };
         case 'CHANGE_REVIEW_TEXT' :
-            let review = state.review;
+            review = state.review;
             review.text = action.text;
             return {
                 ...state,
