@@ -2,7 +2,7 @@
 import React from 'react'
 
 import {Nav, NavItem, PageHeader} from 'react-bootstrap';
-import Range from '../../controllers/slider/index'
+import Range from '../../controllers/range/index'
 import GoogleMaps from '../../controllers/maps/GoogleMaps';
 
 //components

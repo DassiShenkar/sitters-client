@@ -1,14 +1,17 @@
 // external sources
-import React from 'react';
+import {Component} from 'react';
 
-export default class RangeBase extends React.Component {
+export default class SliderBase extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.onChange = this.onChange.bind(this);
-    }
-    onChange(values){
-        this.props.action(values[0], values[1]);
-        this.props.changeSitters(this.props.feed.matches.filter(sitter => sitter.hourFee >= values[0] && sitter.hourFee <= values[1]));
+    };
+
+    onChange(question, index, rate) {
+        question.value = rate;
+        question.index = index;
+        this.props.actions.registerActions.changePersonalityQuestion(question);
     }
 }
+

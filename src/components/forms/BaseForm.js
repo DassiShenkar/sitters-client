@@ -5,7 +5,7 @@ import {AgeFromDate} from 'age-calculator';
 // components
 import 'react-select/dist/react-select.css';
 
-import TextInput from '../controllers/TextInput';
+import TextInput from '../controllers/textInput/index';
 import RadioGroup from '../controllers/radio/radioGroup/index';
 import SelectInput from '../controllers/select/SelectInput';
 
