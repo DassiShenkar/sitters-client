@@ -1,6 +1,5 @@
 import React from 'react';
-import WorkingHoursBase from '../../base/controllers/WorkingHoursBase';
-class WorkingHours extends WorkingHoursBase {
+class WorkingHours extends React.Component {
 
     render() {
         const days = this.props.days.map((day) => {

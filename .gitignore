@@ -16,3 +16,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# mobile
+/android
+/__tests)_
+/ios
+/native
+.babelrc
+.buckconfig
+.flowconfig
+.watchmanconfig
+index.android.js
+index.ios.js

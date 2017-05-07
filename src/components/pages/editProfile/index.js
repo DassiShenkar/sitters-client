@@ -7,7 +7,7 @@ import { PageHeader } from 'react-bootstrap';
 import ParentForm from '../../forms/ParentForm';
 import SitterForm from '../../forms/SitterForm';
 
-class Register extends React.Component {
+class EditProfile extends React.Component {
     render() {
         let form = this.props.user.userType === "I'm a Parent" ?  <ParentForm {...this.props}/> : <SitterForm {...this.props}/>;
         return (
@@ -18,4 +18,4 @@ class Register extends React.Component {
         );
     }
 }
-export default Register;
+export default EditProfile;

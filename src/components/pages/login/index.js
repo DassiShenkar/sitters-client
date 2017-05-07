@@ -1,20 +1,19 @@
 //external sources
 import React from 'react';
 import axios from 'axios';
+
+//components
 import FacebookLogin from 'react-facebook-login';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import Form from 'react-bootstrap/lib/Form';
 
-//components
-import Logo from '../../Logo';
-import RadioInput from '../../controllers/radio/index';
+import RadioGroup from '../../controllers/radio/radioGroup/index';
 
 //style
 import './style.css';
 
 //statics
 import strings from '../../../static/strings';
-import Rating from "react-rating";
 
 class Login extends React.Component {
 
@@ -49,18 +48,18 @@ class Login extends React.Component {
     }
 
     render() {
-        // const userTypeRadio = <RadioInput types={strings.USER_TYPE} //TODO: do not delete - for beta
-        //                                   defaultValue={strings.USER_TYPE[1]}
-        //                                   action={this.props.actions.actionCreators.changeUserType}
-        //                                   radioType={'userType'} {...this.props}
-        //                                   reducer={'user'}
-        //                                   required={true}/>;  //TODO: do not delete - for beta
+        const userTypeRadio = <RadioGroup options={strings.USER_TYPE} //TODO: do not delete - for beta
+                                          defaultValue={strings.USER_TYPE[1]}
+                                          action={this.props.actions.actionCreators.changeUserType}
+                                          radioType={'userType'}
+                                          value={ this.props.user.userType }
+                                          required={true}/>;  //TODO: do not delete - for beta
         return (
             <div id="login-page">
                 <PageHeader>{strings.APP_NAME}<h3>{strings.APP_DESCRIPTION}</h3>
                 </PageHeader>
                 <Form className="login-form" horizontal>
-                    {/*{localStorage.getItem('suth_token') ? '' : userTypeRadio}*/}
+                    {localStorage.getItem('suth_token') ? '' : userTypeRadio}
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}

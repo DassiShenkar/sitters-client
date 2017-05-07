@@ -4,25 +4,31 @@ import React from 'react';
 import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
 
 //Components
-import NavBase from '../../../base/NavBase';
-import Search from '../../../styles/icons/Search';
-import NotificationSVG from '../../../styles/icons/Notification';
-import MailSVG from '../../../styles/icons/Mail';
-import DropdownMenu from '../../DropDownMenu';
+import Search from '../../icons/Search';
+import NotificationSVG from '../../icons/Notification';
+import MailSVG from '../../icons/Mail';
+import DropdownMenu from '../../controllers/dropdownMenu/index';
 
 //style
 import './style.css';
 
 
-class MainNav extends NavBase {
+class MainNav extends React.Component {
+
+    onClick(view) {
+        this.props.action(view);
+        if (view === "invites")
+            this.props.actions.feedActions.showInvitesPopup(true);
+        else if (view === "notifications")
+            this.props.actions.feedActions.showNotificationsPopup(true);
+        this.props.router.push('/');
+    }
 
     render() {
         return (
             <Navbar id="main-nav">
                 <Navbar.Header>
                     <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
-                    {/*<Navbar.Brand*/}
-                        {/*onClick={this.onClick.bind(this, "main")}>{'Hi, ' + this.props.user.name}</Navbar.Brand>*/}
                 </Navbar.Header>
                 <Nav>
                     <NavItem onClick={this.onClick.bind(this, "searchBy")}>

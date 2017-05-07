@@ -1,2 +1,9 @@
+.review-modal .control-label, .review-modal .pink {
+  display: flex; }
+
+.review-modal .submit-review {
+  margin-top: 24px;
+  text-align: center; }
+
 .pink {
   color: #f7a1a1; }

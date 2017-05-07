@@ -6,7 +6,7 @@ import {Image, PageHeader} from 'react-bootstrap';
 import RainbowChart from "../RainbowChart";
 
 import SitterActionBar from '../panels/actionPanel';
-import PersonalityQuestions from "../PersonalityQuestions";
+import PersonalityQuestions from "../forms/personality/PersonalityQuestions";
 
 //style
 import './style.css';

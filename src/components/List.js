@@ -1,8 +1,7 @@
 import React from 'react';
-import ListBase from '../base/ListBase';
 import ListItem from './ListItem';
 
-class List extends ListBase {
+class List extends React.Component {
     render(){
         const list = this.props.items.map((item) => {
             return (

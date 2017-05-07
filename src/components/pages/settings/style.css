@@ -1,0 +1,8 @@
+#settings-page #settings-form {
+  text-align: center; }
+
+#settings-page .submit-settings {
+  display: block; }
+
+#settings-page label {
+  display: flex; }

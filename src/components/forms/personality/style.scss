@@ -1,0 +1,16 @@
+.question {
+  display: flex;
+  flex-direction: row; }
+.question .control-label {
+  width: 96px; }
+.question .right-label {
+  margin-left: 12px; }
+.question .right-label {
+  margin-right: 12px; }
+.question .rc-slider {
+  width: 200px;
+  margin: 8px 0; }
+.question .rc-slider-disabled {
+  background-color: #fff; }
+.question .rc-slider-track, .question .rc-slider-rail {
+  background-color: #f7a1a1; }
