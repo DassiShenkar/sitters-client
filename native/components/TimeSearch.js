@@ -5,6 +5,7 @@ import { View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import dateFormat from 'dateformat'
 import moment from "moment";
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -17,7 +18,7 @@ export default class TimeSearch extends React.Component {
         super(props);
         this.navToProfile = this.navToProfile.bind(this);
         this.navToInvite = this.navToInvite.bind(this);
-        this.removeSitter = this.removeSitter.bind(this);
+        this.nextSitter = this.nextSitter.bind(this);
         this.dateCallback = this.dateCallback.bind(this);
         this.startCallback = this.startCallback.bind(this);
         this.endCallback = this.endCallback.bind(this);
@@ -32,51 +33,60 @@ export default class TimeSearch extends React.Component {
         const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
         const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
         const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
+        const config = {
+            velocityThreshold: 0.1,
+            directionalOffsetThreshold: 80
+        };
         return (
             <View style={{ margin: 15, alignItems: 'center', width: '100%' }}>
-                <View style={{ justifyContent: 'flex-start', marginBottom: 100 }}>
-                    <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                        <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Date</Text>
-                        <AndroidDatePicker
-                            pickerCallback={ this.dateCallback }/>
+                <GestureRecognizer
+                    onSwipeLeft={(e) => {this.navToInvite(e)}}
+                    onSwipeRight={(e) => {this.nextSitter(e)}}
+                    config={config}>
+                    <View style={{ justifyContent: 'flex-start', marginBottom: 100 }}>
+                        <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
+                            <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Date</Text>
+                            <AndroidDatePicker
+                                pickerCallback={ this.dateCallback }/>
+                        </View>
+                        <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
+                            <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Start Watch</Text>
+                            <AndroidTimePicker
+                                pickerCallback={ this.startCallback }/>
+                        </View>
+                        <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
+                            <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>End Watch</Text>
+                            <AndroidTimePicker
+                                pickerCallback={ this.endCallback }/>
+                        </View>
                     </View>
-                    <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                        <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Start Watch</Text>
-                        <AndroidTimePicker
-                            pickerCallback={ this.startCallback }/>
-                    </View>
-                    <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                        <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>End Watch</Text>
-                        <AndroidTimePicker
-                            pickerCallback={ this.endCallback }/>
-                    </View>
-                </View>
-                { this.props.sitters.length > 0 ?
-                    <View>
-                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
-                            <ImageButton
-                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                styles={{width: 100, height: 100, borderRadius:100}}
-                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
-                            <View style={{ paddingTop: 10 }}>
-                                <Text>{name + ', ' + age}</Text>
-                                { availableNow ? <Text>Available now!</Text> : null}
-                                <Text>{ hourFee + '$' }</Text>
+                    { this.props.sitters.length > 0 ?
+                        <View>
+                            <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
+                                <ImageButton
+                                    onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                    styles={{width: 100, height: 100, borderRadius:100}}
+                                    src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                <View style={{ paddingTop: 10 }}>
+                                    <Text>{name + ', ' + age}</Text>
+                                    { availableNow ? <Text>Available now!</Text> : null}
+                                    <Text>{ hourFee + '$' }</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
+                                <ImageButton
+                                    onPress={ (e) => {this.navToInvite()} }
+                                    styles={{ width: 50, height: 50, borderRadius:100}}
+                                    src={require('../style/icons/v.png')}/>
+                                <ImageButton
+                                    onPress={ (e) => {this.removeSitter()} }
+                                    styles={{width: 50, height: 50, borderRadius:100}}
+                                    src={require('../style/icons/next.png')}/>
                             </View>
                         </View>
-                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
-                            <ImageButton
-                                onPress={ (e) => {this.navToInvite()} }
-                                styles={{ width: 50, height: 50, borderRadius:100}}
-                                src={require('../style/icons/v.png')}/>
-                            <ImageButton
-                                onPress={ (e) => {this.removeSitter()} }
-                                styles={{width: 50, height: 50, borderRadius:100}}
-                                src={require('../style/icons/next.png')}/>
-                        </View>
-                    </View>
-                    : <Text>No matches found!</Text>
-                }
+                        : <Text>No matches found!</Text>
+                    }
+                </GestureRecognizer>
             </View>
         );
     }
@@ -91,7 +101,7 @@ export default class TimeSearch extends React.Component {
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    removeSitter(e) {
+    nextSitter(e) {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.refresh();

@@ -94,13 +94,13 @@ class SitterProfileView extends React.Component {
                             </Image>
                             <View style={{flex: 1, flexDirection: 'row-reverse', padding: 10, justifyContent: 'space-between', width: '100%', backgroundColor: '#f7a1a1'}}>
                                 <Text style={{ fontSize: 20, color: '#fff' }}>
-                                    { this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }
+                                    { this.props.sitterProfile.distance > 999 ? 'Proximity:\n' + this.props.sitterProfile.distance / 1000 + ' KM' :  'Proximity:\n' + this.props.sitterProfile.distance + ' Meters' }
                                 </Text>
                                 <Text style={{ fontSize: 20, color: '#fff' }}>
-                                    { this.props.sitterProfile.sitter.hourFee + "$" }
+                                    { 'Hour Fee:\n' + this.props.sitterProfile.sitter.hourFee + '$'}
                                 </Text>
                                 <Text style={{ fontSize: 20, color: '#fff' }}>
-                                    { this.props.sitterProfile.sitter.experience + " Years" }
+                                    { 'Experience:\n' + this.props.sitterProfile.sitter.experience + " Years" }
                                 </Text>
                             </View>
                         </View>
