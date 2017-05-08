@@ -76,7 +76,7 @@ export default class PriceSearch extends React.Component {
                                     styles={styles.button}
                                     src={require('../style/icons/v.png')}/>
                                 <ImageButton
-                                    onPress={ (e) => {this.removeSitter()} }
+                                    onPress={ (e) => {this.nextSitter()} }
                                     styles={styles.button}
                                     src={require('../style/icons/next.png')}/>
                             </View>

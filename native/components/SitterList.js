@@ -53,7 +53,7 @@ export default class Feed extends React.Component {
                                 styles={styles.button}
                                 src={require('../style/icons/star.png')} />
                             <ImageButton
-                                onPress={ (e) => this.removeSitter(e) }
+                                onPress={ (e) => this.nextSitter(e) }
                                 styles={styles.button}
                                 src={require('../style/icons/next.png')} />
                         </View>
