@@ -78,10 +78,10 @@ class SitterSendInvite extends React.Component {
 
     render () {
         const profilePicture = this.props.sitter ? this.props.sitter.profilePicture : null;
-        const sitter = this.props.sitter;
+        const user = this.props.user;
         const initialRegion = {
-            latitude: sitter.address.latitude != 0 ? sitter.address.latitude : 32.0853,
-            longitude: sitter.address.longitude != 0 ? sitter.address.longitude : 34.7818,
+            latitude: user.address.latitude != 0 ? user.address.latitude : 32.0853,
+            longitude: user.address.longitude != 0 ? user.address.longitude : 34.7818,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
         };
@@ -125,8 +125,8 @@ class SitterSendInvite extends React.Component {
                                        <MapView.Marker
                                            key={Math.random()}
                                            style={styles.marker}
-                                           coordinate={{ latitude: sitter.address.latitude, longitude: sitter.address.longitude }} >
-                                           <Image key={Math.random()} source={{ uri: sitter.profilePicture }} style={styles.mapImage} />
+                                           coordinate={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }} >
+                                           <Image key={Math.random()} source={{ uri: user.profilePicture }} style={styles.mapImage} />
                                        </MapView.Marker>
                                    </MapView>
                                </View>
