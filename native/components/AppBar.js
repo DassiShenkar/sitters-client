@@ -65,11 +65,10 @@ class AppBar extends React.Component {
                 <ImageButton
                     onPress={ Actions.Feed }
                     styles={ styles.profilePic }
-                    src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : { uri: 'https://facebook.github.io/react/img/logo_og.png' }}/>
-                <Text
-                    style={{marginLeft: 30, marginRight: 10, marginTop:20}}>Hi, { this.props.user.name.split(" ")[0] }</Text>
+                    src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : null}/>
+                <Text style={styles.text}>Hi, { this.props.user.name.split(" ")[0] }</Text>
                 <View
-                    style={{ width: 160, flexDirection: 'row-reverse', justifyContent: 'space-between', marginTop: 10 }}>
+                    style={styles.innerContainer}>
                     <ImageButton
                         onPress={Actions.SearchByPrice}
                         styles={ styles.icons }
@@ -119,6 +118,12 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 1
     },
+    innerContainer: {
+        width: 160,
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        marginTop: 10
+    },
     profilePic: {
         width: 50,
         height: 50,
@@ -127,6 +132,11 @@ const styles = StyleSheet.create({
     icons: {
         width: 30,
         height: 30
+    },
+    text: {
+        marginLeft: 30,
+        marginRight: 10,
+        marginTop:20
     },
     notificationBadge: {
         width: 10,

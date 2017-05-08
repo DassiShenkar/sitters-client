@@ -22,7 +22,7 @@ class Login extends React.Component {
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
                 <View style={{ marginBottom: 15 }}>
                     <Picker
-                        style={{ width: 200 }}
+                        style={styles.picker}
                         selectedValue={ this.props.user.userType }
                         onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
                         <Picker.Item label="I'm A Parent" value="I'm a parent" />
@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#f7a1a1',
         marginBottom: 15
+    },
+    picker: {
+        width: 200
     }
 });
 

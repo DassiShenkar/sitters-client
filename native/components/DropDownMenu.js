@@ -43,7 +43,7 @@ export default class DropDownMenu extends React.Component {
     _onSelect (value) {
         switch(value) {
             case 1:
-                Actions.Register({ registered: true });
+                Actions.EditProfile();
                 break;
             case 2:
                 Actions.Settings();

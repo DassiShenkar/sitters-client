@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ class About extends React.Component {
 
     render () {
         return (
-            <View style={{ marginTop: 15 }}>
+            <View style={styles.container}>
                 <AppBar
                     { ...this.props }/>
                 <Logo
@@ -27,12 +27,26 @@ class About extends React.Component {
                 <Text>All rights reserved</Text>
                 <TextButton
                     onPress={Actions.pop}
-                    styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                    styles={styles.button}
                     text='Cancel' />
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 15
+    },
+    button: {
+        fontSize: 20,
+        marginBottom: 10,
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10
+    }
+});
 
 function mapStateToProps(state) {
     return {

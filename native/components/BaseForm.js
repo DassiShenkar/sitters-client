@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, Image, View, Picker } from 'react-native';
+import { Text, TextInput, Image, View, Picker, StyleSheet } from 'react-native';
 import {AgeFromDate} from 'age-calculator';
 import { CheckboxGroup } from 'react-native-material-design';
 
@@ -35,7 +35,7 @@ export default class BaseForm extends React.Component {
         };
         return (
             <View>
-                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>User</Text>
+                <Text style={styles.text}>User</Text>
                 <TextInput
                     type="TextInput"
                     name="name"
@@ -54,7 +54,7 @@ export default class BaseForm extends React.Component {
                     placeholder="age"
                     value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)}/>
-                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Address</Text>
+                <Text style={styles.text}>Address</Text>
                 <TextInput
                     type="TextInput"
                     name="city"
@@ -73,22 +73,22 @@ export default class BaseForm extends React.Component {
                     placeholder="houseNumber"
                     value={ this.props.user.location ? this.props.user.location.name.split(',')[2] : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeHouseNumber(text)}/>
-                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Gender</Text>
+                <Text style={styles.text}>Gender</Text>
                 <Picker
                     selectedValue={ this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female' }
                     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
                 </Picker>
-                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Profile picture</Text>
+                <Text style={styles.text}>Profile picture</Text>
                 <Image
                     source={this.props.user.picture ? {uri: this.props.user.picture.data.url} : null}
                     style={{width: 100, height: 100, borderRadius: 100}}/>
-                <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Languages</Text>
-                {<CheckboxGroup
+                <Text style={styles.text}>Languages</Text>
+                <CheckboxGroup
                     onSelect={ (values) => self.languagesChecked }
                     checked={ selected() }
-                    items={ strings.LANGUAGES } />}
+                    items={ strings.LANGUAGES } />
             </View>
         );
     }
@@ -114,5 +114,12 @@ export default class BaseForm extends React.Component {
             return langs;
         }
     }
-
 }
+
+const styles = StyleSheet.create({
+    text: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
+});

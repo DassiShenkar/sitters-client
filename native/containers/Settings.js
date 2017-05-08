@@ -43,7 +43,7 @@ class Settings extends React.Component {
                 }
                 <TextButton
                     onPress={Actions.pop}
-                    styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                    styles={styles.button}
                     text='Cancel' />
             </View>
         );
@@ -51,11 +51,13 @@ class Settings extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
-    // This pushes the view out of the viewport, but why the negative bottom?
-    hiddenContainer: {
-        top: window.height,
-        bottom: -window.height
+    button: {
+        fontSize: 20,
+        marginBottom: 10,
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10
     }
 });
 

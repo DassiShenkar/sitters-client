@@ -6,7 +6,6 @@ var {
     TimePickerAndroid,
     StyleSheet,
     Text,
-    TouchableOpacity
 } = ReactNative;
 import TextButton from './TextButton';
 

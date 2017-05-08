@@ -25,7 +25,6 @@ import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import Menu from './native/containers/Menu';
 import LoadingScreen from './native/containers/LoadingScreen';
-import GoogleMapView from './native/containers/GoogleMapView';
 import ErrorPage from './native/containers/ErrorPage';
 
 import configureStore from './native/store/ConfigureStore'
@@ -60,7 +59,6 @@ class Sitters extends React.Component {
                             <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade' hideNavBar={true}/>
                             <Scene key="About" component={About} title="About" animation='fade'/>
                             <Scene key="Settings" component={Settings} title="Settings" animation='fade'/>
-                            <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView" animation='fade'/>
                             <Scene key="ErrorPage" component={ErrorPage} title="ErrorPage" animation='fade'/>
                         </Scene>
                         <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite" animation='fade'/>

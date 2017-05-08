@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, Modal, Text, Image, TextInput } from 'react-native';
+import { View, Modal, Text, Image, TextInput, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -67,36 +67,26 @@ class RateSitter extends React.Component {
                 transparent={true}
                 visible={true}
                 onRequestClose={() => {Actions.pop()}}>
-                <View style={{ flex:1, justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-                    <View style={
-                    {
-                        padding: 20,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: '80%',
-                        height: '60%',
-                        margin: 15,
-                        backgroundColor: 'rgba(255, 255, 255, 1)',
-                        borderRadius: 20
-                    }}>
+                <View style={styles.container}>
+                    <View style={styles.innerContainer}>
                         <Image
-                            style={{width: 50, height: 50, borderRadius: 100}}
+                            style={styles.image}
                             source={{uri: profilePicture}}
                         />
                         { this.ratings() }
-                        <Text style={{ width: '100%', justifyContent: 'flex-start', color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Notes</Text>
+                        <Text style={styles.text}>Notes</Text>
                         <TextInput
-                            style={{  width: '100%', justifyContent: 'flex-start', marginBottom: 15 }}
+                            style={styles.textInput}
                             onChangeText={(text) => this.reviewDescription(userName, text)}
                             placeholder='Write a review' />
-                        <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
+                        <View style={styles.actionPanel}>
                             <TextButton
                                 onPress={Actions.pop}
-                                styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                                styles={styles.actionButton}
                                 text='Cancel' />
                             <TextButton
                                 onPress={this.addReview}
-                                styles={{ fontSize: 20, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                                styles={styles.actionButton}
                                 text='Send' />
                         </View>
                     </View>
@@ -129,6 +119,57 @@ class RateSitter extends React.Component {
         })
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    },
+    innerContainer: {
+        padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '80%',
+        height: '60%',
+        margin: 15,
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        borderRadius: 20
+    },
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 100
+    },
+    text: {
+        width: '100%',
+        justifyContent: 'flex-start',
+        color: '#f7a1a1',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    textInput: {
+        width: '100%',
+        justifyContent: 'flex-start',
+        marginBottom: 15
+    },
+    actionPanel: {
+        width: '100%',
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        marginBottom: 15
+    },
+    actionButton:{
+        fontSize: 20,
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10
+    }
+});
 
 function mapStateToProps(state) {
     return {

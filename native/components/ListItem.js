@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Image, Text } from 'react-native';
+import { View, TouchableHighlight, Image, Text, StyleSheet } from 'react-native';
 
 export default class ListItem extends React.Component {
 
@@ -21,10 +21,10 @@ export default class ListItem extends React.Component {
         };
         return (
             <TouchableHighlight onPress={ this.props.onPress ? this.props.onPress : ()=>{} }>
-                <View style={{ padding: 10, flex: 1, flexDirection: 'row-reverse', justifyContent: 'space-between' }}>
+                <View style={styles.container}>
                     <Image
                         source={{ uri: this.props.sitterImage }}
-                        style={{width: 50, height: 50, borderRadius: 100}} />
+                        style={styles.image} />
                     <View>
                         <Text>{ this.props.sitterName }</Text>
                         <Text>{ text() }</Text>
@@ -35,3 +35,17 @@ export default class ListItem extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 10,
+        flex: 1,
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between'
+    },
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 100
+    }
+});

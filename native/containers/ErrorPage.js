@@ -17,11 +17,11 @@ class ErrorPage extends React.Component {
                 <Logo
                     companyName="Sitters" />
                 <Image
-                    style={{ width: 90, height: 70, marginBottom: 20 }}
+                    style={styles.image}
                     source={require('../style/icons/crying.png')}
                 />
-                <Text style={{ fontSize: 24, color: 'red', fontWeight: 'bold', margin: 10 }}>{ this.props.errorNum }</Text>
-                <Text style={ styles.text }>{ this.props.errorMsg }</Text>
+                <Text style={styles.errorNumText}>{ this.props.errorNum }</Text>
+                <Text style={ styles.errorMsgText }>{ this.props.errorMsg }</Text>
                 <TextButton
                     onPress={ Actions.Splash }
                     text="Press here to retry" />
@@ -36,7 +36,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    text: {
+    image: {
+        width: 90,
+        height: 70,
+        marginBottom: 20
+    },
+    errorNumText: {
+        fontSize: 24,
+        color: 'red',
+        fontWeight: 'bold',
+        margin: 10
+    },
+    errorMsgText: {
         fontSize: 18,
         fontWeight: 'bold',
         margin: 10

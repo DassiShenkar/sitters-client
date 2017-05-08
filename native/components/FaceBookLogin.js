@@ -1,6 +1,6 @@
 "use strict";
-import React, {Component} from 'react'
-import {View} from 'react-native'
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import axios from 'axios';
 
@@ -8,7 +8,6 @@ import LocalStorage from '../utils/LocalStorage'
 
 const FBSDK = require('react-native-fbsdk');
 const {
-    LoginButton,
     GraphRequest,
     LoginManager,
     GraphRequestManager,
@@ -29,7 +28,7 @@ export default class FaceBookLogin extends React.Component {
         return (
             <TextButton
                 onPress={this.facebookLogin}
-                styles={{ fontSize: 20, backgroundColor: '#f7a1a1', color: '#fff', padding: 15, borderRadius: 40 }}
+                styles={styles.button}
                 text='Login with Facebook' />
         );
     }
@@ -98,3 +97,13 @@ export default class FaceBookLogin extends React.Component {
             });
     }
 }
+
+const styles = StyleSheet.create({
+    button:  {
+        fontSize: 14,
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 15,
+        borderRadius: 40
+    }
+});

@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, AsyncStorage } from 'react-native';
+import { View, AsyncStorage, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -75,7 +75,7 @@ class Feed extends React.Component {
 
     render () {
         return (
-            <View style={{flex: 1}}>
+            <View style={styles.container}>
                 <AppBar
                     { ...this.props } />
                 <SitterList
@@ -85,6 +85,12 @@ class Feed extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
 
 function mapStateToProps(state) {
     return {

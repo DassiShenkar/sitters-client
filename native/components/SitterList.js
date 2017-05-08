@@ -21,43 +21,40 @@ export default class Feed extends React.Component {
         let sitterIndex = this.props.feed.sitterIndex;
         const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
         let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
+        let matchScore = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].matchScore + '% Match!' : 'no matches found';
+        let profilePicture = this.props.sitters.length > 0 ? { uri: this.props.sitters[sitterIndex].profilePicture } : {};
+        let sitterName = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '';
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
         };
         return (
-            <View style={{ flex:1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.container}>
                 <GestureRecognizer
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     config={config}>
-                    <Image source={{ uri: coverPhoto }} style={{width: null, height: null, resizeMode:'stretch'}}>
-                        <Text
-                            style={{color: '#fff', fontSize: 40, fontWeight: 'bold', marginTop: 20, marginRight: 155 }}>
-                            { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].matchScore + '% Match!' : 'no matches found' }
-                        </Text>
-                        <View style={{width: '100%',marginTop:30, marginLeft:155}}>
+                    <Image source={{ uri: coverPhoto }} style={styles.backgroundImage}>
+                        <View style={styles.sitterContainer}>
+                            <Text style={styles.matchScoreText}>{ matchScore }</Text>
                             <ImageButton
                                 onPress={ (e) => this.navToProfile(e, sitterId) }
-                                styles={{width: 200, height: 200, borderRadius:100}}
-                                src={this.props.sitters.length > 0 ? { uri: this.props.sitters[sitterIndex].profilePicture } : {} } />
+                                styles={styles.profilePicture}
+                                src={ profilePicture } />
+                            <Text style={styles.sitterName}>{ sitterName }</Text>
                         </View>
-                        <Text
-                            style={{color: '#fff', fontSize: 22, marginTop: 20, marginRight: 185}}>
-                            { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '' }
-                        </Text>
-                        <View style={{ flex: 1, flexDirection: 'row-reverse', width: 200, justifyContent: 'space-between', marginTop: 100, marginRight:160}}>
+                        <View style={styles.navPanel}>
                             <ImageButton
                                 onPress={ (e) => this.navToInvite(e, sitterId) }
-                                styles={{ width: 50, height: 50, borderRadius:100}}
+                                styles={styles.button}
                                 src={require('../style/icons/v.png')} />
                             <ImageButton
                                 onPress={ (e) => this.navToRate(e, sitterId) }
-                                styles={{width: 50, height: 50, borderRadius:100}}
+                                styles={styles.button}
                                 src={require('../style/icons/star.png')} />
                             <ImageButton
                                 onPress={ (e) => this.removeSitter(e) }
-                                styles={{width: 50, height: 50, borderRadius:100}}
+                                styles={styles.button}
                                 src={require('../style/icons/next.png')} />
                         </View>
                     </Image>
@@ -90,10 +87,58 @@ export default class Feed extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    sitterContainer: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%'
+    },
     backgroundImage: {
-        flex: 1,
         width: null,
         height: null,
-        resizeMode: 'cover'
+        resizeMode:'stretch'
+    },
+    matchScoreText: {
+        color: '#fff',
+        fontSize: 40,
+        fontWeight: 'bold',
+        marginTop: 30,
+        marginBottom: 30,
+        backgroundColor: '#f7a1a1',
+        borderRadius: 50,
+        padding: 10
+    },
+    profilePicture: {
+        width: 200,
+        height: 200,
+        borderRadius:100
+    },
+    sitterName: {
+        color: '#fff',
+        fontSize: 22,
+        marginTop: 30,
+        backgroundColor: '#f7a1a1',
+        borderRadius: 50,
+        padding: 10
+    },
+    navPanel: {
+        flex: 1,
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 70,
+        width: '100%',
+        paddingRight: 70,
+        paddingLeft: 70
+    },
+    button: {
+        width: 50,
+        height: 50,
+        borderRadius:100
     }
 });
