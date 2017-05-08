@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import uuid from 'uuid';
+import MapView from 'react-native-maps';
 
 import AndroidDatePicker from '../components/AndroidDatePicker'
 import AndroidTimePicker from '../components/AndroidTimePicker'
@@ -77,6 +78,13 @@ class SitterSendInvite extends React.Component {
 
     render () {
         const profilePicture = this.props.sitter ? this.props.sitter.profilePicture : null;
+        const sitter = this.props.sitter;
+        const initialRegion = {
+            latitude: sitter.address.latitude != 0 ? sitter.address.latitude : 32.0853,
+            longitude: sitter.address.longitude != 0 ? sitter.address.longitude : 34.7818,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+        };
         return (
            <Modal
                animationType={"fade"}
@@ -106,7 +114,23 @@ class SitterSendInvite extends React.Component {
                        </View>
                        <View style={styles.locationContainer}>
                            <Text style={styles.locationText}>Watch Place: </Text>
-                           <Text>{ this.props.user.address ? this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : '' }</Text>
+                           <View style={styles.mapContainer}>
+                               <View style={styles.innerMapContainer}>
+                                   <MapView
+                                       style={styles.map}
+                                       provider={"google"}
+                                       initialRegion={initialRegion}
+                                       loadingEnabled={true}
+                                       loadingIndicatorColor={'#f7a1a1'}>
+                                       <MapView.Marker
+                                           key={Math.random()}
+                                           style={styles.marker}
+                                           coordinate={{ latitude: sitter.address.latitude, longitude: sitter.address.longitude }} >
+                                           <Image key={Math.random()} source={{ uri: sitter.profilePicture }} style={styles.mapImage} />
+                                       </MapView.Marker>
+                                   </MapView>
+                               </View>
+                           </View>
                        </View>
                        <Text style={styles.notesText}>Notes</Text>
                        <TextInput
@@ -140,12 +164,6 @@ class SitterSendInvite extends React.Component {
     endCallback(data) {
         this.props.inviteActions.changeInviteToTime(data);
     }
-
-    // openMap () {
-    //     Actions.GoogleMapView();
-    //     // TODO: handle location change
-    // }
-
 }
 
 const styles = StyleSheet.create({
@@ -162,7 +180,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '80%',
-        height: '70%',
+        height: '85%',
         margin: 15,
         backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: 20
@@ -187,12 +205,34 @@ const styles = StyleSheet.create({
     locationContainer: {
         width: '100%',
         justifyContent: 'flex-start',
-        marginBottom: 15
+        marginBottom: 30,
+        height: 150
     },
     locationText: {
         color: '#f7a1a1',
         fontSize: 16,
         fontWeight: 'bold'
+    },
+    mapContainer: {
+        alignItems: 'center',
+        width: '100%'
+    },
+    innerMapContainer: {
+        width: '100%',
+        height: 150,
+        ...StyleSheet.absoluteFillObject
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject
+    },
+    marker: {
+        width: 40,
+        height: 40
+    },
+    mapImage: {
+        width: 40,
+        height: 40,
+        borderRadius: 100
     },
     notesText: {
         width: '100%',
