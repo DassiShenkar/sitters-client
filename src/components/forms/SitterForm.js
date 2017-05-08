@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from '../controllers/TextInput';
+import TextInput from '../controllers/textInput/index';
 import RadioInput from '../controllers/radio/radioGroup/index';
 // import WorkingHours from '../controllers/WorkingHours';
 import BaseForm from './BaseForm';
@@ -140,6 +140,7 @@ class Form extends React.Component {
                 questions: this.props.register.personalityQuestions,
                 totalScore: totalScore
             },
+            mutualFriends: this.props.user.friends
         };
         axios({
             method: 'post',

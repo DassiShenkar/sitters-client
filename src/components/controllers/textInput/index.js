@@ -4,7 +4,7 @@ import React from 'react';
 // components
 import {ControlLabel, FormControl} from 'react-bootstrap';
 
-import TextInputBase from '../base/controllers/textInputBase/index.js';
+import TextInputBase from '../../base/controllers/textInputBase/index.js';
 
 export default class TextInput extends TextInputBase {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonalityTestRating from '../../controllers/PersonalityTestRating'
+import PersonalityTestRating from './PersonalityTestRating'
 class PersonalityTest extends React.Component {
 
     render() {
