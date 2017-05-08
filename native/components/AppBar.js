@@ -67,7 +67,7 @@ class AppBar extends React.Component {
                 <View
                     style={styles.innerContainer}>
                     <ImageButton
-                        onPress={Actions.SearchByPrice}
+                        onPress={this.search}
                         styles={ styles.icons }
                         src={require('../style/icons/search.png')}/>
                     <ImageButton
@@ -93,9 +93,9 @@ class AppBar extends React.Component {
         );
     }
 
-    // search() {
-    //     Actions.Search({index: 0});
-    // }
+    search() {
+        Actions.SearchByPrice({active: 1});
+    }
 
     menu() {
         Actions.Menu({hide: false});

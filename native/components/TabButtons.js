@@ -13,23 +13,24 @@ export default class TabButtons extends React.Component {
     }
 
     render () {
+        let active = this.props.active;
         return (
             <View style={styles.container}>
-                <View>
+                <View style={active === 1 ? styles.active : styles.notActive}>
                     <ImageButton
-                        onPress={ Actions.SearchByPrice }
+                        onPress={ this.byPrice }
                         styles={styles.image}
                         src={require('../style/icons/dollar.png')} />
                 </View>
-                <View>
+                <View style={active === 2 ? styles.active : styles.notActive}>
                     <ImageButton
-                        onPress={ Actions.SearchByTime }
+                        onPress={ this.byTime }
                         styles={styles.image}
                         src={require('../style/icons/clock.png')} />
                 </View>
-                <View>
+                <View style={active === 3 ? styles.active : styles.notActive}>
                     <ImageButton
-                        onPress={ this.location }
+                        onPress={ this.byLocation }
                         styles={styles.image}
                         src={require('../style/icons/location.png')} />
                 </View>
@@ -37,8 +38,16 @@ export default class TabButtons extends React.Component {
         );
     }
 
-    location() {
-        Actions.SearchByLocation({type: 'reset'});
+    byLocation() {
+        Actions.SearchByLocation({type: 'reset', active: 3});
+    }
+
+    byTime() {
+        Actions.SearchByTime({active: 2});
+    }
+
+    byPrice() {
+        Actions.SearchByPrice({active: 1});
     }
 }
 
@@ -48,15 +57,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 50,
-        backgroundColor: '#f7a1a1',
-        paddingRight: 25,
-        paddingLeft: 25,
+        backgroundColor: '#fff',
         borderBottomColor: '#000',
-        borderTopColor: '#f7a1a1',
-        borderLeftColor: '#f7a1a1',
-        borderRightColor: '#f7a1a1',
+        borderTopColor: '#fff',
+        borderLeftColor: '#fff',
+        borderRightColor: '#fff',
         borderStyle: 'solid',
         borderWidth: 1
+    },
+    active:{
+        alignItems: 'center',
+        width: '33%',
+        backgroundColor: '#f7a1a1'
+    },
+    notActive:{
+        alignItems: 'center',
+        width: '33%',
+        backgroundColor: '#fff'
     },
     image: {
         width: 30,
