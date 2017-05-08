@@ -16,7 +16,6 @@ import SitterProfileView from './native/containers/SitterProfileView';
 import SitterSendInvite from './native/containers/SitterSendInvite';
 import Notifications from './native/containers/Notifications';
 import Inbox from './native/containers/Inbox';
-import About from './native/containers/About';
 import Settings from './native/containers/Settings';
 import SearchByPrice from './native/containers/SearchByPrice';
 import SearchByTime from './native/containers/SearchByTime';
@@ -57,7 +56,6 @@ class Sitters extends React.Component {
                             <Scene key="SearchByPrice" component={SearchByPrice} title="SearchByPrice" animation='fade'/>
                             <Scene key="SearchByTime" component={SearchByTime} title="SearchByTime" animation='fade'/>
                             <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade' hideNavBar={true}/>
-                            <Scene key="About" component={About} title="About" animation='fade'/>
                             <Scene key="Settings" component={Settings} title="Settings" animation='fade'/>
                             <Scene key="ErrorPage" component={ErrorPage} title="ErrorPage" animation='fade'/>
                         </Scene>
