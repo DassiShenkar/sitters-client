@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from '../controllers/TextInput';
+import TextInput from '../controllers/textInput/index';
 import BaseForm from './BaseForm';
 import geocoder from 'geocoder'
 import axios from 'axios';

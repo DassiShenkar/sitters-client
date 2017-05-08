@@ -1,15 +1,13 @@
+// external sources
 import React from "react";
-import Slider from 'rc-slider'
 
-class PersonalityQuestions extends React.Component {
-    onChange(question, index, rate) {
-        question.value = rate;
-        question.index = index;
-        this.props.actions.registerActions.changePersonalityQuestion(question);
-    }
+// components
+import OurSlider from '../../controllers/slider';
 
-    render() {
-        let questions;
+export default class PersonalityQuestions extends React.Component {
+
+    getSameAnswers() {
+        let questions = [];
         let differentQuestion = [];
         let sameQuestions = [];
         const self = this;
@@ -19,32 +17,21 @@ class PersonalityQuestions extends React.Component {
                 let rangeClass = '';
                 if (this.props.addSameQuestionsClass) {
                     rangeClass = question.value === self.props.secondQuestions[key].value ? "same-answer" : "";
+                    const slider = <OurSlider key={key} className={'answer ' + rangeClass} leftLabel={question.label1} rightLabel={question.label2} min={0} max={4} step={1} value={question.value} defaultValue={2} disabled={self.props.disabled}/>;
                     if(rangeClass === "same-answer"){
-                        sameQuestions.push(<div key={key} className={'answer ' + rangeClass}>
-                            <label className="left-label">{question.label1}</label>
-                            <Slider dots={true} disabled={self.props.disabled} min={0} max={4} step={1}
-                                    value={question.value} defaultValue={2}/>
-                            <label className="right-label">{question.label2}</label>
-                        </div>)
+                        sameQuestions.push(slider);
                     }
                     else {
-                        differentQuestion.push(<div key={key} className={'answer ' + rangeClass}>
-                            <label className="left-label">{question.label1}</label>
-                            <Slider dots={true} disabled={self.props.disabled} min={0} max={4} step={1}
-                                    value={question.value} defaultValue={2}/>
-                            <label className="right-label">{question.label2}</label>
-                        </div>)
+                        differentQuestion.push(slider);
                     }
                 }
-                return (
-                    <div key={key} className={'answer ' + rangeClass}>
-                        <label className="left-label">{question.label1}</label>
-                        <Slider dots={true} disabled={self.props.disabled} min={0} max={4} step={1}
-                                value={question.value} defaultValue={2}/>
-                        <label className="right-label">{question.label2}</label>
-                    </div>
-                );
             });
+        return {sameQuestions, differentQuestion, questions};
+    }
+
+
+    render() {
+        const {sameQuestions, differentQuestion, questions} = this.getSameAnswers();
         return (
             <div className="personality-profile">
                 {this.props.disabled ? <h3>{'You want it - ' + this.props.sitterName.split(' ')[0] + ' has got it!'}</h3> : questions}
@@ -55,5 +42,3 @@ class PersonalityQuestions extends React.Component {
         );
     }
 }
-
-export default PersonalityQuestions;
