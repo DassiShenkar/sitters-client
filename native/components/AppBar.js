@@ -35,9 +35,6 @@ class AppBar extends React.Component {
             case 'settings':
                 Actions.Settings();
                 break;
-            case 'about':
-                Actions.About();
-                break;
             case 'login':
                 Actions.Login();
                 break;
