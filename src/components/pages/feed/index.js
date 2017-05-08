@@ -19,7 +19,8 @@ class Feed extends React.Component {
         this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
         this.props.actions.feedActions.showSpinner(true);
         let self = this;
-        const userId = localStorage.getItem('auth_token');
+        // const userId = localStorage.getItem('auth_token');
+        const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         if (!userId) {
         } else {
             axios({

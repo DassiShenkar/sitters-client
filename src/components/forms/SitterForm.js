@@ -140,6 +140,7 @@ class Form extends React.Component {
                 questions: this.props.register.personalityQuestions,
                 totalScore: totalScore
             },
+            mutualFriends: this.props.user.friends
         };
         axios({
             method: 'post',

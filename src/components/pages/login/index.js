@@ -33,7 +33,8 @@ class Login extends React.Component {
         })
             .then(function (response) {
                 if (response.data) {  // user exists
-                    localStorage.setItem("auth_token", user.id);
+                    // localStorage.setItem("auth_token", user.id);
+                    document.cookie = ("auth_token="+user.id);
                     self.props.actions.actionCreators.setUserData(response.data);
                     self.props.router.push('/');
                 }
@@ -59,12 +60,12 @@ class Login extends React.Component {
                 <PageHeader>{strings.APP_NAME}<h3>{strings.APP_DESCRIPTION}</h3>
                 </PageHeader>
                 <Form className="login-form" horizontal>
-                    {localStorage.getItem('suth_token') ? '' : userTypeRadio}
+                    {document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== '' ? '' : userTypeRadio}
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}
-                        fields="id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
-                        scope="user_birthday,public_profile,user_location,user_education_history,user_likes,email"
+                        fields="id,name,email,cover,birthday,currency,education,gender,friends,friendlists,languages,location,timezone,picture.width(100).height(100)"
+                        scope="user_birthday,public_profile,user_location,user_education_history,user_likes,email,user_friends"
                         callback={this.login}
                         {...this.props}
                     />

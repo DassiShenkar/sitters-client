@@ -104,10 +104,10 @@ class Form extends React.Component {
                 specialNeeds: specialNeeds,
             },
             userType: "I'm a parent",
-            personalityTest: {
-                questions: this.props.register.personalityQuestions,
-                totalScore: totalScore
-            },
+            // personalityTest: {
+            //     questions: this.props.register.personalityQuestions,
+            //     totalScore: totalScore
+            // },
             notifications: [],
             invites: [],
             blacklist: [],
@@ -118,7 +118,8 @@ class Form extends React.Component {
             settings: {
                 allowNotification: true,
                 allowSuggestions: true
-            }
+            },
+            mutualFriends: this.props.user.friends
         };
         axios({
             method: 'post',
@@ -127,7 +128,10 @@ class Form extends React.Component {
             data: parent
         }).then(function (res) {
             if (res.data) {  // user created
-                localStorage.auth_token = parent._id;
+                // localStorage.auth_token = parent._id;
+                document.cookie = ("auth_token="+parent._id);
+
+
                 //self.props.actions.actionCreators.setUserData(res.data);
                 self.props.router.push('/');
             }

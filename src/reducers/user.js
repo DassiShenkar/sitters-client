@@ -22,8 +22,8 @@ function user(state = {}, action) {
                 languages: facebookData.languages,
                 location: facebookData.location,
                 timezone: facebookData.timezone,
-                picture: facebookData.picture
-
+                picture: facebookData.picture,
+                friends: facebookData.friends.data
             };
         case 'SET_USER_DATA' :
             const data = action.userData;
@@ -49,7 +49,8 @@ function user(state = {}, action) {
                 settings: data.settings,
                 matchBI: data.matchBI,
                 reviews: data.reviews,
-                personalityTest: data.personalityTest
+                personalityTest: data.personalityTest,
+                friends: data.friends
             };
         default:
             return state;
