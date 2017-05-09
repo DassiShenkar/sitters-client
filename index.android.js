@@ -24,6 +24,7 @@ import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import Menu from './native/containers/Menu';
 import LoadingScreen from './native/containers/LoadingScreen';
+import SitterInfo from './native/containers/SitterInfo';
 import ErrorPage from './native/containers/ErrorPage';
 
 import configureStore from './native/store/ConfigureStore'
@@ -63,6 +64,7 @@ class Sitters extends React.Component {
                         <Scene key="RateSitter" component={RateSitter} title="RateSitter" animation='fade'/>
                         <Scene key="LoadingScreen" component={LoadingScreen} title="LoadingScreen" animation='fade'/>
                         <Scene key="Menu" component={Menu} title="Menu" animation='fade'/>
+                        <Scene key="SitterInfo" component={SitterInfo} title="SitterInfo" animation='fade'/>
                     </Scene>
                 </Router>
             </Provider>

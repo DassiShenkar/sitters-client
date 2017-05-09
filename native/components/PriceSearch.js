@@ -26,7 +26,8 @@ export default class PriceSearch extends React.Component {
         const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
         const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
         let value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : this.props.searchBy.priceMaxRange;
-        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        // const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        const coverPhoto = require('../style/img/background.jpg');
         let priceRange = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : Math.floor(this.props.searchBy.priceMaxRange);
         const config = {
             velocityThreshold: 0.1,
@@ -38,52 +39,52 @@ export default class PriceSearch extends React.Component {
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     config={config}>
-                <View style={styles.searchByContainer}>
-                    <Text style={styles.headerText}>
-                        Max Hour rate: {priceRange}$
-                    </Text>
-                    <View style={styles.sliderNumberWrapper}>
-                        <Text style={styles.sliderNumbers}>1</Text>
-                        <Text style={styles.sliderNumbers}>50</Text>
-                    </View>
-                    <Slider
-                        value={ value }
-                        {...this.props}
-                        maximumTrackTintColor="#f7a1a1"
-                        thumbTintColor="#f7a1a1"
-                        maximumValue={50}
-                        minimummValue={1}
-                        onSlidingComplete={(value) => this.filter(value)} />
-                </View>
-                { 
-                    this.props.sitters.length > 0 ?
-                    <View>
-                        <Image source={{ uri: coverPhoto }} style={styles.backgroundImage}>
-                            <View style={styles.feedContainer}>
-                                <ImageButton
-                                    onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                    styles={styles.sitterImage}
-                                    src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
-                                <View style={styles.feedTextView}>
-                                    <Text style={styles.sitterText}>{name + ', ' + age}</Text>
-                                    { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
-                                    <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                    <Image source={coverPhoto} style={styles.backgroundImage}>
+                        <View style={styles.searchByContainer}>
+                            <Text style={styles.headerText}>
+                                Max Hour rate: {priceRange}$
+                            </Text>
+                            <View style={styles.sliderNumberWrapper}>
+                                <Text style={styles.sliderNumbers}>1</Text>
+                                <Text style={styles.sliderNumbers}>50</Text>
+                            </View>
+                            <Slider
+                                value={ value }
+                                {...this.props}
+                                maximumTrackTintColor="#f7a1a1"
+                                thumbTintColor="#f7a1a1"
+                                maximumValue={50}
+                                minimummValue={1}
+                                onSlidingComplete={(value) => this.filter(value)} />
+                        </View>
+                        {
+                            this.props.sitters.length > 0 ?
+                            <View>
+                                <View style={styles.feedContainer}>
+                                    <ImageButton
+                                        onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                        styles={styles.sitterImage}
+                                        src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                    <View style={styles.feedTextView}>
+                                        <Text style={styles.sitterText}>{name + ', ' + age}</Text>
+                                        { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
+                                        <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.feedButtons}>
+                                    <ImageButton
+                                        onPress={ (e) => {this.navToInvite()} }
+                                        styles={styles.button}
+                                        src={require('../style/icons/v.png')}/>
+                                    <ImageButton
+                                        onPress={ (e) => {this.nextSitter()} }
+                                        styles={styles.button}
+                                        src={require('../style/icons/next.png')}/>
                                 </View>
                             </View>
-                            <View style={styles.feedButtons}>
-                                <ImageButton
-                                    onPress={ (e) => {this.navToInvite()} }
-                                    styles={styles.button}
-                                    src={require('../style/icons/v.png')}/>
-                                <ImageButton
-                                    onPress={ (e) => {this.nextSitter()} }
-                                    styles={styles.button}
-                                    src={require('../style/icons/next.png')}/>
-                            </View>
-                        </Image>
-                    </View>
-                    : <Text style={styles.notFoundText}>No matches found!</Text>
-                }
+                        : <Text style={styles.notFoundText}>No matches found!</Text>
+                    }
+                    </Image>
                 </GestureRecognizer>
             </View>
         );
@@ -159,17 +160,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     sitterImage: {
-        width: 120,
-        height: 120,
+        width: 100,
+        height: 100,
         borderRadius:100
     },
     sitterText: {
-        color: '#fff',
+        color: '#f7a1a1',
         fontSize: 16,
-        margin: 5,
-        backgroundColor: '#f7a1a1',
-        borderRadius: 50,
-        padding: 10
+        margin: 5
     },
     feedButtons: {
         flexDirection: 'row-reverse',

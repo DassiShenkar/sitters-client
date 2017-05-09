@@ -54,7 +54,8 @@ class SitterProfileView extends React.Component {
     render () {
         const id = this.props.sitterId;
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : null;
+        // const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : null;
+        const coverPhoto = require('../style/img/background.jpg');
         const self = this;
         const sitterAddress = this.props.sitterProfile.sitter.address.street + " " +  this.props.sitterProfile.sitter.address.houseNumber + ", " + this.props.sitterProfile.sitter.address.city;
         const lastInvite = this.props.sitterProfile.lastInvite?
@@ -78,7 +79,7 @@ class SitterProfileView extends React.Component {
                         { ...this.props }/>
                     <View style={styles.innerContainer} >
                         <View>
-                            <Image source={{ uri: coverPhoto }} style={styles.coverPhoto}>
+                            <Image source={coverPhoto} style={styles.coverPhoto}>
                                 <View style={styles.sitterContainer}>
                                     <Image
                                         style={styles.profilePicture}
@@ -194,8 +195,8 @@ const styles = StyleSheet.create({
         resizeMode:'stretch'
     },
     profilePicture: {
-        width: 150,
-        height: 150,
+        width: 100,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius:100,
@@ -203,13 +204,10 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     sitterText: {
-        color: '#fff',
+        color: '#f7a1a1',
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 10,
-        backgroundColor: '#f7a1a1',
-        borderRadius: 50,
-        padding: 10
+        marginBottom: 10
     },
     separator: {
         flex: 1,

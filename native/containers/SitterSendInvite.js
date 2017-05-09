@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, Modal, Navigator, Image, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Modal, Image, Text, TextInput, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
