@@ -1,6 +1,6 @@
 "use strict";
 
-import React, { Component, PropTypes  } from 'react';
+import React, { Component } from 'react';
 import { ScrollView, Image, Text, View, ListView, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

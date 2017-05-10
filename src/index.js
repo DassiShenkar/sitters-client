@@ -27,7 +27,7 @@ const router = (
         <Router history={history}>
             <Route path="/" component={App}
                    // onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
-                   onEnter={document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "" ? history.push('/') : history.push('/login')}>
+                   onEnter={document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== "" ? history.push('/') : history.push('/login')}>
                 <IndexRoute component={Feed}/>
                 <Route path="/invites" component={Invites}/>
                 <Route path="/invite/:inviteId" component={SingleInvite}/>
