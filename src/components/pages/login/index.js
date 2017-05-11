@@ -57,10 +57,11 @@ class Login extends React.Component {
                                           required={true}/>;  //TODO: do not delete - for beta
         return (
             <div id="login-page">
-                <PageHeader>{strings.APP_NAME}<h3>{strings.APP_DESCRIPTION}</h3>
+                <PageHeader>{strings.APP_NAME}
+                    <small className="tagline">{strings.APP_DESCRIPTION}</small>
                 </PageHeader>
                 <Form className="login-form" horizontal>
-                    {document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== '' ? '' : userTypeRadio}
+                    {document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== '' ? '' : userTypeRadio}
                     <FacebookLogin
                         appId="268453370262293"
                         autoLoad={false}

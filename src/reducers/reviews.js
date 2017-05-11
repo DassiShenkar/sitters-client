@@ -7,7 +7,6 @@ function reviews(state = {}, action) {
             }];
 
         case 'CHANGE_REVIEW_RATE' :
-            let review = state.review;
             return {...state,
                 category: action.category,
                 rate: action.rate,
