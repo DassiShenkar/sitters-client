@@ -7,11 +7,12 @@ import SearchByTab from "../../panels/searchPanel/index";
 import Notifications from "../../notifications/index";
 import Invites from "../../inviteList/index";
 import SitterList from "../../sitterList/index";
-import Loadable from 'react-loading-overlay'
+import Loadable from 'react-loading-overlay';
 //style
 import './style.css';
 import Review from "../../review/index";
 import strings from "../../../static/strings";
+import {Image} from "react-bootstrap";
 
 class Feed extends React.Component {
 
@@ -78,7 +79,6 @@ class Feed extends React.Component {
                 showSitters = true;
             }
         }
-
         return (
             <div id="feed-page" className="page">
                 <Loadable
