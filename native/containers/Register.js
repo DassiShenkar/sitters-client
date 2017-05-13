@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 import Geocoder from '../utils/GeoCoder'
@@ -10,7 +10,6 @@ import { Actions } from 'react-native-router-flux'
 
 import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
-import AppBar from '../components/AppBar';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
 
@@ -28,7 +27,7 @@ class Register extends Component {
         return (
             <View>
                 <ScrollView>
-                    <View style={{ margin: 20 }}>
+                    <View style={styles.container}>
                         {this.props.user.userType === "I'm a parent" ?
                             <ParentForm
                                 {...this.props}
@@ -183,6 +182,12 @@ class Register extends Component {
         });
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 20
+    }
+});
 
 function mapStateToProps(state) {
     return {

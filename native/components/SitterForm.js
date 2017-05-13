@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableOpacity, Picker } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, Picker, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
 import BaseForm from './BaseForm';
@@ -109,3 +109,7 @@ export default class SitterForm extends React.Component {
         // this.props.actions.registerActions.changeSitterSpecialNeeds(newState);
     }
 }
+
+const styles = StyleSheet.create({
+
+});

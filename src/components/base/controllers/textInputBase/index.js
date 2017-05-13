@@ -1,5 +1,6 @@
 // external sources
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class TextInputBase extends React.Component {
 
@@ -14,8 +15,8 @@ export default class TextInputBase extends React.Component {
 }
 
 TextInputBase.propTypes = {
-    label: React.PropTypes.string,
-    value: React.PropTypes.string
+    label: PropTypes.string,
+    value: PropTypes.string
 };
 
 TextInputBase.defaultProps = {

@@ -1,11 +1,12 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, Modal, Navigator, Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Modal, Image, Text, TextInput, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import uuid from 'uuid';
+import MapView from 'react-native-maps';
 
 import AndroidDatePicker from '../components/AndroidDatePicker'
 import AndroidTimePicker from '../components/AndroidTimePicker'
@@ -77,60 +78,73 @@ class SitterSendInvite extends React.Component {
 
     render () {
         const profilePicture = this.props.sitter ? this.props.sitter.profilePicture : null;
+        const user = this.props.user;
+        const initialRegion = {
+            latitude: user.address.latitude != 0 ? user.address.latitude : 32.0853,
+            longitude: user.address.longitude != 0 ? user.address.longitude : 34.7818,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+        };
         return (
            <Modal
                animationType={"fade"}
                transparent={true}
                visible={true}
                onRequestClose={() => {Actions.pop()}}>
-               <View style={{ flex:1, justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-                   <View style={
-                        {
-                            padding: 20,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: '80%',
-                            height: '70%',
-                            margin: 15,
-                            backgroundColor: 'rgba(255, 255, 255, 1)',
-                            borderRadius: 20
-                        }}>
+               <View style={styles.container}>
+                   <View style={styles.innerContainer}>
                        <Image
-                           style={{width: 70, height: 70, borderRadius: 100, marginBottom: 15}}
+                           style={styles.profilePicture}
                            source={{uri: profilePicture}}
                        />
-                       <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Date</Text>
+                       <View style={styles.pickerContainer}>
+                           <Text style={styles.pickerText}>Date</Text>
                            <AndroidDatePicker
                                 callback={ this.dateCallback }/>
                        </View>
-                       <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Start Watch</Text>
+                       <View style={styles.pickerContainer}>
+                           <Text style={styles.pickerText}>Start Watch</Text>
                            <AndroidTimePicker
                                callback={ this.startCallback }/>
                        </View>
-                       <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>End Watch</Text>
+                       <View style={styles.pickerContainer}>
+                           <Text style={styles.pickerText}>End Watch</Text>
                            <AndroidTimePicker
                                callback={ this.endCallback }/>
                        </View>
-                       <View style={{ width: '100%', justifyContent: 'flex-start', marginBottom: 15 }}>
-                           <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Watch Place: </Text>
-                           <Text>{ this.props.user.address ? this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : '' }</Text>
+                       <View style={styles.locationContainer}>
+                           <Text style={styles.locationText}>Watch Place: </Text>
+                           <View style={styles.mapContainer}>
+                               <View style={styles.innerMapContainer}>
+                                   <MapView
+                                       style={styles.map}
+                                       provider={"google"}
+                                       initialRegion={initialRegion}
+                                       loadingEnabled={true}
+                                       loadingIndicatorColor={'#f7a1a1'}>
+                                       <MapView.Marker
+                                           key={Math.random()}
+                                           style={styles.marker}
+                                           coordinate={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }} >
+                                           <Image key={Math.random()} source={{ uri: user.profilePicture }} style={styles.mapImage} />
+                                       </MapView.Marker>
+                                   </MapView>
+                               </View>
+                           </View>
                        </View>
-                       <Text style={{ width: '100%', justifyContent: 'flex-start', color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Notes</Text>
+                       <Text style={styles.notesText}>Notes</Text>
                        <TextInput
-                           style={{  width: '100%', justifyContent: 'flex-start', marginBottom: 15 }}
+                           style={styles.textInput}
                            onChangeText={(text) => this.props.inviteActions.setNotes(text)}
                            placeHolder='Notes' />
-                       <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
+                       <View style={styles.actionBar}>
                            <TextButton
                                onPress={Actions.pop}
-                               styles={{ fontSize: 20, marginBottom: 10, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                               styles={styles.button}
                                text='Cancel' />
                            <TextButton
                                onPress={this.sendInvite}
-                               styles={{ fontSize: 20, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10 }}
+                               styles={styles.button}
                                text='Send' />
                        </View>
                    </View>
@@ -150,13 +164,102 @@ class SitterSendInvite extends React.Component {
     endCallback(data) {
         this.props.inviteActions.changeInviteToTime(data);
     }
-
-    // openMap () {
-    //     Actions.GoogleMapView();
-    //     // TODO: handle location change
-    // }
-
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    },
+    innerContainer:{
+        padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '80%',
+        height: '85%',
+        margin: 15,
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        borderRadius: 20
+    },
+    profilePicture: {
+        width: 70,
+        height: 70,
+        borderRadius: 100,
+        marginBottom: 15
+    },
+    pickerContainer: {
+        width: '100%',
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        marginBottom: 15
+    },
+    pickerText: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    locationContainer: {
+        width: '100%',
+        justifyContent: 'flex-start',
+        marginBottom: 30,
+        height: 150
+    },
+    locationText: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    mapContainer: {
+        alignItems: 'center',
+        width: '100%'
+    },
+    innerMapContainer: {
+        width: '100%',
+        height: 150,
+        ...StyleSheet.absoluteFillObject
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject
+    },
+    marker: {
+        width: 40,
+        height: 40
+    },
+    mapImage: {
+        width: 40,
+        height: 40,
+        borderRadius: 100
+    },
+    notesText: {
+        width: '100%',
+        justifyContent: 'flex-start',
+        color: '#f7a1a1',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    textInput: {
+        width: '100%',
+        justifyContent: 'flex-start',
+        marginBottom: 15
+    },
+    actionBar: {
+        width: '100%',
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        marginBottom: 15
+    },
+    button: {
+        fontSize: 20,
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10
+    }
+});
 
 function mapStateToProps(state) {
     return {

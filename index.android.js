@@ -16,7 +16,6 @@ import SitterProfileView from './native/containers/SitterProfileView';
 import SitterSendInvite from './native/containers/SitterSendInvite';
 import Notifications from './native/containers/Notifications';
 import Inbox from './native/containers/Inbox';
-import About from './native/containers/About';
 import Settings from './native/containers/Settings';
 import SearchByPrice from './native/containers/SearchByPrice';
 import SearchByTime from './native/containers/SearchByTime';
@@ -25,7 +24,7 @@ import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import Menu from './native/containers/Menu';
 import LoadingScreen from './native/containers/LoadingScreen';
-import GoogleMapView from './native/containers/GoogleMapView';
+import SitterInfo from './native/containers/SitterInfo';
 import ErrorPage from './native/containers/ErrorPage';
 
 import configureStore from './native/store/ConfigureStore'
@@ -57,16 +56,15 @@ class Sitters extends React.Component {
                             <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest" animation='fade'/>
                             <Scene key="SearchByPrice" component={SearchByPrice} title="SearchByPrice" animation='fade'/>
                             <Scene key="SearchByTime" component={SearchByTime} title="SearchByTime" animation='fade'/>
-                            <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade'/>
-                            <Scene key="About" component={About} title="About" animation='fade'/>
+                            <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade' hideNavBar={true}/>
                             <Scene key="Settings" component={Settings} title="Settings" animation='fade'/>
-                            <Scene key="GoogleMapView" component={GoogleMapView} title="GoogleMapView" animation='fade'/>
                             <Scene key="ErrorPage" component={ErrorPage} title="ErrorPage" animation='fade'/>
                         </Scene>
                         <Scene key="SitterSendInvite" component={SitterSendInvite} title="SitterSendInvite" animation='fade'/>
                         <Scene key="RateSitter" component={RateSitter} title="RateSitter" animation='fade'/>
                         <Scene key="LoadingScreen" component={LoadingScreen} title="LoadingScreen" animation='fade'/>
                         <Scene key="Menu" component={Menu} title="Menu" animation='fade'/>
+                        <Scene key="SitterInfo" component={SitterInfo} title="SitterInfo" animation='fade'/>
                     </Scene>
                 </Router>
             </Provider>

@@ -1,10 +1,10 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, BackAndroid } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { Actions } from 'react-native-router-flux'
 
 import LocationSearch from '../components/LocationSearch';
 import TabButtons from '../components/TabButtons';
@@ -19,6 +19,17 @@ class SearchByLocation extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        const self = this;
+        BackAndroid.addEventListener('hardwareBackPress', function(){
+            if(self.props.title === 'SearchByLocation') {
+                Actions.Feed();
+                return true;
+            }
+            return false;
+        })
     }
 
     render() {

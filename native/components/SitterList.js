@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 import ImageButton from '../components/ImageButton';
 
@@ -12,46 +13,58 @@ export default class Feed extends React.Component {
         this.navToProfile = this.navToProfile.bind(this);
         this.navToInvite = this.navToInvite.bind(this);
         this.navToRate = this.navToRate.bind(this);
-        this.removeSitter = this.removeSitter.bind(this);
+        this.nextSitter = this.nextSitter.bind(this);
+        this.openInfo = this.openInfo.bind(this);
     }
 
 
     render () {
         let sitterIndex = this.props.feed.sitterIndex;
-        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        // const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        const coverPhoto = require('../style/img/background.jpg');
         let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
+        // let matchScore = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].matchScore + '% Match!' : 'no matches found';
+        let profilePicture = this.props.sitters.length > 0 ? { uri: this.props.sitters[sitterIndex].profilePicture } : {};
+        let sitterName = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '';
+        const config = {
+            velocityThreshold: 0.1,
+            directionalOffsetThreshold: 80
+        };
         return (
-            <View style={{ flex:1, justifyContent: 'center', alignItems: 'center' }}>
-                <Image source={{ uri: coverPhoto }} style={{width: null, height: null, resizeMode:'stretch'}}>
-                    <Text
-                        style={{width: '100%', color: '#fff', fontSize: 40, fontWeight: 'bold', marginTop: 20, marginRight: 135 }}>
-                        { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].matchScore + '% Match!' : 'no matches found' }
-                    </Text>
-                    <View style={{width: '100%',marginTop:30, marginLeft:155}}>
-                        <ImageButton
-                            onPress={ (e) => this.navToProfile(e, sitterId) }
-                            styles={{width: 200, height: 200, borderRadius:100}}
-                            src={this.props.sitters.length > 0 ? { uri: this.props.sitters[sitterIndex].profilePicture } : {} } />
-                    </View>
-                    <Text
-                        style={{color: '#fff', fontSize: 22, marginTop: 20, marginRight: 185}}>
-                        { this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '' }
-                    </Text>
-                    <View style={{ flex: 1, flexDirection: 'row-reverse', width: 200, justifyContent: 'space-between', marginTop: 100, marginRight:160}}>
-                        <ImageButton
-                            onPress={ (e) => this.navToInvite(e, sitterId) }
-                            styles={{ width: 50, height: 50, borderRadius:100}}
-                            src={require('../style/icons/v.png')} />
-                        <ImageButton
-                            onPress={ (e) => this.navToRate(e, sitterId) }
-                            styles={{width: 50, height: 50, borderRadius:100}}
-                            src={require('../style/icons/star.png')} />
-                        <ImageButton
-                            onPress={ (e) => this.removeSitter(e) }
-                            styles={{width: 50, height: 50, borderRadius:100}}
-                            src={require('../style/icons/next.png')} />
-                    </View>
-                </Image>
+            <View style={styles.container}>
+                <GestureRecognizer
+                    onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
+                    onSwipeRight={(e) => this.nextSitter(e)}
+                    onSwipeUp={(e) => this.openInfo(e)}
+                    config={config}>
+                    <Image source={coverPhoto} style={styles.backgroundImage}>
+                        <View style={styles.sitterContainer}>
+                            <ImageButton
+                                onPress={ (e) => this.navToProfile(e, sitterId) }
+                                styles={styles.profilePicture}
+                                src={ profilePicture } />
+                            <Text style={styles.text}>{ sitterName }</Text>
+                        </View>
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.infoText}>You and {sitterName.split(' ')[0]} have 5 mutual friends:</Text>
+                            <Text style={styles.infoText}>{sitterName.split(' ')[0]} Tells that she is:</Text>
+                        </View>
+                        <View style={styles.navPanel}>
+                            <ImageButton
+                                onPress={ (e) => this.navToInvite(e, sitterId) }
+                                styles={styles.button}
+                                src={require('../style/icons/v.png')} />
+                            <ImageButton
+                                onPress={ (e) => this.navToRate(e, sitterId) }
+                                styles={styles.button}
+                                src={require('../style/icons/star.png')} />
+                            <ImageButton
+                                onPress={ (e) => this.nextSitter(e) }
+                                styles={styles.button}
+                                src={require('../style/icons/next.png')} />
+                        </View>
+                    </Image>
+                </GestureRecognizer>
             </View>
         );
     }
@@ -72,18 +85,69 @@ export default class Feed extends React.Component {
         Actions.RateSitter({ sitter: sitter });
     }
 
-    removeSitter(e) {
+    nextSitter(e) {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.refresh();
     }
+
+    openInfo(e) {
+        let sitterIndex = this.props.feed.sitterIndex;
+        let sitter = this.props.sitters[sitterIndex];
+        Actions.SitterInfo({ sitter: sitter });
+    }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    sitterContainer: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 30
+    },
+    infoContainer: {
+        width: '100%',
+        padding: 30
+    },
     backgroundImage: {
-        flex: 1,
         width: null,
         height: null,
-        resizeMode: 'cover'
+        resizeMode:'stretch'
+    },
+    profilePicture: {
+        width: 100,
+        height: 100,
+        borderRadius:100
+    },
+    text: {
+        color: '#f7a1a1',
+        fontSize: 22,
+        marginTop: 30
+    },
+    infoText: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        marginTop: 30
+    },
+    navPanel: {
+        flex: 1,
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 70,
+        width: '100%',
+        paddingRight: 35,
+        paddingLeft: 35
+    },
+    button: {
+        width: 50,
+        height: 50,
+        borderRadius:100
     }
 });

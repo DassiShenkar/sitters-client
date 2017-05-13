@@ -1,10 +1,11 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import dateFormat from 'dateformat'
 import moment from "moment";
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -17,10 +18,11 @@ export default class TimeSearch extends React.Component {
         super(props);
         this.navToProfile = this.navToProfile.bind(this);
         this.navToInvite = this.navToInvite.bind(this);
-        this.removeSitter = this.removeSitter.bind(this);
+        this.nextSitter = this.nextSitter.bind(this);
         this.dateCallback = this.dateCallback.bind(this);
         this.startCallback = this.startCallback.bind(this);
         this.endCallback = this.endCallback.bind(this);
+        this.filter = this.filter.bind(this);
     }
 
     render () {
@@ -32,51 +34,65 @@ export default class TimeSearch extends React.Component {
         const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
         const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
         const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
+        // const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        const coverPhoto = require('../style/img/background.jpg');
+        const config = {
+            velocityThreshold: 0.1,
+            directionalOffsetThreshold: 80
+        };
         return (
-            <View style={{ margin: 15, alignItems: 'center', width: '100%' }}>
-                <View style={{ justifyContent: 'flex-start', marginBottom: 100 }}>
-                    <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                        <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Date</Text>
-                        <AndroidDatePicker
-                            pickerCallback={ this.dateCallback }/>
-                    </View>
-                    <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                        <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>Start Watch</Text>
-                        <AndroidTimePicker
-                            pickerCallback={ this.startCallback }/>
-                    </View>
-                    <View style={{ width: '80%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                        <Text style={{ color: '#f7a1a1', fontSize: 16, fontWeight: 'bold' }}>End Watch</Text>
-                        <AndroidTimePicker
-                            pickerCallback={ this.endCallback }/>
-                    </View>
-                </View>
-                { this.props.sitters.length > 0 ?
-                    <View>
-                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '70%', marginBottom: 100}}>
-                            <ImageButton
-                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                styles={{width: 100, height: 100, borderRadius:100}}
-                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
-                            <View style={{ paddingTop: 10 }}>
-                                <Text>{name + ', ' + age}</Text>
-                                { availableNow ? <Text>Available now!</Text> : null}
-                                <Text>{ hourFee + '$' }</Text>
+            <View style={styles.container}>
+                <GestureRecognizer
+                    onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
+                    onSwipeRight={(e) => this.nextSitter(e)}
+                    config={config}>
+                    <Image source={coverPhoto} style={styles.backgroundImage}>
+                        <View style={styles.searchByContainer}>
+                            <View style={styles.pickerWrapper}>
+                                <Text style={styles.pickerText}>Pick the Date</Text>
+                                <AndroidDatePicker
+                                    pickerCallback={ this.dateCallback }/>
+                            </View>
+                            <View style={styles.pickerWrapper}>
+                                <Text style={styles.pickerText}>Start Watch</Text>
+                                <AndroidTimePicker
+                                    pickerCallback={ this.startCallback }/>
+                            </View>
+                            <View style={styles.pickerWrapper}>
+                                <Text style={styles.pickerText}>End Watch</Text>
+                                <AndroidTimePicker
+                                    pickerCallback={ this.endCallback }/>
                             </View>
                         </View>
-                        <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between', width: '50%'}}>
-                            <ImageButton
-                                onPress={ (e) => this.navToInvite }
-                                styles={{ width: 50, height: 50, borderRadius:100}}
-                                src={require('../style/icons/v.png')}/>
-                            <ImageButton
-                                onPress={ (e) => this.removeSitter }
-                                styles={{width: 50, height: 50, borderRadius:100}}
-                                src={require('../style/icons/next.png')}/>
-                        </View>
-                    </View>
-                    : <Text>No matches found!</Text>
-                }
+                        {
+                            this.props.sitters.length > 0 ?
+                                <View>
+                                    <View style={styles.feedContainer}>
+                                        <ImageButton
+                                            onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                            styles={styles.sitterImage}
+                                            src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                        <View style={styles.feedTextView}>
+                                            <Text style={styles.sitterText}>{name + ', ' + age}</Text>
+                                            { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
+                                            <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                        </View>
+                                    </View>
+                                    <View style={styles.feedButtons}>
+                                        <ImageButton
+                                            onPress={ (e) => {this.navToInvite()} }
+                                            styles={styles.button}
+                                            src={require('../style/icons/v.png')}/>
+                                        <ImageButton
+                                            onPress={ (e) => {this.nextSitter()} }
+                                            styles={styles.button}
+                                            src={require('../style/icons/next.png')}/>
+                                    </View>
+                                </View>
+                                : <Text style={styles.notFoundText}>No matches found!</Text>
+                        }
+                    </Image>
+                </GestureRecognizer>
             </View>
         );
     }
@@ -91,65 +107,28 @@ export default class TimeSearch extends React.Component {
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    removeSitter(e) {
+    nextSitter(e) {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.refresh();
     }
 
     dateCallback(value) {
-        console.log(value);
-        console.log(dateFormat(value, "dddd"));
-        console.log(value);
         this.props.searchByActions.changeInviteDate(dateFormat(value, "mm/dd/yyyy"),dateFormat(value, "dddd"),value.toISOString());
-        let day = this.props.searchBy.inviteDay.toLowerCase();
-        let from = this.props.searchBy.fromTime.format('H:mm');
-        let to = this.props.searchBy.toTime.format('H:mm');
-        let sitters = [];
-        for(let sitter of this.props.feed.matches){
-            let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
-            let startDuration = moment.duration(startMS);
-            let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
-            if(startDiff[0] === '-' || startDiff[0] === '0:00'){
-                let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
-                let finishDuration = moment.duration(finishMS);
-                let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
-                if(finishDiff[0] === '-'){
-                    sitters.push(sitter);
-                }
-            }
-        }
-        this.props.feedActions.setFilteredMatches(sitters);
-        Actions.SearchByTime();
+        this.filter();
     }
 
     startCallback(value) {
-        console.log(value);
         this.props.searchByActions.changeInviteFromTime(moment(value,"H:mm"));
-        let day = this.props.searchBy.inviteDay.toLowerCase();
-        let from = this.props.searchBy.fromTime.format('H:mm');
-        let to = this.props.searchBy.toTime.format('H:mm');
-        let sitters = [];
-        for(let sitter of this.props.feed.matches){
-            let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
-            let startDuration = moment.duration(startMS);
-            let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
-            if(startDiff[0] === '-' || startDiff[0] === '0:00'){
-                let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
-                let finishDuration = moment.duration(finishMS);
-                let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
-                if(finishDiff[0] === '-'){
-                    sitters.push(sitter);
-                }
-            }
-        }
-        this.props.feedActions.setFilteredMatches(sitters);
-        Actions.SearchByTime();
+        this.filter();
     }
 
     endCallback(value) {
-        console.log(value);
         this.props.searchByActions.changeInviteToTime(moment(value,"H:mm"));
+        this.filter();
+    }
+
+    filter(){
         let day = this.props.searchBy.inviteDay.toLowerCase();
         let from = this.props.searchBy.fromTime.format('H:mm');
         let to = this.props.searchBy.toTime.format('H:mm');
@@ -171,3 +150,71 @@ export default class TimeSearch extends React.Component {
         Actions.SearchByTime();
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        width: '100%'
+    },
+    searchByContainer: {
+        margin: 15,
+        justifyContent: 'flex-start',
+        marginBottom: 30
+    },
+    pickerWrapper: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        padding: 5
+    },
+    pickerText: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    backgroundImage: {
+        width: null,
+        height: null,
+        resizeMode:'stretch'
+    },
+    feedContainer: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        height: '66%',
+        padding: 30
+    },
+    feedTextView: {
+        paddingTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    sitterImage: {
+        width: 100,
+        height: 100,
+        borderRadius:100
+    },
+    sitterText: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        margin: 5
+    },
+    feedButtons: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        paddingRight: 30,
+        paddingLeft: 30
+    },
+    button: {
+        width: 50,
+        height: 50,
+        borderRadius:100
+    },
+    notFoundText: {
+        width: '100%',
+        fontSize: 22,
+        paddingLeft: 80,
+        paddingTop: 50,
+        color: '#f7a1a1'
+    }
+});

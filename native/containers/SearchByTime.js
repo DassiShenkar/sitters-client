@@ -1,9 +1,10 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, BackAndroid } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux'
 
 import TimeSearch from '../components/TimeSearch';
 import TabButtons from '../components/TabButtons';
@@ -18,6 +19,17 @@ class SearchByTime extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        const self = this;
+        BackAndroid.addEventListener('hardwareBackPress', function(){
+            if(self.props.title === 'SearchByTime') {
+                Actions.Feed();
+                return true;
+            }
+            return false;
+        })
     }
 
     render() {

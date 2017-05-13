@@ -1,6 +1,6 @@
 "use strict";
 
-import React, { Component, PropTypes  } from 'react';
+import React, { Component } from 'react';
 import { ScrollView, Image, Text, View, ListView, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -54,12 +54,13 @@ class SitterProfileView extends React.Component {
     render () {
         const id = this.props.sitterId;
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : null;
+        // const coverPhoto = this.props.sitterProfile.sitter.coverPhoto ? this.props.sitterProfile.sitter.coverPhoto : null;
+        const coverPhoto = require('../style/img/background.jpg');
         const self = this;
         const sitterAddress = this.props.sitterProfile.sitter.address.street + " " +  this.props.sitterProfile.sitter.address.houseNumber + ", " + this.props.sitterProfile.sitter.address.city;
         const lastInvite = this.props.sitterProfile.lastInvite?
             <View>
-                <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Last Invited:</Text>
+                <Text style={styles.detailHeader}>Last Invited:</Text>
                 <Text>{this.props.sitterProfile.sitter.lastInvite}</Text>
             </View> : null;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
@@ -72,45 +73,47 @@ class SitterProfileView extends React.Component {
         });
         // TODO: add address and last invite
         return (
-            <View style={{ flex:1 }}>
+            <View style={styles.container}>
                 <ScrollView>
                     <AppBar
                         { ...this.props }/>
-                    <View style={{ flex:1 }} >
+                    <View style={styles.innerContainer} >
                         <View>
-                            <Image source={{ uri: coverPhoto }} style={{width: null, height: null, resizeMode:'stretch'}}>
-                                <Image
-                                    style={{width: 150, height: 150, justifyContent: 'center', borderRadius:100, marginLeft: 110, marginTop: 70}}
-                                    source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
-                                />
-                                <Text style={{ color: '#fff', fontSize: 20, fontWeight: 'bold', marginTop: 50, marginRight: 90 }}>
-                                    { this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }
-                                </Text>
-                                <Text style={{ color: '#fff', fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 20, marginRight: 120 }}>
-                                    {this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
-                                        return sitter._id === id;
-                                    }).matchScore + '% Match!' : 'no matches found'}
-                                </Text>
+                            <Image source={coverPhoto} style={styles.coverPhoto}>
+                                <View style={styles.sitterContainer}>
+                                    <Image
+                                        style={styles.profilePicture}
+                                        source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
+                                    />
+                                    <Text style={styles.sitterText}>
+                                        { this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }
+                                    </Text>
+                                    <Text style={styles.sitterText}>
+                                        {this.props.sitterProfile.sitter ? this.props.feed.matches.find(function (sitter) {
+                                            return sitter._id === id;
+                                        }).matchScore + '% Match!' : 'no matches found'}
+                                    </Text>
+                                </View>
                             </Image>
-                            <View style={{flex: 1, flexDirection: 'row-reverse', padding: 10, justifyContent: 'space-between', width: '100%', backgroundColor: '#f7a1a1'}}>
-                                <Text style={{ fontSize: 20, color: '#fff' }}>
-                                    { this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters" }
+                            <View style={styles.infoBar}>
+                                <Text style={styles.infoText}>
+                                    { this.props.sitterProfile.distance > 999 ? 'Proximity:\n' + this.props.sitterProfile.distance / 1000 + ' KM' :  'Proximity:\n' + this.props.sitterProfile.distance + ' Meters' }
                                 </Text>
-                                <Text style={{ fontSize: 20, color: '#fff' }}>
-                                    { this.props.sitterProfile.sitter.hourFee + "$" }
+                                <Text style={styles.infoText}>
+                                    { 'Hour Fee:\n' + this.props.sitterProfile.sitter.hourFee + '$'}
                                 </Text>
-                                <Text style={{ fontSize: 20, color: '#fff' }}>
-                                    { this.props.sitterProfile.sitter.experience + " Years" }
+                                <Text style={styles.infoText}>
+                                    { 'Experience:\n' + this.props.sitterProfile.sitter.experience + " Years" }
                                 </Text>
                             </View>
                         </View>
-                        <View style={{ margin: 15 }}>
-                            <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Address</Text>
+                        <View style={styles.detailContainer}>
+                            <Text style={styles.detailHeader}>Address</Text>
                             <Text>{ sitterAddress }</Text>
                             {lastInvite}
-                            <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Availability</Text>
+                            <Text style={styles.detailHeader}>Availability</Text>
                             { workingHours }
-                            {this.props.sitterProfile.sitter.hobbies ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Hobbies</Text> : null}
+                            {this.props.sitterProfile.sitter.hobbies ? <Text style={styles.detailHeader}>Hobbies</Text> : null}
                             <View style={{ flexDirection: "row-reverse" }}>
                                 {
                                     this.props.sitterProfile.sitter.hobbies ? this.props.sitterProfile.sitter.hobbies.map(function(hobbie) {
@@ -118,7 +121,7 @@ class SitterProfileView extends React.Component {
                                     }) : null
                                 }
                             </View>
-                            {this.props.sitterProfile.sitter.education ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Education</Text> : null}
+                            {this.props.sitterProfile.sitter.education ? <Text style={styles.detailHeader}>Education</Text> : null}
                             <View style={{ flexDirection: "row-reverse" }}>
                                 {
                                     this.props.sitterProfile.sitter.education ? this.props.sitterProfile.sitter.education.map(function(education) {
@@ -126,7 +129,7 @@ class SitterProfileView extends React.Component {
                                     }) : null
                                 }
                             </View>
-                            {this.props.sitterProfile.sitter.languages ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Languages</Text> : null}
+                            {this.props.sitterProfile.sitter.languages ? <Text style={styles.detailHeader}>Languages</Text> : null}
                             <View style={{ flexDirection: "row-reverse" }}>
                                 {
                                     this.props.sitterProfile.sitter.languages ? this.props.sitterProfile.sitter.languages.map(function(lang) {
@@ -134,7 +137,7 @@ class SitterProfileView extends React.Component {
                                     }) : null
                                 }
                             </View>
-                            {this.props.sitterProfile.sitter.expertise ? <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Expertise</Text> : null}
+                            {this.props.sitterProfile.sitter.expertise ? <Text style={styles.detailHeader}>Expertise</Text> : null}
                             <View style={{ flexDirection: "row-reverse" }}>
                                 {
                                     this.props.sitterProfile.sitter.expertise ? this.props.sitterProfile.sitter.expertise.map(function(expertise) {
@@ -142,7 +145,7 @@ class SitterProfileView extends React.Component {
                                     }) : null
                                 }
                             </View>
-                            <Text style={{ fontSize: 16, color: '#f7a1a1', paddingBottom: 5, paddingTop: 5}}>Reviews({ this.props.sitterProfile.sitter.reviews.length })</Text>
+                            <Text style={styles.detailHeader}>Reviews({ this.props.sitterProfile.sitter.reviews.length })</Text>
                             <View>
                                 <ListView
                                     enableEmptySections={true}
@@ -154,14 +157,14 @@ class SitterProfileView extends React.Component {
                         </View>
                     </View>
                 </ScrollView>
-                <View style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', margin: 5 }}>
+                <View style={styles.actionBar}>
                     <TextButton
                         onPress={Actions.pop}
-                        styles={{ fontSize: 20, backgroundColor: '#f7a1a1', color: '#fff', padding: 5, borderRadius: 10, margin: 5, marginRight: 15 }}
+                        styles={styles.textButton}
                         text='Cancel' />
                     <ImageButton
                         onPress={ (e) =>  this.navToInvite(e, id) }
-                        styles={{width: 50, height: 50, borderRadius:100}}
+                        styles={styles.imageButton}
                         src={require('../style/icons/inbox.png')} />
                 </View>
             </View>
@@ -174,11 +177,84 @@ class SitterProfileView extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex:1
+    },
+    innerContainer: {
+        flex:1
+    },
+    sitterContainer: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%'
+    },
+    coverPhoto: {
+        width: null,
+        height: null,
+        resizeMode:'stretch'
+    },
+    profilePicture: {
+        width: 100,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius:100,
+        marginTop: 20,
+        marginBottom: 40
+    },
+    sitterText: {
+        color: '#f7a1a1',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10
+    },
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
         backgroundColor: '#8E8E8E'
     },
+    infoBar: {
+        flex: 1,
+        flexDirection: 'row-reverse',
+        padding: 10,
+        justifyContent: 'space-between',
+        width: '100%',
+        backgroundColor: '#f7a1a1'
+    },
+    infoText: {
+        fontSize: 20,
+        color: '#fff'
+    },
+    detailContainer: {
+        margin: 15
+    },
+    detailHeader: {
+        fontSize: 16,
+        color: '#f7a1a1',
+        paddingBottom: 5,
+        paddingTop: 5
+    },
+    actionBar: {
+        width: '100%',
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        margin: 5
+    },
+    textButton: {
+        fontSize: 20,
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10,
+        margin: 5,
+        marginRight: 15
+    },
+    imageButton: {
+        width: 50,
+        height: 50,
+        borderRadius:100
+    }
 });
 
 function mapStateToProps(state) {

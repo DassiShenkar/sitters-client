@@ -8,12 +8,16 @@
     h1 {
       font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
       color: #f7a1a1;
-      font-size: 56px;
+      font-size: 96px;
     }
 
-    h3 {
+    .tagline {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #555;
+      font-size: 28px;
+      display: block;
+      text-align: center;
+      margin-top: 32px;
     }
   }
 

@@ -21,15 +21,13 @@ class MenuItem extends React.Component {
                 case 3:
                     return <Image source={ require('../style/icons/logout.png') } style={ styles.image }/>;
                 case 4:
-                    return <Image source={ require('../style/icons/about.png') } style={ styles.image }/>;
-                case 5:
                     return <Image source={ require('../style/icons/close.png') } style={ styles.image }/>;
                 default:
                     return null;
             }
         };
         return (
-            <TouchableHighlight onPress={ this.props.menuCallback }>
+            <TouchableHighlight rowId={self.props.index} onPress={ this.props.menuCallback }>
                 <View style={ styles.container }>
                     { image() }
                     <Text>{ this.props.name }</Text>

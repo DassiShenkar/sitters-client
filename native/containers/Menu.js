@@ -16,7 +16,6 @@ class Menu extends React.Component {
         super(props);
         this.registerCallback = this.registerCallback.bind(this);
         this.settingsCallback = this.settingsCallback.bind(this);
-        this.aboutCallbak = this.aboutCallbak.bind(this);
         this.logoutCallback = this.logoutCallback.bind(this);
     }
     
@@ -26,8 +25,7 @@ class Menu extends React.Component {
             {index: 1, name: 'Edit Profile', menuCallback:  this.registerCallback},
             {index: 2, name: 'Settings', menuCallback: this.settingsCallback},
             {index: 3, name: 'Log Out', menuCallback: this.logoutCallback},
-            {index: 4, name: 'About', menuCallback: this.aboutCallbak},
-            {index: 5, name: 'Close Menu', menuCallback: Actions.pop}
+            {index: 4, name: 'Close Menu', menuCallback: Actions.pop}
         ]);
         return (
             <Modal
@@ -59,12 +57,6 @@ class Menu extends React.Component {
         Actions.pop();
     }
 
-    aboutCallbak() {
-        this.props.routerActions.changeValidFlag(true);
-        this.props.routerActions.addScene('about');
-        Actions.pop();
-    }
-
     logoutCallback() {
         LocalStorage.clearAll();
         FBLoginManager.logOut();
@@ -89,7 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         width: '50%',
-        height: '45%',
+        height: '32.8%',
         backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: 20
     },
