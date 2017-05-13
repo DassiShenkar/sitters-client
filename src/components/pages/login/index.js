@@ -23,6 +23,9 @@ class Login extends React.Component {
     }
 
     login(user) {
+        if(user.status === "not_authorized"){
+            this.props.router.push('/notAuthorized');
+        }
         console.log((strings.DEBUG?strings.LOCALHOST : strings.WEBSITE )+ 'parent/get');
         const self = this;
         axios({

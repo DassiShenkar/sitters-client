@@ -52,6 +52,11 @@ function user(state = {}, action) {
                 personalityTest: data.personalityTest,
                 friends: data.friends
             };
+        case 'CHANGE_USER_ADDRESS' :
+            return {
+                ...state,
+                address: action.address
+            };
         default:
             return state;
     }

@@ -20,6 +20,7 @@ import SingleInvite from "./components/pages/invite/SingleInvite";
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
 import Thanks from "./components/Thanks";
+import NotAuthorized from "./components/NotAuthorized";
 
 
 const router = (
@@ -38,6 +39,7 @@ const router = (
                 <Route path="/register" component={Register}/>
                 <Route path="/editProfile" component={EditProfile}/>
                 <Route path="/login" component={Login}/>
+                <Route path="/notAuthorized" component={NotAuthorized}/>
             </Route>
             <Route path="/thank_you" component={Thanks}/>
         </Router>

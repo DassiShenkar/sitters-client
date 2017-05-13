@@ -198,3 +198,10 @@ export function changePersonalityQuestion(question) {
         question
     }
 }
+
+export function changeUserAddress(address) {
+    return {
+        type: 'CHANGE_USER_ADDRESS',
+        address
+    }
+}
