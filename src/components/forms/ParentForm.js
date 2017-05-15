@@ -1,41 +1,31 @@
 import React from 'react';
 import TextInput from '../controllers/textInput/index';
 import BaseForm from './BaseForm';
-import geocoder from 'geocoder'
 import axios from 'axios';
 import strings from '../../static/strings';
 import {AgeFromDate} from 'age-calculator';
 import RadioGroup from "../controllers/radio/radioGroup/index";
 import {Button, ControlLabel} from "react-bootstrap";
+import SelectInput from "../controllers/select/SelectInput";
+import PersonalityQuestions from "./personality/PersonalityQuestions";
+import {geocodeByAddress} from "react-places-autocomplete";
 
 //style
 import './style.css';
-import SelectInput from "../controllers/select/SelectInput";
-import PersonalityQuestions from "./personality/PersonalityQuestions";
+import * as _ from "lodash";
 
 class Form extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
-        this.getGeoCode = this.getGeoCode.bind(this);
     };
-    getGeoCode(callback){
-        let city = this.props.register.city != null ? this.props.register.city != null : this.props.user.location.name.split(',')[0];
-        geocoder.geocode(this.props.register.street + " " + this.props.register.houseNumber + ", " + city , function ( err, data ) {
-            if(err)
-                console.log(err); // TODO: when address is wrong, add callback
-            else{
-                callback(data);
-            }
-        });
-    }
     calcAge(birthday) {
         let date = birthday.split("/");
         return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
     }
     handleSubmitParent(e) {
         e.preventDefault();
-        let self = this;
+        const self = this;
         let parent = {address:{},languages: []};
         let expertise = [], hobbies = [], specialNeeds= [];
         let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
@@ -44,10 +34,6 @@ class Form extends React.Component {
                 parent.languages.push(language.name);
             else
                 parent.languages.push(language.value);
-        });
-        this.getGeoCode(function(data) {
-            parent.address.longitude = data.results[0] != null? data.results[0].geometry.location.lng: 0;
-            parent.address.latitude = data.results[0] != null? data.results[0].geometry.location.lat: 0;
         });
         if(this.props.register.childExpertise.length > 0){
             this.props.register.childExpertise.forEach(function(o){
@@ -72,29 +58,21 @@ class Form extends React.Component {
         if(this.props.register.partnerName){
             partner = {
                 gender: this.props.register.partnerGender,
-                    email:  this.props.register.partnerEmail,
-                    name:  this.props.register.partnerName
+                email:  this.props.register.partnerEmail,
+                name:  this.props.register.partnerName
             };
             parent.partner = partner;
         }
-
-
-
-
         parent = {
             _id : this.props.user.facebookID,
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-            address: {
-                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
-                street: this.props.register.street,
-                houseNumber: Number(this.props.register.houseNumber),
-            },
+
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-            coverPhoto: this.props.user.coverPhoto.source,
-            timezone: this.props.user.timezone,
-            profilePicture: this.props.user.picture.data.url,
+            coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
+            timezone: this.props.user.timezone? this.props.user.timezone: "",
+            profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
             children: {
                 name: this.props.register.childName,
@@ -121,121 +99,131 @@ class Form extends React.Component {
             },
             mutualFriends: this.props.user.friends
         };
-        axios({
-            method: 'post',
-            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/create',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: parent
-        }).then(function (res) {
-            if (res.data) {  // user created
-                // localStorage.auth_token = parent._id;
-                document.cookie = ("auth_token="+parent._id);
+
+        geocodeByAddress(this.props.user.address,  (err, latLng) => {
+            if (err) { console.log('Oh no!', err) }
+            else{
+                let add = self.props.user.address.split(',');
+                const street = add[0].split(' ');
+                let houseNumber = street.pop();
+                if(Number.isNaN(houseNumber)){
+                   street.push(houseNumber);
+                    houseNumber = 0;
+                }
+                const address = {
+                    city: self.props.user.address.split(',')[1],
+                    street: _.join(street," "),
+                    // houseNumber: !Number.isNaN(self.props.user.address.split(',')[0].split(' ').slice(-1))? Number(self.props.user.address.split(',')[0].split(' ').slice(-1)):0,
+                    houseNumber: Number(houseNumber),
+                    longitude: latLng.lng,
+                    latitude: latLng.lat
+                };
+                parent.address = address;
+                axios({
+                    method: 'post',
+                    url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/create',
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    data: parent
+                }).then(function (res) {
+                    if (res.data) {  // user created
+                        document.cookie = ("auth_token="+parent._id);
+                        self.props.router.push('/');
+                    }
+                    else { // user not created
+                        //TODO: think about error when user not created
+                    }
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                        //TODO: think about error when user not created
+                    });
+            }
+        });
 
 
-                //self.props.actions.actionCreators.setUserData(res.data);
-                self.props.router.push('/');
-            }
-            else { // user not created
-                //TODO: think about error when user not created
-            }
-        })
-            .catch(function (error) {
-                console.log(error);
-                //TODO: think about error when user not created
-            });
     }
     render() {
+
         return (
-            <form id="register-form" onSubmit={this.handleSubmitParent}>
-                <BaseForm {...this.props}/>
-                <h3>Child</h3>
-                <TextInput label="Child Name"
-                           placeholder="Child Name"
-                           action={this.props.actions.registerActions.changeChildName}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
-                <TextInput label="Age"
-                           type="number"
-                           placeholder="0"
-                           action={this.props.actions.registerActions.changeChildAge}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
-                <h4>Child Difficulties</h4>
-                <SelectInput
-                    placeholder="Select child Difficulties"
-                    options={strings.EXPERTISE}
-                    {...this.props}
-                    action={this.props.actions.registerActions.changeChildExpertise}
-                    reducer={'register'}
-                    defaultValues={this.props.register.childExpertise}/>
-                {/*<CheckBoxInput name="childExpertise"*/}
-                               {/*types={strings.EXPERTISE}*/}
-                               {/*action={this.props.actions.registerActions.changeChildExpertise}*/}
-                               {/*{...this.props}*/}
-                               {/*reducer={'register'}*/}
-                {/*/>*/}
-                <h4>Child Hobbies</h4>
-                <SelectInput
-                    placeholder="Select child Hobbies"
-                    options={strings.HOBBIES}
-                    {...this.props}
-                    action={this.props.actions.registerActions.changeChildHobbies}
-                    reducer={'register'}
-                    defaultValues={this.props.register.childHobbies}/>
-                {/*<CheckBoxInput name="childHobbies"*/}
-                               {/*types={strings.HOBBIES}*/}
-                               {/*action={this.props.actions.registerActions.changeChildHobbies}*/}
-                               {/*{...this.props}*/}
-                               {/*reducer={'register'}*/}
-                {/*/>*/}
-                <h4>Child Special needs</h4>
-                <SelectInput
-                    placeholder="Select child Special Needs"
-                    options={strings.SPECIAL_NEEDS}
-                    {...this.props}
-                    action={this.props.actions.registerActions.changeChildSpecialNeeds}
-                    reducer={'register'}
-                    defaultValues={this.props.register.childSpecialNeeds}/>
-                {/*<CheckBoxInput name="childSpecialNeeds"*/}
-                               {/*types={strings.SPECIAL_NEEDS}*/}
-                               {/*action={this.props.actions.registerActions.changeChildSpecialNeeds}*/}
-                               {/*{...this.props}*/}
-                               {/*reducer={'register'}*/}
-                {/*/>*/}
-                <TextInput label="Max price for babysitting hour (USD)"
-                           type="number"
-                           placeholder="0"
-                           action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
-                <h4>Partner</h4>
-                <TextInput label="Partner Name"
-                           placeholder='Name'
-                           defaultValue={this.props.register.partnerName}
-                           action={this.props.actions.registerActions.changePartnerName}
-                           {...this.props}
-                           reducer={'register'}/>
-                <TextInput label="Partner Email"
-                           type="email"
-                           placeholder='Email'
-                           defaultValue={this.props.register.partnerEmail ? this.props.user.partnerEmail : ''}
-                           action={this.props.actions.registerActions.changePartnerEmail}
-                           {...this.props}
-                           reducer={'register'}/>
-                <ControlLabel>Partner Gender</ControlLabel>
-                <RadioGroup options={strings.GENDER}
-                            defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
-                            action={this.props.actions.registerActions.changePartnerGender}
-                            radioType={'partnerGender'}
-                            value={this.props.user.gender}/>
-                {/*<PersonalityQuestions {...this.props}/>*/}
-                <div className="submit">
-                    <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
-                </div>
-            </form>
+
+            <div>
+                <form id="register-form">
+                    <BaseForm {...this.props}/>
+                    <h3>Child</h3>
+                    <TextInput label="Child Name"
+                               placeholder="Child Name"
+                               action={this.props.actions.registerActions.changeChildName}
+                               {...this.props}
+                               reducer={'register'}
+                               required={true}/>
+                    <TextInput label="Age"
+                               type="number"
+                               placeholder="0"
+                               action={this.props.actions.registerActions.changeChildAge}
+                               {...this.props}
+                               reducer={'register'}
+                               required={true}/>
+                    <h4>Child Difficulties</h4>
+                    <SelectInput
+                        placeholder="Select child Difficulties"
+                        options={strings.EXPERTISE}
+                        {...this.props}
+                        action={this.props.actions.registerActions.changeChildExpertise}
+                        reducer={'register'}
+                        defaultValues={this.props.register.childExpertise}/>
+                    <h4>Child Hobbies</h4>
+                    <SelectInput
+                        placeholder="Select child Hobbies"
+                        options={strings.HOBBIES}
+                        {...this.props}
+                        action={this.props.actions.registerActions.changeChildHobbies}
+                        reducer={'register'}
+                        defaultValues={this.props.register.childHobbies}/>
+                    <h4>Child Special needs</h4>
+                    <SelectInput
+                        placeholder="Select child Special Needs"
+                        options={strings.SPECIAL_NEEDS}
+                        {...this.props}
+                        action={this.props.actions.registerActions.changeChildSpecialNeeds}
+                        reducer={'register'}
+                        defaultValues={this.props.register.childSpecialNeeds}/>
+                    <TextInput label="Max price for babysitting hour (USD)"
+                               type="number"
+                               placeholder="0"
+                               action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
+                               {...this.props}
+                               reducer={'register'}
+                               required={true}/>
+                    <h4>Partner</h4>
+                    <TextInput label="Partner Name"
+                               placeholder='Name'
+                               defaultValue={this.props.register.partnerName}
+                               action={this.props.actions.registerActions.changePartnerName}
+                               {...this.props}
+                               reducer={'register'}/>
+                    <TextInput label="Partner Email"
+                               type="email"
+                               placeholder='Email'
+                               defaultValue={this.props.register.partnerEmail ? this.props.user.partnerEmail : ''}
+                               action={this.props.actions.registerActions.changePartnerEmail}
+                               {...this.props}
+                               reducer={'register'}/>
+                    <ControlLabel>Partner Gender</ControlLabel>
+                    <RadioGroup options={strings.GENDER}
+                                defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
+                                action={this.props.actions.registerActions.changePartnerGender}
+                                radioType={'partnerGender'}
+                                value={this.props.user.gender}/>
+                    <PersonalityQuestions questions={strings.QUESTIONS}
+                                          addSameQuestionsClass={false}
+                                          disabled={false}
+                                          {...this.props}/>
+                    {/*<PersonalityQuestions {...this.props}/>*/}
+                    <div className="submit">
+                        <Button onClick={this.handleSubmitParent} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
+                    </div>
+                </form>
+            </div>
         );
     };
 }

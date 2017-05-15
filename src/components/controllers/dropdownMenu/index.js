@@ -8,8 +8,6 @@ import Person from '../../icons/Person';
 import Settings from '../../icons/Settings';
 import Logout from '../../icons/Logout';
 
-// style
-import 'rc-dropdown/assets/index.css';
 
 
 export default class DropdownMenu extends React.Component {

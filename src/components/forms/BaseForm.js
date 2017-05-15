@@ -21,7 +21,6 @@ import {Button} from "react-bootstrap";
 class BaseForm extends React.Component {
     constructor(props){
         super(props);
-        this.state = { address: 'San Francisco, CA' };
         this.onChange = this.onChange.bind(this);
     }
     calcAge(birthday) {
@@ -45,21 +44,14 @@ class BaseForm extends React.Component {
     }
 
     onChange(address){
-        this.setState({ address });
-        console.log(address);
+        // this.setState({ address });
+        this.props.actions.registerActions.changeUserAddress(address);
     }
-    findAddress(event){
-        event.preventDefault();
-        geocodeByAddress(this.state.address,  (err, latLng) => {
-            if (err) { console.log('Oh no!', err) }
 
-            console.log('Yay! Got latitude and longitude' + latLng);
-            console.log(latLng);
-        })
-    }
     render() {
         const inputProps = {
-            value: this.state.address,
+            // value: this.state.address,
+            value: this.props.user.address,
             onChange: this.onChange,
         };
         return (
@@ -89,8 +81,8 @@ class BaseForm extends React.Component {
                            required={true}/>
                 <h4>Address</h4>
 
-                <PlacesAutocomplete onFocusOut={this.findAddress} inputProps={inputProps} />
-                <Button onClick={this.findAddress.bind(this)}/>
+                <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
+                {/*<Button onClick={this.findAddress.bind(this)}/>*/}
                 {/*<TextInput label="City"*/}
                            {/*placeholder="City"*/}
                            {/*defaultValue={this.props.user.location ? this.props.user.location.name.split(',')[0] : ''}*/}
