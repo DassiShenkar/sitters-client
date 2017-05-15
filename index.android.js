@@ -23,8 +23,8 @@ import SearchByLocation from './native/containers/SearchByLocation';
 import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import Menu from './native/containers/Menu';
-import LoadingScreen from './native/containers/LoadingScreen';
-import SitterInfo from './native/containers/SitterInfo';
+import LoadingScreen from './native/components/LoadingScreen';
+import SitterInfo from './native/containers/SitterReview';
 import ErrorPage from './native/containers/ErrorPage';
 
 import configureStore from './native/store/ConfigureStore'

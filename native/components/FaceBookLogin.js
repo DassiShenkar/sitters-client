@@ -35,7 +35,7 @@ export default class FaceBookLogin extends React.Component {
 
     facebookLogin() {
         const self = this;
-        LoginManager.logInWithReadPermissions(["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]).then(
+        LoginManager.logInWithReadPermissions(["user_birthday,public_profile,user_location,user_education_history,user_likes,email,user_friends"]).then(
             function(result) {
                 if (result.isCancelled) {
                     alert('Login cancelled');
@@ -55,7 +55,7 @@ export default class FaceBookLogin extends React.Component {
                             const params = {
                                 parameters: {
                                     fields: {
-                                        string: "id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
+                                        string: "id,name,email,cover,birthday,currency,education,gender,friends,friendlists,languages,location,timezone,picture.width(100).height(100)"
                                     },
                                     access_token: {
                                         string: data.accessToken.toString()

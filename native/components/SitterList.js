@@ -36,6 +36,7 @@ export default class Feed extends React.Component {
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     onSwipeUp={(e) => this.openInfo(e)}
+                    onSwipeDown={(e) => this.navToProfile(e, sitterId)}
                     config={config}>
                     <Image source={coverPhoto} style={styles.backgroundImage}>
                         <View style={styles.sitterContainer}>
