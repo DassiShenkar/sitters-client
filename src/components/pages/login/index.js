@@ -36,7 +36,7 @@ class Login extends React.Component {
         })
             .then(function (response) {
                 if (response.data) {  // user exists
-                    // localStorage.setItem("auth_token", user.id);
+
                     document.cookie = ("auth_token="+user.id);
                     self.props.actions.actionCreators.setUserData(response.data);
                     self.props.router.push('/');

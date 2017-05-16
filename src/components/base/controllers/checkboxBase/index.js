@@ -9,6 +9,6 @@ export default class CheckBoxBase extends Component {
     };
 
     onChange(newValue) {
-        this.props.action(newValue);
+        this.props.action(newValue, this.props.day);
     }
 }

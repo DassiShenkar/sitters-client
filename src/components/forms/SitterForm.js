@@ -13,6 +13,7 @@ import SelectInput from "../controllers/select/SelectInput";
 import PersonalityQuestions from "./personality/PersonalityQuestions";
 
 import './style.css';
+import WorkingHours from "../controllers/workingHours/index";
 
 class Form extends React.Component {
     constructor(props) {
@@ -285,8 +286,11 @@ class Form extends React.Component {
                 <p>If you feel no connection to the words, leave the handle in the middle</p>
                 {/*<PersonalityTest questions={BaseData.getQuestions()} {...this.props}/>*/}
                 {/*<PersonalityQuestions {...this.props}/>*/}
-                {/*<h4>Working Hours</h4>*/}
-                {/*<WorkingHours days={strings.WEEK_DAYS} />*/}
+                <h4>Working Hours</h4>
+                <WorkingHours
+                    days={strings.WEEK_DAYS}
+                    hours={strings.HOURS}
+                    action={this.props.actions.workingHoursActions.changeWorkingHours}/>
                 <div className="submit">
                     <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Register</Button>
                 </div>

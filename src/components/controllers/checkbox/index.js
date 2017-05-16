@@ -11,7 +11,7 @@ export default class CheckBoxInput extends CheckBoxBase {
         const options = this.props.types.map((option) => {
             return (
                 <label key= {this.props.types.indexOf(option)}>
-                    <Checkbox value={option.label}/> {option.label}
+                    <Checkbox value={option}/> {option}
                 </label>
             )
         });

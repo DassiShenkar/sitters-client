@@ -11,6 +11,7 @@ import * as SearchByActions from '../actions/SearchByActions';
 import * as RangeActions from '../actions/RangeActions';
 import * as SitterProfileActions from '../actions/SitterProfileActions';
 import * as InviteActions from '../actions/InviteActions';
+import * as WorkingHours from '../actions/WorkingHoursActions';
 
 //components
 import Main from './Main'
@@ -28,7 +29,8 @@ function mapStateToProps(state) {
         searchBy: state.searchBy,
         range: state.range,
         sitterProfile: state.sitterProfile,
-        invite: state.invite
+        invite: state.invite,
+        workingHours: state.workingHours
     }
 }
 
@@ -47,7 +49,8 @@ function mapDispatchToProps(dispatch) {
             searchByActions: bindActionCreators(SearchByActions, dispatch),
             rangeActions: bindActionCreators(RangeActions, dispatch),
             sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
-            inviteActions: bindActionCreators(InviteActions, dispatch)
+            inviteActions: bindActionCreators(InviteActions, dispatch),
+            workingHoursActions: bindActionCreators(WorkingHours, dispatch)
         }
     };
 }
