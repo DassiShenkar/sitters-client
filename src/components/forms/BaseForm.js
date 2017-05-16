@@ -1,7 +1,7 @@
 // external sources
 import React from 'react';
 import {AgeFromDate} from 'age-calculator';
-import PlacesAutocomplete, {geocodeByAddress} from 'react-places-autocomplete'
+import PlacesAutocomplete from 'react-places-autocomplete'
 
 // components
 import 'react-select/dist/react-select.css';
@@ -15,7 +15,6 @@ import strings from '../../static/strings';
 
 // style
 import './style.css';
-import {Button} from "react-bootstrap";
 
 
 class BaseForm extends React.Component {
@@ -38,19 +37,15 @@ class BaseForm extends React.Component {
                 langs.push({value:language.name.toLowerCase(), label:language.name});
             });
             return langs;
-
         }
-
     }
 
     onChange(address){
-        // this.setState({ address });
         this.props.actions.registerActions.changeUserAddress(address);
     }
 
     render() {
         const inputProps = {
-            // value: this.state.address,
             value: this.props.user.address,
             onChange: this.onChange,
         };
@@ -82,27 +77,6 @@ class BaseForm extends React.Component {
                 <h4>Address</h4>
 
                 <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
-                {/*<Button onClick={this.findAddress.bind(this)}/>*/}
-                {/*<TextInput label="City"*/}
-                           {/*placeholder="City"*/}
-                           {/*defaultValue={this.props.user.location ? this.props.user.location.name.split(',')[0] : ''}*/}
-                           {/*action={this.props.actions.registerActions.changeCity}*/}
-                           {/*inputType={'city'} {...this.props}*/}
-                           {/*reducer={'register'}*/}
-                           {/*required={true}/>*/}
-                {/*<TextInput label="Street"*/}
-                           {/*placeholder="Street"*/}
-                           {/*action={this.props.actions.registerActions.changeStreet}*/}
-                           {/*inputType={'street'} {...this.props}*/}
-                           {/*reducer={'register'}*/}
-                           {/*required={true}/>*/}
-                {/*<TextInput label="House Number"*/}
-                           {/*type="number"*/}
-                           {/*placeholder="0"*/}
-                           {/*action={this.props.actions.registerActions.changeHouseNumber}*/}
-                           {/*inputType={'houseNumber'} {...this.props}*/}
-                           {/*reducer={'register'}*/}
-                           {/*required={true}/>*/}
                 <h4>Gender</h4>
                 <RadioGroup options={strings.GENDER}
                             defaultValue={this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female'}

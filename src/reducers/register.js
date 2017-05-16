@@ -155,7 +155,6 @@ function register(state = {}, action) {
                 personalityQuestions : questions
             };
 
-
         default:
             return state;
     }

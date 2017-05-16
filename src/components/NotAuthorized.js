@@ -2,8 +2,7 @@ import React from "react";
 import {Button} from "react-bootstrap";
 
 export default class NotAuthorized extends React.Component {
-    onClick(e){
-        e.preventDefault;
+    onClick(){
         this.props.router.push('/login');
     }
     render() {

@@ -13,6 +13,7 @@ const strings = {
     GENDER: ["Male", "Female"],
     BOOLEAN: ["True", "False"],
     WEEK_DAYS: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    HOURS: ["Mornings", "Evenings", "Afternoon"],
     QUESTIONS: [{
         label1: "Mature",
         label2: "Youthful",

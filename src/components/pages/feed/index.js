@@ -12,57 +12,59 @@ import Loadable from 'react-loading-overlay';
 import './style.css';
 import Review from "../../review/index";
 import strings from "../../../static/strings";
-import {Image} from "react-bootstrap";
 
 class Feed extends React.Component {
 
     componentWillMount() {
-        this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
-        this.props.actions.feedActions.showSpinner(true);
-        let self = this;
-        // const userId = localStorage.getItem('auth_token');
-        const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-        if (!userId) {
-        } else {
-            axios({
-                method: 'post',
-                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/get',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {_id: userId}
-            })
-                .then(function (parent) {
-                    if (parent.data) {  // user exists
-                        self.props.actions.feedActions.showSpinner(true);
-                        self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
-                        self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
+        if (this.props.feed.matches.length === 0) {
 
-                        axios({
-                            method: 'post',
-                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/getMatches',
-                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            data: parent.data
-                        })
-                            .then(function (sitters) {
-                                if (sitters.data.length > 0) {
-                                    self.props.actions.feedActions.setMatches(sitters.data);
-                                }
-                                else {
-                                    console.log('no matches found');
-                                }
-                               self.props.actions.feedActions.showSpinner(false);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
-                        self.props.actions.actionCreators.setUserData(parent.data);
-                    }
-                    else { // user not exist
-                        self.props.router.push('/login');
-                    }
+            this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
+            this.props.actions.feedActions.showSpinner(true);
+            let self = this;
+            // const userId = localStorage.getItem('auth_token');
+            const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+            if (!userId) {
+            } else {
+                axios({
+                    method: 'post',
+                    url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/get',
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    data: {_id: userId}
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                    .then(function (parent) {
+                        if (parent.data) {  // user exists
+                            self.props.actions.feedActions.showSpinner(true);
+                            self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
+                            self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
+
+                            axios({
+                                method: 'post',
+                                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/getMatches',
+                                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                data: parent.data
+                            })
+                                .then(function (sitters) {
+                                    if (sitters.data.length > 0) {
+                                        self.props.actions.feedActions.setMatches(sitters.data);
+                                    }
+                                    else {
+                                        console.log('no matches found');
+                                    }
+                                    self.props.actions.feedActions.showSpinner(false);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                            self.props.actions.actionCreators.setUserData(parent.data);
+                        }
+                        else { // user not exist
+                            self.props.router.push('/login');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     }
 
