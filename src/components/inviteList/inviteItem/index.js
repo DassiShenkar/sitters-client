@@ -12,7 +12,6 @@ class InviteItem extends React.Component {
         const invite = this.props.invite;
         return (
             <li className="invite-item">
-                {/*<Link to={`/invite/${invite.id}`}>*/}
                 <div className="invite-info">
                     <Image src={invite.sitterImage} alt={invite.sitterName} circle/>
                     <div>
@@ -21,7 +20,6 @@ class InviteItem extends React.Component {
                     </div>
                 </div>
                 <p className="invite-status">{'Status: ' + invite.status}</p>
-                {/*</Link>*/}
             </li>
         )
 

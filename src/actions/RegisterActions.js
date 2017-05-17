@@ -206,3 +206,9 @@ export function changeUserAddress(address) {
     }
 }
 
+export function changeGenderWatchChild(watchChildGender) {
+    return {
+        type: 'CHANGE_GENDER_WATCH_CHILD',
+        watchChildGender
+    }
+}

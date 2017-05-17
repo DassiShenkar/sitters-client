@@ -1,0 +1,28 @@
+notification-list {
+  .notification-item {
+    background: #f8f8f8;
+    margin-bottom: 4px;
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: row;
+
+    img {
+      width: 48px;
+      height: 48px;
+      margin-right: 12px;
+    }
+
+    .notification-info, .notification-status {
+      flex: 1;
+    }
+
+    .notification-info {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .notification-status {
+      text-align: right;
+    }
+  }
+}

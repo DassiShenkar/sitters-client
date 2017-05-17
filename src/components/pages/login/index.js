@@ -36,9 +36,24 @@ class Login extends React.Component {
         })
             .then(function (response) {
                 if (response.data) {  // user exists
+                    if(user.friends.data.length > response.data.mutualFriends.length){
+                        let parent = response.data;
+                        parent.mutualFriends = user.friends.data;
+                        axios({
+                            method: 'post',
+                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/updateMutualFriends',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent
+                        })
+                            .then(function (response) {
 
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
                     document.cookie = ("auth_token="+user.id);
-                    self.props.actions.actionCreators.setUserData(response.data);
+                   // self.props.actions.actionCreators.setUserData(response.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist

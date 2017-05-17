@@ -50,7 +50,7 @@ function user(state = {}, action) {
                 matchBI: data.matchBI,
                 reviews: data.reviews,
                 personalityTest: data.personalityTest,
-                friends: data.friends
+                mutualFriends: data.mutualFriends
             };
         case 'CHANGE_USER_ADDRESS' :
             return {

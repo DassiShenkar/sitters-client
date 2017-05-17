@@ -95,7 +95,9 @@ class Invite extends React.Component {
                                 <ControlLabel>Watch Place:</ControlLabel>
                                 {this.props.user.address ? "   " + this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : ''}
                                 <div style={{width: '100%', height: '400px'}}>
-                                    <GoogleMaps sitter={this.props.user} {...this.props} oneMarker={true}/>
+                                    <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
+                                                sitter={this.props.user}
+                                                oneMarker={true}/>
                                 </div>
                                 <ControlLabel>Notes</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder="textarea" onChange={this.handleChange.bind(this)} />

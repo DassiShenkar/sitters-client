@@ -2,6 +2,8 @@ import React from 'react';
 
 import List from "../List";
 import {Modal} from "react-bootstrap";
+import InviteItem from "../inviteList/inviteItem/index";
+import NotificationItem from "./notificationItem/index";
 
 
 class Notifications extends React.Component {
@@ -25,7 +27,9 @@ class Notifications extends React.Component {
                         <Modal.Title id="contained-modal-title">Notifications</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <List items={items}/>
+                        <ul className="notification-list">
+                            {this.props.user.notifications.map((notification, index) => <NotificationItem {...this.props}  key={index} notification={notification}/>)}
+                        </ul>
                     </Modal.Body>
                 </Modal>
             </div>

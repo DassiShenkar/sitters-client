@@ -97,7 +97,8 @@ class Form extends React.Component {
                 allowNotification: true,
                 allowSuggestions: true
             },
-            mutualFriends: this.props.user.friends
+            mutualFriends: this.props.user.friends,
+            preferedGender: this.props.register.watchChildGender.toLowerCase()
         };
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
@@ -214,11 +215,16 @@ class Form extends React.Component {
                                 action={this.props.actions.registerActions.changePartnerGender}
                                 radioType={'partnerGender'}
                                 value={this.props.user.gender}/>
+                    <h4>Who can save your children</h4>
+                    <RadioGroup options={strings.GENDER_WITH_BOTH}
+                                defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
+                                action={this.props.actions.registerActions.changeGenderWatchChild}
+                                radioType={'genderWatch'}
+                                value={this.props.user.gender}/>
                     <PersonalityQuestions questions={strings.QUESTIONS}
                                           addSameQuestionsClass={false}
                                           disabled={false}
                                           {...this.props}/>
-                    {/*<PersonalityQuestions {...this.props}/>*/}
                     <div className="submit">
                         <Button onClick={this.handleSubmitParent} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
                     </div>
