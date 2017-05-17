@@ -4,13 +4,6 @@ import Location from './Location';
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default class SimpleMap extends Component {
-    // constructor(props){
-    //     super(props);
-    // }
-    static defaultProps = {
-        center: {lat: 32.085300, lng: 34.781768},
-        zoom: 11
-    };
 
     render() {
 
@@ -31,7 +24,7 @@ export default class SimpleMap extends Component {
             <GoogleMap
                 apiKey='AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0'
                 defaultCenter={this.props.center}
-                defaultZoom={this.props.zoom}
+                defaultZoom={this.props.zoom? this.props.zoom: 11}
             >
                 {markers}
                 {/*<AnyReactComponent*/}

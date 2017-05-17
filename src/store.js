@@ -47,7 +47,8 @@ const defaultState = {
         sitterExpertise: [],
         sitterSpecialNeeds: [],
         sitterEducation: [],
-        address: ""
+        address: "",
+        watchChildGender: "Both"
     },
     settings: {
         enableNotifications: true,
