@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, Image, TouchableOpacity, View, Picker, StyleSheet  } from 'react-native';
+import { Text, TextInput, Image, TouchableOpacity, View, Picker, StyleSheet, Picker  } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import Form from 'react-native-form';
 import { CheckboxGroup } from 'react-native-material-design';
@@ -21,6 +21,13 @@ export default class ParentForm extends React.Component {
             <Form ref="parentForm">
                 <BaseForm
                     { ...this.props }/>
+                <Picker
+                    selectedValue={ this.props.register.watchChildGender ?  this.props.register.watchChildGender[0].toUpperCase() + this.props.register.user.watchChildGender.slice(1): 'Female' }
+                    onValueChange={(gender) => { this.props.actions.registerActions.changeGenderWatchChild(gender) }}>
+                    <Picker.Item label={ strings.GENDER[2] } value={ strings.GENDER[2] }/>
+                    <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
+                    <Picker.Item label={ strings.GENDER_WITH_BOTH[0] } value={ strings.GENDER_WITH_BOTH[0] }/>
+                </Picker>
                 <Text style={styles.text}>Max price</Text>
                 <TextInput
                     type="TextInput"

@@ -55,7 +55,7 @@ export default class FaceBookLogin extends React.Component {
                             const params = {
                                 parameters: {
                                     fields: {
-                                        string: "id,name,email,cover,birthday,currency,education,gender,friends,friendlists,languages,location,timezone,picture.width(100).height(100)"
+                                        string: "id,name,email,cover,birthday,currency,education,gender,friends,friendlists,languages,location,timezone,picture.width(500).height(500)"
                                     },
                                     access_token: {
                                         string: data.accessToken.toString()
@@ -83,8 +83,26 @@ export default class FaceBookLogin extends React.Component {
             .then(function (res) {
                 console.log(res);
                 if (res.data) {  // user exists
-                    self.props.actionCreators.setUserData(res.data);
-                    Actions.Feed();
+                    if(user.friends.data.length > response.data.mutualFriends.length){
+                        let parent = response.data;
+                        parent.mutualFriends = user.friends.data;
+                        axios({
+                            method: 'post',
+                            url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent
+                        })
+                            .then(function (response) {
+                                self.props.actionCreators.setUserData(res.data);
+                                Actions.Feed();
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    } else {
+                        self.props.actionCreators.setUserData(res.data);
+                        Actions.Feed();
+                    }
                 }
                 else { // user not exist
                     self.props.actionCreators.createUser(result);

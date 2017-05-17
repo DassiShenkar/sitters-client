@@ -12,6 +12,7 @@ import TextButton from './TextButton';
 import strings from '../../src/static/strings';
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const available = ["Mornings", "Evenings", "Afternoon"];
 
 export default class SitterForm extends React.Component {
 
@@ -94,9 +95,10 @@ export default class SitterForm extends React.Component {
         return days.map(function (day) {
             return <View>
                 <Text>{day}</Text>
-                <AndroidTimePicker
-                    callback={ self.timePickerCallback }
-                    day={ day }/>
+                <CheckboxGroup
+                    onSelect={ (values) => {/*TODO: (values, day)*/} }
+                    checked={ [] }
+                    items={ available } />
             </View>;
         });
     }

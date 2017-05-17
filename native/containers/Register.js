@@ -7,11 +7,13 @@ import Geocoder from '../utils/GeoCoder'
 import axios from 'axios';
 import {AgeFromDate} from 'age-calculator';
 import { Actions } from 'react-native-router-flux'
+import {geocodeByAddress} from "react-places-autocomplete";
 
 import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
+import * as _ from "lodash";
 
 class Register extends Component {
 
@@ -161,25 +163,65 @@ class Register extends Component {
 
     async setUserInDB(data, path) {
         const self = this;
-        axios({
-            method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/' + path,
-            url: 'https://sittersdev.herokuapp.com/' + path,
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: data
-        }).then(function (res) {
-            if (res.data) {  // user created
-                self.props.actions.actionCreators.setUserData(res.data);
-                Actions.Feed();
+        geocodeByAddress(this.props.user.address,  (err, latLng) => {
+            if (err) { console.log('Oh no!', err) }
+            else{
+                let add = self.props.user.address.split(',');
+                const street = add[0].split(' ');
+                let houseNumber = street.pop();
+                if(Number.isNaN(houseNumber)){
+                    street.push(houseNumber);
+                    houseNumber = 0;
+                }
+                const address = {
+                    city: self.props.user.address.split(',')[1],
+                    street: _.join(street," "),
+                    // houseNumber: !Number.isNaN(self.props.user.address.split(',')[0].split(' ').slice(-1))? Number(self.props.user.address.split(',')[0].split(' ').slice(-1)):0,
+                    houseNumber: Number(houseNumber),
+                    longitude: latLng.lng,
+                    latitude: latLng.lat
+                };
+                data.address = address;
+                axios({
+                    method: 'post',
+                    url: 'https://sittersdev.herokuapp.com/' + path,
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    data: parent
+                }).then(function (res) {
+                    if (res.data) {  // user created
+                        self.props.actions.actionCreators.setUserData(res.data);
+                        Actions.Feed();
+                    }
+                    else { // user not created
+                        console.log('user not created');
+                        Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                    }
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                        Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                    });
             }
-            else { // user not created
-                console.log('user not created');
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-            }
-        }).catch(function (error) {
-            console.log(error);
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
         });
+        // axios({
+        //     method: 'post',
+        //     // url: 'https://sitters-server.herokuapp.com/' + path,
+        //     url: 'https://sittersdev.herokuapp.com/' + path,
+        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+        //     data: data
+        // }).then(function (res) {
+        //     if (res.data) {  // user created
+        //         self.props.actions.actionCreators.setUserData(res.data);
+        //         Actions.Feed();
+        //     }
+        //     else { // user not created
+        //         console.log('user not created');
+        //         Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+        //     }
+        // }).catch(function (error) {
+        //     console.log(error);
+        //     Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+        // });
     }
 }
 

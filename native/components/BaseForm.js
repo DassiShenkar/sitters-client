@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Text, TextInput, Image, View, Picker, StyleSheet } from 'react-native';
 import {AgeFromDate} from 'age-calculator';
 import { CheckboxGroup } from 'react-native-material-design';
+import PlacesAutocomplete from 'react-places-autocomplete'
+
 
 import strings from '../../src/static/strings';
 
@@ -13,6 +15,7 @@ export default class BaseForm extends React.Component {
         this.getLanguagesFromFacebook = this.getLanguagesFromFacebook.bind(this);
         this.calcAge = this.calcAge.bind(this);
         this.languagesChecked = this.languagesChecked.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     render () {
@@ -32,6 +35,10 @@ export default class BaseForm extends React.Component {
             } else {
                 return [];
             }
+        };
+        const inputProps = {
+            value: this.props.user.address,
+            onChange: this.onChange
         };
         return (
             <View>
@@ -55,7 +62,8 @@ export default class BaseForm extends React.Component {
                     value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)}/>
                 <Text style={styles.text}>Address</Text>
-                <TextInput
+                <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
+                {/*<TextInput
                     type="TextInput"
                     name="city"
                     placeholder="city"
@@ -72,7 +80,7 @@ export default class BaseForm extends React.Component {
                     name="houseNumber"
                     placeholder="houseNumber"
                     value={ this.props.user.location ? this.props.user.location.name.split(',')[2] : null }
-                    onChangeText={(text) => this.props.actions.registerActions.changeHouseNumber(text)}/>
+                    onChangeText={(text) => this.props.actions.registerActions.changeHouseNumber(text)}/>*/}
                 <Text style={styles.text}>Gender</Text>
                 <Picker
                     selectedValue={ this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female' }
@@ -113,6 +121,10 @@ export default class BaseForm extends React.Component {
             });
             return langs;
         }
+    }
+
+    onChange(address){
+        this.props.actions.registerActions.changeUserAddress(address);
     }
 }
 
