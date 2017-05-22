@@ -42,3 +42,12 @@ export function setNotes(notes) {
         notes
     }
 }
+
+export function changeRecurringDate(recurringDate,recurringDay,recurringIsoValue) {
+    return {
+        type: 'CHANGE_RECURRING_DATE',
+        recurringDate,
+        recurringDay,
+        recurringIsoValue
+    }
+}

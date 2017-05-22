@@ -3,7 +3,6 @@ import React from 'react';
 
 // components
 import Slider from 'rc-slider';
-
 import SliderBase from "../../base/controllers/sliderBase/index";
 
 export default class OurSlider extends SliderBase {
@@ -13,7 +12,8 @@ export default class OurSlider extends SliderBase {
             <div className={this.props.className}>
                 <label className="left-label">{this.props.leftLabel}</label>
                 <Slider dots={true} disabled={this.props.disabled} min={this.props.min} max={this.props.max} step={this.props.step}
-                        value={this.props.value} defaultValue={this.props.defaultValue}/>
+                        // value={this.props.value} defaultValue={this.props.defaultValue}/>
+                    defaultValue={this.props.defaultValue} onChange={this.onChange.bind(this)}/>
                 <label className="right-label">{this.props.rightLabel}</label>
             </div>
         )}

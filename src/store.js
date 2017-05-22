@@ -67,7 +67,10 @@ const defaultState = {
         inviteDay: dateFormat(new Date(), "dddd"),
         fromTime: moment(),
         toTime: moment(),
-        isoValue: new Date().toISOString()
+        isoValue: new Date().toISOString(),
+        recurringDate: dateFormat(new Date(), "mm/dd/yyyy"),
+        recurringInviteDay: dateFormat(new Date(), "dddd"),
+        recurringIsoValue:  new Date().toISOString()
     },
     range: {
         priceMinRange:0,

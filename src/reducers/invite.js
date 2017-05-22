@@ -33,6 +33,15 @@ function invites(state = [], action) {
                 ...state,
                 notes: action.notes,
             };
+        case 'CHANGE_RECURRING_DATE' :
+            return {
+                ...state,
+                recurringDate: action.recurringDate,
+                recurringInviteDay: action.recurringDay,
+                recurringIsoValue: action.recurringIsoValue
+
+
+            };
         default:
             return state;
     }

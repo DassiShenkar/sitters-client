@@ -221,10 +221,14 @@ class Form extends React.Component {
                                 action={this.props.actions.registerActions.changeGenderWatchChild}
                                 radioType={'genderWatch'}
                                 value={this.props.user.gender}/>
+                    {/*<PersonalityQuestions questions={strings.QUESTIONS}*/}
+                                          {/*addSameQuestionsClass={false}*/}
+                                          {/*disabled={false}*/}
+                                          {/*{...this.props}/>*/}
                     <PersonalityQuestions questions={strings.QUESTIONS}
                                           addSameQuestionsClass={false}
                                           disabled={false}
-                                          {...this.props}/>
+                                          action={this.props.actions.personalityQuestionsActions.changePersonalityQuestion()}/>
                     <div className="submit">
                         <Button onClick={this.handleSubmitParent} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
                     </div>
