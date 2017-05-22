@@ -25,7 +25,12 @@ function searchBy(state = {}, action) {
         case 'SET_VIEW' :
             return {
                 ...state,
-                searchView: action.searchView,
+                searchView: action.searchView
+            };
+        case 'CHANGE_AVAILABILITY' :
+            return {
+                ...state,
+                availability: action.availability
             };
         default:
             return state;

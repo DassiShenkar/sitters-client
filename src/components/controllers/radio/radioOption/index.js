@@ -16,7 +16,7 @@ export default class RadioOption extends RadioInputBase {
                         <input type="radio"
                                name={this.props.radioType}
                                value={this.props.userType !== this.props.option ? this.props.option : this.props.defaultValue}
-                               checked={this.props.userType ? this.props.option === this.props.userType: this.props.defaultValue === this.props.option}
+                               checked={this.props.option === this.props.value}
                                onChange={this.handleRadio}
                                required={this.props.required}/>
                         {this.props.option}
