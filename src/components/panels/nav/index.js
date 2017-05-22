@@ -32,14 +32,14 @@ class MainNav extends React.Component {
                 </Navbar.Header>
                 <Nav>
                     <NavItem onClick={this.onClick.bind(this, "searchBy")}>
-                        <Search/>
+                        <span className="icon-search"/>
                     </NavItem>
                     <NavItem onClick={this.onClick.bind(this, "notifications")}>
-                        <NotificationSVG/>
+                        <span className="icon-bell-o"/>
                         <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
                     </NavItem>
                     <NavItem onClick={this.onClick.bind(this, "invites")}>
-                        <MailSVG/>
+                        <span className="icon-envelope-o"/>
                         <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
                     </NavItem>
                     <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle/>

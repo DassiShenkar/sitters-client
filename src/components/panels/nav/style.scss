@@ -11,7 +11,7 @@ nav#main-nav {
   .navbar-brand {
     float: right;
     cursor: pointer;
-    color: #f7a1a1;
+    color: #f86966;
     font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
     font-weight: bold;
     font-size: 28px;
@@ -23,6 +23,7 @@ nav#main-nav {
 
   .navbar-nav>li>a {
     padding-bottom: 0;
+    font-size: 16px;
   }
 
   img {
@@ -36,7 +37,7 @@ nav#main-nav {
   }
 
   .badge {
-    background-color: #f7a1a1;
+    background-color: #f86966;
     border-radius: 50%;
   }
 
