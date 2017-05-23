@@ -53,7 +53,10 @@ class Login extends React.Component {
                     }
                     document.cookie = ("auth_token="+user.id);
                     self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
-                    self.props.actions.actionCreators.setUserData(response.data);
+                    if(response.data.isParent)
+                        self.props.actions.actionCreators.setUserData(response.data);
+                    else
+                        self.props.actions.actionCreators.setSitterData(response.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist

@@ -26,7 +26,7 @@ class InvitesModal extends React.Component{
                 </Modal.Header>
                 <Modal.Body>
                     <ul className="invites-list">
-                        <InviteList invites={this.props.user.invites} />
+                        <InviteList invites={this.props.user.invites}  isParent={this.props.user.isParent}/>
                         {/*{this.props.user.invites.map((invite, index) => <InviteItem {...this.props}  key={index} invite={invite}/>)}*/}
                     </ul>
                 </Modal.Body>
