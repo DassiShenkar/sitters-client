@@ -143,7 +143,7 @@ class SitterProfile extends React.Component {
                         <h3 className="sitterName">{this.props.sitterProfile.sitter.name + ", " + this.props.sitterProfile.sitter.age}</h3>
                     </div>
                 </div>
-                <Table id="info-table" responsive>
+                <Table className="info-table" responsive>
                     <thead>
                     <tr>
                         <th>{this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : +this.props.sitterProfile.distance + " Meters"}</th>
