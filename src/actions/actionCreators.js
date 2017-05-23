@@ -26,3 +26,10 @@ export function changeIsParentFlag(isParent) {
         isParent
     }
 }
+
+export function setSitterData(sitterData) {
+    return {
+        type: 'SET_SITTER_DATA',
+        sitterData
+    }
+}

@@ -13,9 +13,9 @@ class InviteItem extends React.Component {
         return (
             <li className="invite-item">
                 <div className="invite-info">
-                    <Image src={invite.sitterImage} alt={invite.sitterName} circle/>
+                    <Image src={this.props.isParent? invite.sitterImage: invite.parentImage} alt={this.props.isParent? invite.sitterName: invite.parentName} circle/>
                     <div>
-                        <h4>{invite.sitterName}</h4>
+                        <h4>{this.props.isParent? invite.sitterName: invite.parentName}</h4>
                         <p>{invite.date + ' ' + invite.startTime + '-' + invite.endTime}</p>
                     </div>
                 </div>

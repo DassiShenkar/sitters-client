@@ -12,7 +12,7 @@ class InvitesList extends React.Component{
     render() {
         return (
             <div>
-                {this.props.invites.map((invite, index) => <InviteItem {...this.props}  key={index} invite={invite}/>)}
+                {/*{this.props.invites.map((invite, index) => <InviteItem isParent={this.props.user.isParent}  key={index} invite={invite}/>)}*/}
             </div>
         )
     }

@@ -53,6 +53,43 @@ function user(state = {}, action) {
                 mutualFriends: data.mutualFriends,
                 isParent: data.isParent
             };
+
+        case 'SET_SITTER_DATA' :
+            const sitterData = action.sitterData;
+            return {
+                ...state,
+                _id: sitterData._id,
+                userType: sitterData.userType,
+                address: sitterData.address,
+                age: sitterData.age,
+                coverPhoto: sitterData.coverPhoto,
+                email: sitterData.email,
+                gender: sitterData.gender,
+                invites: sitterData.invites,
+                joinedTime: sitterData.joinedTime,
+                languages: sitterData.languages,
+                name: sitterData.name,
+                notifications: sitterData.notifications,
+                profilePicture: sitterData.profilePicture,
+                timezone: sitterData.timezone,
+                settings: sitterData.settings,
+                reviews: sitterData.reviews,
+                personalityTest: sitterData.personalityTest,
+                mutualFriends: sitterData.mutualFriends,
+                isParent: sitterData.isParent,
+                hourFee: sitterData.hourFee,
+                availableNow: sitterData.availableNow,
+                lastInvite: sitterData.lastInvite,
+                workingHours: sitterData.workingHours,
+                expertise: sitterData.expertise,
+                specialNeeds: sitterData.specialNeeds,
+                mobility: sitterData.mobility,
+                hobbies: sitterData.hobbies,
+                experience: sitterData.experience,
+                maxAge: sitterData.maxAge,
+                minAge: sitterData.minAge,
+                education: sitterData.education
+            };
         case 'CHANGE_USER_ADDRESS' :
             return {
                 ...state,
