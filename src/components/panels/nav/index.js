@@ -25,24 +25,23 @@ class MainNav extends React.Component {
     }
 
     render() {
-        const searchBy = !this.props.user.isParent? <Search/>: "";
+        const searchBy = this.props.user.isParent?
+            <NavItem onClick={this.onClick.bind(this, "searchBy")}>
+            <span className="icon-search"/>
+            </NavItem>: null;
+        const notifications = this.props.user.isParent?
+            <NavItem onClick={this.onClick.bind(this, "notifications")}>
+                <span className="icon-bell-o"/>
+                <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
+            </NavItem>: null;
         return (
             <Navbar id="main-nav">
                 <Navbar.Header>
                     <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    {/*<NavItem onClick={this.onClick.bind(this, "searchBy")}>*/}
-                        {/*<Search/>*/}
-                    {/*</NavItem>*/}
                     {searchBy}
-                    <NavItem onClick={this.onClick.bind(this, "searchBy")}>
-                        <span className="icon-search"/>
-                    </NavItem>
-                    <NavItem onClick={this.onClick.bind(this, "notifications")}>
-                        <span className="icon-bell-o"/>
-                        <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
-                    </NavItem>
+                    {notifications}
                     <NavItem onClick={this.onClick.bind(this, "invites")}>
                         <span className="icon-envelope-o"/>
                         <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
