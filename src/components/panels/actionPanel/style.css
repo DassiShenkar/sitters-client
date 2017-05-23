@@ -1,17 +1,23 @@
 #sitterActionBar {
   width: 180px;
   margin: 24px auto; }
-  #sitterActionBar button {
-    border: none;
-    background: #fff; }
-  #sitterActionBar button:focus {
-    outline: none; }
-  #sitterActionBar svg {
-    height: 48px;
-    width: 48px; }
-  #sitterActionBar #mail-icon path {
-    fill: #88d685; }
-  #sitterActionBar #next-icon path {
-    fill: #7ad0f8; }
-  #sitterActionBar #like-icon path {
-    fill: #e57373; }
+
+#sitterActionBar button {
+  border: none;
+  background: #fff; }
+
+#sitterActionBar button:focus {
+  outline: none; }
+
+#sitterActionBar svg {
+  height: 48px;
+  width: 48px; }
+
+#sitterActionBar #mail-icon path {
+  fill: #88d685; }
+
+#sitterActionBar #next-icon path {
+  fill: #7ad0f8; }
+
+#sitterActionBar #like-icon path {
+  fill: #e57373; }
