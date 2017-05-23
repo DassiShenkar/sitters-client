@@ -83,7 +83,7 @@ class ParentFeed extends React.Component {
         }
 
         return (
-            <div id="feed-page" className="page">
+            <div id="parent-feed">
                 <Loadable
                     active={this.props.feed.showSpinner}
                     spinner

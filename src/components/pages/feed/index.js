@@ -11,7 +11,7 @@ class Feed extends React.Component {
     render() {
         const feed = this.props.user.isParent? <ParentFeed {...this.props}/>: <SitterFeed {...this.props}/>;
         return (
-            <div id="feed-page" className="page">
+            <div id="feed-page">
                 {feed}
             </div>
         );
