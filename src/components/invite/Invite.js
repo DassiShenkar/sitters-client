@@ -52,16 +52,12 @@ class Invite extends React.Component {
             let recurringDate = new Date(this.props.invite.recurringDate);
             do {
                 invites.push(invite);
-                //this.insertInvite(invite);
                 inviteDate.setDate(inviteDate.getDate()+7);
                 invite = clone(invite);
                 invite.date = (inviteDate.getMonth() + 1) + "/" + inviteDate.getDate() + "/" + inviteDate.getFullYear();
             }
             while (inviteDate <= recurringDate);
-            // this.props.actions.feedActions.showInvitePopup(false);
-            // this.props.router.push('/');
         }
-        const today = new Date();
         this.props.actions.inviteActions.changeRecurringDate(dateFormat(new Date(), "mm/dd/yyyy"), dateFormat(new Date(), "dddd"), new Date().toISOString());
         let self = this;
         axios({
@@ -88,28 +84,6 @@ class Invite extends React.Component {
     closePopup(){
         this.props.actions.feedActions.showInvitePopup(false)
     }
-
-    insertInvite(invite){
-        axios({
-            method: 'post',
-            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'invite/create',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: invite
-        }).then(function (res) {
-            console.log(res);
-            if (res.data) {  // invite created
-                console.log(res.data);
-            }
-            else { // invite not created
-                //TODO: think about error when user not created
-            }
-        })
-            .catch(function (error) {
-                console.log(error);
-                //TODO: think about error when user not created
-            });
-    }
-
     render() {
         return (
             <div>

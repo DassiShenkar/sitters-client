@@ -1,8 +1,4 @@
 import React from "react";
-
-import CircledMail from "../../icons/CircledMail";
-import Like from "../../icons/Like";
-import NextArrow from "../../icons/NextArrow";
 import axios from "axios";
 //style
 import "./style.css";
@@ -63,9 +59,7 @@ class SitterActionBar extends React.Component {
 
     reviewSitter(e) {
         e.preventDefault();
-        // this.props.actions.sitterProfileActions.setExpandReview(true);
-        // this.props.router.push('/sitter/' + this.props.feed.matches[this.props.feed.sitterIndex]._id);
-            this.props.actions.feedActions.showReviewPopup(true);
+        this.props.actions.feedActions.showReviewPopup(true);
     }
 
     render() {

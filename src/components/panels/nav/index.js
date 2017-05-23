@@ -4,9 +4,6 @@ import React from 'react';
 import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
 
 //Components
-import Search from '../../icons/Search';
-import NotificationSVG from '../../icons/Notification';
-import MailSVG from '../../icons/Mail';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
 
 //style
