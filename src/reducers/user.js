@@ -50,12 +50,18 @@ function user(state = {}, action) {
                 matchBI: data.matchBI,
                 reviews: data.reviews,
                 personalityTest: data.personalityTest,
-                mutualFriends: data.mutualFriends
+                mutualFriends: data.mutualFriends,
+                isParent: data.isParent
             };
         case 'CHANGE_USER_ADDRESS' :
             return {
                 ...state,
                 address: action.address
+            };
+        case 'CHANGE_IS_PARENT_FLAG' :
+            return {
+                ...state,
+                isParent: action.isParent
             };
         default:
             return state;

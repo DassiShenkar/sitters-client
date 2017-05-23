@@ -26,7 +26,6 @@ export default class TimeSearch extends React.Component {
     }
 
     render () {
-        console.log(this.props.sitters);
         let sitterIndex = this.props.feed.sitterIndex;
         let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
         const profilePicture = this.props.sitters.length ? this.props.sitters[sitterIndex].profilePicture : null;

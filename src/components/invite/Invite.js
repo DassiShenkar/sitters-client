@@ -41,7 +41,9 @@ class Invite extends React.Component {
             parentID:   this.props.user._id,
             notes: this.props.invite.notes? this.props.invite.notes: "",
             sitterName: this.props.sitterProfile.sitter.name,
-            sitterImage: this.props.sitterProfile.sitter.profilePicture
+            sitterImage: this.props.sitterProfile.sitter.profilePicture,
+            parentName: this.props.user.name,
+            parentImage: this.props.user.profilePicture
 
         };
         let invites = [];

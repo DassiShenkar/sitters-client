@@ -52,7 +52,8 @@ class Login extends React.Component {
                             });
                     }
                     document.cookie = ("auth_token="+user.id);
-                   // self.props.actions.actionCreators.setUserData(response.data);
+                    self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
+                    self.props.actions.actionCreators.setUserData(response.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist

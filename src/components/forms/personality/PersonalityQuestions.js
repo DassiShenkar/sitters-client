@@ -47,7 +47,6 @@ export default class PersonalityQuestions extends React.Component {
 
     render() {
         const {sameQuestions, differentQuestion, questions} = this.getSameAnswers.bind(this);
-        console.log(questions);
         return (
             <div className="personality-profile">
                 {this.props.disabled ? <h3>{'You want it - ' + this.props.sitterName.split(' ')[0] + ' has got it!'}</h3> : questions}

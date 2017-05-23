@@ -12,7 +12,6 @@ import App from "./components/App";
 import Feed from "./components/pages/feed/index";
 import Login from "./components/pages/login/index";
 import Register from "./components/forms/Register";
-import Invites from "./components/inviteList/index";
 import SitterProfile from "./components/pages/profile/index";
 import ReviewList from "./components/reviewList/index";
 import SingleReview from "./components/review/SingleReview";
@@ -30,7 +29,6 @@ const router = (
                    // onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
                    onEnter={document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== "" ? history.push('/') : history.push('/login')}>
                 <IndexRoute component={Feed}/>
-                <Route path="/invites" component={Invites}/>
                 <Route path="/invite/:inviteId" component={SingleInvite}/>
                 <Route path="/settings" component={Settings}/>
                 <Route path="/sitter/:sitterId" component={SitterProfile}/>
