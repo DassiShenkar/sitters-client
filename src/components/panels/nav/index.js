@@ -25,15 +25,17 @@ class MainNav extends React.Component {
     }
 
     render() {
+        const searchBy = !this.props.user.isParent? <Search/>: "";
         return (
             <Navbar id="main-nav">
                 <Navbar.Header>
                     <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <NavItem onClick={this.onClick.bind(this, "searchBy")}>
-                        <Search/>
-                    </NavItem>
+                    {/*<NavItem onClick={this.onClick.bind(this, "searchBy")}>*/}
+                        {/*<Search/>*/}
+                    {/*</NavItem>*/}
+                    {searchBy}
                     <NavItem onClick={this.onClick.bind(this, "notifications")}>
                         <NotificationSVG/>
                         <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
