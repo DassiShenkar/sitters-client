@@ -6,18 +6,25 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .sitter-info {
-  padding: 36px 0;
+  //padding: 36px 0;
   display: flex;
   flex-direction: column;
+  font-family: 'Raleway', sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 img.profilePic {
   display: block;
-  width: 180px;
-  height: 171px;
+  width: 187px;
+  height: 187px;
   margin: 0 auto;
   border: 8px solid #fff;
 }
