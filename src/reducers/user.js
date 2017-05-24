@@ -50,6 +50,7 @@ function user(state = {}, action) {
                 matchBI: data.matchBI,
                 reviews: data.reviews,
                 personalityTest: data.personalityTest,
+                personality: data.personality,
                 mutualFriends: data.mutualFriends,
                 isParent: data.isParent
             };
@@ -75,6 +76,7 @@ function user(state = {}, action) {
                 settings: sitterData.settings,
                 reviews: sitterData.reviews,
                 personalityTest: sitterData.personalityTest,
+                personality: sitterData.personality,
                 mutualFriends: sitterData.mutualFriends,
                 isParent: sitterData.isParent,
                 hourFee: sitterData.hourFee,

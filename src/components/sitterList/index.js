@@ -19,16 +19,9 @@ class SitterList extends React.Component {
 
         let sitterIndex = this.props.feed.sitterIndex;
         // const consider = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' also considers ' + (this.props.sitters[sitterIndex].gender === 'male' ? 'himself:' : 'herself:') : '';
-        const coverPhoto = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].coverPhoto : null;
-        const mutualFriends = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].mutualFriends.length : 0;
-        const personality = [
-            "Patient",
-            "Outdoorsy",
-            "Funny",
-            "Adventurous",
-            "Sensitive",
-            "Youthful"
-        ];
+        const coverPhoto = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].coverPhoto : null;
+        const mutualFriends = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].mutualFriends.length : 0;
+        const personality = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].personality : [];
         let style;
         if (coverPhoto) {
             style = {
@@ -66,17 +59,17 @@ class SitterList extends React.Component {
                                 <ul>
                                     <li>
                                         <Image
-                                            src={mutualFriends > 0 ? this.props.sitters[sitterIndex].mutualFriends[0].picture : ''}
+                                            src={mutualFriends > 0 ? this.props.sitters[sitterIndex].match.mutualFriends[0].picture : ''}
                                             circle/>
                                     </li>
                                     <li>
                                         <Image
-                                            src={mutualFriends >= 2 ? this.props.sitters[sitterIndex].mutualFriends[1].picture : ''}
+                                            src={mutualFriends >= 2 ? this.props.sitters[sitterIndex].match.mutualFriends[1].picture : ''}
                                             circle/>
                                     </li>
                                     <li>
                                         <Image
-                                            src={mutualFriends >= 3 ? this.props.sitters[sitterIndex].mutualFriends[2].picture : ''}
+                                            src={mutualFriends >= 3 ? this.props.sitters[sitterIndex].match.mutualFriends[2].picture : ''}
                                             circle/>
                                     </li>
                                 </ul>
