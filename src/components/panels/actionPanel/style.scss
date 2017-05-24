@@ -39,4 +39,12 @@
     color: #ffca00;
   }
 
+  .icon-heart:before, .icon-envelope:before, .icon-user:before {
+    line-height: normal;
+  }
+
+  .icon-heart:before, .icon-envelope:before {
+    vertical-align: middle;
+  }
+
 }
