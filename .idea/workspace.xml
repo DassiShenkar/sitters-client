@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/Before_shelve_pie_chart.xml" afterPath="$PROJECT_DIR$/.idea/shelf/Before_shelve_pie_chart.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/Merge_branch__master__of_https___github_com_DassiShenkar_sitters_client____Conflicts_____i.xml" afterPath="$PROJECT_DIR$/.idea/shelf/Merge_branch__master__of_https___github_com_DassiShenkar_sitters_client____Conflicts_____i.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/dd.xml" afterPath="$PROJECT_DIR$/.idea/shelf/dd.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/feed.xml" afterPath="$PROJECT_DIR$/.idea/shelf/feed.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/searchBy.xml" afterPath="$PROJECT_DIR$/.idea/shelf/searchBy.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/some_changes.xml" afterPath="$PROJECT_DIR$/.idea/shelf/some_changes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/wtf.xml" afterPath="$PROJECT_DIR$/.idea/shelf/wtf.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/App.css" afterPath="$PROJECT_DIR$/src/components/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/controllers/radio/radioGroup/style.css" afterPath="$PROJECT_DIR$/src/components/controllers/radio/radioGroup/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/forms/personality/style.css" afterPath="$PROJECT_DIR$/src/components/forms/personality/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/forms/style.css" afterPath="$PROJECT_DIR$/src/components/forms/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/invite/style.css" afterPath="$PROJECT_DIR$/src/components/invite/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/inviteList/inviteItem/style.css" afterPath="$PROJECT_DIR$/src/components/inviteList/inviteItem/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/feed/style.css" afterPath="$PROJECT_DIR$/src/components/pages/feed/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/login/style.css" afterPath="$PROJECT_DIR$/src/components/pages/login/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/profile/style.css" afterPath="$PROJECT_DIR$/src/components/pages/profile/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/settings/style.css" afterPath="$PROJECT_DIR$/src/components/pages/settings/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/actionPanel/style.css" afterPath="$PROJECT_DIR$/src/components/panels/actionPanel/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/nav/style.css" afterPath="$PROJECT_DIR$/src/components/panels/nav/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" afterPath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pie/style.css" afterPath="$PROJECT_DIR$/src/components/pie/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/review/style.css" afterPath="$PROJECT_DIR$/src/components/review/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/reviewList/reviewItem/style.css" afterPath="$PROJECT_DIR$/src/components/reviewList/reviewItem/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/style.css" afterPath="$PROJECT_DIR$/src/components/sitterList/style.css" />
-    </list>
+    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="" />
     <list id="85a6bbbf-6823-4eaa-9f01-6d5066ec34c3" name="Not important" comment="" />
     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
     <ignored path="D:\projects\final project\sitters-client\.idea\shelf/" />
@@ -74,8 +48,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SitterForm.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/forms/SitterForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+              <folding>
+                <element signature="e#206#240#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -981,7 +977,7 @@
       <workItem from="1493231402593" duration="12172000" />
       <workItem from="1493743530469" duration="7008000" />
       <workItem from="1493884557499" duration="6253000" />
-      <workItem from="1495569708601" duration="28373000" />
+      <workItem from="1495569708601" duration="28984000" />
     </task>
     <task id="LOCAL-00001" summary="Added about page and dropdown navigation">
       <created>1492261771649</created>
@@ -1288,7 +1284,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149064000" />
+    <option name="totallyTimeSpent" value="149675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1314,12 +1310,12 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4723727" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4723727" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16151386" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1394,14 +1390,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/panels/searchPanel/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="40" column="25" lean-forward="false" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/controllers/TimeInput.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1414,14 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/forms/SitterForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="148" column="32" lean-forward="true" selection-start-line="148" selection-start-column="32" selection-end-line="148" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1787,9 +1767,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/forms/SitterForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="e#206#240#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
