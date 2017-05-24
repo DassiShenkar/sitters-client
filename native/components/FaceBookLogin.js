@@ -35,8 +35,10 @@ export default class FaceBookLogin extends React.Component {
 
     facebookLogin() {
         const self = this;
+        LoginManager.logOut();
         LoginManager.logInWithReadPermissions(["user_birthday,public_profile,user_location,user_education_history,user_likes,email,user_friends"]).then(
             function(result) {
+                console.log(result);
                 if (result.isCancelled) {
                     alert('Login cancelled');
                 } else {
@@ -49,7 +51,9 @@ export default class FaceBookLogin extends React.Component {
                                     Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook login Error, please try again later'});
                                 } else {
                                     LocalStorage.setToLocalStorage(LocalStorage.USER_KEY, result.id.toString());
-                                    self.handleResponse(result);
+                                    self.props.actionCreators.createUser(result);
+                                    Actions.Register();
+                                    //self.handleResponse(result);
                                 }
                             };
                             const params = {

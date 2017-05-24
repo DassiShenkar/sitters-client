@@ -1,18 +1,11 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, TextInput, Text, TouchableOpacity, Picker, StyleSheet } from 'react-native';
+import { View, TextInput, Text, Picker, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-
 import BaseForm from './BaseForm';
 import Form from 'react-native-form';
-import { CheckboxGroup } from 'react-native-material-design';
-
-import AndroidTimePicker from './AndroidTimePicker'
 import TextButton from './TextButton';
 import strings from '../../src/static/strings';
-
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const available = ["Mornings", "Evenings", "Afternoon"];
 
 export default class SitterForm extends React.Component {
 
@@ -61,7 +54,7 @@ export default class SitterForm extends React.Component {
                     <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
                 </Picker>
                 <Text>Sitter Expertise</Text>
-                <CheckboxGroup
+                {/*<CheckboxGroup
                     onSelect={ (values) => self.props.actions.registerActions.changeSitterExpertise(values) }
                     checked={ [] }
                     items={ strings.EXPERTISE } />
@@ -85,20 +78,17 @@ export default class SitterForm extends React.Component {
                              Actions.PersonalityTest({callback: callback})
                         }
                     }}
-                    text="Submit" />
+                    text="Submit" />*/}
             </Form>
         );
     }
 
     timePicker () {
         const self = this;
-        return days.map(function (day) {
-            return <View>
-                <Text>{day}</Text>
-                <CheckboxGroup
-                    onSelect={ (values) => {/*TODO: (values, day)*/} }
-                    checked={ [] }
-                    items={ available } />
+        return strings.WEEK_DAYS.map(function (day) {
+            return <View key={ Math.random() }>
+                <Text key={ Math.random() }>{day}</Text>
+
             </View>;
         });
     }

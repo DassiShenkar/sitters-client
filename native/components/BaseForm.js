@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 import { Text, TextInput, Image, View, Picker, StyleSheet } from 'react-native';
 import {AgeFromDate} from 'age-calculator';
-import { CheckboxGroup } from 'react-native-material-design';
-import PlacesAutocomplete from 'react-places-autocomplete'
-
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
+import MyMultiSelect from './MyMultiSelect'
 
 import strings from '../../src/static/strings';
 
@@ -36,72 +35,96 @@ export default class BaseForm extends React.Component {
                 return [];
             }
         };
-        const inputProps = {
-            value: this.props.user.address,
-            onChange: this.onChange
-        };
         return (
             <View>
-                <Text style={styles.text}>User</Text>
+                <Text style={styles.text}>Name</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
                     name="name"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     placeholder="name"
                     value={ this.props.user.name ? this.props.user.name : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeName(text)}/>
+                <Text style={styles.text}>Email</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
                     name="email"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     placeholder="email"
                     value={ this.props.user.email ? this.props.user.email : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeEmail(text)}/>
+                <Text style={styles.text}>Age</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
                     name="age"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     placeholder="age"
                     value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)}/>
                 <Text style={styles.text}>Address</Text>
-                <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
-                {/*<TextInput
-                    type="TextInput"
-                    name="city"
-                    placeholder="city"
-                    value={ this.props.user.location ? this.props.user.location.name.split(',')[0] : null }
-                    onChangeText={(text) => this.props.actions.registerActions.changeCity(text)}/>
-                <TextInput
-                    type="TextInput"
-                    name="street"
-                    placeholder="street"
-                    value={ this.props.user.location ? this.props.user.location.name.split(',')[1] : null }
-                    onChangeText={(text) => this.props.actions.registerActions.changeStreet(text)}/>
-                <TextInput
-                    type="TextInput"
-                    name="houseNumber"
-                    placeholder="houseNumber"
-                    value={ this.props.user.location ? this.props.user.location.name.split(',')[2] : null }
-                    onChangeText={(text) => this.props.actions.registerActions.changeHouseNumber(text)}/>*/}
+                <View>
+                    <GooglePlacesAutocomplete
+                        placeholder='Search'
+                        minLength={2} // minimum length of text to search
+                        autoFocus={false}
+                        listViewDisplayed='auto'    // true/false/undefined
+                        fetchDetails={true}
+                        renderDescription={(row) => row.description} // custom description render
+                        onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+                          console.log(data);
+                          console.log(details);
+                          this.onChange(data);
+                        }}
+                        getDefaultValue={() => {
+                          return this.props.user.address; // text input default value
+                        }}
+                        styles={{
+                            textInputContainer: {
+                              backgroundColor: 'rgba(0,0,0,0)',
+                              borderTopWidth: 0,
+                              borderBottomWidth:1,
+                              marginBottom: 10
+                            },
+                            textInput: {
+                              marginLeft: 0,
+                              marginRight: 0,
+                              height: 38,
+                              color: '#f7a1a1',
+                              fontSize: 16
+                            }
+                        }}
+                        query={{
+                          // available options: https://developers.google.com/places/web-service/autocomplete
+                          key: 'AIzaSyAdwS1J07gIr4XzwkJeZsrszkMKCBm4Tb8',
+                          language: 'en' // language of the results
+                        }} />
+                </View>
                 <Text style={styles.text}>Gender</Text>
                 <Picker
-                    selectedValue={ this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female' }
+                    style={styles.picker}
+                    selectedValue={ this.props.user.gender ?  this.props.user.gender : 'Female' }
                     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
                 </Picker>
-                <Text style={styles.text}>Profile picture</Text>
-                <Image
-                    source={this.props.user.picture ? {uri: this.props.user.picture.data.url} : null}
-                    style={{width: 100, height: 100, borderRadius: 100}}/>
                 <Text style={styles.text}>Languages</Text>
-                <CheckboxGroup
-                    onSelect={ (values) => self.languagesChecked }
-                    checked={ selected() }
-                    items={ strings.LANGUAGES } />
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.LANGUAGES}
+                    selected={self.props.register.languages ? self.props.register.languages : this.props.user.languages}
+                    update={this.languagesChecked} />
             </View>
         );
     }
 
     languagesChecked (selected) {
+        console.log(selected);
         this.props.actions.registerActions.changeLanguages(selected);
     }
 
@@ -124,6 +147,7 @@ export default class BaseForm extends React.Component {
     }
 
     onChange(address){
+        console.log(address);
         this.props.actions.registerActions.changeUserAddress(address);
     }
 }
@@ -132,6 +156,19 @@ const styles = StyleSheet.create({
     text: {
         color: '#f7a1a1',
         fontSize: 16,
+        marginLeft: 10,
         fontWeight: 'bold'
+    },
+    textInput: {
+        width: '80%',
+        marginBottom: 10,
+        marginLeft: 5,
+        color: '#f7a1a1'
+    },
+    picker: {
+        width: '30%',
+        marginLeft: 3,
+        alignSelf : 'flex-start',
+        marginBottom: 10
     }
 });

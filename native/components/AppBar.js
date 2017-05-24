@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-import { MenuContext} from 'react-native-menu';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 

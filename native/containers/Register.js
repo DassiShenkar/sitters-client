@@ -1,4 +1,3 @@
-"use strict";
 import React, { Component } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
@@ -7,7 +6,6 @@ import Geocoder from '../utils/GeoCoder'
 import axios from 'axios';
 import {AgeFromDate} from 'age-calculator';
 import { Actions } from 'react-native-router-flux'
-import {geocodeByAddress} from "react-places-autocomplete";
 
 import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
@@ -30,7 +28,8 @@ class Register extends Component {
             <View>
                 <ScrollView>
                     <View style={styles.container}>
-                        {this.props.user.userType === "I'm a parent" ?
+                        {
+                            this.props.user.userType === "I'm a Parent" ?
                             <ParentForm
                                 {...this.props}
                                 callback={ this.parentCallback } /> :
@@ -64,10 +63,6 @@ class Register extends Component {
             else
                 parent.languages.push(language.name.toLowerCase());
         });
-        this.getGeoCode(function(data) {
-            parent.address.longitude = data != null ? data.lng: 0;
-            parent.address.latitude = data != null ? data.lat: 0;
-        });
         let totalScore = 0;
         this.props.register.personalityQuestions.forEach(function (question) {
             totalScore += question.value;
@@ -77,11 +72,6 @@ class Register extends Component {
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-            address: {
-                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
-                street: this.props.register.street,
-                houseNumber: Number(this.props.register.houseNumber),
-            },
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto.source,
             timezone: this.props.user.timezone.toString(),
@@ -119,10 +109,6 @@ class Register extends Component {
             else
                 sitter.languages.push(language.value);
         });
-        this.getGeoCode(function(data) {
-            sitter.address.longitude = data != null ? data.lng: 0;
-            sitter.address.latitude = data != null ? data.lat: 0;
-        });
         let totalScore = 0;
         this.props.register.personalityQuestions.forEach(function (question) {
             totalScore += question.value;
@@ -132,11 +118,11 @@ class Register extends Component {
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-            address: {
-                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
-                street: this.props.register.street,
-                houseNumber: Number(this.props.register.houseNumber),
-            },
+            // address: {
+            //     city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
+            //     street: this.props.register.street,
+            //     houseNumber: Number(this.props.register.houseNumber),
+            // },
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto.source,
             timezone: this.props.user.timezone,
@@ -163,46 +149,44 @@ class Register extends Component {
 
     async setUserInDB(data, path) {
         const self = this;
-        geocodeByAddress(this.props.user.address,  (err, latLng) => {
-            if (err) { console.log('Oh no!', err) }
-            else{
-                let add = self.props.user.address.split(',');
-                const street = add[0].split(' ');
-                let houseNumber = street.pop();
-                if(Number.isNaN(houseNumber)){
-                    street.push(houseNumber);
-                    houseNumber = 0;
-                }
-                const address = {
-                    city: self.props.user.address.split(',')[1],
-                    street: _.join(street," "),
-                    // houseNumber: !Number.isNaN(self.props.user.address.split(',')[0].split(' ').slice(-1))? Number(self.props.user.address.split(',')[0].split(' ').slice(-1)):0,
-                    houseNumber: Number(houseNumber),
-                    longitude: latLng.lng,
-                    latitude: latLng.lat
-                };
-                data.address = address;
-                axios({
-                    method: 'post',
-                    url: 'https://sittersdev.herokuapp.com/' + path,
-                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                    data: parent
-                }).then(function (res) {
-                    if (res.data) {  // user created
-                        self.props.actions.actionCreators.setUserData(res.data);
-                        Actions.Feed();
-                    }
-                    else { // user not created
-                        console.log('user not created');
-                        Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                    }
-                })
-                    .catch(function (error) {
-                        console.log(error);
-                        Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                    });
-            }
+        let add = self.props.register.address.split(',');
+        const street = add[0].split(' ');
+        let houseNumber = street.pop();
+        if (Number.isNaN(houseNumber)) {
+            street.push(houseNumber);
+            houseNumber = 0;
+        }
+        data.address = {
+            city: self.props.register.address.split(',')[1],
+            street: _.join(street, " "),
+            houseNumber: Number(houseNumber),
+        };
+        data.isParent = path === 'parent/create';
+        this.getGeoCode(function (data) {
+            data.address.longitude = data != null ? data.lng : 0;
+            data.address.latitude = data != null ? data.lat : 0;
         });
+        console.log(data);
+        Actions.Feed();
+        // axios({
+        //     method: 'post',
+        //     url: 'https://sittersdev.herokuapp.com/' + path,
+        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+        //     data: parent
+        // }).then(function (res) {
+        //     if (res.data) {  // user created
+        //         self.props.actions.actionCreators.setUserData(res.data);
+        //         Actions.Feed();
+        //     }
+        //     else { // user not created
+        //         console.log('user not created');
+        //         Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+        //     }
+        // }).catch(function (error) {
+        //         console.log(error);
+        //         Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+        //     });
+        // }
         // axios({
         //     method: 'post',
         //     // url: 'https://sitters-server.herokuapp.com/' + path,

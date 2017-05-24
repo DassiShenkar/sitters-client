@@ -9,6 +9,7 @@ import LocalStorage from '../utils/LocalStorage';
 import Logo from '../components/Logo'
 import * as actionCreators from '../../src/actions/actionCreators';
 
+const ReactNative = require('react-native');
 const FBSDK = require('react-native-fbsdk');
 const {
     GraphRequest,
@@ -42,6 +43,11 @@ class Splash extends React.Component {
     }
 
     async ifExists () {
+        try {
+            ReactNative.I18nManager.allowRTL(false);
+        } catch (e) {
+            console.log(e);
+        }
         const self = this;
         let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
         let userId = await LocalStorage.getFromLocalStorage(LocalStorage.USER_KEY);
@@ -53,7 +59,8 @@ class Splash extends React.Component {
                     console.log(error);
                     Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook Error, please try again later'});
                 } else {
-                    self.getUserFromDb(self, result);
+                    //self.getUserFromDb(self, result);
+                    Actions.Login();
                 }
             };
 
