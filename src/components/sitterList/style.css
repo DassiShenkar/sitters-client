@@ -1,97 +1,44 @@
 @import url("https://fonts.googleapis.com/css?family=Caveat+Brush|Emblema+One|Galada|Kaushan+Script|Knewave|Lemon|Lobster|Playball|Purple+Purse|Risque|Sniglet|Unna");
-.match .page-header {
-  text-align: left; }
+#sitter-profile td {
+  padding-top: 28px; }
 
-.match .page-header h1 {
-  display: flex;
-  flex-direction: row; }
+#sitter-profile .motto {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px; }
 
-.match .page-header .sitter-link {
-  flex: 1; }
-
-.match .page-header #sitterActionBar {
-  flex: 1;
-  margin: 0;
-  text-align: right; }
-
-.match .page-header a {
-  color: #7ad0f8; }
-
-.match img.sitter-profile-pic {
-  width: 64px;
-  height: 64px;
-  margin-right: 24px; }
-
-.match .match-info {
-  color: #000000;
+#sitter-profile .personality ul {
+  padding: 0;
   display: flex;
   flex-direction: row;
-  margin-top: 48px; }
+  width: 216px;
+  margin-left: auto;
+  margin-right: auto; }
 
-.match .match-info .recharts-wrapper {
-  flex: 1; }
+#sitter-profile .personality ul li {
+  margin: 0 8px;
+  width: 100px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  padding: 0.3em .6em .4em; }
 
-.match .match-info .score {
-  flex: 1; }
+#sitter-profile .personality .label-dark, #sitter-profile .personality .label-regular, #sitter-profile .personality .label-light {
+  background: #f86966; }
 
-.match .match-info .score h1 {
-  color: #88d685;
-  font-size: 64px;
-  margin: 0;
-  font-family: 'Galada', cursive; }
+#sitter-profile .personality .label-regular {
+  opacity: 0.75; }
 
-.match .match-info .score .match-score {
-  font-family: 'Playball', cursive;
-  font-size: 96px; }
+#sitter-profile .personality .label-light {
+  opacity: 0.5; }
 
-.match .rc-slider {
-  height: 20px;
+#sitter-profile .mutual-friends ul {
   display: flex;
-  width: 60%;
-  margin: 0 auto; }
-
-.match .rc-slider-disabled {
-  background-color: transparent; }
-
-.match .rc-slider-track {
-  background: #e9e9e9; }
-
-.match .rc-slider-handle {
-  width: 20px;
-  height: 20px;
-  margin-top: -7px;
-  border-width: 4px;
-  border-color: #f7a1a1; }
-
-.match .slider-dot {
-  width: 9px;
-  height: 9px;
-  bottom: -4px;
-  border-width: 2px; }
-
-.match .answer {
-  display: flex;
-  margin-bottom: 24px; }
-
-.match .personality-profile h3:last-of-type {
-  margin-top: 48px; }
-
-.match .same-answer .rc-slider-handle {
-  border-color: #88d685;
-  background: #fff; }
-
-.match .same-answer .rc-slider-track {
-  background: #88d685; }
-
-.match .same-answer .rc-slider-rail {
-  background: #88d685; }
-
-.match .right-label {
-  text-align: right;
-  margin-left: 12px;
-  width: 160px; }
-
-.match .left-label {
-  text-align: left;
-  margin-right: 12px;
-  width: 96px; }
+  flex-direction: row;
+  margin: 0 auto;
+  width: 208px;
+  padding: 0; }
+  #sitter-profile .mutual-friends ul li {
+    margin-left: 8px; }
+    #sitter-profile .mutual-friends ul li img {
+      width: 64px;
+      height: 64px; }
+  #sitter-profile .mutual-friends ul li:first-child {
+    margin-left: 0; }
