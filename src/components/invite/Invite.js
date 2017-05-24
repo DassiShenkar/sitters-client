@@ -43,6 +43,7 @@ class Invite extends React.Component {
             sitterName: this.props.sitterProfile.sitter.name,
             sitterImage: this.props.sitterProfile.sitter.profilePicture,
             parentName: this.props.user.name,
+            childName: this.props.user.children.name,
             parentImage: this.props.user.profilePicture
 
         };
