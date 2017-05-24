@@ -9,42 +9,42 @@ class SitterActionBar extends React.Component {
 
     constructor(props) {
         super(props);
-        this.nextSitter = this.nextSitter.bind(this);
+        // this.nextSitter = this.nextSitter.bind(this);
         this.inviteSitter = this.inviteSitter.bind(this);
         this.reviewSitter = this.reviewSitter.bind(this);
         this.sitterProfile = this.sitterProfile.bind(this);
     }
 
-    nextSitter(e) {
-        e.preventDefault();
-        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
-        if(strings.ACTIVATE_BLACKLIST){
-            let parent = this.props.user;
-            parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
-            this.props.actions.actionCreators.setUserData(parent);
-            //Todo: call blacklistSitter(parentID, sitterID) for this parent
-            axios({
-                method: 'post',
-                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: parent
-            }).then(function (res) {
-                if (res.data) {  // user created
-                    console.log('updated blacklist');
-                }
-                else { // user not created
-                    console.log("user not created");
-                    //TODO: think about error when user not created
-                }
-            })
-                .catch(function (error) {
-                    alert(error);
-                    //TODO: think about error when user not created
-                });
-
-        }
-        this.props.actions.feedActions.setSitterIndex(index);
-    }
+    // nextSitter(e) {
+    //     e.preventDefault();
+    //     let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
+    //     if(strings.ACTIVATE_BLACKLIST){
+    //         let parent = this.props.user;
+    //         parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
+    //         this.props.actions.actionCreators.setUserData(parent);
+    //         //Todo: call blacklistSitter(parentID, sitterID) for this parent
+    //         axios({
+    //             method: 'post',
+    //             url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+    //             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+    //             data: parent
+    //         }).then(function (res) {
+    //             if (res.data) {  // user created
+    //                 console.log('updated blacklist');
+    //             }
+    //             else { // user not created
+    //                 console.log("user not created");
+    //                 //TODO: think about error when user not created
+    //             }
+    //         })
+    //             .catch(function (error) {
+    //                 alert(error);
+    //                 //TODO: think about error when user not created
+    //             });
+    //
+    //     }
+    //     this.props.actions.feedActions.setSitterIndex(index);
+    // }
 
     handleChange(event) {
         this.props.actions.inviteActions.setNotes(event.target.value);

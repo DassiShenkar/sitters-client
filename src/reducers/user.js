@@ -77,6 +77,7 @@ function user(state = {}, action) {
                 reviews: sitterData.reviews,
                 personalityTest: sitterData.personalityTest,
                 personality: sitterData.personality,
+                motto: sitterData.motto,
                 mutualFriends: sitterData.mutualFriends,
                 isParent: sitterData.isParent,
                 hourFee: sitterData.hourFee,

@@ -5,13 +5,15 @@ import axios from 'axios';
 //components
 
 import Loadable from 'react-loading-overlay';
-//style
 import Review from "../../../review/index";
 import strings from "../../../../static/strings";
 import SearchByTab from "../../../panels/searchPanel/index";
 import SitterList from "../../../sitterList/index";
 import InvitesModal from "../../../inviteList/inviteModal/index";
 import Notifications from "../../../notifications/index";
+
+//style
+import './style.css';
 
 class ParentFeed extends React.Component {
 

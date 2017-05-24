@@ -26,6 +26,16 @@
     outline: none;
   }
 
+  .icon-heart:hover .icon-envelope, .icon-user {
+    width: 64px;
+    height: 64px;
+  }
+
+  .icon-envelope:hover .icon-envelope, .icon-heart {
+    width: 64px;
+    height: 64px;
+  }
+
   .icon-heart {
     color: #f86966;
     font-size: 32px;
@@ -45,6 +55,18 @@
 
   .icon-heart:before, .icon-envelope:before {
     vertical-align: middle;
+  }
+
+  .icon-heart:hover {
+    border-color: #f86966;
+  }
+
+  .icon-envelope:hover {
+    border-color: #ffca00;
+  }
+
+  .icon-user:hover {
+    border-color: #4dd0e1;
   }
 
 }
