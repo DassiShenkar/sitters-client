@@ -14,20 +14,19 @@ import './style.css'
 
 
 class Settings extends React.Component {
-    // constructor(props){
-    //     super(props);
-    //         this.props.actions.settingsActions.setNotifications(props.user.settings.allowNotification);
-    //         this.props.actions.settingsActions.setSuggestions(props.user.settings.allowSuggestions);
-    // }
     handleApplyChanges(e) {
         e.preventDefault();
         let user = this.props.user;
-        user.settings = {
-            allowNotification: this.props.settings.enableNotifications,
-            allowSuggestions: this.props.settings.enableSuggestions
-        };
-        if(!this.props.user.isParent)
-            user.settings["allowShowOnSearch"] = this.props.settings.enableShowOnSearch;
+        if(this.props.user.isParent)
+            user.settings = {
+                allowNotification: this.props.settings.enableNotifications,
+                allowSuggestions: this.props.settings.enableSuggestions
+            };
+        else
+            user.settings = {
+                allowNotification: this.props.settings.enableNotifications,
+                allowShowOnSearch: this.props.settings.enableShowOnSearch
+            };
         let self = this;
         const path = this.props.user.isParent? 'parent/update': 'sitter/update';
         axios({
@@ -64,6 +63,13 @@ class Settings extends React.Component {
     }
 
     render() {
+        const suggestion = this.props.user.isParen?
+            <label htmlFor="suggestions-switch">Allow Suggestions
+                <Toggle
+                    defaultChecked={this.props.settings.enableSuggestions}
+                    onChange={this.handleSuggestionsChange.bind(this)}
+                />
+            </label>: null;
         const showOnSearch = !this.props.user.isParent?
             <label htmlFor="showOnSearch-switch">Show on search
                 <Toggle
@@ -81,12 +87,7 @@ class Settings extends React.Component {
                             onChange={this.handleNotificationChange.bind(this)}
                         />
                     </label>
-                    <label htmlFor="suggestions-switch">Allow Suggestions
-                        <Toggle
-                            defaultChecked={this.props.settings.enableSuggestions}
-                            onChange={this.handleSuggestionsChange.bind(this)}
-                        />
-                    </label>
+                    {suggestion}
                     {showOnSearch}
                     <Button className="submit-settings" title="Send Review" bsStyle="primary" onClick={this.handleApplyChanges.bind(this)}>Apply Changes</Button>
                 </form>

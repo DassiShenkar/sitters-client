@@ -9,6 +9,7 @@ import moment from 'moment';
 
 //style
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import InvitesModal from "../../../inviteList/inviteModal/index";
 
 // BigCalendar.setLocalizer(
 //     BigCalendar.momentLocalizer(moment)
@@ -59,19 +60,6 @@ class SitterFeed extends React.Component {
                 endDate: new Date(invite.endTime)
             })
         });
-        // const events = [
-        //     {
-        //         'title': 'All Day Event',
-        //         'allDay': true,
-        //         'startDate': new Date(2017, 4, 24),
-        //         'endDate': new Date(2017, 4, 25)
-        //     },
-        //     {
-        //         'title': 'Long Event',
-        //         'startDate': new Date(2017, 4, 26),
-        //         'endDate': new Date(2017, 4, 29)
-        //     }];
-
         return (
             <div id="sitter-feed">
                 {/*<InviteList isParent={this.props.user.isParent} invites={this.props.user.invites}/>*/}
@@ -81,6 +69,7 @@ class SitterFeed extends React.Component {
                     startAccessor='startDate'
                     endAccessor='endDate'
                 />
+                <InvitesModal {...this.props} />
             </div>
         );
     }
