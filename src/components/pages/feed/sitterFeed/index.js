@@ -46,9 +46,14 @@ class SitterFeed extends React.Component {
     }
     render() {
         const events = [];
+        let hourFee = this.props.user.hourFee;
         this.props.user.invites.forEach(function(invite){
+            let startTime = new Date(invite.startTime);
+            let endTime = new Date(invite.endTime);
+            let timeDifference = (((endTime - startTime) % 86400000) / 3600000).toFixed(2);
+
             events.push({
-                title: 'Watch ' + invite.childName + ' - 20$',
+                title: 'Watch ' + invite.childName + "  - " + (timeDifference * hourFee) + "$",
                 // allDay: true,
                 startDate: new Date(invite.startTime),
                 endDate: new Date(invite.endTime)
@@ -75,7 +80,6 @@ class SitterFeed extends React.Component {
                     defaultDate={new Date()}
                     startAccessor='startDate'
                     endAccessor='endDate'
-                    {... this.props}
                 />
             </div>
         );
