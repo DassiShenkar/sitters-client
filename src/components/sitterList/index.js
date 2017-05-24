@@ -157,37 +157,6 @@ class SitterList extends React.Component {
                         </tbody>
                     </Table>
                 </div>
-                {/*</div>*/}
-                {/*<PageHeader>*/}
-
-                {/*<Image className="sitter-profile-pic"*/}
-                {/*src={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : ''}*/}
-                {/*alt={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''} circle/>*/}
-                {/*{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}*/}
-                {/*</Link>*/}
-
-                {/*</PageHeader>*/}
-                //
-                {/*<div className="match-info">*/}
-                {/*//*/}
-                {/*<div className="score">*/}
-                {/*// <h1*/}
-                {/*className="match-score">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].match.matchScore + '%' : ''}</h1>*/}
-                {/*// <h1>{this.props.sitters.length > 0 ? 'Match' : ''}</h1>*/}
-                {/*//*/}
-                {/*</div>*/}
-                {/*// <RainbowChart sitter={this.props.sitters[sitterIndex]}/>*/}
-                {/*//*/}
-                {/*</div>*/}
-                {/*<h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers '+ (this.props.sitters[sitterIndex].gender === 'male'? 'himself:': 'herself:') : ''}</h3>*/}
-                {/*<PersonalityQuestions*/}
-                {/*questions={this.props.sitters.length > 0 ? this.props.sitters[this.props.feed.sitterIndex].personalityTest.questions : ''}*/}
-                {/*addSameQuestionsClass={true}*/}
-                {/*secondQuestions={this.props.user.personalityTest.questions}*/}
-                {/*disabled={true}*/}
-                {/*title={consider}*/}
-                {/*sitterName={this.props.sitters.length > 0 ? this.props.sitters[this.props.feed.sitterIndex].name : ''}*/}
-                {/*{...this.props}/>*/}
             </div>
         )
     }
