@@ -10,6 +10,10 @@ function settings(state = {}, action) {
                 enableSuggestions: action.shouldEnableSuggestions
 
             };
+        case 'SET_SHOW_ON_SEARCH' :
+            return {...state,
+                enableShowOnSearch: action.shouldEnableShowOnSearch
+            };
         default:
             return state;
     }

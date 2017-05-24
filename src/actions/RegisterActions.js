@@ -192,13 +192,6 @@ export function changePersonalityTestQuestion(question) {
     }
 }
 
-export function changePersonalityQuestion(question) {
-    return {
-        type: 'CHANGE_PERSONALITY_QUESTION',
-        question
-    }
-}
-
 export function changeUserAddress(address) {
     return {
         type: 'CHANGE_USER_ADDRESS',

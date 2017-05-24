@@ -3,15 +3,11 @@ import {Component} from 'react';
 
 export default class SliderBase extends Component {
 
-    constructor(props) {
-        super(props);
-        this.onChange = this.onChange.bind(this);
-    };
-
-    onChange(question, index, rate) {
+    onChange(rate) {
+        let question = this.props.question;
         question.value = rate;
-        question.index = index;
-        this.props.actions.registerActions.changePersonalityQuestion(question);
+        question.index = this.props.index;
+        this.props.action(question);
     }
 }
 

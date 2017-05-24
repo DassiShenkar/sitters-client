@@ -19,3 +19,17 @@ export function setUserData(userData) {
         userData
     }
 }
+
+export function changeIsParentFlag(isParent) {
+    return {
+        type: 'CHANGE_IS_PARENT_FLAG',
+        isParent
+    }
+}
+
+export function setSitterData(sitterData) {
+    return {
+        type: 'SET_SITTER_DATA',
+        sitterData
+    }
+}

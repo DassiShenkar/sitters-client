@@ -26,17 +26,16 @@ class Login extends React.Component {
         if(user.status === "not_authorized"){
             this.props.router.push('/notAuthorized');
         }
-        console.log((strings.DEBUG?strings.LOCALHOST : strings.WEBSITE )+ 'parent/get');
         const self = this;
         axios({
             method: 'post',
-            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/get',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: user.id}
         })
             .then(function (response) {
                 if (response.data) {  // user exists
-                    if(user.friends.data.length > response.data.mutualFriends.length){
+                    if(user.friends.data.length > response.data.mutualFriends.length && response.data.isParent){
                         let parent = response.data;
                         parent.mutualFriends = user.friends.data;
                         axios({
@@ -53,7 +52,11 @@ class Login extends React.Component {
                             });
                     }
                     document.cookie = ("auth_token="+user.id);
-                   // self.props.actions.actionCreators.setUserData(response.data);
+                    self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
+                    if(response.data.isParent)
+                        self.props.actions.actionCreators.setUserData(response.data);
+                    else
+                        self.props.actions.actionCreators.setSitterData(response.data);
                     self.props.router.push('/');
                 }
                 else { // user not exist

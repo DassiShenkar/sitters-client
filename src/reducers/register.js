@@ -137,17 +137,6 @@ function register(state = {}, action) {
                 ...state,
                 sitterEducation:  action.sitterEducation
             };
-
-        case 'CHANGE_PERSONALITY_QUESTION' :
-            let questions = state.personalityQuestions;
-            let index = action.question.index;
-            delete action.question['index'];
-            questions[index] = action.question;
-            return {
-                ...state,
-                personalityQuestions : questions
-            };
-
         case 'CHANGE_GENDER_WATCH_CHILD' :
             return {
                 ...state,

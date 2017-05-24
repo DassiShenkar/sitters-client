@@ -27,3 +27,10 @@ export function changeInviteDate(inviteDate,inviteDay,isoValue) {
         isoValue
     }
 }
+
+export function changeAvailability(availability) {
+    return {
+        type: 'CHANGE_AVAILABILITY',
+        availability
+    }
+}

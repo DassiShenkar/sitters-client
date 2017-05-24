@@ -12,6 +12,7 @@ const strings = {
     USER_TYPE: ["I'm a Parent", "I'm a Sitter"],
     GENDER: ["Male", "Female"],
     BOOLEAN: ["True", "False"],
+    AVAILABILITY: ["Available Now", "Custom"],
     GENDER_WITH_BOTH: ["Both", "Male", "Female"],
     WEEK_DAYS: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     HOURS: ["Mornings", "Evenings", "Afternoon"],

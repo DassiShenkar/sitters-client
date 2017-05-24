@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'uuid';
-
+import dateFormat from 'dateformat';
 //style
 import './style.css';
 import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
@@ -9,6 +9,7 @@ import TimeInput from "../controllers/TimeInput";
 import GoogleMaps from "../controllers/maps/GoogleMaps";
 import axios from 'axios';
 import strings from "../../static/strings";
+import clone from 'clone';
 
 
 class Invite extends React.Component {
@@ -40,15 +41,30 @@ class Invite extends React.Component {
             parentID:   this.props.user._id,
             notes: this.props.invite.notes? this.props.invite.notes: "",
             sitterName: this.props.sitterProfile.sitter.name,
-            sitterImage: this.props.sitterProfile.sitter.profilePicture
+            sitterImage: this.props.sitterProfile.sitter.profilePicture,
+            parentName: this.props.user.name,
+            parentImage: this.props.user.profilePicture
 
         };
+        let invites = [];
+        if(this.props.invite.recurringDate !== ""){
+            let inviteDate = new Date(this.props.invite.inviteDate);
+            let recurringDate = new Date(this.props.invite.recurringDate);
+            do {
+                invites.push(invite);
+                inviteDate.setDate(inviteDate.getDate()+7);
+                invite = clone(invite);
+                invite.date = (inviteDate.getMonth() + 1) + "/" + inviteDate.getDate() + "/" + inviteDate.getFullYear();
+            }
+            while (inviteDate <= recurringDate);
+        }
+        this.props.actions.inviteActions.changeRecurringDate(dateFormat(new Date(), "mm/dd/yyyy"), dateFormat(new Date(), "dddd"), new Date().toISOString());
         let self = this;
         axios({
             method: 'post',
             url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: invite
+            data: invites
         }).then(function (res) {
             console.log(res);
             if (res.data) {  // invite created
@@ -68,7 +84,6 @@ class Invite extends React.Component {
     closePopup(){
         this.props.actions.feedActions.showInvitePopup(false)
     }
-
     render() {
         return (
             <div>
@@ -99,6 +114,8 @@ class Invite extends React.Component {
                                                 sitter={this.props.user}
                                                 oneMarker={true}/>
                                 </div>
+                                <ControlLabel>Weekly Recurring until:</ControlLabel>
+                                <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
                                 <ControlLabel>Notes</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder="textarea" onChange={this.handleChange.bind(this)} />
                                 <Button className="submit-invite" title="Send Invite" bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>

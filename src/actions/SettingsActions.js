@@ -12,5 +12,11 @@ export function setSuggestions(shouldEnableSuggestions) {
     }
 }
 
+export function setShowOnSearch(shouldEnableShowOnSearch) {
+    return {
+        type: 'SET_SHOW_ON_SEARCH',
+        shouldEnableShowOnSearch
+    }
+}
 
 

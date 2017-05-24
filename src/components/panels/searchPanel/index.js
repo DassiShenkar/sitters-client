@@ -14,6 +14,8 @@ import TimeInput from '../../controllers/TimeInput';
 
 //style
 import './style.css';
+import RadioGroup from "../../controllers/radio/radioGroup/index";
+import strings from "../../../static/strings";
 
 class SearchByTab extends React.Component {
 
@@ -28,10 +30,19 @@ class SearchByTab extends React.Component {
         if (this.props.searchBy.searchView !== null) {
             let view = this.props.searchBy.searchView;
             if (view === "location") {
-                navView = <div className="google-map" style={{width: '100%', height: '240px'}}><GoogleMaps sitters={this.props.feed.matches}/></div>;
+                navView = <div className="google-map" style={{width: '100%', height: '240px'}}>
+                    <GoogleMaps sitters={this.props.feed.matches}/></div>;
             }
+            //<GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}*/}
+                        ///*sitter={this.props.user}*/}
+                        ///*oneMarker={true}/>*/}  // FIX THIS
             else if (view === "time") {
                 navView = <form id="time-search">
+                    <RadioGroup options={strings.AVAILABILITY}
+                                defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
+                                action={this.props.actions.searchByActions.changeAvailability}
+                                radioType={'availability'}
+                                value={this.props.user.gender}/>
                     <label>Date
                     <DatePicker defaultValue={this.props.searchBy.isoValue} {...this.props}
                                 action={this.props.actions.searchByActions.changeInviteDate}

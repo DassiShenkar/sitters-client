@@ -1,8 +1,4 @@
 import React from "react";
-
-import CircledMail from "../../icons/CircledMail";
-import Like from "../../icons/Like";
-import NextArrow from "../../icons/NextArrow";
 import axios from "axios";
 //style
 import "./style.css";
@@ -16,6 +12,7 @@ class SitterActionBar extends React.Component {
         this.nextSitter = this.nextSitter.bind(this);
         this.inviteSitter = this.inviteSitter.bind(this);
         this.reviewSitter = this.reviewSitter.bind(this);
+        this.sitterProfile = this.sitterProfile.bind(this);
     }
 
     nextSitter(e) {
@@ -63,17 +60,21 @@ class SitterActionBar extends React.Component {
 
     reviewSitter(e) {
         e.preventDefault();
-        // this.props.actions.sitterProfileActions.setExpandReview(true);
-        // this.props.router.push('/sitter/' + this.props.feed.matches[this.props.feed.sitterIndex]._id);
-            this.props.actions.feedActions.showReviewPopup(true);
+        this.props.actions.feedActions.showReviewPopup(true);
+    }
+
+    sitterProfile(e) {
+        e.preventDefault();
+        this.props.router.push('/sitter/' + this.props.feed.filteredMatches[this.props.feed.sitterIndex]._id);
+        // ('/sitter/' + this.props.feed.filteredMatches[this.props.feed.sitterIndex]);
     }
 
     render() {
         return (
             <div id="sitterActionBar">
-                <button id="mail" onClick={this.inviteSitter}><CircledMail id="mail-icon"/></button>
-                <button onClick={this.reviewSitter}><Like id="like-icon"/></button>
-                <button onClick={this.nextSitter}><NextArrow id="next-icon"/></button>
+                <button onClick={this.inviteSitter}><span className="icon-envelope action-icon"/></button>
+                <button onClick={this.sitterProfile}><span className="icon-user"/></button>
+                <button onClick={this.reviewSitter}><span className="icon-heart"/></button>
                 <Invite {...this.props}/>
             </div>
         )

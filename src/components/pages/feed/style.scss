@@ -5,13 +5,13 @@
     margin-bottom: 0;
   }
 
-  h3 {
-    color: #555;
-    text-align: left;
-    margin-bottom: 64px;
-    padding: 0;
-
-  }
+  //h3 {
+  //  color: #555;
+  //  text-align: left;
+  //  margin-bottom: 64px;
+  //  padding: 0;
+  //
+  //}
 
   label {
     color: #555;
@@ -132,4 +132,10 @@ ol.progtrckr li.progtrckr-done:before {
 
 ol.progtrckr li.progtrckr-done:hover:before {
   color: #333;
+}
+
+#sitter-feed{
+  .rbc-calendar{
+    height: 400px;
+  }
 }

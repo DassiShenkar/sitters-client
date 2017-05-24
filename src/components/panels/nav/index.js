@@ -4,9 +4,6 @@ import React from 'react';
 import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
 
 //Components
-import Search from '../../icons/Search';
-import NotificationSVG from '../../icons/Notification';
-import MailSVG from '../../icons/Mail';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
 
 //style
@@ -25,21 +22,25 @@ class MainNav extends React.Component {
     }
 
     render() {
+        const searchBy = this.props.user.isParent?
+            <NavItem onClick={this.onClick.bind(this, "searchBy")}>
+            <span className="icon-search"/>
+            </NavItem>: null;
+        const notifications = this.props.user.isParent?
+            <NavItem onClick={this.onClick.bind(this, "notifications")}>
+                <span className="icon-bell-o"/>
+                <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
+            </NavItem>: null;
         return (
             <Navbar id="main-nav">
                 <Navbar.Header>
                     <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <NavItem onClick={this.onClick.bind(this, "searchBy")}>
-                        <Search/>
-                    </NavItem>
-                    <NavItem onClick={this.onClick.bind(this, "notifications")}>
-                        <NotificationSVG/>
-                        <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
-                    </NavItem>
+                    {searchBy}
+                    {notifications}
                     <NavItem onClick={this.onClick.bind(this, "invites")}>
-                        <MailSVG/>
+                        <span className="icon-envelope-o"/>
                         <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
                     </NavItem>
                     <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle/>

@@ -16,7 +16,8 @@ const defaultState = {
         userType: strings.USER_TYPE[0],
         invites: [],
         notifications: [],
-        personalityTest : []
+        personalityTest : [],
+        isParent: true
     },
     feed: {
         matches: [],
@@ -60,14 +61,18 @@ const defaultState = {
         fromTime: moment(),
         toTime: moment(),
         isoValue: new Date().toISOString(),
-        searchView: 'location'
+        searchView: 'location',
+        availability: "Available Now"
     },
     invite: {
         inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),
         inviteDay: dateFormat(new Date(), "dddd"),
         fromTime: moment(),
         toTime: moment(),
-        isoValue: new Date().toISOString()
+        isoValue: new Date().toISOString(),
+        recurringDate: dateFormat(new Date(), "mm/dd/yyyy"),
+        recurringInviteDay: dateFormat(new Date(), "dddd"),
+        recurringIsoValue:  new Date().toISOString()
     },
     range: {
         priceMinRange:0,

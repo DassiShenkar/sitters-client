@@ -29,12 +29,24 @@ export default class PersonalityQuestions extends React.Component {
                 }
             });
         }
+        else{
+            questions = this.props.questions.map((question) => {
+                return(
+                    <OurSlider key={self.props.questions.indexOf(question)}  leftLabel={question.label1}
+                               rightLabel={question.label2} min={0} max={4} step={1} question={question}
+                               index={self.props.questions.indexOf(question)}
+                               action={this.props.action}
+                               // value={question.value} defaultValue={2} disabled={self.props.disabled}/>
+                                defaultValue={2} disabled={self.props.disabled}/>
+                )
+            });
+        }
         return {sameQuestions, differentQuestion, questions};
     }
 
 
     render() {
-        const {sameQuestions, differentQuestion, questions} = this.getSameAnswers();
+        const {sameQuestions, differentQuestion, questions} = this.getSameAnswers.bind(this);
         return (
             <div className="personality-profile">
                 {this.props.disabled ? <h3>{'You want it - ' + this.props.sitterName.split(' ')[0] + ' has got it!'}</h3> : questions}

@@ -1,21 +1,33 @@
 import React from 'react';
+import {ControlLabel, Image} from "react-bootstrap";
+import GoogleMaps from "../../controllers/maps/GoogleMaps";
 
-class SingleInvite extends React.Component{
+export default class SingleInvite extends React.Component{
     render() {
-        const inviteId = this.props.params.inviteId;
-        const invite = this.props.user.invites.filter((invite) => invite.id === inviteId)[0];
+        const inviteID = location.href.split('invite/')[1];
+        const invite = this.props.user.invites.filter((invite) => invite._id === inviteID)[0];
         return (
-            <form className="single-invite">
-                <img src={invite.sitterImage} alt={invite.sitterName}/>
-                <p>{invite.sitterName}</p>
-                <p>{'Date: ' + invite.date}</p>
-                <p>{'Location: ' + invite.location}</p>
-                <p>{'Time: ' + invite.startTime + '-' + invite.endTime}</p>
-                <p>{'Notes: ' + invite.notes}</p>
-                <p>{'Status: ' + invite.status}</p>
+        <div>
+            <Image className="sitter-image" src={invite.sitterImage} alt={invite.sitterName} circle={true}/>
+            <h4 className="sitter-name">{invite.sitterName}</h4>
+            <form id="invite">
+                <ControlLabel>Date</ControlLabel>
+                <p>{invite.date}</p>
+                <ControlLabel>Start Watch</ControlLabel>
+                <p>{invite.startTime}</p>
+                <ControlLabel>End Watch</ControlLabel>
+                <p>{invite.endTime}</p>
+                <ControlLabel>Watch Place:</ControlLabel>
+                {this.props.user.address ? "   " + this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : ''}
+                <div style={{width: '100%', height: '400px'}}>
+                    <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
+                                sitter={this.props.user}
+                                oneMarker={true}/>
+                </div>
+                <ControlLabel>Notes</ControlLabel>
+                <p>{invite.notes}</p>
             </form>
+        </div>
         )
     }
 }
-
-export default SingleInvite;

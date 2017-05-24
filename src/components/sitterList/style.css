@@ -1,17 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Caveat+Brush|Emblema+One|Galada|Kaushan+Script|Knewave|Lemon|Lobster|Playball|Purple+Purse|Risque|Sniglet|Unna");
 .match .page-header {
   text-align: left; }
-  .match .page-header h1 {
-    display: flex;
-    flex-direction: row; }
-  .match .page-header .sitter-link {
-    flex: 1; }
-  .match .page-header #sitterActionBar {
-    flex: 1;
-    margin: 0;
-    text-align: right; }
-  .match .page-header a {
-    color: #7ad0f8; }
+
+.match .page-header h1 {
+  display: flex;
+  flex-direction: row; }
+
+.match .page-header .sitter-link {
+  flex: 1; }
+
+.match .page-header #sitterActionBar {
+  flex: 1;
+  margin: 0;
+  text-align: right; }
+
+.match .page-header a {
+  color: #7ad0f8; }
 
 .match img.sitter-profile-pic {
   width: 64px;
@@ -23,18 +27,22 @@
   display: flex;
   flex-direction: row;
   margin-top: 48px; }
-  .match .match-info .recharts-wrapper {
-    flex: 1; }
-  .match .match-info .score {
-    flex: 1; }
-    .match .match-info .score h1 {
-      color: #88d685;
-      font-size: 64px;
-      margin: 0;
-      font-family: 'Galada', cursive; }
-    .match .match-info .score .match-score {
-      font-family: 'Playball', cursive;
-      font-size: 96px; }
+
+.match .match-info .recharts-wrapper {
+  flex: 1; }
+
+.match .match-info .score {
+  flex: 1; }
+
+.match .match-info .score h1 {
+  color: #88d685;
+  font-size: 64px;
+  margin: 0;
+  font-family: 'Galada', cursive; }
+
+.match .match-info .score .match-score {
+  font-family: 'Playball', cursive;
+  font-size: 96px; }
 
 .match .rc-slider {
   height: 20px;
