@@ -6,11 +6,19 @@ import Form from 'react-native-form';
 import BaseForm from './BaseForm';
 import TextButton from './TextButton';
 import strings from '../../src/static/strings';
+import MyMultiSelect from './MyMultiSelect'
 
 export default class ParentForm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.updateUser = this.updateUser.bind(this);
+        this.expChecked = this.expChecked.bind(this);
+        this.removeExp = this.removeExp.bind(this);
+        this.hobbiesChecked = this.hobbiesChecked.bind(this);
+        this.removeHobbies = this.removeHobbies.bind(this);
+        this.needsChecked = this.needsChecked.bind(this);
+        this.removeNeeds = this.removeNeeds.bind(this);
     }
 
     render () {
@@ -39,18 +47,141 @@ export default class ParentForm extends React.Component {
                     placeholder="Enter your max price per hour for watch"
                     value={ this.props.register.watchMaxPrice ? this.props.register.watchMaxPrice : null}
                     onChangeText={(text) => this.props.actions.registerActions.changeChildMaxPriceForWatch(text)} />
+                <Text style={styles.header}>Child</Text>
+                <Text style={styles.text}>Child name</Text>
+                <TextInput
+                    style={styles.textInput}
+                    type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
+                    name="child Name"
+                    placeholder="childName"
+                    value={ this.props.register.childName ? this.props.register.childName : null}
+                    onChangeText={(text) => this.props.actions.registerActions.changeChildName(text)} />
+                <Text style={styles.text}>Child age</Text>
+                <TextInput
+                    style={styles.textInput}
+                    type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
+                    name="childAge"
+                    placeholder="child Age"
+                    value={ this.props.register.childAge ? this.props.register.childAge : null }
+                    onChangeText={(text) => this.props.actions.registerActions.changeChildAge(text)} />
+                <Text style={styles.text}>Child Expertise</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.EXPERTISE}
+                    selected={this.props.register.childExpertise ? this.props.register.childExpertise : []}
+                    update={this.expChecked}
+                    remove={this.removeExp} />
+                <Text style={styles.text}>Child Hobbies</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.HOBBIES}
+                    selected={this.props.register.childHobbies ? this.props.register.childHobbies : []}
+                    update={this.hobbiesChecked}
+                    remove={this.removeHobbies} />
+                <Text style={styles.text}>Child Special needs</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.SPECIAL_NEEDS}
+                    selected={this.props.register.childSpecialNeeds ? this.props.register.childSpecialNeeds : []}
+                    update={this.needsChecked}
+                    remove={this.removeNeeds} />
+                <Text style={styles.header}>Partner</Text>
+                <Text style={styles.text}>Partner name</Text>
+                <TextInput
+                    style={styles.textInput}
+                    type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
+                    name="parnterName"
+                    placeholder="parnter Name"
+                    value={ this.props.register.partnerName ? this.props.register.partnerName : null}
+                    onChangeText={(text) => this.props.actions.registerActions.changePartnerName(text)} />
+                <Text style={styles.text}>Partner email</Text>
+                <TextInput
+                    style={styles.textInput}
+                    type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
+                    name="parnterEmail"
+                    placeholder="parnter Email"
+                    value={ this.props.register.parterEmail ? this.props.register.parterEmail : null}
+                    onChangeText={(text) => this.props.actions.registerActions.changePartnerEmail(text)} />
+                <Text style={styles.text}>Partner gender</Text>
+                <Picker
+                    style={styles.picker}
+                    selectedValue={ this.props.user.partnerGender ?  this.props.user.partnerGender : 'Female' }
+                    onValueChange={(gender) => { this.props.actions.registerActions.changePartnerGender(gender) }}>
+                    <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] } />
+                    <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] } />
+                </Picker>
                 <TextButton
                     styles={styles.button}
-                    onPress={ function() {
-                        if(self.props.registered) {
-                             callback();
-                        } else {
-                             Actions.PersonalityTest({callback: callback})
-                        }
-                    }}
-                    text="Next step" />
+                    onPress={ () => { callback()/*self.props.registered ? self.updateUser(self.props.userType) : Actions.PersonalityTest({callback: callback}) */}}
+                    text="Submit" />
             </Form>
         );
+    }
+
+    expChecked (selected) {
+        let expertise = this.props.register.childExpertise ? this.props.register.childExpertise : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name)
+        });
+        let array = [...select, ...expertise];
+        this.props.actions.registerActions.changeChildExpertise(array);
+    }
+
+    removeExp(removed) {
+        let expertise = this.props.register.childExpertise ? this.props.register.childExpertise : [];
+        let array =  expertise.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeChildExpertise(array);
+    }
+
+    hobbiesChecked (selected) {
+        let hobbies = this.props.register.childHobbies ? this.props.register.childHobbies : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name)
+        });
+        let array = [...select, ...hobbies];
+        this.props.actions.registerActions.changeChildHobbies(array);
+    }
+
+    removeHobbies(removed) {
+        let hobbies = this.props.register.childHobbies ? this.props.register.childHobbies : [];
+        let array =  hobbies.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeChildHobbies(array);
+    }
+
+    needsChecked (selected) {
+        let needs = this.props.register.childSpecialNeeds ? this.props.register.childSpecialNeeds : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name)
+        });
+        let array = [...select, ...needs];
+        this.props.actions.registerActions.changeChildSpecialNeeds(array);
+    }
+
+    removeNeeds(removed) {
+        let needs = this.props.register.childSpecialNeeds ? this.props.register.childSpecialNeeds : [];
+        let array =  needs.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeChildSpecialNeeds(array);
+    }
+
+    updateUser(userType) {
+        //TODO: update user in db
     }
 }
 
@@ -75,11 +206,19 @@ const styles = StyleSheet.create({
     },
     button: {
         fontSize: 16,
+        width: 70,
+        alignSelf : 'flex-end',
         backgroundColor: '#f7a1a1',
         color: '#fff',
         padding: 5,
         borderRadius: 10,
         margin: 5,
         marginRight: 15
+    },
+    header: {
+        color: '#f7a1a1',
+        fontSize: 19,
+        marginLeft: 10,
+        fontWeight: 'bold'
     }
 });

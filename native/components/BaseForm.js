@@ -15,28 +15,15 @@ export default class BaseForm extends React.Component {
         this.calcAge = this.calcAge.bind(this);
         this.languagesChecked = this.languagesChecked.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.removeLang = this.removeLang.bind(this);
     }
 
     render () {
         const self = this;
         let languages = this.getLanguagesFromFacebook(this.props.register.languages);
-        let selected = function(){
-            if(self.props.user.languages) {
-                let selected = [];
-                strings.LANGUAGES.forEach(function(language) {
-                    languages.forEach(function(lang) {
-                        if(lang.label === language.label) {
-                            selected.push(language.value);
-                        }
-                    });
-                });
-                return selected;
-            } else {
-                return [];
-            }
-        };
         return (
             <View>
+                <Text style={styles.header}>Personal info</Text>
                 <Text style={styles.text}>Name</Text>
                 <TextInput
                     style={styles.textInput}
@@ -76,11 +63,7 @@ export default class BaseForm extends React.Component {
                         listViewDisplayed='auto'    // true/false/undefined
                         fetchDetails={true}
                         renderDescription={(row) => row.description} // custom description render
-                        onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-                          console.log(data);
-                          console.log(details);
-                          this.onChange(data);
-                        }}
+                        onPress={(data, details) => { this.onChange(data, details)}}
                         getDefaultValue={() => {
                           return this.props.user.address; // text input default value
                         }}
@@ -108,7 +91,7 @@ export default class BaseForm extends React.Component {
                 <Text style={styles.text}>Gender</Text>
                 <Picker
                     style={styles.picker}
-                    selectedValue={ this.props.user.gender ?  this.props.user.gender : 'Female' }
+                    selectedValue={ this.props.register.gender ?  this.props.register.gender : 'Female' }
                     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
@@ -117,15 +100,25 @@ export default class BaseForm extends React.Component {
                 <MyMultiSelect
                     style={{ marginBottom: 10 }}
                     items={strings.LANGUAGES}
-                    selected={self.props.register.languages ? self.props.register.languages : this.props.user.languages}
-                    update={this.languagesChecked} />
+                    selected={self.props.register.languages ? self.props.register.languages : self.props.user.languages}
+                    update={this.languagesChecked}
+                    remove={this.removeLang}/>
             </View>
         );
     }
 
     languagesChecked (selected) {
-        console.log(selected);
-        this.props.actions.registerActions.changeLanguages(selected);
+        let languages = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
+        let array = [...selected, ...languages];
+        this.props.actions.registerActions.changeLanguages(array);
+    }
+
+    removeLang(removed) {
+        let languages = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
+        let array =  languages.filter(function(el) {
+            return el.name !== removed.name;
+        });
+        this.props.actions.registerActions.changeLanguages(array);
     }
 
     calcAge(birthday) {
@@ -146,9 +139,9 @@ export default class BaseForm extends React.Component {
         }
     }
 
-    onChange(address){
-        console.log(address);
-        this.props.actions.registerActions.changeUserAddress(address);
+    onChange(data, details){
+        this.props.actions.locationActions.addLocation(details.geometry.location);
+        this.props.actions.registerActions.changeUserAddress(data.description);
     }
 }
 
@@ -170,5 +163,11 @@ const styles = StyleSheet.create({
         marginLeft: 3,
         alignSelf : 'flex-start',
         marginBottom: 10
+    },
+    header: {
+        color: '#f7a1a1',
+        fontSize: 19,
+        marginLeft: 10,
+        fontWeight: 'bold'
     }
 });

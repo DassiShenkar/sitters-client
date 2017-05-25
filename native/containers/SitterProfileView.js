@@ -27,8 +27,8 @@ class SitterProfileView extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/sitter/get',
-            url: 'https://sittersdev.herokuapp.com/sitter/get',
+            url: 'https://sitters-server.herokuapp.com/sitter/get',
+            // url: 'https://sittersdev.herokuapp.com/sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: sitterID}
         }).then(function (sitter) {
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     },
     infoBar: {
         flex: 1,
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
         width: '100%',
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     },
     actionBar: {
         width: '100%',
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 5
     },

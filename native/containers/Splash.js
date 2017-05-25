@@ -49,51 +49,51 @@ class Splash extends React.Component {
             console.log(e);
         }
         const self = this;
-        let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
+        // let accessToken = await LocalStorage.getFromLocalStorage(LocalStorage.FACEBOOK_KEY);
         let userId = await LocalStorage.getFromLocalStorage(LocalStorage.USER_KEY);
-        if (accessToken == null || userId == null) {
+        //if (accessToken == null || userId == null) {
+        if (userId == null) {
             Actions.Login();
         } else {
-            const responseInfoCallback = (error, result) => {
-                if (error) {
-                    console.log(error);
-                    Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook Error, please try again later'});
-                } else {
-                    //self.getUserFromDb(self, result);
-                    Actions.Login();
-                }
-            };
-
-            const params = {
-                parameters: {
-                    fields: {
-                        string: "id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
-                    },
-                    access_token: {
-                        string: accessToken
-                    }
-                }
-            };
-
-            const infoRequest = new GraphRequest('/me', params, responseInfoCallback);
-            new GraphRequestManager().addRequest(infoRequest).start();
+            self.getUserFromDb(self, userId);
+            // const responseInfoCallback = (error, result) => {
+            //     if (error) {
+            //         console.log(error);
+            //         Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook Error, please try again later'});
+            //     } else {
+            //         self.getUserFromDb(self, result);
+            //     }
+            // };
+            //
+            // const params = {
+            //     parameters: {
+            //         fields: {
+            //             string: "id,name,email,cover,birthday,currency,education,gender,friends,friendlists,languages,location,timezone,picture.width(500).height(500)"
+            //         },
+            //         access_token: {
+            //             string: accessToken
+            //         }
+            //     }
+            // };
+            //
+            // const infoRequest = new GraphRequest('/me', params, responseInfoCallback);
+            // new GraphRequestManager().addRequest(infoRequest).start();
         }
     }
 
-    async getUserFromDb(self, result) {
+    async getUserFromDb(self, userId) {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/parent/get',
             url: 'https://sittersdev.herokuapp.com/parent/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: {_id: result.id.toString()}
+            data: {_id: userId.toString()}
         }).then(function (res) {
             if (res.data) {  // user exists
                 self.props.actionCreators.setUserData(res.data);
                 Actions.Feed();
             } else { // user not exist
-                self.props.actionCreators.createUser(result);
-                Actions.Register();
+                Actions.Login();
             }
         }).catch(function (error) {
             console.log(error);

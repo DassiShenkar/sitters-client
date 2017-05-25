@@ -6,13 +6,23 @@ import BaseForm from './BaseForm';
 import Form from 'react-native-form';
 import TextButton from './TextButton';
 import strings from '../../src/static/strings';
+import MyMultiSelect from './MyMultiSelect'
+
 
 export default class SitterForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.timePickerCallback = this.timePickerCallback.bind(this);
         this.timePicker = this.timePicker.bind(this);
+        this.getEducationFromFacebook = this.getEducationFromFacebook.bind(this);
+        this.expChecked = this.expChecked.bind(this);
+        this.removeExp = this.removeExp.bind(this);
+        this.eduChecked = this.eduChecked.bind(this);
+        this.removeEdu = this.removeEdu.bind(this);
+        this.hobbiesChecked = this.hobbiesChecked.bind(this);
+        this.removeHobbies = this.removeHobbies.bind(this);
+        this.needsChecked = this.needsChecked.bind(this);
+        this.removeNeeds = this.removeNeeds.bind(this);
     }
 
     render () {
@@ -22,86 +32,249 @@ export default class SitterForm extends React.Component {
             <Form ref="sitterForm">
                 <BaseForm 
                     { ...this.props }/>
-                <Text>Experience</Text>
+                <Text style={styles.text}>Experience</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     name="experience"
                     value={ this.props.user.sitterExperience ? this.props.user.sitterExperience : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterExperience(text)} />
-                <Text>Minimum age of child</Text>
+                <Text style={styles.text}>Minimum age of child</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     name="MinimumAge"
                     value={ this.props.user.sitterMinAge ? this.props.user.sitterMinAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMinimumAge(text)} />
-                <Text>Maximum age of child</Text>
+                <Text style={styles.text}>Maximum age of child</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     name="MinimumAge"
                     value={ this.props.user.sitterMaxAge ? this.props.user.sitterMaxAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMaximumAge(text)} />
-                <Text>Hour Fee</Text>
+                <Text style={styles.text}>Hour Fee</Text>
                 <TextInput
+                    style={styles.textInput}
                     type="TextInput"
+                    selectionColor="#f7a1a1"
+                    underlineColorAndroid="#f7a1a1"
                     name="hourFee"
                     value={ this.props.user.hourFee ? this.props.user.hourFee : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterHourFee(text)} />
-                <Text>Are you available on call?</Text>
+                <Text style={styles.text}>Immediate Availability</Text>
                 <Picker
+                    style={styles.picker}
                     selectedValue={ this.props.user.sitterImmediateAvailability }
                     onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterImmediateAvailability(availability) }}>
                     <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
                     <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
                 </Picker>
-                <Text>Sitter Expertise</Text>
-                {/*<CheckboxGroup
-                    onSelect={ (values) => self.props.actions.registerActions.changeSitterExpertise(values) }
-                    checked={ [] }
-                    items={ strings.EXPERTISE } />
-                <Text>Sitter Hobbies</Text>
-                <CheckboxGroup
-                    onSelect={ (values) => self.props.actions.registerActions.changeSitterHobbies(values) }
-                    checked={ [] }
-                    items={ strings.HOBBIES } />
-                <Text>Sitter Special needs</Text>
-                <CheckboxGroup
-                    onSelect={ (values) => self.props.actions.registerActions.changeSitterSpecialNeeds(values) }
-                    checked={ [] }
-                    items={ strings.SPECIAL_NEEDS } />
-                <Text>Availble on:</Text>
-                {this.timePicker()}
+                <Text style={styles.text}>Mobility?</Text>
+                <Picker
+                    style={styles.picker}
+                    selectedValue={ this.props.user.sitterMobility }
+                    onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterMobility(availability) }}>
+                    <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
+                    <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
+                </Picker>
+                <Text style={styles.text}>Education</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.EDUCATION}
+                    selected={this.getEducationFromFacebook(this.props.register.sittereducation)}
+                    update={this.eduChecked}
+                    remove={this.removeEdu} />
+                <Text style={styles.text}>Expertise</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.EXPERTISE}
+                    selected={this.props.register.sitterExpertise ? this.props.register.sitterExpertise : []}
+                    update={this.expChecked}
+                    remove={this.removeExp} />
+                <Text style={styles.text}>Hobbies</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.HOBBIES}
+                    selected={this.props.register.sitterHobbies ? this.props.register.sitterHobbies : []}
+                    update={this.hobbiesChecked}
+                    remove={this.removeHobbies} />
+                <Text style={styles.text}>Special Needs Qualifications</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.SPECIAL_NEEDS}
+                    selected={this.props.register.sitterSpecialNeeds ? this.props.register.sitterSpecialNeeds : []}
+                    update={this.needsChecked}
+                    remove={this.removeNeeds} />
+                <Text style={styles.text}>Availble on:</Text>
+                {/*this.timePicker()*/}
                 <TextButton
-                    onPress={ function() {
-                        if(self.props.registered) {
-                             callback();
-                        } else {
-                             Actions.PersonalityTest({callback: callback})
-                        }
-                    }}
-                    text="Submit" />*/}
+                    styles={styles.button}
+                    onPress={ () => { callback()/*self.props.registered ? self.updateUser(self.props.userType) : Actions.PersonalityTest({callback: callback}) */ }}
+                    text="Submit" />
             </Form>
         );
     }
 
-    timePicker () {
-        const self = this;
-        return strings.WEEK_DAYS.map(function (day) {
-            return <View key={ Math.random() }>
-                <Text key={ Math.random() }>{day}</Text>
-
-            </View>;
+    eduChecked (selected) {
+        let education = this.getEducationFromFacebook(this.props.register.sittereducation);
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name);
         });
+        let array = [...select, ...education];// TODO: check why not adding
+        this.props.actions.registerActions.changeSitterEducation(array);
     }
 
-    timePickerCallback (day, time) {
-        // var newState = {
-        //     ...this.props.user,
-        //     day: time
-        // };
-        // this.props.actions.registerActions.changeSitterSpecialNeeds(newState);
+    removeEdu(removed) {
+        let education = this.getEducationFromFacebook(this.props.register.sittereducation);
+        let array =  education.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeSitterEducation(array);
+    }
+
+    expChecked (selected) {
+        let expertise = this.props.register.sitterExpertise ? this.props.register.sitterExpertise : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name);
+        });
+        let array = [...select, ...expertise];
+        this.props.actions.registerActions.changeSitterExpertise(array);
+    }
+
+    removeExp(removed) {
+        let expertise = this.props.register.sitterExpertise ? this.props.register.sitterExpertise : [];
+        let array =  expertise.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeSitterExpertise(array);
+    }
+
+    hobbiesChecked (selected) {
+        let hobbies = this.props.register.sitterHobbies ? this.props.register.sitterHobbies : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name);
+        });
+        let array = [...select, ...hobbies];
+        this.props.actions.registerActions.changeSitterHobbies(array);
+    }
+
+    removeHobbies(removed) {
+        let hobbies = this.props.register.sitterHobbies ? this.props.register.sitterHobbies : [];
+        let array =  hobbies.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeSitterHobbies(array);
+    }
+
+    needsChecked (selected) {
+        let needs = this.props.register.sitterSpecialNeeds ? this.props.register.sitterSpecialNeeds : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name);
+        });
+        let array = [...select, ...needs];
+        this.props.actions.registerActions.changeSitterSpecialNeeds(array);
+    }
+
+    removeNeeds(removed) {
+        let needs = this.props.register.sitterSpecialNeeds ? this.props.register.sitterSpecialNeeds : [];
+        let array =  needs.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeSitterSpecialNeeds(array);
+    }
+
+    timePicker () {
+        // const self = this;
+        // return strings.WEEK_DAYS.map(function (day) {
+        //     return <View key={ Math.random() }>
+        //         <Text key={ Math.random() }>{day}</Text>
+        //         <MyMultiSelect
+        //             style={{ marginBottom: 10 }}
+        //             items={strings.HOURS}
+        //             selected={self.props.workingHours[day] ? self.props.workingHours[day] : []}
+        //             update={(selected) => {
+        //                 let hours = self.props.workingHours[day] ? self.props.workingHours[day] : [];
+        //                 let select = [];
+        //                 selected.map(function(item){
+        //                     select.push(item.name);
+        //                 });
+        //                 let array = [...select, ...hours];
+        //                 self.props.actions.workingHoursActions.changeWorkingHours(array, day);
+        //             }}
+        //             remove={(removed) => {
+        //                 let needs = self.props.workingHours[day] ? self.props.workingHours[day] : [];
+        //                 let array =  needs.filter(function(el) {
+        //                     return el !== removed;
+        //                 });
+        //                 self.props.actions.workingHoursActions.changeWorkingHours(array, day);
+        //             }}
+        //         />
+        //     </View>;
+        // });
+    }
+
+    getEducationFromFacebook(education) {
+        if (education) {
+            return education;
+        }
+        else if (this.props.user.education) {
+            let eduList = [];
+            let facebookEducation = this.props.user.education;
+            facebookEducation.forEach(function (obj) {
+                if (eduList.indexOf(obj.type) === -1) {
+                    eduList.push(obj.type);
+                }
+            });
+            return eduList;
+        }
     }
 }
 
 const styles = StyleSheet.create({
-
+    text: {
+        color: '#f7a1a1',
+        fontSize: 16,
+        marginLeft: 10,
+        fontWeight: 'bold'
+    },
+    textInput: {
+        width: '80%',
+        marginBottom: 10,
+        marginLeft: 5,
+        color: '#f7a1a1'
+    },
+    picker: {
+        width: '30%',
+        marginLeft: 3,
+        alignSelf : 'flex-start',
+        marginBottom: 10
+    },
+    button: {
+        fontSize: 16,
+        width: 70,
+        alignSelf : 'flex-end',
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10,
+        margin: 5,
+        marginRight: 15
+    },
+    header: {
+        color: '#f7a1a1',
+        fontSize: 19,
+        marginLeft: 10,
+        fontWeight: 'bold'
+    }
 });

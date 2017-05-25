@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     actionBar: {
         width: '100%',
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 5
     },

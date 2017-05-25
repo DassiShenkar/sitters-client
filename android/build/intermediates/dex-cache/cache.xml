@@ -66,15 +66,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.22.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="0d94c39080a309d1887f50ef68cc96dfe4bc9d01">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.22.0_c8aa93679186fec4927f30bee55cbdcd05018a26.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.4.1\c7c4f9e35c2fd5900da24f9872e3971801f08ce0\okhttp-3.4.1.jar"
         jumboMode="false"
         optimize="true"
@@ -108,6 +99,15 @@
         revision="23.0.1"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_1cb67a1a5ff343a7ddc6cefec4d0194257c780d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.22.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d5cbc9214ee567ea6ef56fb2707d48e58d240fc2">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.22.1_618983bc259c38622a8093f9be1776cd9abadf51.jar" />
     </item>
     <item
         is-multidex="false"
@@ -165,15 +165,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.11.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="98786c1770b531b9194fb6448b2a2692c64074b6">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-0.11.0_7c2247eb4037ebe2693348e49f7263007c82bf23.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -189,6 +180,15 @@
         revision="23.0.1"
         sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.0.0_7c0bfa04b81f7d451a793b58790f33177c40b71d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="98786c1770b531b9194fb6448b2a2692c64074b6">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-0.11.0_7c2247eb4037ebe2693348e49f7263007c82bf23.jar" />
     </item>
     <item
         is-multidex="false"
@@ -351,15 +351,6 @@
         revision="23.0.1"
         sha1="3341b66c54367e777a0647e2db96c045329bfeab">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-0.11.0_310861993819d13ce75fd1e2d08e1b2259339129.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\react-native-vector-icons\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="b319ff9834bbeb9be394687614eb86892699ea14">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\Sitters-react-native-vector-icons-unspecified_46f7876d6ccf110c5e607ea2ab9c257f7742a8ac.jar" />
     </item>
     <item
         is-multidex="false"

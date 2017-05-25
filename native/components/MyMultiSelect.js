@@ -13,7 +13,7 @@ export default class MyMultiSelect extends Component {
         return (
             <LabelSelect
                 ref="labelSelect"
-                title="Choose Languages"
+                title="Choose"
                 enable={true}
                 readOnly={false}
                 enableAddBtn={true}
@@ -28,24 +28,38 @@ export default class MyMultiSelect extends Component {
                 }}
                 onConfirm={(list) => this.props.update(list)}>
                 {this.generateList()}
-                {this.generateLabels()}
+                {this.props.selected ? this.generateLabels() : null}
             </LabelSelect>
         );
     }
 
     generateList() {
-        return this.props.items.map(function(item) {
+        let localArray = this.props.items;
+        this.props.selected.map(function(select) {
+            let name = typeof select.name === "undefined" ? select : select.name;
+            localArray = localArray.filter(function(el) {
+                return el.label !== name;
+            });
+        });
+        return localArray.map(function(item) {
             return <LabelSelect.ModalItem
-                    key={item.value}
-                    data={item.label}>{item.label}</LabelSelect.ModalItem>;
+                    key={Math.random()}
+                    data={{name: item.label}}>{item.label}</LabelSelect.ModalItem>;
         });
     }
 
     generateLabels() {
+        const self = this;
+        if(this.props.selected.length <= 0) {
+            return null;
+        }
         return this.props.selected.map(function(item) {
+            let name = typeof item.name === "undefined" ? item : item.name;
             return <LabelSelect.Label
-                    key={item.id}
-                    data={item.name}>{item.name}</LabelSelect.Label>;
+                    key={Math.random()}
+                    data={item}
+                    onCancel={() => self.props.remove(item)}>{name}</LabelSelect.Label>;
+
         });
     }
 }

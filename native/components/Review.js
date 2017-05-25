@@ -26,7 +26,7 @@ export default class Review extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         padding: 5,
         justifyContent: 'space-between'
     },

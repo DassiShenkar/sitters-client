@@ -11,7 +11,6 @@ import Login from './native/containers/Login';
 import Register from './native/containers/Register';
 import EditProfile from './native/containers/EditProfile';
 import Feed from './native/containers/Feed';
-import SitterInbox from './native/containers/SitterInbox';
 import SitterProfileView from './native/containers/SitterProfileView';
 import SitterSendInvite from './native/containers/SitterSendInvite';
 import Notifications from './native/containers/Notifications';
@@ -49,7 +48,6 @@ class Sitters extends React.Component {
                             <Scene key="Register" component={Register} title="Register" animation='fade' hideNavBar={true}/>
                             <Scene key="EditProfile" component={EditProfile} title="EditProfile" animation='fade'/>
                             <Scene key="Feed" component={Feed} title="Feed" passProps={true} animation='fade'/>
-                            <Scene key="SitterInbox" component={SitterInbox} title="SitterInbox" passProps={true} animation='fade'/>
                             <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView" passProps={true} animation='fade'/>
                             <Scene key="Notifications" component={Notifications} title="Notifications" animation='fade'/>
                             <Scene key="Inbox" component={Inbox} title="Inbox" animation='fade'/>

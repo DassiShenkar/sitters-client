@@ -11,6 +11,7 @@ import * as FeedActions from '../../src/actions/FeedActions';
 import * as RouterActions from '../actions/RouterActions';
 import AppBar from '../components/AppBar';
 import SitterList from '../components/SitterList';
+import SitterInbox from '../components/SitterInbox';
 import LoadingScreen from '../components/LoadingScreen';
 import LocalStorage from '../utils/LocalStorage';
 
@@ -32,6 +33,7 @@ class Feed extends React.Component {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     data: {_id: userId.toString()}
                 }).then(function (parent) {
+                    console.log(parent);
                     if (parent.data) {  // user exists
                         axios({
                             method: 'post',
@@ -76,16 +78,22 @@ class Feed extends React.Component {
     }
 
     render () {
+        console.log(this.props.user.userType);
         return (
             <View style={styles.container}>
                 <AppBar
                     { ...this.props } />
-                {this.props.feed.showSpinner ?
-                    <LoadingScreen />
-                    : <SitterList
+                {
+                    this.props.feed.showSpinner ?
+                    <LoadingScreen /> :
+                    this.props.user.userType === "I'm a parent" ?
+                    <SitterList
                         { ...this.props }
-                        sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }/>
+                        sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }/> :   
+                    <SitterInbox
+                        {...this.props} />
                 }
+                
             </View>
         );
     }
