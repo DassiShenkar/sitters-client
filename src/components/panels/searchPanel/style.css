@@ -1,15 +1,26 @@
+#search-panel {
+  width: 80%;
+  margin: 0 auto; }
+
+#search-panel .page-header h1 {
+  color: #757575;
+  font-family: 'Open Sans', sans-serif; }
+
 #time-search {
   margin: 0;
+  margin-top: 48px;
   padding: 0;
   height: 240px; }
-  #time-search label {
-    margin: 16px 0;
-    display: flex; }
+
+#time-search label {
+  margin: 16px 0;
+  display: flex; }
 
 #range-search {
   height: 240px;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  margin-top: 48px; }
 
 #search-range {
   width: 360px;
@@ -20,5 +31,6 @@
 
 .nav > li > a:hover, .nav > li > a:focus {
   background-color: #f86966; }
-  .nav > li > a:hover path, .nav > li > a:focus path {
-    fill: #fff; }
+
+.nav > li > a:hover path, .nav > li > a:focus path {
+  fill: #fff; }

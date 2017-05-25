@@ -43,7 +43,10 @@
     color: #f86966; }
   #sitter-profile .info-table tbody > tr > td {
     border-top: none;
-    text-align: center; }
+    text-align: center;
+    font-size: 28px;
+    color: #757575;
+    font-family: 'Open Sans', sans-serif; }
   #sitter-profile .info-table th:last-child, #sitter-profile .info-table td:last-child {
     border-right: none; }
 
@@ -87,10 +90,14 @@
   width: 20px; }
 
 #sitter-profile .sitter-details {
-  margin-left: 96px; }
+  margin-left: 96px;
+  margin-top: 24px; }
 
 #sitter-profile .last-invited {
-  margin-left: 15px; }
+  margin-left: 15px;
+  margin-bottom: 48px;
+  font-size: 16px;
+  color: #757575; }
 
 #sitter-profile #review-button, #sitter-profile #invite-button {
   display: flex;
@@ -100,3 +107,15 @@
 #sitter-profile .profile-buttons {
   display: flex;
   flex-direction: row; }
+
+#sitter-profile .panel-title {
+  color: #f86966;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: bold; }
+
+#sitter-profile .panel-title a:hover {
+  text-decoration: none; }
+
+#sitter-profile .panel-title:hover {
+  cursor: pointer; }

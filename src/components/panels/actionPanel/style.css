@@ -3,45 +3,34 @@
   bottom: -36px;
   right: 0;
   left: 0; }
-
-#sitterActionBar button:nth-of-type(2) {
-  width: 96px;
-  height: 96px;
-  font-size: 48px;
-  margin: 0 -4px; }
-
-#sitterActionBar button {
-  border-radius: 50%;
-  border: 4px solid #f5f5f5;
-  background: #fff;
-  width: 64px;
-  height: 64px;
-  font-size: 28px; }
-
-#sitterActionBar button:focus {
-  outline: none; }
-
-#sitterActionBar .icon-heart {
-  color: #f86966;
-  font-size: 32px; }
-
-#sitterActionBar .icon-user {
-  color: #4dd0e1; }
-
-#sitterActionBar .icon-envelope {
-  color: #ffca00; }
-
-#sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before, #sitterActionBar .icon-user:before {
-  line-height: normal; }
-
-#sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before {
-  vertical-align: middle; }
-
-#sitterActionBar button:nth-of-type(1):hover, #sitterActionBar button:nth-of-type(1):active {
-  border-color: #ffca00; }
-
-#sitterActionBar button:nth-of-type(2):hover, #sitterActionBar button:nth-of-type(2):active {
-  border-color: #4dd0e1; }
-
-#sitterActionBar button:nth-of-type(3):hover, #sitterActionBar button:nth-of-type(3):active {
-  border-color: #f86966; }
+  #sitterActionBar button:nth-of-type(2) {
+    width: 96px;
+    height: 96px;
+    font-size: 48px;
+    margin: 0 -4px; }
+  #sitterActionBar button {
+    border-radius: 50%;
+    border: 4px solid #f5f5f5;
+    background: #fff;
+    width: 64px;
+    height: 64px;
+    font-size: 28px; }
+  #sitterActionBar button:focus {
+    outline: none; }
+  #sitterActionBar .icon-heart {
+    color: #f86966;
+    font-size: 32px; }
+  #sitterActionBar .icon-user {
+    color: #4dd0e1; }
+  #sitterActionBar .icon-envelope {
+    color: #ffca00; }
+  #sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before, #sitterActionBar .icon-user:before {
+    line-height: normal; }
+  #sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before {
+    vertical-align: middle; }
+  #sitterActionBar button:nth-of-type(1):hover, #sitterActionBar button:nth-of-type(1):active {
+    border-color: #ffca00; }
+  #sitterActionBar button:nth-of-type(2):hover, #sitterActionBar button:nth-of-type(2):active {
+    border-color: #4dd0e1; }
+  #sitterActionBar button:nth-of-type(3):hover, #sitterActionBar button:nth-of-type(3):active {
+    border-color: #f86966; }

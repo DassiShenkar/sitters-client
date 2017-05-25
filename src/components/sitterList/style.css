@@ -1,44 +1,40 @@
-@import url("https://fonts.googleapis.com/css?family=Caveat+Brush|Emblema+One|Galada|Kaushan+Script|Knewave|Lemon|Lobster|Playball|Purple+Purse|Risque|Sniglet|Unna");
-#sitter-profile td {
+.feed-match #sitter-profile td {
   padding-top: 28px; }
 
-#sitter-profile .motto {
+.feed-match #sitter-profile .motto {
   font-family: 'Raleway', sans-serif;
   font-size: 24px; }
 
-#sitter-profile .personality ul {
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  width: 216px;
-  margin-left: auto;
-  margin-right: auto; }
+.feed-match #sitter-profile .personality {
+  font-size: 18px; }
+  .feed-match #sitter-profile .personality ul {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 216px;
+    margin-left: auto;
+    margin-right: auto; }
+  .feed-match #sitter-profile .personality ul li {
+    width: 120px; }
+  .feed-match #sitter-profile .personality ul li:last-child {
+    margin-left: .8em; }
+  .feed-match #sitter-profile .personality .label-dark, .feed-match #sitter-profile .personality .label-regular, .feed-match #sitter-profile .personality .label-light {
+    background: #f86966; }
+  .feed-match #sitter-profile .personality .label-regular {
+    opacity: 0.75; }
+  .feed-match #sitter-profile .personality .label-light {
+    opacity: 0.5; }
 
-#sitter-profile .personality ul li {
-  margin: 0 8px;
-  width: 100px;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  padding: 0.3em .6em .4em; }
-
-#sitter-profile .personality .label-dark, #sitter-profile .personality .label-regular, #sitter-profile .personality .label-light {
-  background: #f86966; }
-
-#sitter-profile .personality .label-regular {
-  opacity: 0.75; }
-
-#sitter-profile .personality .label-light {
-  opacity: 0.5; }
-
-#sitter-profile .mutual-friends ul {
+.feed-match #sitter-profile .mutual-friends ul {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
   width: 208px;
   padding: 0; }
-  #sitter-profile .mutual-friends ul li {
+  .feed-match #sitter-profile .mutual-friends ul li {
     margin-left: 8px; }
-    #sitter-profile .mutual-friends ul li img {
+    .feed-match #sitter-profile .mutual-friends ul li img {
       width: 64px;
       height: 64px; }
-  #sitter-profile .mutual-friends ul li:first-child {
+  .feed-match #sitter-profile .mutual-friends ul li:first-child {
     margin-left: 0; }
