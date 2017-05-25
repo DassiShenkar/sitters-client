@@ -12,23 +12,88 @@ import PersonalityQuestions from "../forms/personality/PersonalityQuestions";
 import './style.css';
 
 // statics
+import strings from '../../static/strings';
+import * as axios from "axios";
 
 class SitterList extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.nextSitter = this.nextSitter.bind(this);
+        this.prevSitter = this.prevSitter.bind(this);
+    }
+
+    nextSitter(e) {
+        e.preventDefault();
+        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? this.props.feed.filteredMatches.length - 1 : this.props.feed.sitterIndex + 1;
+        if (strings.ACTIVATE_BLACKLIST) {
+            let parent = this.props.user;
+            parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
+            this.props.actions.actionCreators.setUserData(parent);
+            //Todo: call blacklistSitter(parentID, sitterID) for this parent
+            axios({
+                method: 'post',
+                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                data: parent
+            }).then(function (res) {
+                if (res.data) {  // user created
+                    console.log('updated blacklist');
+                }
+                else { // user not created
+                    console.log("user not created");
+                    //TODO: think about error when user not created
+                }
+            })
+                .catch(function (error) {
+                    alert(error);
+                    //TODO: think about error when user not created
+                });
+
+        }
+        this.props.actions.feedActions.setSitterIndex(index);
+    }
+
+    prevSitter(e) {
+        e.preventDefault();
+        const index = this.props.feed.sitterIndex === 0 ? 0 : this.props.feed.sitterIndex - 1;
+        if (strings.ACTIVATE_BLACKLIST) {
+            let parent = this.props.user;
+            parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
+            this.props.actions.actionCreators.setUserData(parent);
+            //Todo: call blacklistSitter(parentID, sitterID) for this parent
+            axios({
+                method: 'post',
+                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                data: parent
+            }).then(function (res) {
+                if (res.data) {  // user created
+                    console.log('updated blacklist');
+                }
+                else { // user not created
+                    console.log("user not created");
+                    //TODO: think about error when user not created
+                }
+            })
+                .catch(function (error) {
+                    alert(error);
+                    //TODO: think about error when user not created
+                });
+
+        }
+        this.props.actions.feedActions.setSitterIndex(index);
+    }
+
+
     render() {
 
-        let sitterIndex = this.props.feed.sitterIndex;
+        const sitterIndex = this.props.feed.sitterIndex === undefined ? 0 : this.props.feed.sitterIndex;
         // const consider = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' also considers ' + (this.props.sitters[sitterIndex].gender === 'male' ? 'himself:' : 'herself:') : '';
-        const coverPhoto = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].coverPhoto : null;
-        const mutualFriends = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].mutualFriends.length : 0;
-        const personality = [
-            "Patient",
-            "Outdoorsy",
-            "Funny",
-            "Adventurous",
-            "Sensitive",
-            "Youthful"
-        ];
+        const coverPhoto = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].coverPhoto : null;
+        const mutualFriends = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].mutualFriends : null;
+        const personality = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].personality : [];
+        const motto = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].motto : '';
         let style;
         if (coverPhoto) {
             style = {
@@ -49,39 +114,31 @@ class SitterList extends React.Component {
                         </Link>
                         <h1 className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</h1>
                     </div>
+                    <div className="arrows">
+                        {sitterIndex > 0 ? <span onClick={this.prevSitter} className="icon-chevron-left"/> : ''}
+                        {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ? <span onClick={this.nextSitter} className="icon-chevron-right"/> : ''}
+                    </div>
                     <SitterActionBar {...this.props}/>
                 </div>
                 <div id="sitter-profile">
                     <Table className="info-table" responsive>
                         <thead>
                         <tr>
-                            <th>{'MUTUAL FRIENDS (' + mutualFriends + ')'}</th>
+                            <th>{'MUTUAL FRIENDS (' + (mutualFriends ? mutualFriends.length : 0) + ')'}</th>
                             <th>MOTTO</th>
                             <th>PERSONALITY</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td className="mutual friends">
+                            <td className="mutual-friends">
                                 <ul>
-                                    <li>
-                                        <Image
-                                            src={mutualFriends > 0 ? this.props.sitters[sitterIndex].mutualFriends[0].picture : ''}
-                                            circle/>
-                                    </li>
-                                    <li>
-                                        <Image
-                                            src={mutualFriends >= 2 ? this.props.sitters[sitterIndex].mutualFriends[1].picture : ''}
-                                            circle/>
-                                    </li>
-                                    <li>
-                                        <Image
-                                            src={mutualFriends >= 3 ? this.props.sitters[sitterIndex].mutualFriends[2].picture : ''}
-                                            circle/>
-                                    </li>
+                                    {mutualFriends ? mutualFriends.map((friend, index) => <li key={index}><Image
+                                            src={friend.picture}
+                                            circle/></li>) : ''}
                                 </ul>
                             </td>
-                            <td className="motto">"Always look on the bright side of life"</td>
+                            <td className="motto">{'\"' + motto + '\"'}</td>
                             <td className="personality">
                                 <ul>
                                     <li className="label label-dark">{personality[0]}</li>
@@ -100,37 +157,6 @@ class SitterList extends React.Component {
                         </tbody>
                     </Table>
                 </div>
-                {/*</div>*/}
-                {/*<PageHeader>*/}
-
-                {/*<Image className="sitter-profile-pic"*/}
-                {/*src={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : ''}*/}
-                {/*alt={this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''} circle/>*/}
-                {/*{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}*/}
-                {/*</Link>*/}
-
-                {/*</PageHeader>*/}
-                //
-                {/*<div className="match-info">*/}
-                {/*//*/}
-                {/*<div className="score">*/}
-                {/*// <h1*/}
-                {/*className="match-score">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].match.matchScore + '%' : ''}</h1>*/}
-                {/*// <h1>{this.props.sitters.length > 0 ? 'Match' : ''}</h1>*/}
-                {/*//*/}
-                {/*</div>*/}
-                {/*// <RainbowChart sitter={this.props.sitters[sitterIndex]}/>*/}
-                {/*//*/}
-                {/*</div>*/}
-                {/*<h3>{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' considers '+ (this.props.sitters[sitterIndex].gender === 'male'? 'himself:': 'herself:') : ''}</h3>*/}
-                {/*<PersonalityQuestions*/}
-                {/*questions={this.props.sitters.length > 0 ? this.props.sitters[this.props.feed.sitterIndex].personalityTest.questions : ''}*/}
-                {/*addSameQuestionsClass={true}*/}
-                {/*secondQuestions={this.props.user.personalityTest.questions}*/}
-                {/*disabled={true}*/}
-                {/*title={consider}*/}
-                {/*sitterName={this.props.sitters.length > 0 ? this.props.sitters[this.props.feed.sitterIndex].name : ''}*/}
-                {/*{...this.props}/>*/}
             </div>
         )
     }

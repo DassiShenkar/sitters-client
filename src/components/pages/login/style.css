@@ -2,35 +2,32 @@
   width: 33%;
   margin: 0 auto;
   text-align: center; }
-
-#login-page .page-header {
-  margin-top: 156px; }
-
-#login-page .page-header h1 {
-  font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
-  color: #f7a1a1;
-  font-size: 56px; }
-
-#login-page .page-header h3 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #555; }
-
-#login-page .radio-group {
-  text-align: left;
-  width: 100px;
-  margin: 24px auto; }
-
-#login-page .kep-login-facebook.metro {
-  display: flex;
-  margin: 0 auto;
-  border-radius: 40px;
-  background: #fff;
-  color: #f7a1a1;
-  border-color: #f7a1a1; }
-
-#login-page .kep-login-facebook.metro:hover {
-  background: #f7a1a1;
-  color: #fff; }
-
-#login-page .kep-login-facebook.metro:focus {
-  outline: none; }
+  #login-page .page-header {
+    margin-top: 156px; }
+    #login-page .page-header h1 {
+      font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
+      color: #f86966;
+      font-size: 96px; }
+    #login-page .page-header .tagline {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #555;
+      font-size: 28px;
+      display: block;
+      text-align: center;
+      margin-top: 32px; }
+  #login-page .radio-group {
+    text-align: left;
+    width: 100px;
+    margin: 24px auto; }
+  #login-page .kep-login-facebook.metro {
+    display: flex;
+    margin: 0 auto;
+    border-radius: 40px;
+    background: #fff;
+    color: #f86966;
+    border-color: #f86966; }
+  #login-page .kep-login-facebook.metro:hover {
+    background: #f86966;
+    color: #fff; }
+  #login-page .kep-login-facebook.metro:focus {
+    outline: none; }

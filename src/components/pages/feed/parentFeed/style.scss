@@ -1,0 +1,28 @@
+#parent-feed {
+
+  .arrows {
+    .icon-chevron-left, .icon-chevron-right {
+      font-size: 72px;
+      color: #fff;
+      position: absolute;
+      top: 177px;
+      bottom: 0;
+
+    }
+
+    .icon-chevron-left:hover, .icon-chevron-right:hover {
+      cursor: pointer;
+      color: #f5f5f5;
+    }
+
+    .icon-chevron-left {
+      left: 30px;
+    }
+
+    .icon-chevron-right {
+      right: 30px;
+    }
+
+  }
+
+}

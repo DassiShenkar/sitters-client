@@ -34,7 +34,7 @@ class MainNav extends React.Component {
         return (
             <Navbar id="main-nav">
                 <Navbar.Header>
-                    <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
+                    <Navbar.Brand onClick={this.onClick.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ? 'Back' : 'Sitters'}</Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
                     {searchBy}
