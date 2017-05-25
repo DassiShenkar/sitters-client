@@ -92,7 +92,7 @@ class ParentFeed extends React.Component {
                     text={this.props.feed.spinnerText}
                 >
                     {navView}
-                    {showSitters ? <SitterList {...this.props}
+                    {showSitters &&  this.props.searchBy.searchView !== "location" ? <SitterList {...this.props}
                                                sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
                     <InvitesModal {...this.props} />
                     <Notifications {...this.props}/>

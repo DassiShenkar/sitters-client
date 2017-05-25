@@ -29,8 +29,9 @@ class SearchByTab extends React.Component {
         let navView = null;
         if (this.props.searchBy.searchView !== null) {
             let view = this.props.searchBy.searchView;
-            const searchByTime = this.props.searchBy.availability !== "Available Now"?
-                <section>
+            const searchByTime = this.props.searchBy.availability !== "Available Now" ?
+                <section className="page">
+                    <label>Time</label>
                     <label>Date
                         <DatePicker defaultValue={this.props.searchBy.isoValue} {...this.props}
                                     action={this.props.actions.searchByActions.changeInviteDate}
@@ -46,18 +47,20 @@ class SearchByTab extends React.Component {
                                    action={this.props.actions.searchByActions.changeInviteToTime}
                                    changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
                     </label>
-                </section>: null;
+                </section> : null;
 
             if (view === "location") {
-                navView = <div className="google-map" style={{width: '100%', height: '240px'}}>
-                    <GoogleMaps sitters={this.props.feed.matches}/></div>;
+                navView = <div className="google-map page" style={{width: '100%', height: '400px', marginTop: '48px'}}>
+                    <label>Proximity</label>
+                    <GoogleMaps center={{
+                        lat: this.props.user.address ? this.props.user.address.latitude : 0,
+                        lng: this.props.user.address ? this.props.user.address.longitude : 0
+                    }}
+                                sitters={this.props.feed.matches}
+                                oneMarker={false}/></div>;
             }
-            //<GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}*/}
-            ///*sitter={this.props.user}*/}
-            ///*oneMarker={true}/>*/}  // FIX THIS
             else if (view === "time") {
-
-                navView = <form id="time-search">
+                navView = <form id="time-search" className="page">
                     <RadioGroup options={strings.AVAILABILITY}
                                 defaultValue={this.props.searchBy.availability}
                                 action={this.props.actions.searchByActions.changeAvailability}
@@ -67,7 +70,7 @@ class SearchByTab extends React.Component {
                 </form>;
             }
             else if (view === "rate") {
-                navView = <div id="range-search">
+                navView = <div id="range-search" className="page">
                     <label>Hour Rate
                         <Range min={0} max={50} {...this.props} action={this.props.actions.rangeActions.changeRange}
                                changeSitters={this.props.actions.feedActions.setFilteredMatches} disabled={false}/>
@@ -76,13 +79,15 @@ class SearchByTab extends React.Component {
             }
             return (
                 <div id="search-panel">
-                    <PageHeader>Quick Search</PageHeader>
-                    <Nav justified onSelect={this.handleSelect.bind(this)}>
-                        <NavItem eventKey="location" title="location"><Location/></NavItem>
-                        <NavItem eventKey="time"><Clock/></NavItem>
-                        <NavItem eventKey="rate"><Dollar/></NavItem>
-                    </Nav>
-                    {navView}
+                    <div className="search-nav">
+                        <PageHeader>Quick Search</PageHeader>
+                        <Nav justified onSelect={this.handleSelect.bind(this)}>
+                            <NavItem eventKey="rate"><Dollar/></NavItem>
+                            <NavItem eventKey="location" title="location"><Location/></NavItem>
+                            <NavItem eventKey="time"><Clock/></NavItem>
+                        </Nav>
+                        {navView}
+                    </div>
                 </div>
             );
         }
