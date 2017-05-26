@@ -1,14 +1,12 @@
 //external sources
 import React from 'react';
 
-import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
-
 //Components
+import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
 
 //style
 import './style.css';
-
 
 class MainNav extends React.Component {
 
@@ -22,30 +20,32 @@ class MainNav extends React.Component {
     }
 
     render() {
-        const searchBy = this.props.user.isParent?
-            <NavItem onClick={this.onClick.bind(this, "searchBy")}>
-            <span className="icon-search"/>
-            </NavItem>: null;
-        const notifications = this.props.user.isParent?
-            <NavItem onClick={this.onClick.bind(this, "notifications")}>
-                <span className="icon-bell-o"/>
-                <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
-            </NavItem>: null;
         return (
-            <Navbar id="main-nav">
+            <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>
-                    <Navbar.Brand onClick={this.onClick.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ? 'Back' : 'Sitters'}</Navbar.Brand>
+                    <Navbar.Brand>
+                        <a href="#"
+                           onClick={this.onClick.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ?
+                            <span className="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
+                    </Navbar.Brand>
+                    <Navbar.Toggle/>
                 </Navbar.Header>
-                <Nav>
-                    {searchBy}
-                    {notifications}
-                    <NavItem onClick={this.onClick.bind(this, "invites")}>
-                        <span className="icon-envelope-o"/>
-                        <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
-                    </NavItem>
+                <Navbar.Text pullRight>
                     <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle/>
-                    <DropdownMenu {...this.props}/>
-                </Nav>
+                </Navbar.Text>
+                <Navbar.Collapse>
+                    <Nav pullRight>
+                        {this.props.user.isParent ? <NavItem onClick={this.onClick.bind(this, "searchBy")}><span
+                                className="icon-search"/></NavItem> : null}
+                        {this.props.user.isParent ? <NavItem onClick={this.onClick.bind(this, "notifications")}><span
+                                className="icon-bell-o"/><Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge></NavItem> : null}
+                        <NavItem onClick={this.onClick.bind(this, "invites")}>
+                            <span className="icon-envelope-o"/>
+                            <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
+                        </NavItem>
+                        <DropdownMenu title={this.props.user.name} {...this.props}/>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         )
     }
