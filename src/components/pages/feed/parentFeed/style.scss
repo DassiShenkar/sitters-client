@@ -1,7 +1,7 @@
 #parent-feed {
 
   .arrows {
-    .icon-chevron-left, .icon-chevron-right {
+    .glyphicon-menu-left, .glyphicon-menu-right {
       font-size: 72px;
       color: #fff;
       position: absolute;
@@ -10,16 +10,16 @@
 
     }
 
-    .icon-chevron-left:hover, .icon-chevron-right:hover {
+    .glyphicon-menu-left:hover, .glyphicon-menu-right:hover {
       cursor: pointer;
       color: #f5f5f5;
     }
 
-    .icon-chevron-left {
+    .glyphicon-menu-left {
       left: 30px;
     }
 
-    .icon-chevron-right {
+    .glyphicon-menu-right {
       right: 30px;
     }
 
