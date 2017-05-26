@@ -115,8 +115,8 @@ class SitterList extends React.Component {
                         <h1 className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</h1>
                     </div>
                     <div className="arrows">
-                        {sitterIndex > 0 ? <span onClick={this.prevSitter} className="icon-chevron-left"/> : ''}
-                        {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ? <span onClick={this.nextSitter} className="icon-chevron-right"/> : ''}
+                        {sitterIndex > 0 ? <span onClick={this.prevSitter} className="glyphicon glyphicon-menu-left"/> : ''}
+                        {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ? <span onClick={this.nextSitter} className="glyphicon glyphicon-menu-right"/> : ''}
                     </div>
                     <SitterActionBar {...this.props}/>
                 </div>
