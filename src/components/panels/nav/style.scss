@@ -2,54 +2,49 @@ nav#main-nav {
 
   background: #fff;
   border: none;
-  box-shadow: 0 1px 5px 0 rgba(41,85,115,.21);
+  box-shadow: 0 1px 5px 0 rgba(41, 85, 115, .21);
   margin-bottom: 0;
 
-  .container {
-    width: 100%;
-    padding-right: 24px;
-    padding-left: 24px;
+  img {
+    width: 36px;
+    height: 36px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  a:focus {
+    outline: none;
+  }
+
+  ul > li > a > span:before {
+    font-size: 18px;
   }
 
   .navbar-brand {
-    float: right;
-    cursor: pointer;
     color: #f86966;
     font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
     font-weight: bold;
     font-size: 28px;
   }
 
-  .navbar-nav {
-    float: right;
+  .glyphicon-menu-left {
+    font-size: 18px;
   }
 
-  .navbar-nav>li>a {
-    padding-bottom: 0;
-    font-size: 16px;
-  }
-
-  img {
-    width: 36px;
-    height: 36px;
-    margin-top: 8px;
-  }
-
-  path {
-    fill: #555;
+  .navbar-text {
+    margin-bottom: 0;
+    margin-top: 7.5px;
+    margin-left: 0;
   }
 
   .badge {
     background-color: #f86966;
     border-radius: 50%;
+    margin-left: -3px;
   }
 
-
-  .dropdown-menu {
-    svg {
-      margin-right: 8px;
-
-    }
+  .icon-chevron-left {
+    margin-right: 8px;
   }
 }
 
