@@ -15,6 +15,7 @@ import strings from '../../static/strings';
 
 // style
 import './style.css';
+import {ControlLabel} from "react-bootstrap";
 
 
 class BaseForm extends React.Component {
@@ -27,18 +28,7 @@ class BaseForm extends React.Component {
         return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
     }
 
-    getLanguagesFromFacebook(languages){
-        if(languages){
-            return languages;
-        }
-        else if(this.props.user.languages){
-            let langs =  [];
-            this.props.user.languages.forEach(function(language){
-                langs.push({value:language.name.toLowerCase(), label:language.name});
-            });
-            return langs;
-        }
-    }
+
 
     onChange(address){
         this.props.actions.registerActions.changeUserAddress(address);
@@ -74,24 +64,17 @@ class BaseForm extends React.Component {
                            inputType={'age'} {...this.props}
                            reducer={'register'}
                            required={true}/>
-                <h4>Address</h4>
-
+                <ControlLabel>Address</ControlLabel>
                 <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
-                <h4>Gender</h4>
+                <ControlLabel>Gender</ControlLabel>
                 <RadioGroup options={strings.GENDER}
-                            defaultValue={this.props.user.gender ?  this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1): 'Female'}
+                            defaultValue={strings.GENDER[1]}
                             action={this.props.actions.registerActions.changeGender}
-                            radioType={'gender'} {...this.props}
-                            value={ this.props.user.userType }
+                            radioType={'gender'}
+                            value={this.props.register.gender}
+                            required={true}
                             />
-                <h4>Languages</h4>
-                <SelectInput
-                    placeholder="Select your languages"
-                    options={strings.LANGUAGES}
-                    {...this.props}
-                    defaultValues={this.getLanguagesFromFacebook(this.props.register.languages)}
-                    action={this.props.actions.registerActions.changeLanguages}
-                    reducer={'register'}/>
+
             </div>
         )
     };
