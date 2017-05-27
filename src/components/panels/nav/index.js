@@ -25,6 +25,9 @@ class MainNav extends React.Component {
             <List items={this.props.user.invites} type='invite' isParent={this.props.user.isParent}/>
         </Popover>);
 
+        const newInvites = this.props.invites.filter(invite => !invite.wasRead);
+        const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
+
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>
@@ -43,12 +46,17 @@ class MainNav extends React.Component {
                         {this.props.user.isParent ? <NavItem onClick={this.nav.bind(this, "searchBy")}><span
                                 className="icon-search"/></NavItem> : null}
                         {this.props.user.isParent ?
-                            <OverlayTrigger trigger="focus" placement="bottom" overlay={notifications}><NavItem><span
-                                className="icon-bell-o"/><Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge></NavItem></OverlayTrigger> : null}
-                        <OverlayTrigger trigger="focus" placement="bottom" overlay={invites}><NavItem>
-                            <span className="icon-envelope-o"/>
-                            <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
-                        </NavItem>
+                            <OverlayTrigger trigger="focus" placement="bottom" overlay={notifications}>
+                                <NavItem>
+                                    <span className="icon-bell-o"/>
+                                    {newNotifications.length > 0 ? <Badge>{newNotifications.length}</Badge> : ''}
+                                </NavItem>
+                            </OverlayTrigger> : null}
+                        <OverlayTrigger trigger="focus" placement="bottom" overlay={invites}>
+                            <NavItem>
+                                <span className="icon-envelope-o"/>
+                                {newInvites.length > 0 ? <Badge>{newInvites.length}</Badge> : ''}
+                            </NavItem>
                         </OverlayTrigger>
                         <DropdownMenu title={this.props.user.name} {...this.props}/>
                     </Nav>
