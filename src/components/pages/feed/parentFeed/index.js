@@ -17,7 +17,6 @@ class ParentFeed extends React.Component {
 
     componentWillMount() {
         if (this.props.feed.matches.length === 0) {
-
             this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
             this.props.actions.feedActions.showSpinner(true);
             let self = this;
