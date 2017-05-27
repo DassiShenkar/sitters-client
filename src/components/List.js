@@ -1,17 +1,16 @@
+//external sources
 import React from 'react';
+
+//components
 import ListItem from './ListItem';
 
 class List extends React.Component {
-    render(){
-        const list = this.props.items.map((item) => {
-            return (
-                <ListItem key={this.props.items.indexOf(item)} item={item}/>
-            )});
-
-        return(
-            <ul>{list}</ul>
+    render() {
+        return (
+            <ul>{this.props.items.map((item, index) => {
+                return <ListItem key={index} item={item}/>
+            })}</ul>
         )
     }
 }
-
 export default List;
