@@ -15,7 +15,7 @@ class ListItem extends React.Component {
                            alt={this.props.isParent ? item.sitterName : item.parentName} circle/>
                     <div className="item-info">
                         <p><strong>{this.props.isParent ? item.sitterName : item.parentName}</strong></p>
-                        <p><span className={'icon-circle ' + item.status}/>{item.status + ' ' + item.date}</p>
+                        {this.props.type === 'invite' ? <p><span className={'icon-circle ' + item.status}/>{item.status + ' ' + item.date}</p> : ''}
                     </div>
                 </Link>
             </li>
