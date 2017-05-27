@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { Image } from 'react-bootstrap';
+import {Image} from 'react-bootstrap';
 
 import './style.css';
 import Rating from "react-rating";
+
 class ReviewItem extends React.Component {
     render() {
-        const { review } = this.props;
+        const {review} = this.props;
         const date = new Date(review.date);
         let rates;
-        if(review.rates) {
+        if (review.rates) {
             rates = Object.keys(review.rates).map(function (key) {
                 let category = key;
                 if (key === "punctioal")
@@ -21,27 +22,33 @@ class ReviewItem extends React.Component {
                 else
                     category = "General behavior";
                 return (
-                    <div>
-                        <h4>{category}</h4>
+                    <li>
+                        <p>{category}</p>
                         <Rating
                             empty="glyphicon glyphicon-heart-empty"
                             full="glyphicon glyphicon-heart"
                             className="pink"
                             initialRate={review.rates[key]}
                             readonly={true}/>
-                    </div>
+                    </li>
                 )
             });
         }
         return (
             <div className="review-item">
-                <Image className="profilePic"
-                       src={review.parentImage}
-                       alt={review.parentName} circle/>
-                <strong>{review.parentName}</strong>
-                <p>{date.toLocaleDateString()}</p>
-                {rates}
-
+                <div className="review-content">
+                    <div className="review-info">
+                        <Image className="profilePic"
+                               src={review.parentImage}
+                               alt={review.parentName} circle/>
+                        <div>
+                            <p><strong>{review.parentName}</strong></p>
+                            <p className="review-date">{date.toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                    <ul>{rates}</ul>
+                </div>
+                <p>{review.description}</p>
             </div>
         )
     }
