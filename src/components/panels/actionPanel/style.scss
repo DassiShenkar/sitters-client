@@ -1,6 +1,4 @@
 #sitterActionBar {
-  //width: 187px;
-  //margin: 0 auto;
   position: absolute;
   bottom: -36px;
   right: 0;
@@ -58,4 +56,12 @@
   button:nth-of-type(3):hover, button:nth-of-type(3):active {
     border-color: #f86966;
   }
+
+  button.selected {
+    border-color: #4dd0e1;
+  }
+  button.unselected {
+    border-color: #f5f5f5;
+  }
+
 }
