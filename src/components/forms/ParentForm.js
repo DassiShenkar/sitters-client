@@ -53,10 +53,6 @@ class Form extends React.Component {
         this.props.register.items.forEach(function(o){
             personality.push(o.label);
         });
-        // let totalScore = 0;
-        // this.props.register.personalityQuestions.forEach(function(question){
-        //     totalScore += question.value;
-        // });
         let partner;
         if(this.props.register.havePartner){
             partner = {
@@ -146,14 +142,6 @@ class Form extends React.Component {
                                             .catch(function (error) {
                                                 console.log(error);
                                             });
-
-                                        // document.cookie = ("auth_token="+self.props.user.facebookID);
-                                        // self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
-                                        // if(response.data.isParent)
-                                        //     self.props.actions.actionCreators.setUserData(response.data);
-                                        // else
-                                        //     self.props.actions.actionCreators.setSitterData(response.data);
-                                        // self.props.router.push('/');
                                     }
                                 })
                                 .catch(function (error) {

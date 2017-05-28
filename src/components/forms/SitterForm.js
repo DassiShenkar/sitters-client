@@ -1,19 +1,19 @@
 import React from 'react';
 import TextInput from '../controllers/textInput/index';
-import RadioInput from '../controllers/radio/radioGroup/index';
-// import WorkingHours from '../controllers/WorkingHours';
 import BaseForm from './BaseForm';
 import 'react-select/dist/react-select.css';
 import {AgeFromDate} from 'age-calculator';
 import strings from '../../static/strings';
 import axios from 'axios';
 import geocoder from 'geocoder';
-import {Button} from "react-bootstrap";
+import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
 import SelectInput from "../controllers/select/SelectInput";
-import PersonalityQuestions from "./personality/PersonalityQuestions";
+import RadioGroup from "../controllers/radio/radioGroup/index";
 
 import './style.css';
 import WorkingHours from "../controllers/workingHours/index";
+import CheckBoxInput from "../controllers/checkbox/index";
+import DragAndDropContainer from "../dragAndDropContainer/index";
 
 class Form extends React.Component {
     constructor(props) {
@@ -33,23 +33,34 @@ class Form extends React.Component {
         });
     }
 
-    getEducationFromFacebook(education, selectInput) {// selectInput or array of strings
+
+
+    getEducationFromFacebook(education) {// selectInput or array of strings
         if (education) {
             return education;
         }
         else if (this.props.user.education) {
-            let edu = [];
-            let eduList = [];
-            let facebookEducation = this.props.user.education;
-            facebookEducation.forEach(function (obj) {
-                if (eduList.indexOf(obj.type) === -1) {
+            let edu = [], eduList = [];
+            this.props.user.education.forEach(function (obj) {
+               if (eduList.indexOf(obj.type) === -1) {
                     edu.push({value: obj.type.toLowerCase(), label: obj.type});
-                    eduList.push(obj.type);
+                   eduList.push(obj.type);
                 }
             });
-            //this.props.actions.registerActions.changeSitterEducation(edu);
-            return selectInput ? edu : eduList;
-            // return edu;
+            return edu;
+        }
+    }
+
+    getLanguagesFromFacebook(languages){
+        if(languages){
+            return languages;
+        }
+        else if(this.props.user.languages){
+            let langs =  [];
+            this.props.user.languages.forEach(function(language){
+                langs.push({value:language.name.toLowerCase(), label:language.name});
+            });
+            return langs;
         }
     }
 
@@ -163,61 +174,162 @@ class Form extends React.Component {
                 //TODO: think about error when user not created
             });
     }
+    handleSelect(selectedKey) {
+        this.props.actions.registerActions.changeRegisterView(selectedKey);
+    }
+
+    next(){
+        let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
+        this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
+    }
 
     render() {
+        let registerView = null;
+        if (this.props.register.view !== null) {
+            let view = this.props.register.view;
+            if (view === "step1") {
+                registerView = <section>
+                    <h2>Your Profile</h2>
+                    <BaseForm {...this.props}/>
+                    <ControlLabel>Languages</ControlLabel>
+                    <SelectInput
+                        placeholder="Select your languages"
+                        options={strings.LANGUAGES}
+                        {...this.props}
+                        defaultValues={this.getLanguagesFromFacebook(this.props.register.languages)}
+                        action={this.props.actions.registerActions.changeLanguages}
+                        reducer={'register'}/>
+                </section>;
+            }
+            else if (view === "step2") {
+                registerView =
+                    <section>
+                        <h2>Your Experience</h2>
+                        <TextInput label="Years of Experience"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.registerActions.changeSitterExperience}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <TextInput label="To Age:"
+                                   type="number"
+                                   placeholder="12"
+                                   action={this.props.actions.registerActions.changeSitterMaximumAge}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <ControlLabel>Immediate Availability</ControlLabel>
+                        <RadioGroup options={strings.BOOLEAN}
+                                    action={this.props.actions.registerActions.changeSitterImmediateAvailability}
+                                    radioType={'sitterImmediateAvailability'}
+                                    value={this.props.register.sitterImmediateAvailability}
+                                    required={true}/>
+                        <ControlLabel>Education</ControlLabel>
+                        <SelectInput
+                            placeholder="Select your education level"
+                            options={strings.EDUCATION}
+                            {...this.props}
+                            defaultValues={this.getEducationFromFacebook(this.props.register.sitterEducation)}
+                            action={this.props.actions.registerActions.changeSitterEducation}
+                            reducer={'register'}/>
+                        <ControlLabel>Expertise</ControlLabel>
+                        <SelectInput
+                            placeholder="Select Expertise"
+                            options={strings.EXPERTISE}
+                            {...this.props}
+                            action={this.props.actions.registerActions.changeSitterExpertise}
+                            reducer={'register'}
+                            defaultValues={this.props.register.sitterExpertise}/>
+                        <ControlLabel>Special Needs Qualifications</ControlLabel>
+                        <SelectInput
+                            placeholder="Select Special Needs"
+                            options={strings.SPECIAL_NEEDS}
+                            {...this.props}
+                            action={this.props.actions.registerActions.changeSitterSpecialNeeds}
+                            reducer={'register'}
+                            defaultValues={this.props.register.sitterSpecialNeeds}/>
+                        <ControlLabel>Hobbies</ControlLabel>
+                        <SelectInput
+                            placeholder="Select Hobbies"
+                            options={strings.HOBBIES}
+                            {...this.props}
+                            action={this.props.actions.registerActions.changeSitterHobbies}
+                            reducer={'register'}
+                            defaultValues={this.props.register.sitterHobbies}/>
+                    </section>
+            }
+            else if (view === "step3") {
+                registerView =
+                    <section>
+                        <h2>Your Requirements</h2>
+                        <TextInput label="Works with Children from Age:"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.registerActions.changeSitterMinimumAge}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <TextInput label="To Age:"
+                                   type="number"
+                                   placeholder="12"
+                                   action={this.props.actions.registerActions.changeSitterMaximumAge}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <TextInput label="Hour Fee"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.registerActions.changeSitterHourFee}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <h3>Working Hours</h3>
+                        <WorkingHours
+                            days={strings.WEEK_DAYS}
+                            hours={strings.HOURS}
+                            action={this.props.actions.workingHoursActions.changeWorkingHours}/>
+                    </section>
+            }
+            else if (view === "step4") {
+                registerView =
+                    <section>
+                        <h2>Your Spirit</h2>
+                        <ControlLabel>Sitter Mobility</ControlLabel>
+                        <CheckBoxInput name="sitterMobility"
+                                       types={strings.MOBILITY}
+                                       action={this.props.actions.registerActions.changeSitterMobility}
+                                       {...this.props}
+                                       reducer={'register'}
+                        />
+                        <DragAndDropContainer {...this.props}/>
+                        {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
+                            <Button onClick={this.handleSubmitSitter} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>: ''}
+                    </section>
+            }
+        }
+
+
+
         return (
             <form className="sitter-form" onSubmit={this.handleSubmitSitter}>
-                <BaseForm {...this.props} />
-                <h4>Work</h4>
-                <TextInput label="Years of Experience"
-                           type="number"
-                           placeholder="0"
-                           action={this.props.actions.registerActions.changeSitterExperience}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
-                <TextInput label="Works with Children from Age:"
-                           type="number"
-                           placeholder="0"
-                           action={this.props.actions.registerActions.changeSitterMinimumAge}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
-                <TextInput label="To Age:"
-                           type="number"
-                           placeholder="12"
-                           action={this.props.actions.registerActions.changeSitterMaximumAge}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
-                <TextInput label="Hour Fee"
-                           type="number"
-                           placeholder="0"
-                           action={this.props.actions.registerActions.changeSitterHourFee}
-                           {...this.props}
-                           reducer={'register'}
-                           required={true}/>
+                <Nav justified onSelect={this.handleSelect.bind(this)}>
+                    <NavItem eventKey="step1" title="location">Step 1</NavItem>
+                    <NavItem eventKey="step2">Step 2</NavItem>
+                    <NavItem eventKey="step3">Step 3</NavItem>
+                    <NavItem eventKey="step4">Step 4</NavItem>
+                </Nav>
+                {registerView}
+                {/*<h4>Mobility</h4>*/}
+                {/*<RadioInput options={strings.BOOLEAN}*/}
+                            {/*action={this.props.actions.registerActions.changeSitterMobility}*/}
+                            {/*radioType={'sitterMobility'}*/}
+                            {/*value={this.props.user.sitterMobility}*/}
+                            {/*required={true}/>*/}
 
-                <h4>Immediate Availability</h4>
-                <RadioInput options={strings.BOOLEAN}
-                            action={this.props.actions.registerActions.changeSitterImmediateAvailability}
-                            radioType={'sitterImmediateAvailability'}
-                            value={this.props.user.sitterImmediateAvailability}
-                            required={true}/>
-                <h4>Mobility</h4>
-                <RadioInput options={strings.BOOLEAN}
-                            action={this.props.actions.registerActions.changeSitterMobility}
-                            radioType={'sitterMobility'}
-                            value={this.props.user.sitterMobility}
-                            required={true}/>
-                <h4>Education</h4>
-                <SelectInput
-                    placeholder="Select your education level"
-                    options={strings.EDUCATION}
-                    {...this.props}
-                    defaultValues={this.getEducationFromFacebook(this.props.register.sittereducation, true)}
-                    action={this.props.actions.registerActions.changeSitterEducation}
-                    reducer={'register'}/>
+
+
+
                 {/*<SelectInput*/}
                 {/*placeholder="Select your languages"*/}
                 {/*options={strings.LANGUAGES}*/}
@@ -231,34 +343,8 @@ class Form extends React.Component {
                 {/*{...this.props}*/}
                 {/*reducer={'register'}*/}
                 {/*/>*/}
-                <h4>Expertise</h4>
-                <SelectInput
-                    placeholder="Select Expertise"
-                    options={strings.EXPERTISE}
-                    {...this.props}
-                    action={this.props.actions.registerActions.changeSitterExpertise}
-                    reducer={'register'}
-                    defaultValues={this.props.register.sitterExpertise}/>
-                {/*<CheckBoxInput name="sitterExpertise"*/}
-                {/*types={strings.EXPERTISE}*/}
-                {/*action={this.props.actions.registerActions.changeSitterExpertise}*/}
-                {/*{...this.props}*/}
-                {/*reducer={'register'}*/}
-                {/*/>*/}
-                <h4>Special Needs Qualifications</h4>
-                <SelectInput
-                    placeholder="Select Special Needs"
-                    options={strings.SPECIAL_NEEDS}
-                    {...this.props}
-                    action={this.props.actions.registerActions.changeSitterSpecialNeeds}
-                    reducer={'register'}
-                    defaultValues={this.props.register.sitterSpecialNeeds}/>
-                {/*<CheckBoxInput name="sitterHobbies"*/}
-                {/*types={strings.SPECIAL_NEEDS}*/}
-                {/*action={this.props.actions.registerActions.changeSitterSpecialNeeds}*/}
-                {/*{...this.props}*/}
-                {/*reducer={'register'}*/}
-                {/*/>*/}
+
+
 
                 {/*<SelectInput*/}
                 {/*placeholder="Select your languages"*/}
@@ -267,33 +353,18 @@ class Form extends React.Component {
                 {/*defaultValues={this.getLanguagesFromFacebook(this.props.register.languages)}*/}
                 {/*action={this.props.actions.registerActions.changeLanguages}*/}
                 {/*reducer={'register'}/>*/}
-                <h4>Hobbies</h4>
-                <SelectInput
-                    placeholder="Select Hobbies"
-                    options={strings.HOBBIES}
-                    {...this.props}
-                    action={this.props.actions.registerActions.changeSitterHobbies}
-                    reducer={'register'}
-                    defaultValues={this.props.register.sitterHobbies}/>
-                {/*<CheckBoxInput name="sitterHobbies"*/}
-                {/*types={strings.HOBBIES}*/}
-                {/*action={this.props.actions.registerActions.changeSitterHobbies}*/}
-                {/*{...this.props}*/}
-                {/*reducer={'register'}*/}
-                {/*/>*/}
-                <h4>About Me</h4>
-                <p>Drag the handle to the adjective that describes you best</p>
-                <p>If you feel no connection to the words, leave the handle in the middle</p>
-                {/*<PersonalityTest questions={BaseData.getQuestions()} {...this.props}/>*/}
-                {/*<PersonalityQuestions {...this.props}/>*/}
-                <h4>Working Hours</h4>
-                <WorkingHours
-                    days={strings.WEEK_DAYS}
-                    hours={strings.HOURS}
-                    action={this.props.actions.workingHoursActions.changeWorkingHours}/>
-                <div className="submit">
-                    <Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Register</Button>
-                </div>
+
+
+
+                {/*<h4>About Me</h4>*/}
+                {/*<p>Drag the handle to the adjective that describes you best</p>*/}
+                {/*<p>If you feel no connection to the words, leave the handle in the middle</p>*/}
+
+                {/*<div className="submit">*/}
+                    {/*<Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Register</Button>*/}
+                {/*</div>*/}
+                {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?
+                    <Button onClick={this.next.bind(this)} type="button" bsStyle="primary" bsSize="large" value="Next">Next</Button>: ''}
             </form>
         );
     };
