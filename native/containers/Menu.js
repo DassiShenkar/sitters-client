@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     background: {
         flex:1,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        alignItems: 'flex-end',
         width: '100%',
         height: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.7)'

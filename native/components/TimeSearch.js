@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     pickerWrapper: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 5
     },
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         resizeMode:'stretch'
     },
     feedContainer: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
         margin: 5
     },
     feedButtons: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         paddingRight: 30,
         paddingLeft: 30

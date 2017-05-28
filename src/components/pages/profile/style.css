@@ -1,42 +1,54 @@
 .match {
-  height: 360px;
+  height: 400px;
   display: block;
   text-align: center;
   color: #fff;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  position: relative; }
+  .match .cover-overlay {
+    height: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.25); }
+  .match .sitter-info {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Raleway', sans-serif;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    left: 0; }
+  .match img.profilePic {
+    display: block;
+    width: 187px;
+    height: 187px;
+    margin: 0 auto;
+    border: 8px solid #fff; }
 
-.sitter-info {
-  padding: 36px 0;
-  display: flex;
-  flex-direction: column; }
-
-img.profilePic {
-  display: block;
-  width: 180px;
-  height: 171px;
-  margin: 0 auto;
-  border: 8px solid #fff; }
-
-#sitter-profile #info-table {
-  margin: 0 0 24px 0; }
-
-#sitter-profile #info-table th, #sitter-profile #info-table td {
-  text-align: center;
-  border-right: 1px solid #eee;
-  width: 33%; }
-
-#sitter-profile #info-table th {
-  border-bottom: none;
-  font-size: 24px; }
-
-#sitter-profile #info-table tbody > tr > td {
-  border-top: none;
-  text-align: center; }
-
-#sitter-profile #info-table th:last-child, #sitter-profile #info-table td:last-child {
-  border-right: none; }
+#sitter-profile .info-table {
+  margin: 72px 0 24px 0;
+  font-family: 'Open Sans', sans-serif; }
+  #sitter-profile .info-table th, #sitter-profile .info-table td {
+    text-align: center;
+    border-right: 1px solid #eee;
+    width: 33%; }
+  #sitter-profile .info-table th {
+    border-bottom: none;
+    font-size: 14px;
+    color: #f86966; }
+  #sitter-profile .info-table tbody > tr > td {
+    border-top: none;
+    text-align: center;
+    font-size: 28px;
+    color: #757575;
+    font-family: 'Open Sans', sans-serif; }
+  #sitter-profile .info-table th:last-child, #sitter-profile .info-table td:last-child {
+    border-right: none; }
 
 #sitter-profile .panel-heading, #sitter-profile .panel-group, #sitter-profile .panel {
   background: #fff;
@@ -52,15 +64,15 @@ img.profilePic {
   border-radius: 18px; }
 
 #sitter-profile #review-button {
-  color: #f7a1a1;
-  border-color: #f7a1a1; }
+  color: #f86966;
+  border-color: #f86966; }
 
 #sitter-profile #invite-button:hover, #sitter-profile #review-button:hover {
   background: #88d685;
   color: #fff; }
 
 #sitter-profile #review-button:hover {
-  background: #f7a1a1; }
+  background: #f86966; }
 
 #sitter-profile #invite-button:focus, #sitter-profile #review-button:focus {
   outline: none; }
@@ -72,16 +84,20 @@ img.profilePic {
   fill: #88d685; }
 
 #sitter-profile #like-icon path {
-  fill: #f7a1a1; }
+  fill: #f86966; }
 
 #sitter-profile #invite-button svg, #sitter-profile #review-button svg {
   width: 20px; }
 
 #sitter-profile .sitter-details {
-  margin-left: 96px; }
+  margin-left: 96px;
+  margin-top: 24px; }
 
 #sitter-profile .last-invited {
-  margin-left: 15px; }
+  margin-left: 15px;
+  margin-bottom: 48px;
+  font-size: 16px;
+  color: #757575; }
 
 #sitter-profile #review-button, #sitter-profile #invite-button {
   display: flex;
@@ -91,3 +107,15 @@ img.profilePic {
 #sitter-profile .profile-buttons {
   display: flex;
   flex-direction: row; }
+
+#sitter-profile .panel-title {
+  color: #f86966;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: bold; }
+
+#sitter-profile .panel-title a:hover {
+  text-decoration: none; }
+
+#sitter-profile .panel-title:hover {
+  cursor: pointer; }

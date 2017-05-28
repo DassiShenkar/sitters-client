@@ -16,6 +16,7 @@ import SitterProfile from "./components/pages/profile/index";
 import ReviewList from "./components/reviewList/index";
 import SingleReview from "./components/review/SingleReview";
 import SingleInvite from "./components/pages/invite/SingleInvite";
+import SingleNotification from "./components/pages/notification/SingleNotification";
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
 import Thanks from "./components/Thanks";
@@ -30,6 +31,7 @@ const router = (
                    onEnter={document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== "" ? history.push('/') : history.push('/login')}>
                 <IndexRoute component={Feed}/>
                 <Route path="/invite/:inviteId" component={SingleInvite}/>
+                <Route path="/notification/:notificationId" component={SingleNotification}/>
                 <Route path="/settings" component={Settings}/>
                 <Route path="/sitter/:sitterId" component={SitterProfile}/>
                 <Route path="/reviews" component={ReviewList}/>

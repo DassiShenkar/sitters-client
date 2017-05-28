@@ -65,7 +65,7 @@ const defaultState = {
         fromTime: moment(),
         toTime: moment(),
         isoValue: new Date().toISOString(),
-        searchView: 'location',
+        searchView: 'rate',
         availability: "Available Now"
     },
     invite: {

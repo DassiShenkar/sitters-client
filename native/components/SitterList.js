@@ -15,17 +15,24 @@ export default class Feed extends React.Component {
         this.navToRate = this.navToRate.bind(this);
         this.nextSitter = this.nextSitter.bind(this);
         this.openInfo = this.openInfo.bind(this);
+        this.addFriends = this.addFriends.bind(this);
     }
 
 
     render () {
         let sitterIndex = this.props.feed.sitterIndex;
-        // const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
-        const coverPhoto = require('../style/img/background.jpg');
+        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
         let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
-        // let matchScore = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].matchScore + '% Match!' : 'no matches found';
         let profilePicture = this.props.sitters.length > 0 ? { uri: this.props.sitters[sitterIndex].profilePicture } : {};
         let sitterName = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : '';
+        let motto = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].motto : '';
+        let personality = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].personality ?
+            this.props.sitters[sitterIndex].personality.map(function(word) {
+                return <Text key={Math.random()} style={styles.personality}>{word} </Text>;
+            })
+            : null : null;
+        let friends = this.props.user.mutualFriends ? this.props.user.mutualFriends : null;
+        let friendCount = this.props.user.mutualFriends ? friends.length : 0;
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -35,9 +42,10 @@ export default class Feed extends React.Component {
                 <GestureRecognizer
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
-                    onSwipeUp={(e) => this.openInfo(e)}
+                    // onSwipeUp={(e) => this.openInfo(e)}
+                    onSwipeDown={(e) => this.navToProfile(e, sitterId)}
                     config={config}>
-                    <Image source={coverPhoto} style={styles.backgroundImage}>
+                    <Image source={{uri: coverPhoto}} style={styles.backgroundImage}>
                         <View style={styles.sitterContainer}>
                             <ImageButton
                                 onPress={ (e) => this.navToProfile(e, sitterId) }
@@ -46,8 +54,13 @@ export default class Feed extends React.Component {
                             <Text style={styles.text}>{ sitterName }</Text>
                         </View>
                         <View style={styles.infoContainer}>
-                            <Text style={styles.infoText}>You and {sitterName.split(' ')[0]} have 5 mutual friends:</Text>
-                            <Text style={styles.infoText}>{sitterName.split(' ')[0]} Tells that she is:</Text>
+                            <Text style={styles.infoText}>You and {sitterName.split(' ')[0]} have {friendCount} mutual friends:</Text>
+                            {friendCount ? friendCount > 0 ? this.addFriends() : null : null}
+                            {personality ? <Text style={styles.infoText}>{sitterName.split(' ')[0]} Tells that she is:</Text> : null}
+                            <View style={styles.personalityContainer}>
+                                {personality}
+                            </View>
+                            {motto ? <Text style={styles.infoText}>{sitterName.split(' ')[0]} motto is: "{motto}"</Text> : null}
                         </View>
                         <View style={styles.navPanel}>
                             <ImageButton
@@ -67,6 +80,16 @@ export default class Feed extends React.Component {
                 </GestureRecognizer>
             </View>
         );
+    }
+
+    addFriends() {
+        return this.props.user.mutualFriends.map(function(friend){
+            return <ImageButton
+                key={Math.random()}
+                onPress={ (e) => {}/*this.navToProfile(e, sitterId)*/ }
+                styles={styles.friendPicture}
+                src={{uri: friend.picture}} />
+        })
     }
 
     navToProfile(e, sitterId) {
@@ -105,15 +128,17 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     sitterContainer: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        padding: 30
+        padding: 15,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)'
     },
     infoContainer: {
         width: '100%',
-        padding: 30
+        padding: 15,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)'
     },
     backgroundImage: {
         width: null,
@@ -125,25 +150,41 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius:100
     },
+    friendPicture: {
+        width: 70,
+        height: 70,
+        borderRadius:100
+    },
     text: {
         color: '#f7a1a1',
         fontSize: 22,
-        marginTop: 30
+        marginTop: 10
     },
     infoText: {
         color: '#f7a1a1',
         fontSize: 16,
-        marginTop: 30
+        marginTop: 10
+    },
+    personalityContainer: {
+        flexDirection: 'column',
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    personality: {
+        color: '#f7a1a1',
+        fontSize: 18
     },
     navPanel: {
         flex: 1,
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 70,
+        paddingTop: 10,
         width: '100%',
         paddingRight: 35,
-        paddingLeft: 35
+        paddingLeft: 35,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)'
     },
     button: {
         width: 50,

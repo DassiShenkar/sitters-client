@@ -9,8 +9,6 @@ import Review from "../../../review/index";
 import strings from "../../../../static/strings";
 import SearchByTab from "../../../panels/searchPanel/index";
 import SitterList from "../../../sitterList/index";
-import InvitesModal from "../../../inviteList/inviteModal/index";
-import Notifications from "../../../notifications/index";
 
 //style
 import './style.css';
@@ -19,11 +17,9 @@ class ParentFeed extends React.Component {
 
     componentWillMount() {
         if (this.props.feed.matches.length === 0) {
-
             this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
             this.props.actions.feedActions.showSpinner(true);
             let self = this;
-            // const userId = localStorage.getItem('auth_token');
             const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");
             if (!userId) {
             } else {
@@ -92,10 +88,8 @@ class ParentFeed extends React.Component {
                     text={this.props.feed.spinnerText}
                 >
                     {navView}
-                    {showSitters ? <SitterList {...this.props}
+                    {showSitters &&  this.props.searchBy.searchView !== "location" ? <SitterList {...this.props}
                                                sitters={this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : []}/> : ""}
-                    <InvitesModal {...this.props} />
-                    <Notifications {...this.props}/>
                     <Review {...this.props} />
                 </Loadable>
             </div>

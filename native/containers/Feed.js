@@ -11,6 +11,8 @@ import * as FeedActions from '../../src/actions/FeedActions';
 import * as RouterActions from '../actions/RouterActions';
 import AppBar from '../components/AppBar';
 import SitterList from '../components/SitterList';
+import SitterInbox from '../components/SitterInbox';
+import LoadingScreen from '../components/LoadingScreen';
 import LocalStorage from '../utils/LocalStorage';
 
 class Feed extends React.Component {
@@ -21,6 +23,7 @@ class Feed extends React.Component {
 
     componentWillMount() {
         const self = this;
+        self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
                 axios({
@@ -30,6 +33,7 @@ class Feed extends React.Component {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     data: {_id: userId.toString()}
                 }).then(function (parent) {
+                    console.log(parent);
                     if (parent.data) {  // user exists
                         axios({
                             method: 'post',
@@ -42,8 +46,9 @@ class Feed extends React.Component {
                                 self.props.feedActions.setMatches(sitters.data);
                             }
                             else {
-                                alert('no matches found');
+                                console.log('no matches found');
                             }
+                            self.props.feedActions.showSpinner(false);
                         }).catch(function (error) {
                             console.log(error);
                             Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
@@ -66,7 +71,6 @@ class Feed extends React.Component {
 
     componentDidUpdate () {
         var self = this;
-        console.log(self.props.router.validFlag);
         if(self.props.router.validFlag) {
             self.props.routerActions.changeValidFlag(false);
             Actions.Feed();
@@ -74,13 +78,22 @@ class Feed extends React.Component {
     }
 
     render () {
+        console.log(this.props.user.userType);
         return (
             <View style={styles.container}>
                 <AppBar
                     { ...this.props } />
-                <SitterList
-                    { ...this.props }
-                    sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }/>
+                {
+                    this.props.feed.showSpinner ?
+                    <LoadingScreen /> :
+                    this.props.user.userType === "I'm a parent" ?
+                    <SitterList
+                        { ...this.props }
+                        sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }/> :   
+                    <SitterInbox
+                        {...this.props} />
+                }
+                
             </View>
         );
     }

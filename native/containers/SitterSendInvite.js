@@ -49,12 +49,13 @@ class SitterSendInvite extends React.Component {
             sitterName: this.props.sitter.name,
             sitterImage: this.props.sitter.profilePicture
         };
+        //TODO: parent image, childName parentName
         console.log(invite);
         let self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/invite/create',
-            url: 'https://sittersdev.herokuapp.com/invite/create',
+            url: 'https://sitters-server.herokuapp.com/invite/create',
+            // url: 'https://sittersdev.herokuapp.com/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         width: '100%',
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 15
     },
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
     },
     actionBar: {
         width: '100%',
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 15
     },
@@ -280,7 +281,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SitterSendInvite);
-
-// <TextButton
-//     onPress={this.openMap}
-//     text='Open Map' />

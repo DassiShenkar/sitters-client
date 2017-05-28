@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     sliderNumberWrapper: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         paddingLeft: 10,
         paddingRight: 10
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         resizeMode:'stretch'
     },
     feedContainer: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         margin: 5
     },
     feedButtons: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         paddingRight: 30,
         paddingLeft: 30

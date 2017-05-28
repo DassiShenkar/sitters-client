@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 
-import ListItem from '../components/ListItem'
+import NotificationItem from '../components/NotificationItem'
 import * as actionCreators from '../../src/actions/actionCreators';
 
 class Notifications extends React.Component {
@@ -17,13 +17,13 @@ class Notifications extends React.Component {
 
     render () {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        let dataSource = ds.cloneWithRows(this.props.user.invites);
+        let dataSource = ds.cloneWithRows(this.props.user.notifications);
         return (
             <ScrollView>
                 <View>
                     <ListView
                         dataSource={dataSource}
-                        renderRow={(data) => <ListItem {...data} />}
+                        renderRow={(data) => <NotificationItem {...data} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>

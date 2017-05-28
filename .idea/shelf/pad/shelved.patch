@@ -1,0 +1,16 @@
+Index: src/components/sitterList/style.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/sitterList/style.scss	(revision 884de01fea541de142e646b3c2ae0e6c98e49ce0)
++++ src/components/sitterList/style.scss	(revision )
+@@ -3,7 +3,7 @@
+ #sitter-profile {
+ 
+   td {
+-    padding-top: 32px;
++    padding-top: 28px;
+   }
+ 
+   .motto {

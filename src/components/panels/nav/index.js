@@ -1,51 +1,66 @@
 //external sources
 import React from 'react';
 
-import {Navbar, Nav, NavItem, Badge, Image}  from 'react-bootstrap/lib';
-
 //Components
+import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap/lib';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
+import List from '../../lists/List';
 
 //style
 import './style.css';
 
-
 class MainNav extends React.Component {
 
-    onClick(view) {
+    nav(view) {
         this.props.action(view);
-        if (view === "invites")
-            this.props.actions.feedActions.showInvitesPopup(true);
-        else if (view === "notifications")
-            this.props.actions.feedActions.showNotificationsPopup(true);
-        this.props.router.push('/');
     }
 
     render() {
-        const searchBy = this.props.user.isParent?
-            <NavItem onClick={this.onClick.bind(this, "searchBy")}>
-            <span className="icon-search"/>
-            </NavItem>: null;
-        const notifications = this.props.user.isParent?
-            <NavItem onClick={this.onClick.bind(this, "notifications")}>
-                <span className="icon-bell-o"/>
-                <Badge>{this.props.notifications.filter(notification => !notification.wasRead).length}</Badge>
-            </NavItem>: null;
+
+        const notifications = (<Popover id="popover-trigger-click-root-close" title="NOTIFICATIONS">
+            <List items={this.props.user.notifications} type='notification' isParent={this.props.user.isParent}/>
+        </Popover>);
+
+        const invites = (<Popover id="popover-trigger-click-root-close" title="INVITES">
+            <List items={this.props.user.invites} type='invite' isParent={this.props.user.isParent}/>
+        </Popover>);
+
+        const newInvites = this.props.invites.filter(invite => !invite.wasRead);
+        const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
+
         return (
-            <Navbar id="main-nav">
+            <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>
-                    <Navbar.Brand onClick={this.onClick.bind(this, "main")}>Sitters</Navbar.Brand>
+                    <Navbar.Brand>
+                        <a href=""
+                           onClick={this.nav.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ?
+                            <span className="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
+                    </Navbar.Brand>
+                    <Navbar.Toggle/>
                 </Navbar.Header>
-                <Nav>
-                    {searchBy}
-                    {notifications}
-                    <NavItem onClick={this.onClick.bind(this, "invites")}>
-                        <span className="icon-envelope-o"/>
-                        <Badge>{this.props.invites.filter(invite => !invite.wasRead).length}</Badge>
-                    </NavItem>
+                <Navbar.Text pullRight>
                     <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle/>
-                    <DropdownMenu {...this.props}/>
-                </Nav>
+                </Navbar.Text>
+                <Navbar.Collapse>
+                    <Nav pullRight>
+                        {this.props.user.isParent ? <NavItem onClick={this.nav.bind(this, "searchBy")}><span
+                                className="icon-search"/></NavItem> : null}
+                        {this.props.user.isParent ?
+                            <OverlayTrigger trigger="focus" placement="bottom" overlay={notifications}>
+                                <NavItem>
+                                    <span className="icon-bell-o"/>
+                                    {newNotifications.length > 0 ? <Badge>{newNotifications.length}</Badge> : ''}
+                                </NavItem>
+                            </OverlayTrigger> : null}
+                        <OverlayTrigger trigger="focus" placement="bottom" overlay={invites}>
+                            <NavItem>
+                                <span className="icon-envelope-o"/>
+                                {newInvites.length > 0 ? <Badge>{newInvites.length}</Badge> : ''}
+                            </NavItem>
+                        </OverlayTrigger>
+                        <DropdownMenu title={this.props.user.name} {...this.props}/>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         )
     }

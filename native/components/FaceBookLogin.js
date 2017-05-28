@@ -35,7 +35,8 @@ export default class FaceBookLogin extends React.Component {
 
     facebookLogin() {
         const self = this;
-        LoginManager.logInWithReadPermissions(["user_birthday","public_profile","user_location","user_education_history","user_likes","email"]).then(
+        LoginManager.logOut();
+        LoginManager.logInWithReadPermissions(["user_birthday,public_profile,user_location,user_education_history,user_likes,email,user_friends"]).then(
             function(result) {
                 if (result.isCancelled) {
                     alert('Login cancelled');
@@ -55,7 +56,7 @@ export default class FaceBookLogin extends React.Component {
                             const params = {
                                 parameters: {
                                     fields: {
-                                        string: "id,name,email,cover,birthday,currency,education,gender,languages,location,timezone,picture.width(100).height(100)"
+                                        string: "id,name,email,cover,birthday,currency,education,gender,friends,friendlists,languages,location,timezone,picture.width(500).height(500)"
                                     },
                                     access_token: {
                                         string: data.accessToken.toString()
@@ -78,23 +79,42 @@ export default class FaceBookLogin extends React.Component {
 
     async handleResponse (result) {
         const self = this;
-        console.log(result);
-        axios.post('https://sittersdev.herokuapp.com/parent/get', { _id: result.id.toString() })
-            .then(function (res) {
-                console.log(res);
-                if (res.data) {  // user exists
+        axios({
+            method: 'post',
+            // url: 'https://sitters-server.herokuapp.com/parent/get',
+            url: 'https://sittersdev.herokuapp.com/parent/get',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            _id: result.id.toString()
+        }).then(function (res) {
+            if (res.data) {  // user exists
+                if(user.friends.data.length > response.data.mutualFriends.length){
+                    let parent = response.data;
+                    parent.mutualFriends = user.friends.data;
+                    axios({
+                        method: 'post',
+                        url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
+                        // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                        headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                        data: parent
+                    }).then(function (response) {
+                        self.props.actionCreators.setUserData(res.data);
+                        Actions.Feed();
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } else {
                     self.props.actionCreators.setUserData(res.data);
                     Actions.Feed();
                 }
-                else { // user not exist
-                    self.props.actionCreators.createUser(result);
-                    Actions.Register();
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
-            });
+            }
+            else { // user not exist
+                self.props.actionCreators.createUser(result);
+                Actions.Register();
+            }
+        }).catch(function (error) {
+            console.log(error);
+            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
+        });
     }
 }
 

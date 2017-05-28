@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         flex: 1,
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between'
     },
     image: {

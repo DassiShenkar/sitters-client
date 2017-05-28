@@ -20,13 +20,20 @@ class Login extends React.Component {
                 <Logo
                     companyName="Sitters" />
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
-                <View style={{ marginBottom: 15 }}>
+                <View style={{ marginBottom: 15,
+                                borderBottomColor: '#fff',
+                                borderTopColor: '#f7a1a1',
+                                borderLeftColor: '#fff',
+                                borderRightColor: '#fff',
+                                borderStyle: 'solid',
+                                borderWidth: 1 }}>
+                    <Text style={ styles.questionText }>What kind of user are you?</Text>
                     <Picker
                         style={styles.picker}
                         selectedValue={ this.props.user.userType }
                         onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-                        <Picker.Item label="I'm A Parent" value="I'm a parent" />
-                        <Picker.Item label="I'm A Sitter" value="I'm a sitter" />
+                        <Picker.Item label="I'm a parent" value="I'm a parent" />
+                        <Picker.Item label="I'm a sitter" value="I'm a sitter" />
                     </Picker>
                 </View>
                 <FaceBookLogin
@@ -48,10 +55,17 @@ const styles = StyleSheet.create({
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
         fontSize: 16,
         color: '#f7a1a1',
-        marginBottom: 15
+        marginBottom: 15,
+    },
+    questionText: {
+        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontSize: 16,
+        color: '#f7a1a1',
+        marginTop: 45
     },
     picker: {
-        width: 200
+        width: '48%',
+        color: '#f7a1a1'
     }
 });
 

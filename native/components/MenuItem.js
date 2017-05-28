@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         padding: 15,
         width: '100%',
         flex: 1,
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between'
     },
     image: {

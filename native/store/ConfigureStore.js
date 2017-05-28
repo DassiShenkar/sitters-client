@@ -6,6 +6,7 @@ import moment from "moment";
 
 import strings from '../../src/static/strings';
 import router from '../reducers/router'
+import location from '../reducers/location'
 import reviews from '../../src/reducers/reviews';
 import user from '../../src/reducers/user';
 import register from '../../src/reducers/register';
@@ -25,9 +26,13 @@ export default function configureStore() {
             state: '',
             validFlag: false
         },
+        location: {
+            lat: 0,
+            lng: 0
+        },
         reviews: [],
         user: {
-            userType: strings.USER_TYPE[0],
+            userType: "I'm a parent",
             invites: [],
             notifications: [],
         },
@@ -91,7 +96,7 @@ export default function configureStore() {
         window.devToolsExtension ? window.devToolsExtension() : f => f
     );
 
-    const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, router, routing: routerReducer});
+    const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, router, location, routing: routerReducer});
 
     const store = createStore(
         rootReducer,

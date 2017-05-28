@@ -3,18 +3,48 @@
   border-bottom: 1px solid #eee;
   padding: 16px 0;
 
+  .review-content {
+    display: flex;
+    flex-direction: row;
+  }
+
   img.profilePic {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
     margin: 0;
   }
 
-  .review-rates{
-    display:block;
-  }
-  .review-item {
-    span{
-      display:block;
+  ul {
+    display: flex;
+    flex-direction: row;
+
+    li {
+      padding: 0 15px;
+      text-align: center;
+      border-right: 1px solid #f5f5f5;
     }
+
+    li:last-child {
+      border-right: none;
+    }
+  }
+
+  .review-rates {
+    display: block;
+  }
+
+  .review-info {
+    display: flex;
+    flex-direction: row;
+
+    p {
+      margin: 0 0 0 15px;
+      font-size: 16px;
+    }
+
+    .review-date {
+      font-size: 12px;
+    }
+
   }
 }

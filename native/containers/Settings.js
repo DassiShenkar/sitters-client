@@ -32,7 +32,7 @@ class Settings extends React.Component {
                     onValueChange={(value) => this.props.settingsActions.setSuggestions(value)}
                     value={this.props.settings.enableSuggestions} />
                 {
-                    this.props.userType === "I'm a parent" ?
+                    this.props.user.userType === "I'm a parent" ?
                     <View>
                         <Text>Show on search</Text>
                         <Switch

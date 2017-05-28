@@ -1,0 +1,26 @@
+.dropdown {
+  border-left: 1px solid #f5f5f5;
+
+  .dropdown-menu {
+    border: none;
+    padding-top: 15px;
+  }
+
+  #actions-dropdown:focus {
+    background: #fff;
+  }
+
+  .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    background: #fff;
+    color: #f86966;
+  }
+
+  ul > li > a > span:before {
+    margin-right: 15px;
+  }
+
+  .icon-widget:before, .icon-unlock:before {
+    vertical-align: text-bottom;
+  }
+}
+

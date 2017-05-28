@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 
-import ListItem from '../components/ListItem'
+import ListItem from './ListItem'
 import * as actionCreators from '../../src/actions/actionCreators';
 
 class SitterInbox extends React.Component {

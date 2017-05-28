@@ -53,7 +53,7 @@ export default class TabButtons extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 50,

@@ -4,36 +4,33 @@ import React from 'react';
 // components
 import {NavDropdown, MenuItem}  from 'react-bootstrap/lib';
 
-import Person from '../../icons/Person';
-import Settings from '../../icons/Settings';
-import Logout from '../../icons/Logout';
-
-
+// style
+import './style.css';
 
 export default class DropdownMenu extends React.Component {
 
-
-    editProfile() {
-        this.props.router.push('/editProfile');
+    constructor(props) {
+        super(props);
     }
 
-    settings() {
-        this.props.router.push('/settings');
-    }
-
-    logout() {
-        // localStorage.removeItem('auth_token');// delete the user information from the browser
-        document.cookie =   'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        this.props.router.push('/login');
+    nav(target) {
+        if (target === 'logout') {
+            document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            target = 'login';
+        }
+        this.props.router.push('/' + target);
     }
 
     render() {
         return (
-            <NavDropdown id="actions-dropdown" title={this.props.user.name ? this.props.user.name : ''}>
-                <MenuItem onClick={this.editProfile.bind(this)}><Person/>Edit Profile</MenuItem>
-                <MenuItem onClick={this.settings.bind(this)}><Settings/>Settings</MenuItem>
+            <NavDropdown id="actions-dropdown" title={this.props.title}>
+                <MenuItem onClick={this.nav.bind(this, 'editProfile')}><span
+                    className="icon-user">Edit Profile</span></MenuItem>
+                <MenuItem onClick={this.nav.bind(this, 'settings')}><span
+                    className="icon-widget">Settings</span></MenuItem>
                 <MenuItem divider/>
-                <MenuItem onClick={this.logout.bind(this)}><Logout/>Log Out</MenuItem>
+                <MenuItem onClick={this.nav.bind(this, 'logout')}><span
+                    className="icon-unlock">Log Out</span></MenuItem>
             </NavDropdown>
         );
     }

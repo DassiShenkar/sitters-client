@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-import { MenuContext} from 'react-native-menu';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 
@@ -66,10 +65,14 @@ class AppBar extends React.Component {
                 <Text style={styles.text}>Hi, { this.props.user.name.split(" ")[0] }</Text>
                 <View
                     style={styles.innerContainer}>
-                    <ImageButton
-                        onPress={this.search}
-                        styles={ styles.icons }
-                        src={require('../style/icons/search.png')}/>
+                    {
+                        this.props.user.userType === "I'm a parent" ?
+                            <ImageButton
+                            onPress={this.search}
+                            styles={ styles.icons }
+                            src={require('../style/icons/search.png')}/> :
+                            null
+                    }
                     <ImageButton
                         onPress={Actions.Inbox}
                         styles={ styles.icons }
@@ -77,13 +80,17 @@ class AppBar extends React.Component {
                         {notify ? <Image style={ styles.inboxBadge }
                                          source={require('../style/icons/redCircle.png')}/> : null}
                     </ImageButton>
-                    <ImageButton
-                        onPress={Actions.Notifications}
-                        styles={ styles.icons }
-                        src={require('../style/icons/notification.png')}>
-                        {notify ? <Image style={ styles.notificationBadge }
-                                         source={require('../style/icons/redCircle.png')}/> : null}
-                    </ImageButton>
+                    {
+                        this.props.user.userType === "I'm a parent" ?
+                            <ImageButton
+                                onPress={Actions.Notifications}
+                                styles={ styles.icons }
+                                src={require('../style/icons/notification.png')}>
+                                {notify ? <Image style={ styles.notificationBadge }
+                                                 source={require('../style/icons/redCircle.png')}/> : null}
+                            </ImageButton> :
+                            null
+                    }
                     <ImageButton
                         onPress={this.menu}
                         styles={ styles.icons }
@@ -104,7 +111,7 @@ class AppBar extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
         shadowColor: '#000',
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
     },
     innerContainer: {
         width: 160,
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 10
     },
@@ -131,9 +138,9 @@ const styles = StyleSheet.create({
         height: 30
     },
     text: {
-        marginLeft: 30,
-        marginRight: 10,
-        marginTop:20
+        marginLeft: 10,
+        marginRight: 30,
+        marginTop: 20
     },
     notificationBadge: {
         width: 10,
