@@ -13,8 +13,10 @@ const strings = {
     GENDER: ["Male", "Female"],
     BOOLEAN: ["True", "False"],
     AVAILABILITY: ["Available Now", "Custom"],
+    STEPS:['step1', 'step2','step3', 'step4'],
     GENDER_WITH_BOTH: ["Both", "Male", "Female"],
     WEEK_DAYS: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    PERSONALITY_WORDS: ["Patient", "Outdoorsy", "Funny", "Adventurous", "Sensitive", "Youthful", "Playful", "Strict", "Stay-at-home", "Mature"],
     HOURS: ["Mornings", "Evenings", "Afternoon"],
     QUESTIONS: [{
         label1: "Mature",

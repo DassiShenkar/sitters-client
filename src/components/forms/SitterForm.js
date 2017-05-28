@@ -7,7 +7,7 @@ import 'react-select/dist/react-select.css';
 import {AgeFromDate} from 'age-calculator';
 import strings from '../../static/strings';
 import axios from 'axios';
-import geocoder from'geocoder';
+import geocoder from 'geocoder';
 import {Button} from "react-bootstrap";
 import SelectInput from "../controllers/select/SelectInput";
 import PersonalityQuestions from "./personality/PersonalityQuestions";

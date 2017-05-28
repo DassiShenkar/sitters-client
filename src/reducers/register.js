@@ -143,6 +143,22 @@ function register(state = {}, action) {
                 watchChildGender : action.watchChildGender
             };
 
+        case 'CHANGE_REGISTER_VIEW' :
+            return {
+                ...state,
+                view : action.view
+            };
+        case 'CHANGE_PERSONALITY_ITEMS' :
+            return {
+                ...state,
+                items : action.items
+            };
+        case 'CHANGE_HAVE_PARTNER' :
+            return {
+                ...state,
+                havePartner : action.havePartner
+            };
+
         default:
             return state;
     }

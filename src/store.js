@@ -49,7 +49,11 @@ const defaultState = {
         sitterSpecialNeeds: [],
         sitterEducation: [],
         address: "",
-        watchChildGender: "Both"
+        items: [],
+        havePartner: strings.BOOLEAN[1],
+        partnerGender: strings.GENDER[0],
+        watchChildGender: strings.GENDER_WITH_BOTH[0],
+        view: 'step1'
     },
     settings: {
         enableNotifications: true,

@@ -50,11 +50,12 @@ class SearchByTab extends React.Component {
 
             if (view === "location") {
                 navView = <div className="google-map" style={{width: '100%', height: '240px'}}>
-                    <GoogleMaps sitters={this.props.feed.matches}/></div>;
+                    <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
+                                sitters={this.props.feed.matches}
+                                oneMarker={false}/>
+                </div>;
             }
-            //<GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}*/}
-            ///*sitter={this.props.user}*/}
-            ///*oneMarker={true}/>*/}  // FIX THIS
+
             else if (view === "time") {
 
                 navView = <form id="time-search">

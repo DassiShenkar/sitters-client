@@ -68,13 +68,11 @@ class BaseForm extends React.Component {
                 <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
                 <ControlLabel>Gender</ControlLabel>
                 <RadioGroup options={strings.GENDER}
-                            defaultValue={strings.GENDER[1]}
                             action={this.props.actions.registerActions.changeGender}
                             radioType={'gender'}
-                            value={this.props.register.gender}
+                            value={this.props.register.gender? this.props.register.gender: this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1)}
                             required={true}
                             />
-
             </div>
         )
     };

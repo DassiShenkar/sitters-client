@@ -9,7 +9,7 @@ import TextInputBase from '../../base/controllers/textInputBase/index.js';
 export default class TextInput extends TextInputBase {
 
     render() {
-        const value = this.props[this.props.reducer][this.props.inputType]  ? this.props[this.props.reducer][this.props.inputType] : this.props.defaultValue;
+        const value = this.props[this.props.reducer][this.props.inputType] ? this.props[this.props.reducer][this.props.inputType] : this.props[this.props.reducer][this.props.inputType] === ''? '': this.props.defaultValue;
         return (
             <div className="text-input">
                 <ControlLabel>{this.props.label}</ControlLabel>
