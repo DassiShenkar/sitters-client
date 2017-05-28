@@ -142,6 +142,10 @@ class Form extends React.Component {
             isParent: false,
             motto: this.props.register.sitterMotto,
             personality: personality,
+            settings: {
+                allowNotification: true,
+                allowShowOnSearch: true
+            }
         };
 
 

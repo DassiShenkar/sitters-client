@@ -3,8 +3,14 @@ import {ControlLabel, Image} from "react-bootstrap";
 import GoogleMaps from "../../controllers/maps/GoogleMaps";
 
 export default class SingleInvite extends React.Component{
+
+    componentWillMount(){
+        const inviteID = this.props.router.params.inviteId;
+
+    }
+
     render() {
-        const inviteID = location.href.split('invite/')[1];
+        const inviteID = this.props.router.params.inviteId;
         const invite = this.props.user.invites.filter((invite) => invite._id === inviteID)[0];
         return (
         <div>
