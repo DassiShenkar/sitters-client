@@ -181,8 +181,6 @@ class Form extends React.Component {
                             })
                                 .then(function (response) {
                                     if (response.data) {  // user exists
-                                        // let parent = response.data;
-                                        // parent.friends = self.props.user.friends.data;
                                         axios({
                                             method: 'post',
                                             url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/updateMutualFriends',
@@ -337,7 +335,7 @@ class Form extends React.Component {
                                        reducer={'register'}
                         />
                         <ControlLabel>Your Motto</ControlLabel>
-                        <FormControl componentClass="textarea" placeholder="motto" onChange={(e) => this.props.actions.registerActions.changeSitterMotto(e.target.value)} />
+                        <FormControl required maxlength="140" componentClass="textarea" placeholder="motto" onChange={(e) => this.props.actions.registerActions.changeSitterMotto(e.target.value)} />
                         <DragAndDropContainer {...this.props}/>
                         {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
                             <Button onClick={this.handleSubmitSitter} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>: ''}
