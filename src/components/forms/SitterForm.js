@@ -6,7 +6,7 @@ import {AgeFromDate} from 'age-calculator';
 import strings from '../../static/strings';
 import axios from 'axios';
 import geocoder from 'geocoder';
-import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
+import {Button, ControlLabel, FormControl, Nav, NavItem} from "react-bootstrap";
 import SelectInput from "../controllers/select/SelectInput";
 import RadioGroup from "../controllers/radio/radioGroup/index";
 
@@ -14,6 +14,8 @@ import './style.css';
 import WorkingHours from "../controllers/workingHours/index";
 import CheckBoxInput from "../controllers/checkbox/index";
 import DragAndDropContainer from "../dragAndDropContainer/index";
+import {geocodeByAddress} from "react-places-autocomplete";
+import * as _ from "lodash";
 
 class Form extends React.Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class Form extends React.Component {
 
 
 
-    getEducationFromFacebook(education) {// selectInput or array of strings
+    getEducationFromFacebook(education, selectInput) {// selectInput or array of strings
         if (education) {
             return education;
         }
@@ -47,7 +49,7 @@ class Form extends React.Component {
                    eduList.push(obj.type);
                 }
             });
-            return edu;
+            return selectInput? edu: eduList;
         }
     }
 
@@ -71,8 +73,8 @@ class Form extends React.Component {
 
     handleSubmitSitter(e) {// get all the form params and create sitter
         e.preventDefault();
-        let self = this;
-        let expertise = [], hobbies = [], specialNeeds = [], education = [];
+        const self = this;
+        let expertise = [], hobbies = [], specialNeeds = [], education = [], personality = [];
         let langs = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
         let languages = [];
         let cords = {};
@@ -84,56 +86,55 @@ class Form extends React.Component {
                     languages.push(language.name);
             });
         }
-        this.getGeoCode(function (data) {
-            cords.longitude = data.results[0] != null ? data.results[0].geometry.location.lng : 0;
-            cords.latitude = data.results[0] != null ? data.results[0].geometry.location.lat : 0;
-        });
+        // this.getGeoCode(function (data) {
+        //     cords.longitude = data.results[0] != null ? data.results[0].geometry.location.lng : 0;
+        //     cords.latitude = data.results[0] != null ? data.results[0].geometry.location.lat : 0;
+        // });
         if (this.props.register.sitterExpertise.length > 0) {
             this.props.register.sitterExpertise.forEach(function (o) {
                 expertise.push(o.value);
-            })
+            });
         }
         if (this.props.register.sitterSpecialNeeds.length > 0) {
             this.props.register.sitterSpecialNeeds.forEach(function (o) {
                 specialNeeds.push(o.value);
-            })
+            });
         }
         if (this.props.register.sitterHobbies.length > 0) {
             this.props.register.sitterHobbies.forEach(function (o) {
                 hobbies.push(o.value);
-            })
+            });
         }
         if (this.props.register.sitterEducation.length > 0) {
             this.props.register.sitterEducation.forEach(function (o) {
                 education.push(o.value);
-            })
+            });
         }
         else {
             if (this.props.user.education.length > 0) {
                 education = this.getEducationFromFacebook(null, null);
             }
         }
-        let totalScore = 0;
-        this.props.register.personalityQuestions.forEach(function (question) {
-            totalScore += question.value;
+        this.props.register.items.forEach(function(o){
+            personality.push(o.label);
         });
-        const sitter = {
+        let sitter = {
             _id: this.props.user.facebookID,
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age) : this.calcAge(this.props.user.birthday),
-            address: {
-                city: this.props.register.city != null ? this.props.register.city : this.props.user.location.name.split(',')[0],
-                street: this.props.register.street,
-                houseNumber: Number(this.props.register.houseNumber),
-                longitude: cords.longitude,
-                latitude: cords.latitude
-            },
+            // address: {
+            //     city: this.props.register.city != null ? this.props.register.city : this.props.user.location.name.split(',')[0],
+            //     street: this.props.register.street,
+            //     houseNumber: Number(this.props.register.houseNumber),
+            //     longitude: cords.longitude,
+            //     latitude: cords.latitude
+            // },
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase() : this.props.user.gender,
-            coverPhoto: this.props.user.coverPhoto.source,
-            timezone: this.props.user.timezone,
+            coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
+            timezone: this.props.user.timezone? this.props.user.timezone: "",
+            profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
             languages: languages,
-            profilePicture: this.props.user.picture.data.url,
             experience: Number(this.props.register.sitterExperience),
             minAge: Number(this.props.register.sitterMinAge),
             maxAge: Number(this.props.register.sitterMaxAge),
@@ -143,36 +144,87 @@ class Form extends React.Component {
             hobbies: hobbies,
             specialNeeds: specialNeeds,
             education: education,
-            mobility: this.props.register.sitterMobility.toLowerCase() === 'true',
-            // workingHours
+            mobility: this.props.register.sitterMobility,
+            workingHours: this.props.workingHours,
             reviews: [],
             invites: [],
             lastInvite: "",
-            personalityTest: {
-                questions: this.props.register.personalityQuestions,
-                totalScore: totalScore
-            },
-            mutualFriends: this.props.user.friends
+            friends: this.props.user.friends,
+            isParent: false,
+            motto: this.props.register.sitterMotto,
+            personality: personality,
         };
-        axios({
-            method: 'post',
-            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/create',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: sitter
-        }).then(function (res) {
-            console.log(res);
-            if (res.data) {  // user created
-                self.props.router.push('/thank_you');
-                // self.props.router.push('/');// TODO : Move to feed page
+
+
+        geocodeByAddress(this.props.user.address,  (err, latLng) => {
+            if (err) {
+                console.log('Oh no!', err)
             }
-            else { // user not created
-                //TODO: think about error when user not created
+            else {
+                let add = self.props.user.address.split(',');
+                const street = add[0].split(' ');
+                let houseNumber = street.pop();
+                if (Number.isNaN(houseNumber)) {
+                    street.push(houseNumber);
+                    houseNumber = 0;
+                }
+                const address = {
+                    city: self.props.user.address.split(',')[1],
+                    street: _.join(street, " "),
+                    houseNumber: Number(houseNumber),
+                    longitude: latLng.lng,
+                    latitude: latLng.lat
+                };
+                sitter.address = address;
+                axios({
+                    method: 'post',
+                    url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/create',
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    data: sitter
+                }).then(function (res) {
+                    if (res.data) {  // user created
+                        if(self.props.user.friends.length > 0){
+                            axios({
+                                method: 'post',
+                                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
+                                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                data: {_id: self.props.user.facebookID}
+                            })
+                                .then(function (response) {
+                                    if (response.data) {  // user exists
+                                        // let parent = response.data;
+                                        // parent.friends = self.props.user.friends.data;
+                                        axios({
+                                            method: 'post',
+                                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/updateMutualFriends',
+                                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                            data: response.data
+                                        })
+                                            .then(function (response) {
+                                                document.cookie = ("auth_token="+self.props.user.facebookID);
+                                                self.props.router.push('/');
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        }
+
+                    }
+                    else { // user not created
+                        //TODO: think about error when user not created
+                    }
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                        //TODO: think about error when user not created
+                    });
             }
-        })
-            .catch(function (error) {
-                console.log(error);
-                //TODO: think about error when user not created
-            });
+        });
     }
     handleSelect(selectedKey) {
         this.props.actions.registerActions.changeRegisterView(selectedKey);
@@ -182,7 +234,6 @@ class Form extends React.Component {
         let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
         this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
     }
-
     render() {
         let registerView = null;
         if (this.props.register.view !== null) {
@@ -302,6 +353,8 @@ class Form extends React.Component {
                                        {...this.props}
                                        reducer={'register'}
                         />
+                        <ControlLabel>Your Motto</ControlLabel>
+                        <FormControl componentClass="textarea" placeholder="motto" onChange={(e) => this.props.actions.registerActions.changeSitterMotto(e.target.value)} />
                         <DragAndDropContainer {...this.props}/>
                         {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
                             <Button onClick={this.handleSubmitSitter} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>: ''}

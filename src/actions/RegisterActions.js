@@ -227,3 +227,10 @@ export function changeHavePartner(havePartner) {
     }
 }
 
+export function changeSitterMotto(sitterMotto) {
+    return {
+        type: 'CHANGE_SITTER_MOTTO',
+        sitterMotto
+    }
+}
+

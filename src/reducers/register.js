@@ -158,7 +158,11 @@ function register(state = {}, action) {
                 ...state,
                 havePartner : action.havePartner
             };
-
+        case 'CHANGE_SITTER_MOTTO' :
+            return {
+                ...state,
+                sitterMotto : action.sitterMotto
+            };
         default:
             return state;
     }
