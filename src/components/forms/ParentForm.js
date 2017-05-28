@@ -5,14 +5,14 @@ import axios from 'axios';
 import strings from '../../static/strings';
 import {AgeFromDate} from 'age-calculator';
 import RadioGroup from "../controllers/radio/radioGroup/index";
-import {Button, ControlLabel} from "react-bootstrap";
+import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
 import SelectInput from "../controllers/select/SelectInput";
-import PersonalityQuestions from "./personality/PersonalityQuestions";
 import {geocodeByAddress} from "react-places-autocomplete";
 
 //style
 import './style.css';
 import * as _ from "lodash";
+import DragAndDropContainer from "../dragAndDropContainer/index";
 
 class Form extends React.Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class Form extends React.Component {
         e.preventDefault();
         const self = this;
         let parent = {address:{},languages: []};
-        let expertise = [], hobbies = [], specialNeeds= [];
+        let expertise = [], hobbies = [], specialNeeds = [],personality = [];
         let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
         langs.forEach (function(language){
             if(self.props.register.languages == null)
@@ -50,12 +50,11 @@ class Form extends React.Component {
                 hobbies.push(o.value);
             })
         }
-        let totalScore = 0;
-        this.props.register.personalityQuestions.forEach(function(question){
-            totalScore += question.value;
+        this.props.register.items.forEach(function(o){
+            personality.push(o.label);
         });
         let partner;
-        if(this.props.register.partnerName){
+        if(this.props.register.havePartner){
             partner = {
                 gender: this.props.register.partnerGender,
                 email:  this.props.register.partnerEmail,
@@ -68,7 +67,6 @@ class Form extends React.Component {
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
             timezone: this.props.user.timezone? this.props.user.timezone: "",
@@ -82,23 +80,17 @@ class Form extends React.Component {
                 specialNeeds: specialNeeds,
             },
             userType: "I'm a parent",
-            // personalityTest: {
-            //     questions: this.props.register.personalityQuestions,
-            //     totalScore: totalScore
-            // },
+            personality: personality,
             notifications: [],
             invites: [],
             blacklist: [],
-            matchBI: {
-                matchScores: [],
-                median: 0
-            },
             settings: {
                 allowNotification: true,
                 allowSuggestions: true
             },
-            mutualFriends: this.props.user.friends,
-            preferedGender: this.props.register.watchChildGender.toLowerCase()
+            friends: this.props.user.friends,
+            preferedGender: this.props.register.watchChildGender.toLowerCase(),
+            isParent: true
         };
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
@@ -108,13 +100,12 @@ class Form extends React.Component {
                 const street = add[0].split(' ');
                 let houseNumber = street.pop();
                 if(Number.isNaN(houseNumber)){
-                   street.push(houseNumber);
+                    street.push(houseNumber);
                     houseNumber = 0;
                 }
                 const address = {
                     city: self.props.user.address.split(',')[1],
                     street: _.join(street," "),
-                    // houseNumber: !Number.isNaN(self.props.user.address.split(',')[0].split(' ').slice(-1))? Number(self.props.user.address.split(',')[0].split(' ').slice(-1)):0,
                     houseNumber: Number(houseNumber),
                     longitude: latLng.lng,
                     latitude: latLng.lat
@@ -127,8 +118,37 @@ class Form extends React.Component {
                     data: parent
                 }).then(function (res) {
                     if (res.data) {  // user created
-                        document.cookie = ("auth_token="+parent._id);
-                        self.props.router.push('/');
+                        if(self.props.user.friends.length > 0){
+                            axios({
+                                method: 'post',
+                                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
+                                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                data: {_id: self.props.user.facebookID}
+                            })
+                                .then(function (response) {
+                                    if (response.data) {  // user exists
+                                        // let parent = response.data;
+                                        // parent.friends = self.props.user.friends.data;
+                                        axios({
+                                            method: 'post',
+                                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/updateMutualFriends',
+                                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                            data: response.data
+                                        })
+                                            .then(function (response) {
+                                                document.cookie = ("auth_token="+self.props.user.facebookID);
+                                                self.props.router.push('/');
+                                            })
+                                            .catch(function (error) {
+                                                console.log(error);
+                                            });
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        }
+
                     }
                     else { // user not created
                         //TODO: think about error when user not created
@@ -140,98 +160,160 @@ class Form extends React.Component {
                     });
             }
         });
-
-
     }
+    handleSelect(selectedKey) {
+        this.props.actions.registerActions.changeRegisterView(selectedKey);
+    }
+
+    getLanguagesFromFacebook(languages){
+        if(languages){
+            return languages;
+        }
+        else if(this.props.user.languages){
+            let langs =  [];
+            this.props.user.languages.forEach(function(language){
+                langs.push({value:language.name.toLowerCase(), label:language.name});
+            });
+            return langs;
+        }
+    }
+
+    next(){
+        let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
+        this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
+    }
+
     render() {
-
+        let registerView = null;
+        if (this.props.register.view !== null) {
+            let view = this.props.register.view;
+            if (view === "step1") {
+                registerView = <section>
+                    <h2>Your Profile</h2>
+                    <BaseForm {...this.props}/>
+                </section>;
+            }
+            else if (view === "step2") {
+                const partner =
+                    <section>
+                        <TextInput label="Partner Name"
+                                   placeholder='Name'
+                                   defaultValue={this.props.register.partnerName}
+                                   action={this.props.actions.registerActions.changePartnerName}
+                                   {...this.props}
+                                   reducer={'register'}/>
+                        <TextInput label="Partner Email"
+                                   type="email"
+                                   placeholder='Email'
+                                   defaultValue={this.props.register.partnerEmail ? this.props.user.partnerEmail : ''}
+                                   action={this.props.actions.registerActions.changePartnerEmail}
+                                   {...this.props}
+                                   reducer={'register'}/>
+                        <ControlLabel>Partner Gender</ControlLabel>
+                        <RadioGroup options={strings.GENDER}
+                                    action={this.props.actions.registerActions.changePartnerGender}
+                                    radioType={'partnerGender'}
+                                    value={this.props.register.partnerGender}
+                                    required={true}/>
+                    </section>;
+                registerView =
+                    <section>
+                        <h2>Partner Profile</h2>
+                        <ControlLabel>Do you have a partner?</ControlLabel>
+                        <RadioGroup options={strings.BOOLEAN}
+                                    action={this.props.actions.registerActions.changeHavePartner}
+                                    radioType={'partner'}
+                                    value={this.props.register.havePartner}
+                                    required={true}
+                        />
+                        {this.props.register.havePartner === 'True'? partner: ""}
+                    </section>
+            }
+            else if (view === "step3") {
+                registerView =
+                    <section>
+                        <h2>Child Profile</h2>
+                        <TextInput label="Child Name"
+                                   placeholder="Child Name"
+                                   action={this.props.actions.registerActions.changeChildName}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <TextInput label="Age"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.registerActions.changeChildAge}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <ControlLabel>Child Difficulties</ControlLabel>
+                        <SelectInput
+                            placeholder="Select child Difficulties"
+                            options={strings.EXPERTISE}
+                            {...this.props}
+                            action={this.props.actions.registerActions.changeChildExpertise}
+                            reducer={'register'}
+                            defaultValues={this.props.register.childExpertise}/>
+                        <ControlLabel>Child Hobbies</ControlLabel>
+                        <SelectInput
+                            placeholder="Select child Hobbies"
+                            options={strings.HOBBIES}
+                            {...this.props}
+                            action={this.props.actions.registerActions.changeChildHobbies}
+                            reducer={'register'}
+                            defaultValues={this.props.register.childHobbies}/>
+                        <ControlLabel>Child Special Needs</ControlLabel>
+                        <SelectInput
+                            placeholder="Select child Special Needs"
+                            options={strings.SPECIAL_NEEDS}
+                            {...this.props}
+                            action={this.props.actions.registerActions.changeChildSpecialNeeds}
+                            reducer={'register'}
+                            defaultValues={this.props.register.childSpecialNeeds}/>
+                    </section>
+            }
+            else if (view === "step4") {
+                registerView =
+                    <section>
+                        <h2>Sitter Requirements</h2>
+                        <TextInput label="Max price for babysitting hour (USD)"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   required={true}/>
+                        <ControlLabel>Preferred Sitter</ControlLabel>
+                        <RadioGroup options={strings.GENDER_WITH_BOTH}
+                                    action={this.props.actions.registerActions.changeGenderWatchChild}
+                                    radioType={'genderWatch'}
+                                    value={this.props.register.watchChildGender}/>
+                        <ControlLabel>Languages</ControlLabel>
+                        <SelectInput
+                            placeholder="Select your languages"
+                            options={strings.LANGUAGES}
+                            {...this.props}
+                            defaultValues={this.getLanguagesFromFacebook(this.props.register.languages)}
+                            action={this.props.actions.registerActions.changeLanguages}
+                            reducer={'register'}/>
+                        <DragAndDropContainer {...this.props}/>
+                        {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
+                            <Button onClick={this.handleSubmitParent} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>: ''}
+                    </section>
+            }
+        }
         return (
-
             <div>
                 <form id="register-form">
-                    <BaseForm {...this.props}/>
-                    <h3>Child</h3>
-                    <TextInput label="Child Name"
-                               placeholder="Child Name"
-                               action={this.props.actions.registerActions.changeChildName}
-                               {...this.props}
-                               reducer={'register'}
-                               required={true}/>
-                    <TextInput label="Age"
-                               type="number"
-                               placeholder="0"
-                               action={this.props.actions.registerActions.changeChildAge}
-                               {...this.props}
-                               reducer={'register'}
-                               required={true}/>
-                    <h4>Child Difficulties</h4>
-                    <SelectInput
-                        placeholder="Select child Difficulties"
-                        options={strings.EXPERTISE}
-                        {...this.props}
-                        action={this.props.actions.registerActions.changeChildExpertise}
-                        reducer={'register'}
-                        defaultValues={this.props.register.childExpertise}/>
-                    <h4>Child Hobbies</h4>
-                    <SelectInput
-                        placeholder="Select child Hobbies"
-                        options={strings.HOBBIES}
-                        {...this.props}
-                        action={this.props.actions.registerActions.changeChildHobbies}
-                        reducer={'register'}
-                        defaultValues={this.props.register.childHobbies}/>
-                    <h4>Child Special needs</h4>
-                    <SelectInput
-                        placeholder="Select child Special Needs"
-                        options={strings.SPECIAL_NEEDS}
-                        {...this.props}
-                        action={this.props.actions.registerActions.changeChildSpecialNeeds}
-                        reducer={'register'}
-                        defaultValues={this.props.register.childSpecialNeeds}/>
-                    <TextInput label="Max price for babysitting hour (USD)"
-                               type="number"
-                               placeholder="0"
-                               action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
-                               {...this.props}
-                               reducer={'register'}
-                               required={true}/>
-                    <h4>Partner</h4>
-                    <TextInput label="Partner Name"
-                               placeholder='Name'
-                               defaultValue={this.props.register.partnerName}
-                               action={this.props.actions.registerActions.changePartnerName}
-                               {...this.props}
-                               reducer={'register'}/>
-                    <TextInput label="Partner Email"
-                               type="email"
-                               placeholder='Email'
-                               defaultValue={this.props.register.partnerEmail ? this.props.user.partnerEmail : ''}
-                               action={this.props.actions.registerActions.changePartnerEmail}
-                               {...this.props}
-                               reducer={'register'}/>
-                    <ControlLabel>Partner Gender</ControlLabel>
-                    <RadioGroup options={strings.GENDER}
-                                defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
-                                action={this.props.actions.registerActions.changePartnerGender}
-                                radioType={'partnerGender'}
-                                value={this.props.user.gender}/>
-                    <h4>Who can save your children</h4>
-                    <RadioGroup options={strings.GENDER_WITH_BOTH}
-                                defaultValue={this.props.user.partnerGender ?  this.props.user.partnerGender[0].toUpperCase() + this.props.user.partnerGender.slice(1):"" }
-                                action={this.props.actions.registerActions.changeGenderWatchChild}
-                                radioType={'genderWatch'}
-                                value={this.props.user.gender}/>
-                    {/*<PersonalityQuestions questions={strings.QUESTIONS}*/}
-                                          {/*addSameQuestionsClass={false}*/}
-                                          {/*disabled={false}*/}
-                                          {/*{...this.props}/>*/}
-                    <PersonalityQuestions questions={strings.QUESTIONS}
-                                          addSameQuestionsClass={false}
-                                          disabled={false}
-                                          action={this.props.actions.personalityQuestionsActions.changePersonalityQuestion()}/>
-                    <div className="submit">
-                        <Button onClick={this.handleSubmitParent} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>
-                    </div>
+                    <Nav justified onSelect={this.handleSelect.bind(this)}>
+                        <NavItem eventKey="step1" title="location">Step 1</NavItem>
+                        <NavItem eventKey="step2">Step 2</NavItem>
+                        <NavItem eventKey="step3">Step 3</NavItem>
+                        <NavItem eventKey="step4">Step 4</NavItem>
+                    </Nav>
+                    {registerView}
+                    {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?
+                        <Button onClick={this.next.bind(this)} type="button" bsStyle="primary" bsSize="large" value="Next">Next</Button>: ''}
                 </form>
             </div>
         );

@@ -205,3 +205,32 @@ export function changeGenderWatchChild(watchChildGender) {
         watchChildGender
     }
 }
+
+export function changeRegisterView(view) {
+    return {
+        type: 'CHANGE_REGISTER_VIEW',
+        view
+    }
+}
+
+export function changePersonalityItems(items) {
+    return {
+        type: 'CHANGE_PERSONALITY_ITEMS',
+        items
+    }
+}
+
+export function changeHavePartner(havePartner) {
+    return {
+        type: 'CHANGE_HAVE_PARTNER',
+        havePartner
+    }
+}
+
+export function changeSitterMotto(sitterMotto) {
+    return {
+        type: 'CHANGE_SITTER_MOTTO',
+        sitterMotto
+    }
+}
+

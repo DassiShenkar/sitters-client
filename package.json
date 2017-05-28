@@ -43,6 +43,8 @@
     "react-controllables": "^0.6.0",
     "react-d3-components": "^0.6.6",
     "react-dom": "^15.4.2",
+    "react-drag-drop-container": "^4.0.0",
+    "react-draggable": "^2.2.6",
     "react-facebook-login": "^3.5.0",
     "react-loading-overlay": "^0.2.4",
     "react-native": "0.42.3",
