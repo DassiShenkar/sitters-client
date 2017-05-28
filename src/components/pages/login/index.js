@@ -35,14 +35,15 @@ class Login extends React.Component {
         })
             .then(function (response) {
                 if (response.data) {  // user exists
-                    if(user.friends.data.length > response.data.mutualFriends.length && response.data.isParent){
-                        let parent = response.data;
-                        parent.mutualFriends = user.friends.data;
+                    if(user.friends.data.length > response.data.friends.length){
+                        let user = response.data;
+                        user.friends = user.friends.data;
+                        const path = user.isParent? "parent/updateMutualFriends": "sitter/updateMutualFriends";
                         axios({
                             method: 'post',
-                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/updateMutualFriends',
+                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + path,
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            data: parent
+                            data: user
                         })
                             .then(function (response) {
 
@@ -54,7 +55,7 @@ class Login extends React.Component {
                     document.cookie = ("auth_token="+user.id);
                     self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
                     if(response.data.isParent)
-                        self.props.actions.actionCreators.setUserData(response.data);
+                        self.props.actions.actionCreators.setParentData(response.data);
                     else
                         self.props.actions.actionCreators.setSitterData(response.data);
                     self.props.router.push('/');

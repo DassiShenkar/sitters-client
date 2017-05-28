@@ -86,10 +86,6 @@ class Form extends React.Component {
                     languages.push(language.name);
             });
         }
-        // this.getGeoCode(function (data) {
-        //     cords.longitude = data.results[0] != null ? data.results[0].geometry.location.lng : 0;
-        //     cords.latitude = data.results[0] != null ? data.results[0].geometry.location.lat : 0;
-        // });
         if (this.props.register.sitterExpertise.length > 0) {
             this.props.register.sitterExpertise.forEach(function (o) {
                 expertise.push(o.value);
@@ -123,13 +119,6 @@ class Form extends React.Component {
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age) : this.calcAge(this.props.user.birthday),
-            // address: {
-            //     city: this.props.register.city != null ? this.props.register.city : this.props.user.location.name.split(',')[0],
-            //     street: this.props.register.street,
-            //     houseNumber: Number(this.props.register.houseNumber),
-            //     longitude: cords.longitude,
-            //     latitude: cords.latitude
-            // },
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase() : this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
             timezone: this.props.user.timezone? this.props.user.timezone: "",
@@ -202,6 +191,7 @@ class Form extends React.Component {
                                         })
                                             .then(function (response) {
                                                 document.cookie = ("auth_token="+self.props.user.facebookID);
+                                                self.props.actions.actionCreators.changeIsParentFlag(false);
                                                 self.props.router.push('/');
                                             })
                                             .catch(function (error) {
@@ -260,13 +250,6 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="0"
                                    action={this.props.actions.registerActions.changeSitterExperience}
-                                   {...this.props}
-                                   reducer={'register'}
-                                   required={true}/>
-                        <TextInput label="To Age:"
-                                   type="number"
-                                   placeholder="12"
-                                   action={this.props.actions.registerActions.changeSitterMaximumAge}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -361,9 +344,6 @@ class Form extends React.Component {
                     </section>
             }
         }
-
-
-
         return (
             <form className="sitter-form" onSubmit={this.handleSubmitSitter}>
                 <Nav justified onSelect={this.handleSelect.bind(this)}>
@@ -373,49 +353,6 @@ class Form extends React.Component {
                     <NavItem eventKey="step4">Step 4</NavItem>
                 </Nav>
                 {registerView}
-                {/*<h4>Mobility</h4>*/}
-                {/*<RadioInput options={strings.BOOLEAN}*/}
-                            {/*action={this.props.actions.registerActions.changeSitterMobility}*/}
-                            {/*radioType={'sitterMobility'}*/}
-                            {/*value={this.props.user.sitterMobility}*/}
-                            {/*required={true}/>*/}
-
-
-
-
-                {/*<SelectInput*/}
-                {/*placeholder="Select your languages"*/}
-                {/*options={strings.LANGUAGES}*/}
-                {/*{...this.props}*/}
-                {/*defaultValues={this.getEducationFromFacebook(this.props.register.education)}*/}
-                {/*action={this.props.actions.registerActions.changeLanguages}*/}
-                {/*reducer={'register'}/>*/}
-                {/*<CheckBoxInput name="sitterEducation"*/}
-                {/*types={strings.EDUCATION}*/}
-                {/*action={this.props.actions.registerActions.changeSitterEducation}*/}
-                {/*{...this.props}*/}
-                {/*reducer={'register'}*/}
-                {/*/>*/}
-
-
-
-                {/*<SelectInput*/}
-                {/*placeholder="Select your languages"*/}
-                {/*options={strings.LANGUAGES}*/}
-                {/*{...this.props}*/}
-                {/*defaultValues={this.getLanguagesFromFacebook(this.props.register.languages)}*/}
-                {/*action={this.props.actions.registerActions.changeLanguages}*/}
-                {/*reducer={'register'}/>*/}
-
-
-
-                {/*<h4>About Me</h4>*/}
-                {/*<p>Drag the handle to the adjective that describes you best</p>*/}
-                {/*<p>If you feel no connection to the words, leave the handle in the middle</p>*/}
-
-                {/*<div className="submit">*/}
-                    {/*<Button type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Register</Button>*/}
-                {/*</div>*/}
                 {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?
                     <Button onClick={this.next.bind(this)} type="button" bsStyle="primary" bsSize="large" value="Next">Next</Button>: ''}
             </form>

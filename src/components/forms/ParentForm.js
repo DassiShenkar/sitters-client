@@ -137,6 +137,7 @@ class Form extends React.Component {
                                         })
                                             .then(function (response) {
                                                 document.cookie = ("auth_token="+self.props.user.facebookID);
+                                                self.props.actions.actionCreators.changeIsParentFlag(true);
                                                 self.props.router.push('/');
                                             })
                                             .catch(function (error) {
