@@ -14,9 +14,12 @@ export default class Location extends React.Component {
     shouldComponentUpdate = shouldPureComponentUpdate;
 
     render() {
+        if(this.props.$hover) {
+
+        }
         return (
-            <div>
-                <Image src={this.props.sitter.profilePicture} width="30px" height="30px" circle={true}/>
+            <div onClick={console.log("image")}>
+                <Image src={this.props.sitter.profilePicture} height="30px" circle={true}/>
             </div>
         );
     }
