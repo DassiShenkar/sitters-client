@@ -1,4 +1,4 @@
-// external souces
+// external sources
 import React from 'react';
 
 // components

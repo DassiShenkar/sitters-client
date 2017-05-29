@@ -20,8 +20,8 @@ import SingleNotification from "./components/pages/notification/SingleNotificati
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
 import Thanks from "./components/Thanks";
+import Push from "./push/push";
 import NotAuthorized from "./components/NotAuthorized";
-
 
 const router = (
     <Provider store={store}>
@@ -41,6 +41,7 @@ const router = (
                 <Route path="/login" component={Login}/>
                 <Route path="/notAuthorized" component={NotAuthorized}/>
             </Route>
+            <Route path="/push" component={Push}/>
             <Route path="/thank_you" component={Thanks}/>
         </Router>
     </Provider>

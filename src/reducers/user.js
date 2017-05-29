@@ -25,7 +25,7 @@ function user(state = {}, action) {
                 picture: facebookData.picture,
                 friends: facebookData.friends.data
             };
-        case 'SET_USER_DATA' :
+        case 'SET_PARENT_DATA' :
             const data = action.userData;
             return {
                 ...state,

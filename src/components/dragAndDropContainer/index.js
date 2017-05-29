@@ -14,10 +14,6 @@ class BoxMe extends React.Component {
                 returnToBase={true}
                 dragData={{label: this.props.label}}
                 customDragElement={this.props.customDragElement}
-                // onDragStart={()=>(console.log('start'))}
-                // onDrag={()=>(console.log('dragging'))}
-                // onDragEnd={()=>(console.log('end'))}
-                // onDrop={(e)=>(console.log(e))}
             >
                 <p>{this.props.label}</p>
             </DragDropContainer>
@@ -26,7 +22,6 @@ class BoxMe extends React.Component {
 }
 
 class BoxItem extends React.Component {
-    // the things that appear in the boxes
     constructor(props) {
         super(props);
         this.state = {
@@ -94,10 +89,6 @@ class BoxItem extends React.Component {
 class Box extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     items: []
-        // };
-
         this.handleDrop = this.handleDrop.bind(this);
         this.kill = this.kill.bind(this);
         this.swap = this.swap.bind(this);
@@ -105,33 +96,31 @@ class Box extends React.Component {
 
     handleDrop(e) {
         let items = this.props.register.items;
-        items.push({label: e.dragData.label, uid: uuid.v1()});
-        this.props.actions.registerActions.changePersonalityItems(items);
-        // let items = this.state.items.slice();
-        // items.push({label: e.dragData.label, uid: uuid.v1()});
-        // this.setState({items: items});
-        e.sourceElem.style.visibility="hidden";
+        if(items.length < 6){
+            items.push({label: e.dragData.label, uid: uuid.v1()});
+            this.props.actions.registerActions.changePersonalityItems(items);
+            e.sourceElem.style.visibility="hidden";
+        }
     }
 
     swap(fromIndex, toIndex, dragData) {
         let items = this.props.register.items;
-        // let items = this.state.items.slice();
         const item = {label: dragData.label, uid: uuid.v1()};
         items.splice(toIndex, 0, item);
         this.props.actions.registerActions.changePersonalityItems(items);
-        // this.setState({items: items});
     }
 
     kill(uid){
-        // let items = this.state.items.slice();
         let items = this.props.register.items;
-        const index = items.findIndex((item) => {
-            return item.uid == uid
-        });
-        if (index !== -1) {
-            items.splice(index, 1);
+        if(items.length < 6){
+            const index = items.findIndex((item) => {
+                return item.uid == uid
+            });
+            if (index !== -1) {
+                items.splice(index, 1);
+            }
+            this.props.actions.registerActions.changePersonalityItems(items);
         }
-        this.props.actions.registerActions.changePersonalityItems(items);
     }
 
     render() {

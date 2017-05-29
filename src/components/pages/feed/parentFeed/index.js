@@ -53,7 +53,7 @@ class ParentFeed extends React.Component {
                                 .catch(function (error) {
                                     console.log(error);
                                 });
-                            self.props.actions.actionCreators.setUserData(parent.data);
+                            self.props.actions.actionCreators.setParentData(parent.data);
                         }
                         else { // user not exist
                             self.props.router.push('/login');
