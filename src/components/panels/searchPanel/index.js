@@ -3,7 +3,6 @@ import React from 'react'
 
 import {Nav, NavItem, PageHeader} from 'react-bootstrap';
 import Range from '../../controllers/range/index'
-import GoogleMaps from '../../controllers/maps/GoogleMaps';
 
 //components
 import Location from '../../icons/Location'
@@ -16,6 +15,7 @@ import TimeInput from '../../controllers/TimeInput';
 import './style.css';
 import RadioGroup from "../../controllers/radio/radioGroup/index";
 import strings from "../../../static/strings";
+import GoogleMaps from "../../controllers/maps/GoogleMaps";
 
 class SearchByTab extends React.Component {
 
@@ -50,14 +50,22 @@ class SearchByTab extends React.Component {
                 </section> : null;
 
             if (view === "location") {
-                navView = <div className="google-map page" style={{width: '100%', height: '400px', marginTop: '48px'}}>
+                navView = <div style={{width: '100%', height: '400px'}}>
+                    {/*<div className="google-map page" style={{width: '100%', height: '400px', marginTop: '48px'}}>*/}
                     <label>Proximity</label>
+                    {/*<GoogleMaps center={{*/}
+                        {/*lat: this.props.user.address ? this.props.user.address.latitude : 0,*/}
+                        {/*lng: this.props.user.address ? this.props.user.address.longitude : 0*/}
+                    {/*}}*/}
+                                {/*sitters={this.props.feed.matches}*/}
+                                {/*oneMarker={false}/>;*/}
                     <GoogleMaps center={{
                         lat: this.props.user.address ? this.props.user.address.latitude : 0,
                         lng: this.props.user.address ? this.props.user.address.longitude : 0
                     }}
-                                sitters={this.props.feed.matches}
-                                oneMarker={false}/></div>;
+                    zoom="14"
+                    sitters={this.props.feed.matches}/>
+                </div>
             }
             else if (view === "time") {
                 navView = <form id="time-search" className="page">
