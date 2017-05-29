@@ -22,8 +22,8 @@ class Login extends React.Component {
         this.login = this.login.bind(this);
     }
 
-    login(user) {
-        if(user.status === "not_authorized"){
+    login(facebookUser) {
+        if(facebookUser.status === "not_authorized"){
             this.props.router.push('/notAuthorized');
         }
         const self = this;
@@ -31,13 +31,13 @@ class Login extends React.Component {
             method: 'post',
             url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: {_id: user.id}
+            data: {_id: facebookUser.id}
         })
             .then(function (response) {
                 if (response.data) {  // user exists
-                    if(user.friends.data.length > response.data.friends.length){
+                    if(facebookUser.friends.data.length > response.data.friends.length){
                         let user = response.data;
-                        user.friends = user.friends.data;
+                        user.friends = facebookUser.friends.data;
                         const path = user.isParent? "parent/updateMutualFriends": "sitter/updateMutualFriends";
                         axios({
                             method: 'post',
@@ -52,7 +52,7 @@ class Login extends React.Component {
                                 console.log(error);
                             });
                     }
-                    document.cookie = ("auth_token="+user.id);
+                    document.cookie = ("auth_token="+facebookUser.id);
                     self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
                     if(response.data.isParent)
                         self.props.actions.actionCreators.setParentData(response.data);
@@ -61,7 +61,7 @@ class Login extends React.Component {
                     self.props.router.push('/');
                 }
                 else { // user not exist
-                    self.props.actions.actionCreators.createUser(user);
+                    self.props.actions.actionCreators.createUser(facebookUser);
                     self.props.router.push('/register')
                 }
             })
