@@ -23,7 +23,6 @@ import Thanks from "./components/Thanks";
 import Push from "./push/push";
 import NotAuthorized from "./components/NotAuthorized";
 
-
 const router = (
     <Provider store={store}>
         <Router history={history}>
