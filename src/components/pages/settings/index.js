@@ -6,12 +6,6 @@ import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 import strings from "../../../static/strings";
 import './style.css'
-//components
-
-// function onChange(value) {
-//     console.log(value);
-// }
-
 
 class Settings extends React.Component {
     handleApplyChanges(e) {
@@ -63,7 +57,8 @@ class Settings extends React.Component {
     }
 
     render() {
-        const suggestion = this.props.user.isParen?
+        console.log(this.props.user);
+        const suggestion = this.props.user.isParent?
             <label htmlFor="suggestions-switch">Allow Suggestions
                 <Toggle
                     defaultChecked={this.props.settings.enableSuggestions}
