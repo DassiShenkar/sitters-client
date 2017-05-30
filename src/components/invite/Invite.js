@@ -56,8 +56,7 @@ class Invite extends React.Component {
                 inviteDate.setDate(inviteDate.getDate()+7);
                 invite = clone(invite);
                 invite.date = (inviteDate.getMonth() + 1) + "/" + inviteDate.getDate() + "/" + inviteDate.getFullYear();
-            }
-            while (inviteDate <= recurringDate);
+            } while (inviteDate <= recurringDate);
         }
         this.props.actions.inviteActions.changeRecurringDate(dateFormat(new Date(), "mm/dd/yyyy"), dateFormat(new Date(), "dddd"), new Date().toISOString());
         let self = this;
