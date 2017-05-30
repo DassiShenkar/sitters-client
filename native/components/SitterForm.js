@@ -27,11 +27,20 @@ export default class SitterForm extends React.Component {
 
     render () {
         const callback = this.props.callback;
-        const self = this;
         return (
             <Form ref="sitterForm">
                 <BaseForm 
                     { ...this.props }/>
+                <Text style={styles.text}>Motto</Text>
+                <TextInput
+                    style={styles.textInput}
+                    type="TextInput"
+                    selectionColor="#f7a1a1"
+                    maxLength={26}
+                    underlineColorAndroid="#f7a1a1"
+                    name="motto"
+                    value={ this.props.register.sitterMotto ? this.props.register.sitterMotto : null }
+                    onChangeText={(text) => this.props.actions.registerActions.changeSitterMotto(text)} />
                 <Text style={styles.text}>Experience</Text>
                 <TextInput
                     style={styles.textInput}
@@ -39,7 +48,7 @@ export default class SitterForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="experience"
-                    value={ this.props.user.sitterExperience ? this.props.user.sitterExperience : null }
+                    value={ this.props.register.sitterExperience ? this.props.register.sitterExperience : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterExperience(text)} />
                 <Text style={styles.text}>Minimum age of child</Text>
                 <TextInput
@@ -48,7 +57,7 @@ export default class SitterForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="MinimumAge"
-                    value={ this.props.user.sitterMinAge ? this.props.user.sitterMinAge : null }
+                    value={ this.props.register.sitterMinAge ? this.props.register.sitterMinAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMinimumAge(text)} />
                 <Text style={styles.text}>Maximum age of child</Text>
                 <TextInput
@@ -57,7 +66,7 @@ export default class SitterForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="MinimumAge"
-                    value={ this.props.user.sitterMaxAge ? this.props.user.sitterMaxAge : null }
+                    value={ this.props.register.sitterMaxAge ? this.props.register.sitterMaxAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMaximumAge(text)} />
                 <Text style={styles.text}>Hour Fee</Text>
                 <TextInput
@@ -66,12 +75,12 @@ export default class SitterForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="hourFee"
-                    value={ this.props.user.hourFee ? this.props.user.hourFee : null }
+                    value={ this.props.register.hourFee ? this.props.register.hourFee : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterHourFee(text)} />
                 <Text style={styles.text}>Immediate Availability</Text>
                 <Picker
                     style={styles.picker}
-                    selectedValue={ this.props.user.sitterImmediateAvailability }
+                    selectedValue={ this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability : null }
                     onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterImmediateAvailability(availability) }}>
                     <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
                     <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
@@ -79,16 +88,18 @@ export default class SitterForm extends React.Component {
                 <Text style={styles.text}>Mobility?</Text>
                 <Picker
                     style={styles.picker}
-                    selectedValue={ this.props.user.sitterMobility }
+                    selectedValue={ this.props.register.sitterMobility ? this.props.register.sitterMobility : null }
                     onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterMobility(availability) }}>
-                    <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
-                    <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
+                    <Picker.Item label={ "None" } value={ false } />
+                    <Picker.Item label={ strings.MOBILITY[0] } value={ strings.MOBILITY[0] } />
+                    <Picker.Item label={ strings.MOBILITY[1] } value={ strings.MOBILITY[1] } />
+                    <Picker.Item label={ strings.MOBILITY[2] } value={ strings.MOBILITY[2] } />
                 </Picker>
                 <Text style={styles.text}>Education</Text>
                 <MyMultiSelect
                     style={{ marginBottom: 10 }}
                     items={strings.EDUCATION}
-                    selected={this.getEducationFromFacebook(this.props.register.sittereducation)}
+                    selected={this.getEducationFromFacebook(this.props.register.sitterEducation)}
                     update={this.eduChecked}
                     remove={this.removeEdu} />
                 <Text style={styles.text}>Expertise</Text>
@@ -113,17 +124,17 @@ export default class SitterForm extends React.Component {
                     update={this.needsChecked}
                     remove={this.removeNeeds} />
                 <Text style={styles.text}>Availble on:</Text>
-                {/*this.timePicker()*/}
+                {this.timePicker()}
                 <TextButton
                     styles={styles.button}
-                    onPress={ () => { callback()/*self.props.registered ? self.updateUser(self.props.userType) : Actions.PersonalityTest({callback: callback}) */ }}
+                    onPress={ () => { callback();/*self.props.registered ? self.updateUser(self.props.userType) : Actions.PersonalityTest({callback: callback}) */ }}
                     text="Submit" />
             </Form>
         );
     }
 
     eduChecked (selected) {
-        let education = this.getEducationFromFacebook(this.props.register.sittereducation);
+        let education = this.getEducationFromFacebook(this.props.register.sitterEducation);
         let select = [];
         selected.map(function(item){
             select.push(item.name);
@@ -133,7 +144,7 @@ export default class SitterForm extends React.Component {
     }
 
     removeEdu(removed) {
-        let education = this.getEducationFromFacebook(this.props.register.sittereducation);
+        let education = this.getEducationFromFacebook(this.props.register.sitterEducation);
         let array =  education.filter(function(el) {
             return el !== removed;
         });
@@ -195,33 +206,38 @@ export default class SitterForm extends React.Component {
     }
 
     timePicker () {
-        // const self = this;
-        // return strings.WEEK_DAYS.map(function (day) {
-        //     return <View key={ Math.random() }>
-        //         <Text key={ Math.random() }>{day}</Text>
-        //         <MyMultiSelect
-        //             style={{ marginBottom: 10 }}
-        //             items={strings.HOURS}
-        //             selected={self.props.workingHours[day] ? self.props.workingHours[day] : []}
-        //             update={(selected) => {
-        //                 let hours = self.props.workingHours[day] ? self.props.workingHours[day] : [];
-        //                 let select = [];
-        //                 selected.map(function(item){
-        //                     select.push(item.name);
-        //                 });
-        //                 let array = [...select, ...hours];
-        //                 self.props.actions.workingHoursActions.changeWorkingHours(array, day);
-        //             }}
-        //             remove={(removed) => {
-        //                 let needs = self.props.workingHours[day] ? self.props.workingHours[day] : [];
-        //                 let array =  needs.filter(function(el) {
-        //                     return el !== removed;
-        //                 });
-        //                 self.props.actions.workingHoursActions.changeWorkingHours(array, day);
-        //             }}
-        //         />
-        //     </View>;
-        // });
+        const self = this;
+        console.log(self.props.workingHours);
+        return strings.WEEK_DAYS.map(function (day) {
+            console.log(self.props.workingHours[day]);
+            return <View key={ Math.random() }>
+                <Text style={styles.text} key={ Math.random() }>{day}</Text>
+                <MyMultiSelect
+                    key={ Math.random() }
+                    style={{ marginBottom: 10 }}
+                    items={strings.HOURS}
+                    selected={self.props.workingHours[day] ? self.props.workingHours[day] : []}
+                    update={(selected) => {
+                        let hours = self.props.workingHours[day] ? self.props.workingHours[day] : [];
+                        console.log(hours);
+                        let select = [];
+                        selected.map(function(item){
+                            select.push(item.name);
+                        });
+                        let array = [...select, ...hours];
+                        console.log(array);
+                        self.props.actions.workingHoursActions.changeWorkingHours(array, day);
+                    }}
+                    remove={(removed) => {
+                        let hours = self.props.workingHours[day] ? self.props.workingHours[day] : [];
+                        let array =  hours.filter(function(el) {
+                            return el !== removed;
+                        });
+                        self.props.actions.workingHoursActions.changeWorkingHours(array, day);
+                    }}
+                />
+            </View>;
+        });
     }
 
     getEducationFromFacebook(education) {
@@ -237,6 +253,9 @@ export default class SitterForm extends React.Component {
                 }
             });
             return eduList;
+        }
+        else {
+            return [];
         }
     }
 }

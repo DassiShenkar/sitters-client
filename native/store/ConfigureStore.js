@@ -16,6 +16,7 @@ import searchBy from '../../src/reducers/searchBy';
 import range from '../../src/reducers/range';
 import invite from '../../src/reducers/invite';
 import sitterProfile from '../../src/reducers/sitterProfile';
+import workingHours from '../../src/reducers/workingHours';
 
 
 export default function configureStore() {
@@ -96,7 +97,7 @@ export default function configureStore() {
         window.devToolsExtension ? window.devToolsExtension() : f => f
     );
 
-    const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, router, location, routing: routerReducer});
+    const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, routing: routerReducer});
 
     const store = createStore(
         rootReducer,

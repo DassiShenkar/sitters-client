@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
         fontSize: 16,
         color: '#f7a1a1',
-        marginBottom: 15,
+        marginBottom: 15
     },
     questionText: {
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',

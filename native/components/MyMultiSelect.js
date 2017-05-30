@@ -35,16 +35,19 @@ export default class MyMultiSelect extends Component {
 
     generateList() {
         let localArray = this.props.items;
-        this.props.selected.map(function(select) {
-            let name = typeof select.name === "undefined" ? select : select.name;
-            localArray = localArray.filter(function(el) {
-                return el.label !== name;
+        if(this.props.selected) {
+            this.props.selected.map(function (select) {
+                let name = typeof select.name === "undefined" ? select : select.name;
+                localArray = localArray.filter(function (el) {
+                    return el.label === "undefined" ? el !== name : el.label !== name;
+                });
             });
-        });
+        }
         return localArray.map(function(item) {
+            let name = typeof item.label === "undefined" ? item : item.label;
             return <LabelSelect.ModalItem
                     key={Math.random()}
-                    data={{name: item.label}}>{item.label}</LabelSelect.ModalItem>;
+                    data={{name: name}}>{name}</LabelSelect.ModalItem>;
         });
     }
 
