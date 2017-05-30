@@ -59,7 +59,8 @@ class SearchByTab extends React.Component {
                     {/*}}*/}
                                 {/*sitters={this.props.feed.matches}*/}
                                 {/*oneMarker={false}/>;*/}
-                    <GoogleMaps center={{
+                    <GoogleMaps {...this.props}
+                        center={{
                         lat: this.props.user.address ? this.props.user.address.latitude : 0,
                         lng: this.props.user.address ? this.props.user.address.longitude : 0
                     }}

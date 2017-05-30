@@ -58,7 +58,7 @@ export default class SingleInvite extends React.Component{
                     <ControlLabel>Watch Place:</ControlLabel>
                     {this.props.user.address ? "   " + this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : ''}
                     <div style={{width: '100%', height: '400px'}}>
-                        <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
+                        <GoogleMaps {...this.props} center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
                                     sitter={this.props.user}
                                     oneMarker={true}/>
                     </div>
