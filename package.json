@@ -75,7 +75,8 @@
     "redux-saga": "^0.14.4",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
-    "uuid": "^3.0.1"
+    "uuid": "^3.0.1",
+    "zingchart-react": "^1.0.5"
   },
   "scripts": {
     "native-start": "react-native run-android",
