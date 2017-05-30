@@ -52,7 +52,8 @@ function user(state = {}, action) {
                 personalityTest: data.personalityTest,
                 personality: data.personality,
                 mutualFriends: data.mutualFriends,
-                isParent: data.isParent
+                isParent: data.isParent,
+                pushNotifications: data.pushNotifications
             };
 
         case 'SET_SITTER_DATA' :

@@ -111,8 +111,17 @@ class Invite extends React.Component {
                                 {this.props.user.address ? "   " + this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : ''}
                                 <div style={{width: '100%', height: '400px'}}>
                                     <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
-                                                sitter={this.props.user}
-                                                oneMarker={true}/>
+                                                sitters={[this.props.user]}
+                                                oneMarker={true}
+                                                zoom="14"
+                                                />
+                                    {/*<GoogleMaps {...this.props}*/}
+                                                {/*center={{*/}
+                                                    {/*lat: this.props.user.address ? this.props.user.address.latitude : 0,*/}
+                                                    {/*lng: this.props.user.address ? this.props.user.address.longitude : 0*/}
+                                                {/*}}*/}
+                                                {/*zoom="14"*/}
+                                                {/*sitters={this.props.feed.matches}/>*/}
                                 </div>
                                 <ControlLabel>Weekly Recurring until:</ControlLabel>
                                 <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
