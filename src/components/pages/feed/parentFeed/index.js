@@ -34,7 +34,6 @@ class ParentFeed extends React.Component {
                             self.props.actions.feedActions.showSpinner(true);
                             self.props.actions.settingsActions.setNotifications(parent.data.settings.allowNotification);
                             self.props.actions.settingsActions.setSuggestions(parent.data.settings.allowSuggestions);
-
                             axios({
                                 method: 'post',
                                 url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/getMatches',
