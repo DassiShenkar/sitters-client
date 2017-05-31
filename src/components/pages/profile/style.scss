@@ -36,6 +36,17 @@
 }
 
 #sitter-profile {
+  
+  margin-bottom: 96px;
+
+  .match-info {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    left: 0;
+  }
 
   .info-table {
     margin: 72px 0 24px 0;
