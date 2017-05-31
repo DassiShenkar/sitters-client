@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import dateFormat from 'dateformat'
 import moment from "moment";
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -67,10 +68,12 @@ export default class TimeSearch extends React.Component {
                             <View>
                                 <Image source={{uri: coverPhoto}}>
                                     <View style={styles.feedContainer}>
-                                        <ImageButton
-                                            onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                            styles={styles.sitterImage}
-                                            src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                        <View style={styles.backgroundCircle}>
+                                            <ImageButton
+                                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                                styles={styles.sitterImage}
+                                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                        </View>
                                         <View style={styles.feedTextView}>
                                             <Text style={styles.sitterText}>{name + ', ' + age}</Text>
                                             { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
@@ -78,14 +81,8 @@ export default class TimeSearch extends React.Component {
                                         </View>
                                     </View>
                                     <View style={styles.feedButtons}>
-                                        <ImageButton
-                                            onPress={ (e) => {this.navToInvite()} }
-                                            styles={styles.button}
-                                            src={require('../style/icons/v.png')}/>
-                                        <ImageButton
-                                            onPress={ (e) => {this.nextSitter()} }
-                                            styles={styles.button}
-                                            src={require('../style/icons/next.png')}/>
+                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.navToInvite(e, sitterId)} />
+                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.nextSitter(e, sitterId)} />
                                     </View>
                                 </Image>
                             </View>
@@ -191,7 +188,15 @@ const styles = StyleSheet.create({
     sitterImage: {
         width: 100,
         height: 100,
-        borderRadius:100
+        borderRadius:100,
+        alignSelf: 'center'
+    },
+    backgroundCircle: {
+        width: 110,
+        height: 110,
+        borderRadius:100,
+        backgroundColor: '#fff',
+        justifyContent: 'center'
     },
     sitterText: {
         fontSize: 18,

@@ -28,7 +28,7 @@ class Feed extends React.Component {
         self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
-                if(self.props.user.userType === "I'm a parent") {
+                if(self.props.user.userType === "I'm a Parent") {
                     axios({
                         method: 'post',
                         // url: 'https://sitters-server.herokuapp.com/parent/get',
@@ -114,7 +114,7 @@ class Feed extends React.Component {
                 {
                     this.props.feed.showSpinner ?
                     <LoadingScreen /> :
-                    this.props.user.userType === "I'm a parent" ?
+                    this.props.user.userType === "I'm a Parent" ?
                     <SitterList
                         { ...this.props }
                         sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }/> :   

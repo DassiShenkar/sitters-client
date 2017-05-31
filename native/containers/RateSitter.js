@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Rating from 'react-native-easy-rating';
+import StarRating from 'react-native-star-rating';
 
 import TextButton from '../components/TextButton'
 import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
@@ -14,7 +14,13 @@ import * as ReviewActions from '../../src/actions/ReviewActions';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as FeedActions from '../../src/actions/FeedActions';
 
-const rateItems = ['Punctual', 'Behavior with child', 'Connection with child', 'General behavior'];
+const rateItems = [
+    {name: 'Punctual', value: 'punctioal'},
+    {name: 'Behavior with child', value: 'behavior'},
+    {name: 'Connection with child', value: 'connection'},
+    {name: 'General behavior', value: 'general'}
+];
+
 
 class RateSitter extends React.Component {
 
@@ -107,17 +113,20 @@ class RateSitter extends React.Component {
         const self = this;
         return rateItems.map(function(item) {
             return (
-                <View key={ item+'1' } style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
-                    <Text key={ item+'2' } style={{ color: '#f7a1a1', fontSize: 12, fontWeight: 'bold' }}>{ item }</Text>
-                    <Rating
-                        key={ item }
-                        rating={1}
-                        max={5}
-                        iconWidth={24}
-                        iconHeight={24}
-                        iconSelected={require('../style/icons/full.png')}
-                        iconUnselected={require('../style/icons/empty.png')}
-                        onRate={(rating) => {self.onChangeRate(item,rating)}} />
+                <View key={ Math.random() } style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
+                    <Text key={ Math.random() } style={{ color: '#f7a1a1', fontSize: 12, fontWeight: 'bold' }}>{ item.name }</Text>
+                    <StarRating
+                        disabled={false}
+                        emptyStar={'heart-o'}
+                        fullStar={'heart'}
+                        iconSet={'FontAwesome'}
+                        maxStars={5}
+                        rating={self.props.feed.review ? self.props.feed.review.rates[item.value] : 0}
+                        selectedStar={(rating) => {self.onChangeRate(item.value, rating)}}
+                        starColor={'#f7a1a1'}
+                        emptyStarColor={'#f7a1a1'}
+                        starSize={20}
+                    />
                 </View>
             );
         })
@@ -150,7 +159,8 @@ const styles = StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        borderRadius: 100
+        borderRadius: 100,
+        marginBottom: 10
     },
     text: {
         width: '100%',

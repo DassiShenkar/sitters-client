@@ -2,11 +2,20 @@
 
 import React, { Component } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import StarRating from 'react-native-star-rating';
+
+const rateItems = [
+    {name: 'Punctual', value: 'punctioal'},
+    {name: 'Behavior with child', value: 'behavior'},
+    {name: 'Connection with child', value: 'connection'},
+    {name: 'General behavior', value: 'general'}
+];
 
 export default class Review extends React.Component {
 
     constructor (props) {
         super(props);
+        this.ratings = this.ratings.bind(this);
     }
 
     render () {
@@ -18,9 +27,34 @@ export default class Review extends React.Component {
                         style={styles.image} />
                     <Text>{ this.props.date ? this.props.date.split('T')[0] : new Date().toDateString() }</Text>
                 </View>
-                <Text>{ this.props.description ? this.props.description : 'Empty review' }</Text>
+                { this.props.description ? <Text>{this.props.description}</Text> : null }
+                { this.ratings() }
             </View>
         );
+    }
+
+    ratings() {
+        const self = this;
+        return rateItems.map(function(item) {
+            console.log(self.props);
+            return (
+                <View key={ Math.random() } style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
+                    <Text key={ Math.random() } style={{ color: '#f7a1a1', fontSize: 12, fontWeight: 'bold' }}>{ item.name }</Text>
+                    <StarRating
+                        disabled={false}
+                        emptyStar={'heart-o'}
+                        fullStar={'heart'}
+                        iconSet={'FontAwesome'}
+                        maxStars={5}
+                        rating={self.props.rates ? self.props.rates[item.value] : 0}
+                        selectedStar={(rating) => {self.onChangeRate(item,rating)}}
+                        starColor={'#f7a1a1'}
+                        emptyStarColor={'#f7a1a1'}
+                        starSize={20}
+                    />
+                </View>
+            );
+        })
     }
 }
 

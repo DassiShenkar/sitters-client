@@ -7,14 +7,13 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import geodist from "geodist";
 import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AppBar from '../components/AppBar';
 import Review from '../components/Review';
 import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
 import * as FeedActions from '../../src/actions/FeedActions';
 import * as RouterActions from '../actions/RouterActions';
-import ImageButton from '../components/ImageButton';
-import TextButton from '../components/TextButton';
 import LoadingScreen from '../components/LoadingScreen';
 
 class SitterProfileView extends React.Component {
@@ -66,14 +65,6 @@ class SitterProfileView extends React.Component {
                 <Text style={styles.detailHeader}>Last Invited:</Text>
                 <Text>{this.props.sitterProfile.sitter.lastInvite}</Text>
             </View> : null;
-        // const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
-        //     return (
-        //         <View key={index}>
-        //             <Text>{key[0].toUpperCase() + key.slice(1)}</Text>
-        //             <Text>{self.props.sitterProfile.sitter.workingHours[key].start + '-' + self.props.sitterProfile.sitter.workingHours[key].finish}</Text>
-        //         </View>
-        //     )
-        // });
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
             return (
                 self.props.sitterProfile.sitter.workingHours[key].length > 0 ?
@@ -98,10 +89,12 @@ class SitterProfileView extends React.Component {
                                     <View>
                                         <Image source={{uri: coverPhoto}} style={styles.coverPhoto}>
                                             <View style={styles.sitterContainer}>
-                                                <Image
-                                                    style={styles.profilePicture}
-                                                    source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
-                                                />
+                                                <View style={styles.backgroundCircle}>
+                                                    <Image
+                                                        style={styles.profilePicture}
+                                                        source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
+                                                    />
+                                                </View>
                                                 <Text style={styles.sitterText}>
                                                     { this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }
                                                 </Text>
@@ -109,13 +102,13 @@ class SitterProfileView extends React.Component {
                                         </Image>
                                         <View style={styles.infoBar}>
                                             <Text style={styles.infoText}>
-                                                { this.props.sitterProfile.distance > 999 ? 'Proximity:\n' + this.props.sitterProfile.distance / 1000 + ' KM' : 'Proximity:\n' + this.props.sitterProfile.distance + ' Meters' }
+                                                { this.props.sitterProfile.distance > 999 ? 'Proximity\n' + this.props.sitterProfile.distance / 1000 + ' KM' : 'Proximity:\n' + this.props.sitterProfile.distance + ' Meters' }
                                             </Text>
                                             <Text style={styles.infoText}>
-                                                { 'Hour Fee:\n' + this.props.sitterProfile.sitter.hourFee + '$'}
+                                                { 'Hour Fee\n' + this.props.sitterProfile.sitter.hourFee + '$'}
                                             </Text>
                                             <Text style={styles.infoText}>
-                                                { 'Experience:\n' + this.props.sitterProfile.sitter.experience + " Years" }
+                                                { 'Experience\n' + this.props.sitterProfile.sitter.experience + " Years" }
                                             </Text>
                                         </View>
                                     </View>
@@ -175,16 +168,13 @@ class SitterProfileView extends React.Component {
                                 </View>
                             </ScrollView>
                     }
-                <View style={styles.actionBar}>
-                    <TextButton
-                        onPress={Actions.pop}
-                        styles={styles.textButton}
-                        text='Cancel' />
-                    <ImageButton
-                        onPress={ (e) =>  this.navToInvite(e, id) }
-                        styles={styles.imageButton}
-                        src={require('../style/icons/inbox.png')} />
-                </View>
+                {
+                    this.props.feed.showSpinner ? null :
+                        <View style={styles.actionBar}>
+                            <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.pop} />
+                            <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToInvite(e, id)} />
+                        </View>
+                }
             </View>
         );
     }
@@ -205,17 +195,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '100%',
-        padding: 10
+        padding: 20
     },
     profilePicture: {
         width: 100,
         height: 100,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignSelf: 'center',
         borderRadius:100,
-        marginTop: 20,
-        marginBottom: 40
+    },
+    backgroundCircle: {
+        width: 110,
+        height: 110,
+        borderRadius:100,
+        backgroundColor: '#fff',
+        justifyContent: 'center'
     },
     sitterText: {
         color: '#fff',
@@ -268,7 +262,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         padding: 5,
         borderRadius: 10,
-        margin: 5,
         marginRight: 15
     },
     imageButton: {

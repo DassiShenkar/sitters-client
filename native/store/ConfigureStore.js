@@ -38,9 +38,9 @@ export default function configureStore() {
         },
         reviews: [],
         user: {
-            userType: "I'm a parent",
+            userType: "I'm a Parent",
             invites: [],
-            notifications: [],
+            notifications: []
         },
         feed: {
             matches: [],

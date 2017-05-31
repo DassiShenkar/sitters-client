@@ -4,6 +4,7 @@ import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from './ImageButton'
 import * as RouterActions from '../actions/RouterActions'
@@ -60,35 +61,15 @@ class AppBar extends React.Component {
                     onPress={ Actions.Feed }
                     styles={ styles.profilePic }
                     src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : null}/>
-                <Text style={styles.text}>Hi, { this.props.user.name.split(" ")[0] }</Text>
                 <View
-                    style={this.props.user.userType === "I'm a parent" ? styles.parentInnerContainer : styles.innerContainer}>
+                    style={this.props.user.userType === "I'm a Parent" ? styles.parentInnerContainer : styles.innerContainer}>
                     {
-                        this.props.user.userType === "I'm a parent" ?
-                            <ImageButton
-                            onPress={this.search}
-                            styles={ styles.icons }
-                            src={require('../style/icons/search.png')}/> :
-                            null
+                        this.props.user.userType === "I'm a Parent" ?
+                        <Icon.Button name="search" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.search} /> : null
                     }
-                    <ImageButton
-                        onPress={Actions.Inbox}
-                        styles={ styles.icons }
-                        src={require('../style/icons/inbox.png')}>
-                        {notify ? <Image style={ styles.inboxBadge }
-                                         source={require('../style/icons/redCircle.png')}/> : null}
-                    </ImageButton>
-                    <ImageButton
-                        onPress={Actions.Notifications}
-                        styles={ styles.icons }
-                        src={require('../style/icons/notification.png')}>
-                        {notify ? <Image style={ styles.notificationBadge }
-                                         source={require('../style/icons/redCircle.png')}/> : null}
-                    </ImageButton>
-                    <ImageButton
-                        onPress={this.menu}
-                        styles={ styles.icons }
-                        src={require('../style/icons/menu.png')}/>
+                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Notifications} />
+                    <Icon.Button name="envelope-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Inbox} />
+                    <Icon.Button name="ellipsis-v" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.menu} />
                 </View>
             </View>
         );
@@ -108,8 +89,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        shadowColor: '#000',
-        borderBottomColor: '#000',
+        shadowColor: '#8c8c8c',
+        borderBottomColor: '#8c8c8c',
         borderTopColor: '#fff',
         borderLeftColor: '#fff',
         borderRightColor: '#fff',
@@ -120,41 +101,18 @@ const styles = StyleSheet.create({
         width: 120,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 10
+        marginRight: 20
     },
     parentInnerContainer: {
         width: 160,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 10
+        marginRight: 20
     },
     profilePic: {
         width: 50,
         height: 50,
         borderRadius:100
-    },
-    icons: {
-        width: 30,
-        height: 30
-    },
-    text: {
-        marginLeft: 10,
-        marginRight: 30,
-        marginTop: 20
-    },
-    notificationBadge: {
-        width: 10,
-        height: 10,
-        borderRadius: 100,
-        left: 20,
-        top: 20
-    },
-    inboxBadge: {
-        width: 10,
-        height: 10,
-        borderRadius: 100,
-        left: 20,
-        top: 20
     }
 });
 

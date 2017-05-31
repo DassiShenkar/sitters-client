@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from '../components/ImageButton';
 
@@ -29,7 +30,7 @@ export default class Feed extends React.Component {
         let motto = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].motto : '';
         let personality = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].personality ?
             this.props.sitters[sitterIndex].personality.map(function(word) {
-                return <Text key={Math.random()} style={styles.personality}>{word} </Text>;
+                return <Text key={Math.random()} style={styles.personality}>{word}</Text>;
             })
             : null : null;
         let friends = this.props.sitters.length ? this.props.sitters[sitterIndex].mutualFriends : null;
@@ -90,21 +91,12 @@ export default class Feed extends React.Component {
                         }
                     </View>
                     <View style={styles.navPanel}>
-                        <ImageButton
-                            onPress={ (e) => this.navToInvite(e, sitterId) }
-                            styles={styles.button}
-                            src={require('../style/icons/v.png')} />
+                        <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToInvite(e, sitterId)} />
                         {
                             this.props.sitters.length ? this.shouldReview() ?
-                                <ImageButton
-                                    onPress={ (e) => this.navToRate(e, sitterId) }
-                                    styles={styles.button}
-                                    src={require('../style/icons/star.png')}/> : null : null
+                                <Icon.Button name="heart" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToRate(e, sitterId)} /> : null : null
                         }
-                        <ImageButton
-                            onPress={ (e) => this.nextSitter(e) }
-                            styles={styles.button}
-                            src={require('../style/icons/next.png')} />
+                        <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.nextSitter(e, sitterId)} />
                     </View>
                 </GestureRecognizer>
             </View>
@@ -211,6 +203,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     mottoText: {
+        fontFamily: 'PoiretOne',
         alignSelf: 'center',
         color: '#f7a1a1',
         fontSize: 22,
@@ -219,29 +212,25 @@ const styles = StyleSheet.create({
     personalityContainer: {
         flexDirection: 'column',
         width: '100%',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        justifyContent: 'space-between'
     },
     personalityRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
         padding: 5
     },
     personalityColumn: {
-        justifyContent: 'center',
-        alignItems: 'center',
         padding: 10
     },
     personality: {
+        alignSelf: 'center',
         color: '#fff',
         padding: 3,
         margin: 3,
         backgroundColor: '#f7a1a1',
         fontSize: 18,
         width: 130,
-        borderRadius: 10,
-        alignSelf: 'center'
+        borderRadius: 10
     },
     navPanel: {
         flex: 1,
@@ -254,6 +243,7 @@ const styles = StyleSheet.create({
         paddingLeft: 35
     },
     button: {
+        fontFamily: 'icons',
         width: 50,
         height: 50,
         borderRadius:100

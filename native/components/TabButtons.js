@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
-import ImageButton from './ImageButton';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class TabButtons extends React.Component {
 
@@ -14,25 +13,18 @@ export default class TabButtons extends React.Component {
 
     render () {
         let active = this.props.active;
+        let color;
+        active === 1 ? color = '' : color= '#000';
         return (
             <View style={styles.container}>
                 <View style={active === 1 ? styles.active : styles.notActive}>
-                    <ImageButton
-                        onPress={ this.byPrice }
-                        styles={styles.image}
-                        src={require('../style/icons/dollar.png')} />
+                    <Icon.Button name="dollar" textAlign="center" size={24} color="#8c8c8c" backgroundColor={active === 1 ? '#f7a1a1' : '#fff'} onPress={this.byPrice} />
                 </View>
                 <View style={active === 2 ? styles.active : styles.notActive}>
-                    <ImageButton
-                        onPress={ this.byTime }
-                        styles={styles.image}
-                        src={require('../style/icons/clock.png')} />
+                    <Icon.Button name="clock-o" textAlign="center" size={24} color="#8c8c8c" backgroundColor={active === 2 ? '#f7a1a1' : '#fff'} onPress={this.byTime} />
                 </View>
                 <View style={active === 3 ? styles.active : styles.notActive}>
-                    <ImageButton
-                        onPress={ this.byLocation }
-                        styles={styles.image}
-                        src={require('../style/icons/location.png')} />
+                    <Icon.Button name="map-marker" textAlign="center" size={24} color="#8c8c8c" backgroundColor={active === 3 ? '#f7a1a1' : '#fff'} onPress={this.byLocation} />
                 </View>
             </View>
         );
@@ -57,17 +49,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 50,
-        backgroundColor: '#fff',
-        borderBottomColor: '#000',
-        borderTopColor: '#fff',
-        borderLeftColor: '#fff',
-        borderRightColor: '#fff',
-        borderStyle: 'solid',
-        borderWidth: 1
+        backgroundColor: '#fff'
     },
     active:{
         alignItems: 'center',
         width: '33%',
+        padding: 10,
         backgroundColor: '#f7a1a1'
     },
     notActive:{
