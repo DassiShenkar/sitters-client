@@ -154,6 +154,18 @@
     font-weight: bold;
   }
 
+  .panel-title a:before {
+    content:'\25bc';
+    margin-right: 15px;
+    font-size: 14px;
+  }
+
+  .panel-title a.collapsed:before {
+    content:'\25BA';
+    margin-right: 15px;
+    font-size: 14px;
+  }
+
   .panel-title a:hover {
     text-decoration: none;
   }
