@@ -56,7 +56,7 @@ const defaultState = {
         view: 'step1'
     },
     settings: {
-        enableNotifications: true,
+        enableNotifications: false,
         enableSuggestions: true
     },
     searchBy : {
