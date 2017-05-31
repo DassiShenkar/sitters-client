@@ -1,39 +1,61 @@
 .modal-container {
   position: relative;
-  height:800px !important;
-  width:100%;
+  height: 800px !important;
+  width: 100%;
 }
- .modal-container .modal, .modal-container .modal-backdrop {
-    position: absolute;
+
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+
+.modal-dialog {
+  width: 800px;
+}
+
+.sitter-image {
+  width: 220px;
+  height: 220px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+h4.sitter-name {
+  text-align: center;
+}
+
+.modal-body .rc-time-picker {
+  display: block;
+}
+
+.modal-body {
+  .submit-invite {
+    display: block;
+    border-radius: 40px;
+    background: #fff;
+    color: #ffca00;
+    border-color: #ffca00;
+    margin: 48px auto;
+    padding: 8px 15px;
   }
 
- .modal-dialog{
-   width: 800px;
- }
+  .submit-invite:hover {
+    background: #ffca00;
+    color: #fff;
+  }
 
- .sitter-image {
-   width:220px;
-   height:220px;
-   display: block;
-   margin: 0 auto;
-   border-radius:50%;
- }
- h4.sitter-name{
-   text-align: center;
- }
-
- .modal-body .rc-time-picker {
-  display:block;
- }
-input[type="text"]{
-  width:200px !important;
+  .submit-invite:active {
+    outline: 0;
+    box-shadow: none;
+    border-color: #ffca00;
+  }
 }
 
-.input-group{
-  width:200px !important;
+input[type="text"] {
+  width: 200px !important;
 }
 
-.submit-invite{
-  display:block;
-  margin: 0 auto;
+.input-group {
+  width: 200px !important;
 }
+

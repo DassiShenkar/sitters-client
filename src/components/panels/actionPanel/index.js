@@ -42,9 +42,9 @@ class SitterActionBar extends React.Component {
     render() {
         return (
             <div id="sitterActionBar">
-                <button onClick={this.inviteSitter}><span className="icon-envelope action-icon"/></button>
-                <button className={this.props.router.getCurrentLocation().pathname.includes('sitter') ? 'selected' : 'unselected'} onClick={this.sitterProfile}><span className='icon-user'/></button>
-                <button className={this.shouldReview() ? 'enabled': 'disabled'} onClick={this.shouldReview() ? this.reviewSitter : _.noop()}><span className='icon-heart'/></button>
+                <button id="send-invite-btn" className="action-btn" onClick={this.inviteSitter}><span className="icon-envelope action-icon"/></button>
+                <button id="sitter-profile-btn" className={this.props.router.getCurrentLocation().pathname.includes('sitter') ? 'action-btn selected' : 'action-btn sitter-profile-btn unselected'} onClick={this.sitterProfile}><span className='icon-user'/></button>
+                <button id="add-review-btn" className={this.shouldReview() ? 'action-btn  enabled': 'action-btn add-review-btn disabled'} onClick={this.shouldReview() ? this.reviewSitter : _.noop()}><span className='icon-heart'/></button>
                 <Invite {...this.props}/>
             </div>
         )

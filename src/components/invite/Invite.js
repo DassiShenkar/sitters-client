@@ -120,7 +120,7 @@ class Invite extends React.Component {
                                 <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
                                 <ControlLabel>Notes</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder="textarea" onChange={this.handleChange.bind(this)} />
-                                <Button className="submit-invite" title="Send Invite" bsStyle="primary" onClick={this.sendInvite}>Send Invite</Button>
+                                <Button className="submit-invite" title="Send Invite"  onClick={this.sendInvite}>Send Invite</Button>
                             </form>
 
                         </div>
