@@ -90,6 +90,7 @@ const defaultState = {
         address: {},
         reviews: [],
         expertise: [],
+        mobility: []
     },
         distance: "",
         expandReview: false,
