@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/shelf/pad.xml" afterPath="$PROJECT_DIR$/.idea/shelf/pad.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/App.css" afterPath="$PROJECT_DIR$/src/components/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/controllers/radio/radioOption/style.css" afterPath="$PROJECT_DIR$/src/components/controllers/radio/radioOption/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/forms/personality/style.css" afterPath="$PROJECT_DIR$/src/components/forms/personality/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/inviteList/inviteModal/style.css" afterPath="$PROJECT_DIR$/src/components/inviteList/inviteModal/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/notifications/notificationItem/style.css" afterPath="$PROJECT_DIR$/src/components/notifications/notificationItem/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/notifications/style.css" afterPath="$PROJECT_DIR$/src/components/notifications/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/feed/parentFeed/style.css" afterPath="$PROJECT_DIR$/src/components/pages/feed/parentFeed/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/feed/style.css" afterPath="$PROJECT_DIR$/src/components/pages/feed/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/login/style.css" afterPath="$PROJECT_DIR$/src/components/pages/login/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/profile/style.css" afterPath="$PROJECT_DIR$/src/components/pages/profile/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/actionPanel/style.css" afterPath="$PROJECT_DIR$/src/components/panels/actionPanel/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/nav/style.css" afterPath="$PROJECT_DIR$/src/components/panels/nav/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" afterPath="$PROJECT_DIR$/src/components/panels/searchPanel/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/review/style.css" afterPath="$PROJECT_DIR$/src/components/review/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/reviewList/reviewItem/style.css" afterPath="$PROJECT_DIR$/src/components/reviewList/reviewItem/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/style.css" afterPath="$PROJECT_DIR$/src/components/sitterList/style.css" />
-    </list>
+    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="" />
     <list id="85a6bbbf-6823-4eaa-9f01-6d5066ec34c3" name="Not important" comment="" />
     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
     <ignored path="D:\projects\final project\sitters-client\.idea\shelf/" />
@@ -57,11 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/panels/nav/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/static/strings.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="142" lean-forward="false" selection-start-line="19" selection-start-column="142" selection-end-line="19" selection-end-column="142" />
               <folding />
             </state>
           </provider>
@@ -155,7 +146,6 @@
         <option value="$PROJECT_DIR$/src/components/pages/feed/parentFeed/style.scss" />
         <option value="$PROJECT_DIR$/src/components/pages/feed/style.scss" />
         <option value="$PROJECT_DIR$/src/components/panels/searchPanel/style.scss" />
-        <option value="$PROJECT_DIR$/src/static/strings.js" />
         <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/components/controllers/workingHours/Day.js" />
         <option value="$PROJECT_DIR$/src/actions/RegisterActions.js" />
@@ -189,6 +179,7 @@
         <option value="$PROJECT_DIR$/src/reducers/user.js" />
         <option value="$PROJECT_DIR$/src/components/pages/invite/SingleInvite.js" />
         <option value="$PROJECT_DIR$/src/components/forms/SitterForm.js" />
+        <option value="$PROJECT_DIR$/src/static/strings.js" />
       </list>
     </option>
   </component>
@@ -915,7 +906,7 @@
       <workItem from="1495983657473" duration="11565000" />
       <workItem from="1496046909856" duration="17350000" />
       <workItem from="1496133141366" duration="18456000" />
-      <workItem from="1496214064051" duration="10571000" />
+      <workItem from="1496214064051" duration="11314000" />
     </task>
     <task id="LOCAL-00017" summary="Took out nav to Main component">
       <created>1493135136447</created>
@@ -1264,7 +1255,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235345000" />
+    <option name="totallyTimeSpent" value="236088000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1367" height="735" extended-state="1" />
@@ -1289,7 +1280,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4384" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1328" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1704,14 +1695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/strings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="48" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/actionCreators.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
@@ -1788,6 +1771,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/static/strings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="142" lean-forward="false" selection-start-line="19" selection-start-column="142" selection-end-line="19" selection-end-column="142" />
           <folding />
         </state>
       </provider>
