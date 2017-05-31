@@ -37,11 +37,12 @@ class Map extends React.Component {
                         // const infoWindow = new googleMaps.InfoWindow({
                         //     content: `<div><h3>` + parent.name + `</h3><Image className="info-window-img" src="` + parent.profilePicture + `"/><p>Child Name: ` + parent.children.name + `</p></div>`
                         // });
-
+                        const address = parent.address.street + " " + parent.address.houseNumber + ", " + parent.address.city;
                         const infoWindow = new googleMaps.InfoWindow({
                             content: ` <div>
                         <h3>` + parent.name + `</h3>
                             <Image className="info-window-img" src='` + parent.profilePicture + `' circle/>
+                            <p>` + address + `</p>
                     </div>`
                         });
 

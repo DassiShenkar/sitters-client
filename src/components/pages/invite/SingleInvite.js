@@ -4,6 +4,7 @@ import GoogleMaps from "../../controllers/maps/GoogleMaps";
 import axios from 'axios';
 import strings from "../../../static/strings";
 import * as _ from "lodash";
+import './style.css'
 
 export default class SingleInvite extends React.Component{
     constructor(){

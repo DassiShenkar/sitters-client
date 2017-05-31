@@ -344,13 +344,13 @@ class Form extends React.Component {
                         <FormControl required maxlength="140" componentClass="textarea" placeholder="motto" onChange={(e) => this.props.actions.registerActions.changeSitterMotto(e.target.value)} />
                         <DragAndDropContainer {...this.props}/>
                         {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
-                            <Button onClick={this.handleSubmitSitter} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>: ''}
+                            <Button onClick={this.handleSubmitSitter} type="submit" className="next-btn" value="Sign Up">Sign Up</Button>: ''}
                     </section>
             }
         }
         return (
             <form className="sitter-form" onSubmit={this.handleSubmitSitter}>
-                <Nav justified onSelect={this.handleSelect.bind(this)}>
+                <Nav activeKey={"step1"} justified onSelect={this.handleSelect.bind(this)}>
                     <NavItem eventKey="step1" title="location">Step 1</NavItem>
                     <NavItem eventKey="step2">Step 2</NavItem>
                     <NavItem eventKey="step3">Step 3</NavItem>
@@ -358,7 +358,7 @@ class Form extends React.Component {
                 </Nav>
                 {registerView}
                 {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?
-                    <Button onClick={this.next.bind(this)} type="button" bsStyle="primary" bsSize="large" value="Next">Next</Button>: ''}
+                    <Button onClick={this.next.bind(this)} type="button" className="next-btn" value="Next">Next</Button>: ''}
             </form>
         );
     };

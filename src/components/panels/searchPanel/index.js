@@ -91,9 +91,9 @@ class SearchByTab extends React.Component {
                     <div className="search-nav">
                         <PageHeader>Quick Search</PageHeader>
                         <Nav justified onSelect={this.handleSelect.bind(this)}>
-                            <NavItem eventKey="rate"><Dollar/></NavItem>
-                            <NavItem eventKey="location" title="location"><Location/></NavItem>
                             <NavItem eventKey="time"><Clock/></NavItem>
+                            <NavItem eventKey="location" title="location"><Location/></NavItem>
+                            <NavItem eventKey="rate"><Dollar/></NavItem>
                         </Nav>
                         {navView}
                     </div>

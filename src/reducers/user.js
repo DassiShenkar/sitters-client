@@ -92,7 +92,8 @@ function user(state = {}, action) {
                 experience: sitterData.experience,
                 maxAge: sitterData.maxAge,
                 minAge: sitterData.minAge,
-                education: sitterData.education
+                education: sitterData.education,
+                multipleInvites: sitterData.multipleInvites
             };
         case 'CHANGE_USER_ADDRESS' :
             return {

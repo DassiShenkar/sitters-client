@@ -300,14 +300,14 @@ class Form extends React.Component {
                             reducer={'register'}/>
                         <DragAndDropContainer {...this.props}/>
                         {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
-                            <Button onClick={this.handleSubmitParent} type="submit" bsStyle="primary" bsSize="large" value="Sign Up">Sign Up</Button>: ''}
+                            <Button onClick={this.handleSubmitParent} type="submit" className="next-btn" value="Sign Up">Sign Up</Button>: ''}
                     </section>
             }
         }
         return (
             <div>
                 <form id="register-form">
-                    <Nav justified onSelect={this.handleSelect.bind(this)}>
+                    <Nav activeKey={"step1"} justified onSelect={this.handleSelect.bind(this)}>
                         <NavItem eventKey="step1" title="location">Step 1</NavItem>
                         <NavItem eventKey="step2">Step 2</NavItem>
                         <NavItem eventKey="step3">Step 3</NavItem>
@@ -315,7 +315,7 @@ class Form extends React.Component {
                     </Nav>
                     {registerView}
                     {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?
-                        <Button onClick={this.next.bind(this)} type="button" bsStyle="primary" bsSize="large" value="Next">Next</Button>: ''}
+                        <Button onClick={this.next.bind(this)} type="button" className="next-btn" value="Next">Next</Button>: ''}
                 </form>
             </div>
         );

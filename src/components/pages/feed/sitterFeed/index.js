@@ -10,6 +10,7 @@ import moment from 'moment';
 //style
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import InvitesModal from "../../../inviteList/inviteModal/index";
+import {PageHeader} from "react-bootstrap";
 
 // BigCalendar.setLocalizer(
 //     BigCalendar.momentLocalizer(moment)
@@ -45,24 +46,33 @@ class SitterFeed extends React.Component {
         }
 
     }
+
     render() {
         const events = [];
+        const self = this;
         let hourFee = this.props.user.hourFee;
-        this.props.user.invites.forEach(function(invite){
-            let startTime = new Date(invite.startTime);
-            let endTime = new Date(invite.endTime);
-            let timeDifference = (((endTime - startTime) % 86400000) / 3600000).toFixed(2);
+        this.props.user.invites.forEach(function (invite) {
+            if (invite.status === "accepted") {
+                let startTime = new Date(invite.date + " " + invite.startTime);
+                let endTime = new Date(invite.date + " " + invite.endTime);
+                let timeDifference = (((endTime - startTime) % 86400000) / 3600000).toFixed(2);
+                const numberOfInvites = self.props.user.multipleInvites.filter(function (object) {
+                    return object._id === invite.parentID;
+                });
+                console.log(numberOfInvites[0].count);
+                const title = 'Watch ' + invite.childName + "(" + numberOfInvites[0].count + ") - " + Math.round(timeDifference * hourFee) + "$";
 
-            events.push({
-                title: 'Watch ' + invite.childName + "  - " + (timeDifference * hourFee) + "$",
-                // allDay: true,
-                startDate: new Date(invite.startTime),
-                endDate: new Date(invite.endTime)
-            })
+                events.push({
+                    title: title,
+                    // allDay: true,
+                    startDate: startTime,
+                    endDate: endTime
+                })
+            }
         });
         return (
-            <div id="sitter-feed">
-                {/*<InviteList isParent={this.props.user.isParent} invites={this.props.user.invites}/>*/}
+            <div id="sitter-feed" className="page">
+                <PageHeader>Work Scheduale</PageHeader>
                 <BigCalendar
                     events={events}
                     defaultDate={new Date()}
