@@ -10,14 +10,13 @@ import {Image, Table, Panel, Accordion, ControlLabel} from "react-bootstrap";
 import SitterActionBar from "../../panels/actionPanel";
 import ReviewList from "../../reviewList/index";
 import Invite from "../../invite/Invite";
-import Mail from "../../icons/Mail";
-
-// style
-import './style.css';
 import AccordionPanel from "../../controllers/accordion/index";
 import strings from "../../../static/strings";
 import Review from "../../review/index";
-import Like from "../../icons/Like";
+import MatchBanner from "../../banners/matchBanner";
+
+// style
+import './style.css';
 
 class SitterProfile extends React.Component {
 
@@ -101,6 +100,10 @@ class SitterProfile extends React.Component {
         this.props.actions.feedActions.showReviewPopup(true);
     }
 
+    displayMatchInfo(shouldDisplay) {
+        this.props.actions.sitterProfileActions.displayMatchInfo(shouldDisplay);
+    }
+
     render() {
         let self = this;
         const id = this.props.params.sitterId;
@@ -129,9 +132,11 @@ class SitterProfile extends React.Component {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
+
+
         return (
             <div id="sitter-profile">
-                <div className="match" style={style}>
+                <div className="match" style={style} onMouseEnter={this.displayMatchInfo.bind(this, true)} onMouseLeave={this.displayMatchInfo.bind(this, false)}>
                     <div className="cover-overlay"/>
                     <div className="sitter-info">
                         <Image className="profilePic"
@@ -140,6 +145,11 @@ class SitterProfile extends React.Component {
                                circle/>
                         <h1 className="sitterName">{this.props.sitterProfile.sitter.name ? this.props.sitterProfile.sitter.name : ''}</h1>
                     </div>
+                    {this.props.sitterProfile.shouldDisplayMatchInfo ?
+                        <MatchBanner parent={this.props.user} sitter={this.props.sitterProfile.sitter} matchScore={this.props.feed.matches[this.props.feed.sitterIndex].match}/>
+                        : ''
+                    }
+
                     <SitterActionBar {...this.props}/>
                 </div>
                 <Table className="info-table" responsive>
