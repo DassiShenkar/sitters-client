@@ -92,7 +92,8 @@ const defaultState = {
         expertise: [],
     },
         distance: "",
-        expandReview: false
+        expandReview: false,
+        shouldDisplayMatchInfo: false
     },
 
 };
