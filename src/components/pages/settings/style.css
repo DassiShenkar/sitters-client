@@ -6,3 +6,28 @@
 
 #settings-page label {
   display: flex; }
+color: #f86966;
+  border-color: #f86966;
+  margin: 48px 0;
+  padding: 8px 15px; }
+
+#settings-page .submit-settings:hover {
+  background: #f86966;
+  color: #fff; }
+
+#settings-page .submit-settings:active {
+  outline: 0;
+  box-shadow: none;
+  border-color: #f86966; }
+
+#settings-page .react-toggle {
+  margin-left: 15px; }
+
+#settings-page .react-toggle--checked .react-toggle-track {
+  background-color: #f86966; }
+
+#settings-page .react-toggle--checked .react-toggle-thumb {
+  border-color: #f86966; }
+
+#settings-page label {
+  display: flex; }

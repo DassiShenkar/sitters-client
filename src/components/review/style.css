@@ -2,8 +2,22 @@
   display: flex; }
 
 .review-modal .submit-review {
-  margin-top: 24px;
-  text-align: center; }
+  display: block;
+  border-radius: 40px;
+  background: #fff;
+  color: #f86966;
+  border-color: #f86966;
+  margin: 48px auto;
+  padding: 8px 15px; }
+
+.review-modal .submit-review:hover {
+  background: #f86966;
+  color: #fff; }
+
+.review-modal .submit-review:active {
+  outline: 0;
+  box-shadow: none;
+  border-color: #f86966; }
 
 .pink {
   color: #f86966; }

@@ -22,12 +22,26 @@ h4.sitter-name {
 .modal-body .rc-time-picker {
   display: block; }
 
+.modal-body .submit-invite {
+  display: block;
+  border-radius: 40px;
+  background: #fff;
+  color: #ffca00;
+  border-color: #ffca00;
+  margin: 48px auto;
+  padding: 8px 15px; }
+
+.modal-body .submit-invite:hover {
+  background: #ffca00;
+  color: #fff; }
+
+.modal-body .submit-invite:active {
+  outline: 0;
+  box-shadow: none;
+  border-color: #ffca00; }
+
 input[type="text"] {
   width: 200px !important; }
 
 .input-group {
   width: 200px !important; }
-
-.submit-invite {
-  display: block;
-  margin: 0 auto; }
