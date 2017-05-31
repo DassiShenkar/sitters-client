@@ -14,13 +14,14 @@ export default class BaseForm extends React.Component {
         this.getLanguagesFromFacebook = this.getLanguagesFromFacebook.bind(this);
         this.calcAge = this.calcAge.bind(this);
         this.languagesChecked = this.languagesChecked.bind(this);
+        this.personalityChecked = this.personalityChecked.bind(this);
         this.onChange = this.onChange.bind(this);
         this.removeLang = this.removeLang.bind(this);
+        this.removePer = this.removePer.bind(this);
     }
 
     render () {
         const self = this;
-        let languages = this.getLanguagesFromFacebook(this.props.register.languages);
         return (
             <View>
                 <Text style={styles.header}>Personal info</Text>
@@ -65,7 +66,7 @@ export default class BaseForm extends React.Component {
                         renderDescription={(row) => row.description} // custom description render
                         onPress={(data, details) => { this.onChange(data, details)}}
                         getDefaultValue={() => {
-                          return this.props.user.address; // text input default value
+                          return this.props.register.address ? this.props.register.address : null; // text input default value
                         }}
                         styles={{
                             textInputContainer: {
@@ -103,12 +104,21 @@ export default class BaseForm extends React.Component {
                     selected={self.props.register.languages ? self.props.register.languages : self.props.user.languages}
                     update={this.languagesChecked}
                     remove={this.removeLang}/>
+                <Text style={styles.text}>Pick 6 words that describe you</Text>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.PERSONALITY_WORDS}
+                    selected={self.props.register.items ? self.props.register.items : []}
+                    update={this.personalityChecked}
+                    remove={this.removePer}/>
             </View>
         );
     }
 
     languagesChecked (selected) {
-        let languages = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
+        console.log(selected);
+        console.log(this.props.register.languages);
+        let languages = this.props.register.languages ? this.props.register.languages : this.props.user.languages ? this.props.user.languages : [];
         let array = [...selected, ...languages];
         this.props.actions.registerActions.changeLanguages(array);
     }
@@ -119,6 +129,26 @@ export default class BaseForm extends React.Component {
             return el.name !== removed.name;
         });
         this.props.actions.registerActions.changeLanguages(array);
+    }
+
+    personalityChecked (selected) {
+        console.log(selected);
+        console.log(this.props.register.items);
+        let personality = this.props.register.items ? this.props.register.items : [];
+        if(personality.length >= 6 || selected > 6) {
+            alert('Please pick 6 items only');
+            return;
+        }
+        let array = [...selected, ...personality];
+        this.props.actions.registerActions.changePersonalityItems(array);
+    }
+
+    removePer(removed) {
+        let personality = this.props.register.items ? this.props.register.items : [];
+        let array =  personality.filter(function(el) {
+            return el.name !== removed.name;
+        });
+        this.props.actions.registerActions.changePersonalityItems(array);
     }
 
     calcAge(birthday) {

@@ -29,7 +29,7 @@ class SitterSendInvite extends React.Component {
 
     sendInvite(e) {
         e.preventDefault();
-        let invite = {
+        let invite = [{
             _id: uuid.v1(),
             address:    {
                 city: this.props.user.address.city,
@@ -47,15 +47,17 @@ class SitterSendInvite extends React.Component {
             parentID:   this.props.user._id.toString(),
             notes: this.props.invite.notes? this.props.invite.notes: "",
             sitterName: this.props.sitter.name,
-            sitterImage: this.props.sitter.profilePicture
-        };
-        //TODO: parent image, childName parentName
+            sitterImage: this.props.sitter.profilePicture,
+            parentName: this.props.user.name,
+            childName: this.props.user.children.name,
+            parentImage: this.props.user.profilePicture
+        }];
         console.log(invite);
         let self = this;
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/invite/create',
-            // url: 'https://sittersdev.herokuapp.com/invite/create',
+            // url: 'https://sitters-server.herokuapp.com/invite/create',
+            url: 'https://sittersdev.herokuapp.com/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
@@ -101,17 +103,17 @@ class SitterSendInvite extends React.Component {
                        <View style={styles.pickerContainer}>
                            <Text style={styles.pickerText}>Date</Text>
                            <AndroidDatePicker
-                                callback={ this.dateCallback }/>
+                               pickerCallback={ this.dateCallback }/>
                        </View>
                        <View style={styles.pickerContainer}>
                            <Text style={styles.pickerText}>Start Watch</Text>
                            <AndroidTimePicker
-                               callback={ this.startCallback }/>
+                               pickerCallback={ this.startCallback }/>
                        </View>
                        <View style={styles.pickerContainer}>
                            <Text style={styles.pickerText}>End Watch</Text>
                            <AndroidTimePicker
-                               callback={ this.endCallback }/>
+                               pickerCallback={ this.endCallback }/>
                        </View>
                        <View style={styles.locationContainer}>
                            <Text style={styles.locationText}>Watch Place: </Text>

@@ -84,25 +84,20 @@ class Register extends Component {
             notifications: [],
             invites: [],
             blacklist: [],
-            personalityTest: {
-                questions: this.props.register.personalityQuestions,
-                totalScore: totalScore
-            },
-            matchBI: {
-                matchScores: [],
-                median: 0
-            },
+            personality: this.props.register.personality ? this.props.register.personality : [],
             settings: {
                 allowNotification: true,
-                allowSuggestions: true
+                allowSuggestions: true,
+                allowShowOnSearch: true
             },
-            mutualFriends: this.props.user.friends,
+            friends: this.props.user.friends,
             preferedGender: this.props.register.watchChildGender.toLowerCase(),
             partner:{
                 gender: this.props.register.partnerGender ? this.props.register.partnerGender : 'Female',
                 email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
                 name:  this.props.register.partnerName ? this.props.register.partnerName : ' '
-            }
+            },
+            isParent: true
         };
         self.setUserInDB(parent, 'parent/create');
     }
@@ -132,17 +127,12 @@ class Register extends Component {
             address: {},
             timezone: this.props.user.timezone,
             profilePicture: this.props.user.picture.data.url,
-            experience:  Number(this.props.register.experience),
+            experience:  Number(this.props.register.sitterExperience),
             minAge:  Number(this.props.register.sitterMinAge),
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
-            matchBI: {},
-            personality: {},
+            personality: this.props.register.personality ? this.props.register.personality : [],
             userType: "I'm a sitter",
-            personalityTest: {
-                questions: this.props.register.personalityQuestions,
-                totalScore: totalScore
-            },
             reviews: [],
             invites: [],
             lastInvite: "",
@@ -151,15 +141,23 @@ class Register extends Component {
             hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
             specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
             education: this.props.register.sitterEducation? this.props.register.sitterEducation: [],
-            mobility: this.props.register.sitterMobility ? this.props.register.sitterMobility.toLowerCase() === 'true' : true,
-            mutualFriends: this.props.user.friends
+            mobility: this.props.register.sitterMobility ? this.props.register.sitterMobility : '',
+            friends: this.props.user.friends,
+            workingHours: this.props.workingHours,
+            motto: this.props.register.sitterMotto,
+            isParent: false,
+            settings: {
+                allowNotification: true,
+                allowSuggestions: true,
+                allowShowOnSearch: true
+            }
         };
+        console.log(sitter);
         self.setUserInDB(sitter, 'sitter/create');
     }
 
     async setUserInDB(user, path) {
         const self = this;
-        console.log(self.props.user.address);
         let add = self.props.user.address.split(',');
         const street = add[0].split(' ');
         let houseNumber = street.pop();
@@ -175,7 +173,6 @@ class Register extends Component {
             latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
         };
         user.isParent = path === 'parent/create';
-        console.log(this.props.location);
         console.log(user);
         axios({
             method: 'post',
@@ -185,7 +182,7 @@ class Register extends Component {
             data: user
         }).then(function (res) {
             if (res.data) {  // user created
-                self.props.actions.actionCreators.setUserData(res.data);
+                path === 'parent/create' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
                 Actions.Feed();
             }
             else { // user not created

@@ -43,13 +43,13 @@ export default class FaceBookLogin extends React.Component {
                 } else {
                     AccessToken.getCurrentAccessToken().then(
                         (data) => {
-                            LocalStorage.setToLocalStorage(LocalStorage.FACEBOOK_KEY, data.accessToken.toString());
                             const responseInfoCallback = (error, result) => {
                                 if (error) {
                                     console.log(error);
                                     Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook login Error, please try again later'});
                                 } else {
                                     LocalStorage.setToLocalStorage(LocalStorage.USER_KEY, result.id.toString());
+                                    LocalStorage.setToLocalStorage(LocalStorage.USER_TYPE, self.props.user.userType === "I'm a parent" ? 'parent' : 'sitter');
                                     self.handleResponse(result);
                                 }
                             };

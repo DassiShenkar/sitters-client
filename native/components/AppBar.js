@@ -18,7 +18,6 @@ class AppBar extends React.Component {
 
     componentDidUpdate () {
         var self = this;
-        console.log(self.props.router.validFlag);
         if(self.props.router.validFlag) {
             this.props.routerActions.changeValidFlag(false);
             self.route(self.props.router.scene);
@@ -26,7 +25,6 @@ class AppBar extends React.Component {
     }
 
     route(scene) {
-        console.log(scene);
         switch(scene) {
             case 'register':
                 Actions.EditProfile();
@@ -64,7 +62,7 @@ class AppBar extends React.Component {
                     src={ this.props.user.profilePicture ? { uri: this.props.user.profilePicture } : null}/>
                 <Text style={styles.text}>Hi, { this.props.user.name.split(" ")[0] }</Text>
                 <View
-                    style={styles.innerContainer}>
+                    style={this.props.user.userType === "I'm a parent" ? styles.parentInnerContainer : styles.innerContainer}>
                     {
                         this.props.user.userType === "I'm a parent" ?
                             <ImageButton
@@ -80,17 +78,13 @@ class AppBar extends React.Component {
                         {notify ? <Image style={ styles.inboxBadge }
                                          source={require('../style/icons/redCircle.png')}/> : null}
                     </ImageButton>
-                    {
-                        this.props.user.userType === "I'm a parent" ?
-                            <ImageButton
-                                onPress={Actions.Notifications}
-                                styles={ styles.icons }
-                                src={require('../style/icons/notification.png')}>
-                                {notify ? <Image style={ styles.notificationBadge }
-                                                 source={require('../style/icons/redCircle.png')}/> : null}
-                            </ImageButton> :
-                            null
-                    }
+                    <ImageButton
+                        onPress={Actions.Notifications}
+                        styles={ styles.icons }
+                        src={require('../style/icons/notification.png')}>
+                        {notify ? <Image style={ styles.notificationBadge }
+                                         source={require('../style/icons/redCircle.png')}/> : null}
+                    </ImageButton>
                     <ImageButton
                         onPress={this.menu}
                         styles={ styles.icons }
@@ -123,6 +117,12 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     innerContainer: {
+        width: 120,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10
+    },
+    parentInnerContainer: {
         width: 160,
         flexDirection: 'row',
         justifyContent: 'space-between',

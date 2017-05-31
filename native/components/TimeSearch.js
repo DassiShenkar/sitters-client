@@ -39,6 +39,7 @@ export default class TimeSearch extends React.Component {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
         };
+        //TODO: add avialble now & custom radio buttons
         return (
             <View style={styles.container}>
                 <GestureRecognizer
