@@ -1,11 +1,29 @@
 .review-item {
   border-bottom: 1px solid #eee;
   padding: 16px 0; }
+  .review-item .review-content {
+    display: flex;
+    flex-direction: row; }
   .review-item img.profilePic {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
     margin: 0; }
+  .review-item ul {
+    display: flex;
+    flex-direction: row; }
+    .review-item ul li {
+      padding: 0 15px;
+      text-align: center;
+      border-right: 1px solid #f5f5f5; }
+    .review-item ul li:last-child {
+      border-right: none; }
   .review-item .review-rates {
     display: block; }
-  .review-item .review-item span {
-    display: block; }
+  .review-item .review-info {
+    display: flex;
+    flex-direction: row; }
+    .review-item .review-info p {
+      margin: 0 0 0 15px;
+      font-size: 16px; }
+    .review-item .review-info .review-date {
+      font-size: 12px; }

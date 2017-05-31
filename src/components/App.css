@@ -4,3 +4,8 @@
 
 ul {
   list-style: none; }
+
+.popover-content table {
+  color: #757575; }
+  .popover-content table .bg-primary {
+    background-color: #f86966; }

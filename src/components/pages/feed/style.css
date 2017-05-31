@@ -10,14 +10,12 @@
 
 #feed-page #invite {
   text-align: left; }
-
-#feed-page #invite label {
-  font-size: 18px; }
-
-#feed-page #invite .submit-invite {
-  border: 1px solid #88d685;
-  color: #88d685;
-  margin-top: 24px; }
+  #feed-page #invite label {
+    font-size: 18px; }
+  #feed-page #invite .submit-invite {
+    border: 1px solid #88d685;
+    color: #88d685;
+    margin-top: 24px; }
 
 ol.progtrckr {
   list-style-type: none;
