@@ -146,7 +146,8 @@ class Form extends React.Component {
                 allowNotification: true,
                 allowShowOnSearch: true
             },
-            pushNotifications: {}
+            pushNotifications: {},
+            multipleInvites: []
         };
 
 
