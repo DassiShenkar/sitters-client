@@ -41,6 +41,7 @@ export default class SitterForm extends React.Component {
                     maxLength={26}
                     underlineColorAndroid="#f7a1a1"
                     name="motto"
+                    placeholder="Write your life motto"
                     value={ this.props.register.sitterMotto ? this.props.register.sitterMotto : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMotto(text)} />
                 <Text style={styles.text}>Experience</Text>
@@ -50,6 +51,7 @@ export default class SitterForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="experience"
+                    placeholder="Sitter experience"
                     value={ this.props.register.sitterExperience ? this.props.register.sitterExperience : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterExperience(text)} />
                 <Text style={styles.text}>Minimum age of child</Text>
@@ -58,7 +60,8 @@ export default class SitterForm extends React.Component {
                     type="TextInput"
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
-                    name="MinimumAge"
+                    name="Minimum age of child"
+                    placeholder="Minimum child age"
                     value={ this.props.register.sitterMinAge ? this.props.register.sitterMinAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMinimumAge(text)} />
                 <Text style={styles.text}>Maximum age of child</Text>
@@ -67,6 +70,7 @@ export default class SitterForm extends React.Component {
                     type="TextInput"
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
+                    placeholder="Maximum child age"
                     name="MinimumAge"
                     value={ this.props.register.sitterMaxAge ? this.props.register.sitterMaxAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterMaximumAge(text)} />
@@ -77,6 +81,7 @@ export default class SitterForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="hourFee"
+                    placeholder="Hour fee per hour in $"
                     value={ this.props.register.hourFee ? this.props.register.hourFee : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterHourFee(text)} />
                 <Text style={styles.text}>Immediate Availability</Text>
@@ -126,7 +131,7 @@ export default class SitterForm extends React.Component {
                 {this.timePicker()}
                 <TextButton
                     styles={styles.button}
-                    onPress={ () => { callback();/*self.props.registered ? self.updateUser(self.props.userType) : Actions.PersonalityTest({callback: callback}) */ }}
+                    onPress={ () => {callback()}}
                     text="Submit" />
             </Form>
         );
@@ -224,9 +229,7 @@ export default class SitterForm extends React.Component {
 
     timePicker () {
         const self = this;
-        console.log(self.props.workingHours);
         return strings.WEEK_DAYS.map(function (day) {
-            console.log(self.props.workingHours[day]);
             return <View key={ Math.random() }>
                 <Text style={styles.text} key={ Math.random() }>{day}</Text>
                 <MyMultiSelect

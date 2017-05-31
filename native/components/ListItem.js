@@ -1,7 +1,8 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Image, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default class ListItem extends React.Component {
 
@@ -11,6 +12,7 @@ export default class ListItem extends React.Component {
 
     render () {
         const self = this;
+        const userType = this.props.userType;
         let text = function() {
             switch(self.props.status) {
                 case 'waiting': return <Text>Waiting Invitation</Text>;
@@ -20,18 +22,18 @@ export default class ListItem extends React.Component {
             }
         };
         return (
-            <TouchableHighlight onPress={ this.props.onPress ? this.props.onPress : ()=>{} }>
+            <TouchableOpacity onPress={ () => Actions.Invite({inviteId: self.props._id}) }>
                 <View style={styles.container}>
                     <Image
-                        source={{ uri: this.props.sitterImage }}
+                        source={{ uri: userType === "I'm a Parent" ? this.props.sitterImage : this.props.parentImage }}
                         style={styles.image} />
                     <View>
-                        <Text>{ this.props.sitterName }</Text>
+                        <Text>{ userType === "I'm a Parent" ? this.props.sitterName : this.props.parentName }</Text>
                         <Text>{ text() }</Text>
                     </View>
                     <Text>{ this.props.date.slice(0, 10) }</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         );
     }
 }

@@ -49,7 +49,7 @@ export default class FaceBookLogin extends React.Component {
                                     Actions.ErrorPage({errorNum: 500, errorMsg: 'Facebook login Error, please try again later'});
                                 } else {
                                     LocalStorage.setToLocalStorage(LocalStorage.USER_KEY, result.id.toString());
-                                    LocalStorage.setToLocalStorage(LocalStorage.USER_TYPE, self.props.user.userType === "I'm a parent" ? 'parent' : 'sitter');
+                                    LocalStorage.setToLocalStorage(LocalStorage.USER_TYPE, self.props.user.userType === "I'm a Parent" ? 'parent' : 'sitter');
                                     self.handleResponse(result);
                                 }
                             };
@@ -79,42 +79,81 @@ export default class FaceBookLogin extends React.Component {
 
     async handleResponse (result) {
         const self = this;
-        axios({
-            method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/parent/get',
-            url: 'https://sittersdev.herokuapp.com/parent/get',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            _id: result.id.toString()
-        }).then(function (res) {
-            if (res.data) {  // user exists
-                if(user.friends.data.length > response.data.mutualFriends.length){
-                    let parent = response.data;
-                    parent.mutualFriends = user.friends.data;
-                    axios({
-                        method: 'post',
-                        url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
-                        // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
-                        headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                        data: parent
-                    }).then(function (response) {
-                        self.props.actionCreators.setUserData(res.data);
+        if(self.props.user.userType === "I'm a Parent") {
+            axios({
+                method: 'post',
+                // url: 'https://sitters-server.herokuapp.com/parent/get',
+                url: 'https://sittersdev.herokuapp.com/parent/get',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                _id: result.id.toString()
+            }).then(function (res) {
+                if (res.data) {  // user exists
+                    if (user.friends.data.length > response.data.mutualFriends.length) {
+                        let parent = response.data;
+                        parent.mutualFriends = user.friends.data;
+                        axios({
+                            method: 'post',
+                            url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
+                            // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent
+                        }).then(function (response) {
+                            self.props.actionCreators.setParentData(res.data);
+                            Actions.Feed();
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    } else {
+                        self.props.actionCreators.setParentData(res.data);
                         Actions.Feed();
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-                } else {
-                    self.props.actionCreators.setUserData(res.data);
-                    Actions.Feed();
+                    }
                 }
-            }
-            else { // user not exist
-                self.props.actionCreators.createUser(result);
-                Actions.Register();
-            }
-        }).catch(function (error) {
-            console.log(error);
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
-        });
+                else { // user not exist
+                    self.props.actionCreators.createUser(result);
+                    Actions.Register();
+                }
+            }).catch(function (error) {
+                console.log(error);
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
+            });
+        } else {
+            axios({
+                method: 'post',
+                // url: 'https://sitters-server.herokuapp.com/sitter/get',
+                url: 'https://sittersdev.herokuapp.com/sitter/get',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                _id: result.id.toString()
+            }).then(function (res) {
+                if (res.data) {  // user exists
+                    if (user.friends.data.length > response.data.mutualFriends.length) {
+                        let parent = response.data;
+                        parent.mutualFriends = user.friends.data;
+                        axios({
+                            method: 'post',
+                            url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
+                            // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent
+                        }).then(function (response) {
+                            self.props.actionCreators.setSitterData(res.data);
+                            Actions.Feed();
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    } else {
+                        self.props.actionCreators.setSitterData(res.data);
+                        Actions.Feed();
+                    }
+                }
+                else { // user not exist
+                    self.props.actionCreators.createUser(result);
+                    Actions.Register();
+                }
+            }).catch(function (error) {
+                console.log(error);
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
+            });
+        }
     }
 }
 

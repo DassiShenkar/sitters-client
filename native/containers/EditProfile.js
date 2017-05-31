@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux'
@@ -10,22 +10,10 @@ import SitterForm from '../components/SitterForm';
 import AppBar from '../components/AppBar';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
-/*
-*
- <ScrollView>
- <View style={{ margin: 20 }}>
- {this.props.user.userType === "I'm a parent" ?
- <ParentForm
- {...this.props}
- callback={ this.parentCallback } /> :
- <SitterForm
- {...this.props}
- callback={ this.sitterCallback } />
- }
- </View>
- </ScrollView>
-*
-* */
+import * as WorkingHoursActions from '../../src/actions/WorkingHoursActions';
+import * as LocationActions from '../actions/LocationActions';
+import * as _ from "lodash";
+
 class EditProfile extends Component {
 
     constructor(props) {
@@ -33,21 +21,61 @@ class EditProfile extends Component {
         this.parentCallback = this.parentCallback.bind(this);
         this.sitterCallback = this.sitterCallback.bind(this);
         this.setUserInDB = this.setUserInDB.bind(this);
-        this.getGeoCode = this.getGeoCode.bind(this);
     }
 
     render () {
+        console.log(this.props);
+        let register = {
+            address: this.props.user.address ? this.props.user.address : null,
+            gender: this.props.user.gender ? this.props.user.gender : null,
+            languages: this.props.user.languages ? this.props.user.languages : null,
+            items: this.props.user.personality ? this.props.user.personality : null,
+            watchChildGender: this.props.user.preferedGender ? this.props.user.preferedGender : null,
+            watchMaxPrice: this.props.user.maxPrice ? this.props.user.maxPrice.toString() : null,
+            childName: this.props.user.children ? this.props.user.children.name : null,
+            childAge: this.props.user.children ? this.props.user.children.age.toString() : null,
+            childExpertise: this.props.user.children ? this.props.user.children.expertise : null,
+            childHobbies: this.props.user.children ? this.props.user.children.hobbies : null,
+            childSpecialNeeds: this.props.user.children ? this.props.user.children.specialNeeds : null,
+            partnerName: this.props.user.partner ? this.props.user.partner.name : null,
+            parterEmail: this.props.user.partner ? this.props.user.partner.email : null,
+            partnerGender: this.props.user.partner ? this.props.user.partner.gender : null,
+            sitterMotto: this.props.user.motto ? this.props.user.motto : null,
+            sitterExperience: this.props.user.experience ? this.props.user.experience.toString() : null,
+            sitterMinAge: this.props.user.minAge ? this.props.user.minAge.toString() : null,
+            sitterMaxAge: this.props.user.maxAge ? this.props.user.maxAge.toString() : null,
+            hourFee: this.props.user.hourFee ? this.props.user.hourFee.toString() : null,
+            sitterImmediateAvailability: this.props.user.availableNow ? this.props.user.availableNow : null,
+            sitterMobility: this.props.user.mobility ? this.props.user.mobility : null,
+            sitterEducation: this.props.user.education ? this.props.user.education : null,
+            sitterExpertise: this.props.user.expertise ? this.props.user.expertise : null,
+            sitterHobbies: this.props.user.hobbies ? this.props.user.hobbies : null,
+            sitterSpecialNeeds: this.props.user.specialNeeds ? this.props.user.specialNeeds : null
+        };
+        let workingHours = this.props.user.workingHours ? this.props.user.workingHours : null;
         return (
             <View>
-                <AppBar { ...this.props }/>
-                <Text>This will be the edit profile page</Text>
+                <AppBar
+                    {...this.props} />
+                <ScrollView>
+                    <View style={styles.container}>
+                        {
+                            this.props.user.userType === "I'm a Parent" ?
+                                <ParentForm
+                                    {...this.props}
+                                    register={register}
+                                    workingHours={workingHours}
+                                    callback={ this.parentCallback } /> :
+                                <SitterForm
+                                    {...this.props}
+                                    register={register}
+                                    workingHours={workingHours}
+                                    callback={ this.sitterCallback } />
+                        }
+                    </View>
+                </ScrollView>
             </View>
         );
-    }
-
-    getGeoCode(callback){
-        let city = this.props.register.city != null ? this.props.register.city != null : this.props.user.location.name.split(',')[0];
-        callback(Geocoder.getLatLng(this.props.register.street + " " + this.props.register.houseNumber + ", " + city));
     }
 
     calcAge(birthday) {
@@ -57,32 +85,28 @@ class EditProfile extends Component {
 
     parentCallback () {
         let self = this;
-        let parent = {address:{},languages: [], matchBI: {}};
-        let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
+        let langs = this.props.register.languages ? this.props.register.languages  : this.props.user.languages;
+        let setLangs = [];
         langs.forEach (function(language){
-            if(self.props.register.languages == null)
-                parent.languages.push(language.name);
+            if(self.props.register.languages)
+                setLangs.push(language.name);
             else
-                parent.languages.push(language.name.toLowerCase());
+                setLangs.push(language.name.toLowerCase());
         });
-        this.getGeoCode(function(data) {
-            parent.address.longitude = data != null ? data.lng: 0;
-            parent.address.latitude = data != null ? data.lat: 0;
+        let totalScore = 0;
+        this.props.register.personalityQuestions.forEach(function(question){
+            totalScore += question.value;
         });
-        parent = {
+        let parent = {
             _id : this.props.user.facebookID.toString(),
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-            address: {
-                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
-                street: this.props.register.street,
-                houseNumber: Number(this.props.register.houseNumber),
-            },
+
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-            coverPhoto: this.props.user.coverPhoto.source,
-            timezone: this.props.user.timezone.toString(),
-            profilePicture: this.props.user.picture.data.url,
+            coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
+            timezone: this.props.user.timezone? this.props.user.timezone: "",
+            profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
             children: {
                 name: this.props.register.childName,
@@ -91,71 +115,113 @@ class EditProfile extends Component {
                 hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
                 specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: []
             },
+            userType: "I'm a Parent",
+            notifications: [],
+            multipleInvites: [],
+            invites: [],
+            blacklist: [],
+            pushNotifications: {},
+            personality: this.props.register.personality ? this.props.register.personality : [],
+            settings: {
+                allowNotification: true,
+                allowSuggestions: true,
+                allowShowOnSearch: true
+            },
+            friends: this.props.user.friends,
+            preferedGender: this.props.register.watchChildGender.toLowerCase(),
             partner:{
                 gender: this.props.register.partnerGender ? this.props.register.partnerGender : 'Female',
                 email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
                 name:  this.props.register.partnerName ? this.props.register.partnerName : ' '
-            }
+            },
+            isParent: true
         };
-        //TODO: add personality test scores
-        console.log(parent);
         self.setUserInDB(parent, 'parent/update');
     }
 
     sitterCallback() {// get all the form params and create sitter
         let self = this;
-        let sitter = {address: {},languages: []};
-        let langs = this.props.register.languages == null ? this.props.user.languages : this.props.register.languages;
+        let langs = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
+        let setLangs = [];
         langs.forEach (function(language){
-            if(self.props.register.languages == null)
-                sitter.languages.push(language.name);
+            if(self.props.register.languages)
+                setLangs.push(language.name);
             else
-                sitter.languages.push(language.value);
+                setLangs.push(language.name.toLowerCase());
         });
-        this.getGeoCode(function(data) {
-            sitter.address.longitude = data != null ? data.lng: 0;
-            sitter.address.latitude = data != null ? data.lat: 0;
+        let totalScore = 0;
+        this.props.register.personalityQuestions.forEach(function(question){
+            totalScore += question.value;
         });
-        sitter = {
+        let sitter = {
             _id : this.props.user.facebookID.toString(),
-            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
-            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
-            age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-            address: {
-                city: this.props.register.city != null? this.props.register.city : this.props.user.location.name.split(',')[0],
-                street: this.props.register.street,
-                houseNumber: Number(this.props.register.houseNumber),
-            },
-            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
+            name: this.props.register.name ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
+            gender: this.props.register.gender ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto.source,
+            languages: setLangs,
+            address: {},
             timezone: this.props.user.timezone,
             profilePicture: this.props.user.picture.data.url,
-            experience:  Number(this.props.register.experience),
+            experience:  Number(this.props.register.sitterExperience),
             minAge:  Number(this.props.register.sitterMinAge),
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
-            availableNow: this.props.register.sitterImmediateAvailability.toLowerCase() === 'true',
+            personality: this.props.register.personality ? this.props.register.personality : [],
+            userType: "I'm a Sitter",
+            reviews: [],
+            invites: [],
+            pushNotifications: {},
+            multipleInvites: [],
+            lastInvite: "",
+            availableNow: this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability.toLowerCase() === 'true' : true,
             expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
             hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
             specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
             education: this.props.register.sitterEducation? this.props.register.sitterEducation: [],
-            mobility: this.props.register.sitterMobility.toLowerCase() === 'true'
+            mobility: this.props.register.sitterMobility ? this.props.register.sitterMobility : '',
+            friends: this.props.user.friends,
+            workingHours: this.props.workingHours,
+            motto: this.props.register.sitterMotto,
+            isParent: false,
+            settings: {
+                allowNotification: true,
+                allowSuggestions: true,
+                allowShowOnSearch: true
+            }
         };
-        //TODO: add personality test scores
         console.log(sitter);
         self.setUserInDB(sitter, 'sitter/update');
     }
 
-    async setUserInDB(data, path) {
+    async setUserInDB(user, path) {
         const self = this;
+        let add = self.props.user.address.split(',');
+        const street = add[0].split(' ');
+        let houseNumber = street.pop();
+        if (Number.isNaN(houseNumber)) {
+            street.push(houseNumber);
+            houseNumber = 0;
+        }
+        user.address = {
+            city: self.props.user.address.split(',')[1],
+            street: _.join(street, " "),
+            houseNumber: Number(houseNumber),
+            longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
+            latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
+        };
+        user.isParent = path === 'parent/create';
+        console.log(user);
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/' + path,
+            url: 'https://sittersdev.herokuapp.com/' + path,
+            // url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: data
+            data: user
         }).then(function (res) {
             if (res.data) {  // user created
-                self.props.actions.actionCreators.setUserData(res.data);
+                path === 'parent/create' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
                 Actions.Feed();
             }
             else { // user not created
@@ -169,10 +235,19 @@ class EditProfile extends Component {
     }
 }
 
+const styles = StyleSheet.create({
+    container: {
+        margin: 20
+    }
+});
+
+
 function mapStateToProps(state) {
     return {
         user: state.user,
-        register: state.register
+        register: state.register,
+        workingHours: state.workingHours,
+        location: state.location
     }
 }
 
@@ -180,7 +255,9 @@ function mapDispatchToProps(dispatch) {
     return {
         actions : {
             actionCreators: bindActionCreators(actionCreators, dispatch),
-            registerActions: bindActionCreators(RegisterActions, dispatch)
+            registerActions: bindActionCreators(RegisterActions, dispatch),
+            workingHoursActions: bindActionCreators(WorkingHoursActions,dispatch),
+            locationActions: bindActionCreators(LocationActions, dispatch)
         }
     };
 }
