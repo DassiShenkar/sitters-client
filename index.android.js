@@ -19,11 +19,9 @@ import Settings from './native/containers/Settings';
 import SearchByPrice from './native/containers/SearchByPrice';
 import SearchByTime from './native/containers/SearchByTime';
 import SearchByLocation from './native/containers/SearchByLocation';
-import PersonalityTest from './native/containers/PersonalityTest';
 import RateSitter from './native/containers/RateSitter';
 import Menu from './native/containers/Menu';
 import LoadingScreen from './native/components/LoadingScreen';
-import SitterInfo from './native/containers/SitterReview';
 import ErrorPage from './native/containers/ErrorPage';
 
 import configureStore from './native/store/ConfigureStore'
@@ -51,7 +49,6 @@ class Sitters extends React.Component {
                             <Scene key="SitterProfileView" component={SitterProfileView} title="SitterProfileView" passProps={true} animation='fade'/>
                             <Scene key="Notifications" component={Notifications} title="Notifications" animation='fade'/>
                             <Scene key="Inbox" component={Inbox} title="Inbox" animation='fade'/>
-                            <Scene key="PersonalityTest" component={PersonalityTest} title="PersonalityTest" animation='fade'/>
                             <Scene key="SearchByPrice" component={SearchByPrice} title="SearchByPrice" animation='fade'/>
                             <Scene key="SearchByTime" component={SearchByTime} title="SearchByTime" animation='fade'/>
                             <Scene key="SearchByLocation" component={SearchByLocation} title="SearchByLocation" animation='fade' hideNavBar={true}/>
@@ -62,7 +59,6 @@ class Sitters extends React.Component {
                         <Scene key="RateSitter" component={RateSitter} title="RateSitter" animation='fade'/>
                         <Scene key="LoadingScreen" component={LoadingScreen} title="LoadingScreen" animation='fade'/>
                         <Scene key="Menu" component={Menu} title="Menu" animation='fade'/>
-                        <Scene key="SitterInfo" component={SitterInfo} title="SitterInfo" animation='fade'/>
                     </Scene>
                 </Router>
             </Provider>

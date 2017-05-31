@@ -14,9 +14,8 @@ export default class Logo extends React.Component {
 
 const styles = StyleSheet.create({
     logo: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontFamily: 'PoiretOne',
         fontSize: 64,
-        fontWeight: 'bold',
         color: '#f7a1a1'
     }
 });

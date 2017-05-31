@@ -6,14 +6,21 @@ import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Rating from 'react-native-easy-rating';
+import StarRating from 'react-native-star-rating';
 
 import TextButton from '../components/TextButton'
 import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
 import * as ReviewActions from '../../src/actions/ReviewActions';
 import * as actionCreators from '../../src/actions/actionCreators';
+import * as FeedActions from '../../src/actions/FeedActions';
 
-const rateItems = ['Punctual', 'Behavior with child', 'Connection with child', 'General behavior'];
+const rateItems = [
+    {name: 'Punctual', value: 'punctioal'},
+    {name: 'Behavior with child', value: 'behavior'},
+    {name: 'Connection with child', value: 'connection'},
+    {name: 'General behavior', value: 'general'}
+];
+
 
 class RateSitter extends React.Component {
 
@@ -22,16 +29,20 @@ class RateSitter extends React.Component {
         this.addReview = this.addReview.bind(this);
         this.ratings = this.ratings.bind(this);
         this.reviewDescription = this.reviewDescription.bind(this);
+        this.onChangeRate = this.onChangeRate.bind(this);
     }
 
     addReview() {
         const self = this;
         let sitter = this.props.sitter;
         let review = {
-            parentID: this.props.user._id.toString(),
-            sitterID: sitter._id.toString(),
-            description: this.props.sitterProfile.reviewDescription,
-            parentImage: this.props.user.profilePicture
+            _id: uuid.v1(),
+            sitterID: sitter._id,
+            parentID: this.props.user._id,
+            parentImage: this.props.user.profilePicture,
+            parentName: this.props.user.name,
+            description: this.props.feed.review.text,
+            rates: this.props.feed.review.rates
         };
         sitter.reviews.push(review);
         axios({
@@ -43,18 +54,16 @@ class RateSitter extends React.Component {
         }).then(function (res) {
             if (res.data) {
                 console.log('Added review');
-                self.props.sitterProfileActions.setReviewDescription(' ');
                 Actions.pop();
             }
             else {
-                console.log("user not created");
-                //TODO: think about error when user not created
+                console.log("review not created");
+                Actions.pop();
             }
         }).catch(function (error) {
             console.log(error);
+            alert("review not sent");
             Actions.pop();
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-            //TODO: think about error when user not created
         });
     }
 
@@ -101,22 +110,30 @@ class RateSitter extends React.Component {
     }
 
     ratings() {
+        const self = this;
         return rateItems.map(function(item) {
             return (
-                <View key={ item+'1' } style={{ width: '100%', flexDirection: 'row-reverse', justifyContent: 'space-between', marginBottom: 15 }}>
-                    <Text key={ item+'2' } style={{ color: '#f7a1a1', fontSize: 12, fontWeight: 'bold' }}>{ item }</Text>
-                    <Rating
-                        key={ item }
-                        rating={1}
-                        max={5}
-                        iconWidth={24}
-                        iconHeight={24}
-                        iconSelected={require('../style/icons/full.png')}
-                        iconUnselected={require('../style/icons/empty.png')}
-                        onRate={(rating) => {console.log(rating)}} />
+                <View key={ Math.random() } style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
+                    <Text key={ Math.random() } style={{ color: '#f7a1a1', fontSize: 12, fontWeight: 'bold' }}>{ item.name }</Text>
+                    <StarRating
+                        disabled={false}
+                        emptyStar={'heart-o'}
+                        fullStar={'heart'}
+                        iconSet={'FontAwesome'}
+                        maxStars={5}
+                        rating={self.props.feed.review ? self.props.feed.review.rates[item.value] : 0}
+                        selectedStar={(rating) => {self.onChangeRate(item.value, rating)}}
+                        starColor={'#f7a1a1'}
+                        emptyStarColor={'#f7a1a1'}
+                        starSize={20}
+                    />
                 </View>
             );
         })
+    }
+
+    onChangeRate(category,rate){
+        this.props.feedActions.changeReviewRate(category,rate)
     }
 }
 
@@ -142,7 +159,8 @@ const styles = StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        borderRadius: 100
+        borderRadius: 100,
+        marginBottom: 10
     },
     text: {
         width: '100%',
@@ -174,7 +192,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
     return {
         sitterProfile: state.sitterProfile,
-        user: state.user
+        user: state.user,
+        feed: state.feed
     }
 }
 
@@ -182,7 +201,8 @@ function mapDispatchToProps(dispatch) {
     return {
         actionCreators: bindActionCreators(actionCreators, dispatch),
         sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
-        reviewActions: bindActionCreators(ReviewActions, dispatch)
+        reviewActions: bindActionCreators(ReviewActions, dispatch),
+        feedActions: bindActionCreators(FeedActions, dispatch),
     };
 }
 

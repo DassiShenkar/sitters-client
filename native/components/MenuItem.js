@@ -1,8 +1,10 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Image, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 class MenuItem extends React.Component {
 
@@ -15,24 +17,24 @@ class MenuItem extends React.Component {
         let image = function() {
             switch (self.props.index) {
                 case 1:
-                    return <Image source={ require('../style/icons/profile.png') } style={ styles.image }/>;
+                    return <Icon name="user-circle-o" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
                 case 2:
-                    return <Image source={ require('../style/icons/settings.png') } style={ styles.image }/>;
+                    return <Icon name="gear" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
                 case 3:
-                    return <Image source={ require('../style/icons/logout.png') } style={ styles.image }/>;
+                    return <Icon name="unlock-alt" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
                 case 4:
-                    return <Image source={ require('../style/icons/close.png') } style={ styles.image }/>;
+                    return <Icon name="close" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
                 default:
                     return null;
             }
         };
         return (
-            <TouchableHighlight rowId={self.props.index} onPress={ this.props.menuCallback }>
+            <TouchableOpacity rowId={self.props.index} onPress={ this.props.menuCallback }>
                 <View style={ styles.container }>
                     { image() }
                     <Text>{ this.props.name }</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         );
     }
 }

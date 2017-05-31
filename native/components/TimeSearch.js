@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux'
 import dateFormat from 'dateformat'
 import moment from "moment";
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -33,8 +34,7 @@ export default class TimeSearch extends React.Component {
         const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
         const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
         const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
-        // const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
-        const coverPhoto = require('../style/img/background.jpg');
+        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -46,32 +46,34 @@ export default class TimeSearch extends React.Component {
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     config={config}>
-                    <Image source={coverPhoto} style={styles.backgroundImage}>
-                        <View style={styles.searchByContainer}>
-                            <View style={styles.pickerWrapper}>
-                                <Text style={styles.pickerText}>Pick the Date</Text>
-                                <AndroidDatePicker
-                                    pickerCallback={ this.dateCallback }/>
-                            </View>
-                            <View style={styles.pickerWrapper}>
-                                <Text style={styles.pickerText}>Start Watch</Text>
-                                <AndroidTimePicker
-                                    pickerCallback={ this.startCallback }/>
-                            </View>
-                            <View style={styles.pickerWrapper}>
-                                <Text style={styles.pickerText}>End Watch</Text>
-                                <AndroidTimePicker
-                                    pickerCallback={ this.endCallback }/>
-                            </View>
+                    <View style={styles.searchByContainer}>
+                        <View style={styles.pickerWrapper}>
+                            <Text style={styles.pickerText}>Pick the Date</Text>
+                            <AndroidDatePicker
+                                pickerCallback={ this.dateCallback }/>
                         </View>
-                        {
-                            this.props.sitters.length > 0 ?
-                                <View>
+                        <View style={styles.pickerWrapper}>
+                            <Text style={styles.pickerText}>Start Watch</Text>
+                            <AndroidTimePicker
+                                pickerCallback={ this.startCallback }/>
+                        </View>
+                        <View style={styles.pickerWrapper}>
+                            <Text style={styles.pickerText}>End Watch</Text>
+                            <AndroidTimePicker
+                                pickerCallback={ this.endCallback }/>
+                        </View>
+                    </View>
+                    {
+                        this.props.sitters.length > 0 ?
+                            <View>
+                                <Image source={{uri: coverPhoto}}>
                                     <View style={styles.feedContainer}>
-                                        <ImageButton
-                                            onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                            styles={styles.sitterImage}
-                                            src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                        <View style={styles.backgroundCircle}>
+                                            <ImageButton
+                                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                                styles={styles.sitterImage}
+                                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                        </View>
                                         <View style={styles.feedTextView}>
                                             <Text style={styles.sitterText}>{name + ', ' + age}</Text>
                                             { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
@@ -79,19 +81,13 @@ export default class TimeSearch extends React.Component {
                                         </View>
                                     </View>
                                     <View style={styles.feedButtons}>
-                                        <ImageButton
-                                            onPress={ (e) => {this.navToInvite()} }
-                                            styles={styles.button}
-                                            src={require('../style/icons/v.png')}/>
-                                        <ImageButton
-                                            onPress={ (e) => {this.nextSitter()} }
-                                            styles={styles.button}
-                                            src={require('../style/icons/next.png')}/>
+                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.navToInvite(e, sitterId)} />
+                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.nextSitter(e, sitterId)} />
                                     </View>
-                                </View>
-                                : <Text style={styles.notFoundText}>No matches found!</Text>
-                        }
-                    </Image>
+                                </Image>
+                            </View>
+                            : <Text style={styles.notFoundText}>No matches found!</Text>
+                    }
                 </GestureRecognizer>
             </View>
         );
@@ -159,7 +155,8 @@ const styles = StyleSheet.create({
     searchByContainer: {
         margin: 15,
         justifyContent: 'flex-start',
-        marginBottom: 30
+        marginBottom: 70,
+        marginTop: 45
     },
     pickerWrapper: {
         flexDirection: 'row',
@@ -181,7 +178,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        height: '66%',
         padding: 30
     },
     feedTextView: {
@@ -192,18 +188,27 @@ const styles = StyleSheet.create({
     sitterImage: {
         width: 100,
         height: 100,
-        borderRadius:100
+        borderRadius:100,
+        alignSelf: 'center'
+    },
+    backgroundCircle: {
+        width: 110,
+        height: 110,
+        borderRadius:100,
+        backgroundColor: '#fff',
+        justifyContent: 'center'
     },
     sitterText: {
-        color: '#f7a1a1',
-        fontSize: 16,
-        margin: 5
+        fontSize: 18,
+        margin: 5,
+        color: '#fff',
+        textShadowColor: '#000',
+        textShadowOffset: {width: 2, height: 2}
     },
     feedButtons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight: 30,
-        paddingLeft: 30
+        padding: 30
     },
     button: {
         width: 50,

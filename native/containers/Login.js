@@ -27,13 +27,12 @@ class Login extends React.Component {
                                 borderRightColor: '#fff',
                                 borderStyle: 'solid',
                                 borderWidth: 1 }}>
-                    <Text style={ styles.questionText }>What kind of user are you?</Text>
                     <Picker
                         style={styles.picker}
                         selectedValue={ this.props.user.userType }
                         onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-                        <Picker.Item label="I'm a parent" value="I'm a parent" />
-                        <Picker.Item label="I'm a sitter" value="I'm a sitter" />
+                        <Picker.Item label="I'm a Parent" value="I'm a Parent" />
+                        <Picker.Item label="I'm a Sitter" value="I'm a Sitter" />
                     </Picker>
                 </View>
                 <FaceBookLogin

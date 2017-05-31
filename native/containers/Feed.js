@@ -10,9 +10,10 @@ import * as actionCreators from '../../src/actions/actionCreators';
 import * as FeedActions from '../../src/actions/FeedActions';
 import * as SettingsActions from '../../src/actions/SettingsActions';
 import * as RouterActions from '../actions/RouterActions';
+import * as CalendarActions from '../actions/CalendarActions';
 import AppBar from '../components/AppBar';
 import SitterList from '../components/SitterList';
-import Calendar from '../components/Calendar';
+import SitterCalendar from '../components/SitterCalendar';
 import LoadingScreen from '../components/LoadingScreen';
 import LocalStorage from '../utils/LocalStorage';
 
@@ -27,7 +28,7 @@ class Feed extends React.Component {
         self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
-                if(self.props.user.userType === "I'm a parent") {
+                if(self.props.user.userType === "I'm a Parent") {
                     axios({
                         method: 'post',
                         // url: 'https://sitters-server.herokuapp.com/parent/get',
@@ -73,7 +74,6 @@ class Feed extends React.Component {
                         data: {_id: userId}
                     })
                         .then(function (sitter) {
-                            console.log(sitter.data);
                             if (sitter.data) {  // user exists
                                 self.props.settingsActions.setNotifications(sitter.data.settings.allowNotification);
                                 self.props.settingsActions.setSuggestions(sitter.data.settings.allowSuggestions);
@@ -114,11 +114,11 @@ class Feed extends React.Component {
                 {
                     this.props.feed.showSpinner ?
                     <LoadingScreen /> :
-                    this.props.user.userType === "I'm a parent" ?
+                    this.props.user.userType === "I'm a Parent" ?
                     <SitterList
                         { ...this.props }
                         sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }/> :   
-                    <Calendar
+                    <SitterCalendar
                         {...this.props} />
                 }
             </View>
@@ -137,6 +137,7 @@ function mapStateToProps(state) {
         user: state.user,
         feed: state.feed,
         router: state.router,
+        calendar: state.calendar
     }
 }
 
@@ -145,7 +146,8 @@ function mapDispatchToProps(dispatch) {
         actionCreators: bindActionCreators(actionCreators, dispatch),
         feedActions: bindActionCreators(FeedActions, dispatch),
         routerActions: bindActionCreators(RouterActions, dispatch),
-        settingsActions: bindActionCreators(SettingsActions, dispatch)
+        settingsActions: bindActionCreators(SettingsActions, dispatch),
+        calendarActions: bindActionCreators(CalendarActions, dispatch)
     };
 }
 

@@ -29,7 +29,7 @@ class Register extends Component {
                 <ScrollView>
                     <View style={styles.container}>
                         {
-                            this.props.user.userType === "I'm a parent" ?
+                            this.props.user.userType === "I'm a Parent" ?
                             <ParentForm
                                 {...this.props}
                                 callback={ this.parentCallback } /> :
@@ -80,10 +80,12 @@ class Register extends Component {
                 hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
                 specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: []
             },
-            userType: "I'm a parent",
+            userType: "I'm a Parent",
             notifications: [],
+            multipleInvites: [],
             invites: [],
             blacklist: [],
+            pushNotifications: {},
             personality: this.props.register.personality ? this.props.register.personality : [],
             settings: {
                 allowNotification: true,
@@ -132,9 +134,11 @@ class Register extends Component {
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
             personality: this.props.register.personality ? this.props.register.personality : [],
-            userType: "I'm a sitter",
+            userType: "I'm a Sitter",
             reviews: [],
             invites: [],
+            pushNotifications: {},
+            multipleInvites: [],
             lastInvite: "",
             availableNow: this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability.toLowerCase() === 'true' : true,
             expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],

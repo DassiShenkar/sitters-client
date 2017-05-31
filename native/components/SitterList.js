@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from '../components/ImageButton';
 
@@ -16,6 +17,7 @@ export default class Feed extends React.Component {
         this.nextSitter = this.nextSitter.bind(this);
         this.openInfo = this.openInfo.bind(this);
         this.addFriends = this.addFriends.bind(this);
+        this.shouldReview = this.shouldReview.bind(this);
     }
 
 
@@ -28,11 +30,11 @@ export default class Feed extends React.Component {
         let motto = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].motto : '';
         let personality = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].personality ?
             this.props.sitters[sitterIndex].personality.map(function(word) {
-                return <Text key={Math.random()} style={styles.personality}>{word} </Text>;
+                return <Text key={Math.random()} style={styles.personality}>{word}</Text>;
             })
             : null : null;
-        let friends = this.props.user.mutualFriends ? this.props.user.mutualFriends : null;
-        let friendCount = this.props.user.mutualFriends ? friends.length : 0;
+        let friends = this.props.sitters.length ? this.props.sitters[sitterIndex].mutualFriends : null;
+        let friendCount = this.props.sitters.length ? friends.length : 0;
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -42,41 +44,60 @@ export default class Feed extends React.Component {
                 <GestureRecognizer
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
-                    // onSwipeUp={(e) => this.openInfo(e)}
-                    onSwipeDown={(e) => this.navToProfile(e, sitterId)}
                     config={config}>
                     <Image source={{uri: coverPhoto}} style={styles.backgroundImage}>
                         <View style={styles.sitterContainer}>
-                            <ImageButton
-                                onPress={ (e) => this.navToProfile(e, sitterId) }
-                                styles={styles.profilePicture}
-                                src={ profilePicture } />
-                            <Text style={styles.text}>{ sitterName }</Text>
-                        </View>
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.infoText}>You and {sitterName.split(' ')[0]} have {friendCount} mutual friends:</Text>
-                            {friendCount ? friendCount > 0 ? this.addFriends() : null : null}
-                            {personality ? <Text style={styles.infoText}>{sitterName.split(' ')[0]} Tells that she is:</Text> : null}
-                            <View style={styles.personalityContainer}>
-                                {personality}
+                            <View style={styles.backgroundCircle}>
+                                <ImageButton
+                                    onPress={ (e) => this.navToProfile(e, sitterId) }
+                                    styles={styles.profilePicture}
+                                    src={ profilePicture } />
                             </View>
-                            {motto ? <Text style={styles.infoText}>{sitterName.split(' ')[0]} motto is: "{motto}"</Text> : null}
-                        </View>
-                        <View style={styles.navPanel}>
-                            <ImageButton
-                                onPress={ (e) => this.navToInvite(e, sitterId) }
-                                styles={styles.button}
-                                src={require('../style/icons/v.png')} />
-                            <ImageButton
-                                onPress={ (e) => this.navToRate(e, sitterId) }
-                                styles={styles.button}
-                                src={require('../style/icons/star.png')} />
-                            <ImageButton
-                                onPress={ (e) => this.nextSitter(e) }
-                                styles={styles.button}
-                                src={require('../style/icons/next.png')} />
+                            <Text style={styles.sitterName}>{ sitterName }</Text>
                         </View>
                     </Image>
+                    <View style={styles.infoContainer}>
+                        {
+                            friendCount ? friendCount > 0 ?
+                            <View>
+                                <Text style={styles.infoText}>MUTUAL FRIENDS ({friendCount})</Text>
+                                {this.addFriends()}
+                            </View> : null  : null
+                        }
+                        {
+                            motto ?
+                                <View>
+                                    <Text style={styles.infoText}>MOTTO</Text>
+                                    <Text style={styles.mottoText}>"{motto}"</Text>
+                                </View> : null
+                        }
+                        {
+                            personality ?
+                                <View style={styles.personalityContainer}>
+                                    <Text style={styles.infoText}>PERSONALITY</Text>
+                                    <View style={styles.personalityRow}>
+                                        <View style={styles.personalityColumn}>
+                                            {personality[0]}
+                                            {personality[1]}
+                                            {personality[2]}
+                                        </View>
+                                        <View style={styles.personalityColumn}>
+                                            {personality[3]}
+                                            {personality[4]}
+                                            {personality[5]}
+                                        </View>
+                                    </View>
+                                </View> : null
+                        }
+                    </View>
+                    <View style={styles.navPanel}>
+                        <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToInvite(e, sitterId)} />
+                        {
+                            this.props.sitters.length ? this.shouldReview() ?
+                                <Icon.Button name="heart" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToRate(e, sitterId)} /> : null : null
+                        }
+                        <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.nextSitter(e, sitterId)} />
+                    </View>
                 </GestureRecognizer>
             </View>
         );
@@ -119,6 +140,14 @@ export default class Feed extends React.Component {
         let sitter = this.props.sitters[sitterIndex];
         Actions.SitterInfo({ sitter: sitter });
     }
+
+    shouldReview() {
+        let sitterIndex = this.props.feed.sitterIndex;
+        let sitter = this.props.sitters[sitterIndex];
+        return this.props.user.invites.find(invite => {
+            return invite.sitterID === sitter._id;
+        })
+    }
 }
 
 const styles = StyleSheet.create({
@@ -132,23 +161,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        padding: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)'
+        padding: 20
     },
     infoContainer: {
         width: '100%',
-        padding: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)'
+        padding: 15
     },
-    backgroundImage: {
-        width: null,
-        height: null,
-        resizeMode:'stretch'
+    backgroundCircle: {
+        width: 110,
+        height: 110,
+        borderRadius:100,
+        backgroundColor: '#fff',
+        justifyContent: 'center'
     },
     profilePicture: {
         width: 100,
         height: 100,
-        borderRadius:100
+        borderRadius:100,
+        alignSelf: 'center'
     },
     friendPicture: {
         width: 70,
@@ -160,33 +190,60 @@ const styles = StyleSheet.create({
         fontSize: 22,
         marginTop: 10
     },
+    sitterName: {
+        color: '#fff',
+        fontSize: 24,
+        textShadowColor: '#000',
+        textShadowOffset: {width: 2, height: 2}
+    },
     infoText: {
+        alignSelf: 'center',
         color: '#f7a1a1',
         fontSize: 16,
+        marginTop: 10
+    },
+    mottoText: {
+        fontFamily: 'PoiretOne',
+        alignSelf: 'center',
+        color: '#f7a1a1',
+        fontSize: 22,
         marginTop: 10
     },
     personalityContainer: {
         flexDirection: 'column',
         width: '100%',
+        justifyContent: 'space-between'
+    },
+    personalityRow: {
+        flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        padding: 5
+    },
+    personalityColumn: {
+        padding: 10
     },
     personality: {
-        color: '#f7a1a1',
-        fontSize: 18
+        alignSelf: 'center',
+        color: '#fff',
+        padding: 3,
+        margin: 3,
+        backgroundColor: '#f7a1a1',
+        fontSize: 18,
+        width: 130,
+        borderRadius: 10
     },
     navPanel: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 10,
         width: '100%',
+        height: 55,
         paddingRight: 35,
-        paddingLeft: 35,
-        backgroundColor: 'rgba(255, 255, 255, 0.9)'
+        paddingLeft: 35
     },
     button: {
+        fontFamily: 'icons',
         width: 50,
         height: 50,
         borderRadius:100

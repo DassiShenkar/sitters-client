@@ -37,6 +37,7 @@ class Menu extends React.Component {
                     <View style={ styles.container }>
                         <ListView
                             dataSource={dataSource}
+                            scrollEnabled={false}
                             renderRow={(data) => <MenuItem {...this.props} {...data} />}
                             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}/>
                     </View>
