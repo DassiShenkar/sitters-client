@@ -1,0 +1,70 @@
+.match-info {
+  display: flex;
+  flex-direction: row;
+  padding: 56px 0;
+
+  h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 48px;
+  }
+
+  h4 {
+    font-family: "Open Sans", Helvetica, Arial, cursive;
+    margin-bottom: 24px;
+  }
+}
+
+.personality, .match-images, .match-criteria {
+  flex: 1;
+}
+
+.personality, .match-criteria {
+  margin-top: 48px;
+}
+
+.personality h4 {
+  margin-bottom: 48px;
+}
+
+.personality {
+  font-size: 18px;
+
+  ul {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 216px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ul li {
+    width: 120px;
+  }
+
+  ul li:last-child {
+    margin-left: .8em;
+  }
+
+  .label-dark, .label-regular, .label-light {
+    background: #f86966;
+  }
+
+  .label-regular {
+    background: #fa8f8c;
+  }
+
+  .label-light {
+    background: #fbb4b3;
+  }
+}
+
+.match-images img {
+  border: 4px solid #fff;
+  margin: 15px;
+}
+
+.recharts-wrapper {
+  display: block;
+  margin: 0 auto;
+}
