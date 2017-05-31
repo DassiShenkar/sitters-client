@@ -27,7 +27,6 @@ class Login extends React.Component {
                                 borderRightColor: '#fff',
                                 borderStyle: 'solid',
                                 borderWidth: 1 }}>
-                    <Text style={ styles.questionText }>What kind of user are you?</Text>
                     <Picker
                         style={styles.picker}
                         selectedValue={ this.props.user.userType }

@@ -3,30 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\jars\classes.jar"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-ws\3.4.1\8ace66ef7002d98f633377c9e67daeeb196d8c3b\okhttp-ws-3.4.1.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.0.0_cf7d68eb4922a604e5a789f97f341b6f0af57198.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.0_f6e17804affbb37834275f75ecdca025ea40d1f1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.0.0_88da26d3b565ff0b554337edff6eb8ef3b38baf0.jar" />
+        revision="24.0.1"
+        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okhttp-ws-3.4.1_b8f08672750ddc0b08e8c4b3d77a4efc8591c27c.jar" />
     </item>
     <item
         is-multidex="false"
@@ -39,12 +21,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_c4060735f0c57211db60c8a79a1dd4f36529dccc.jar" />
+        revision="24.0.1"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.3.1_d0bad0b9b324289a6b80f0b61f965153706467e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b664fc8e4b763bd6226a30aae5797773886dd5a8">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.airbnb.android-react-native-maps-0.15.0_7ecc339f1e7b96ab82e06a834f9d2e182863f256.jar" />
     </item>
     <item
         is-multidex="false"
@@ -54,15 +45,6 @@
         revision="23.0.1"
         sha1="f162442a19fff13995fbd51ba414d9ee05579080">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_80d1f1b50e0ef6892ca2c358fda98a773e7d5ebb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="5803db663655ef5cb38c6bcb17ba326fdb9edfbd">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.2.4_1f98dfe17ce1062b99e39e97d5f600a6154358a2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -84,48 +66,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\0.11.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\support-annotations-25.0.0_3972e103cc9f33ae1aa92227a9766aeb257ceaf1.jar" />
+        revision="24.0.1"
+        sha1="ca63c521b5745ae9a09629d7ca67ff6bc2a967fe">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-0.11.0_604df75efa91eb6b6111d0f6d428f0c7481e713c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_1cb67a1a5ff343a7ddc6cefec4d0194257c780d3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.22.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d5cbc9214ee567ea6ef56fb2707d48e58d240fc2">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.22.1_618983bc259c38622a8093f9be1776cd9abadf51.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="b664fc8e4b763bd6226a30aae5797773886dd5a8">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.airbnb.android-react-native-maps-0.15.0_7ecc339f1e7b96ab82e06a834f9d2e182863f256.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.0.0_ad6d93b72601d69119bb3fa61f74b7d2ae1661dd.jar" />
+        revision="24.0.1"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.4.0_2e72e302ffd6b79186378a784ce0ab56c1009f7d.jar" />
     </item>
     <item
         is-multidex="false"
@@ -138,30 +93,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\customtabs\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="94ba691efc31bf53264db0716d9c9ec03843ea31">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-customtabs-25.0.0_2c9c71b673f999fe254abd1930ad4a605b16d583.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_8071f4c9153dc7870472de6e150b34ef67614792.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8a372c4191f80489770a231f7be4820b204b886a">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.0.0_938025d1319c83a9864909919e2ce607e5139d81.jar" />
     </item>
     <item
         is-multidex="false"
@@ -174,15 +111,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.0.0_7c0bfa04b81f7d451a793b58790f33177c40b71d.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.11.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -192,12 +120,327 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\library-2.4.0_7dcc3ac4a30f386c51d9582e4504072021db0ad0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="3341b66c54367e777a0647e2db96c045329bfeab">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-0.11.0_310861993819d13ce75fd1e2d08e1b2259339129.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.3.1_0424bf6a72af9b9a2cedcf6d87e0b13b62148e71.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-ws\3.4.1\8ace66ef7002d98f633377c9e67daeeb196d8c3b\okhttp-ws-3.4.1.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_2711479a572a46bc8941ae42097b520b01c72193.jar" />
+        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okhttp-ws-3.4.1_b8f08672750ddc0b08e8c4b3d77a4efc8591c27c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.3.1_594f40a280fe8c32f4a545841cfe1d4950a0219e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="9ed08fab37c3a572da1d9ed2bf2e36c8d3e2bc48">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.2.4_74bb8f4f001c7cf76ef54e8c69994fe23bc8c73d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.4.0_8ed6560adfd7f13983bfe7d5a5524882de26d511.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2b8a01ad9da5d26d0067894c22e87597bca2c500">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-0.11.0_5eccf61fc5e5473c0195bdca64747ad87ff946c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.3.1_c41f2aa8002e79db39236b1d30647ae28c17e59f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.4.1\c7c4f9e35c2fd5900da24f9872e3971801f08ce0\okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okhttp-3.4.1_18e07fc19d32180fa37e73307211f15e04c89c4d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4504ae3ec47953f3d0c324dc66996aecfb7fbb5c">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.23.0_09b01eba67f3f24aebe358b12c519380007e1abb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_80d1f1b50e0ef6892ca2c358fda98a773e7d5ebb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_c4060735f0c57211db60c8a79a1dd4f36529dccc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6d0d5e86f5b7203834df01ed78ebfdd5cbf74d48">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.2.4_88461a619dc05fb6e7758c7628e5dd11e51554e3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_1cb67a1a5ff343a7ddc6cefec4d0194257c780d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3341b66c54367e777a0647e2db96c045329bfeab">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-0.11.0_310861993819d13ce75fd1e2d08e1b2259339129.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okio-1.9.0_b41270ed26b97ecf5cfff895454c9ab289ea6d3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.3.1_d2f4a0af51c6f5ccfe64640bfa87f78e32f7cc3c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="98786c1770b531b9194fb6448b2a2692c64074b6">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fbcore-0.11.0_7c2247eb4037ebe2693348e49f7263007c82bf23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\library-2.4.0_7dcc3ac4a30f386c51d9582e4504072021db0ad0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_a5a2825b34de3f3f7ae9d3d699d30b462eec82a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.4.1\63994437f62bc861bc20c605d12962f7246116d1\okhttp-urlconnection-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="63994437f62bc861bc20c605d12962f7246116d1">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.4.1_3d960df44ca90d01006945dd81750d111c0aa1ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fresco\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d31aadf33187c37a7cd63dc1b769f8c6e33f78c3">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-fresco-0.11.0_e86c710831e3b09ab7499c7221fe1f190dc4addc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\0.11.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="2b8a01ad9da5d26d0067894c22e87597bca2c500">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-0.11.0_5eccf61fc5e5473c0195bdca64747ad87ff946c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.soloader-soloader-0.1.0_c4060735f0c57211db60c8a79a1dd4f36529dccc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5803db663655ef5cb38c6bcb17ba326fdb9edfbd">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.2.4_1f98dfe17ce1062b99e39e97d5f600a6154358a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6d0d5e86f5b7203834df01ed78ebfdd5cbf74d48">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.2.4_88461a619dc05fb6e7758c7628e5dd11e51554e3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.42.3\jars\libs\infer-annotations-1.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="dcac634e137395f79693ec760f081a86eb2bd84e">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\infer-annotations-1.5_087d755c10221e168ffefc7857fd7f94aebfec85.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\customtabs\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="807751a24cf96566fd8675517c94d8463cf364db">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-customtabs-25.3.1_89b2f398307c690385ca673d8c0798fa0fcc84f4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_1cb67a1a5ff343a7ddc6cefec4d0194257c780d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fbui.textlayoutbuilder\textlayoutbuilder\1.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_26d8811813f4df6e1c575ade6876aa571a57acbc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b664fc8e4b763bd6226a30aae5797773886dd5a8">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.airbnb.android-react-native-maps-0.15.0_7ecc339f1e7b96ab82e06a834f9d2e182863f256.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.3.1_c0d17291dac89df74c7cc3c855f89f3d762fccab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.3.1_ddaddce69d395754af8d755135104fe7266b5d33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\react-native-fbsdk\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ac6965f038f9100d9814b3456ca35f2fd50e559f">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\Sitters-react-native-fbsdk-unspecified_dc2c17374c324f70c6e3b725b6c3fcab3ba6ace5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okio-1.9.0_b41270ed26b97ecf5cfff895454c9ab289ea6d3f.jar" />
     </item>
     <item
         is-multidex="false"
@@ -228,15 +471,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-ws\3.4.1\8ace66ef7002d98f633377c9e67daeeb196d8c3b\okhttp-ws-3.4.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okhttp-ws-3.4.1_b8f08672750ddc0b08e8c4b3d77a4efc8591c27c.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.4.1\63994437f62bc861bc20c605d12962f7246116d1\okhttp-urlconnection-3.4.1.jar"
         jumboMode="false"
         optimize="true"
@@ -255,21 +489,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.42.3\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_652dbfdf9864c07743c515b09b7bc0c142ce85ff.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\0.11.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="2b8a01ad9da5d26d0067894c22e87597bca2c500">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-okhttp3-0.11.0_5eccf61fc5e5473c0195bdca64747ad87ff946c9.jar" />
+        revision="24.0.1"
+        sha1="962b06c207e808c0557ffd6163ac584025a96021">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.react-react-native-0.42.3_3ed427ab704ef14d8da241d64b84fc2da2cad405.jar" />
     </item>
     <item
         is-multidex="false"
@@ -282,12 +507,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="6d0d5e86f5b7203834df01ed78ebfdd5cbf74d48">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.2.4_88461a619dc05fb6e7758c7628e5dd11e51554e3.jar" />
+        revision="24.0.1"
+        sha1="5803db663655ef5cb38c6bcb17ba326fdb9edfbd">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.2.4_1f98dfe17ce1062b99e39e97d5f600a6154358a2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -300,75 +525,66 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.0.0_c938273ae5b3cf9ec07947024cb38b4989bbd9af.jar" />
+        revision="24.0.1"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.3.1_d402f39819faf597d7a3d8f6308cafe968a83c8f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.0_bb622cece3eb716a55ad879f9571476f9bef2212.jar" />
+        revision="24.0.1"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.3.1_42a497b40c4e4d63e66d56f8130e1816d0266264.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_5833d6d6eb289e37b1412d4a3092bf5eecb29820.jar" />
+        revision="24.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_ed056cf491007105d54d8d8bd5fe559657696c95.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\classes.jar"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.0.0_efdc042c9f09feb67b49fa718ad4ac68f3593741.jar" />
+        revision="24.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_8071f4c9153dc7870472de6e150b34ef67614792.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\drawee\0.11.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_4601e4f38c20b6823ea011293e91cfc658befde0.jar" />
+        revision="24.0.1"
+        sha1="1137942adeb03984c1311b662363dd38fc238fd3">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-0.11.0_c4b4a69b7f613602de2597621ecf6c3fdb22ed99.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\0.11.0\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="3341b66c54367e777a0647e2db96c045329bfeab">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-0.11.0_310861993819d13ce75fd1e2d08e1b2259339129.jar" />
+        revision="24.0.1"
+        sha1="dd1d0d84da2cff18f741c63a9c3af7d9aa89fdd6">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.2.4_83da0267371860a59c5ec2fba6412637749210fc.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.0.0_f2a404e927ce183b11d65a092769fed62d540156.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okio-1.9.0_b41270ed26b97ecf5cfff895454c9ab289ea6d3f.jar" />
+        revision="24.0.1"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.3.1_53a6cf4dfa421c1abdf22665693683366b4edcab.jar" />
     </item>
     <item
         is-multidex="false"
@@ -378,24 +594,6 @@
         revision="23.0.1"
         sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_26d8811813f4df6e1c575ade6876aa571a57acbc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_cfcad97fc2e7dea670c2016baf0d2bb01a81073f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\library-2.4.0_7dcc3ac4a30f386c51d9582e4504072021db0ad0.jar" />
     </item>
     <item
         is-multidex="false"

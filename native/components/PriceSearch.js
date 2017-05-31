@@ -26,8 +26,7 @@ export default class PriceSearch extends React.Component {
         const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
         const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
         let value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : this.props.searchBy.priceMaxRange;
-        // const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
-        const coverPhoto = require('../style/img/background.jpg');
+        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
         let priceRange = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : Math.floor(this.props.searchBy.priceMaxRange);
         const config = {
             velocityThreshold: 0.1,
@@ -39,27 +38,28 @@ export default class PriceSearch extends React.Component {
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     config={config}>
-                    <Image source={coverPhoto} style={styles.backgroundImage}>
-                        <View style={styles.searchByContainer}>
-                            <Text style={styles.headerText}>
-                                Max Hour rate: {priceRange}$
-                            </Text>
-                            <View style={styles.sliderNumberWrapper}>
-                                <Text style={styles.sliderNumbers}>1</Text>
-                                <Text style={styles.sliderNumbers}>50</Text>
-                            </View>
-                            <Slider
-                                value={ value }
-                                {...this.props}
-                                maximumTrackTintColor="#f7a1a1"
-                                thumbTintColor="#f7a1a1"
-                                maximumValue={50}
-                                minimummValue={1}
-                                onSlidingComplete={(value) => this.filter(value)} />
+
+                    <View style={styles.searchByContainer}>
+                        <Text style={styles.headerText}>
+                            Max Hour rate: {priceRange}$
+                        </Text>
+                        <View style={styles.sliderNumberWrapper}>
+                            <Text style={styles.sliderNumbers}>1</Text>
+                            <Text style={styles.sliderNumbers}>50</Text>
                         </View>
-                        {
-                            this.props.sitters.length > 0 ?
-                            <View>
+                        <Slider
+                            value={ value }
+                            {...this.props}
+                            maximumTrackTintColor="#f7a1a1"
+                            thumbTintColor="#f7a1a1"
+                            maximumValue={50}
+                            minimummValue={1}
+                            onSlidingComplete={(value) => this.filter(value)} />
+                    </View>
+                    {
+                        this.props.sitters.length > 0 ?
+                        <View style={styles.content}>
+                            <Image source={{uri: coverPhoto}}>
                                 <View style={styles.feedContainer}>
                                     <ImageButton
                                         onPress={ (e) => {this.navToProfile(e, sitterId)} }
@@ -81,10 +81,10 @@ export default class PriceSearch extends React.Component {
                                         styles={styles.button}
                                         src={require('../style/icons/next.png')}/>
                                 </View>
-                            </View>
-                        : <Text style={styles.notFoundText}>No matches found!</Text>
+                            </Image>
+                        </View>
+                    : <Text style={styles.notFoundText}>No matches found!</Text>
                     }
-                    </Image>
                 </GestureRecognizer>
             </View>
         );
@@ -117,12 +117,14 @@ export default class PriceSearch extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        width: '100%'
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     },
     searchByContainer: {
         margin: 15,
         justifyContent: 'flex-start',
-        marginBottom: 30
+        marginBottom: 75,
+        marginTop: 45
     },
     headerText: {
         fontSize: 16,
@@ -130,6 +132,9 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 10,
         paddingTop: 10
+    },
+    content: {
+        justifyContent: 'flex-end'
     },
     sliderNumberWrapper: {
         flexDirection: 'row',
@@ -151,7 +156,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        height: '66.7%',
         padding: 30
     },
     feedTextView: {
@@ -165,15 +169,16 @@ const styles = StyleSheet.create({
         borderRadius:100
     },
     sitterText: {
-        color: '#f7a1a1',
-        fontSize: 16,
-        margin: 5
+        fontSize: 18,
+        margin: 5,
+        color: '#fff',
+        textShadowColor: '#000',
+        textShadowOffset: {width: 2, height: 2}
     },
     feedButtons: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight: 30,
-        paddingLeft: 30
+        padding: 30
     },
     button: {
         width: 50,

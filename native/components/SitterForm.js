@@ -23,6 +23,8 @@ export default class SitterForm extends React.Component {
         this.removeHobbies = this.removeHobbies.bind(this);
         this.needsChecked = this.needsChecked.bind(this);
         this.removeNeeds = this.removeNeeds.bind(this);
+        this.mobilityChecked = this.mobilityChecked.bind(this);
+        this.removeMobility = this.removeMobility.bind(this);
     }
 
     render () {
@@ -86,15 +88,12 @@ export default class SitterForm extends React.Component {
                     <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
                 </Picker>
                 <Text style={styles.text}>Mobility?</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={ this.props.register.sitterMobility ? this.props.register.sitterMobility : null }
-                    onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterMobility(availability) }}>
-                    <Picker.Item label={ "None" } value={ false } />
-                    <Picker.Item label={ strings.MOBILITY[0] } value={ strings.MOBILITY[0] } />
-                    <Picker.Item label={ strings.MOBILITY[1] } value={ strings.MOBILITY[1] } />
-                    <Picker.Item label={ strings.MOBILITY[2] } value={ strings.MOBILITY[2] } />
-                </Picker>
+                <MyMultiSelect
+                    style={{ marginBottom: 10 }}
+                    items={strings.MOBILITY}
+                    selected={this.props.register.sitterMobility ? this.props.register.sitterMobility : []}
+                    update={this.mobilityChecked}
+                    remove={this.removeMobility} />
                 <Text style={styles.text}>Education</Text>
                 <MyMultiSelect
                     style={{ marginBottom: 10 }}
@@ -131,6 +130,24 @@ export default class SitterForm extends React.Component {
                     text="Submit" />
             </Form>
         );
+    }
+
+    mobilityChecked() {
+        let mobility = this.props.register.sitterMobility ? this.props.register.sitterMobility : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name);
+        });
+        let array = [...select, ...mobility];// TODO: check why not adding
+        this.props.actions.registerActions.changeSitterMobility(array);
+    }
+
+    removeMobility() {
+        let mobility = this.props.register.sitterMobility ? this.props.register.sitterMobility : [];
+        let array =  mobility.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.actions.registerActions.changeSitterMobility(array);
     }
 
     eduChecked (selected) {
