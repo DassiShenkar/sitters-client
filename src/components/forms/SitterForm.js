@@ -144,7 +144,7 @@ class Form extends React.Component {
             motto: this.props.register.sitterMotto,
             personality: personality,
             settings: {
-                allowNotification: true,
+                allowNotification: false,
                 allowShowOnSearch: true
             },
             pushNotifications: {},

@@ -285,7 +285,6 @@ class Settings extends React.Component {
                     {showOnSearch}
                     <Button className="submit-settings" title="Send Review" bsStyle="primary" onClick={this.handleApplyChanges.bind(this)}>Apply Changes</Button>
                 </form>
-                <pre><code className="js-subscription-json"/></pre>
             </div>
         );
     }

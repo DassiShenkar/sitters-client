@@ -30,16 +30,18 @@ class Map extends React.Component {
                     },
                     onLoaded: (googleMaps, map, marker) => {
                         // Set Marker animation
-                        marker.setAnimation(googleMaps.Animation.BOUNCE);
+                         marker.setAnimation(googleMaps.Animation.BOUNCE);
                         // const sitterProfileURL = "/sitter/" + sitter._id;
                         // const distance = geodist({lat: self.props.center.lat, lon: self.props.center.lng}, {lat: sitter.address.latitude, lon: sitter.address.longitude},{ unit: 'km'});
+
+                        // const infoWindow = new googleMaps.InfoWindow({
+                        //     content: `<div><h3>` + parent.name + `</h3><Image className="info-window-img" src="` + parent.profilePicture + `"/><p>Child Name: ` + parent.children.name + `</p></div>`
+                        // });
 
                         const infoWindow = new googleMaps.InfoWindow({
                             content: ` <div>
                         <h3>` + parent.name + `</h3>
                             <Image className="info-window-img" src='` + parent.profilePicture + `' circle/>
-                            <p>Child Name: ` + parent.children.name + `</p>
-                            
                     </div>`
                         });
 
@@ -57,7 +59,7 @@ class Map extends React.Component {
                         // googleMaps.event.addListener(marker, "mouseout", () => {
                         //     infoWindow.close(map, marker);
                         // });
-                        infoWindow.open(map, marker);
+                       infoWindow.open(map, marker);
                     }
                 })
             );

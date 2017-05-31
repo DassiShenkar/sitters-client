@@ -85,8 +85,8 @@ class Form extends React.Component {
             invites: [],
             blacklist: [],
             settings: {
-                allowNotification: true,
-                allowSuggestions: true
+                allowNotification: false,
+                allowSuggestions: false
             },
             friends: this.props.user.friends,
             preferedGender: this.props.register.watchChildGender.toLowerCase(),

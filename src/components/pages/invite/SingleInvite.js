@@ -91,6 +91,7 @@ export default class SingleInvite extends React.Component{
     }
 
     changeInviteStatus(invite, status){
+
         let user = this.props.user;
         const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === invite._id; });
         user.invites[inviteIndex].status = status;
@@ -101,6 +102,11 @@ export default class SingleInvite extends React.Component{
     render() {
         const inviteID = this.props.router.params.inviteId;
         const invite = this.props.user.invites.filter((invite) => invite._id === inviteID)[0];
+        const buttons =  !this.props.user.isParent && invite.status === 'waiting'?
+            (<div>
+                <Button title="Accept" onClick={this.changeInviteStatus.bind(this, invite, "accepted")} >Accept</Button>
+                <Button title="Decline" onClick={this.changeInviteStatus.bind(this, invite, "declined")} >Declined</Button>
+            </div>): "";
         return (
             <div>
                 <Image className="sitter-image" src={invite.sitterImage} alt={invite.sitterName} circle={true}/>
@@ -125,11 +131,7 @@ export default class SingleInvite extends React.Component{
                     </div>
                     <ControlLabel>Notes</ControlLabel>
                     <p>{invite.notes}</p>
-                    {!this.props.user.isParent && invite.status === 'waiting'?
-                        <div>
-                            <Button onClick={this.changeInviteStatus.bind(this, invite, "accepted")} >Accept</Button>
-                            <Button onClick={this.changeInviteStatus.bind(this, invite, "declined")} >Decline</Button>
-                        </div>: ""}
+                    {buttons}
                 </form>
             </div>
         )

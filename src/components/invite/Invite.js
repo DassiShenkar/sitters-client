@@ -45,7 +45,6 @@ class Invite extends React.Component {
             parentName: this.props.user.name,
             childName: this.props.user.children.name,
             parentImage: this.props.user.profilePicture
-
         };
         let invites = [];
         if(this.props.invite.recurringDate !== ""){
@@ -55,6 +54,7 @@ class Invite extends React.Component {
                 invites.push(invite);
                 inviteDate.setDate(inviteDate.getDate()+7);
                 invite = clone(invite);
+                invite._id =  uuid.v1();
                 invite.date = (inviteDate.getMonth() + 1) + "/" + inviteDate.getDate() + "/" + inviteDate.getFullYear();
             } while (inviteDate <= recurringDate);
         }
