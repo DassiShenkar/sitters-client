@@ -33,3 +33,10 @@ export function setExpandReview(expandReview) {
     }
 }
 
+export function displayMatchInfo(shouldDisplayMatchInfo) {
+    return {
+        type: 'SET_MATCH_DATA_VIEW',
+        shouldDisplayMatchInfo
+    }
+}
+

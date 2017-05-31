@@ -90,7 +90,8 @@ class Form extends React.Component {
             },
             friends: this.props.user.friends,
             preferedGender: this.props.register.watchChildGender.toLowerCase(),
-            isParent: true
+            isParent: true,
+            pushNotifications: {}
         };
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {

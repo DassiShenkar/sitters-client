@@ -25,6 +25,11 @@ function sitterProfile(state = {}, action) {
                 ...state,
                 expandReview: action.expandReview
             };
+        case 'SET_MATCH_DATA_VIEW':
+            return {
+                ...state,
+                shouldDisplayMatchInfo: action.shouldDisplayMatchInfo
+            };
 
         default:
             return state;

@@ -11,7 +11,7 @@ class ReviewItem extends React.Component {
         const date = new Date(review.date);
         let rates;
         if (review.rates) {
-            rates = Object.keys(review.rates).map(function (key) {
+            rates = Object.keys(review.rates).map(function (key, index) {
                 let category = key;
                 if (key === "punctioal")
                     category = 'Punctioal';
@@ -22,7 +22,7 @@ class ReviewItem extends React.Component {
                 else
                     category = "General behavior";
                 return (
-                    <li>
+                    <li key={index}>
                         <p>{category}</p>
                         <Rating
                             empty="glyphicon glyphicon-heart-empty"

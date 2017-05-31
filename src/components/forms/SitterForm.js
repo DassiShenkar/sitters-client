@@ -145,7 +145,8 @@ class Form extends React.Component {
             settings: {
                 allowNotification: true,
                 allowShowOnSearch: true
-            }
+            },
+            pushNotifications: {}
         };
 
 
