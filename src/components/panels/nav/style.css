@@ -3,30 +3,69 @@ nav#main-nav {
   border: none;
   box-shadow: 0 1px 5px 0 rgba(41, 85, 115, 0.21);
   margin-bottom: 0; }
-  nav#main-nav .container {
-    width: 100%;
-    padding-right: 24px;
-    padding-left: 24px; }
+  nav#main-nav img {
+    width: 36px;
+    height: 36px;
+    margin-left: 15px;
+    margin-right: 15px; }
+  nav#main-nav a:focus {
+    outline: none; }
+  nav#main-nav ul > li > a > span:before {
+    font-size: 18px; }
   nav#main-nav .navbar-brand {
-    float: right;
-    cursor: pointer;
     color: #f86966;
     font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
     font-weight: bold;
     font-size: 28px; }
-  nav#main-nav .navbar-nav {
-    float: right; }
-  nav#main-nav .navbar-nav > li > a {
-    padding-bottom: 0;
-    font-size: 16px; }
-  nav#main-nav img {
-    width: 36px;
-    height: 36px;
-    margin-top: 8px; }
-  nav#main-nav path {
-    fill: #555; }
+  nav#main-nav .glyphicon-menu-left {
+    font-size: 18px; }
+  nav#main-nav .navbar-text {
+    margin-bottom: 0;
+    margin-top: 7.5px;
+    margin-left: 0; }
   nav#main-nav .badge {
     background-color: #f86966;
-    border-radius: 50%; }
-  nav#main-nav .dropdown-menu svg {
+    border-radius: 50%;
+    margin-left: -3px; }
+  nav#main-nav .icon-chevron-left {
     margin-right: 8px; }
+
+.popover-title {
+  font-family: "Open Sans", Helvetica, Arial, cursive;
+  font-weight: bold;
+  color: #f86966;
+  background-color: #fff; }
+
+.popover-content {
+  padding: 0; }
+  .popover-content ul {
+    padding-left: 0;
+    margin-bottom: 0; }
+    .popover-content ul li.item {
+      border-bottom: 1px solid #f5f5f5; }
+    .popover-content ul .item-link {
+      display: flex;
+      flex-direction: row; }
+      .popover-content ul .item-link .img-circle {
+        width: 36px;
+        height: 36px;
+        margin: 15px 0 15px 15px; }
+      .popover-content ul .item-link .item-info {
+        margin: 15px; }
+        .popover-content ul .item-link .item-info p {
+          margin: 0; }
+      .popover-content ul .item-link .icon-circle:before {
+        font-size: 9px;
+        vertical-align: middle;
+        margin-right: 4px; }
+      .popover-content ul .item-link .waiting:before {
+        color: #ffca00; }
+      .popover-content ul .item-link .accepted:before {
+        color: #f86966; }
+      .popover-content ul .item-link .declined:before {
+        color: #4dd0e1; }
+    .popover-content ul .item-link:hover {
+      text-decoration: none;
+      background-color: #f5f5f5; }
+    .popover-content ul li.item:last-child {
+      border: none; }

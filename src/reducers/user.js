@@ -104,6 +104,11 @@ function user(state = {}, action) {
                 ...state,
                 isParent: action.isParent
             };
+        case 'SET_INVITES' :
+            return {
+                ...state,
+                invites: action.invites
+            };
         default:
             return state;
     }

@@ -136,6 +136,7 @@ class Form extends React.Component {
             mobility: this.props.register.sitterMobility,
             workingHours: this.props.workingHours,
             reviews: [],
+            userType: "I'm a Sitter",
             invites: [],
             lastInvite: "",
             friends: this.props.user.friends,
@@ -146,9 +147,9 @@ class Form extends React.Component {
                 allowNotification: true,
                 allowShowOnSearch: true
             },
-            pushNotifications: {}
+            pushNotifications: {},
+            multipleInvites: []
         };
-
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
             if (err) {

@@ -79,7 +79,7 @@ class Form extends React.Component {
                 hobbies: hobbies,
                 specialNeeds: specialNeeds,
             },
-            userType: "I'm a parent",
+            userType: "I'm a Parent",
             personality: personality,
             notifications: [],
             invites: [],

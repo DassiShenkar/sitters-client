@@ -19,17 +19,16 @@
 
 /* eslint-env browser, serviceworker, es6 */
 
-
-
 self.addEventListener('push', function(event) {
     console.log('[Service Worker] Push Received.');
     console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-
-    const title = 'Push Codelab';
+    const data = JSON.parse(event.data.text())[0];
+    const title = 'Sitters';
     const options = {
-        body: 'Yay it works.',
-        icon: 'images/icon.png',
-        badge: 'images/badge.png'
+        body: data.sitterName,
+        icon: data.sitterImage,
+        badge: data.parentImage,
+        data: data._id
     };
 
     event.waitUntil(self.registration.showNotification(title, options));
@@ -37,10 +36,37 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
     console.log('[Service Worker] Notification click Received.');
-
+    const id = event.notification.data;
+    //const path = event.target.location.host + '/invite/';
+    const path = 'http://' + event.target.location.host + '/';
     event.notification.close();
+   // const urlToOpen = new URL(examplePage, self.location.origin).href;
 
-    event.waitUntil(
-        clients.openWindow('https://developers.google.com/web/')
-    );
+    const promiseChain = clients.matchAll({
+        type: 'window',
+        includeUncontrolled: true
+    })
+        .then((windowClients) => {
+            let matchingClient = null;
+
+            for (let i = 0; i < windowClients.length; i++) {
+                const windowClient = windowClients[i];
+                if (windowClient.url === path) {
+                    matchingClient = windowClient;
+                    break;
+                }
+            }
+
+            if (matchingClient) {
+                return matchingClient.focus();
+            } else {
+                return clients.openWindow(path);
+            }
+        });
+
+    event.waitUntil(promiseChain);
+   // self.document.location = '/';
+    // event.waitUntil(
+    //     clients.openWindow(path + id)
+    // );
 });

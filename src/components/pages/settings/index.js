@@ -24,6 +24,7 @@ class Settings extends React.Component {
         this.initialiseUI = this.initialiseUI.bind(this);
         this.updateBtn = this.updateBtn.bind(this);
         this.subscribeUser = this.subscribeUser.bind(this);
+        this.unsubscribeUser = this.unsubscribeUser.bind(this);
         this.updateSubscriptionOnServer = this.updateSubscriptionOnServer.bind(this);
         this.urlB64ToUint8Array = this.urlB64ToUint8Array.bind(this);
     }
@@ -90,14 +91,34 @@ class Settings extends React.Component {
 
                     isSubscribed = true;
 
-                    self.updateBtn();
+                    // self.updateBtn();
                 })
                 .catch(function (err) {
                     console.log('Failed to subscribe the user: ', err);
-                    self.updateBtn();
+                    // self.updateBtn();
                 });
         });
     }
+
+    unsubscribeUser() {
+    swRegistration.pushManager.getSubscription()
+        .then(function(subscription) {
+            if (subscription) {
+                return subscription.unsubscribe();
+            }
+        })
+        .catch(function(error) {
+            console.log('Error unsubscribing', error);
+        })
+        .then(function() {
+            this.updateSubscriptionOnServer(null);
+
+            console.log('User is unsubscribed.');
+            isSubscribed = false;
+
+            this.updateBtn();
+        });
+}
 
     updateSubscriptionOnServer(subscription) {
         // TODO: Send subscription to application server
@@ -182,6 +203,13 @@ class Settings extends React.Component {
     handleApplyChanges(e) {
         e.preventDefault();
         let user = this.props.user;
+        if(this.props.settings.enableNotifications){
+            this.subscribeUser();
+        }
+        else{
+            user.pushNotifications = {};
+            this.unsubscribeUser();
+        }
         if(this.props.user.isParent)
             user.settings = {
                 allowNotification: this.props.settings.enableNotifications,
@@ -217,7 +245,6 @@ class Settings extends React.Component {
 
     handleNotificationChange(e) {
         this.props.actions.settingsActions.setNotifications(e.target.checked);
-        e.target.checked && !isSubscribed? this.subscribeUser(): _.noop();
     }
 
     handleSuggestionsChange(e) {
