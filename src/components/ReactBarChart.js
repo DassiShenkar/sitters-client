@@ -4,22 +4,15 @@ import {Bar, BarChart, Tooltip, XAxis, YAxis} from "recharts";
 
 class ReactBarChart extends React.Component {
     render() {
-        const data = [
-            {name: 'Page A', value: 100},
-            {name: 'Page B', value: 80},
-            {name: 'Page C', value: 10},
-            {name: 'Page D', value: 70},
-            {name: 'Page E', value: 65},
-            {name: 'Page F', value: 80}
-        ];
+        const data = this.props.data;
             return (
-                <BarChart width={600} height={300} data={data}
+                <BarChart width={300} height={200} data={data}
                           margin={{top: 5, right: 30, left: 20, bottom: 5}}
                           layout="vertical">
                     <XAxis dataKey="value" type="number"/>
-                    <YAxis type="category" dataKey="name"/>
-                    <Tooltip/>
-                    <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                    <YAxis dataKey="name" type="category"/>
+                    {/*<Tooltip/>*/}
+                    <Bar type="monotone" barSize={20} dataKey="value" fill="#fff"/>
                 </BarChart>
         )
     }
