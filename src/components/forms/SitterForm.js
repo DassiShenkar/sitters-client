@@ -148,8 +148,7 @@ class Form extends React.Component {
             },
             pushNotifications: {},
             multipleInvites: []
-        };
-
+        };s
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
             if (err) {

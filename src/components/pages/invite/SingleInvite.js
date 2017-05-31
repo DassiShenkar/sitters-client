@@ -1,11 +1,15 @@
 import React from 'react';
-import {ControlLabel, Image} from "react-bootstrap";
+import {Button, ControlLabel, Image} from "react-bootstrap";
 import GoogleMaps from "../../controllers/maps/GoogleMaps";
 import axios from 'axios';
 import strings from "../../../static/strings";
 import * as _ from "lodash";
 
 export default class SingleInvite extends React.Component{
+    constructor(){
+        super();
+        this.updateInvite = this.updateInvite.bind(this);
+    }
 
     componentWillMount(){
         const inviteID = this.props.router.params.inviteId;
@@ -17,28 +21,81 @@ export default class SingleInvite extends React.Component{
 
         if(shouldUpdate){
             user.invites[inviteIndex].wasRead = true;
-            this.props.actions.inviteActions.setInvites(user.invites);
-            const path = this.props.user.isParent ? 'parent/update': 'sitter/update';
+            this.updateInvite(user)
+        }
+    }
+
+    updateInvite(user, invite){
+        const self = this;
+        this.props.actions.inviteActions.setInvites(user.invites);
+        const path = this.props.user.isParent ? 'parent/update': 'sitter/update';
+        axios({
+            method: 'post',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + path,
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: user
+        }).then(function (res) {
+            if (res.data) {  // user created
+
+            }
+            else {
+                console.log("settings not updated");
+                //TODO: think about error
+            }
+        })
+            .catch(function (error) {
+                alert(error);
+                //TODO: think about error
+            });
+        if(!user.isParent && invite){
             axios({
                 method: 'post',
-                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + path,
+                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: user
-            }).then(function (res) {
-                if (res.data) {  // user created
-                    console.log('updated invite with id:' + inviteID);
-                }
-                else {
-                    console.log("settings not updated");
-                    //TODO: think about error
-                }
+                data: {_id: invite.parentID}
             })
+                .then(function (response) {
+                    if (response.data) {  // user exists
+                        let parent = response.data;
+                        const  inviteIndex = _.findIndex(parent.invites, function(o) { return o._id === invite._id; });
+                        parent.invites[inviteIndex] = invite;
+                        parent.invites[inviteIndex].wasRead = false;
+                        axios({
+                            method: 'post',
+                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent
+                        }).then(function (res) {
+                            if (res.data) {  // user created
+                                self.props.router.push('/');
+                            }
+                            else {
+                                console.log("settings not updated");
+                                //TODO: think about error
+                            }
+                        })
+                            .catch(function (error) {
+                                alert(error);
+                                //TODO: think about error
+                            });
+                    }
+                    else { // user not exist
+
+                    }
+                })
                 .catch(function (error) {
-                    alert(error);
-                    //TODO: think about error
+                    console.log(error);
                 });
         }
 
+    }
+
+    changeInviteStatus(invite, status){
+        let user = this.props.user;
+        const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === invite._id; });
+        user.invites[inviteIndex].status = status;
+        this.updateInvite(user, invite);
+        this.props.router.push('/');
     }
 
     render() {
@@ -68,6 +125,11 @@ export default class SingleInvite extends React.Component{
                     </div>
                     <ControlLabel>Notes</ControlLabel>
                     <p>{invite.notes}</p>
+                    {!this.props.user.isParent && invite.status === 'waiting'?
+                        <div>
+                            <Button onClick={this.changeInviteStatus.bind(this, invite, "accepted")} >Accept</Button>
+                            <Button onClick={this.changeInviteStatus.bind(this, invite, "declined")} >Decline</Button>
+                        </div>: ""}
                 </form>
             </div>
         )
