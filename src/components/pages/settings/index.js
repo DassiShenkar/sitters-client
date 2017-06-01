@@ -30,15 +30,6 @@ class Settings extends React.Component {
     }
 
     initialiseUI() {
-        // pushButton.addEventListener('click', function () {
-        //     pushButton.disabled = true;
-        //     if (isSubscribed) {
-        //
-        //         // TODO: Unsubscribe user
-        //     } else {
-        //         this.subscribeUser();
-        //     }
-        // });
 
         // Set the initial subscription value
         const self = this;
@@ -76,7 +67,7 @@ class Settings extends React.Component {
     }
 
     subscribeUser() {
-        console.log('subcribe-user');
+        console.log('subscribe-user');
         const applicationServerKey = this.urlB64ToUint8Array(applicationServerPublicKey);
         const self = this;
         navigator.serviceWorker.ready.then(function(swRegistration) {
@@ -86,9 +77,7 @@ class Settings extends React.Component {
             })
                 .then(function (subscription) {
                     console.log('User is subscribed.');
-
                     self.updateSubscriptionOnServer(subscription);
-
                     isSubscribed = true;
 
                     // self.updateBtn();
@@ -116,22 +105,12 @@ class Settings extends React.Component {
             console.log('User is unsubscribed.');
             isSubscribed = false;
 
-            this.updateBtn();
+           //this.updateBtn();
         });
 }
 
     updateSubscriptionOnServer(subscription) {
-        // TODO: Send subscription to application server
-
-
-
-        const subscriptionJson = document.getElementsByClassName('js-subscription-json')[0];
-        // const subscriptionDetails =
-        //     document.getElementsByClassName('js-subscription-details')[0];
-
         if (subscription) {
-            console.log(JSON.parse(JSON.stringify(subscription)));
-            subscriptionJson.textContent = JSON.stringify(subscription);
             if(isSubscribed){
                 let user = this.props.user;
                 user.pushNotifications = JSON.parse(JSON.stringify(subscription));
