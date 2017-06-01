@@ -3,58 +3,43 @@
   bottom: -36px;
   right: 0;
   left: 0; }
-
-#sitterActionBar #sitter-profile-btn {
-  width: 96px;
-  height: 96px;
-  font-size: 48px;
-  margin: 0 -4px; }
-
-#sitterActionBar .action-btn {
-  border-radius: 50%;
-  border: 4px solid #f5f5f5;
-  background: #fff;
-  width: 64px;
-  height: 64px;
-  font-size: 28px; }
-
-#sitterActionBar .action-btn:focus {
-  outline: none; }
-
-#sitterActionBar .icon-heart {
-  color: #f86966;
-  font-size: 32px; }
-
-#sitterActionBar .icon-user {
-  color: #4dd0e1; }
-
-#sitterActionBar .icon-envelope {
-  color: #ffca00; }
-
-#sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before, #sitterActionBar .icon-user:before {
-  line-height: normal; }
-
-#sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before {
-  vertical-align: middle; }
-
-#sitterActionBar #send-invite-btn:hover, #sitterActionBar #send-invite-btn:active {
-  border-color: #ffca00; }
-
-#sitterActionBar #sitter-profile-btn:hover, #sitterActionBar #sitter-profile-btn:active {
-  border-color: #4dd0e1; }
-
-#sitterActionBar #add-review-btn:hover, #sitterActionBar #add-review-btn:active {
-  border-color: #f86966; }
-
-#sitterActionBar .action-btn.selected {
-  border-color: #4dd0e1; }
-
-#sitterActionBar .action-btn.unselected {
-  border-color: #f5f5f5; }
-
-#sitterActionBar .action-btn.disabled, #sitterActionBar .action-btn.disabled:hover {
-  border-color: #f5f5f5;
-  cursor: not-allowed; }
-
-#sitterActionBar .action-btn.disabled span:before, #sitterActionBar .action-btn.disabled:hover span:before {
-  color: #f5f5f5; }
+  #sitterActionBar #sitter-profile-btn {
+    width: 96px;
+    height: 96px;
+    font-size: 48px;
+    margin: 0 -4px; }
+  #sitterActionBar .action-btn {
+    border-radius: 50%;
+    border: 4px solid #f5f5f5;
+    background: #fff;
+    width: 64px;
+    height: 64px;
+    font-size: 28px; }
+  #sitterActionBar .action-btn:focus {
+    outline: none; }
+  #sitterActionBar .icon-heart {
+    color: #f86966;
+    font-size: 32px; }
+  #sitterActionBar .icon-user {
+    color: #4dd0e1; }
+  #sitterActionBar .icon-envelope {
+    color: #ffca00; }
+  #sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before, #sitterActionBar .icon-user:before {
+    line-height: normal; }
+  #sitterActionBar .icon-heart:before, #sitterActionBar .icon-envelope:before {
+    vertical-align: middle; }
+  #sitterActionBar #send-invite-btn:hover, #sitterActionBar #send-invite-btn:active {
+    border-color: #ffca00; }
+  #sitterActionBar #sitter-profile-btn:hover, #sitterActionBar #sitter-profile-btn:active {
+    border-color: #4dd0e1; }
+  #sitterActionBar #add-review-btn:hover, #sitterActionBar #add-review-btn:active {
+    border-color: #f86966; }
+  #sitterActionBar .action-btn.selected {
+    border-color: #4dd0e1; }
+  #sitterActionBar .action-btn.unselected {
+    border-color: #f5f5f5; }
+  #sitterActionBar .action-btn.disabled, #sitterActionBar .action-btn.disabled:hover {
+    border-color: #f5f5f5;
+    cursor: not-allowed; }
+    #sitterActionBar .action-btn.disabled span:before, #sitterActionBar .action-btn.disabled:hover span:before {
+      color: #f5f5f5; }

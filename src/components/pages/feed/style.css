@@ -10,9 +10,8 @@
 
 #feed-page #invite {
   text-align: left; }
-
-#feed-page #invite label {
-  font-size: 18px; }
+  #feed-page #invite label {
+    font-size: 18px; }
 
 ol.progtrckr {
   list-style-type: none;
@@ -95,14 +94,11 @@ ol.progtrckr li.progtrckr-done:hover:before {
 
 #sitter-feed {
   margin-top: 64px; }
-
-#sitter-feed h1 {
-  margin-bottom: 48px;
-  color: #757575;
-  font-family: "Open Sans", Helvetica, Arial, cursive; }
-
-#sitter-feed .rbc-calendar {
-  height: 400px; }
-
-#sitter-feed .rbc-event {
-  background-color: #f86966; }
+  #sitter-feed h1 {
+    margin-bottom: 48px;
+    color: #757575;
+    font-family: "Open Sans", Helvetica, Arial, cursive; }
+  #sitter-feed .rbc-calendar {
+    height: 400px; }
+  #sitter-feed .rbc-event {
+    background-color: #f86966; }

@@ -1,0 +1,27 @@
+#single-notification-page {
+
+  h4 {
+    font-size: 14px;
+    color: #f86966;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .match-images {
+    text-align: center;
+    img {
+      width: 96px;
+      height: 96px;
+    }
+  }
+
+  .match-info {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .recharts-rectangle {
+    fill: #f86966;
+  }
+
+}

@@ -1,0 +1,19 @@
+#single-notification-page h4 {
+  font-size: 14px;
+  color: #f86966;
+  text-align: center;
+  font-weight: bold; }
+
+#single-notification-page .match-images {
+  text-align: center; }
+
+#single-notification-page .match-images img {
+  width: 96px;
+  height: 96px; }
+
+#single-notification-page .match-info {
+  display: flex;
+  flex-direction: row; }
+
+#single-notification-page .recharts-rectangle {
+  fill: #f86966; }

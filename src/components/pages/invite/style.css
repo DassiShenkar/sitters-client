@@ -1,0 +1,50 @@
+#single-invite {
+  color: #757575; }
+  #single-invite .invite-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 48px; }
+  #single-invite .invite-info {
+    flex: 1; }
+    #single-invite .invite-info .control-label {
+      color: #f86966;
+      font-size: 14px; }
+  #single-invite .invite-sitter-info {
+    display: flex;
+    flex-direction: row; }
+  #single-invite .sitter-name {
+    padding: 0;
+    margin: 24px 0; }
+  #single-invite .sitter-image {
+    margin: 48px 0 0 0;
+    width: 96px;
+    height: 96px; }
+  #single-invite .invite-buttons-container {
+    display: flex;
+    flex-direction: row; }
+  #single-invite .invite-btn {
+    display: block;
+    border-radius: 40px;
+    background: #fff;
+    color: #f86966;
+    border-color: #f86966;
+    margin: 48px 15px 48px 0;
+    padding: 8px 15px; }
+  #single-invite .invite-btn:hover {
+    background: #f86966;
+    color: #fff; }
+  #single-invite .invite-btn:active {
+    outline: 0;
+    box-shadow: none;
+    border-color: #f86966; }
+  #single-invite #decline-btn {
+    border-color: #4dd0e1;
+    color: #4dd0e1; }
+  #single-invite #decline-btn:hover {
+    background: #4dd0e1;
+    color: #fff; }
+  #single-invite #decline-btn:active {
+    border-color: #4dd0e1; }
+
+.gm-style-iw {
+  color: #000; }

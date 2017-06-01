@@ -1,0 +1,181 @@
+Index: src/reducers/sitterProfile.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/reducers/sitterProfile.js	(revision bf517124a11d2685596b7c6f9e1dd25d8e608942)
++++ src/reducers/sitterProfile.js	(revision )
+@@ -25,6 +25,11 @@
+                 ...state,
+                 expandReview: action.expandReview
+             };
++        case 'SET_MATCH_DATA_VIEW':
++            return {
++                ...state,
++                shouldDisplayMatchInfo: action.shouldDisplayMatchInfo
++            };
+ 
+         default:
+             return state;
+Index: src/actions/SitterProfileActions.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/actions/SitterProfileActions.js	(revision bf517124a11d2685596b7c6f9e1dd25d8e608942)
++++ src/actions/SitterProfileActions.js	(revision )
+@@ -33,3 +33,10 @@
+     }
+ }
+ 
++export function displayMatchInfo(shouldDisplayMatchInfo) {
++    return {
++        type: 'SET_MATCH_DATA_VIEW',
++        shouldDisplayMatchInfo
++    }
++}
++
+Index: src/store.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/store.js	(revision bf517124a11d2685596b7c6f9e1dd25d8e608942)
++++ src/store.js	(revision )
+@@ -92,7 +92,8 @@
+         expertise: [],
+     },
+         distance: "",
+-        expandReview: false
++        expandReview: false,
++        shouldDisplayMatchInfo: false
+     },
+ 
+ };
+Index: src/components/pages/profile/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/pages/profile/index.js	(revision bf517124a11d2685596b7c6f9e1dd25d8e608942)
++++ src/components/pages/profile/index.js	(revision )
+@@ -10,14 +10,13 @@
+ import SitterActionBar from "../../panels/actionPanel";
+ import ReviewList from "../../reviewList/index";
+ import Invite from "../../invite/Invite";
+-import Mail from "../../icons/Mail";
+-
+-// style
+-import './style.css';
+ import AccordionPanel from "../../controllers/accordion/index";
+ import strings from "../../../static/strings";
+ import Review from "../../review/index";
+-import Like from "../../icons/Like";
++import MatchBanner from "../../banners/matchBanner";
++
++// style
++import './style.css';
+ 
+ class SitterProfile extends React.Component {
+ 
+@@ -101,6 +100,10 @@
+         this.props.actions.feedActions.showReviewPopup(true);
+     }
+ 
++    displayMatchInfo(shouldDisplay) {
++        this.props.actions.sitterProfileActions.displayMatchInfo(shouldDisplay);
++    }
++
+     render() {
+         let self = this;
+         const id = this.props.params.sitterId;
+@@ -129,9 +132,11 @@
+         const style = {
+             backgroundImage: 'url(' + coverPhoto + ')'
+         };
++
++
+         return (
+             <div id="sitter-profile">
+-                <div className="match" style={style}>
++                <div className="match" style={style} onMouseEnter={this.displayMatchInfo.bind(this, true)} onMouseLeave={this.displayMatchInfo.bind(this, false)}>
+                     <div className="cover-overlay"/>
+                     <div className="sitter-info">
+                         <Image className="profilePic"
+@@ -140,6 +145,11 @@
+                                circle/>
+                         <h1 className="sitterName">{this.props.sitterProfile.sitter.name ? this.props.sitterProfile.sitter.name : ''}</h1>
+                     </div>
++                    {this.props.sitterProfile.shouldDisplayMatchInfo ?
++                        <MatchBanner parent={this.props.user} sitter={this.props.sitterProfile.sitter}/>
++                        : ''
++                    }
++
+                     <SitterActionBar {...this.props}/>
+                 </div>
+                 <Table className="info-table" responsive>
+Index: src/components/banners/matchBanner/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/banners/matchBanner/index.js	(revision )
++++ src/components/banners/matchBanner/index.js	(revision )
+@@ -0,0 +1,34 @@
++//external sources
++import React from 'react';
++
++//components
++import {Image} from 'react-bootstrap';
++
++class MatchBanner extends React.Component {
++    render() {
++        return (
++            <div className="match-info">
++                <div>
++                    <h1>Great Match!</h1>
++                    <div className="match-images">
++                        <Image src={this.props.parent.profilePicture} circle/>
++                        <Image src={this.props.sitter.profilePicture} circle/>
++                    </div>
++                </div>
++                <div className="personality">
++                    <h3>PERSONALITY</h3>
++                    <ul>
++                        <li></li>
++                        <li></li>
++                        <li></li>
++                    </ul>
++                </div>
++                <div className="match-criteria">
++                    <h3>CRITERIA</h3>
++
++                </div>
++            </div>
++        )
++    }
++}
++export default MatchBanner;
+Index: src/components/pages/profile/style.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/pages/profile/style.scss	(revision bf517124a11d2685596b7c6f9e1dd25d8e608942)
++++ src/components/pages/profile/style.scss	(revision )
+@@ -37,6 +37,15 @@
+ 
+ #sitter-profile {
+ 
++  .match-info {
++    position: absolute;
++    top: 0;
++    bottom: 0;
++    right: 0;
++    background: rgba(0,0,0,0.8);
++    left: 0;
++  }
++
+   .info-table {
+     margin: 72px 0 24px 0;
+     font-family: 'Open Sans', sans-serif;
