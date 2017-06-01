@@ -16,6 +16,7 @@ class Inbox extends React.Component {
     }
 
     render () {
+        const self = this;
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         let dataSource = ds.cloneWithRows(this.props.user.invites);
         return (
@@ -27,7 +28,7 @@ class Inbox extends React.Component {
                         this.props.user.invites.length > 0 ?
                         <ListView
                             dataSource={dataSource}
-                            renderRow={(data) => <ListItem {...data} />}
+                            renderRow={(data) => <ListItem {...data} userType={self.props.user.userType} />}
                             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         /> :
                         <Text style={styles.text}>No Invites</Text>

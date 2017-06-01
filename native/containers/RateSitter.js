@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import StarRating from 'react-native-star-rating';
+import uuid from 'uuid';
 
 import TextButton from '../components/TextButton'
 import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
@@ -47,8 +48,8 @@ class RateSitter extends React.Component {
         sitter.reviews.push(review);
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/sitter/update',
-            // url: 'https://sittersdev.herokuapp.com/sitter/update',
+            // url: 'https://sitters-server.herokuapp.com/sitter/update',
+            url: 'https://sittersdev.herokuapp.com/sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {

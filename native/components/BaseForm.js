@@ -22,6 +22,7 @@ export default class BaseForm extends React.Component {
 
     render () {
         const self = this;
+        let addressString = this.props.register.address ? this.props.register.address.street + ' ' + this.props.register.address.houseNumber + ', ' + this.props.register.address.city : null;
         return (
             <View>
                 <Text style={styles.header}>Personal info</Text>
@@ -32,7 +33,7 @@ export default class BaseForm extends React.Component {
                     name="name"
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
-                    placeholder="name"
+                    placeholder="Name"
                     value={ this.props.user.name ? this.props.user.name : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeName(text)}/>
                 <Text style={styles.text}>Email</Text>
@@ -42,7 +43,7 @@ export default class BaseForm extends React.Component {
                     name="email"
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
-                    placeholder="email"
+                    placeholder="Email"
                     value={ this.props.user.email ? this.props.user.email : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeEmail(text)}/>
                 <Text style={styles.text}>Age</Text>
@@ -52,8 +53,8 @@ export default class BaseForm extends React.Component {
                     name="age"
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
-                    placeholder="age"
-                    value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : null }
+                    placeholder="Age"
+                    value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : this.props.user.age ? this.props.user.age.toString() : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)}/>
                 <Text style={styles.text}>Address</Text>
                 <View>
@@ -66,8 +67,8 @@ export default class BaseForm extends React.Component {
                         renderDescription={(row) => row.description} // custom description render
                         onPress={(data, details) => { this.onChange(data, details)}}
                         getDefaultValue={() => {
-                          return this.props.register.address ? this.props.register.address : null; // text input default value
-                        }}
+                          return addressString; // text input default value
+                    }}
                         styles={{
                             textInputContainer: {
                               backgroundColor: 'rgba(0,0,0,0)',

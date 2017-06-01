@@ -79,7 +79,8 @@ export default function configureStore() {
             fromTime: moment(),
             toTime: moment(),
             isoValue: new Date().toISOString(),
-            searchView: 'location'
+            searchView: 'rate',
+            availability: "Available Now"
         },
         invite: {
             inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),

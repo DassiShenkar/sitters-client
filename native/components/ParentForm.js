@@ -55,7 +55,7 @@ export default class ParentForm extends React.Component {
                     selectionColor="#f7a1a1"
                     underlineColorAndroid="#f7a1a1"
                     name="child Name"
-                    placeholder="childName"
+                    placeholder="Child name"
                     value={ this.props.register.childName ? this.props.register.childName : null}
                     onChangeText={(text) => this.props.actions.registerActions.changeChildName(text)} />
                 <Text style={styles.text}>Child age</Text>
@@ -120,7 +120,7 @@ export default class ParentForm extends React.Component {
                 </Picker>
                 <TextButton
                     styles={styles.button}
-                    onPress={ () => { callback()/*self.props.registered ? self.updateUser(self.props.userType) : Actions.PersonalityTest({callback: callback}) */}}
+                    onPress={ () => {callback()}}
                     text="Submit" />
             </Form>
         );

@@ -40,7 +40,9 @@ class SearchByTime extends React.Component {
                 <TabButtons
                     { ...this.props } />
                 <TimeSearch
-                    sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : [] }
+                    sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.newSearch ? this.props.feed.filteredMatches.filter(function(el) {
+                        return el.availableNow === true;
+                    }) : this.props.feed.filteredMatches : [] }
                     { ...this.props }/>
             </View>
         );

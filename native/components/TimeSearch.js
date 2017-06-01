@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Picker } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import dateFormat from 'dateformat'
 import moment from "moment";
@@ -10,7 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
-import AndroidTimePicker from '../components/AndroidTimePicker'
+import MyMultiSelect from './MyMultiSelect'
+import strings from '../../src/static/strings';
+
 
 export default class TimeSearch extends React.Component {
 
@@ -24,6 +26,7 @@ export default class TimeSearch extends React.Component {
         this.startCallback = this.startCallback.bind(this);
         this.endCallback = this.endCallback.bind(this);
         this.filter = this.filter.bind(this);
+        this.changeAvailability = this.changeAvailability.bind(this);
     }
 
     render () {
@@ -39,30 +42,36 @@ export default class TimeSearch extends React.Component {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
         };
-        //TODO: add avialble now & custom radio buttons
         return (
             <View style={styles.container}>
                 <GestureRecognizer
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     config={config}>
-                    <View style={styles.searchByContainer}>
-                        <View style={styles.pickerWrapper}>
-                            <Text style={styles.pickerText}>Pick the Date</Text>
-                            <AndroidDatePicker
-                                pickerCallback={ this.dateCallback }/>
-                        </View>
-                        <View style={styles.pickerWrapper}>
-                            <Text style={styles.pickerText}>Start Watch</Text>
-                            <AndroidTimePicker
-                                pickerCallback={ this.startCallback }/>
-                        </View>
-                        <View style={styles.pickerWrapper}>
-                            <Text style={styles.pickerText}>End Watch</Text>
-                            <AndroidTimePicker
-                                pickerCallback={ this.endCallback }/>
-                        </View>
-                    </View>
+                    <Picker
+                        style={styles.picker}
+                        selectedValue={ this.props.searchBy.availability ?  this.props.searchBy.availability: strings.AVAILABILITY[0] }
+                        onValueChange={(availability) => { this.changeAvailability(availability) }}>
+                        <Picker.Item label={ strings.AVAILABILITY[1] } value={ strings.AVAILABILITY[1] }/>
+                        <Picker.Item label={ strings.AVAILABILITY[0] } value={ strings.AVAILABILITY[0] }/>
+                    </Picker>
+                    {
+                        this.props.searchBy.availability ?  this.props.searchBy.availability === strings.AVAILABILITY[1] ?
+                        <View style={styles.searchByContainer}>
+                            <View style={styles.pickerWrapper}>
+                                <Text style={styles.pickerText}>Pick the Date</Text>
+                                <AndroidDatePicker
+                                    pickerCallback={ this.dateCallback }/>
+                            </View>
+                            <Text style={styles.pickerText}>Pick the Time</Text>
+                            <MyMultiSelect
+                                style={{ marginBottom: 10 }}
+                                items={strings.HOURS}
+                                selected={[]}
+                                update={this.hoursChecked}
+                                remove={this.removeHours} />
+                        </View> : <View style={styles.dummy} /> : <View style={styles.dummy} />
+                    }
                     {
                         this.props.sitters.length > 0 ?
                             <View>
@@ -91,6 +100,21 @@ export default class TimeSearch extends React.Component {
                 </GestureRecognizer>
             </View>
         );
+    }
+
+    hoursChecked() {
+
+    }
+
+    removeHours() {
+
+    }
+
+    changeAvailability(availability) {
+        this.props.searchByActions.changeAvailability(availability);
+        if(availability === strings.AVAILABILITY[0]) {
+            Actions.SearchByTime({newSearch: true});
+        }
     }
 
     navToProfile(e, sitterId) {
@@ -143,7 +167,7 @@ export default class TimeSearch extends React.Component {
             }
         }
         this.props.feedActions.setFilteredMatches(sitters);
-        Actions.SearchByTime();
+        Actions.SearchByTime({newSearch: false});
     }
 }
 
@@ -155,8 +179,10 @@ const styles = StyleSheet.create({
     searchByContainer: {
         margin: 15,
         justifyContent: 'flex-start',
-        marginBottom: 70,
-        marginTop: 45
+        marginBottom: 55,
+    },
+    dummy:{
+        height: 160
     },
     pickerWrapper: {
         flexDirection: 'row',
@@ -167,11 +193,6 @@ const styles = StyleSheet.create({
         color: '#f7a1a1',
         fontSize: 16,
         fontWeight: 'bold'
-    },
-    backgroundImage: {
-        width: null,
-        height: null,
-        resizeMode:'stretch'
     },
     feedContainer: {
         flexDirection: 'row',
@@ -214,6 +235,11 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius:100
+    },
+    picker: {
+        width: 150,
+        marginLeft: 5,
+        alignSelf : 'flex-start',
     },
     notFoundText: {
         width: '100%',
