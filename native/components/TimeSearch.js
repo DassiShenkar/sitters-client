@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, Picker } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import dateFormat from 'dateformat'
-import moment from "moment";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import * as _ from "lodash";
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -23,10 +23,10 @@ export default class TimeSearch extends React.Component {
         this.navToInvite = this.navToInvite.bind(this);
         this.nextSitter = this.nextSitter.bind(this);
         this.dateCallback = this.dateCallback.bind(this);
-        this.startCallback = this.startCallback.bind(this);
-        this.endCallback = this.endCallback.bind(this);
         this.filter = this.filter.bind(this);
         this.changeAvailability = this.changeAvailability.bind(this);
+        this.hoursChecked = this.hoursChecked.bind(this);
+        this.removeHours = this.removeHours.bind(this);
     }
 
     render () {
@@ -63,13 +63,15 @@ export default class TimeSearch extends React.Component {
                                 <AndroidDatePicker
                                     pickerCallback={ this.dateCallback }/>
                             </View>
+                            <View style={styles.pickerWrapper}>
                             <Text style={styles.pickerText}>Pick the Time</Text>
-                            <MyMultiSelect
-                                style={{ marginBottom: 10 }}
-                                items={strings.HOURS}
-                                selected={[]}
-                                update={this.hoursChecked}
-                                remove={this.removeHours} />
+                                <MyMultiSelect
+                                    style={{ marginBottom: 10 }}
+                                    items={strings.HOURS}
+                                    selected={this.props.searchBy.workingHours ? this.props.searchBy.workingHours : []}
+                                    update={this.hoursChecked}
+                                    remove={this.removeHours} />
+                            </View>
                         </View> : <View style={styles.dummy} /> : <View style={styles.dummy} />
                     }
                     {
@@ -102,12 +104,24 @@ export default class TimeSearch extends React.Component {
         );
     }
 
-    hoursChecked() {
-
+    hoursChecked(selected) {
+        let expertise = this.props.searchBy.workingHours ? this.props.searchBy.workingHours : [];
+        let select = [];
+        selected.map(function(item){
+            select.push(item.name);
+        });
+        let array = [...select, ...expertise];
+        this.props.searchByActions.changeWorkingHours(array);
+        this.filter();
     }
 
-    removeHours() {
-
+    removeHours(removed) {
+        let expertise = this.props.searchBy.workingHours ? this.props.searchBy.workingHours : [];
+        let array =  expertise.filter(function(el) {
+            return el !== removed;
+        });
+        this.props.searchByActions.changeWorkingHours(array);
+        this.filter();
     }
 
     changeAvailability(availability) {
@@ -135,38 +149,20 @@ export default class TimeSearch extends React.Component {
 
     dateCallback(value) {
         this.props.searchByActions.changeInviteDate(dateFormat(value, "mm/dd/yyyy"),dateFormat(value, "dddd"),value.toISOString());
-        this.filter();
-    }
-
-    startCallback(value) {
-        this.props.searchByActions.changeInviteFromTime(moment(value,"H:mm"));
-        this.filter();
-    }
-
-    endCallback(value) {
-        this.props.searchByActions.changeInviteToTime(moment(value,"H:mm"));
-        this.filter();
     }
 
     filter(){
         let day = this.props.searchBy.inviteDay.toLowerCase();
-        let from = this.props.searchBy.fromTime.format('H:mm');
-        let to = this.props.searchBy.toTime.format('H:mm');
-        let sitters = [];
-        for(let sitter of this.props.feed.matches){
-            let startMS = moment(sitter.workingHours[day]['start'],"HH:mm").diff(moment(from,"HH:mm"));
-            let startDuration = moment.duration(startMS);
-            let startDiff = Math.floor(startDuration.asHours()) + moment.utc(startMS).format(":mm");
-            if(startDiff[0] === '-' || startDiff[0] === '0:00'){
-                let finishMS = moment(to,"HH:mm").diff(moment(sitter.workingHours[day]['finish'],"HH:mm"));
-                let finishDuration = moment.duration(finishMS);
-                let finishDiff = Math.floor(finishDuration.asHours()) + moment.utc(finishMS).format(":mm");
-                if(finishDiff[0] === '-'){
+        let newValue = this.props.searchBy.workingHours;
+        if(this.props.sitters){
+            let sitters = [];
+            for(let sitter of this.props.feed.matches){
+                let sameHours = _.intersection(newValue, sitter.workingHours[day.toLowerCase()]);
+                if(sameHours.length > 0)
                     sitters.push(sitter);
-                }
             }
+            this.props.feedActions.setFilteredMatches(sitters);
         }
-        this.props.feedActions.setFilteredMatches(sitters);
         Actions.SearchByTime({newSearch: false});
     }
 }
