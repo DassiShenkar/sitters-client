@@ -1,7 +1,7 @@
 //external sources
 import React from 'react'
 
-import {Nav, NavItem, PageHeader} from 'react-bootstrap';
+import {ControlLabel, Nav, NavItem, PageHeader} from 'react-bootstrap';
 import Range from '../../controllers/range/index'
 
 //components
@@ -16,14 +16,12 @@ import './style.css';
 import RadioGroup from "../../controllers/radio/radioGroup/index";
 import strings from "../../../static/strings";
 import GoogleMaps from "../../controllers/maps/GoogleMaps";
+import CheckBoxInput from "../../controllers/checkbox/index";
 
 class SearchByTab extends React.Component {
-
-
     handleSelect(selectedKey) {
         this.props.actions.searchByActions.setView(selectedKey);
     }
-
 
     render() {
         let navView = null;
@@ -31,34 +29,34 @@ class SearchByTab extends React.Component {
             let view = this.props.searchBy.searchView;
             const searchByTime = this.props.searchBy.availability !== "Available Now" ?
                 <section className="page">
-                    <label>Time</label>
+
                     <label>Date
                         <DatePicker defaultValue={this.props.searchBy.isoValue} {...this.props}
                                     action={this.props.actions.searchByActions.changeInviteDate}
                                     changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
                     </label>
-                    <label>Start Time
-                        <TimeInput defaultValue={this.props.searchBy.fromTime} {...this.props}
-                                   action={this.props.actions.searchByActions.changeInviteFromTime}
+                    <label>Time</label>
+                    <CheckBoxInput {...this.props}
+                                   filterMatches={true}
+                                   types={strings.HOURS}
+                                   action={this.props.actions.searchByActions.changeWorkingHours}
+                                   name="working-hours"
                                    changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
-                    </label>
-                    <label>End Time
-                        <TimeInput defaultValue={this.props.searchBy.toTime} {...this.props}
-                                   action={this.props.actions.searchByActions.changeInviteToTime}
-                                   changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
-                    </label>
+                    {/*<label>Start Time*/}
+                        {/*<TimeInput defaultValue={this.props.searchBy.fromTime} {...this.props}*/}
+                                   {/*action={this.props.actions.searchByActions.changeInviteFromTime}*/}
+                                   {/*changeSitters={this.props.actions.feedActions.setFilteredMatches}/>*/}
+                    {/*</label>*/}
+                    {/*<label>End Time*/}
+                        {/*<TimeInput defaultValue={this.props.searchBy.toTime} {...this.props}*/}
+                                   {/*action={this.props.actions.searchByActions.changeInviteToTime}*/}
+                                   {/*changeSitters={this.props.actions.feedActions.setFilteredMatches}/>*/}
+                    {/*</label>*/}
                 </section> : null;
 
             if (view === "location") {
                 navView = <div style={{width: '100%', height: '400px'}}>
-                    {/*<div className="google-map page" style={{width: '100%', height: '400px', marginTop: '48px'}}>*/}
                     <label>Proximity</label>
-                    {/*<GoogleMaps center={{*/}
-                        {/*lat: this.props.user.address ? this.props.user.address.latitude : 0,*/}
-                        {/*lng: this.props.user.address ? this.props.user.address.longitude : 0*/}
-                    {/*}}*/}
-                                {/*sitters={this.props.feed.matches}*/}
-                                {/*oneMarker={false}/>;*/}
                     <GoogleMaps {...this.props}
                         center={{
                         lat: this.props.user.address ? this.props.user.address.latitude : 0,

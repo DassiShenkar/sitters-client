@@ -32,6 +32,11 @@ function searchBy(state = {}, action) {
                 ...state,
                 availability: action.availability
             };
+        case 'CHNGE_WORKING_HOURS' :
+            return {
+                ...state,
+                workingHours: action.workingHours
+            };
         default:
             return state;
     }

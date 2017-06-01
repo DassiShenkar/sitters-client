@@ -3,7 +3,7 @@ const strings = {
     VERSION: "Alpha",
     LOCALHOST: "http://localhost:4444/",
     WEBSITE: "https://sitters-server.herokuapp.com/",
-    DEBUG: false,
+    DEBUG: true,
     ACTIVATE_BLACKLIST: false,
     ACTIVATE_MEDIAN: false,
     DEVELOPERS: "Arel Gindos, Dassi Rosen, Gregory K",

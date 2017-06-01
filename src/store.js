@@ -66,7 +66,8 @@ const defaultState = {
         toTime: moment(),
         isoValue: new Date().toISOString(),
         searchView: 'time',
-        availability: "Available Now"
+        availability: "Available Now",
+        workingHours: []
     },
     invite: {
         inviteDate: dateFormat(new Date(), "mm/dd/yyyy"),

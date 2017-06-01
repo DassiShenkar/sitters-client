@@ -1,5 +1,6 @@
 // external sources
 import {Component} from 'react';
+import * as _ from "lodash";
 
 export default class CheckBoxBase extends Component {
 
@@ -10,5 +11,17 @@ export default class CheckBoxBase extends Component {
 
     onChange(newValue) {
         this.props.action(newValue, this.props.day);
+        if(this.props.filterMatches){
+            let sitters = [];
+            for(let sitter of this.props.feed.matches){
+                let sameHours = _.intersection(newValue, sitter.workingHours[this.props.searchBy.inviteDay.toLowerCase()]);
+                if(sameHours.length > 0)
+                    sitters.push(sitter);
+            }
+
+                this.props.changeSitters(sitters);
+            // if(sitters.length > 0){
+            // }
+        }
     }
 }

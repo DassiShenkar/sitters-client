@@ -34,3 +34,11 @@ export function changeAvailability(availability) {
         availability
     }
 }
+
+
+export function changeWorkingHours(workingHours) {
+    return {
+        type: 'CHNGE_WORKING_HOURS',
+        workingHours
+    }
+}
