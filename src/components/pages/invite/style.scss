@@ -1,3 +1,39 @@
-.gm-style-iw{
+#single-invite {
+
+  color: #757575;
+
+  .invite-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 48px;
+  }
+
+  .invite-info {
+    flex: 1;
+
+    .control-label {
+      color: #f86966;
+      font-size: 14px;
+    }
+  }
+
+  .invite-sitter-info {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sitter-name {
+    padding: 0;
+    margin: 24px 0;
+  }
+
+  .sitter-image {
+    margin: 48px 0 0 0;
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.gm-style-iw {
   color: #000;
 }
