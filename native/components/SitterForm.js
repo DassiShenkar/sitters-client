@@ -143,7 +143,7 @@ export default class SitterForm extends React.Component {
         selected.map(function(item){
             select.push(item.name);
         });
-        let array = [...select, ...mobility];// TODO: check why not adding
+        let array = [...select, ...mobility];
         this.props.actions.registerActions.changeSitterMobility(array);
     }
 
@@ -161,7 +161,7 @@ export default class SitterForm extends React.Component {
         selected.map(function(item){
             select.push(item.name);
         });
-        let array = [...select, ...education];// TODO: check why not adding
+        let array = [...select, ...education];
         this.props.actions.registerActions.changeSitterEducation(array);
     }
 
