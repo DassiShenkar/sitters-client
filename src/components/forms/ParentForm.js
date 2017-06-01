@@ -298,6 +298,7 @@ class Form extends React.Component {
                             defaultValues={this.getLanguagesFromFacebook(this.props.register.languages)}
                             action={this.props.actions.registerActions.changeLanguages}
                             reducer={'register'}/>
+                        <p>Please drag and drop <b>6</b> words to describe the personality of your dream Sitter.</p>
                         <DragAndDropContainer {...this.props}/>
                         {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
                             <Button onClick={this.handleSubmitParent} type="submit" className="next-btn" value="Sign Up">Sign Up</Button>: ''}

@@ -110,10 +110,10 @@ export default class SingleInvite extends React.Component {
         const inviteID = this.props.router.params.inviteId;
         const invite = this.props.user.invites.filter((invite) => invite._id === inviteID)[0];
         const buttons = !this.props.user.isParent && invite.status === 'waiting' ?
-            (<div>
-                <Button title="Accept" onClick={this.changeInviteStatus.bind(this, invite, "accepted")}>Accept</Button>
-                <Button title="Decline"
-                        onClick={this.changeInviteStatus.bind(this, invite, "declined")}>Declined</Button>
+            (<div className="invite-buttons-container">
+                <Button title="Accept" id="accept-btn" className="invite-btn" onClick={this.changeInviteStatus.bind(this, invite, "accepted")}>Accept</Button>
+                <Button title="Decline" id="decline-btn" className="invite-btn"
+                        onClick={this.changeInviteStatus.bind(this, invite, "declined")}>Decline</Button>
             </div>) : "";
         return (
             <div id="single-invite" className="page">

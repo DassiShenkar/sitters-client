@@ -32,6 +32,46 @@
     width: 96px;
     height: 96px;
   }
+
+  .invite-buttons-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .invite-btn {
+    display: block;
+    border-radius: 40px;
+    background: #fff;
+    color: #f86966;
+    border-color: #f86966;
+    margin: 48px 15px 48px 0;
+    padding: 8px 15px;
+  }
+
+  .invite-btn:hover {
+    background: #f86966;
+    color: #fff;
+  }
+
+  .invite-btn:active {
+    outline: 0;
+    box-shadow: none;
+    border-color: #f86966;
+  }
+
+  #decline-btn {
+    border-color: #4dd0e1;
+    color: #4dd0e1;
+  }
+
+  #decline-btn:hover {
+    background: #4dd0e1;
+    color: #fff;
+  }
+
+  #decline-btn:active {
+    border-color: #4dd0e1;
+  }
 }
 
 .gm-style-iw {
