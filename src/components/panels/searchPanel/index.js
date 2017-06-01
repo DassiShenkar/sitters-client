@@ -9,7 +9,6 @@ import Location from '../../icons/Location'
 import Clock from '../../icons/Clock'
 import Dollar from '../../icons/Dollar'
 import DatePicker from '../../controllers/datePicker/index';
-import TimeInput from '../../controllers/TimeInput';
 
 //style
 import './style.css';
@@ -42,16 +41,6 @@ class SearchByTab extends React.Component {
                                    action={this.props.actions.searchByActions.changeWorkingHours}
                                    name="working-hours"
                                    changeSitters={this.props.actions.feedActions.setFilteredMatches}/>
-                    {/*<label>Start Time*/}
-                        {/*<TimeInput defaultValue={this.props.searchBy.fromTime} {...this.props}*/}
-                                   {/*action={this.props.actions.searchByActions.changeInviteFromTime}*/}
-                                   {/*changeSitters={this.props.actions.feedActions.setFilteredMatches}/>*/}
-                    {/*</label>*/}
-                    {/*<label>End Time*/}
-                        {/*<TimeInput defaultValue={this.props.searchBy.toTime} {...this.props}*/}
-                                   {/*action={this.props.actions.searchByActions.changeInviteToTime}*/}
-                                   {/*changeSitters={this.props.actions.feedActions.setFilteredMatches}/>*/}
-                    {/*</label>*/}
                 </section> : null;
 
             if (view === "location") {

@@ -32,7 +32,7 @@ class MainNav extends React.Component {
             <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href=""
+                        <a href="/"
                            onClick={this.nav.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ?
                             <span className="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
                     </Navbar.Brand>

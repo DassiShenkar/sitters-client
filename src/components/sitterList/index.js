@@ -90,7 +90,7 @@ class SitterList extends React.Component {
 
         const sitterIndex = this.props.feed.sitterIndex === undefined ? 0 : this.props.feed.sitterIndex;
         // const consider = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' also considers ' + (this.props.sitters[sitterIndex].gender === 'male' ? 'himself:' : 'herself:') : '';
-        const coverPhoto = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].coverPhoto : null;
+        const coverPhoto = this.props.sitters.length > 0 ? this.props.feed.filteredMatches[sitterIndex].coverPhoto : null;
         const mutualFriends = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].match.mutualFriends : null;
         const personality = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].personality : [];
         const motto = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].motto : '';
