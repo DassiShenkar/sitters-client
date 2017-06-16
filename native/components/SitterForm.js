@@ -236,9 +236,9 @@ export default class SitterForm extends React.Component {
                     key={ Math.random() }
                     style={{ marginBottom: 10 }}
                     items={strings.HOURS}
-                    selected={self.props.workingHours[day] ? self.props.workingHours[day] : []}
+                    selected={self.props.workingHours ? self.props.workingHours[day] : []}
                     update={(selected) => {
-                        let hours = self.props.workingHours[day] ? self.props.workingHours[day] : [];
+                        let hours = self.props.workingHours ? self.props.workingHours[day] : [];
                         console.log(hours);
                         let select = [];
                         selected.map(function(item){
@@ -249,7 +249,7 @@ export default class SitterForm extends React.Component {
                         self.props.actions.workingHoursActions.changeWorkingHours(array, day);
                     }}
                     remove={(removed) => {
-                        let hours = self.props.workingHours[day] ? self.props.workingHours[day] : [];
+                        let hours = self.props.workingHours ? self.props.workingHours[day] : [];
                         let array =  hours.filter(function(el) {
                             return el !== removed;
                         });

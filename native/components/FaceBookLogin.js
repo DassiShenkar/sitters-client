@@ -79,17 +79,19 @@ export default class FaceBookLogin extends React.Component {
 
     async handleResponse (result) {
         const self = this;
+        console.log(result);
         if(self.props.user.userType === "I'm a Parent") {
             axios({
                 method: 'post',
                 // url: 'https://sitters-server.herokuapp.com/parent/get',
                 url: 'https://sittersdev.herokuapp.com/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                _id: result.id.toString()
+                data: {_id: result.id.toString()}
             }).then(function (res) {
+                console.log(res);
                 if (res.data) {  // user exists
-                    if (user.friends.data.length > response.data.mutualFriends.length) {
-                        let parent = response.data;
+                    if (result.friends.data.length > res.data.friends.length) {
+                        let parent = result.data;
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
@@ -122,11 +124,11 @@ export default class FaceBookLogin extends React.Component {
                 // url: 'https://sitters-server.herokuapp.com/sitter/get',
                 url: 'https://sittersdev.herokuapp.com/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                _id: result.id.toString()
+                data: {_id: result.id.toString()}
             }).then(function (res) {
                 if (res.data) {  // user exists
-                    if (user.friends.data.length > response.data.mutualFriends.length) {
-                        let parent = response.data;
+                    if (result.friends.data.length > res.data.friends.length) {
+                        let parent = result.data;
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',

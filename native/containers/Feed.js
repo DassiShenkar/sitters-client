@@ -5,6 +5,8 @@ import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import {NotificationsAndroid} from 'react-native-notifications';
+
 
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as FeedActions from '../../src/actions/FeedActions';
@@ -26,6 +28,15 @@ class Feed extends React.Component {
     componentWillMount() {
         const self = this;
         self.props.feedActions.showSpinner(true);
+        NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
+            console.log('Push-notifications registered!', deviceToken)
+        });
+        NotificationsAndroid.setNotificationReceivedListener((notification) => {
+            console.log("Notification received on device", notification.getData());
+        });
+        NotificationsAndroid.setNotificationOpenedListener((notification) => {
+            console.log("Notification opened by device user", notification.getData());
+        });
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
                 if(self.props.user.userType === "I'm a Parent") {

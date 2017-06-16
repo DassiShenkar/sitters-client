@@ -33,8 +33,9 @@ export default class Feed extends React.Component {
                 return <Text key={Math.random()} style={styles.personality}>{word}</Text>;
             })
             : null : null;
-        let friends = this.props.sitters.length ? this.props.sitters[sitterIndex].mutualFriends : null;
+        let friends = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].friends : null;
         let friendCount = this.props.sitters.length ? friends.length : 0;
+        console.log(friends);
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -61,7 +62,7 @@ export default class Feed extends React.Component {
                             friendCount ? friendCount > 0 ?
                             <View>
                                 <Text style={styles.infoText}>MUTUAL FRIENDS ({friendCount})</Text>
-                                {this.addFriends()}
+                                <View style={{ flexDirection: 'row' }}>{this.addFriends()}</View>
                             </View> : null  : null
                         }
                         {
@@ -104,12 +105,23 @@ export default class Feed extends React.Component {
     }
 
     addFriends() {
-        return this.props.user.mutualFriends.map(function(friend){
-            return <ImageButton
-                key={Math.random()}
-                onPress={ (e) => {}/*this.navToProfile(e, sitterId)*/ }
-                styles={styles.friendPicture}
-                src={{uri: friend.picture}} />
+        let sitterIndex = this.props.feed.sitterIndex;
+        let i = 0;
+        return this.props.sitters[sitterIndex].friends.map(function(friend){
+            if(i > 3){
+                return null
+            } else {
+                i++;
+                return (
+                    <View key={Math.random()} style={styles.friend}>
+                        <Image
+                        key={Math.random()}
+                        style={styles.friendPicture}
+                        source={{uri: friend.picture}}/>
+                        <Text key={Math.random()} style={styles.friendText}>{friend.name.length <= 11 ? friend.name : friend.name.slice(0, 8) + '...'}</Text>
+                    </View>
+                );
+            }
         })
     }
 
@@ -181,14 +193,25 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     friendPicture: {
-        width: 70,
-        height: 70,
+        width: 40,
+        height: 40,
         borderRadius:100
     },
     text: {
         color: '#f7a1a1',
         fontSize: 22,
         marginTop: 10
+    },
+    friendText: {
+        color: '#f7a1a1',
+        fontSize: 14,
+        marginTop: 3
+    },
+    friend: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingRight: 5,
+        paddingLeft: 5
     },
     sitterName: {
         color: '#fff',
@@ -200,14 +223,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: '#f7a1a1',
         fontSize: 16,
-        marginTop: 10
+        marginTop: 5
     },
     mottoText: {
         fontFamily: 'PoiretOne',
         alignSelf: 'center',
         color: '#f7a1a1',
         fontSize: 22,
-        marginTop: 10
+        marginTop: 3
     },
     personalityContainer: {
         flexDirection: 'column',

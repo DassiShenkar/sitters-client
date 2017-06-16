@@ -63,7 +63,7 @@ export default class TimeSearch extends React.Component {
                                 <AndroidDatePicker
                                     pickerCallback={ this.dateCallback }/>
                             </View>
-                            <View style={styles.pickerWrapper}>
+                            <View style={styles.pickerWrapperColumn}>
                             <Text style={styles.pickerText}>Pick the Time</Text>
                                 <MyMultiSelect
                                     style={{ marginBottom: 10 }}
@@ -182,6 +182,11 @@ const styles = StyleSheet.create({
     },
     pickerWrapper: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 5
+    },
+    pickerWrapperColumn: {
+        flexDirection: 'column',
         justifyContent: 'space-between',
         padding: 5
     },
