@@ -39,7 +39,7 @@ export default class MyMultiSelect extends Component {
             this.props.selected.map(function (select) {
                 let name = typeof select.name === "undefined" ? select : select.name;
                 localArray = localArray.filter(function (el) {
-                    return el.label === "undefined" ? el !== name : el.label !== name;
+                    return  typeof el.label === "undefined" ?  typeof el.name === "undefined" ?  el !== name : el.name !== name : el.label !== name;
                 });
             });
         }
@@ -53,10 +53,10 @@ export default class MyMultiSelect extends Component {
 
     generateLabels() {
         const self = this;
-        if(this.props.selected.length <= 0) {
+        if(self.props.selected.length <= 0) {
             return null;
         }
-        return this.props.selected.map(function(item) {
+        return self.props.selected.map(function(item) {
             let name = typeof item.name === "undefined" ? item : item.name;
             return <LabelSelect.Label
                     key={Math.random()}

@@ -35,7 +35,6 @@ export default class Feed extends React.Component {
             : null : null;
         let friends = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].friends : null;
         let friendCount = this.props.sitters.length ? friends.length : 0;
-        console.log(friends);
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -114,10 +113,13 @@ export default class Feed extends React.Component {
                 i++;
                 return (
                     <View key={Math.random()} style={styles.friend}>
-                        <Image
-                        key={Math.random()}
-                        style={styles.friendPicture}
-                        source={{uri: friend.picture}}/>
+                        {
+                            friend.picture !== "" ?
+                                <Image
+                                    key={Math.random()}
+                                    style={styles.friendPicture}
+                                    source={{uri: friend.picture}}/> : null
+                        }
                         <Text key={Math.random()} style={styles.friendText}>{friend.name.length <= 11 ? friend.name : friend.name.slice(0, 8) + '...'}</Text>
                     </View>
                 );

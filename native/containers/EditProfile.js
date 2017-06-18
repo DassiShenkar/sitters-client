@@ -24,7 +24,6 @@ class EditProfile extends Component {
     }
 
     render () {
-        console.log(this.props);
         let register = {
             address: this.props.user.address ? this.props.user.address : null,
             gender: this.props.user.gender ? this.props.user.gender : null,
@@ -191,7 +190,6 @@ class EditProfile extends Component {
                 allowShowOnSearch: true
             }
         };
-        console.log(sitter);
         self.setUserInDB(sitter, 'sitter/update');
     }
 
@@ -211,7 +209,7 @@ class EditProfile extends Component {
             longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
             latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
         };
-        user.isParent = path === 'parent/create';
+        user.isParent = path === 'parent/update';
         console.log(user);
         axios({
             method: 'post',
@@ -221,7 +219,7 @@ class EditProfile extends Component {
             data: user
         }).then(function (res) {
             if (res.data) {  // user created
-                path === 'parent/create' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
+                path === 'parent/update' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
                 Actions.Feed();
             }
             else { // user not created

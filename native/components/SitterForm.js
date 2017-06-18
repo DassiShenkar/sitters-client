@@ -137,7 +137,7 @@ export default class SitterForm extends React.Component {
         );
     }
 
-    mobilityChecked() {
+    mobilityChecked(selected) {
         let mobility = this.props.register.sitterMobility ? this.props.register.sitterMobility : [];
         let select = [];
         selected.map(function(item){
@@ -147,7 +147,7 @@ export default class SitterForm extends React.Component {
         this.props.actions.registerActions.changeSitterMobility(array);
     }
 
-    removeMobility() {
+    removeMobility(removed) {
         let mobility = this.props.register.sitterMobility ? this.props.register.sitterMobility : [];
         let array =  mobility.filter(function(el) {
             return el !== removed;
@@ -236,20 +236,18 @@ export default class SitterForm extends React.Component {
                     key={ Math.random() }
                     style={{ marginBottom: 10 }}
                     items={strings.HOURS}
-                    selected={self.props.workingHours ? self.props.workingHours[day] : []}
+                    selected={self.props.workingHours ? self.props.workingHours[day.toLowerCase()] ? self.props.workingHours[day.toLowerCase()] : []  : []}
                     update={(selected) => {
-                        let hours = self.props.workingHours ? self.props.workingHours[day] : [];
-                        console.log(hours);
+                        let hours = self.props.workingHours ? self.props.workingHours[day] ? self.props.workingHours[day] : [] : [];
                         let select = [];
                         selected.map(function(item){
                             select.push(item.name);
                         });
                         let array = [...select, ...hours];
-                        console.log(array);
                         self.props.actions.workingHoursActions.changeWorkingHours(array, day);
                     }}
                     remove={(removed) => {
-                        let hours = self.props.workingHours ? self.props.workingHours[day] : [];
+                        let hours = self.props.workingHours ? self.props.workingHours[day] ? self.props.workingHours[day] : []  : [];
                         let array =  hours.filter(function(el) {
                             return el !== removed;
                         });

@@ -13,7 +13,7 @@ class SitterCalendar extends React.Component {
     }
 
     render() {
-        let invites = this.props.user.invites.length > 0 ? this.props.user.invites : [];
+        let invites = this.props.user.invites ? this.props.user.invites.length > 0 ? this.props.user.invites : [] : [];
         let markedDates = {};
         invites.map(function(invite) {
            markedDates[dateFormat(invite.date, "yyyy-mm-dd")] = [{marked: true}]
@@ -59,7 +59,7 @@ class SitterCalendar extends React.Component {
 
     showInfo(day) {
         const self = this;
-        let invites = this.props.user.invites.length > 0 ? this.props.user.invites : [];
+        let invites = this.props.user.invites ? this.props.user.invites.length > 0 ? this.props.user.invites : [] : [];
         let found = false;
         invites.map(function (invite) {
             if(dateFormat(invite.date, "yyyy-mm-dd") === day.dateString) {

@@ -52,6 +52,7 @@ class Register extends Component {
         let self = this;
         let langs = this.props.register.languages ? this.props.register.languages  : this.props.user.languages;
         let setLangs = [];
+        let personality = [];
         langs.forEach (function(language){
             if(self.props.register.languages)
                 setLangs.push(language.name);
@@ -62,14 +63,23 @@ class Register extends Component {
         this.props.register.personalityQuestions.forEach(function(question){
             totalScore += question.value;
         });
+        this.props.register.items.forEach(function(o){
+            if(typeof o.label !== "undefined") {
+                personality.push(o.label);
+            } else if(typeof o.name !== "undefined") {
+                personality.push(o.name);
+            } else {
+                personality.push(o);
+            }
+        });
         let parent = {
             _id : this.props.user.facebookID.toString(),
             name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
             email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
             age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-
+            languages: setLangs,
             gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-            coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
+            coverPhoto: this.props.user.coverPhoto ? this.props.user.coverPhoto.source: "",
             timezone: this.props.user.timezone? this.props.user.timezone: "",
             profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
@@ -86,7 +96,7 @@ class Register extends Component {
             invites: [],
             blacklist: [],
             pushNotifications: {},
-            personality: this.props.register.personality ? this.props.register.personality : [],
+            personality: personality,
             settings: {
                 allowNotification: true,
                 allowSuggestions: true,
@@ -108,6 +118,7 @@ class Register extends Component {
         let self = this;
         let langs = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
         let setLangs = [];
+        let personality = [];
         langs.forEach (function(language){
             if(self.props.register.languages)
                 setLangs.push(language.name);
@@ -117,6 +128,15 @@ class Register extends Component {
         let totalScore = 0;
         this.props.register.personalityQuestions.forEach(function(question){
             totalScore += question.value;
+        });
+        this.props.register.items.forEach(function(o){
+            if(typeof o.label !== "undefined") {
+                personality.push(o.label);
+            } else if(typeof o.name !== "undefined") {
+                personality.push(o.name);
+            } else {
+                personality.push(o);
+            }
         });
         let sitter = {
             _id : this.props.user.facebookID.toString(),
@@ -133,7 +153,7 @@ class Register extends Component {
             minAge:  Number(this.props.register.sitterMinAge),
             maxAge:  Number(this.props.register.sitterMaxAge),
             hourFee: Number(this.props.register.hourFee),
-            personality: this.props.register.personality ? this.props.register.personality : [],
+            personality: personality,
             userType: "I'm a Sitter",
             reviews: [],
             invites: [],
@@ -156,26 +176,27 @@ class Register extends Component {
                 allowShowOnSearch: true
             }
         };
-        console.log(sitter);
         self.setUserInDB(sitter, 'sitter/create');
     }
 
     async setUserInDB(user, path) {
         const self = this;
-        let add = self.props.user.address.split(',');
-        const street = add[0].split(' ');
-        let houseNumber = street.pop();
-        if (Number.isNaN(houseNumber)) {
-            street.push(houseNumber);
-            houseNumber = 0;
+        if(self.props.user.address) {
+            let add = self.props.user.address.split(',');
+            const street = add[0].split(' ');
+            let houseNumber = street.pop();
+            if (Number.isNaN(houseNumber)) {
+                street.push(houseNumber);
+                houseNumber = 0;
+            }
+            user.address = {
+                city: self.props.user.address.split(',')[1],
+                street: _.join(street, " "),
+                houseNumber: Number(houseNumber),
+                longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
+                latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
+            };
         }
-        user.address = {
-            city: self.props.user.address.split(',')[1],
-            street: _.join(street, " "),
-            houseNumber: Number(houseNumber),
-            longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
-            latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
-        };
         user.isParent = path === 'parent/create';
         console.log(user);
         axios({

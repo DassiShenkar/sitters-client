@@ -79,7 +79,6 @@ export default class FaceBookLogin extends React.Component {
 
     async handleResponse (result) {
         const self = this;
-        console.log(result);
         if(self.props.user.userType === "I'm a Parent") {
             axios({
                 method: 'post',
@@ -88,7 +87,6 @@ export default class FaceBookLogin extends React.Component {
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
-                console.log(res);
                 if (res.data) {  // user exists
                     if (result.friends.data.length > res.data.friends.length) {
                         let parent = result.data;

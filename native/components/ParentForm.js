@@ -31,7 +31,7 @@ export default class ParentForm extends React.Component {
                 <Text style={styles.text}>Preffered Sitter Gender</Text>
                 <Picker
                     style={styles.picker}
-                    selectedValue={ this.props.register.watchChildGender ?  this.props.register.watchChildGender: 'Female' }
+                    selectedValue={ this.props.register.watchChildGender ?  this.props.register.watchChildGender: strings.GENDER_WITH_BOTH[0] }
                     onValueChange={(gender) => { this.props.actions.registerActions.changeGenderWatchChild(gender) }}>
                     <Picker.Item label={ strings.GENDER_WITH_BOTH[2] } value={ strings.GENDER_WITH_BOTH[2] }/>
                     <Picker.Item label={ strings.GENDER_WITH_BOTH[1] } value={ strings.GENDER_WITH_BOTH[1] }/>

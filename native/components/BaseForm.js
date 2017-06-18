@@ -93,7 +93,7 @@ export default class BaseForm extends React.Component {
                 <Text style={styles.text}>Gender</Text>
                 <Picker
                     style={styles.picker}
-                    selectedValue={ this.props.register.gender ?  this.props.register.gender : 'Female' }
+                    selectedValue={this.props.user.gender ? this.props.user.gender : this.props.register.gender ?  this.props.register.gender : 'Female' }
                     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
@@ -117,8 +117,6 @@ export default class BaseForm extends React.Component {
     }
 
     languagesChecked (selected) {
-        console.log(selected);
-        console.log(this.props.register.languages);
         let languages = this.props.register.languages ? this.props.register.languages : this.props.user.languages ? this.props.user.languages : [];
         let array = [...selected, ...languages];
         this.props.actions.registerActions.changeLanguages(array);
@@ -133,8 +131,6 @@ export default class BaseForm extends React.Component {
     }
 
     personalityChecked (selected) {
-        console.log(selected);
-        console.log(this.props.register.items);
         let personality = this.props.register.items ? this.props.register.items : [];
         if(personality.length >= 6 || selected > 6) {
             alert('Please pick 6 items only');
