@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        shadowColor: '#8c8c8c',
         borderBottomColor: '#8c8c8c',
         borderTopColor: '#fff',
         borderLeftColor: '#fff',
