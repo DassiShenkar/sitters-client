@@ -144,7 +144,7 @@ export default class TimeSearch extends React.Component {
     nextSitter(e) {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
-        Actions.refresh();
+        Actions.SearchByTime({active: 2});
     }
 
     dateCallback(value) {
@@ -163,7 +163,7 @@ export default class TimeSearch extends React.Component {
             }
             this.props.feedActions.setFilteredMatches(sitters);
         }
-        Actions.SearchByTime({newSearch: false});
+        Actions.SearchByTime({newSearch: false, active: 2});
     }
 }
 

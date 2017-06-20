@@ -129,10 +129,6 @@ export default class SitterForm extends React.Component {
                     remove={this.removeNeeds} />
                 <Text style={styles.text}>Availble on:</Text>
                 {this.timePicker()}
-                <TextButton
-                    styles={styles.button}
-                    onPress={ () => {callback()}}
-                    text="Submit" />
             </Form>
         );
     }
@@ -296,17 +292,6 @@ const styles = StyleSheet.create({
         marginLeft: 3,
         alignSelf : 'flex-start',
         marginBottom: 10
-    },
-    button: {
-        fontSize: 16,
-        width: 70,
-        alignSelf : 'flex-end',
-        backgroundColor: '#f7a1a1',
-        color: '#fff',
-        padding: 5,
-        borderRadius: 10,
-        margin: 5,
-        marginRight: 15
     },
     header: {
         color: '#f7a1a1',

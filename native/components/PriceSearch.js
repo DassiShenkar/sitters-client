@@ -19,15 +19,15 @@ export default class PriceSearch extends React.Component {
     }
 
     render () {
-        let sitterIndex = this.props.feed.sitterIndex;
-        let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
-        const profilePicture = this.props.sitters.length ? this.props.sitters[sitterIndex].profilePicture : null;
-        const name = this.props.sitters.length ? this.props.sitters[sitterIndex].name : null;
-        const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
-        const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
-        const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
+        let sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        let sitterId = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex]._id : 0 : 0;
+        const profilePicture = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : null : null;
+        const name = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : null : null;
+        const age = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].age : null : null;
+        const availableNow = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].availableNow : null : null;
+        const hourFee = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].hourFee : null : null;
         let value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : this.props.searchBy.priceMaxRange;
-        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        const coverPhoto = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].coverPhoto : null : null;
         let priceRange = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : Math.floor(this.props.searchBy.priceMaxRange);
         const config = {
             velocityThreshold: 0.1,
@@ -100,14 +100,14 @@ export default class PriceSearch extends React.Component {
     nextSitter() {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
-        Actions.SearchByPrice();
+        Actions.SearchByPrice({active: 1});
     }
 
     filter(value) {
         let sitters = this.props.feed.matches;
         this.props.rangeActions.changeRange(1, Math.floor(value));
         this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.floor(value)));
-        Actions.SearchByPrice();
+        Actions.SearchByPrice({active: 1});
     }
 }
 

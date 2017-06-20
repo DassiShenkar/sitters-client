@@ -8,11 +8,12 @@ import { Actions } from 'react-native-router-flux'
 import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
 import AppBar from '../components/AppBar';
+import TextButton from '../components/TextButton';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
 import * as WorkingHoursActions from '../../src/actions/WorkingHoursActions';
 import * as LocationActions from '../actions/LocationActions';
-import * as _ from "lodash";
+import axios from 'axios';
 
 class EditProfile extends Component {
 
@@ -24,12 +25,14 @@ class EditProfile extends Component {
     }
 
     render () {
+        console.log(this.props.user);
         let register = {
             address: this.props.user.address ? this.props.user.address : null,
             gender: this.props.user.gender ? this.props.user.gender : null,
+            age: this.props.user.age ? this.props.user.age : 0,
             languages: this.props.user.languages ? this.props.user.languages : null,
             items: this.props.user.personality ? this.props.user.personality : null,
-            watchChildGender: this.props.user.preferedGender ? this.props.user.preferedGender : null,
+            watchChildGender: this.props.user.preferedGender ? this.props.user.preferedGender : "Both",
             watchMaxPrice: this.props.user.maxPrice ? this.props.user.maxPrice.toString() : null,
             childName: this.props.user.children ? this.props.user.children.name : null,
             childAge: this.props.user.children ? this.props.user.children.age.toString() : null,
@@ -37,7 +40,7 @@ class EditProfile extends Component {
             childHobbies: this.props.user.children ? this.props.user.children.hobbies : null,
             childSpecialNeeds: this.props.user.children ? this.props.user.children.specialNeeds : null,
             partnerName: this.props.user.partner ? this.props.user.partner.name : null,
-            parterEmail: this.props.user.partner ? this.props.user.partner.email : null,
+            partnerEmail: this.props.user.partner ? this.props.user.partner.email : null,
             partnerGender: this.props.user.partner ? this.props.user.partner.gender : null,
             sitterMotto: this.props.user.motto ? this.props.user.motto : null,
             sitterExperience: this.props.user.experience ? this.props.user.experience.toString() : null,
@@ -56,30 +59,29 @@ class EditProfile extends Component {
             <View>
                 <AppBar
                     {...this.props} />
-                <ScrollView>
-                    <View style={styles.container}>
-                        {
-                            this.props.user.userType === "I'm a Parent" ?
-                                <ParentForm
-                                    {...this.props}
-                                    register={register}
-                                    workingHours={workingHours}
-                                    callback={ this.parentCallback } /> :
-                                <SitterForm
-                                    {...this.props}
-                                    register={register}
-                                    workingHours={workingHours}
-                                    callback={ this.sitterCallback } />
-                        }
-                    </View>
-                </ScrollView>
+                <View style={{height: "88.5%"}}>
+                    <ScrollView>
+                        <View style={styles.container}>
+                            {
+                                this.props.user.userType === "I'm a Parent" ?
+                                    <ParentForm
+                                        {...this.props}
+                                        register={register}
+                                        workingHours={workingHours} /> :
+                                    <SitterForm
+                                        {...this.props}
+                                        register={register}
+                                        workingHours={workingHours} />
+                            }
+                        </View>
+                        <TextButton
+                            styles={styles.button}
+                            onPress={ this.props.user.userType === "I'm a Parent" ? () => {this.parentCallback()} : () => {this.sitterCallback()}}
+                            text="Update" />
+                    </ScrollView>
+                </View>
             </View>
         );
-    }
-
-    calcAge(birthday) {
-        let date = birthday.split("/");
-        return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
     }
 
     parentCallback () {
@@ -88,24 +90,24 @@ class EditProfile extends Component {
         let setLangs = [];
         langs.forEach (function(language){
             if(self.props.register.languages)
-                setLangs.push(language.name);
+                setLangs.push(language);
             else
-                setLangs.push(language.name.toLowerCase());
+                setLangs.push(language);
         });
         let totalScore = 0;
         this.props.register.personalityQuestions.forEach(function(question){
             totalScore += question.value;
         });
         let parent = {
-            _id : this.props.user.facebookID.toString(),
-            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
-            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
-            age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-
-            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-            coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
-            timezone: this.props.user.timezone? this.props.user.timezone: "",
-            profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
+            _id : this.props.user._id.toString(),
+            name: this.props.register.name ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age ? this.props.register.age: 0,
+            languages: setLangs,
+            gender: this.props.register.gender ? this.props.register.gender.toLowerCase(): this.props.user.gender,
+            coverPhoto: this.props.user.coverPhoto ? this.props.user.coverPhoto.source: "",
+            timezone: this.props.user.timezone ? this.props.user.timezone: "",
+            profilePicture: this.props.user.picture ? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
             children: {
                 name: this.props.register.childName,
@@ -127,7 +129,7 @@ class EditProfile extends Component {
                 allowShowOnSearch: true
             },
             friends: this.props.user.friends,
-            preferedGender: this.props.register.watchChildGender.toLowerCase(),
+            // preferedGender: this.props.register.watchChildGender.toLowerCase(),
             partner:{
                 gender: this.props.register.partnerGender ? this.props.register.partnerGender : 'Female',
                 email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
@@ -156,7 +158,7 @@ class EditProfile extends Component {
             _id : this.props.user.facebookID.toString(),
             name: this.props.register.name ? this.props.register.name : this.props.user.name,
             email: this.props.register.email ? this.props.register.email : this.props.user.email,
-            age: this.props.register.age ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
+            age: this.props.register.age ? this.props.register.age : 0,
             gender: this.props.register.gender ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto.source,
             languages: setLangs,
@@ -195,19 +197,26 @@ class EditProfile extends Component {
 
     async setUserInDB(user, path) {
         const self = this;
-        let add = self.props.user.address.split(',');
-        const street = add[0].split(' ');
-        let houseNumber = street.pop();
-        if (Number.isNaN(houseNumber)) {
-            street.push(houseNumber);
-            houseNumber = 0;
-        }
+        // let add = self.props.register.address.split(',');
+        // const street = add[0].split(' ');
+        // let houseNumber = street.pop();
+        // if (Number.isNaN(houseNumber)) {
+        //     street.push(houseNumber);
+        //     houseNumber = 0;
+        // }
+        // user.address = {
+        //     city: self.props.register.address.split(',')[1],
+        //     street: _.join(street, " "),
+        //     houseNumber: Number(houseNumber),
+        //     longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
+        //     latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
+        // };
         user.address = {
-            city: self.props.user.address.split(',')[1],
-            street: _.join(street, " "),
-            houseNumber: Number(houseNumber),
-            longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
-            latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
+            city: self.props.user.address.city,
+            street: self.props.user.address.street,
+            houseNumber: self.props.user.address.houseNumber,
+            longitude: self.props.user.address.longitude,
+            latitude: self.props.user.address.latitude
         };
         user.isParent = path === 'parent/update';
         console.log(user);
@@ -235,7 +244,18 @@ class EditProfile extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 20
+        padding: 20
+    },
+    button: {
+        fontSize: 16,
+        width: 70,
+        alignSelf : 'flex-end',
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10,
+        margin: 5,
+        marginRight: 15
     }
 });
 

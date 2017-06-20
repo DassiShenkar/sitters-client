@@ -8,6 +8,7 @@ import { Actions } from 'react-native-router-flux'
 
 import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
+import TextButton from '../components/TextButton';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RegisterActions from '../../src/actions/RegisterActions';
 import * as WorkingHoursActions from '../../src/actions/WorkingHoursActions';
@@ -31,18 +32,20 @@ class Register extends Component {
                         {
                             this.props.user.userType === "I'm a Parent" ?
                             <ParentForm
-                                {...this.props}
-                                callback={ this.parentCallback } /> :
+                                {...this.props} /> :
                             <SitterForm
-                                {...this.props}
-                                callback={ this.sitterCallback } />
+                                {...this.props} />
                         }
                     </View>
+                    <TextButton
+                        styles={styles.button}
+                        onPress={ this.props.user.userType === "I'm a Parent" ? () => {this.parentCallback()} : () => {this.sitterCallback()}}
+                        text="Update" />
                 </ScrollView>
             </View>
         );
     }
-    
+
     calcAge(birthday) {
         let date = birthday.split("/");
         return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
@@ -74,14 +77,14 @@ class Register extends Component {
         });
         let parent = {
             _id : this.props.user.facebookID.toString(),
-            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
-            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
-            age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
+            name: this.props.register.name ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
             languages: setLangs,
-            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
+            gender: this.props.register.gender ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto ? this.props.user.coverPhoto.source: "",
-            timezone: this.props.user.timezone? this.props.user.timezone: "",
-            profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
+            timezone: this.props.user.timezone ? this.props.user.timezone: "",
+            profilePicture: this.props.user.picture ? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
             children: {
                 name: this.props.register.childName,
@@ -224,6 +227,17 @@ class Register extends Component {
 const styles = StyleSheet.create({
     container: {
         margin: 20
+    },
+    button: {
+        fontSize: 16,
+        width: 70,
+        alignSelf : 'flex-end',
+        backgroundColor: '#f7a1a1',
+        color: '#fff',
+        padding: 5,
+        borderRadius: 10,
+        margin: 5,
+        marginRight: 15
     }
 });
 

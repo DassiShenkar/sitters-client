@@ -12,7 +12,6 @@ export default class ParentForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.updateUser = this.updateUser.bind(this);
         this.expChecked = this.expChecked.bind(this);
         this.removeExp = this.removeExp.bind(this);
         this.hobbiesChecked = this.hobbiesChecked.bind(this);
@@ -118,10 +117,6 @@ export default class ParentForm extends React.Component {
                     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] } />
                     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] } />
                 </Picker>
-                <TextButton
-                    styles={styles.button}
-                    onPress={ () => {callback()}}
-                    text="Submit" />
             </Form>
         );
     }
@@ -179,10 +174,6 @@ export default class ParentForm extends React.Component {
         });
         this.props.actions.registerActions.changeChildSpecialNeeds(array);
     }
-
-    updateUser(userType) {
-        //TODO: update user in db
-    }
 }
 
 const styles = StyleSheet.create({
@@ -203,17 +194,6 @@ const styles = StyleSheet.create({
         marginLeft: 3,
         alignSelf : 'flex-start',
         marginBottom: 10
-    },
-    button: {
-        fontSize: 16,
-        width: 70,
-        alignSelf : 'flex-end',
-        backgroundColor: '#f7a1a1',
-        color: '#fff',
-        padding: 5,
-        borderRadius: 10,
-        margin: 5,
-        marginRight: 15
     },
     header: {
         color: '#f7a1a1',
