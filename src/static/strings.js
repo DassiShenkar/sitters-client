@@ -1,6 +1,7 @@
 const strings = {
     APP_NAME: "Sitters",
     VERSION: "Alpha",
+    CLIENT: "http://localhost:3000/",
     LOCALHOST: "http://localhost:4444/",
     WEBSITE: "https://sitters-server.herokuapp.com/",
     DEBUG: false,

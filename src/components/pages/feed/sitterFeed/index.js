@@ -66,10 +66,12 @@ class SitterFeed extends React.Component {
                     title: title,
                     // allDay: true,
                     startDate: startTime,
-                    endDate: endTime
-                })
+                    endDate: endTime,
+                    id: invite._id
+                });
             }
         });
+        const url = strings.DEBUG? strings.CLIENT: strings.WEBSITE;
         return (
             <div id="sitter-feed" className="page">
                 <PageHeader>Work Scheduale</PageHeader>
@@ -78,6 +80,7 @@ class SitterFeed extends React.Component {
                     defaultDate={new Date()}
                     startAccessor='startDate'
                     endAccessor='endDate'
+                    onSelectEvent={event => this.props.router.push(url + 'invite/' + event.id)}
                 />
                 <InvitesModal {...this.props} />
             </div>
