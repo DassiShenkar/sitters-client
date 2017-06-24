@@ -3,6 +3,7 @@ import GoogleMap from "react-google-map"
 import GoogleMapLoader from "react-google-maps-loader"
 import geodist from "geodist";
 import './style.css'
+import {Image} from "react-bootstrap";
 
 const MY_API_KEY = "AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0";
 
@@ -109,6 +110,40 @@ class Map extends React.Component {
                     },
                 }
             ));
+            coords.push(
+            {
+                title: this.props.user.name,
+                     //icon: <Image src={this.props.user.profilePicture}/>,
+                    position: {
+                lat: this.props.user.address.latitude,
+                    lng: this.props.user.address.longitude,
+            },
+                onLoaded: (googleMaps, map, marker) => {
+                    // Set Marker animation
+                    marker.setAnimation(googleMaps.Animation.BOUNCE);
+                    // const sitterProfileURL = "/sitter/" + sitter._id;
+                    // const distance = geodist({lat: self.props.center.lat, lon: self.props.center.lng}, {lat: sitter.address.latitude, lon: sitter.address.longitude},{ unit: 'km'});
+
+                    const infoWindow = new googleMaps.InfoWindow({
+                        content: ` <div>
+                        <h3>` + this.props.user.name + `</h3>
+                        <Image className="info-window-img" src='` + this.props.user.profilePicture + `' circle/>
+                    </div>`
+                    });
+
+
+                    // Change icon when Marker will be hovered
+                    googleMaps.event.addListener(marker, "mouseover", () => {
+                        // marker.setIcon(iconMarkerHover)
+                        infoWindow.open(map, marker);
+                    });
+                    //
+                    googleMaps.event.addListener(marker, "mouseout", () => {
+                        infoWindow.close(map, marker);
+                    });
+                },
+
+            })
         }
 
         const googleMaps = window.google.maps;
