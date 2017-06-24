@@ -1,5 +1,10 @@
+#main {
+  width: 100%;
+  height: 100%; }
+
 .page {
   width: 80%;
+  height: 100%;
   margin: 0 auto; }
 
 ul {
@@ -7,5 +12,6 @@ ul {
 
 .popover-content table {
   color: #757575; }
-  .popover-content table .bg-primary {
-    background-color: #f86966; }
+
+.popover-content table .bg-primary {
+  background-color: #f86966; }

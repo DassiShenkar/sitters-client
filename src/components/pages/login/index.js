@@ -23,25 +23,25 @@ class Login extends React.Component {
     }
 
     login(facebookUser) {
-        if(facebookUser.status === "not_authorized"){
+        if (facebookUser.status === "not_authorized") {
             this.props.router.push('/notAuthorized');
         }
         const self = this;
         axios({
             method: 'post',
-            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
+            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: facebookUser.id}
         })
             .then(function (response) {
                 if (response.data) {  // user exists
-                    if(facebookUser.friends.data.length > response.data.friends.length){
+                    if (facebookUser.friends.data.length > response.data.friends.length) {
                         let user = response.data;
                         user.friends = facebookUser.friends.data;
-                        const path = user.isParent? "parent/updateMutualFriends": "sitter/updateMutualFriends";
+                        const path = user.isParent ? "parent/updateMutualFriends" : "sitter/updateMutualFriends";
                         axios({
                             method: 'post',
-                            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + path,
+                            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + path,
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: user
                         })
@@ -52,9 +52,9 @@ class Login extends React.Component {
                                 console.log(error);
                             });
                     }
-                    document.cookie = ("auth_token="+facebookUser.id);
+                    document.cookie = ("auth_token=" + facebookUser.id);
                     self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
-                    if(response.data.isParent)
+                    if (response.data.isParent)
                         self.props.actions.actionCreators.setParentData(response.data);
                     else
                         self.props.actions.actionCreators.setSitterData(response.data);
@@ -72,16 +72,17 @@ class Login extends React.Component {
 
     render() {
         const userTypeRadio = <RadioGroup options={strings.USER_TYPE} //TODO: do not delete - for beta
-                                          defaultValue={strings.USER_TYPE[1]}
+                                          defaultValue={this.props.user.userType || strings.USER_TYPE[0]}
                                           action={this.props.actions.actionCreators.changeUserType}
                                           radioType={'userType'}
                                           value={ this.props.user.userType }
                                           required={true}/>;  //TODO: do not delete - for beta
         return (
-            <div id="login-page">
-                <PageHeader>{strings.APP_NAME}
-                    <small className="tagline">{strings.APP_DESCRIPTION}</small>
-                </PageHeader>
+            <div id="login-page" className="page">
+                <header>
+                    <h1>{strings.APP_NAME}</h1>
+                    <h3 className="tagline">{strings.APP_DESCRIPTION}</h3>
+                </header>
                 <Form className="login-form" horizontal>
                     {document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== '' ? '' : userTypeRadio}
                     <FacebookLogin

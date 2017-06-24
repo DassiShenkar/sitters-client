@@ -14,9 +14,9 @@ export default class RadioGroup extends React.Component {
             return (
                 <RadioOption key={this.props.options.indexOf(option)}
                              option={option}
+                             defaultValue={this.props.defaultValue}
                              action={this.props.action}
                              radioType={this.props.radioType}
-                             value={this.props.value}
                 />
             )
         });

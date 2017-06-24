@@ -14,12 +14,11 @@ export default class RadioOption extends RadioInputBase {
                 <label>
                     <input type="radio"
                            name={this.props.radioType}
-                           value={this.props.userType !== this.props.option ? this.props.option : this.props.defaultValue}
-                           checked={this.props.option === this.props.value}
+                           value={this.props.option}
+                           checked={this.props.defaultValue === this.props.option}
                            onChange={this.handleRadio}
                            required={this.props.required}/>
-                    {this.props.option}
-                </label>
+                    <span className={this.props.defaultValue === this.props.option ? "icon-dot-circle-o" : "icon-circle-o"}/>{this.props.option}</label>
             </div>
         )
     }

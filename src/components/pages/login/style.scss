@@ -1,9 +1,7 @@
 #login-page {
-  width: 60%;
-  margin: 0 auto;
   text-align: center;
 
-  .page-header {
+  header {
     margin-top: 156px;
     h1 {
       font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
@@ -12,14 +10,15 @@
     }
 
     .tagline {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
+      font-weight: 100;
       color: #555;
-      font-size: 28px;
+      font-size: 24px;
       display: block;
       text-align: center;
-      margin-top: 32px;
     }
   }
+
 
   .radio-group {
     text-align: left;

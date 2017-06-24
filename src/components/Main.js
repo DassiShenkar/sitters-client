@@ -1,6 +1,7 @@
 import React from "react";
-import Nav from './panels/nav/index'
-import './panels/nav/style.css'
+import Nav from './panels/nav/index';
+import './App.css';
+import './panels/nav/style.css';
 
 class Main extends React.Component {
     render() {
