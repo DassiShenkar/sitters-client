@@ -11,7 +11,7 @@ class ReactBarChart extends React.Component {
                           layout="vertical">
                     <XAxis dataKey="value" type="number"/>
                     <YAxis dataKey="name" type="category"/>
-                    {/*<Tooltip/>*/}
+                    <Tooltip/>
                     <Bar type="monotone" barSize={20} dataKey="value" fill="#fff"/>
                 </BarChart>
         )
