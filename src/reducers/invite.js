@@ -39,8 +39,11 @@ function invites(state = [], action) {
                 recurringDate: action.recurringDate,
                 recurringInviteDay: action.recurringDay,
                 recurringIsoValue: action.recurringIsoValue
-
-
+            };
+        case 'CHANGE_RECURRING' :
+            return {
+                ...state,
+                recurring: action.recurring,
             };
         default:
             return state;

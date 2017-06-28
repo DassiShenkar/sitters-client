@@ -58,3 +58,10 @@ export function setInvites(invites) {
         invites
     }
 }
+
+export function changeRecurring(recurring) {
+    return {
+        type: 'CHANGE_RECURRING',
+        recurring
+    }
+}

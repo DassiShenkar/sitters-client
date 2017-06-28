@@ -14,6 +14,7 @@ const strings = {
     MOBILITY: ["Car", "Bike", "Bicycle"],
     GENDER: ["Male", "Female"],
     BOOLEAN: ["True", "False"],
+    YESNO: ["Yes", "No"],
     AVAILABILITY: ["Available Now", "Custom"],
     STEPS:['step1', 'step2','step3', 'step4'],
     GENDER_WITH_BOTH: ["Both", "Male", "Female"],

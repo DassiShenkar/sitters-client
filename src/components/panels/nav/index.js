@@ -12,6 +12,7 @@ import './style.css';
 class MainNav extends React.Component {
 
     nav(view) {
+        //this.props.action(this.props.router.getCurrentLocation().pathname !== '/' ? view : this.props.router.routes[this.props.router.routes.length-2].path);
         this.props.action(view);
     }
 
@@ -28,6 +29,7 @@ class MainNav extends React.Component {
         const newInvites = this.props.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
         const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
 
+        console.log(this);
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>

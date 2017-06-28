@@ -10,6 +10,7 @@ import GoogleMaps from "../controllers/maps/GoogleMaps";
 import axios from 'axios';
 import strings from "../../static/strings";
 import clone from 'clone';
+import RadioGroup from "../controllers/radio/radioGroup/index";
 
 
 class Invite extends React.Component {
@@ -47,7 +48,7 @@ class Invite extends React.Component {
             parentImage: this.props.user.profilePicture
         };
         let invites = [];
-        if(this.props.invite.recurringDate !== ""){
+        if(this.props.invite.recurring === "Yes"){
             let inviteDate = new Date(this.props.invite.inviteDate);
             let recurringDate = new Date(this.props.invite.recurringDate);
             do {
@@ -69,6 +70,7 @@ class Invite extends React.Component {
             console.log(res);
             if (res.data) {  // invite created
                 self.props.actions.feedActions.showInvitePopup(false);
+                self.props.actions.inviteActions.changeRecurring("No");
                 self.props.router.push('/');
             }
             else { // invite not created
@@ -85,6 +87,10 @@ class Invite extends React.Component {
         this.props.actions.feedActions.showInvitePopup(false)
     }
     render() {
+        const recurring = this.props.invite.recurring === "Yes"?
+            <div><ControlLabel>Weekly Recurring until:</ControlLabel>
+                <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
+            </div>:"";
         return (
             <div>
                 <Modal
@@ -114,10 +120,18 @@ class Invite extends React.Component {
                                                 sitters={[this.props.user]}
                                                 oneMarker={true}
                                                 zoom="14"
-                                                />
+                                    />
                                 </div>
-                                <ControlLabel>Weekly Recurring until:</ControlLabel>
-                                <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
+                                <ControlLabel>Recurring:</ControlLabel>
+                                <RadioGroup options={strings.YESNO}
+                                            defaultValue={this.props.invite.recurring}
+                                            action={this.props.actions.inviteActions.changeRecurring}
+                                            radioType={'recurring'}
+                                            value={this.props.invite.recurring}/>
+                                {this.props.invite.recurring === "Yes"?
+                                    <div><ControlLabel>Weekly Recurring until:</ControlLabel>
+                                        <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
+                                    </div>:""}
                                 <ControlLabel>Notes</ControlLabel>
                                 <FormControl componentClass="textarea" placeholder="textarea" onChange={this.handleChange.bind(this)} />
                                 <Button className="submit-invite" title="Send Invite"  onClick={this.sendInvite}>Send Invite</Button>
