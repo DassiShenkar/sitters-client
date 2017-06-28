@@ -37,7 +37,7 @@ class MainNav extends React.Component {
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="/"
-                           onClick={this.nav.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ?
+                           onClick={this.nav.bind(this, null)}>{this.props.router.getCurrentLocation().pathname !== '/' ?
                             <span className="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
