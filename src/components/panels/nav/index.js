@@ -1,6 +1,6 @@
 //external sources
 import React from 'react';
-
+import {browserHistory} from 'react-router';
 //Components
 import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap/lib';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
@@ -13,7 +13,10 @@ class MainNav extends React.Component {
 
     nav(view) {
         //this.props.action(this.props.router.getCurrentLocation().pathname !== '/' ? view : this.props.router.routes[this.props.router.routes.length-2].path);
-        this.props.action(view);
+        //this.props.action(view);
+        //this.props.router.history.goBack();
+        //var browserHistory = ReactRouter.browserHistory;
+        this.props.router.getCurrentLocation().pathname === '/'? this.props.action(view):browserHistory.goBack();
     }
 
     render() {
@@ -29,7 +32,6 @@ class MainNav extends React.Component {
         const newInvites = this.props.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
         const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
 
-        console.log(this);
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>

@@ -68,6 +68,7 @@
     "react-native-star-rating": "^1.0.7",
     "react-native-swipe-gestures": "^1.0.2",
     "react-native-vector-icons": "^4.2.0",
+    "react-places-autocomplete": "^5.3.1",
     "react-pure-render": "^1.0.2",
     "react-rating": "^0.6.5",
     "react-redux": "latest",
