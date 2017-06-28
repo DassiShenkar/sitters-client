@@ -84,6 +84,9 @@ const defaultState = {
         priceMinRange:0,
         priceMaxRange:50
     },
+    sitterFeed:{
+        calenderDate: moment()
+    },
     sitterProfile: {sitter: {
         workingHours:{},
         hobbies: [],

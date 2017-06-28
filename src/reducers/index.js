@@ -10,7 +10,8 @@ import range from './range';
 import invite from './invite';
 import sitterProfile from './sitterProfile';
 import workingHours from './workingHours'
+import sitterFeed from './sitterFeed'
 
-const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, routing: routerReducer});
+const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, sitterFeed, routing: routerReducer});
 
 export default rootReducer;
