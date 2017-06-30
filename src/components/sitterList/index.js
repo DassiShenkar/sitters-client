@@ -113,14 +113,14 @@ class SitterList extends React.Component {
                     </div>
                     <div className="arrows">
                         {sitterIndex > 0 ?
-                            <span onClick={this.prevSitter} className="glyphicon glyphicon-menu-left"/> : ''}
-                        {sitterIndex >= 0 && sitterIndex <= this.props.sitters.length - 1 ?
-                            <span onClick={this.nextSitter} className="glyphicon glyphicon-menu-right"/> : ''}
+                            <span onClick={this.prevSitter} className={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated': 'glyphicon glyphicon-menu-left'}/> : ''}
+                        {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ?
+                            <span onClick={this.nextSitter} className={sitterIndex === 0 ? 'glyphicon glyphicon-menu-right faa-float animated': 'glyphicon glyphicon-menu-right'}/> : ''}
                     </div>
                     <SitterActionBar {...this.props}/>
                 </div>
                 <div id="sitter-profile">
-                    <Table className="info-table" responsive>
+                    <Table className="info-table">
                         <thead>
                         <tr>
                             <th>{'MUTUAL FRIENDS (' + (mutualFriends ? mutualFriends.length : 0) + ')'}</th>
