@@ -92,7 +92,7 @@ class Invite extends React.Component {
                 <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
             </div>:"";
         return (
-            <div>
+            <div id="invite-modal">
                 <Modal
                     show={this.props.feed.show}
                     onHide={this.closePopup.bind(this)}
@@ -100,21 +100,13 @@ class Invite extends React.Component {
                     aria-labelledby="contained-modal-title"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title">Send Invite</Modal.Title>
+                        <Modal.Title id="contained-modal-title">Invite</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div>
-                            <Image className="sitter-image" src={this.props.sitterProfile.sitter.profilePicture} alt={this.props.sitterProfile.sitter.name} circle={true}/>
+                            {/*<Image className="sitter-image" src={this.props.sitterProfile.sitter.profilePicture} alt={this.props.sitterProfile.sitter.name} circle={true}/>*/}
                             <h4 className="sitter-name">{this.props.sitterProfile.sitter.name}</h4>
                             <form id="invite">
-                                <ControlLabel>Date</ControlLabel>
-                                <DatePicker className="date-picker" defaultValue={this.props.invite.isoValue} {...this.props} action={this.props.actions.inviteActions.changeInviteDate} />
-                                <ControlLabel>Start Watch</ControlLabel>
-                                <TimeInput defaultValue={this.props.invite.fromTime} {...this.props} action={this.props.actions.inviteActions.changeInviteFromTime} />
-                                <ControlLabel>End Watch</ControlLabel>
-                                <TimeInput defaultValue={this.props.invite.toTime} {...this.props} action={this.props.actions.inviteActions.changeInviteToTime}/>
-                                <ControlLabel>Watch Place:</ControlLabel>
-                                {this.props.user.address ? "   " + this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : ''}
                                 <div style={{width: '100%', height: '400px'}}>
                                     <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
                                                 sitters={[this.props.user]}
@@ -122,21 +114,27 @@ class Invite extends React.Component {
                                                 zoom="14"
                                     />
                                 </div>
-                                <ControlLabel>Recurring:</ControlLabel>
+                                {/*<label>{this.props.user.address ? "   " + this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " +this.props.user.address.city : ''}</label>*/}
+                                <label>Date</label>
+                                <DatePicker className="date-picker" defaultValue={this.props.invite.isoValue} {...this.props} action={this.props.actions.inviteActions.changeInviteDate} />
+                                <div className="invite-time">
+                                    <div><label>From</label><TimeInput defaultValue={this.props.invite.fromTime} {...this.props} action={this.props.actions.inviteActions.changeInviteFromTime}/></div>
+                                    <div><label>To</label><TimeInput defaultValue={this.props.invite.toTime} {...this.props} action={this.props.actions.inviteActions.changeInviteToTime}/></div>
+                                </div>
+                                <label>Recurring</label>
                                 <RadioGroup options={strings.YESNO}
                                             defaultValue={this.props.invite.recurring}
                                             action={this.props.actions.inviteActions.changeRecurring}
                                             radioType={'recurring'}
                                             value={this.props.invite.recurring}/>
                                 {this.props.invite.recurring === "Yes"?
-                                    <div><ControlLabel>Weekly Recurring until:</ControlLabel>
+                                    <div><label>Weekly Recurring until:</label>
                                         <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
                                     </div>:""}
-                                <ControlLabel>Notes</ControlLabel>
-                                <FormControl componentClass="textarea" placeholder="textarea" onChange={this.handleChange.bind(this)} />
+                                <label>Notes</label>
+                                <FormControl componentClass="textarea" placeholder="notes" onChange={this.handleChange.bind(this)} />
                                 <Button className="submit-invite" title="Send Invite"  onClick={this.sendInvite}>Send Invite</Button>
                             </form>
-
                         </div>
                     </Modal.Body>
                 </Modal>
