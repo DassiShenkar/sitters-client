@@ -12,10 +12,6 @@ import './style.css';
 class MainNav extends React.Component {
 
     nav(view) {
-        //this.props.action(this.props.router.getCurrentLocation().pathname !== '/' ? view : this.props.router.routes[this.props.router.routes.length-2].path);
-        //this.props.action(view);
-        //this.props.router.history.goBack();
-        //var browserHistory = ReactRouter.browserHistory;
         this.props.router.getCurrentLocation().pathname === '/'? this.props.action(view):browserHistory.goBack();
     }
 
