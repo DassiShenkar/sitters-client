@@ -18,6 +18,8 @@ nav#main-nav {
 
   ul > li > a > span:before {
     font-size: 18px;
+    color: #000;
+    opacity: 0.5;
   }
 
   .navbar-brand {
@@ -93,11 +95,11 @@ nav#main-nav {
       }
 
       .accepted:before {
-        color: #f86966;
+        color: #aeea00;
       }
 
       .declined:before {
-        color: #4dd0e1;
+        color: #f86966;
       }
 
     }
