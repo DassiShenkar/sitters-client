@@ -177,6 +177,29 @@ class Settings extends React.Component {
             console.warn('Push messaging is not supported');
             // pushButton.textContent = 'Push Not Supported';
         }
+
+        navigator.serviceWorker.addEventListener('message', function(event) {
+            console.log("Got reply from service worker-PUSH: " + event.data);
+        });
+
+        // Are we being controlled?
+        if (navigator.serviceWorker.controller) {
+            // Yes, send our controller a message.
+            console.log("Sending 'hi' to controller");
+            navigator.serviceWorker.controller.postMessage("hi");
+            // No, register a service worker to control pages like us.
+            // Note that it won't control this instance of this page, it only takes effect
+            // for pages in its scope loaded *after* it's installed.
+            navigator.serviceWorker.register("/sw.js")
+                .then(function(registration) {
+                    console.log("Service worker registered, scope: " + registration.scope);
+                    console.log("Refresh the page to talk to it.");
+                    // If we want to, we might do `location.reload();` so that we'd be controlled by it
+                })
+                .catch(function(error) {
+                    console.log("Service worker registration failed: " + error.message);
+                });
+        }
     }
 
     handleApplyChanges(e) {
