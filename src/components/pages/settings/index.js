@@ -37,7 +37,7 @@ class Settings extends React.Component {
             .then(function (subscription) {
                 isSubscribed = !(subscription === null);
 
-                self.updateSubscriptionOnServer(subscription);
+                //self.updateSubscriptionOnServer(subscription);
 
                 if (isSubscribed) {
                     console.log('User IS subscribed.');
@@ -90,6 +90,7 @@ class Settings extends React.Component {
     }
 
     unsubscribeUser() {
+        const self = this;
     swRegistration.pushManager.getSubscription()
         .then(function(subscription) {
             if (subscription) {
@@ -100,7 +101,7 @@ class Settings extends React.Component {
             console.log('Error unsubscribing', error);
         })
         .then(function() {
-            this.updateSubscriptionOnServer(null);
+            self.updateSubscriptionOnServer(null);
 
             console.log('User is unsubscribed.');
             isSubscribed = false;
@@ -111,12 +112,13 @@ class Settings extends React.Component {
 
     updateSubscriptionOnServer(subscription) {
         if (subscription) {
-            if(isSubscribed){
+            if(!isSubscribed){
                 let user = this.props.user;
                 user.pushNotifications = JSON.parse(JSON.stringify(subscription));
+                const endPoint = this.props.user.isParent? 'parent/update': 'sitter/update';
                 axios({
                     method: 'post',
-                    url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+                    url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + endPoint,
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     data: user
                 }).then(function (res) {
@@ -158,7 +160,6 @@ class Settings extends React.Component {
 
 
     componentDidMount() {
-        // const pushButton = document.getElementsByClassName('js-push-btn')[0];
         const self = this;
         if ('serviceWorker' in navigator && 'PushManager' in window) {
             console.log('Service Worker and Push is supported');
@@ -181,8 +182,10 @@ class Settings extends React.Component {
 
     handleApplyChanges(e) {
         e.preventDefault();
+
         let user = this.props.user;
         if(this.props.settings.enableNotifications){
+
             this.subscribeUser();
         }
         else{
