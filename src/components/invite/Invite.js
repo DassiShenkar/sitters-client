@@ -59,6 +59,10 @@ class Invite extends React.Component {
                 invite.date = (inviteDate.getMonth() + 1) + "/" + inviteDate.getDate() + "/" + inviteDate.getFullYear();
             } while (inviteDate <= recurringDate);
         }
+        else {
+            invites.push(invite);
+            // this.props.actions.actionCreators.setInvites(this.props.user.invites.concat(invite));
+        }
         this.props.actions.inviteActions.changeRecurringDate(dateFormat(new Date(), "mm/dd/yyyy"), dateFormat(new Date(), "dddd"), new Date().toISOString());
         let self = this;
         axios({
@@ -71,6 +75,10 @@ class Invite extends React.Component {
             if (res.data) {  // invite created
                 self.props.actions.feedActions.showInvitePopup(false);
                 self.props.actions.inviteActions.changeRecurring("No");
+                // invites.forEach(invite => {
+                //     self.props.actions.inviteActions.sendInvite(invite);
+                // });
+                self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(invites));
                 self.props.router.push('/');
             }
             else { // invite not created
@@ -100,7 +108,7 @@ class Invite extends React.Component {
                     aria-labelledby="contained-modal-title"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title">Invite</Modal.Title>
+                        <Modal.Title id="contained-modal-title">SEND INVITE</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div>
