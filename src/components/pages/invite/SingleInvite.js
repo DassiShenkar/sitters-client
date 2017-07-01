@@ -31,10 +31,10 @@ export default class SingleInvite extends React.Component {
     updateInvite(user, invite) {
         const self = this;
         this.props.actions.inviteActions.setInvites(user.invites);
-        const path = this.props.user.isParent ? 'parent/update' : 'sitter/update';
+        // const path = this.props.user.isParent ? 'parent/update' : 'sitter/update';
         axios({
             method: 'post',
-            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + path,
+            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) +' sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user
         }).then(function (res) {
@@ -42,7 +42,7 @@ export default class SingleInvite extends React.Component {
 
             }
             else {
-                console.log("settings not updated");
+                console.log("invite not updated");
                 //TODO: think about error
             }
         })
