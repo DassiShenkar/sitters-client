@@ -32,6 +32,9 @@ self.addEventListener('push', function(event) {
     };
 
     event.waitUntil(self.registration.showNotification(title, options));
+    self.clients.matchAll().then(all => all.forEach(client => {
+        client.postMessage("SW-PUSH-Responding to " + event.data);
+    }));
 });
 
 self.addEventListener('notificationclick', function(event) {
@@ -69,4 +72,11 @@ self.addEventListener('notificationclick', function(event) {
     // event.waitUntil(
     //     clients.openWindow(path + id)
     // );
+});
+
+self.addEventListener("message", function(event) {
+    //event.source.postMessage("Responding to " + event.data);
+    self.clients.matchAll().then(all => all.forEach(client => {
+        client.postMessage("Responding to " + event.data);
+    }));
 });
