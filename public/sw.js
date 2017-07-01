@@ -22,14 +22,25 @@
 self.addEventListener('push', function(event) {
     console.log('[Service Worker] Push Received.');
     console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-    const data = JSON.parse(event.data.text())[0];
+    const data = JSON.parse(event.data.text());
     const title = 'Sitters';
-    const options = {
-        body: data.sitterName,
-        icon: data.sitterImage,
-        badge: data.parentImage,
-        data: data._id
-    };
+    let options;
+    if("parentID" in data){ // Got an invite
+        options = {
+            body: data.sitterName,
+            icon: data.sitterImage,
+            badge: data.parentImage,
+            data: data._id
+        };
+    }
+    else{// New sitter in town
+        options = {
+            body: data.sitterName,
+            icon: data.sitterImage,
+            badge: data.parentImage,
+            data: data._id
+        };
+    }
 
     event.waitUntil(self.registration.showNotification(title, options));
     self.clients.matchAll().then(all => all.forEach(client => {
