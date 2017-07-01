@@ -24,9 +24,10 @@ export default class SingleInvite extends React.Component {
 
         if (shouldUpdate) {
             user.invites[inviteIndex].wasRead = true;
-            this.updateInvite(user)
+            this.updateInvite(user, user.invites[inviteIndex]);
         }
     }
+
 
     updateInvite(user, invite) {
         const self = this;
@@ -34,9 +35,9 @@ export default class SingleInvite extends React.Component {
         // const path = this.props.user.isParent ? 'parent/update' : 'sitter/update';
         axios({
             method: 'post',
-            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) +' sitter/update',
+            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'invite/updateInvite',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: user
+            data: invite
         }).then(function (res) {
             if (res.data) {  // user created
 
@@ -50,48 +51,48 @@ export default class SingleInvite extends React.Component {
                 alert(error);
                 //TODO: think about error
             });
-        if (!user.isParent && invite) {
-            axios({
-                method: 'post',
-                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {_id: invite.parentID}
-            })
-                .then(function (response) {
-                    if (response.data) {  // user exists
-                        let parent = response.data;
-                        const inviteIndex = _.findIndex(parent.invites, function (o) {
-                            return o._id === invite._id;
-                        });
-                        parent.invites[inviteIndex] = invite;
-                        parent.invites[inviteIndex].wasRead = false;
-                        axios({
-                            method: 'post',
-                            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
-                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            data: parent
-                        }).then(function (res) {
-                            if (res.data) {  // user created
-                                self.props.router.push('/');
-                            }
-                            else {
-                                console.log("settings not updated");
-                                //TODO: think about error
-                            }
-                        })
-                            .catch(function (error) {
-                                alert(error);
-                                //TODO: think about error
-                            });
-                    }
-                    else { // user not exist
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
+        // if (!user.isParent && invite) {
+        //     axios({
+        //         method: 'post',
+        //         url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
+        //         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+        //         data: {_id: invite.parentID}
+        //     })
+        //         .then(function (response) {
+        //             if (response.data) {  // user exists
+        //                 let parent = response.data;
+        //                 const inviteIndex = _.findIndex(parent.invites, function (o) {
+        //                     return o._id === invite._id;
+        //                 });
+        //                 parent.invites[inviteIndex] = invite;
+        //                 parent.invites[inviteIndex].wasRead = false;
+        //                 axios({
+        //                     method: 'post',
+        //                     url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+        //                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+        //                     data: parent
+        //                 }).then(function (res) {
+        //                     if (res.data) {  // user created
+        //                         self.props.router.push('/');
+        //                     }
+        //                     else {
+        //                         console.log("settings not updated");
+        //                         //TODO: think about error
+        //                     }
+        //                 })
+        //                     .catch(function (error) {
+        //                         alert(error);
+        //                         //TODO: think about error
+        //                     });
+        //             }
+        //             else { // user not exist
+        //
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });
+        // }
 
     }
 
