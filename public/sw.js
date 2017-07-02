@@ -42,9 +42,12 @@ self.addEventListener('push', function(event) {
         };
     }
 
+
+
+
     event.waitUntil(self.registration.showNotification(title, options));
     self.clients.matchAll().then(all => all.forEach(client => {
-        client.postMessage("SW-PUSH-Responding to " + event.data);
+        client.postMessage(event.data.text());
     }));
 });
 

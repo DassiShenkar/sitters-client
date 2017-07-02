@@ -22,7 +22,6 @@ class Settings extends React.Component {
     constructor(props) {
         super(props);
         this.initialiseUI = this.initialiseUI.bind(this);
-        this.updateBtn = this.updateBtn.bind(this);
         this.subscribeUser = this.subscribeUser.bind(this);
         this.unsubscribeUser = this.unsubscribeUser.bind(this);
         this.updateSubscriptionOnServer = this.updateSubscriptionOnServer.bind(this);
@@ -30,40 +29,16 @@ class Settings extends React.Component {
     }
 
     initialiseUI() {
-
-        // Set the initial subscription value
-        const self = this;
         swRegistration.pushManager.getSubscription()
             .then(function (subscription) {
                 isSubscribed = !(subscription === null);
-
                 //self.updateSubscriptionOnServer(subscription);
-
                 if (isSubscribed) {
                     console.log('User IS subscribed.');
                 } else {
                     console.log('User is NOT subscribed.');
                 }
-
-                // self.updateBtn();
             });
-    }
-
-    updateBtn() {
-        if (Notification.permission === 'denied') {
-            console.log('Push Messaging Blocked');
-            // pushButton.disabled = true;
-            this.updateSubscriptionOnServer(null);
-            return;
-        }
-
-        if (isSubscribed) {
-            console.log('Disable Push Messaging');
-        } else {
-            console.log('Enable Push Messaging');
-        }
-
-        // pushButton.disabled = false;
     }
 
     subscribeUser() {
@@ -79,12 +54,9 @@ class Settings extends React.Component {
                     console.log('User is subscribed.');
                     self.updateSubscriptionOnServer(subscription);
                     isSubscribed = true;
-
-                    // self.updateBtn();
                 })
                 .catch(function (err) {
                     console.log('Failed to subscribe the user: ', err);
-                    // self.updateBtn();
                 });
         });
     }
@@ -102,11 +74,8 @@ class Settings extends React.Component {
         })
         .then(function() {
             self.updateSubscriptionOnServer(null);
-
             console.log('User is unsubscribed.');
             isSubscribed = false;
-
-           //this.updateBtn();
         });
 }
 
@@ -137,9 +106,6 @@ class Settings extends React.Component {
                         //TODO: think about error when user not created
                     });
             }
-            // subscriptionDetails.classList.remove('is-invisible');
-        } else {
-            // subscriptionDetails.classList.add('is-invisible');
         }
     }
 
@@ -167,7 +133,6 @@ class Settings extends React.Component {
             navigator.serviceWorker.register('/sw.js')
                 .then(function(swReg) {
                     console.log('Service Worker is registered', swReg);
-
                     swRegistration = swReg;
                     self.initialiseUI();
                 })
@@ -179,28 +144,28 @@ class Settings extends React.Component {
             // pushButton.textContent = 'Push Not Supported';
         }
 
-        navigator.serviceWorker.addEventListener('message', function(event) {
-            console.log("Got reply from service worker-PUSH: " + event.data);
-        });
+        // navigator.serviceWorker.addEventListener('message', function(event) {
+        //     console.log("Got reply from service worker-PUSH: " + event.data);
+        // });
 
         // Are we being controlled?
-        if (navigator.serviceWorker.controller) {
-            // Yes, send our controller a message.
-            console.log("Sending 'hi' to controller");
-            navigator.serviceWorker.controller.postMessage("hi");
-            // No, register a service worker to control pages like us.
-            // Note that it won't control this instance of this page, it only takes effect
-            // for pages in its scope loaded *after* it's installed.
-            navigator.serviceWorker.register("/sw.js")
-                .then(function(registration) {
-                    console.log("Service worker registered, scope: " + registration.scope);
-                    console.log("Refresh the page to talk to it.");
-                    // If we want to, we might do `location.reload();` so that we'd be controlled by it
-                })
-                .catch(function(error) {
-                    console.log("Service worker registration failed: " + error.message);
-                });
-        }
+        // if (navigator.serviceWorker.controller) {
+        //     // Yes, send our controller a message.
+        //     console.log("Sending 'hi' to controller");
+        //     navigator.serviceWorker.controller.postMessage("hi");
+        //     // No, register a service worker to control pages like us.
+        //     // Note that it won't control this instance of this page, it only takes effect
+        //     // for pages in its scope loaded *after* it's installed.
+        //     navigator.serviceWorker.register("/sw.js")
+        //         .then(function(registration) {
+        //             console.log("Service worker registered1111, scope: " + registration.scope);
+        //             console.log("Refresh the page to talk to it.");
+        //             // If we want to, we might do `location.reload();` so that we'd be controlled by it
+        //         })
+        //         .catch(function(error) {
+        //             console.log("Service worker registration failed: " + error.message);
+        //         });
+        // }
     }
 
     handleApplyChanges(e) {

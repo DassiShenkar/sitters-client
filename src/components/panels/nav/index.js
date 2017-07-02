@@ -11,6 +11,17 @@ import './style.css';
 
 class MainNav extends React.Component {
 
+    componentWillMount(){
+        const self = this;
+        navigator.serviceWorker.addEventListener('message', function(event) {
+            let object = JSON.parse(event.data);
+            if("parentID" in object[0] && self.props.user.name){ // new invite
+                console.log("new invite");
+                self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object[0]));
+            }
+            // console.log("Got reply from service worker-PUSH: " + event.data);
+        });
+    }
     nav(view) {
         this.props.router.getCurrentLocation().pathname === '/'? this.props.action(view):browserHistory.goBack();
     }
