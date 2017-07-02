@@ -15,11 +15,21 @@ class MainNav extends React.Component {
         const self = this;
         navigator.serviceWorker.addEventListener('message', function(event) {
             let object = JSON.parse(event.data);
-            if("parentID" in object[0] && self.props.user.name){ // new invite
-                console.log("new invite");
-                self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object[0]));
+            if("parentID" in object && self.props.user.name){
+                if(object.status !== 'waiting') { // update invite
+                    let invites = self.props.user.invites;
+                    invites.forEach(invite => {
+                        if(invite._id === object._id) {
+                            invite.status = object.status;
+                            invite.wasRead = false;
+                        }
+                    });
+                    self.props.actions.actionCreators.setInvites(invites);
+                }
+                else {
+                    self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
+                }
             }
-            // console.log("Got reply from service worker-PUSH: " + event.data);
         });
     }
     nav(view) {
