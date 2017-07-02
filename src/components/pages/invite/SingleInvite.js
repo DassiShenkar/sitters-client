@@ -31,7 +31,7 @@ export default class SingleInvite extends React.Component {
 
     updateInvite(user, invite) {
         const self = this;
-        this.props.actions.inviteActions.setInvites(user.invites);
+
         // const path = this.props.user.isParent ? 'parent/update' : 'sitter/update';
         axios({
             method: 'post',
@@ -39,8 +39,8 @@ export default class SingleInvite extends React.Component {
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
-            if (res.data) {  // user created
-
+            if (res.data) {  // invite updated
+                self.props.actions.inviteActions.setInvites(user.invites);
             }
             else {
                 console.log("invite not updated");
