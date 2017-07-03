@@ -53,6 +53,7 @@ class Login extends React.Component {
                             });
                     }
                     document.cookie = ("auth_token=" + facebookUser.id);
+                    document.cookie = ("is_parent=" + response.data.isParent);
                     self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
                     if (response.data.isParent)
                         self.props.actions.actionCreators.setParentData(response.data);
