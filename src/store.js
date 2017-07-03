@@ -67,9 +67,17 @@ const defaultState = {
         childExpertise: [],
         childSpecialNeeds: [],
         childHobbies: [],
+        sitterExpertise: [],
+        sitterSpecialNeeds: [],
+        sitterHobbies: [],
         watchMaxPrice: "",
         languages: [],
-
+        sitterExperience: "",
+        sitterEducation: [],
+        sitterMinAge: "",
+        sitterMaxAge: "",
+        hourFee: "",
+        sitterMotto: ""
     },
     settings: {
         enableNotifications: false,

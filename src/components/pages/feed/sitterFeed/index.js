@@ -67,7 +67,6 @@ class SitterFeed extends React.Component {
                 if(inviteDate.format("M") === calenderMonth.format("M")){
                     monthlyMoney += Math.round(timeDifference * hourFee);
                 }
-                console.log(invite);
                 events.push({
                     title: title,
                     // allDay: true,
