@@ -29,8 +29,8 @@ class SitterProfileView extends React.Component {
         self.props.feedActions.showSpinner(true);
         axios({
             method: 'post',
-            url: 'https://sitters-server.herokuapp.com/sitter/get',
-            // url: 'https://sittersdev.herokuapp.com/sitter/get',
+            // url: 'https://sitters-server.herokuapp.com/sitter/get',
+            url: 'http://192.168.1.70:4444/sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: sitterID}
         }).then(function (sitter) {

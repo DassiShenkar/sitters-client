@@ -2,8 +2,9 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-import { bindActionCreators } from 'redux';
-import {  connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from './ImageButton'
@@ -15,6 +16,7 @@ class AppBar extends React.Component {
         super(props);
         // this.search = this.search.bind(this);
         this.menu = this.menu.bind(this);
+        this.getSitterNow = this.getSitterNow.bind(this);
     }
 
     componentDidUpdate () {
@@ -65,6 +67,10 @@ class AppBar extends React.Component {
                     style={this.props.user.userType === "I'm a Parent" ? styles.parentInnerContainer : styles.innerContainer}>
                     {
                         this.props.user.userType === "I'm a Parent" ?
+                            <Icon.Button name="mobile" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.getSitterNow} /> : null
+                    }
+                    {
+                        this.props.user.userType === "I'm a Parent" ?
                         <Icon.Button name="search" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.search} /> : null
                     }
                     <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Notifications} />
@@ -81,6 +87,20 @@ class AppBar extends React.Component {
 
     menu() {
         Actions.Menu({hide: false});
+    }
+
+    getSitterNow() {
+        axios({
+            method: 'post',
+            // url: 'https://sitters-server.herokuapp.com/parent/getSitterNow',
+            url: 'http://192.168.1.70:4444/parent/getSitterNow',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: {_id: this.props.user._id.toString()}
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 }
 
@@ -103,7 +123,7 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     parentInnerContainer: {
-        width: 160,
+        width: 200,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginRight: 20

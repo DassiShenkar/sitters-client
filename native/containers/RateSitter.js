@@ -49,7 +49,7 @@ class RateSitter extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/sitter/update',
-            url: 'https://sittersdev.herokuapp.com/sitter/update',
+            url: 'http://192.168.1.70:4444/sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {

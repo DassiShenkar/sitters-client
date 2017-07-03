@@ -28,7 +28,6 @@ class SitterSendInvite extends React.Component {
     }
 
     sendInvite(e) {
-        e.preventDefault();
         let invite = [{
             _id: uuid.v1(),
             address:    {
@@ -57,7 +56,7 @@ class SitterSendInvite extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/invite/create',
-            url: 'https://sittersdev.herokuapp.com/invite/create',
+            url: 'http://192.168.1.70:4444/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {

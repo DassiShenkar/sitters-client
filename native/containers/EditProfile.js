@@ -222,7 +222,7 @@ class EditProfile extends Component {
         console.log(user);
         axios({
             method: 'post',
-            url: 'https://sittersdev.herokuapp.com/' + path,
+            url: 'http://192.168.1.70:4444/' + path,
             // url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user

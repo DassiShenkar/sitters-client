@@ -131,7 +131,7 @@ export default class Feed extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e) {
+    navToInvite(e, sitterId) {
         let sitterIndex = this.props.feed.sitterIndex;
         let sitter = this.props.sitters[sitterIndex];
         Actions.SitterSendInvite({ sitter: sitter });

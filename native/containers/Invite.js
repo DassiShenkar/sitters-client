@@ -45,7 +45,7 @@ class Invite extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/'+ path,
-            url: 'https://sittersdev.herokuapp.com/'+ path,
+            url: 'http://10.0.0.4:4444/'+ path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user
         }).then(function (res) {
@@ -65,7 +65,7 @@ class Invite extends React.Component {
             axios({
                 method: 'post',
                 // url: 'https://sitters-server.herokuapp.com/user/getUser',
-                url: 'https://sittersdev.herokuapp.com/user/getUser',
+                url: 'http://192.168.1.70:4444/user/getUser',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: invite.parentID}
             })
@@ -78,7 +78,7 @@ class Invite extends React.Component {
                         axios({
                             method: 'post',
                             // url: 'https://sitters-server.herokuapp.com/parent/update',
-                            url: 'https://sittersdev.herokuapp.com/parent/update',
+                            url: 'http://192.168.1.70:4444/parent/update',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
                         }).then(function (res) {
