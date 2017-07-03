@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-45:12
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-57:12
 	package
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:2:5-26
 		INJECTED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml
@@ -17,10 +17,13 @@ ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManif
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
 ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:6:5-67
-MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:21:5-66
-MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:21:5-66
 MERGED from [com.airbnb.android:react-native-maps:0.15.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\AndroidManifest.xml:9:5-67
-MERGED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-gcm:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\11.0.1\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\11.0.1\AndroidManifest.xml:21:5-66
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:20:5-66
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:20:5-66
 	android:name
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:6:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
@@ -34,6 +37,9 @@ ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManif
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:8:22-76
 uses-permission#android.permission.WAKE_LOCK
 ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:9:5-68
+MERGED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:21:5-67
 	android:name
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:9:22-65
 permission#${applicationId}.permission.C2D_MESSAGE
@@ -64,14 +70,8 @@ ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManif
 MERGED from [Sitters:react-native-vector-icons:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\react-native-vector-icons\unspecified\AndroidManifest.xml:7:5-9:41
 MERGED from [Sitters:react-native-fbsdk:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\react-native-fbsdk\unspecified\AndroidManifest.xml:26:5-28:41
 MERGED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:17:5-42
-MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:17:5-42
 MERGED from [com.airbnb.android:react-native-maps:0.15.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:23:5-43
-MERGED from [com.google.android.gms:play-services-base:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\AndroidManifest.xml:17:5-43
-MERGED from [com.google.android.gms:play-services-tasks:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\AndroidManifest.xml:3:5-43
-MERGED from [com.google.android.gms:play-services-basement:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\AndroidManifest.xml:17:5-43
-MERGED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:24:5-26:41
 MERGED from [com.android.support:cardview-v7:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.3.1\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:customtabs:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\customtabs\25.3.1\AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.react:react-native:0.42.3] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.42.3\AndroidManifest.xml:7:5-9:41
@@ -85,14 +85,26 @@ MERGED from [com.facebook.fresco:drawee:0.11.0] D:\Java\IdeaProjects\sitters-cli
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:0.11.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-okhttp3\0.11.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline:0.11.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline\0.11.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-base:0.11.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\0.11.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:0.11.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.11.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.1.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\AndroidManifest.xml:2:3-70
+MERGED from [com.google.firebase:firebase-core:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-core\11.0.1\AndroidManifest.xml:4:5-43
+MERGED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-gcm:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:23:5-43
+MERGED from [com.google.android.gms:play-services-base:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-messaging:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:17:5-43
+MERGED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-tasks:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\11.0.1\AndroidManifest.xml:3:5-43
+MERGED from [com.google.android.gms:play-services-basement:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.0.1\AndroidManifest.xml:17:5-43
 MERGED from [com.android.support:support-v4:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\AndroidManifest.xml:21:5-23:60
 MERGED from [com.android.support:support-media-compat:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-core-ui:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\AndroidManifest.xml:21:5-23:58
-MERGED from [com.facebook.fresco:fbcore:0.11.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\fbcore\0.11.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.soloader:soloader:0.1.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\AndroidManifest.xml:2:3-70
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
@@ -104,30 +116,36 @@ MERGED from [com.facebook.soloader:soloader:0.1.0] D:\Java\IdeaProjects\sitters-
 		INJECTED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml
 application
-ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:21:5-43:19
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:21:5-55:19
 MERGED from [Sitters:react-native-fbsdk:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\react-native-fbsdk\unspecified\AndroidManifest.xml:30:5-20
 MERGED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:23:5-63:19
-MERGED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:23:5-19
-MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:23:5-19
-MERGED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:24:5-19
-MERGED from [com.google.android.gms:play-services-base:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\AndroidManifest.xml:18:5-20:19
-MERGED from [com.google.android.gms:play-services-tasks:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\AndroidManifest.xml:4:5-19
-MERGED from [com.google.android.gms:play-services-basement:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\AndroidManifest.xml:19:5-21:19
-MERGED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:28:5-48:19
+MERGED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:28:5-48:19
 MERGED from [com.android.support:cardview-v7:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.3.1\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:customtabs:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\customtabs\25.3.1\AndroidManifest.xml:26:5-20
 MERGED from [com.facebook.react:react-native:0.42.3] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.42.3\AndroidManifest.xml:13:5-20
 MERGED from [com.android.support:appcompat-v7:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:support-vector-drawable:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\AndroidManifest.xml:26:5-20
+MERGED from [com.facebook.soloader:soloader:0.1.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\AndroidManifest.xml:3:3-17
+MERGED from [org.webkit:android-jsc:r174650] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\org.webkit\android-jsc\r174650\AndroidManifest.xml:2:3-17
+MERGED from [com.google.firebase:firebase-core:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-core\11.0.1\AndroidManifest.xml:5:5-20
+MERGED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:24:5-34:19
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:24:5-28:19
+MERGED from [com.google.android.gms:play-services-gcm:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\11.0.1\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\11.0.1\AndroidManifest.xml:23:5-19
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:24:5-19
+MERGED from [com.google.android.gms:play-services-base:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\AndroidManifest.xml:18:5-20:19
+MERGED from [com.google.firebase:firebase-messaging:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\11.0.1\AndroidManifest.xml:19:5-29:19
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:28:5-49:19
+MERGED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:4:5-7:19
+MERGED from [com.google.android.gms:play-services-tasks:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\11.0.1\AndroidManifest.xml:4:5-19
+MERGED from [com.google.android.gms:play-services-basement:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.0.1\AndroidManifest.xml:19:5-21:19
 MERGED from [com.android.support:support-v4:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-fragment:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-media-compat:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-ui:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-utils:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-compat:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\AndroidManifest.xml:29:5-20
-MERGED from [com.facebook.soloader:soloader:0.1.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.soloader\soloader\0.1.0\AndroidManifest.xml:3:3-17
-MERGED from [org.webkit:android-jsc:r174650] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\org.webkit\android-jsc\r174650\AndroidManifest.xml:2:3-17
 	android:label
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:24:9-41
 	android:supportsRtl
@@ -162,32 +180,54 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:36:17-77
 	android:name
 		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:36:27-74
+service#com.sitters.MyFirebaseInstanceIDService
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:39:9-44:19
+	android:name
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:40:13-56
+intent-filter#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:41:13-43:29
+action#com.google.firebase.INSTANCE_ID_EVENT
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:42:17-79
+	android:name
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:42:25-77
+service#com.sitters.MyFirebaseMessagingService
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:45:9-50:19
+	android:name
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:46:13-55
+intent-filter#com.google.firebase.MESSAGING_EVENT
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:47:13-49:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:48:17-77
+	android:name
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:48:25-75
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:39:9-86
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:51:9-86
 	android:name
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:39:19-83
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:51:19-83
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:40:9-107
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:52:9-107
 	android:value
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:40:66-105
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:52:66-105
 	android:name
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:40:20-65
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:52:20-65
 meta-data#com.google.android.geo.API_KEY
-ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:41:9-99
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:53:9-99
 	android:value
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:41:66-97
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:53:66-97
 	android:name
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:41:20-65
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:53:20-65
 meta-data#com.wix.reactnativenotifications.gcmSenderId
-ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:42:9-112
+ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:54:9-112
 	android:value
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:42:80-110
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:54:80-110
 	android:name
-		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:42:20-79
+		ADDED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:54:20-79
 permission#com.sitters.permission.C2D_MESSAGE
 MERGED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:12:5-14:47
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:24:5-109
 uses-permission#com.sitters.permission.C2D_MESSAGE
 MERGED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:16:5-79
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:26:5-78
 service#com.wix.reactnativenotifications.core.ProxyService
 ADDED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:26:9-86
 	android:name
@@ -240,59 +280,30 @@ ADDED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\s
 		ADDED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:62:13-37
 	android:name
 		ADDED from [Sitters:reactnativenotifications:unspecified] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\AndroidManifest.xml:61:13-99
-uses-permission#com.google.android.c2dm.permission.RECEIVE
-ADDED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:20:5-81
-MERGED from [com.google.android.gms:play-services-iid:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\AndroidManifest.xml:20:5-81
-	android:name
-		ADDED from [com.google.android.gms:play-services-gcm:10.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\AndroidManifest.xml:20:22-79
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from [com.airbnb.android:react-native-maps:0.15.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\AndroidManifest.xml:10:5-81
 	android:name
 		ADDED from [com.airbnb.android:react-native-maps:0.15.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.airbnb.android\react-native-maps\0.15.0\AndroidManifest.xml:10:22-78
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:19:5-78
-	android:name
-		ADDED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:19:22-76
-uses-feature#0x00020000
-ADDED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:21:5-77
-	android:glEsVersion
-		ADDED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:21:19-51
-	android:required
-		ADDED from [com.google.android.gms:play-services-maps:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\AndroidManifest.xml:21:52-75
-activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\AndroidManifest.xml:19:9-172
-	android:exported
-		ADDED from [com.google.android.gms:play-services-base:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\AndroidManifest.xml:19:146-170
-	android:theme
-		ADDED from [com.google.android.gms:play-services-base:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\AndroidManifest.xml:19:86-145
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\AndroidManifest.xml:19:19-85
-meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\AndroidManifest.xml:20:9-121
-	android:value
-		ADDED from [com.google.android.gms:play-services-basement:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\AndroidManifest.xml:20:66-119
-	android:name
-		ADDED from [com.google.android.gms:play-services-basement:10.2.4] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\AndroidManifest.xml:20:20-65
 activity#com.facebook.FacebookActivity
-ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:29:9-32:66
+ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:29:9-32:66
 	android:configChanges
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:31:13-96
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:31:13-96
 	android:theme
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:32:13-63
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:32:13-63
 	android:name
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:30:13-57
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:30:13-57
 activity#com.facebook.CustomTabMainActivity
-ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:33:9-71
+ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:33:9-71
 	android:name
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:33:19-68
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:33:19-68
 provider#com.facebook.internal.FacebookInitProvider
-ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:44:9-47:40
+ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:44:9-47:40
 	android:authorities
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:46:13-72
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:46:13-72
 	android:exported
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:47:13-37
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from [com.facebook.android:facebook-android-sdk:4.23.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\AndroidManifest.xml:45:13-70
+		ADDED from [com.facebook.android:facebook-android-sdk:4.24.0] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\AndroidManifest.xml:45:13-70
 meta-data#android.support.VERSION
 ADDED from [com.android.support:cardview-v7:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.3.1\AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:customtabs:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\customtabs\25.3.1\AndroidManifest.xml:22:5-24:34
@@ -310,8 +321,123 @@ MERGED from [com.android.support:support-compat:25.3.1] D:\Java\IdeaProjects\sit
 	android:name
 		ADDED from [com.android.support:cardview-v7:25.3.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.3.1\AndroidManifest.xml:23:9-47
 android:uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-IMPLIED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-45:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-57:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 android:uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-45:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-57:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 android:uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-45:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
+IMPLIED from D:\Java\IdeaProjects\sitters-client\android\app\src\main\AndroidManifest.xml:1:1-57:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:19:5-78
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:21:22-76
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:25:7-26:18
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:25:7-26:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:25:90-112
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:25:113-137
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:25:17-89
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:27:7-31:18
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:27:162-184
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:27:185-208
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:27:105-161
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:27:17-104
+intent-filter#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:28:11-30:27
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:29:15-76
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:29:23-74
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:32:7-137
+MERGED from [com.google.firebase:firebase-analytics-impl:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\AndroidManifest.xml:27:7-137
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:32:88-110
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:32:111-135
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:32:16-87
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:33:7-197
+	android:enabled
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:33:148-170
+	android:exported
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:33:171-195
+	android:permission
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:33:91-147
+	android:name
+		ADDED from [com.google.firebase:firebase-analytics:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\AndroidManifest.xml:33:16-90
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.android.gms:play-services-gcm:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\11.0.1\AndroidManifest.xml:20:5-81
+MERGED from [com.google.android.gms:play-services-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\11.0.1\AndroidManifest.xml:20:5-81
+MERGED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.google.android.gms:play-services-gcm:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\11.0.1\AndroidManifest.xml:20:22-79
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:21:5-77
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:21:19-51
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\AndroidManifest.xml:21:52-75
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\AndroidManifest.xml:19:9-172
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\AndroidManifest.xml:19:146-170
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\AndroidManifest.xml:19:86-145
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\AndroidManifest.xml:19:19-85
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\11.0.1\AndroidManifest.xml:23:9-27:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\11.0.1\AndroidManifest.xml:23:88-111
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\11.0.1\AndroidManifest.xml:23:18-87
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:30:9-35:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:30:85-108
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:30:109-169
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:30:19-84
+intent-filter#${applicationId}+com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:31:13-34:29
+receiver#com.google.firebase.iid.FirebaseInstanceIdInternalReceiver
+ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:39:9-119
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:39:93-117
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:39:19-92
+service#com.google.firebase.iid.FirebaseInstanceIdService
+ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:43:9-47:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:43:83-106
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\AndroidManifest.xml:43:18-82
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:6:9-194
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:6:19-78
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:6:144-168
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:6:169-192
+	android:name
+		ADDED from [com.google.firebase:firebase-common:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\AndroidManifest.xml:6:79-143
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.0.1\AndroidManifest.xml:20:9-121
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.0.1\AndroidManifest.xml:20:66-119
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:11.0.1] D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.0.1\AndroidManifest.xml:20:20-65
