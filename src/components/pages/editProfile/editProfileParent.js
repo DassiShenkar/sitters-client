@@ -1,0 +1,301 @@
+import React from 'react';
+import axios from 'axios';
+import {AgeFromDate} from 'age-calculator';
+import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
+import {geocodeByAddress} from "react-places-autocomplete";
+
+//style
+import './style.css';
+import * as _ from "lodash";
+
+import TextInput from "../../controllers/textInput/index";
+import RadioGroup from "../../controllers/radio/radioGroup/index";
+import strings from "../../../static/strings";
+import SelectInput from "../../controllers/select/SelectInput";
+
+class EditProfileParent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmitParent = this.handleSubmitParent.bind(this);
+        this.convertStringArrayToMultiSelect = this.convertStringArrayToMultiSelect.bind(this);
+
+    };
+    // calcAge(birthday) {
+    //     let date = birthday.split("/");
+    //     return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
+    // }
+    handleSubmitParent(e) {
+        e.preventDefault();
+        const self = this;
+        let parent = this.props.user;
+        let expertise = [], hobbies = [], specialNeeds = [],personality = [], languages = [];
+        if(this.props.editProfile.languages.length > 0){
+            this.props.editProfile.languages.forEach(function(o){
+                languages.push(o.value);
+            })
+        }
+        if(this.props.editProfile.childExpertise.length > 0){
+            this.props.editProfile.childExpertise.forEach(function(o){
+                expertise.push(o.value);
+            })
+        }
+        if(this.props.editProfile.childSpecialNeeds.length > 0){
+            this.props.editProfile.childSpecialNeeds.forEach(function(o){
+                specialNeeds.push(o.value);
+            })
+        }
+        if(this.props.editProfile.childHobbies.length > 0){
+            this.props.editProfile.childHobbies.forEach(function(o){
+                hobbies.push(o.value);
+            })
+        }
+        parent.name = this.props.editProfile.name !== ""? this.props.editProfile.name: this.props.user.name;
+        parent.email = this.props.editProfile.email !== ""? this.props.editProfile.email: this.props.user.email;
+        parent.age = this.props.editProfile.age !== ""? this.props.editProfile.age: this.props.user.age;
+        parent.maxPrice = this.props.editProfile.watchMaxPrice !== ""? this.props.editProfile.watchMaxPrice: this.props.user.maxPrice;
+        parent.children = {
+            name:  this.props.editProfile.childName !== ""? this.props.editProfile.childName: this.props.user.children.name,
+            age: this.props.editProfile.childAge !== ""? this.props.editProfile.childAge: this.props.user.children.age,
+            expertise: expertise,
+            hobbies: hobbies,
+            specialNeeds: specialNeeds
+        };
+        parent.languages = languages;
+        parent.partner ={
+            name: this.props.editProfile.partnerName !== ""? this.props.editProfile.partnerName: this.props.user.partner.name,
+            age: this.props.editProfile.partnerAge !== ""? this.props.editProfile.partnerAge: this.props.user.partner.age,
+            email: this.props.editProfile.partnerEmail !== ""? this.props.editProfile.partnerEmail: this.props.user.partner.email
+        };
+        axios({
+            method: 'post',
+            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
+            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+            data: parent
+        }).then(function (res) {
+            if (res.data) {  // user updated
+                self.props.router.push('/');
+            }
+            else { // user not updated
+                //TODO: think about error when user not created
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+                //TODO: think about error when user not created
+            });
+    }
+    handleSelect(selectedKey) {
+        this.props.actions.registerActions.changeRegisterView(selectedKey);
+    }
+
+// getLanguagesFromFacebook(languages){
+//     if(languages){
+//         return languages;
+//     }
+//     else if(this.props.user.languages){
+//         let langs =  [];
+//         this.props.user.languages.forEach(function(language){
+//             langs.push({value:language.name.toLowerCase(), label:language.name});
+//         });
+//         return langs;
+//     }
+// }
+
+    convertStringArrayToMultiSelect(array, stateArray){
+        if(array.length === 0 && stateArray.length === 0){
+            return array;
+        }
+        else if(stateArray.length > 0)
+            return stateArray;
+        else {
+            let arr =  [];
+            array.forEach(function(element){
+                arr.push({value:element.toLowerCase(), label:element});
+            });
+            return arr;
+        }
+    }
+
+    next(){
+        let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
+        this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
+    }
+
+    render() {
+        let registerView = null;
+        if (this.props.register.view !== null) {
+            let view = this.props.register.view;
+            if (view === "step1") {
+                registerView = <section>
+                    <h2>Your Profile</h2>
+                    <div className="register-form">
+                        <TextInput label="Name"
+                                   placeholder='Name'
+                                   defaultValue={this.props.user.name}
+                                   action={this.props.actions.editProfileActions.changeNameEP}
+                                   inputType={'name'}
+                                   {...this.props}
+                                   reducer={'user'}
+                                   value={this.props.editProfile.name}
+                                   required={true}/>
+                        <TextInput label="Email"
+                                   type="email"
+                                   placeholder='example@gmail.com'
+                                   defaultValue={this.props.user.email}
+                                   action={this.props.actions.editProfileActions.changeEmailEP}
+                                   inputType={'email'} {...this.props}
+                                   value={this.props.editProfile.email}
+                                   reducer={'user'}
+                                   required={true}/>
+                        <TextInput label="Age"
+                                   type="number"
+                                   placeholder="0"
+                                   defaultValue={this.props.user.age}
+                                   action={this.props.actions.editProfileActions.changeAgeEP}
+                                   inputType={'age'} {...this.props}
+                                   reducer={'user'}
+                                   value={this.props.editProfile.age}
+                                   required={true}/>
+                        <ControlLabel>Address</ControlLabel>
+                        <p>{this.props.user.address.street + " " + this.props.user.address.houseNumber + ", " + this.props.user.address.city}</p>
+                        <ControlLabel>Gender</ControlLabel>
+                        <p>{this.props.user.gender}</p>
+                    </div>
+                </section>;
+            }
+            else if (view === "step2") {
+                registerView =
+                    <section>
+                        <h2>Partner Profile</h2>
+                        <TextInput label="Partner Name"
+                                   placeholder='Name'
+                                   defaultValue={'name' in this.props.user.partner? this.props.user.partner.name: ""}
+                                   action={this.props.actions.editProfileActions.changePartnerNameEP}
+                                   {...this.props}
+                                   inputType={'partnerEmail'}
+                                   value={this.props.editProfile.partnerName}
+                                   reducer={'user'}/>
+                        <TextInput label="Partner Email"
+                                   type="email"
+                                   placeholder='Email'
+                                   defaultValue={'email' in this.props.user.partner? this.props.user.partner.email: ""}
+                                   action={this.props.actions.editProfileActions.changePartnerEmailEP}
+                                   value={this.props.editProfile.partnerEmail}
+                                   {...this.props}
+                                   reducer={'register'}/>
+                        <ControlLabel>Partner Gender</ControlLabel>
+                        <RadioGroup options={strings.GENDER} //TODO: do not delete - for beta
+                                    defaultValue={'gender' in this.props.user.partner? this.props.user.partner: this.props.editProfile.partnerGender !== ""? this.props.editProfile.partnerGender: "Male"}
+                                    action={this.props.actions.editProfileActions.changePartnerGenderEP}
+                                    radioType={'partnerGender'}
+                                    value={this.props.editProfile.partnerGender}
+                                    required={true}/>;
+                    </section>
+            }
+            else if (view === "step3") {
+                registerView =
+                    <section>
+                        <h2>Child Profile</h2>
+                        <TextInput label="Child Name"
+                                   placeholder="Child Name"
+                                   action={this.props.actions.editProfileActions.changeChildNameEP}
+                                   {...this.props}
+                                   reducer={'user'}
+                                   defaultValue={this.props.user.children.name}
+                                   value={this.props.editProfile.childName}
+                                   required={true}/>
+                        <TextInput label="Age"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.editProfileActions.changeChildAgeEP}
+                                   {...this.props}
+                                   reducer={'user'}
+                                   defaultValue={this.props.user.children.age}
+                                   value={this.props.editProfile.childAge}
+                                   required={true}/>
+                        <ControlLabel>Child Difficulties</ControlLabel>
+                        <SelectInput
+                            placeholder="Select child Difficulties"
+                            options={strings.EXPERTISE}
+                            {...this.props}
+                            action={this.props.actions.editProfileActions.changeChildExpertiseEP}
+                            reducer={'register'}
+                            // defaultValues={this.convertStringArrayToMultiSelect(this.props.user.children.expertise, this.props.editProfile.childExpertise)}
+                            // defaultValues={this.props.editProfile.childExpertise}
+                            defaultValues={this.convertStringArrayToMultiSelect(this.props.user.children.expertise, this.props.editProfile.childExpertise)}/>
+                        <ControlLabel>Child Hobbies</ControlLabel>
+                        <SelectInput
+                            placeholder="Select child Hobbies"
+                            options={strings.HOBBIES}
+                            {...this.props}
+                            action={this.props.actions.editProfileActions.changeChildHobbiesEP}
+                            reducer={'register'}
+                            defaultValues={this.convertStringArrayToMultiSelect(this.props.user.children.hobbies, this.props.editProfile.childHobbies)}/>
+                        <ControlLabel>Child Special Needs</ControlLabel>
+                        <SelectInput
+                            placeholder="Select child Special Needs"
+                            options={strings.SPECIAL_NEEDS}
+                            {...this.props}
+                            action={this.props.actions.editProfileActions.changeChildSpecialNeedsEP}
+                            reducer={'register'}
+                            defaultValues={this.convertStringArrayToMultiSelect(this.props.user.children.specialNeeds, this.props.editProfile.childSpecialNeeds)}/>
+                    </section>
+            }
+            else if (view === "step4") {
+                let personalityWords = "";
+                this.props.user.personality.forEach(function(word) {
+                    personalityWords += (word + ", ")
+                });
+                registerView =
+                    <section>
+                        <h2>Sitter Requirements</h2>
+                        <TextInput label="Max price for babysitting hour (USD)"
+                                   type="number"
+                                   placeholder="0"
+                                   action={this.props.actions.editProfileActions.changeChildMaxPriceForWatchEP}
+                                   {...this.props}
+                                   reducer={'register'}
+                                   defaultValue={this.props.user.maxPrice}
+                                   value={this.props.editProfile.watchMaxPrice}
+                                   required={true}/>
+                        <ControlLabel>Preferred Sitter</ControlLabel>
+                        <p>{this.props.user.preferedGender}</p>
+                        {/*<RadioGroup options={strings.GENDER_WITH_BOTH}*/}
+                        {/*action={this.props.actions.registerActions.changeGenderWatchChild}*/}
+                        {/*radioType={'genderWatch'}*/}
+                        {/*value={this.props.user.preferedGender}/>*/}
+                        <ControlLabel>Languages</ControlLabel>
+                        <SelectInput
+                            placeholder="Select your languages"
+                            options={strings.LANGUAGES}
+                            {...this.props}
+                            // defaultValues={this.getLanguagesFromFacebook(this.props.user.languages)}
+                            defaultValues={this.convertStringArrayToMultiSelect(this.props.user.languages, this.props.editProfile.languages)}
+                            action={this.props.actions.editProfileActions.changeLanguagesEP}
+                            reducer={'register'}/>
+                        <p>Personality Words</p>
+                        <p>{personalityWords}</p>
+                        {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
+                            <Button onClick={this.handleSubmitParent} type="submit" className="next-btn" value="Update Profile">Update Profile</Button>: ''}
+                    </section>
+            }
+        }
+        return (
+            <div>
+                <form id="register-form">
+                    <Nav activeKey={"step1"} justified onSelect={this.handleSelect.bind(this)}>
+                        <NavItem className={this.props.register.view === "step1"? "active-register-nav":""} eventKey="step1" title="location">Step 1</NavItem>
+                        <NavItem className={this.props.register.view === "step2"? "active-register-nav":""} eventKey="step2">Step 2</NavItem>
+                        <NavItem className={this.props.register.view === "step3"? "active-register-nav":""} eventKey="step3">Step 3</NavItem>
+                        <NavItem className={this.props.register.view === "step4"? "active-register-nav":""} eventKey="step4">Step 4</NavItem>
+                    </Nav>
+                    {registerView}
+                    {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?
+                        <Button onClick={this.next.bind(this)} type="button" className="next-btn" value="Next">Next</Button>: ''}
+                </form>
+            </div>
+        );
+    };
+}
+
+export default EditProfileParent;

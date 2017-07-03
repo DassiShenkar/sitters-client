@@ -1,15 +1,14 @@
 //external sources
 import React from 'react';
-
 import { PageHeader } from 'react-bootstrap';
 
 //components
-import ParentForm from '../../forms/ParentForm';
-import SitterForm from '../../forms/SitterForm';
+import EditProfileParent from './editProfileParent';
+import EditProfileSitter from './editProfileSitter';
 
 class EditProfile extends React.Component {
     render() {
-        let form = this.props.user.userType === "I'm a Parent" ?  <ParentForm {...this.props}/> : <SitterForm {...this.props}/>;
+        let form = this.props.user.isParent?  <EditProfileParent {...this.props}/> : <EditProfileSitter {...this.props}/>;
         return (
             <div id="editProfile-page" className="page">
                 <PageHeader>Edit Profile</PageHeader>

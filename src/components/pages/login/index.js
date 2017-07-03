@@ -71,12 +71,12 @@ class Login extends React.Component {
     }
 
     render() {
-        const userTypeRadio = <RadioGroup options={strings.USER_TYPE} //TODO: do not delete - for beta
+        const userTypeRadio = <RadioGroup options={strings.USER_TYPE}
                                           defaultValue={this.props.user.userType || strings.USER_TYPE[0]}
                                           action={this.props.actions.actionCreators.changeUserType}
                                           radioType={'userType'}
                                           value={ this.props.user.userType }
-                                          required={true}/>;  //TODO: do not delete - for beta
+                                          required={true}/>;
         return (
             <div id="login-page">
                 <ReactPlayer url='./Shoes.mp4' playing loop controls={false} width={"auto"} height={"auto"} style={{"width": "auto", "height": "auto"}}/>

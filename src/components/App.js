@@ -14,6 +14,7 @@ import * as InviteActions from '../actions/InviteActions';
 import * as WorkingHours from '../actions/WorkingHoursActions';
 import * as PersonalityQuestions from '../actions/PersonalityQuestionsActions';
 import * as SitterFeedActions from '../actions/SitterFeedActions';
+import * as EditProfileActions from '../actions/EditProfileActions';
 
 //components
 import Main from './Main'
@@ -34,7 +35,8 @@ function mapStateToProps(state) {
         invite: state.invite,
         workingHours: state.workingHours,
         personalityQuestions: state.personalityQuestions,
-        sitterFeed: state.sitterFeed
+        sitterFeed: state.sitterFeed,
+        editProfile: state.editProfile
     }
 }
 
@@ -56,7 +58,8 @@ function mapDispatchToProps(dispatch) {
             inviteActions: bindActionCreators(InviteActions, dispatch),
             workingHoursActions: bindActionCreators(WorkingHours, dispatch),
             sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
-            personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch)
+            personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch),
+            editProfileActions: bindActionCreators(EditProfileActions, dispatch)
         }
     };
 }

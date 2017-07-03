@@ -55,6 +55,22 @@ const defaultState = {
         sitterImmediateAvailability: strings.BOOLEAN[0],
         view: 'step1'
     },
+    editProfile: {
+        name: "",
+        email: "",
+        age: "",
+        partnerEmail:"",
+        partnerName: "",
+        partnerGender: "",
+        childName: "",
+        childAge: "",
+        childExpertise: [],
+        childSpecialNeeds: [],
+        childHobbies: [],
+        watchMaxPrice: "",
+        languages: [],
+
+    },
     settings: {
         enableNotifications: false,
         enableSuggestions: true
