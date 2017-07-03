@@ -40,7 +40,7 @@ class SearchByLocation extends React.Component {
                 <TabButtons
                     { ...this.props } />
                 <LocationSearch
-                    sitters={ this.props.feed.filteredMatches.length > 0 ? this.props.feed.filteredMatches : [] }
+                    sitters={ this.props.feed.matches.length > 0 ? this.props.feed.matches : [] }
                     { ...this.props }/>
             </View>
         );

@@ -7,8 +7,10 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import ImageButton from './ImageButton'
-import * as RouterActions from '../actions/RouterActions'
+import ImageButton from './ImageButton';
+import * as RouterActions from '../actions/RouterActions';
+import * as InviteActions from '../../src/actions/InviteActions';
+import * as FeedActions from '../../src/actions/FeedActions';
 
 class AppBar extends React.Component {
 
@@ -16,7 +18,12 @@ class AppBar extends React.Component {
         super(props);
         // this.search = this.search.bind(this);
         this.menu = this.menu.bind(this);
+        this.search = this.search.bind(this);
         this.getSitterNow = this.getSitterNow.bind(this);
+    }
+
+    componentWillMount () {
+        this.props.inviteActions.setInvites(this.props.user.invites);
     }
 
     componentDidUpdate () {
@@ -82,6 +89,7 @@ class AppBar extends React.Component {
     }
 
     search() {
+        this.props.feedActions.setSitterIndex(0);
         Actions.SearchByPrice({active: 1});
     }
 
@@ -137,13 +145,16 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        router: state.router
+        router: state.router,
+        user: state.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        routerActions: bindActionCreators(RouterActions, dispatch)
+        routerActions: bindActionCreators(RouterActions, dispatch),
+        inviteActions: bindActionCreators(InviteActions, dispatch),
+        feedActions: bindActionCreators(FeedActions, dispatch)
     };
 }
 

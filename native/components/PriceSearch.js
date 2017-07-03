@@ -17,18 +17,19 @@ export default class PriceSearch extends React.Component {
         this.navToInvite = this.navToInvite.bind(this);
         this.nextSitter = this.nextSitter.bind(this);
     }
-
+    
     render () {
-        let sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
-        let sitterId = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex]._id : 0 : 0;
-        const profilePicture = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].profilePicture : null : null;
-        const name = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : null : null;
-        const age = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].age : null : null;
-        const availableNow = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].availableNow : null : null;
-        const hourFee = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].hourFee : null : null;
-        let value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : this.props.searchBy.priceMaxRange;
-        const coverPhoto = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].coverPhoto : null : null;
-        let priceRange = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : Math.floor(this.props.searchBy.priceMaxRange);
+        const sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        console.log(sitterIndex);
+        const sitterId = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex]._id : 0 : 0 : 0;
+        const profilePicture = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].profilePicture : null : null : null;
+        const name = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].name : null : null : null;
+        const age = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].age : null : null: null;
+        const availableNow = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].availableNow : null : null : null;
+        const hourFee = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].hourFee : null : null : null;
+        const coverPhoto = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].coverPhoto : null : null : null;
+        const value = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : this.props.searchBy.priceMaxRange;
+        const priceRange = typeof this.props.searchBy.priceMaxRange === "undefined" ? 50 : Math.floor(this.props.searchBy.priceMaxRange);
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -36,8 +37,8 @@ export default class PriceSearch extends React.Component {
         return (
             <View style={styles.container}>
                 <GestureRecognizer
-                    onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
-                    onSwipeRight={(e) => this.nextSitter(e)}
+                    onSwipeLeft={this.navToInvite}
+                    onSwipeRight={this.nextSitter}
                     config={config}>
 
                     <View style={styles.searchByContainer}>
@@ -75,8 +76,8 @@ export default class PriceSearch extends React.Component {
                                     </View>
                                 </View>
                                 <View style={styles.feedButtons}>
-                                    <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.navToInvite(e, sitterId)} />
-                                    <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.nextSitter(e, sitterId)} />
+                                    <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.navToInvite} />
+                                    <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.nextSitter} />
                                 </View>
                             </Image>
                         </View>
@@ -92,21 +93,25 @@ export default class PriceSearch extends React.Component {
     }
 
     navToInvite() {
-        let sitterIndex = this.props.feed.sitterIndex;
-        let sitter = this.props.sitters[sitterIndex];
+        let sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        let sitter =  this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] : 0 : 0;
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
     nextSitter() {
+        console.log(this.props.feed.sitterIndex);
+        console.log(this.props.feed.filteredMatches.length - 1);
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
+        console.log(index);
         this.props.feedActions.setSitterIndex(index);
         Actions.SearchByPrice({active: 1});
     }
 
     filter(value) {
-        let sitters = this.props.feed.matches;
+        let sitters = this.props.feed.matches ? this.props.feed.matches : [];
         this.props.rangeActions.changeRange(1, Math.floor(value));
         this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.floor(value)));
+        this.props.feedActions.setSitterIndex(0);
         Actions.SearchByPrice({active: 1});
     }
 }

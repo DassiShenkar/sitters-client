@@ -30,14 +30,14 @@ export default class TimeSearch extends React.Component {
     }
 
     render () {
-        let sitterIndex = this.props.feed.sitterIndex;
-        let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
-        const profilePicture = this.props.sitters.length ? this.props.sitters[sitterIndex].profilePicture : null;
-        const name = this.props.sitters.length ? this.props.sitters[sitterIndex].name : null;
-        const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
-        const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
-        const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
-        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        const sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        const sitterId = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex]._id : 0 : 0 : 0;
+        const profilePicture = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].profilePicture : null : null : null;
+        const name = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].name : null : null : null;
+        const age = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].age : null : null: null;
+        const availableNow = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].availableNow : null : null : null;
+        const hourFee = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].hourFee : null : null : null;
+        const coverPhoto = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].coverPhoto : null : null : null;
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
@@ -45,8 +45,8 @@ export default class TimeSearch extends React.Component {
         return (
             <View style={styles.container}>
                 <GestureRecognizer
-                    onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
-                    onSwipeRight={(e) => this.nextSitter(e)}
+                    onSwipeLeft={this.navToInvite}
+                    onSwipeRight={this.nextSitter}
                     config={config}>
                     <Picker
                         style={styles.picker}
@@ -92,8 +92,8 @@ export default class TimeSearch extends React.Component {
                                         </View>
                                     </View>
                                     <View style={styles.feedButtons}>
-                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.navToInvite(e, sitterId)} />
-                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.nextSitter(e, sitterId)} />
+                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.navToInvite} />
+                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.nextSitter} />
                                     </View>
                                 </Image>
                             </View>
@@ -135,13 +135,13 @@ export default class TimeSearch extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e) {
-        let sitterIndex = this.props.feed.sitterIndex;
-        let sitter = this.props.sitters[sitterIndex];
+    navToInvite() {
+        let sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        let sitter =  this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] : 0 : 0;
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    nextSitter(e) {
+    nextSitter() {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.SearchByTime({active: 2});
@@ -152,8 +152,8 @@ export default class TimeSearch extends React.Component {
     }
 
     filter(){
-        let day = this.props.searchBy.inviteDay.toLowerCase();
-        let newValue = this.props.searchBy.workingHours;
+        let day = this.props.searchBy.inviteDay ? this.props.searchBy.inviteDay.toLowerCase() : null;
+        let newValue = this.props.searchBy.workingHours ? this.props.searchBy.workingHours : [];
         if(this.props.sitters){
             let sitters = [];
             for(let sitter of this.props.feed.matches){
