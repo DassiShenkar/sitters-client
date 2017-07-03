@@ -1,5 +1,5 @@
 .match {
-  height: 400px;
+  height: 480px;
   display: block;
   text-align: center;
   color: #fff;
@@ -8,7 +8,7 @@
   background-size: cover;
   position: relative; }
   .match .cover-overlay {
-    height: 400px;
+    height: 480px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -20,9 +20,9 @@
     flex-direction: column;
     font-family: 'Raleway', sans-serif;
     position: absolute;
-    top: 60px;
-    right: 0;
-    left: 0; }
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); }
   .match img.profilePic {
     display: block;
     width: 187px;

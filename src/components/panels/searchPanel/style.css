@@ -31,3 +31,8 @@
   background-color: #f86966; }
   .nav > li > a:hover path, .nav > li > a:focus path {
     fill: #fff; }
+
+.nav .active-search-by {
+  background-color: #f86966; }
+  .nav .active-search-by path {
+    fill: #fff; }

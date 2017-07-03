@@ -43,3 +43,7 @@
   #register-form .presentation a:active, #register-form a:hover, #register-form a:focus, .sitter-form .presentation a:active, .sitter-form a:hover, .sitter-form a:focus {
     background-color: #f86966;
     color: #fff; }
+  #register-form .active-register-nav, .sitter-form .active-register-nav {
+    background-color: #f86966; }
+    #register-form .active-register-nav a, .sitter-form .active-register-nav a {
+      color: #fff; }
