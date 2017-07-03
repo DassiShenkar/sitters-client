@@ -3,10 +3,7 @@ import {Link} from 'react-router';
 
 //components
 import {Image, Table} from 'react-bootstrap';
-import RainbowChart from "../RainbowChart";
-
 import SitterActionBar from '../panels/actionPanel';
-import PersonalityQuestions from "../forms/personality/PersonalityQuestions";
 
 //style
 import './style.css';
@@ -115,13 +112,15 @@ class SitterList extends React.Component {
                         <h1 className="sitterName">{this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name : ''}</h1>
                     </div>
                     <div className="arrows">
-                        {sitterIndex > 0 ? <span onClick={this.prevSitter} className="glyphicon glyphicon-menu-left"/> : ''}
-                        {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ? <span onClick={this.nextSitter} className="glyphicon glyphicon-menu-right"/> : ''}
+                        {sitterIndex > 0 ?
+                            <span onClick={this.prevSitter} className={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated': 'glyphicon glyphicon-menu-left'}/> : ''}
+                        {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ?
+                            <span onClick={this.nextSitter} className={sitterIndex === 0 ? 'glyphicon glyphicon-menu-right faa-float animated': 'glyphicon glyphicon-menu-right'}/> : ''}
                     </div>
                     <SitterActionBar {...this.props}/>
                 </div>
                 <div id="sitter-profile">
-                    <Table className="info-table" responsive>
+                    <Table className="info-table">
                         <thead>
                         <tr>
                             <th>{'MUTUAL FRIENDS (' + (mutualFriends ? mutualFriends.length : 0) + ')'}</th>
@@ -131,12 +130,22 @@ class SitterList extends React.Component {
                         </thead>
                         <tbody>
                         <tr>
-                            <td className="mutual-friends">
-                                <ul>
-                                    {mutualFriends ? mutualFriends.map((friend, index) => <li key={index}><Image
-                                            src={friend.picture}
-                                            circle/></li>) : ''}
-                                </ul>
+                            <td>
+                                <div className="mutual-friends">
+                                    <ul>
+                                        {mutualFriends ? mutualFriends.map((friend, index) => {
+                                                if(index < 3) {
+                                                return (<li key={index} className={'mutual-friend ' + index}>
+                                                    <Image
+                                                        src={friend.picture}
+                                                        title={friend.name}
+                                                        circle/>
+                                                </li>);
+                                                }
+                                            }) : ''}
+                                        <div className="clear"/>
+                                    </ul>
+                                </div>
                             </td>
                             <td className="motto">{'\"' + motto + '\"'}</td>
                             <td className="personality">

@@ -55,6 +55,30 @@ const defaultState = {
         sitterImmediateAvailability: strings.BOOLEAN[0],
         view: 'step1'
     },
+    editProfile: {
+        name: "",
+        email: "",
+        age: "",
+        partnerEmail:"",
+        partnerName: "",
+        partnerGender: "",
+        childName: "",
+        childAge: "",
+        childExpertise: [],
+        childSpecialNeeds: [],
+        childHobbies: [],
+        sitterExpertise: [],
+        sitterSpecialNeeds: [],
+        sitterHobbies: [],
+        watchMaxPrice: "",
+        languages: [],
+        sitterExperience: "",
+        sitterEducation: [],
+        sitterMinAge: "",
+        sitterMaxAge: "",
+        hourFee: "",
+        sitterMotto: ""
+    },
     settings: {
         enableNotifications: false,
         enableSuggestions: true
@@ -83,6 +107,9 @@ const defaultState = {
     range: {
         priceMinRange:0,
         priceMaxRange:50
+    },
+    sitterFeed:{
+        calenderDate: moment()
     },
     sitterProfile: {sitter: {
         workingHours:{},

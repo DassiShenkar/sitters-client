@@ -51,7 +51,6 @@ class SitterSendInvite extends React.Component {
             childName: this.props.user.children.name,
             parentImage: this.props.user.profilePicture
         }];
-        console.log(invite);
         let self = this;
         axios({
             method: 'post',

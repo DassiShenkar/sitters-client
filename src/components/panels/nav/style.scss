@@ -18,6 +18,8 @@ nav#main-nav {
 
   ul > li > a > span:before {
     font-size: 18px;
+    color: #000;
+    opacity: 0.5;
   }
 
   .navbar-brand {
@@ -51,6 +53,7 @@ nav#main-nav {
 .popover-title {
   font-family: "Open Sans", Helvetica, Arial, cursive;
   font-weight: bold;
+  letter-spacing: 1.2px;
   color: #f86966;
   background-color: #fff;
 }
@@ -93,11 +96,11 @@ nav#main-nav {
       }
 
       .accepted:before {
-        color: #f86966;
+        color: #aeea00;
       }
 
       .declined:before {
-        color: #4dd0e1;
+        color: #f86966;
       }
 
     }

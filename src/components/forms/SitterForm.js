@@ -351,10 +351,10 @@ class Form extends React.Component {
         return (
             <form className="sitter-form" onSubmit={this.handleSubmitSitter}>
                 <Nav activeKey={"step1"} justified onSelect={this.handleSelect.bind(this)}>
-                    <NavItem eventKey="step1" title="location">Step 1</NavItem>
-                    <NavItem eventKey="step2">Step 2</NavItem>
-                    <NavItem eventKey="step3">Step 3</NavItem>
-                    <NavItem eventKey="step4">Step 4</NavItem>
+                    <NavItem className={this.props.register.view === "step1"? "active-register-nav":""} eventKey="step1" title="location">Step 1</NavItem>
+                    <NavItem className={this.props.register.view === "step2"? "active-register-nav":""} eventKey="step2">Step 2</NavItem>
+                    <NavItem className={this.props.register.view === "step3"? "active-register-nav":""} eventKey="step3">Step 3</NavItem>
+                    <NavItem className={this.props.register.view === "step4"? "active-register-nav":""} eventKey="step4">Step 4</NavItem>
                 </Nav>
                 {registerView}
                 {strings.STEPS.indexOf(this.props.register.view) !== (strings.STEPS.length -1)?

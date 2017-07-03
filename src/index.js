@@ -22,12 +22,12 @@ import Settings from "./components/pages/settings/index";
 import Thanks from "./components/Thanks";
 import Push from "./push/push";
 import NotAuthorized from "./components/NotAuthorized";
+import NotFound from "./components/NotFound";
 
 const router = (
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}
-                   // onEnter={localStorage.getItem('auth_token') ? history.push('/') : history.push('/login')}>
                    onEnter={document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== "" ? history.push('/') : history.push('/login')}>
                 <IndexRoute component={Feed}/>
                 <Route path="/invite/:inviteId" component={SingleInvite}/>
@@ -43,6 +43,7 @@ const router = (
             </Route>
             <Route path="/push" component={Push}/>
             <Route path="/thank_you" component={Thanks}/>
+            <Route path="*" component={NotFound}/>
         </Router>
     </Provider>
 );

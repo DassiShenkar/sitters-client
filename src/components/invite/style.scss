@@ -1,66 +1,100 @@
-.modal-container {
-  position: relative;
-  height: 800px !important;
-  width: 100%;
-}
+#invite-modal {
 
-.modal-container .modal, .modal-container .modal-backdrop {
-  position: absolute;
-}
+  .modal-container {
+    position: relative;
+    width: 100%;
+  }
 
-.modal-dialog {
-  width: 800px;
-}
+  .modal-container .modal, .modal-container .modal-backdrop {
+    position: absolute;
+  }
 
-.sitter-image {
-  width: 220px;
-  height: 220px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 50%;
-}
+  .modal-dialog {
+    width: 800px;
+  }
 
-h4.sitter-name {
-  text-align: center;
-}
+  .modal-title {
+    color: #f86966;
+    text-align: left;
+  }
 
-.modal-body .rc-time-picker {
-  display: block;
-}
-
-.modal-body {
-
-  width: 80%;
-  margin: 0 auto;
-  padding: 0;
-
-  .submit-invite {
+  .sitter-image {
+    width: 220px;
+    height: 220px;
     display: block;
-    border-radius: 40px;
-    background: #fff;
-    color: #ffca00;
-    border-color: #ffca00;
-    margin: 48px auto;
-    padding: 8px 15px;
+    margin: 0 auto;
+    border-radius: 50%;
   }
 
-  .submit-invite:hover {
-    background: #ffca00;
-    color: #fff;
+  h4.sitter-name {
+    text-align: center;
   }
 
-  .submit-invite:active {
-    outline: 0;
-    box-shadow: none;
-    border-color: #ffca00;
+  .modal-body .rc-time-picker {
+    display: block;
   }
-}
 
-input[type="text"] {
-  width: 200px !important;
-}
+  .modal-body {
 
-.input-group {
-  width: 200px !important;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+
+    #invite {
+
+      label {
+        color: #f86966;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: left;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        margin: 16px 0 8px 0;
+      }
+
+      .invite-time {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .radio-option label{
+        margin: 8px 0 0 0;
+        color: #757575;
+      }
+
+      .radio-group {
+        margin-top: 0;
+      }
+
+      .rc-time-picker  {
+        margin-right: 8px;
+      }
+    }
+
+    .submit-invite {
+      display: block;
+      border-radius: 40px;
+      background: #fff;
+      color: #f86966;
+      border-color: #f86966;
+      margin: 48px auto;
+      padding: calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .submit-invite:hover {
+      background: #f86966;
+      color: #fff;
+    }
+
+    .submit-invite:active {
+      outline: 0;
+      box-shadow: none;
+      border-color: #f86966;
+    }
+  }
 }
 

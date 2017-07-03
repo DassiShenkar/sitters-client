@@ -51,6 +51,8 @@ class SitterFeed extends React.Component {
         const events = [];
         const self = this;
         let hourFee = this.props.user.hourFee;
+        let monthlyMoney = 0;
+        let calenderMonth = moment(this.props.sitterFeed.calenderDate);
         this.props.user.invites.forEach(function (invite) {
             if (invite.status === "accepted") {
                 let startTime = new Date(invite.date + " " + invite.startTime);
@@ -59,9 +61,12 @@ class SitterFeed extends React.Component {
                 const numberOfInvites = self.props.user.multipleInvites.filter(function (object) {
                     return object._id === invite.parentID;
                 });
-                console.log(numberOfInvites[0].count);
                 const title = 'Watch ' + invite.childName + "(" + numberOfInvites[0].count + ") - " + Math.round(timeDifference * hourFee) + "$";
 
+                let inviteDate = moment(invite.date, 'MM/DD/YYYY');
+                if(inviteDate.format("M") === calenderMonth.format("M")){
+                    monthlyMoney += Math.round(timeDifference * hourFee);
+                }
                 events.push({
                     title: title,
                     // allDay: true,
@@ -81,7 +86,9 @@ class SitterFeed extends React.Component {
                     startAccessor='startDate'
                     endAccessor='endDate'
                     onSelectEvent={event => this.props.router.push(url + 'invite/' + event.id)}
+                    onNavigate={(date) => this.props.actions.sitterFeedActions.changeCalenderDate(date)}
                 />
+                {monthlyMoney !== 0? <h1>You are going to earn  {monthlyMoney}$ in {calenderMonth.format('MMMM')}</h1>: ""}
                 <InvitesModal {...this.props} />
             </div>
         );

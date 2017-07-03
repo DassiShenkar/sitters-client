@@ -1,6 +1,6 @@
 //external sources
 import React from 'react';
-
+import {browserHistory} from 'react-router';
 //Components
 import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap/lib';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
@@ -11,9 +11,29 @@ import './style.css';
 
 class MainNav extends React.Component {
 
+    componentWillMount(){
+        const self = this;
+        navigator.serviceWorker.addEventListener('message', function(event) {
+            let object = JSON.parse(event.data);
+            if("parentID" in object && self.props.user.name){
+                if(object.status !== 'waiting') { // update invite
+                    let invites = self.props.user.invites;
+                    invites.forEach(invite => {
+                        if(invite._id === object._id) {
+                            invite.status = object.status;
+                            invite.wasRead = false;
+                        }
+                    });
+                    self.props.actions.actionCreators.setInvites(invites);
+                }
+                else {
+                    self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
+                }
+            }
+        });
+    }
     nav(view) {
-        //this.props.action(this.props.router.getCurrentLocation().pathname !== '/' ? view : this.props.router.routes[this.props.router.routes.length-2].path);
-        this.props.action(view);
+        this.props.router.getCurrentLocation().pathname === '/'? this.props.action(view):browserHistory.goBack();
     }
 
     render() {
@@ -29,13 +49,12 @@ class MainNav extends React.Component {
         const newInvites = this.props.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
         const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
 
-        console.log(this);
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="/"
-                           onClick={this.nav.bind(this, "main")}>{this.props.router.getCurrentLocation().pathname !== '/' ?
+                           onClick={this.nav.bind(this, null)}>{this.props.router.getCurrentLocation().pathname !== '/' ?
                             <span className="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
                     </Navbar.Brand>
                     <Navbar.Toggle/>

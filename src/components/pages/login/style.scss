@@ -1,41 +1,69 @@
 #login-page {
   text-align: center;
 
+  video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: auto!important;
+    height: auto!important;
+    transform: translateX(-50%) translateY(-50%);
+    filter: blur(8px);
+  }
+
   header {
-    margin-top: 156px;
     h1 {
       font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
       color: #f86966;
-      font-size: 96px;
+      font-size: 136px;
     }
     .tagline {
       font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
       font-weight: 100;
-      color: #555;
-      font-size: 24px;
+      color: #fff;
+      font-size: 28px;
       display: block;
       text-align: center;
     }
   }
 
+  #login-container {
+    position: absolute;
+    top: 66%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+  }
+
 
   .radio-group {
-    text-align: left;
-    width: 120px;
+    display: inline-block;
+    flex-direction: column;
     margin: 24px auto;
+    color: #fff;
+
+    .radio-option label {
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
+      font-weight: 100;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
   }
 
   .kep-login-facebook.metro {
     display: flex;
     margin: 0 auto;
     border-radius: 40px;
-    background: #fff;
-    color: #f86966;
-    border-color: #f86966;
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
   }
 
   .kep-login-facebook.metro:hover {
     background: #f86966;
+    border-color: #f86966;
     color: #fff;
   }
 
