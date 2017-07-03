@@ -1,12 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import {AgeFromDate} from 'age-calculator';
 import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
-import {geocodeByAddress} from "react-places-autocomplete";
-
 //style
 import './style.css';
-import * as _ from "lodash";
 
 import TextInput from "../../controllers/textInput/index";
 import RadioGroup from "../../controllers/radio/radioGroup/index";
@@ -18,12 +14,8 @@ class EditProfileParent extends React.Component {
         super(props);
         this.handleSubmitParent = this.handleSubmitParent.bind(this);
         this.convertStringArrayToMultiSelect = this.convertStringArrayToMultiSelect.bind(this);
-
     };
-    // calcAge(birthday) {
-    //     let date = birthday.split("/");
-    //     return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;
-    // }
+
     handleSubmitParent(e) {
         e.preventDefault();
         const self = this;
@@ -87,20 +79,6 @@ class EditProfileParent extends React.Component {
     handleSelect(selectedKey) {
         this.props.actions.registerActions.changeRegisterView(selectedKey);
     }
-
-// getLanguagesFromFacebook(languages){
-//     if(languages){
-//         return languages;
-//     }
-//     else if(this.props.user.languages){
-//         let langs =  [];
-//         this.props.user.languages.forEach(function(language){
-//             langs.push({value:language.name.toLowerCase(), label:language.name});
-//         });
-//         return langs;
-//     }
-// }
-
     convertStringArrayToMultiSelect(array, stateArray){
         if(array.length === 0 && stateArray.length === 0){
             return array;
@@ -115,12 +93,10 @@ class EditProfileParent extends React.Component {
             return arr;
         }
     }
-
     next(){
         let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
         this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
     }
-
     render() {
         let registerView = null;
         if (this.props.register.view !== null) {
@@ -220,8 +196,6 @@ class EditProfileParent extends React.Component {
                             {...this.props}
                             action={this.props.actions.editProfileActions.changeChildExpertiseEP}
                             reducer={'register'}
-                            // defaultValues={this.convertStringArrayToMultiSelect(this.props.user.children.expertise, this.props.editProfile.childExpertise)}
-                            // defaultValues={this.props.editProfile.childExpertise}
                             defaultValues={this.convertStringArrayToMultiSelect(this.props.user.children.expertise, this.props.editProfile.childExpertise)}/>
                         <ControlLabel>Child Hobbies</ControlLabel>
                         <SelectInput
@@ -260,16 +234,11 @@ class EditProfileParent extends React.Component {
                                    required={true}/>
                         <ControlLabel>Preferred Sitter</ControlLabel>
                         <p>{this.props.user.preferedGender}</p>
-                        {/*<RadioGroup options={strings.GENDER_WITH_BOTH}*/}
-                        {/*action={this.props.actions.registerActions.changeGenderWatchChild}*/}
-                        {/*radioType={'genderWatch'}*/}
-                        {/*value={this.props.user.preferedGender}/>*/}
                         <ControlLabel>Languages</ControlLabel>
                         <SelectInput
                             placeholder="Select your languages"
                             options={strings.LANGUAGES}
                             {...this.props}
-                            // defaultValues={this.getLanguagesFromFacebook(this.props.user.languages)}
                             defaultValues={this.convertStringArrayToMultiSelect(this.props.user.languages, this.props.editProfile.languages)}
                             action={this.props.actions.editProfileActions.changeLanguagesEP}
                             reducer={'register'}/>
