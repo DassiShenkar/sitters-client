@@ -49,8 +49,11 @@ class MainNav extends React.Component {
             <List items={this.props.user.invites} type='invite' isParent={this.props.user.isParent}/>
         </Popover>);
 
-        const newInvites = this.props.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
-        const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
+        const newInvites = this.props.user.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
+        let newNotifications = [];
+        if(this.props.user.notifications){
+            newNotifications = this.props.user.notifications.filter(notification => !notification.wasRead);
+        }
 
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
