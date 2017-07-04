@@ -117,8 +117,9 @@ class Invite extends React.Component {
                             <form id="invite">
                                 <div style={{width: '100%', height: '400px'}}>
                                     <GoogleMaps center={{lat: this.props.user.address? this.props.user.address.latitude: 0,lng: this.props.user.address? this.props.user.address.longitude: 0}}
-                                                sitters={[this.props.user]}
-                                                oneMarker={true}
+                                                sitters={[this.props.sitterProfile.sitter]}
+                                                oneMarker={false}
+                                                user={this.props.user}
                                                 zoom="14"
                                     />
                                 </div>
