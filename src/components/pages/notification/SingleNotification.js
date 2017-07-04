@@ -1,5 +1,5 @@
 import React from 'react';
-import {ControlLabel, Image, PageHeader} from "react-bootstrap";
+import {Image, PageHeader} from "react-bootstrap";
 import MatchBanner from "../../banners/matchBanner";
 import strings from "../../../static/strings";
 import axios from 'axios';

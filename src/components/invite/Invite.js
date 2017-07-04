@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import dateFormat from 'dateformat';
 //style
 import './style.css';
-import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
+import {Button, FormControl, Modal} from "react-bootstrap";
 import DatePicker from "../controllers/datePicker/index";
 import TimeInput from "../controllers/TimeInput";
 import GoogleMaps from "../controllers/maps/GoogleMaps";
@@ -95,10 +95,6 @@ class Invite extends React.Component {
         this.props.actions.feedActions.showInvitePopup(false)
     }
     render() {
-        const recurring = this.props.invite.recurring === "Yes"?
-            <div><ControlLabel>Weekly Recurring until:</ControlLabel>
-                <DatePicker className="date-picker" defaultValue={this.props.invite.recurringIsoValue}  {...this.props} action={this.props.actions.inviteActions.changeRecurringDate} />
-            </div>:"";
         return (
             <div id="invite-modal">
                 <Modal

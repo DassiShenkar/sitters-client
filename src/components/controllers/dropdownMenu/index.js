@@ -8,11 +8,6 @@ import {NavDropdown, MenuItem}  from 'react-bootstrap/lib';
 import './style.css';
 
 export default class DropdownMenu extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     nav(target) {
         if (target === 'logout') {
             document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -24,7 +19,7 @@ export default class DropdownMenu extends React.Component {
 
     render() {
         return (
-            <NavDropdown id="actions-dropdown" title={this.props.title}>
+            <NavDropdown id="actions-dropdown" title={this.props.title? this.props.title: ""}>
                 <MenuItem onClick={this.nav.bind(this, 'editProfile')}><span
                     className="icon-user">Edit Profile</span></MenuItem>
                 <MenuItem onClick={this.nav.bind(this, 'settings')}><span

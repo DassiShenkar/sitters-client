@@ -20,7 +20,7 @@ class EditProfileParent extends React.Component {
         e.preventDefault();
         const self = this;
         let parent = this.props.user;
-        let expertise = [], hobbies = [], specialNeeds = [],personality = [], languages = [];
+        let expertise = [], hobbies = [], specialNeeds = [], languages = [];
         if(this.props.editProfile.languages.length > 0){
             this.props.editProfile.languages.forEach(function(o){
                 languages.push(o.value);

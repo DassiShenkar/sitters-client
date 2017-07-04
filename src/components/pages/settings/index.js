@@ -6,13 +6,8 @@ import Toggle from 'react-toggle';
 import 'react-toggle/style.css';
 import strings from "../../../static/strings";
 import './style.css'
-import PushBase from "../../../push/PushBase";
-import * as _ from "lodash";
 
-
-const pushButton = null;
 const applicationServerPublicKey = 'BA9TXkOAudBsHZCtma-VftBiXmAc-Ho4M7SwAXRpZDR-DsE6pdMP_HVTTQaa3vkQuHLcB6hB87yiunJFUEa4Pas';
-
 let isSubscribed = false;
 let swRegistration = null;
 

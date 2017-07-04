@@ -1,7 +1,7 @@
 //external sources
 import React from 'react'
 
-import {ControlLabel, Nav, NavItem, PageHeader} from 'react-bootstrap';
+import {Nav, NavItem, PageHeader} from 'react-bootstrap';
 import Range from '../../controllers/range/index'
 
 //components

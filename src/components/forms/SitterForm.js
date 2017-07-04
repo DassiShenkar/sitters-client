@@ -77,7 +77,6 @@ class Form extends React.Component {
         let expertise = [], hobbies = [], specialNeeds = [], education = [], personality = [];
         let langs = this.props.register.languages ? this.props.register.languages : this.props.user.languages;
         let languages = [];
-        let cords = {};
         if (langs) {
             langs.forEach(function (language) {
                 if (self.props.register.languages)

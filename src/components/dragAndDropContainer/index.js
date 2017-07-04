@@ -114,7 +114,7 @@ class Box extends React.Component {
         let items = this.props.register.items;
         if(items.length < 6){
             const index = items.findIndex((item) => {
-                return item.uid == uid
+                return item.uid === uid
             });
             if (index !== -1) {
                 items.splice(index, 1);
