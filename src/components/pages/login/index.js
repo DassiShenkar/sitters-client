@@ -25,6 +25,10 @@ class Login extends React.Component {
     componentWillMount(){
         document.getElementsByTagName('html')[0].style.overflow="hidden";
     }
+
+    componentWillUnmount(){
+        document.getElementsByTagName('html')[0].removeAttribute("style");
+    }
     login(facebookUser) {
         if (facebookUser.status === "not_authorized") {
             this.props.router.push('/notAuthorized');
@@ -62,12 +66,10 @@ class Login extends React.Component {
                         self.props.actions.actionCreators.setParentData(response.data);
                     else
                         self.props.actions.actionCreators.setSitterData(response.data);
-                    document.getElementsByTagName('html')[0].removeAttribute("style");
                     self.props.router.push('/');
                 }
                 else { // user not exist
                     self.props.actions.actionCreators.createUser(facebookUser);
-                    document.getElementsByTagName('html')[0].removeAttribute("style");
                     self.props.router.push('/register')
                 }
             })

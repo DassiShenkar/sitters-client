@@ -41,3 +41,9 @@ export function setInvites(invites) {
     }
 }
 
+export function setNotifications(notifications) {
+    return {
+        type: 'SET_NOTIFICATIONS',
+        notifications
+    }
+}
