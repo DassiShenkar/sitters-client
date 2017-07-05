@@ -91,7 +91,11 @@ class Form extends React.Component {
             friends: this.props.user.friends,
             preferedGender: this.props.register.watchChildGender.toLowerCase(),
             isParent: true,
-            pushNotifications: {}
+            pushNotifications: {},
+            senderGCM: {
+                senderId: "",
+                valid: false
+            }
         };
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
@@ -138,6 +142,7 @@ class Form extends React.Component {
                                         })
                                             .then(function (response) {
                                                 document.cookie = ("auth_token="+self.props.user.facebookID);
+                                                document.cookie = ("is_parent=true");
                                                 self.props.actions.actionCreators.changeIsParentFlag(true);
                                                 self.props.router.push('/');
                                             })

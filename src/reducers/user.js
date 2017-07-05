@@ -55,7 +55,11 @@ function user(state = {}, action) {
                 isParent: data.isParent,
                 pushNotifications: data.pushNotifications,
                 preferedGender: data.preferedGender,
-                partner: data.partner
+                partner: data.partner,
+                senderGCM: {
+                    senderId: String,
+                    valid: Boolean
+                }
             };
 
         case 'SET_SITTER_DATA' :
