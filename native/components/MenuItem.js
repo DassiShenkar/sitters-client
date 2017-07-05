@@ -32,7 +32,7 @@ class MenuItem extends React.Component {
             <TouchableOpacity rowId={self.props.index} onPress={ this.props.menuCallback }>
                 <View style={ styles.container }>
                     { image() }
-                    <Text>{ this.props.name }</Text>
+                    <Text style={{fontFamily: 'OpenSans-Regular', color: "#757575"}}>{ this.props.name }</Text>
                 </View>
             </TouchableOpacity>
         );

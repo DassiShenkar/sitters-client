@@ -203,10 +203,9 @@ class Register extends Component {
             };
         }
         user.isParent = path === 'parent/create';
-        console.log(user);
         axios({
             method: 'post',
-            url: 'http://192.168.1.70:4444/' + path,
+            url: 'http://10.0.0.1:4444/' + path,
             // url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user
@@ -231,6 +230,7 @@ const styles = StyleSheet.create({
         margin: 20
     },
     button: {
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         width: 70,
         alignSelf : 'flex-end',

@@ -20,10 +20,10 @@ export default class MyMultiSelect extends Component {
                 style={this.props.style ? this.props.style : {}}
                 customStyle={{
                     confirmButton:{
-                        backgroundColor: '#f7a1a1'
+                        backgroundColor: '#f86966'
                     },
                     cancelButton: {
-                        backgroundColor: '#f7a1a1'
+                        backgroundColor: '#f86966'
                     }
                 }}
                 onConfirm={(list) => this.props.update(list)}>

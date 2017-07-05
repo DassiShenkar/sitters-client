@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         padding: 5,
         fontWeight: 'bold'

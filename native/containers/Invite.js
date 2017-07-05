@@ -44,7 +44,7 @@ class Invite extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
-            url: 'http://192.168.1.70:4444/invite/updateInvite',
+            url: 'http://10.0.0.1:4444/invite/updateInvite',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
@@ -59,69 +59,6 @@ class Invite extends React.Component {
             console.log(error);
             Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
         });
-        // const path = this.props.user.isParent ? 'parent/update': 'sitter/update';
-        // axios({
-        //     method: 'post',
-        //     // url: 'https://sitters-server.herokuapp.com/'+ path,
-        //     url: 'http://10.0.0.4:4444/'+ path,
-        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //     data: user
-        // }).then(function (res) {
-        //     if (res.data) {  // user created
-        //
-        //     }
-        //     else {
-        //         console.log("settings not updated");
-        //         //TODO: think about error
-        //     }
-        // })
-        //     .catch(function (error) {
-        //         alert(error);
-        //         //TODO: think about error
-        //     });
-        // if(!user.isParent && invite){
-        //     axios({
-        //         method: 'post',
-        //         // url: 'https://sitters-server.herokuapp.com/user/getUser',
-        //         url: 'http://192.168.1.70:4444/user/getUser',
-        //         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //         data: {_id: invite.parentID}
-        //     })
-        //         .then(function (response) {
-        //             if (response.data) {  // user exists
-        //                 let parent = response.data;
-        //                 const  inviteIndex = _.findIndex(parent.invites, function(o) { return o._id === invite._id; });
-        //                 parent.invites[inviteIndex] = invite;
-        //                 parent.invites[inviteIndex].wasRead = false;
-        //                 axios({
-        //                     method: 'post',
-        //                     // url: 'https://sitters-server.herokuapp.com/parent/update',
-        //                     url: 'http://192.168.1.70:4444/parent/update',
-        //                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //                     data: parent
-        //                 }).then(function (res) {
-        //                     if (res.data) {  // user created
-        //                         // self.props.router.push('/');
-        //                     }
-        //                     else {
-        //                         console.log("settings not updated");
-        //                         //TODO: think about error
-        //                     }
-        //                 })
-        //                     .catch(function (error) {
-        //                         alert(error);
-        //                         //TODO: think about error
-        //                     });
-        //             }
-        //             else { // user not exist
-        //
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // }
-
     }
 
     changeInviteStatus(invite, status){
@@ -250,7 +187,8 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     pickerText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -261,7 +199,8 @@ const styles = StyleSheet.create({
         height: 150
     },
     locationText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -289,13 +228,16 @@ const styles = StyleSheet.create({
     notesText: {
         width: '100%',
         justifyContent: 'flex-start',
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
     textInput: {
         width: '100%',
+        color: '#757575',
         justifyContent: 'flex-start',
+        fontFamily: 'OpenSans-Regular',
         marginBottom: 15
     },
     actionBar: {
@@ -307,8 +249,9 @@ const styles = StyleSheet.create({
     },
     button: {
         fontSize: 20,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         padding: 5,
         borderRadius: 10
     }

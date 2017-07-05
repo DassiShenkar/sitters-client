@@ -83,7 +83,7 @@ export default class FaceBookLogin extends React.Component {
             axios({
                 method: 'post',
                 // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'http://192.168.1.70:4444/parent/get',
+                url: 'http://10.0.0.1:4444/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
@@ -93,7 +93,7 @@ export default class FaceBookLogin extends React.Component {
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
-                            url: 'http://192.168.1.70:4444/parent/updateMutualFriends',
+                            url: 'http://10.0.0.1:4444/parent/updateMutualFriends',
                             // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
@@ -120,7 +120,7 @@ export default class FaceBookLogin extends React.Component {
             axios({
                 method: 'post',
                 // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                url: 'http://192.168.1.70:4444/sitter/get',
+                url: 'http://10.0.0.1:4444/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
@@ -130,7 +130,7 @@ export default class FaceBookLogin extends React.Component {
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
-                            url: 'http://192.168.1.70:4444/parent/updateMutualFriends',
+                            url: 'http://10.0.0.1:4444/parent/updateMutualFriends',
                             // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         backgroundColor: '#f86966',
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         padding: 15,
         borderRadius: 40
     }

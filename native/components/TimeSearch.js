@@ -78,22 +78,24 @@ export default class TimeSearch extends React.Component {
                         this.props.sitters.length > 0 ?
                             <View>
                                 <Image source={{uri: coverPhoto}}>
-                                    <View style={styles.feedContainer}>
-                                        <View style={styles.backgroundCircle}>
-                                            <ImageButton
-                                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                                styles={styles.sitterImage}
-                                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                    <View style={styles.backgroundImage}>
+                                        <View style={styles.feedContainer}>
+                                            <View style={styles.backgroundCircle}>
+                                                <ImageButton
+                                                    onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                                    styles={styles.sitterImage}
+                                                    src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                            </View>
+                                            <View style={styles.feedTextView}>
+                                                <Text style={styles.sitterText}>{name + ', ' + age}</Text>
+                                                { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
+                                                <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                            </View>
                                         </View>
-                                        <View style={styles.feedTextView}>
-                                            <Text style={styles.sitterText}>{name + ', ' + age}</Text>
-                                            { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
-                                            <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                        <View style={styles.feedButtons}>
+                                            <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#ffca00" onPress={this.navToInvite} />
+                                            <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#4dd0e1" onPress={this.nextSitter} />
                                         </View>
-                                    </View>
-                                    <View style={styles.feedButtons}>
-                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.navToInvite} />
-                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.nextSitter} />
                                     </View>
                                 </Image>
                             </View>
@@ -176,7 +178,7 @@ const styles = StyleSheet.create({
     searchByContainer: {
         margin: 15,
         justifyContent: 'flex-start',
-        marginBottom: 55,
+        marginBottom: 55
     },
     dummy:{
         height: 160
@@ -192,7 +194,8 @@ const styles = StyleSheet.create({
         padding: 5
     },
     pickerText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -225,8 +228,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         margin: 5,
         color: '#fff',
-        textShadowColor: '#000',
-        textShadowOffset: {width: 2, height: 2}
+        fontFamily: 'Raleway-Regular'
     },
     feedButtons: {
         flexDirection: 'row',
@@ -241,13 +243,17 @@ const styles = StyleSheet.create({
     picker: {
         width: 150,
         marginLeft: 5,
-        alignSelf : 'flex-start',
+        alignSelf : 'flex-start'
     },
     notFoundText: {
         width: '100%',
         fontSize: 22,
         paddingLeft: 80,
         paddingTop: 50,
-        color: '#f7a1a1'
+        fontFamily: 'OpenSans-Regular',
+        color: '#f86966'
+    },
+    backgroundImage: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     }
 });

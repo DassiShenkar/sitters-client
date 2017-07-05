@@ -67,7 +67,7 @@ class SitterProfileView extends React.Component {
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
             return (
                 self.props.sitterProfile.sitter.workingHours[key].length > 0 ?
-                <View key={index}>
+                <View key={index} style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                     <Text style={styles.dayKey}>{key[0].toUpperCase() + key.slice(1)}</Text>
                     <Text style={styles.greyText}>{self.props.sitterProfile.sitter.workingHours[key].map(function(item) {
                         return item + " ";
@@ -164,7 +164,8 @@ class SitterProfileView extends React.Component {
                                             }
                                         </View>
                                         <Text
-                                            style={styles.detailHeader}>Reviews({ this.props.sitterProfile.sitter.reviews.length })</Text>
+                                            style={styles.detailHeader}>Reviews({ this.props.sitterProfile.sitter.reviews.length })
+                                        </Text>
                                         <View>
                                             <ListView
                                                 enableEmptySections={true}
@@ -175,15 +176,12 @@ class SitterProfileView extends React.Component {
                                         </View>
                                     </View>
                                 </View>
+                                <View style={styles.actionBar}>
+                                    <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#4dd0e1" onPress={Actions.pop} />
+                                    <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#ffca00" onPress={(e) => this.navToInvite(e, id)} />
+                                </View>
                             </ScrollView>
                     }
-                {
-                    this.props.feed.showSpinner ? null :
-                        <View style={styles.actionBar}>
-                            <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.pop} />
-                            <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToInvite(e, id)} />
-                        </View>
-                }
             </View>
         );
     }
@@ -225,12 +223,14 @@ const styles = StyleSheet.create({
     },
     sitterText: {
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10
     },
     dayKey: {
-        color: '#f86966',
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         marginBottom: 2,
         marginTop: 2
     },
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f86966'
     },
     tabSeparator: {
-        borderRightColor: '#fff',
+        borderRightColor: '#757575',
         borderRightWidth: 1,
         paddingRight: 25
     },
@@ -249,17 +249,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        width: '100%',
-        backgroundColor: '#f86966'
+        width: '100%'
     },
     infoText: {
         fontSize: 20,
-        color: '#fff',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         alignSelf: 'center'
     },
     infoSmallText: {
         fontSize: 16,
-        color: '#fff',
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         alignSelf: 'center'
     },
     detailContainer: {
@@ -268,11 +269,13 @@ const styles = StyleSheet.create({
     detailHeader: {
         fontSize: 16,
         color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         paddingBottom: 5,
         paddingTop: 5
     },
     greyText: {
        fontSize: 14,
+        fontFamily: 'OpenSans-Regular',
         color: '#757575'
     },
     actionBar: {
@@ -284,6 +287,7 @@ const styles = StyleSheet.create({
     textButton: {
         fontSize: 20,
         backgroundColor: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         color: '#fff',
         padding: 5,
         borderRadius: 10,

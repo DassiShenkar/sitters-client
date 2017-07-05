@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#f7a1a1',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         marginLeft: 10,
         alignSelf: 'center',

@@ -203,11 +203,13 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#f7a1a1',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 22,
         marginTop: 10
     },
     friendText: {
         color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 14,
         marginTop: 3
     },
@@ -218,7 +220,7 @@ const styles = StyleSheet.create({
         paddingLeft: 5
     },
     sitterName: {
-        fontFamily: 'PoiretOne',
+        fontFamily: 'Raleway-Regular',
         color: '#fff',
         fontSize: 24
     },
@@ -230,7 +232,7 @@ const styles = StyleSheet.create({
         fontFamily: 'OpenSans-Regular'
     },
     mottoText: {
-        fontFamily: 'PoiretOne',
+        fontFamily: 'Raleway-Regular',
         alignSelf: 'center',
         color: '#757575',
         fontSize: 20,

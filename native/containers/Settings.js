@@ -66,7 +66,7 @@ class Settings extends React.Component {
                     axios({
                         method: 'post',
                         // url: 'https://sitters-server.herokuapp.com/' + path,
-                        url: 'http://192.168.1.70:4444/' + path,
+                        url: 'http://10.0.0.1:4444/' + path,
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId.toString()}
                     }).then(function (user) {
@@ -79,7 +79,7 @@ class Settings extends React.Component {
                             let updatePath = user.data.isParent ? 'parent/update' : 'sitter/update';
                             axios({
                                 method: 'post',
-                                url: 'http://192.168.1.70:4444/' + updatePath,
+                                url: 'http://10.0.0.1:4444/' + updatePath,
                                 // url: 'https://sitters-server.herokuapp.com/' + updatePath,
                                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                                 data: user.data

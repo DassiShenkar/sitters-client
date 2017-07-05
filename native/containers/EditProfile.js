@@ -99,27 +99,21 @@ class EditProfile extends Component {
         });
 
         let parent = this.props.user;
-        //parent.name = this.props.register.name ? this.props.register.name : this.props.user.name;
-        // let parent = {
-        //     name: this.props.register.name ? this.props.register.name : this.props.user.name,
-        //     email: this.props.register.email ? this.props.register.email : this.props.user.email,
-        //     age: this.props.register.age ? this.props.register.age: 0,
-        //     languages: setLangs,
-        //     gender: this.props.register.gender ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-        //     maxPrice: Number(this.props.register.watchMaxPrice),
-        //     children: {
-        //         name: this.props.register.childName,
-        //         age: Number(this.props.register.childAge),
-        //         expertise: this.props.register.childExpertise? this.props.register.childExpertise: [],
-        //         hobbies: this.props.register.childHobbies? this.props.register.childHobbies: [],
-        //         specialNeeds: this.props.register.childSpecialNeeds? this.props.register.childSpecialNeeds: []
-        //     },
-        //     partner:{
-        //         gender: this.props.register.partnerGender ? this.props.register.partnerGender : 'Female',
-        //         email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
-        //         name:  this.props.register.partnerName ? this.props.register.partnerName : ' '
-        //     }
-        // };
+        parent.name = this.props.register.name ? this.props.register.name : this.props.user.name;
+        parent.email = this.props.register.email ? this.props.register.email : this.props.user.email;
+        parent.age = this.props.register.age ? this.props.register.age : 0;
+        parent.languages = setLangs;
+        parent.gender = this.props.register.gender ? this.props.register.gender.toLowerCase() : this.props.user.gender;
+        parent.maxPrice = this.props.register.name ? this.props.register.name : this.props.user.name;
+        parent.name = Number(this.props.register.watchMaxPrice);
+        parent.children.name = this.props.register.childName ? this.props.register.childName : '';
+        parent.children.age = Number(this.props.register.watchMaxPrice);
+        parent.children.expertise = this.props.register.childExpertise ? this.props.register.childExpertise : [];
+        parent.children.hobbies = this.props.register.childHobbies ? this.props.register.childHobbies : [];
+        parent.children.specialNeeds = this.props.register.specialNeeds ? this.props.register.specialNeeds : [];
+        parent.partner.gender = this.props.register.partnerGender ? this.props.register.partnerGender : '';
+        parent.partner.email = this.props.register.partnerEmail ? this.props.register.partnerEmail : '';
+        parent.partner.name = this.props.register.partnerName ? this.props.register.partnerName : '';
         self.setUserInDB(parent, 'parent/update');
     }
 
@@ -138,26 +132,23 @@ class EditProfile extends Component {
             totalScore += question.value;
         });
         let sitter = this.props.user;
-        //sitter.name = this.props.register.name ? this.props.register.name : this.props.user.name;
-        // let sitter = {
-        //     name: this.props.register.name ? this.props.register.name : this.props.user.name,
-        //     email: this.props.register.email ? this.props.register.email : this.props.user.email,
-        //     age: this.props.register.age ? this.props.register.age : 0,
-        //     gender: this.props.register.gender ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-        //     languages: setLangs,
-        //     experience:  Number(this.props.register.sitterExperience),
-        //     minAge:  Number(this.props.register.sitterMinAge),
-        //     maxAge:  Number(this.props.register.sitterMaxAge),
-        //     hourFee: Number(this.props.register.hourFee),
-        //     availableNow: this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability.toLowerCase() === 'true' : true,
-        //     expertise: this.props.register.sitterExpertise? this.props.register.sitterExpertise: [],
-        //     hobbies: this.props.register.sitterHobbies? this.props.register.sitterHobbies: [],
-        //     specialNeeds: this.props.register.sitterSpecialNeeds? this.props.register.sitterSpecialNeeds: [],
-        //     education: this.props.register.sitterEducation? this.props.register.sitterEducation: [],
-        //     mobility: this.props.register.sitterMobility ? this.props.register.sitterMobility : '',
-        //     workingHours: this.props.workingHours,
-        //     motto: this.props.register.sitterMotto
-        // };
+        sitter.name = this.props.register.name ? this.props.register.name : this.props.user.name;
+        sitter.email = this.props.register.email ? this.props.register.email : this.props.user.email;
+        sitter.age = this.props.register.age ? this.props.register.age : 0;
+        sitter.gender = this.props.register.gender ? this.props.register.gender.toLowerCase() : this.props.user.gender;
+        sitter.languages = setLangs;
+        sitter.experience = Number(this.props.register.sitterExperience);
+        sitter.minAge = Number(this.props.register.minAge);
+        sitter.maxAge = Number(this.props.register.maxAge);
+        sitter.hourFee = Number(this.props.register.hourFee);
+        sitter.availableNow = this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability.toLowerCase() === 'true' : true;
+        sitter.expertise = this.props.register.sitterExpertise ? this.props.register.sitterExpertise: [];
+        sitter.hobbies = this.props.register.hobbies ? this.props.register.hobbies: [];
+        sitter.specialNeeds = this.props.register.specialNeeds ? this.props.register.specialNeeds: [];
+        sitter.education = this.props.register.education ? this.props.register.education: [];
+        sitter.mobility = this.props.register.mobility ? this.props.register.mobility: [];
+        sitter.workingHours = this.props.workingHours;
+        sitter.motto = this.props.register.sitterMotto ? this.props.register.sitterMotto : '';
         self.setUserInDB(sitter, 'sitter/update');
     }
 
@@ -174,7 +165,7 @@ class EditProfile extends Component {
         console.log(user);
         axios({
             method: 'post',
-            url: 'http://192.168.1.70:4444/' + path,
+            url: 'http://10.0.0.1:4444/' + path,
             // url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user

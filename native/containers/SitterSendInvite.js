@@ -55,7 +55,7 @@ class SitterSendInvite extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/invite/create',
-            url: 'http://192.168.1.70:4444/invite/create',
+            url: 'http://10.0.0.1:4444/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
@@ -199,7 +199,8 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     pickerText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -210,7 +211,8 @@ const styles = StyleSheet.create({
         height: 150
     },
     locationText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -238,13 +240,15 @@ const styles = StyleSheet.create({
     notesText: {
         width: '100%',
         justifyContent: 'flex-start',
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
     textInput: {
         width: '100%',
         justifyContent: 'flex-start',
+        fontFamily: 'OpenSans-Regular',
         marginBottom: 15
     },
     actionBar: {
@@ -255,8 +259,9 @@ const styles = StyleSheet.create({
     },
     button: {
         fontSize: 20,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         padding: 5,
         borderRadius: 10
     }

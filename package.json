@@ -64,6 +64,7 @@
     "react-native-label-select": "^1.1.0",
     "react-native-maps": "^0.14.0",
     "react-native-notifications": "^1.1.11",
+    "react-native-radio-buttons": "^0.14.0",
     "react-native-router-flux": "3.38.0",
     "react-native-star-rating": "^1.0.7",
     "react-native-swipe-gestures": "^1.0.2",

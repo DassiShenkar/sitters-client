@@ -25,7 +25,7 @@ export default class Review extends React.Component {
                     <Image
                         source={ this.props.parentImage ? { uri: this.props.parentImage } : null }
                         style={styles.image} />
-                    <Text style={{color: '#757575'}}>{ this.props.date ? this.props.date.split('T')[0] : new Date().toDateString() }</Text>
+                    <Text style={{color: '#757575', fontFamily: 'OpenSans-Regular'}}>{ this.props.date ? this.props.date.split('T')[0] : new Date().toDateString() }</Text>
                 </View>
                 { this.props.description ? <Text>{this.props.description}</Text> : null }
                 { this.ratings() }
@@ -38,7 +38,7 @@ export default class Review extends React.Component {
         return rateItems.map(function(item) {
             return (
                 <View key={ Math.random() } style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
-                    <Text style={{color: '#757575'}} key={ Math.random() } style={{ color: '#f86966', fontSize: 12, fontWeight: 'bold' }}>{ item.name }</Text>
+                    <Text key={ Math.random() } style={{ color: '#757575', fontSize: 12, fontWeight: 'bold', fontFamily: 'OpenSans-Regular' }}>{ item.name }</Text>
                     <StarRating
                         disabled={false}
                         emptyStar={'heart-o'}

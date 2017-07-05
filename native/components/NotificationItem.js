@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 
 export default class NotificationItem extends React.Component {
 
@@ -18,7 +19,7 @@ export default class NotificationItem extends React.Component {
             }
         };
         return (
-            <TouchableOpacity onPress={ Actions.Notification({inviteId: self.props._id}) }>
+            <TouchableOpacity onPress={ () => Actions.Notification({inviteId: self.props._id}) }>
                 <View style={styles.container}>
                     <Image
                         source={{ uri: this.props.sitterImage }}

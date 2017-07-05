@@ -279,13 +279,15 @@ const styles = StyleSheet.create({
         color: '#f7a1a1',
         fontSize: 16,
         marginLeft: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'OpenSans-Regular'
     },
     textInput: {
         width: '80%',
         marginBottom: 10,
         marginLeft: 5,
-        color: '#f7a1a1'
+        color: '#f7a1a1',
+        fontFamily: 'OpenSans-Regular'
     },
     picker: {
         width: '30%',
@@ -297,6 +299,7 @@ const styles = StyleSheet.create({
         color: '#f7a1a1',
         fontSize: 19,
         marginLeft: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'OpenSans-Regular'
     }
 });

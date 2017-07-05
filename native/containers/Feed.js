@@ -19,10 +19,6 @@ import SitterCalendar from '../components/SitterCalendar';
 import LoadingScreen from '../components/LoadingScreen';
 import LocalStorage from '../utils/LocalStorage';
 
-let globalVar = {
-    callback: null
-};
-
 class Feed extends React.Component {
 
     constructor(props) {
@@ -34,9 +30,8 @@ class Feed extends React.Component {
         NotificationsAndroid.setNotificationReceivedListener((notification) => {
             console.log("Notification received on device", notification.getData());
             console.log(notification);
-            console.log(notification.getData());
             self.props.actionCreators.setInvites(self.props.user.invites);
-            // update redux
+            // TODO: update redux
             // let object = JSON.parse(event.data);
             // if("parentID" in object && self.props.user.name){
             //     if(object.status !== 'waiting') { // update invite
@@ -56,15 +51,10 @@ class Feed extends React.Component {
             // else if(!("parentID" in object && self.props.user.name) && ("sitterID" in object && self.props.user.name)){ // new notification - new sitter in town
             //     self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
             // }
-            // globalVar.callback();
         });
         NotificationsAndroid.setNotificationOpenedListener((notification) => {
             console.log("Notification opened by device user", notification.getData());
-            // globalVar.callback();
         });
-        // globalVar.callback = () => {
-        //     self.props.inviteActions.setInvites(self.props.user.invites);
-        // };
         self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
@@ -72,7 +62,7 @@ class Feed extends React.Component {
                     axios({
                         method: 'post',
                         // url: 'https://sitters-server.herokuapp.com/parent/get',
-                        url: 'http://192.168.1.70:4444/parent/get',
+                        url: 'http://10.0.0.1:4444/parent/get',
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId.toString()}
                     }).then(function (parent) {
@@ -80,7 +70,7 @@ class Feed extends React.Component {
                             axios({
                                 method: 'post',
                                 // url: 'https://sitters-server.herokuapp.com/parent/getMatches',
-                                url: 'http://192.168.1.70:4444/parent/getMatches',
+                                url: 'http://10.0.0.1:4444/parent/getMatches',
                                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                                 data: parent.data
                             }).then(function (sitters) {
@@ -109,7 +99,7 @@ class Feed extends React.Component {
                     axios({
                         method: 'post',
                         // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                        url: 'http://192.168.1.70:4444/sitter/get',
+                        url: 'http://10.0.0.1:4444/sitter/get',
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId}
                     })
@@ -187,7 +177,7 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
                 axios({
                     method: 'post',
                     // url: 'https://sitters-server.herokuapp.com/' + path,
-                    url: 'http://192.168.1.70:4444/' + path,
+                    url: 'http://10.0.0.1:4444/' + path,
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     data: {_id: userId.toString()}
                 }).then(function (user) {
@@ -199,7 +189,7 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
                         let updatePath = user.data.isParent ? 'parent/update' : 'sitter/update';
                         axios({
                             method: 'post',
-                            url: 'http://192.168.1.70:4444/' + updatePath,
+                            url: 'http://10.0.0.1:4444/' + updatePath,
                             // url: 'https://sitters-server.herokuapp.com/' + updatePath,
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: user.data

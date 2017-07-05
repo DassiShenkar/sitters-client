@@ -58,7 +58,7 @@ class Splash extends React.Component {
             axios({
                 method: 'post',
                 // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'http://192.168.1.70:4444/parent/get',
+                url: 'http://10.0.0.1:4444/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId.toString()}
             }).then(function (res) {
@@ -76,7 +76,7 @@ class Splash extends React.Component {
             axios({
                 method: 'post',
                 // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                url: 'http://192.168.1.70:4444/sitter/get',
+                url: 'http://10.0.0.1:4444/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId.toString()}
             }).then(function (res) {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     text: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         color: '#f86966'
     }

@@ -20,20 +20,8 @@ class Login extends React.Component {
                 <Logo
                     companyName="Sitters" />
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
-                <View style={{ marginBottom: 15,
-                                borderBottomColor: '#fff',
-                                borderTopColor: '#f86966',
-                                borderLeftColor: '#fff',
-                                borderRightColor: '#fff',
-                                borderStyle: 'solid',
-                                borderWidth: 1 }}>
-                    <Picker
-                        style={styles.picker}
-                        selectedValue={ this.props.user.userType }
-                        onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-                        <Picker.Item label="I'm a Parent" value="I'm a Parent" />
-                        <Picker.Item label="I'm a Sitter" value="I'm a Sitter" />
-                    </Picker>
+                <View style={styles.innerContainer}>
+
                 </View>
                 <FaceBookLogin
                     { ...this.props } />
@@ -41,6 +29,14 @@ class Login extends React.Component {
         );
     }
 }
+
+// <Picker
+//     style={styles.picker}
+//     selectedValue={ this.props.user.userType }
+//     onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
+//     <Picker.Item label="I'm a Parent" value="I'm a Parent" />
+//     <Picker.Item label="I'm a Sitter" value="I'm a Sitter" />
+// </Picker>
 
 const styles = StyleSheet.create({
     container: {
@@ -50,17 +46,20 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         flexDirection: 'column'
     },
+    innerContainer: {
+        marginBottom: 15,
+        borderBottomColor: '#fff',
+        borderTopColor: '#f86966',
+        borderLeftColor: '#fff',
+        borderRightColor: '#fff',
+        borderStyle: 'solid',
+        borderWidth: 1
+    },
     text: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         color: '#f86966',
         marginBottom: 15
-    },
-    questionText: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
-        fontSize: 16,
-        color: '#f86966',
-        marginTop: 45
     },
     picker: {
         width: '48%',

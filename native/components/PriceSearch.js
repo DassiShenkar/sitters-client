@@ -20,7 +20,6 @@ export default class PriceSearch extends React.Component {
     
     render () {
         const sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
-        console.log(sitterIndex);
         const sitterId = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex]._id : 0 : 0 : 0;
         const profilePicture = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].profilePicture : null : null : null;
         const name = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].name : null : null : null;
@@ -62,22 +61,24 @@ export default class PriceSearch extends React.Component {
                         this.props.sitters.length > 0 ?
                         <View style={styles.content}>
                             <Image source={{uri: coverPhoto}}>
-                                <View style={styles.feedContainer}>
-                                    <View style={styles.backgroundCircle}>
-                                        <ImageButton
-                                            onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                            styles={styles.sitterImage}
-                                           src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                <View style={styles.backgroundImage}>
+                                    <View style={styles.feedContainer}>
+                                        <View style={styles.backgroundCircle}>
+                                            <ImageButton
+                                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                                styles={styles.sitterImage}
+                                               src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                        </View>
+                                        <View style={styles.feedTextView}>
+                                            <Text style={styles.sitterText}>{name + ', ' + age}</Text>
+                                            { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
+                                            <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                        </View>
                                     </View>
-                                    <View style={styles.feedTextView}>
-                                        <Text style={styles.sitterText}>{name + ', ' + age}</Text>
-                                        { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
-                                        <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                    <View style={styles.feedButtons}>
+                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#ffca00" onPress={this.navToInvite} />
+                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#4dd0e1" onPress={this.nextSitter} />
                                     </View>
-                                </View>
-                                <View style={styles.feedButtons}>
-                                    <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.navToInvite} />
-                                    <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={this.nextSitter} />
                                 </View>
                             </Image>
                         </View>
@@ -127,10 +128,11 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 16,
-        color: '#f7a1a1',
+        color: '#f86966',
         paddingBottom: 10,
         paddingLeft: 10,
-        paddingTop: 10
+        paddingTop: 10,
+        fontFamily: 'OpenSans-Regular'
     },
     content: {
         justifyContent: 'flex-end'
@@ -143,12 +145,11 @@ const styles = StyleSheet.create({
     },
     sliderNumbers: {
         fontSize: 12,
-        color: '#f7a1a1'
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular'
     },
     backgroundImage: {
-        width: null,
-        height: null,
-        resizeMode:'stretch'
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     feedContainer: {
         flexDirection: 'row',
@@ -179,8 +180,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         margin: 5,
         color: '#fff',
-        textShadowColor: '#000',
-        textShadowOffset: {width: 2, height: 2}
+        fontFamily: 'Raleway-Regular'
     },
     feedButtons: {
         flexDirection: 'row',
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         paddingLeft: 80,
         paddingTop: 50,
-        color: '#f7a1a1'
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular'
     }
 });

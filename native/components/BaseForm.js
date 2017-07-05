@@ -174,12 +174,14 @@ export default class BaseForm extends React.Component {
 
 const styles = StyleSheet.create({
     text: {
+        fontFamily: 'OpenSans-Regular',
         color: '#f86966',
         fontSize: 16,
         marginLeft: 10,
         fontWeight: 'bold'
     },
     textInput: {
+        fontFamily: 'OpenSans-Regular',
         width: '80%',
         marginBottom: 10,
         marginLeft: 5,
@@ -192,6 +194,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     header: {
+        fontFamily: 'OpenSans-Regular',
         color: '#f86966',
         fontSize: 19,
         marginLeft: 10,
