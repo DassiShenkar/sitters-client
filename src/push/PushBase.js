@@ -2,7 +2,6 @@ import React from 'react';
 
 const applicationServerPublicKey = 'BA9TXkOAudBsHZCtma-VftBiXmAc-Ho4M7SwAXRpZDR-DsE6pdMP_HVTTQaa3vkQuHLcB6hB87yiunJFUEa4Pas';
 
-const pushButton = null;
 
 let isSubscribed = false;
 let swRegistration = null;

@@ -8,7 +8,6 @@ import 'react-select/dist/react-select.css';
 
 import TextInput from '../controllers/textInput/index';
 import RadioGroup from '../controllers/radio/radioGroup/index';
-import SelectInput from '../controllers/select/SelectInput';
 
 // statics
 import strings from '../../static/strings';

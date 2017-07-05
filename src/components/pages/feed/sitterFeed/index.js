@@ -1,7 +1,6 @@
 //external sources
 import React from 'react';
 import axios from 'axios';
-import InviteList from '../../../inviteList'
 import strings from "../../../../static/strings";
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
@@ -11,10 +10,6 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import InvitesModal from "../../../inviteList/inviteModal/index";
 import {PageHeader} from "react-bootstrap";
-
-// BigCalendar.setLocalizer(
-//     BigCalendar.momentLocalizer(moment)
-// );
 
 BigCalendar.momentLocalizer(moment);
 class SitterFeed extends React.Component {

@@ -3,15 +3,10 @@ import GoogleMap from "react-google-map"
 import GoogleMapLoader from "react-google-maps-loader"
 import geodist from "geodist";
 import './style.css'
-import {Image} from "react-bootstrap";
 
 const MY_API_KEY = "AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0";
 
 class Map extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
     onClick(e){
         e.preventDefault();
         console.log('clicked');

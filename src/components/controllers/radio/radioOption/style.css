@@ -1,2 +1,12 @@
-input[type=radio] {
-  margin-right: 8px; }
+.radio-option {
+  text-align: left; }
+  .radio-option input[type=radio] {
+    display: none; }
+  .radio-option span:before {
+    color: #f86966;
+    font-size: 18px;
+    margin-right: 8px;
+    vertical-align: middle; }
+  .radio-option label {
+    vertical-align: middle;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive; }

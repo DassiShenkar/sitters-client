@@ -22,6 +22,13 @@ class Login extends React.Component {
         this.login = this.login.bind(this);
     }
 
+    componentWillMount(){
+        document.getElementsByTagName('html')[0].style.overflow="hidden";
+    }
+
+    componentWillUnmount(){
+        document.getElementsByTagName('html')[0].removeAttribute("style");
+    }
     login(facebookUser) {
         if (facebookUser.status === "not_authorized") {
             this.props.router.push('/notAuthorized');

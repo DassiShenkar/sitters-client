@@ -30,6 +30,9 @@ class MainNav extends React.Component {
                     self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
                 }
             }
+            else if(!("parentID" in object && self.props.user.name) && ("sitterID" in object && self.props.user.name)){ // new notification - new sitter in town
+                self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            }
         });
     }
     nav(view) {
@@ -46,8 +49,11 @@ class MainNav extends React.Component {
             <List items={this.props.user.invites} type='invite' isParent={this.props.user.isParent}/>
         </Popover>);
 
-        const newInvites = this.props.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
-        const newNotifications = this.props.notifications.filter(notification => !notification.wasRead);
+        const newInvites = this.props.user.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
+        let newNotifications = [];
+        if(this.props.user.notifications){
+            newNotifications = this.props.user.notifications.filter(notification => !notification.wasRead);
+        }
 
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
@@ -65,7 +71,7 @@ class MainNav extends React.Component {
                 <Navbar.Collapse>
                     <Nav pullRight>
                         {this.props.user.isParent ? <NavItem onClick={this.nav.bind(this, "searchBy")}><span
-                                className="icon-search"/></NavItem> : null}
+                            className="icon-search"/></NavItem> : null}
                         {this.props.user.isParent ?
                             <OverlayTrigger trigger="focus" placement="bottom" overlay={notifications}>
                                 <NavItem>

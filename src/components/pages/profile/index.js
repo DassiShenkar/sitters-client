@@ -5,7 +5,7 @@ import axios from "axios";
 import * as _ from "lodash";
 
 // components
-import {Image, Table, Panel, Accordion, ControlLabel} from "react-bootstrap";
+import {Image, Table, Panel, Accordion} from "react-bootstrap";
 import SitterActionBar from "../../panels/actionPanel";
 import ReviewList from "../../reviewList/index";
 import Invite from "../../invite/Invite";
@@ -52,7 +52,6 @@ class SitterProfile extends React.Component {
 
     render() {
         let self = this;
-        const id = this.props.params.sitterId;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (day, index) {
             return (
                 <tr key={index}>

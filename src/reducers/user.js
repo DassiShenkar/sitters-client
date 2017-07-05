@@ -112,6 +112,11 @@ function user(state = {}, action) {
                 ...state,
                 invites: action.invites
             };
+        case 'SET_NOTIFICATIONS' :
+            return {
+                ...state,
+                notifications: action.notifications
+            };
         default:
             return state;
     }

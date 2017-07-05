@@ -6,10 +6,9 @@
 
 #single-notification-page .match-images {
   text-align: center; }
-
-#single-notification-page .match-images img {
-  width: 96px;
-  height: 96px; }
+  #single-notification-page .match-images img {
+    width: 96px;
+    height: 96px; }
 
 #single-notification-page .match-info {
   display: flex;

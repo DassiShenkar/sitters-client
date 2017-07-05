@@ -2,16 +2,8 @@
   padding-bottom: 0;
   margin-bottom: 0; }
 
-#feed-page label {
-  color: #555; }
-
 #feed-page ._loading-overlay {
   position: static !important; }
-
-#feed-page #invite {
-  text-align: left; }
-  #feed-page #invite label {
-    font-size: 18px; }
 
 ol.progtrckr {
   list-style-type: none;
