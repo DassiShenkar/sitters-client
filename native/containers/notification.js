@@ -24,103 +24,85 @@ class Invite extends React.Component {
     // <Button title="Accept" onClick={this.changeInviteStatus.bind(this, invite, "accepted")} >Accept</Button>
     // <Button title="Decline" onClick={this.changeInviteStatus.bind(this, invite, "declined")} >Declined</Button>
 
-    componentWillMount(){
-        const inviteID = this.props.inviteId;
-        let user = this.props.user;
-        const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
-
-        const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
-        || (!user.isParent && user.invites[inviteIndex].status === "waiting" && !user.invites[inviteIndex].wasRead));
-
-        if(shouldUpdate){
-            user.invites[inviteIndex].wasRead = true;
-            this.props.inviteActions.setInvites(user.invites);
-            this.updateInvite(user);
-        }
-    }
+    // componentWillMount(){
+    //     const inviteID = this.props.router.params.inviteId;
+    //     let user = this.props.user;
+    //     const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
+    //
+    //     const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
+    //     || (!user.isParent && user.invites[inviteIndex].status === "waiting" && !user.invites[inviteIndex].wasRead));
+    //
+    //     if(shouldUpdate){
+    //         user.invites[inviteIndex].wasRead = true;
+    //         this.updateInvite(user)
+    //     }
+    // }
 
     updateInvite(user, invite){
         const self = this;
+        this.props.inviteActions.setInvites(user.invites);
+        const path = this.props.user.isParent ? 'parent/update': 'sitter/update';
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
-            url: 'http://192.168.1.70:4444/invite/updateInvite',
+            // url: 'https://sitters-server.herokuapp.com/'+ path,
+            url: 'http://10.0.0.4:4444/'+ path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: invite
+            data: user
         }).then(function (res) {
-            if (res.data) {  // invite updated
-                self.props.actions.inviteActions.setInvites(user.invites);
+            if (res.data) {  // user created
+
             }
             else {
-                console.log("invite not updated");
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                console.log("settings not updated");
+                //TODO: think about error
             }
-        }).catch(function (error) {
-            console.log(error);
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-        });
-        // const path = this.props.user.isParent ? 'parent/update': 'sitter/update';
-        // axios({
-        //     method: 'post',
-        //     // url: 'https://sitters-server.herokuapp.com/'+ path,
-        //     url: 'http://10.0.0.4:4444/'+ path,
-        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //     data: user
-        // }).then(function (res) {
-        //     if (res.data) {  // user created
-        //
-        //     }
-        //     else {
-        //         console.log("settings not updated");
-        //         //TODO: think about error
-        //     }
-        // })
-        //     .catch(function (error) {
-        //         alert(error);
-        //         //TODO: think about error
-        //     });
-        // if(!user.isParent && invite){
-        //     axios({
-        //         method: 'post',
-        //         // url: 'https://sitters-server.herokuapp.com/user/getUser',
-        //         url: 'http://192.168.1.70:4444/user/getUser',
-        //         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //         data: {_id: invite.parentID}
-        //     })
-        //         .then(function (response) {
-        //             if (response.data) {  // user exists
-        //                 let parent = response.data;
-        //                 const  inviteIndex = _.findIndex(parent.invites, function(o) { return o._id === invite._id; });
-        //                 parent.invites[inviteIndex] = invite;
-        //                 parent.invites[inviteIndex].wasRead = false;
-        //                 axios({
-        //                     method: 'post',
-        //                     // url: 'https://sitters-server.herokuapp.com/parent/update',
-        //                     url: 'http://192.168.1.70:4444/parent/update',
-        //                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-        //                     data: parent
-        //                 }).then(function (res) {
-        //                     if (res.data) {  // user created
-        //                         // self.props.router.push('/');
-        //                     }
-        //                     else {
-        //                         console.log("settings not updated");
-        //                         //TODO: think about error
-        //                     }
-        //                 })
-        //                     .catch(function (error) {
-        //                         alert(error);
-        //                         //TODO: think about error
-        //                     });
-        //             }
-        //             else { // user not exist
-        //
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // }
+        })
+            .catch(function (error) {
+                alert(error);
+                //TODO: think about error
+            });
+        if(!user.isParent && invite){
+            axios({
+                method: 'post',
+                // url: 'https://sitters-server.herokuapp.com/user/getUser',
+                url: 'http://192.168.1.70:4444/user/getUser',
+                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                data: {_id: invite.parentID}
+            })
+                .then(function (response) {
+                    if (response.data) {  // user exists
+                        let parent = response.data;
+                        const  inviteIndex = _.findIndex(parent.invites, function(o) { return o._id === invite._id; });
+                        parent.invites[inviteIndex] = invite;
+                        parent.invites[inviteIndex].wasRead = true;
+                        axios({
+                            method: 'post',
+                            // url: 'https://sitters-server.herokuapp.com/parent/update',
+                            url: 'http://192.168.1.70:4444/parent/update',
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: parent
+                        }).then(function (res) {
+                            if (res.data) {  // user created
+                                // self.props.router.push('/');
+                            }
+                            else {
+                                console.log("settings not updated");
+                                //TODO: think about error
+                            }
+                        })
+                            .catch(function (error) {
+                                alert(error);
+                                //TODO: think about error
+                            });
+                    }
+                    else { // user not exist
+
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
 
     }
 

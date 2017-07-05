@@ -31,8 +31,8 @@ export default class BaseForm extends React.Component {
                     style={styles.textInput}
                     type="TextInput"
                     name="name"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     placeholder="Name"
                     value={ this.props.user.name ? this.props.user.name : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeName(text)}/>
@@ -41,8 +41,8 @@ export default class BaseForm extends React.Component {
                     style={styles.textInput}
                     type="TextInput"
                     name="email"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     placeholder="Email"
                     value={ this.props.user.email ? this.props.user.email : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeEmail(text)}/>
@@ -51,8 +51,8 @@ export default class BaseForm extends React.Component {
                     style={styles.textInput}
                     type="TextInput"
                     name="age"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     placeholder="Age"
                     value={ this.props.user.birthday ? this.calcAge(this.props.user.birthday).toString() : this.props.user.age ? this.props.user.age.toString() : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeAge(text)}/>
@@ -80,7 +80,7 @@ export default class BaseForm extends React.Component {
                               marginLeft: 0,
                               marginRight: 0,
                               height: 38,
-                              color: '#f7a1a1',
+                              color: '#757575',
                               fontSize: 16
                             }
                         }}
@@ -174,7 +174,7 @@ export default class BaseForm extends React.Component {
 
 const styles = StyleSheet.create({
     text: {
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 16,
         marginLeft: 10,
         fontWeight: 'bold'
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         width: '80%',
         marginBottom: 10,
         marginLeft: 5,
-        color: '#f7a1a1'
+        color: '#757575'
     },
     picker: {
         width: '30%',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     header: {
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 19,
         marginLeft: 10,
         fontWeight: 'bold'

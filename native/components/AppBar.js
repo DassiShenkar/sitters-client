@@ -4,7 +4,6 @@ import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from './ImageButton';
@@ -19,7 +18,10 @@ class AppBar extends React.Component {
         // this.search = this.search.bind(this);
         this.menu = this.menu.bind(this);
         this.search = this.search.bind(this);
-        this.getSitterNow = this.getSitterNow.bind(this);
+        this.invites = this.invites.bind(this);
+        this.notifications = this.notifications.bind(this);
+        this.countInvites = this.countInvites.bind(this);
+        this.countNotifications = this.countNotifications.bind(this);
     }
 
     componentWillMount () {
@@ -51,19 +53,6 @@ class AppBar extends React.Component {
     }
 
     render () {
-        let notify = function() {
-            if(this.props.user.invites && this.props.feed.invites.length > 0) {
-                this.props.feed.invites.map(function(invite) {
-                    if(!invite.wasRead) {
-                        return true;
-                    }
-                });
-                return false;
-            } else {
-                return false;
-            }
-        };
-
         return (
             <View style={ styles.container }>
                 <ImageButton
@@ -74,19 +63,83 @@ class AppBar extends React.Component {
                     style={this.props.user.userType === "I'm a Parent" ? styles.parentInnerContainer : styles.innerContainer}>
                     {
                         this.props.user.userType === "I'm a Parent" ?
-                            <Icon.Button name="mobile" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.getSitterNow} /> : null
+                        <Icon.Button name="search" size={28} backgroundColor="#fff" color="#757575" onPress={this.search} /> : null
                     }
-                    {
-                        this.props.user.userType === "I'm a Parent" ?
-                        <Icon.Button name="search" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.search} /> : null
-                    }
-                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Notifications} />
-                    <Icon.Button name="envelope-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Inbox} />
-                    <Icon.Button name="ellipsis-v" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.menu} />
+                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Notifications} >
+                        {
+                            this.notifications() ?
+                            <View style={styles.IconBadge}>
+                                <Text style={{color:'#fff'}}>{this.countNotifications()}</Text>
+                            </View> : null
+                        }
+                    </Icon.Button>
+                    <Icon.Button name="envelope-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Inbox} >
+                        {
+                            this.invites() ?
+                            <View style={styles.IconBadge}>
+                                <Text style={{color:'#fff'}}>{this.countInvites()}</Text>
+                            </View> : null
+                        }
+                    </Icon.Button>
+                    <Icon.Button name="ellipsis-v" size={28} backgroundColor="#fff" color="#757575" onPress={this.menu} />
                 </View>
             </View>
         );
     }
+
+    countInvites () {
+        if(this.props.user.invites && this.props.user.invites.length > 0) {
+            var count = 0;
+            this.props.user.invites.map(function(invite) {
+                if(!invite.wasRead) {
+                    count++;
+                }
+            });
+            return count;
+        } else {
+            return 0;
+        }
+    };
+
+    countNotifications () {
+        if(this.props.user.invites && this.props.user.invites.length > 0) {
+            var count = 0;
+            this.props.user.invites.map(function(invite) {
+                if(!invite.wasRead) {
+                    count++;
+                }
+            });
+            return count;
+        } else {
+            return 0;
+        }
+    };
+
+    invites () {
+        if(this.props.user.invites && this.props.user.invites.length > 0) {
+            this.props.user.invites.map(function(invite) {
+                if(!invite.wasRead) {
+                    return true;
+                }
+            });
+            return false;
+        } else {
+            return false;
+        }
+    };
+
+    notifications () {
+        if(this.props.user.invites && this.props.user.invites.length > 0) {
+            this.props.user.invites.map(function(invite) {
+                if(!invite.wasRead) {
+                    return true;
+                }
+            });
+            return false;
+        } else {
+            return false;
+        }
+    };
 
     search() {
         this.props.feedActions.setSitterIndex(0);
@@ -96,20 +149,6 @@ class AppBar extends React.Component {
     menu() {
         Actions.Menu({hide: false});
     }
-
-    getSitterNow() {
-        axios({
-            method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/parent/getSitterNow',
-            url: 'http://192.168.1.70:4444/parent/getSitterNow',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: {_id: this.props.user._id.toString()}
-        }).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    }
 }
 
 const styles = StyleSheet.create({
@@ -117,7 +156,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        borderBottomColor: '#8c8c8c',
+        borderBottomColor: '#757575',
         borderTopColor: '#fff',
         borderLeftColor: '#fff',
         borderRightColor: '#fff',
@@ -130,8 +169,19 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginRight: 20
     },
+    IconBadge: {
+        position:'absolute',
+        top:1,
+        right:1,
+        minWidth:20,
+        height:20,
+        borderRadius:15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#f86966'
+    },
     parentInnerContainer: {
-        width: 200,
+        width: 160,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginRight: 20

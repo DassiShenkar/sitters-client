@@ -112,7 +112,8 @@ class Register extends Component {
                 email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
                 name:  this.props.register.partnerName ? this.props.register.partnerName : ' '
             },
-            isParent: true
+            isParent: true,
+            senderGCM: {}
         };
         self.setUserInDB(parent, 'parent/create');
     }
@@ -177,7 +178,8 @@ class Register extends Component {
                 allowNotification: true,
                 allowSuggestions: true,
                 allowShowOnSearch: true
-            }
+            },
+            senderGCM: {}
         };
         self.setUserInDB(sitter, 'sitter/create');
     }
@@ -232,7 +234,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         width: 70,
         alignSelf : 'flex-end',
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
         padding: 5,
         borderRadius: 10,

@@ -99,10 +99,7 @@ export default class PriceSearch extends React.Component {
     }
 
     nextSitter() {
-        console.log(this.props.feed.sitterIndex);
-        console.log(this.props.feed.filteredMatches.length - 1);
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
-        console.log(index);
         this.props.feedActions.setSitterIndex(index);
         Actions.SearchByPrice({active: 1});
     }

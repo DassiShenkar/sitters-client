@@ -17,13 +17,13 @@ class MenuItem extends React.Component {
         let image = function() {
             switch (self.props.index) {
                 case 1:
-                    return <Icon name="user-circle-o" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
+                    return <Icon name="user-circle-o" size={20} backgroundColor="#fff" color="#757575"/>;
                 case 2:
-                    return <Icon name="gear" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
+                    return <Icon name="gear" size={20} backgroundColor="#fff" color="#757575"/>;
                 case 3:
-                    return <Icon name="unlock-alt" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
+                    return <Icon name="unlock-alt" size={20} backgroundColor="#fff" color="#757575"/>;
                 case 4:
-                    return <Icon name="close" size={20} backgroundColor="#fff" color="#8c8c8c"/>;
+                    return <Icon name="close" size={20} backgroundColor="#fff" color="#757575"/>;
                 default:
                     return null;
             }

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     logo: {
         fontFamily: 'PoiretOne',
         fontSize: 64,
-        color: '#f7a1a1'
+        color: '#f86966'
     }
 });
 

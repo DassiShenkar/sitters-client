@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Image, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 
 export default class NotificationItem extends React.Component {
 
@@ -18,7 +18,7 @@ export default class NotificationItem extends React.Component {
             }
         };
         return (
-            <TouchableHighlight onPress={ this.props.onPress ? this.props.onPress : ()=>{} }>
+            <TouchableOpacity onPress={ Actions.Notification({inviteId: self.props._id}) }>
                 <View style={styles.container}>
                     <Image
                         source={{ uri: this.props.sitterImage }}
@@ -29,7 +29,7 @@ export default class NotificationItem extends React.Component {
                     </View>
                     <Text>{ this.props.date.slice(0, 10) }</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         );
     }
 }

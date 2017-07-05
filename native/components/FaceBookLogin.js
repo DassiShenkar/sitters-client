@@ -160,7 +160,7 @@ export default class FaceBookLogin extends React.Component {
 const styles = StyleSheet.create({
     button:  {
         fontSize: 14,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
         padding: 15,
         borderRadius: 40

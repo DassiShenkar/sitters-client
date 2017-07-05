@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
         fontSize: 16,
-        color: '#f7a1a1'
+        color: '#f86966'
     }
 });
 

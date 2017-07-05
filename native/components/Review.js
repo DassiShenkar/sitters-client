@@ -25,7 +25,7 @@ export default class Review extends React.Component {
                     <Image
                         source={ this.props.parentImage ? { uri: this.props.parentImage } : null }
                         style={styles.image} />
-                    <Text>{ this.props.date ? this.props.date.split('T')[0] : new Date().toDateString() }</Text>
+                    <Text style={{color: '#757575'}}>{ this.props.date ? this.props.date.split('T')[0] : new Date().toDateString() }</Text>
                 </View>
                 { this.props.description ? <Text>{this.props.description}</Text> : null }
                 { this.ratings() }
@@ -36,10 +36,9 @@ export default class Review extends React.Component {
     ratings() {
         const self = this;
         return rateItems.map(function(item) {
-            console.log(self.props);
             return (
                 <View key={ Math.random() } style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
-                    <Text key={ Math.random() } style={{ color: '#f7a1a1', fontSize: 12, fontWeight: 'bold' }}>{ item.name }</Text>
+                    <Text style={{color: '#757575'}} key={ Math.random() } style={{ color: '#f86966', fontSize: 12, fontWeight: 'bold' }}>{ item.name }</Text>
                     <StarRating
                         disabled={false}
                         emptyStar={'heart-o'}
@@ -48,8 +47,8 @@ export default class Review extends React.Component {
                         maxStars={5}
                         rating={self.props.rates ? self.props.rates[item.value] : 0}
                         selectedStar={(rating) => {self.onChangeRate(item,rating)}}
-                        starColor={'#f7a1a1'}
-                        emptyStarColor={'#f7a1a1'}
+                        starColor={'#f86966'}
+                        emptyStarColor={'#f86966'}
                         starSize={20}
                     />
                 </View>

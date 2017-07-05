@@ -16,8 +16,8 @@ export default class ListItem extends React.Component {
         let text = function() {
             switch(self.props.status) {
                 case 'waiting': return <Text>Waiting Invitation</Text>;
-                case 'accepted': return <Text>Accepted your invite</Text>;
-                case 'declined': return <Text>Declied your invite</Text>;
+                case 'accepted': return  userType === "I'm a Parent" ? <Text>Accepted your invite</Text> : <Text>Invite accepted</Text>;
+                case 'declined': return  userType === "I'm a Parent" ? <Text>Declied your invite</Text> : <Text>Invite declied</Text>;
                 default: return null;
             }
         };

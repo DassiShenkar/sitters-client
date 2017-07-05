@@ -22,7 +22,7 @@ class Login extends React.Component {
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
                 <View style={{ marginBottom: 15,
                                 borderBottomColor: '#fff',
-                                borderTopColor: '#f7a1a1',
+                                borderTopColor: '#f86966',
                                 borderLeftColor: '#fff',
                                 borderRightColor: '#fff',
                                 borderStyle: 'solid',
@@ -53,18 +53,18 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
         fontSize: 16,
-        color: '#f7a1a1',
+        color: '#f86966',
         marginBottom: 15
     },
     questionText: {
         fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
         fontSize: 16,
-        color: '#f7a1a1',
+        color: '#f86966',
         marginTop: 45
     },
     picker: {
         width: '48%',
-        color: '#f7a1a1'
+        color: '#f86966'
     }
 });
 

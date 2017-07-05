@@ -163,6 +163,7 @@ export default class TimeSearch extends React.Component {
             }
             this.props.feedActions.setFilteredMatches(sitters);
         }
+        this.props.feedActions.setSitterIndex(0);
         Actions.SearchByTime({newSearch: false, active: 2});
     }
 }

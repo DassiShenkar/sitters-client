@@ -19,6 +19,10 @@ import SitterCalendar from '../components/SitterCalendar';
 import LoadingScreen from '../components/LoadingScreen';
 import LocalStorage from '../utils/LocalStorage';
 
+let globalVar = {
+    callback: null
+};
+
 class Feed extends React.Component {
 
     constructor(props) {
@@ -27,6 +31,40 @@ class Feed extends React.Component {
 
     componentWillMount() {
         const self = this;
+        NotificationsAndroid.setNotificationReceivedListener((notification) => {
+            console.log("Notification received on device", notification.getData());
+            console.log(notification);
+            console.log(notification.getData());
+            self.props.actionCreators.setInvites(self.props.user.invites);
+            // update redux
+            // let object = JSON.parse(event.data);
+            // if("parentID" in object && self.props.user.name){
+            //     if(object.status !== 'waiting') { // update invite
+            //         let invites = self.props.user.invites;
+            //         invites.forEach(invite => {
+            //             if(invite._id === object._id) {
+            //                 invite.status = object.status;
+            //                 invite.wasRead = false;
+            //             }
+            //         });
+            //         self.props.actions.actionCreators.setInvites(invites);
+            //     }
+            //     else {
+            //         self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
+            //     }
+            // }
+            // else if(!("parentID" in object && self.props.user.name) && ("sitterID" in object && self.props.user.name)){ // new notification - new sitter in town
+            //     self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            // }
+            // globalVar.callback();
+        });
+        NotificationsAndroid.setNotificationOpenedListener((notification) => {
+            console.log("Notification opened by device user", notification.getData());
+            // globalVar.callback();
+        });
+        // globalVar.callback = () => {
+        //     self.props.inviteActions.setInvites(self.props.user.invites);
+        // };
         self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
@@ -187,12 +225,6 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
             });
         }
     });
-});
-NotificationsAndroid.setNotificationReceivedListener((notification) => {
-    console.log("Notification received on device", notification.getData());
-});
-NotificationsAndroid.setNotificationOpenedListener((notification) => {
-    console.log("Notification opened by device user", notification.getData());
 });
 
 function mapStateToProps(state) {
