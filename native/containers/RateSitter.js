@@ -48,8 +48,7 @@ class RateSitter extends React.Component {
         sitter.reviews.push(review);
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/sitter/update',
-            url: 'http://10.0.0.1:4444/sitter/update',
+            url: 'https://sitters-server.herokuapp.com/sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {

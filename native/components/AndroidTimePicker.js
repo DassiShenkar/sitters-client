@@ -53,7 +53,7 @@ function _formatTime(hour, minute) {
 
 var styles = StyleSheet.create({
     text: {
-        color: 'black'
+        color: '#f86966'
     }
 });
 

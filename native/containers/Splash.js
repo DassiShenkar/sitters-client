@@ -57,8 +57,7 @@ class Splash extends React.Component {
         if(userType === 'parent'){
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'http://10.0.0.1:4444/parent/get',
+                url: 'https://sitters-server.herokuapp.com/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId.toString()}
             }).then(function (res) {
@@ -75,8 +74,7 @@ class Splash extends React.Component {
         } else {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                url: 'http://10.0.0.1:4444/sitter/get',
+                url: 'https://sitters-server.herokuapp.com/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId.toString()}
             }).then(function (res) {

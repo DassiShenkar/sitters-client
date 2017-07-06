@@ -79,16 +79,14 @@ class Feed extends React.Component {
                 if(self.props.user.userType === "I'm a Parent") {
                     axios({
                         method: 'post',
-                        // url: 'https://sitters-server.herokuapp.com/parent/get',
-                        url: 'http://10.0.0.1:4444/parent/get',
+                        url: 'https://sitters-server.herokuapp.com/parent/get',
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId.toString()}
                     }).then(function (parent) {
                         if (parent.data) {  // user exists
                             axios({
                                 method: 'post',
-                                // url: 'https://sitters-server.herokuapp.com/parent/getMatches',
-                                url: 'http://10.0.0.1:4444/parent/getMatches',
+                                url: 'https://sitters-server.herokuapp.com/parent/getMatches',
                                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                                 data: parent.data
                             }).then(function (sitters) {
@@ -116,8 +114,7 @@ class Feed extends React.Component {
                 } else {
                     axios({
                         method: 'post',
-                        // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                        url: 'http://10.0.0.1:4444/sitter/get',
+                        url: 'https://sitters-server.herokuapp.com/sitter/get',
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId}
                     })
@@ -193,8 +190,7 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
                 }
                 axios({
                     method: 'post',
-                    // url: 'https://sitters-server.herokuapp.com/' + path,
-                    url: 'http://10.0.0.1:4444/' + path,
+                    url: 'https://sitters-server.herokuapp.com/' + path,
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     data: {_id: userId.toString()}
                 }).then(function (user) {
@@ -206,8 +202,7 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
                         let updatePath = user.data.isParent ? 'parent/update' : 'sitter/update';
                         axios({
                             method: 'post',
-                            url: 'http://10.0.0.1:4444/' + updatePath,
-                            // url: 'https://sitters-server.herokuapp.com/' + updatePath,
+                            url: 'https://sitters-server.herokuapp.com/' + updatePath,
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: user.data
                         }).then(function (res) {

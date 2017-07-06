@@ -205,8 +205,7 @@ class Register extends Component {
         user.isParent = path === 'parent/create';
         axios({
             method: 'post',
-            url: 'http://10.0.0.1:4444/' + path,
-            // url: 'https://sitters-server.herokuapp.com/' + path,
+            url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user
         }).then(function (res) {

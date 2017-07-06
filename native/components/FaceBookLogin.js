@@ -82,8 +82,7 @@ export default class FaceBookLogin extends React.Component {
         if(self.props.user.userType === "I'm a Parent") {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'http://10.0.0.1:4444/parent/get',
+                url: 'https://sitters-server.herokuapp.com/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
@@ -93,8 +92,7 @@ export default class FaceBookLogin extends React.Component {
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
-                            url: 'http://10.0.0.1:4444/parent/updateMutualFriends',
-                            // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                            url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
                         }).then(function (response) {
@@ -119,8 +117,7 @@ export default class FaceBookLogin extends React.Component {
         } else {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                url: 'http://10.0.0.1:4444/sitter/get',
+                url: 'https://sitters-server.herokuapp.com/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
@@ -130,8 +127,7 @@ export default class FaceBookLogin extends React.Component {
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
-                            url: 'http://10.0.0.1:4444/parent/updateMutualFriends',
-                            // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                            url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
                         }).then(function (response) {

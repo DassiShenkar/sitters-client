@@ -54,8 +54,7 @@ class SitterSendInvite extends React.Component {
         let self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/invite/create',
-            url: 'http://10.0.0.1:4444/invite/create',
+            url: 'https://sitters-server.herokuapp.com/invite/create',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {

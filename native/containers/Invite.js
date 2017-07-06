@@ -29,7 +29,6 @@ class Invite extends React.Component {
         let user = this.props.user;
         const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
         user.invites[inviteIndex].wasRead = true;
-        console.log(user.invites[inviteIndex]);
         this.props.inviteActions.setInvites(user.invites);
     //
     //     const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
@@ -46,8 +45,7 @@ class Invite extends React.Component {
         const self = this;
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
-            url: 'http://10.0.0.1:4444/invite/updateInvite',
+            url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: invite
         }).then(function (res) {
