@@ -2,7 +2,6 @@
 import {Component} from 'react';
 
 export default class RadioInputBase extends Component {
-
     constructor(props) {
         super(props);
         this.handleRadio = this.handleRadio.bind(this);

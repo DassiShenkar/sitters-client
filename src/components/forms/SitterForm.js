@@ -147,7 +147,11 @@ class Form extends React.Component {
                 allowShowOnSearch: true
             },
             pushNotifications: {},
-            multipleInvites: []
+            multipleInvites: [],
+            senderGCM: {
+                senderId: "",
+                valid: false
+            }
         };
 
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
@@ -194,6 +198,7 @@ class Form extends React.Component {
                                         })
                                             .then(function (response) {
                                                 document.cookie = ("auth_token="+self.props.user.facebookID);
+                                                document.cookie = ("is_parent=false");
                                                 self.props.actions.actionCreators.changeIsParentFlag(false);
                                                 self.props.router.push('/');
                                             })
