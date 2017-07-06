@@ -30,7 +30,7 @@ class SitterProfileView extends React.Component {
         axios({
             method: 'post',
             // url: 'https://sitters-server.herokuapp.com/sitter/get',
-            url: 'http://192.168.1.70:4444/sitter/get',
+            url: 'http://10.0.0.1:4444/sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: sitterID}
         }).then(function (sitter) {

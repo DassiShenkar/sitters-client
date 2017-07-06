@@ -28,32 +28,50 @@ class Feed extends React.Component {
     componentWillMount() {
         const self = this;
         NotificationsAndroid.setNotificationReceivedListener((notification) => {
-            console.log("Notification received on device", notification.getData());
-            console.log(notification);
-            self.props.actionCreators.setInvites(self.props.user.invites);
-            // TODO: update redux
-            // let object = JSON.parse(event.data);
-            // if("parentID" in object && self.props.user.name){
-            //     if(object.status !== 'waiting') { // update invite
-            //         let invites = self.props.user.invites;
-            //         invites.forEach(invite => {
-            //             if(invite._id === object._id) {
-            //                 invite.status = object.status;
-            //                 invite.wasRead = false;
-            //             }
-            //         });
-            //         self.props.actions.actionCreators.setInvites(invites);
-            //     }
-            //     else {
-            //         self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
-            //     }
-            // }
-            // else if(!("parentID" in object && self.props.user.name) && ("sitterID" in object && self.props.user.name)){ // new notification - new sitter in town
-            //     self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
-            // }
+            let object = JSON.parse(notification.getData().data);
+            if(typeof object.message === "undefined" && self.props.user.name){
+                let invites = self.props.user.invites;
+                if(object.status !== 'waiting') { // update invite
+                    invites.forEach(invite => {
+                        if(invite._id === object._id) {
+                            invite.status = object.status;
+                            invite.wasRead = false;
+                        }
+                    });
+                    self.props.actionCreators.setInvites(invites);
+                }
+                else {
+                    invites.push(object);
+                    self.props.actionCreators.setInvites(invites); // new invite
+
+                }
+            }
+            else { // new notification - new sitter in town
+                self.props.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            }
         });
         NotificationsAndroid.setNotificationOpenedListener((notification) => {
-            console.log("Notification opened by device user", notification.getData());
+            let object = JSON.parse(notification.getData().data);
+            if(typeof object.message === "undefined" && self.props.user.name){
+                let invites = self.props.user.invites;
+                if(object.status !== 'waiting') { // update invite
+                    invites.forEach(invite => {
+                        if(invite._id === object._id) {
+                            invite.status = object.status;
+                            invite.wasRead = false;
+                        }
+                    });
+                    self.props.actionCreators.setInvites(invites);
+                }
+                else {
+                    invites.push(object);
+                    self.props.actionCreators.setInvites(invites); // new invite
+
+                }
+            }
+            else { // new notification - new sitter in town
+                self.props.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            }
         });
         self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
@@ -167,7 +185,6 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
     AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
         if (userId) {
             AsyncStorage.getItem(LocalStorage.USER_TYPE, function(error, userType) {
-                console.log(userType);
                 let path;
                 if (userType == 'parent') {
                     path = 'parent/get';
@@ -195,7 +212,6 @@ NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
                             data: user.data
                         }).then(function (res) {
                             if (res.data) {
-                                console.log('user updated');
                             }
                             else {
                                 console.log('user not created');

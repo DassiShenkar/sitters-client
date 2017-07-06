@@ -23,31 +23,46 @@ class Settings extends React.Component {
 
     render () {
         return (
-            <View>
+            <View >
                 <AppBar
                     { ...this.props }/>
-                <Text>Allow Notifications</Text>
-                <Switch
-                    onValueChange={(value) => this.props.settingsActions.setNotifications(value)}
-                    value={this.props.settings.enableNotifications} />
-                <Text>Allow Suggestions</Text>
-                <Switch
-                    onValueChange={(value) => this.props.settingsActions.setSuggestions(value)}
-                    value={this.props.settings.enableSuggestions} />
-                {
-                    this.props.user.userType === "I'm a Sitter" ?
-                    <View>
-                        <Text>Show on search</Text>
-                        <Switch
-                            onValueChange={(value) => this.props.settingsActions.setShowOnSearch(value)}
-                            value={true}/>
+                <View style={{ padding: 20 }}>
+                    <View style={styles.container}>
+                        <Text style={styles.pickerText}>Allow Notifications</Text>
+                            <Switch
+                                tintColor="#f86966"
+                                thumbTintColor="#f86966"
+                                onTintColor="#f86966"
+                                onValueChange={(value) => this.props.settingsActions.setNotifications(value)}
+                                value={this.props.settings.enableNotifications} />
                     </View>
-                    : null
-                }
-                <TextButton
-                    onPress={this.saveAndExit}
-                    styles={styles.button}
-                    text='Cancel' />
+                    <View style={styles.container}>
+                        <Text style={styles.pickerText}>Allow Suggestions</Text>
+                        <Switch
+                            onValueChange={(value) => this.props.settingsActions.setSuggestions(value)}
+                            tintColor="#f86966"
+                            thumbTintColor="#f86966"
+                            onTintColor="#f86966"
+                            value={this.props.settings.enableSuggestions} />
+                    </View>
+                    {
+                        this.props.user.userType === "I'm a Sitter" ?
+                        <View style={styles.container}>
+                            <Text style={styles.pickerText}>Show on search</Text>
+                            <Switch
+                                tintColor="#f86966"
+                                thumbTintColor="#f86966"
+                                onTintColor="#f86966"
+                                onValueChange={(value) => this.props.settingsActions.setShowOnSearch(value)}
+                                value={true}/>
+                        </View>
+                        : null
+                    }
+                    <TextButton
+                        onPress={this.saveAndExit}
+                        styles={styles.button}
+                        text='Save' />
+                </View>
             </View>
         );
     }
@@ -112,10 +127,25 @@ const styles = StyleSheet.create({
     button: {
         fontSize: 20,
         marginBottom: 10,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         color: '#fff',
         padding: 5,
-        borderRadius: 10
+        borderRadius: 10,
+        width: 100,
+        alignSelf: 'flex-end',
+        justifyContent: 'flex-end',
+        marginTop: 350
+    },
+    pickerText: {
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 });
 

@@ -13,6 +13,10 @@ class LocationSearch extends React.Component {
         this.navToProfile = this.navToProfile.bind(this);
     }
 
+    componentWillMount() {
+        this.props.feedActions.setSitterIndex(0);
+    }
+
     render () {
         const self = this;
         const initialRegion = {

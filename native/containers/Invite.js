@@ -28,15 +28,18 @@ class Invite extends React.Component {
         const inviteID = this.props.inviteId;
         let user = this.props.user;
         const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
-
-        const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
-        || (!user.isParent && user.invites[inviteIndex].status === "waiting" && !user.invites[inviteIndex].wasRead));
-
-        if(shouldUpdate){
-            user.invites[inviteIndex].wasRead = true;
-            this.props.inviteActions.setInvites(user.invites);
-            this.updateInvite(user);
-        }
+        user.invites[inviteIndex].wasRead = true;
+        console.log(user.invites[inviteIndex]);
+        this.props.inviteActions.setInvites(user.invites);
+    //
+    //     const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
+    //     || (!user.isParent && user.invites[inviteIndex].status === "waiting" && !user.invites[inviteIndex].wasRead));
+    //
+    //     if(shouldUpdate){
+    //         user.invites[inviteIndex].wasRead = true;
+    //         this.props.inviteActions.setInvites(user.invites);
+    //         this.updateInvite(user);
+    //     }
     }
 
     updateInvite(user, invite){
@@ -49,7 +52,7 @@ class Invite extends React.Component {
             data: invite
         }).then(function (res) {
             if (res.data) {  // invite updated
-                self.props.actions.inviteActions.setInvites(user.invites);
+                self.props.inviteActions.setInvites(user.invites);
             }
             else {
                 console.log("invite not updated");
@@ -66,8 +69,9 @@ class Invite extends React.Component {
         let user = this.props.user;
         const inviteIndex = _.findIndex(user.invites, function(o) { return o._id === invite._id; });
         user.invites[inviteIndex].status = status;
+        console.log(user.invites[inviteIndex]);
         this.updateInvite(user, invite);
-        // this.props.router.push('/');
+        Actions.pop();
     }
 
     render () {

@@ -7,6 +7,7 @@ import dateFormat from 'dateformat'
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as _ from "lodash";
+import RadioForm from 'react-native-simple-radio-button';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -42,19 +43,28 @@ export default class TimeSearch extends React.Component {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
         };
+        const radio_props = [
+            {label: strings.AVAILABILITY[0], value: 0 },
+            {label: strings.AVAILABILITY[1], value: 1 }
+        ];
         return (
             <View style={styles.container}>
                 <GestureRecognizer
                     onSwipeLeft={this.navToInvite}
                     onSwipeRight={this.nextSitter}
                     config={config}>
-                    <Picker
-                        style={styles.picker}
-                        selectedValue={ this.props.searchBy.availability ?  this.props.searchBy.availability: strings.AVAILABILITY[0] }
-                        onValueChange={(availability) => { this.changeAvailability(availability) }}>
-                        <Picker.Item label={ strings.AVAILABILITY[1] } value={ strings.AVAILABILITY[1] }/>
-                        <Picker.Item label={ strings.AVAILABILITY[0] } value={ strings.AVAILABILITY[0] }/>
-                    </Picker>
+                    <View style={styles.picker}>
+                        <RadioForm
+                            radio_props={radio_props}
+                            initial={this.props.searchBy.availability ? this.props.searchBy.availability === strings.AVAILABILITY[1] ? 1 : 0 : 0}
+                            onPress={(value) => {this.changeAvailability(radio_props[value].label)}}
+                            formHorizontal={false}
+                            labelHorizontal={true}
+                            animation={true}
+                            buttonColor={'#f86966'}
+                            labelColor={'#f86966'}
+                            labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
+                    </View>
                     {
                         this.props.searchBy.availability ?  this.props.searchBy.availability === strings.AVAILABILITY[1] ?
                         <View style={styles.searchByContainer}>
@@ -178,7 +188,7 @@ const styles = StyleSheet.create({
     searchByContainer: {
         margin: 15,
         justifyContent: 'flex-start',
-        marginBottom: 55
+        marginBottom: 37
     },
     dummy:{
         height: 160
@@ -242,7 +252,7 @@ const styles = StyleSheet.create({
     },
     picker: {
         width: 150,
-        marginLeft: 5,
+        marginLeft: 15,
         alignSelf : 'flex-start'
     },
     notFoundText: {

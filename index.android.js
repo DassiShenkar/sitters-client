@@ -22,7 +22,6 @@ import SearchByLocation from './native/containers/SearchByLocation';
 import RateSitter from './native/containers/RateSitter';
 import Menu from './native/containers/Menu';
 import Invite from './native/containers/Invite';
-import Notification from './native/containers/Notification';
 import LoadingScreen from './native/components/LoadingScreen';
 import ErrorPage from './native/containers/ErrorPage';
 
@@ -62,7 +61,6 @@ class Sitters extends React.Component {
                         <Scene key="LoadingScreen" component={LoadingScreen} title="LoadingScreen" animation='fade'/>
                         <Scene key="Menu" component={Menu} title="Menu" animation='fade'/>
                         <Scene key="Invite" component={Invite} title="Invite" animation='fade'/>
-                        <Scene key="Notification" component={Notification} title="Notification" animation='fade'/>
                     </Scene>
                 </Router>
             </Provider>

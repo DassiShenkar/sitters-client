@@ -15,17 +15,12 @@ class AppBar extends React.Component {
 
     constructor (props) {
         super(props);
-        // this.search = this.search.bind(this);
         this.menu = this.menu.bind(this);
         this.search = this.search.bind(this);
         this.invites = this.invites.bind(this);
-        this.notifications = this.notifications.bind(this);
+        // this.notifications = this.notifications.bind(this);
         this.countInvites = this.countInvites.bind(this);
-        this.countNotifications = this.countNotifications.bind(this);
-    }
-
-    componentWillMount () {
-        this.props.inviteActions.setInvites(this.props.user.invites);
+        // this.countNotifications = this.countNotifications.bind(this);
     }
 
     componentDidUpdate () {
@@ -65,20 +60,14 @@ class AppBar extends React.Component {
                         this.props.user.userType === "I'm a Parent" ?
                         <Icon.Button name="search" size={28} backgroundColor="#fff" color="#757575" onPress={this.search} /> : null
                     }
-                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Notifications} >
-                        {
-                            this.notifications() ?
-                            <View style={styles.IconBadge}>
-                                <Text style={{color:'#fff'}}>{this.countNotifications()}</Text>
-                            </View> : null
-                        }
-                    </Icon.Button>
+                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Notifications} />
+
                     <Icon.Button name="envelope-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Inbox} >
                         {
-                            this.invites() ?
-                            <View style={styles.IconBadge}>
+
+                            <View style={this.countInvites() === 0 ? {} : styles.IconBadge}>
                                 <Text style={{color:'#fff'}}>{this.countInvites()}</Text>
-                            </View> : null
+                            </View>
                         }
                     </Icon.Button>
                     <Icon.Button name="ellipsis-v" size={28} backgroundColor="#fff" color="#757575" onPress={this.menu} />
@@ -101,24 +90,30 @@ class AppBar extends React.Component {
         }
     };
 
-    countNotifications () {
-        if(this.props.user.invites && this.props.user.invites.length > 0) {
-            var count = 0;
-            this.props.user.invites.map(function(invite) {
-                if(!invite.wasRead) {
-                    count++;
-                }
-            });
-            return count;
-        } else {
-            return 0;
-        }
-    };
+
+
+    // countNotifications () {
+    //     console.log(this.props.user.invites);
+    //     if(this.props.user.notifications && this.props.user.notifications.length > 0) {
+    //         var count = 0;
+    //         this.props.user.notifications.map(function(notification) {
+    //             if(notification) {
+    //                 count++;
+    //             }
+    //         });
+    //         console.log(count);
+    //         return count;
+    //     } else {
+    //         return 0;
+    //     }
+    // };
 
     invites () {
+        console.log('invites');
         if(this.props.user.invites && this.props.user.invites.length > 0) {
             this.props.user.invites.map(function(invite) {
                 if(!invite.wasRead) {
+                    console.log('true');
                     return true;
                 }
             });
@@ -128,18 +123,18 @@ class AppBar extends React.Component {
         }
     };
 
-    notifications () {
-        if(this.props.user.invites && this.props.user.invites.length > 0) {
-            this.props.user.invites.map(function(invite) {
-                if(!invite.wasRead) {
-                    return true;
-                }
-            });
-            return false;
-        } else {
-            return false;
-        }
-    };
+    // notifications () {
+    //     if(this.props.user.invites && this.props.user.invites.length > 0) {
+    //         this.props.user.invites.map(function(invite) {
+    //             if(!invite.wasRead) {
+    //                 return true;
+    //             }
+    //         });
+    //         return false;
+    //     } else {
+    //         return false;
+    //     }
+    // };
 
     search() {
         this.props.feedActions.setSitterIndex(0);
@@ -150,6 +145,14 @@ class AppBar extends React.Component {
         Actions.Menu({hide: false});
     }
 }
+
+    // {
+    //     this.notifications() ?
+    //         <View style={styles.IconBadge}>
+    //             <Text style={{color:'#fff'}}>{this.countNotifications}</Text>
+    //         </View> : null
+    // }
+    // </Icon.Button>
 
 const styles = StyleSheet.create({
     container: {

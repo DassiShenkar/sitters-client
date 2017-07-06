@@ -1,7 +1,7 @@
 "use strict";
 
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
 export default class NotificationItem extends React.Component {
@@ -19,18 +19,16 @@ export default class NotificationItem extends React.Component {
             }
         };
         return (
-            <TouchableOpacity onPress={ () => Actions.Notification({inviteId: self.props._id}) }>
-                <View style={styles.container}>
-                    <Image
-                        source={{ uri: this.props.sitterImage }}
-                        style={styles.image} />
-                    <View>
-                        <Text>{ this.props.sitterName }</Text>
-                        <Text>{ text() }</Text>
-                    </View>
-                    <Text>{ this.props.date.slice(0, 10) }</Text>
+            <View style={styles.container}>
+                <Image
+                    source={{ uri: this.props.sitterImage }}
+                    style={styles.image} />
+                <View>
+                    <Text>{ this.props.sitterName }</Text>
+                    <Text>{ text() }</Text>
                 </View>
-            </TouchableOpacity>
+                <Text>{ this.props.date.slice(0, 10) }</Text>
+            </View>
         );
     }
 }

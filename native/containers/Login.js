@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import { View, Image, Text, Picker, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
+import RadioForm from 'react-native-simple-radio-button';
 
 import FaceBookLogin from '../components/FaceBookLogin'
 import Logo from '../components/Logo'
@@ -15,6 +16,11 @@ class Login extends React.Component {
     }
 
     render () {
+        const radio_props = [
+            {label: "I'm a Parent", value: 0 },
+            {label: "I'm a Sitter", value: 1 }
+        ];
+
         return (
             <View style={ styles.container }>
                 <Logo
@@ -23,20 +29,24 @@ class Login extends React.Component {
                 <View style={styles.innerContainer}>
 
                 </View>
+                <View style={styles.picker}>
+                    <RadioForm
+                        radio_props={radio_props}
+                        initial={this.props.user.userType ? this.props.user.userType === "I'm a Sitter" ? 1 : 0 : 0}
+                        onPress={(value) => {this.props.actionCreators.changeUserType(radio_props[value].label)}}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        animation={true}
+                        buttonColor={'#f86966'}
+                        labelColor={'#f86966'}
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular',}} />
+                </View>
                 <FaceBookLogin
                     { ...this.props } />
             </View>
         );
     }
 }
-
-// <Picker
-//     style={styles.picker}
-//     selectedValue={ this.props.user.userType }
-//     onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-//     <Picker.Item label="I'm a Parent" value="I'm a Parent" />
-//     <Picker.Item label="I'm a Sitter" value="I'm a Sitter" />
-// </Picker>
 
 const styles = StyleSheet.create({
     container: {
@@ -62,8 +72,8 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     picker: {
-        width: '48%',
-        color: '#f86966'
+        width: '42%',
+        marginBottom: 20
     }
 });
 
