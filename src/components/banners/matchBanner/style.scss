@@ -68,3 +68,11 @@
   display: block;
   margin: 0 auto;
 }
+
+.recharts-text {
+  fill: #fff;
+}
+
+.recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line {
+  stroke: #fff;
+}
