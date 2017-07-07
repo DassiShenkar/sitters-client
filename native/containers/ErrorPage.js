@@ -43,14 +43,17 @@ const styles = StyleSheet.create({
     },
     errorNumText: {
         fontSize: 24,
-        color: 'red',
+        color: '#f86966',
         fontWeight: 'bold',
-        margin: 10
+        margin: 10,
+        fontFamily: 'OpenSans-Regular'
     },
     errorMsgText: {
         fontSize: 18,
         fontWeight: 'bold',
-        margin: 10
+        margin: 10,
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular'
     }
 });
 

@@ -48,7 +48,7 @@ export default class AndroidDatePicker extends React.Component {
 
 var styles = StyleSheet.create({
     text: {
-        color: 'black',
-    },
+        color: '#f86966'
+    }
 });
 

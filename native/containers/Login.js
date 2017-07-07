@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import { View, Image, Text, Picker, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
+import RadioForm from 'react-native-simple-radio-button';
 
 import FaceBookLogin from '../components/FaceBookLogin'
 import Logo from '../components/Logo'
@@ -15,25 +16,30 @@ class Login extends React.Component {
     }
 
     render () {
+        const radio_props = [
+            {label: "I'm a Parent", value: 0 },
+            {label: "I'm a Sitter", value: 1 }
+        ];
+
         return (
             <View style={ styles.container }>
                 <Logo
                     companyName="Sitters" />
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
-                <View style={{ marginBottom: 15,
-                                borderBottomColor: '#fff',
-                                borderTopColor: '#f7a1a1',
-                                borderLeftColor: '#fff',
-                                borderRightColor: '#fff',
-                                borderStyle: 'solid',
-                                borderWidth: 1 }}>
-                    <Picker
-                        style={styles.picker}
-                        selectedValue={ this.props.user.userType }
-                        onValueChange={ (userType) => this.props.actionCreators.changeUserType(userType) } >
-                        <Picker.Item label="I'm a Parent" value="I'm a Parent" />
-                        <Picker.Item label="I'm a Sitter" value="I'm a Sitter" />
-                    </Picker>
+                <View style={styles.innerContainer}>
+
+                </View>
+                <View style={styles.picker}>
+                    <RadioForm
+                        radio_props={radio_props}
+                        initial={this.props.user.userType ? this.props.user.userType === "I'm a Sitter" ? 1 : 0 : 0}
+                        onPress={(value) => {this.props.actionCreators.changeUserType(radio_props[value].label)}}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        animation={true}
+                        buttonColor={'#f86966'}
+                        labelColor={'#f86966'}
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular',}} />
                 </View>
                 <FaceBookLogin
                     { ...this.props } />
@@ -50,21 +56,24 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         flexDirection: 'column'
     },
+    innerContainer: {
+        marginBottom: 15,
+        borderBottomColor: '#fff',
+        borderTopColor: '#f86966',
+        borderLeftColor: '#fff',
+        borderRightColor: '#fff',
+        borderStyle: 'solid',
+        borderWidth: 1
+    },
     text: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
-        color: '#f7a1a1',
+        color: '#f86966',
         marginBottom: 15
     },
-    questionText: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
-        fontSize: 16,
-        color: '#f7a1a1',
-        marginTop: 45
-    },
     picker: {
-        width: '48%',
-        color: '#f7a1a1'
+        width: '42%',
+        marginBottom: 20
     }
 });
 

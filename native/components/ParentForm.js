@@ -40,8 +40,8 @@ export default class ParentForm extends React.Component {
                 <TextInput
                     style={styles.textInput}
                     type="TextInput"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     name="maxPrice"
                     placeholder="Enter your max price per hour for watch"
                     value={ this.props.register.watchMaxPrice ? this.props.register.watchMaxPrice : null}
@@ -51,8 +51,8 @@ export default class ParentForm extends React.Component {
                 <TextInput
                     style={styles.textInput}
                     type="TextInput"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     name="child Name"
                     placeholder="Child name"
                     value={ this.props.register.childName ? this.props.register.childName : null}
@@ -61,8 +61,8 @@ export default class ParentForm extends React.Component {
                 <TextInput
                     style={styles.textInput}
                     type="TextInput"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     name="childAge"
                     placeholder="child Age"
                     value={ this.props.register.childAge ? this.props.register.childAge : null }
@@ -93,8 +93,8 @@ export default class ParentForm extends React.Component {
                 <TextInput
                     style={styles.textInput}
                     type="TextInput"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     name="parnterName"
                     placeholder="parnter Name"
                     value={ this.props.register.partnerName ? this.props.register.partnerName : null}
@@ -103,8 +103,8 @@ export default class ParentForm extends React.Component {
                 <TextInput
                     style={styles.textInput}
                     type="TextInput"
-                    selectionColor="#f7a1a1"
-                    underlineColorAndroid="#f7a1a1"
+                    selectionColor="#757575"
+                    underlineColorAndroid="#757575"
                     name="parnterEmail"
                     placeholder="parnter Email"
                     value={ this.props.register.parterEmail ? this.props.register.parterEmail : null}
@@ -178,16 +178,18 @@ export default class ParentForm extends React.Component {
 
 const styles = StyleSheet.create({
     text: {
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 16,
         marginLeft: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'OpenSans-Regular',
     },
     textInput: {
         width: '80%',
         marginBottom: 10,
         marginLeft: 5,
-        color: '#f7a1a1'
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
     },
     picker: {
         width: '30%',
@@ -196,9 +198,10 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     header: {
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 19,
         marginLeft: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: 'OpenSans-Regular',
     }
 });

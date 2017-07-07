@@ -12,21 +12,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="9ed08fab37c3a572da1d9ed2bf2e36c8d3e2bc48">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.2.4_74bb8f4f001c7cf76ef54e8c69994fe23bc8c73d.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.1"
         sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.3.1_d0bad0b9b324289a6b80f0b61f965153706467e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4b70c5ad05857b8b3b2458777e1b489a96d82f05">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-11.0.1_23718e1b8aded2f033b4501bea0b51508b7dfcf2.jar" />
     </item>
     <item
         is-multidex="false"
@@ -66,12 +66,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="8e5edad98e4113971e515a8d9fe89d6f95235fa9">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-iid-11.0.1_db699030ec77c279f271a53697f33c0606f9fc81.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.fresco\imagepipeline-base\0.11.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.1"
         sha1="ca63c521b5745ae9a09629d7ca67ff6bc2a967fe">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-imagepipeline-base-0.11.0_604df75efa91eb6b6111d0f6d428f0c7481e713c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="5bd38c72db0a3b4140d38b7fb527e78e46126d79">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-messaging-11.0.1_8974811876568fc4cbab8961ee2edafcdc3cc53d.jar" />
     </item>
     <item
         is-multidex="false"
@@ -165,15 +183,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="9ed08fab37c3a572da1d9ed2bf2e36c8d3e2bc48">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-10.2.4_74bb8f4f001c7cf76ef54e8c69994fe23bc8c73d.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -210,21 +219,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.23.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="4504ae3ec47953f3d0c324dc66996aecfb7fbb5c">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.23.0_09b01eba67f3f24aebe358b12c519380007e1abb.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.1"
         sha1="f162442a19fff13995fbd51ba414d9ee05579080">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_80d1f1b50e0ef6892ca2c358fda98a773e7d5ebb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="7057b89327260d70337f4913f933c78bb56ecd69">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-11.0.1_a5934b42b0140275ccd364582a62cb74ba8085a3.jar" />
     </item>
     <item
         is-multidex="false"
@@ -237,12 +246,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\jars\classes.jar"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="6d0d5e86f5b7203834df01ed78ebfdd5cbf74d48">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.2.4_88461a619dc05fb6e7758c7628e5dd11e51554e3.jar" />
+        revision="24.0.1"
+        sha1="d695dc4247690369d66c022c6d18190155c61fcd">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-11.0.1_03f908c601c76c45e6f7e37a3e166552c4368936.jar" />
     </item>
     <item
         is-multidex="false"
@@ -264,12 +273,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.24.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="0e0e8918eb74e3ee9e82eef6430a4359b2b577d3">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.24.0_635528f799672b65bc5d4fbac3a83e07986de9fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okio-1.9.0_b41270ed26b97ecf5cfff895454c9ab289ea6d3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="21160c044ba984fb2e33b833c89a496becb85cfd">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-11.0.1_e59c2435435c409ddf60f5945debec03e3a8f3a1.jar" />
     </item>
     <item
         is-multidex="false"
@@ -345,24 +372,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="5803db663655ef5cb38c6bcb17ba326fdb9edfbd">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.2.4_1f98dfe17ce1062b99e39e97d5f600a6154358a2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="6d0d5e86f5b7203834df01ed78ebfdd5cbf74d48">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-10.2.4_88461a619dc05fb6e7758c7628e5dd11e51554e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.42.3\jars\libs\infer-annotations-1.5.jar"
         jumboMode="false"
         optimize="true"
@@ -417,6 +426,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e00b71dcf2fbecaf59b0d487d11839522dd7863d">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-iid-11.0.1_d23704fb75ac38f1f7da303b39b97f15a8c88c6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -435,21 +453,21 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="32054268e6c9fdff0c9c5deafafd0bd105120fb6">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-11.0.1_ed1145d117d039953795989b437fb19499a71155.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.9.0\f824591a0016efbaeddb8300bee54832a1398cfa\okio-1.9.0.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.1"
         sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\okio-1.9.0_b41270ed26b97ecf5cfff895454c9ab289ea6d3f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="dd1d0d84da2cff18f741c63a9c3af7d9aa89fdd6">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.2.4_83da0267371860a59c5ec2fba6412637749210fc.jar" />
     </item>
     <item
         is-multidex="false"
@@ -468,6 +486,15 @@
         revision="24.0.1"
         sha1="b319ff9834bbeb9be394687614eb86892699ea14">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\Sitters-react-native-vector-icons-unspecified_46f7876d6ccf110c5e607ea2ab9c257f7742a8ac.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="54511008bf7d1aabd871d8d3a26781b3f2bd9617">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-11.0.1_ce8efe6ee122319bac9f7e76a0b5efd1657ae53e.jar" />
     </item>
     <item
         is-multidex="false"
@@ -498,6 +525,24 @@
     </item>
     <item
         is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\Sitters\reactnativenotifications\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="cf543f0f7364b63d7b62e41164da83787a7206d3">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\Sitters-reactnativenotifications-unspecified_283a6278ec41dc4570afa14beffb3202a1c6e2b7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6178e31397c24ab1bfc09766832cdcf519621eb7">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-11.0.1_3268bdbb06d180eb58e4b87396648d785f3ffc8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.facebook.react\react-native\0.42.3\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -516,15 +561,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="5803db663655ef5cb38c6bcb17ba326fdb9edfbd">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-10.2.4_1f98dfe17ce1062b99e39e97d5f600a6154358a2.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
         jumboMode="false"
         optimize="true"
@@ -540,6 +576,15 @@
         revision="24.0.1"
         sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.3.1_d402f39819faf597d7a3d8f6308cafe968a83c8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d4acacbab67243d9eb026ea759aefd401d070f3e">
+        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-analytics-impl-11.0.1_6d177b9bdd23228d5e816e60a383ea1b8d69cd6d.jar" />
     </item>
     <item
         is-multidex="false"
@@ -576,15 +621,6 @@
         revision="24.0.1"
         sha1="1137942adeb03984c1311b662363dd38fc238fd3">
         <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.facebook.fresco-drawee-0.11.0_c4b4a69b7f613602de2597621ecf6c3fdb22ed99.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.2.4\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.1"
-        sha1="dd1d0d84da2cff18f741c63a9c3af7d9aa89fdd6">
-        <dex dex="D:\Java\IdeaProjects\sitters-client\android\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-10.2.4_83da0267371860a59c5ec2fba6412637749210fc.jar" />
     </item>
     <item
         is-multidex="false"

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ImageButton from '../components/ImageButton';
 
-export default class Feed extends React.Component {
+export default class SitterList extends React.Component {
 
     constructor (props) {
         super(props);
@@ -45,15 +45,17 @@ export default class Feed extends React.Component {
                     onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
                     onSwipeRight={(e) => this.nextSitter(e)}
                     config={config}>
-                    <Image source={{uri: coverPhoto}} style={styles.backgroundImage}>
-                        <View style={styles.sitterContainer}>
-                            <View style={styles.backgroundCircle}>
-                                <ImageButton
-                                    onPress={ (e) => this.navToProfile(e, sitterId) }
-                                    styles={styles.profilePicture}
-                                    src={ profilePicture } />
+                    <Image source={{uri: coverPhoto}}>
+                        <View  style={styles.backgroundImage}>
+                            <View style={styles.sitterContainer}>
+                                <View style={styles.backgroundCircle}>
+                                    <ImageButton
+                                        onPress={ (e) => this.navToProfile(e, sitterId) }
+                                        styles={styles.profilePicture}
+                                        src={ profilePicture } />
+                                </View>
+                                <Text style={styles.sitterName}>{ sitterName }</Text>
                             </View>
-                            <Text style={styles.sitterName}>{ sitterName }</Text>
                         </View>
                     </Image>
                     <View style={styles.infoContainer}>
@@ -91,12 +93,12 @@ export default class Feed extends React.Component {
                         }
                     </View>
                     <View style={styles.navPanel}>
-                        <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToInvite(e, sitterId)} />
+                        <Icon.Button name="envelope" size={42} backgroundColor="#fff" color="#ffca00" onPress={(e) => this.navToInvite(e, sitterId)} />
                         {
                             this.props.sitters.length ? this.shouldReview() ?
-                                <Icon.Button name="heart" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToRate(e, sitterId)} /> : null : null
+                                <Icon.Button name="heart" size={42} backgroundColor="#fff" color="#f86966" onPress={(e) => this.navToRate(e, sitterId)} /> : null : null
                         }
-                        <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.nextSitter(e, sitterId)} />
+                        <Icon.Button name="remove" size={42} backgroundColor="#fff" color="#4dd0e1" onPress={(e) => this.nextSitter(e, sitterId)} />
                     </View>
                 </GestureRecognizer>
             </View>
@@ -131,7 +133,7 @@ export default class Feed extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e) {
+    navToInvite(e, sitterId) {
         let sitterIndex = this.props.feed.sitterIndex;
         let sitter = this.props.sitters[sitterIndex];
         Actions.SitterSendInvite({ sitter: sitter });
@@ -171,11 +173,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     sitterContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        padding: 20
+        padding: 8
     },
     infoContainer: {
         width: '100%',
@@ -201,11 +203,13 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#f7a1a1',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 22,
         marginTop: 10
     },
     friendText: {
-        color: '#f7a1a1',
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 14,
         marginTop: 3
     },
@@ -216,22 +220,22 @@ const styles = StyleSheet.create({
         paddingLeft: 5
     },
     sitterName: {
+        fontFamily: 'Raleway-Regular',
         color: '#fff',
-        fontSize: 24,
-        textShadowColor: '#000',
-        textShadowOffset: {width: 2, height: 2}
+        fontSize: 24
     },
     infoText: {
         alignSelf: 'center',
-        color: '#f7a1a1',
-        fontSize: 16,
-        marginTop: 5
+        color: '#f86966',
+        fontSize: 14,
+        marginTop: 12,
+        fontFamily: 'OpenSans-Regular'
     },
     mottoText: {
-        fontFamily: 'PoiretOne',
+        fontFamily: 'Raleway-Regular',
         alignSelf: 'center',
-        color: '#f7a1a1',
-        fontSize: 22,
+        color: '#757575',
+        fontSize: 20,
         marginTop: 3
     },
     personalityContainer: {
@@ -249,13 +253,16 @@ const styles = StyleSheet.create({
     },
     personality: {
         alignSelf: 'center',
+        justifyContent: 'center',
         color: '#fff',
-        padding: 3,
         margin: 3,
-        backgroundColor: '#f7a1a1',
-        fontSize: 18,
-        width: 130,
-        borderRadius: 10
+        backgroundColor: '#f86966',
+        fontSize: 16,
+        borderRadius: 10,
+        paddingTop: 3,
+        paddingBottom:3,
+        paddingRight: 12,
+        paddingLeft: 12
     },
     navPanel: {
         flex: 1,
@@ -272,5 +279,8 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius:100
+    },
+    backgroundImage: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     }
 });

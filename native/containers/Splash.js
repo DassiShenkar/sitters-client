@@ -57,8 +57,7 @@ class Splash extends React.Component {
         if(userType === 'parent'){
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'https://sittersdev.herokuapp.com/parent/get',
+                url: 'https://sitters-server.herokuapp.com/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId.toString()}
             }).then(function (res) {
@@ -75,8 +74,7 @@ class Splash extends React.Component {
         } else {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                url: 'https://sittersdev.herokuapp.com/sitter/get',
+                url: 'https://sitters-server.herokuapp.com/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: userId.toString()}
             }).then(function (res) {
@@ -102,9 +100,9 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     text: {
-        fontFamily: '"Poiret One", "Helvetica Neue", Helvetica, Arial, cursive',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
-        color: '#f7a1a1'
+        color: '#f86966'
     }
 });
 

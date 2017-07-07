@@ -13,7 +13,7 @@ class LoadingScreen extends React.Component {
             <ActivityIndicator
                 style={[styles.centering, {transform: [{scale: 1.5}]}]}
                 size="large"
-                color="#f7a1a1" />
+                color="#f86966" />
         );
     }
 }

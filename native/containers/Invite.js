@@ -24,86 +24,42 @@ class Invite extends React.Component {
     // <Button title="Accept" onClick={this.changeInviteStatus.bind(this, invite, "accepted")} >Accept</Button>
     // <Button title="Decline" onClick={this.changeInviteStatus.bind(this, invite, "declined")} >Declined</Button>
 
-    // componentWillMount(){
-    //     const inviteID = this.props.router.params.inviteId;
-    //     let user = this.props.user;
-    //     const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
+    componentWillMount(){
+        const inviteID = this.props.inviteId;
+        let user = this.props.user;
+        const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
+        user.invites[inviteIndex].wasRead = true;
+        this.props.inviteActions.setInvites(user.invites);
     //
     //     const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
     //     || (!user.isParent && user.invites[inviteIndex].status === "waiting" && !user.invites[inviteIndex].wasRead));
     //
     //     if(shouldUpdate){
     //         user.invites[inviteIndex].wasRead = true;
-    //         this.updateInvite(user)
+    //         this.props.inviteActions.setInvites(user.invites);
+    //         this.updateInvite(user);
     //     }
-    // }
+    }
 
     updateInvite(user, invite){
         const self = this;
-        this.props.inviteActions.setInvites(user.invites);
-        const path = this.props.user.isParent ? 'parent/update': 'sitter/update';
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/'+ path,
-            url: 'https://sittersdev.herokuapp.com/'+ path,
+            url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: user
+            data: invite
         }).then(function (res) {
-            if (res.data) {  // user created
-
+            if (res.data) {  // invite updated
+                self.props.inviteActions.setInvites(user.invites);
             }
             else {
-                console.log("settings not updated");
-                //TODO: think about error
+                console.log("invite not updated");
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
             }
-        })
-            .catch(function (error) {
-                alert(error);
-                //TODO: think about error
-            });
-        if(!user.isParent && invite){
-            axios({
-                method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/user/getUser',
-                url: 'https://sittersdev.herokuapp.com/user/getUser',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {_id: invite.parentID}
-            })
-                .then(function (response) {
-                    if (response.data) {  // user exists
-                        let parent = response.data;
-                        const  inviteIndex = _.findIndex(parent.invites, function(o) { return o._id === invite._id; });
-                        parent.invites[inviteIndex] = invite;
-                        parent.invites[inviteIndex].wasRead = false;
-                        axios({
-                            method: 'post',
-                            // url: 'https://sitters-server.herokuapp.com/parent/update',
-                            url: 'https://sittersdev.herokuapp.com/parent/update',
-                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            data: parent
-                        }).then(function (res) {
-                            if (res.data) {  // user created
-                                // self.props.router.push('/');
-                            }
-                            else {
-                                console.log("settings not updated");
-                                //TODO: think about error
-                            }
-                        })
-                            .catch(function (error) {
-                                alert(error);
-                                //TODO: think about error
-                            });
-                    }
-                    else { // user not exist
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-
+        }).catch(function (error) {
+            console.log(error);
+            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+        });
     }
 
     changeInviteStatus(invite, status){
@@ -111,8 +67,9 @@ class Invite extends React.Component {
         let user = this.props.user;
         const inviteIndex = _.findIndex(user.invites, function(o) { return o._id === invite._id; });
         user.invites[inviteIndex].status = status;
+        console.log(user.invites[inviteIndex]);
         this.updateInvite(user, invite);
-        // this.props.router.push('/');
+        Actions.pop();
     }
 
     render () {
@@ -232,7 +189,8 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     pickerText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -243,7 +201,8 @@ const styles = StyleSheet.create({
         height: 150
     },
     locationText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -271,13 +230,16 @@ const styles = StyleSheet.create({
     notesText: {
         width: '100%',
         justifyContent: 'flex-start',
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
     textInput: {
         width: '100%',
+        color: '#757575',
         justifyContent: 'flex-start',
+        fontFamily: 'OpenSans-Regular',
         marginBottom: 15
     },
     actionBar: {
@@ -289,8 +251,9 @@ const styles = StyleSheet.create({
     },
     button: {
         fontSize: 20,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         padding: 5,
         borderRadius: 10
     }

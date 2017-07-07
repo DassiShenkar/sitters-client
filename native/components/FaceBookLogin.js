@@ -82,8 +82,7 @@ export default class FaceBookLogin extends React.Component {
         if(self.props.user.userType === "I'm a Parent") {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/parent/get',
-                url: 'https://sittersdev.herokuapp.com/parent/get',
+                url: 'https://sitters-server.herokuapp.com/parent/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
@@ -93,8 +92,7 @@ export default class FaceBookLogin extends React.Component {
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
-                            url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
-                            // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                            url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
                         }).then(function (response) {
@@ -119,8 +117,7 @@ export default class FaceBookLogin extends React.Component {
         } else {
             axios({
                 method: 'post',
-                // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                url: 'https://sittersdev.herokuapp.com/sitter/get',
+                url: 'https://sitters-server.herokuapp.com/sitter/get',
                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                 data: {_id: result.id.toString()}
             }).then(function (res) {
@@ -130,8 +127,7 @@ export default class FaceBookLogin extends React.Component {
                         parent.mutualFriends = user.friends.data;
                         axios({
                             method: 'post',
-                            url: 'https://sittersdev.herokuapp.com/parent/updateMutualFriends',
-                            // url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
+                            url: 'https://sitters-server.herokuapp.com/parent/updateMutualFriends',
                             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                             data: parent
                         }).then(function (response) {
@@ -160,8 +156,9 @@ export default class FaceBookLogin extends React.Component {
 const styles = StyleSheet.create({
     button:  {
         fontSize: 14,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         padding: 15,
         borderRadius: 40
     }

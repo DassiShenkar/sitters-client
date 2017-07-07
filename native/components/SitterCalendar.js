@@ -33,16 +33,16 @@ class SitterCalendar extends React.Component {
                     }}
                     theme={{
                         calendarBackground: '#ffffff',
-                        textSectionTitleColor: '#f7a1a1',
-                        selectedDayBackgroundColor: '#f7a1a1',
+                        textSectionTitleColor: '#f86966',
+                        selectedDayBackgroundColor: '#f86966',
                         selectedDayTextColor: '#ffffff',
-                        todayTextColor: '#f7a1a1',
+                        todayTextColor: '#f86966',
                         dayTextColor: '#2d4150',
                         textDisabledColor: '#d9e1e8',
-                        dotColor: '#f7a1a1',
+                        dotColor: '#f86966',
                         selectedDotColor: '#ffffff',
-                        arrowColor: '#f7a1a1',
-                        monthTextColor: '#f7a1a1'
+                        arrowColor: '#f86966',
+                        monthTextColor: '#f86966'
                     }}
                 />
                 {
@@ -85,11 +85,12 @@ const styles = StyleSheet.create({
         padding: 10
     },
     text: {
-        color: '#f7a1a1',
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         padding: 5,
         fontWeight: 'bold'
-    },
+    }
 });
 
 

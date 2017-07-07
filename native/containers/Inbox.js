@@ -43,10 +43,11 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
-        backgroundColor: '#8E8E8E'
+        backgroundColor: '#757575'
     },
     text: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         marginLeft: 10,
         alignSelf: 'center',

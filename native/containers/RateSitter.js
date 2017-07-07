@@ -48,8 +48,7 @@ class RateSitter extends React.Component {
         sitter.reviews.push(review);
         axios({
             method: 'post',
-            // url: 'https://sitters-server.herokuapp.com/sitter/update',
-            url: 'https://sittersdev.herokuapp.com/sitter/update',
+            url: 'https://sitters-server.herokuapp.com/sitter/update',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: sitter
         }).then(function (res) {
@@ -124,8 +123,8 @@ class RateSitter extends React.Component {
                         maxStars={5}
                         rating={self.props.feed.review ? self.props.feed.review.rates[item.value] : 0}
                         selectedStar={(rating) => {self.onChangeRate(item.value, rating)}}
-                        starColor={'#f7a1a1'}
-                        emptyStarColor={'#f7a1a1'}
+                        starColor={'#f86966'}
+                        emptyStarColor={'#f86966'}
                         starSize={20}
                     />
                 </View>
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     text: {
         width: '100%',
         justifyContent: 'flex-start',
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     },
     actionButton:{
         fontSize: 20,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
         padding: 5,
         borderRadius: 10

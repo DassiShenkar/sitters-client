@@ -19,76 +19,90 @@
 
 /* eslint-env browser, serviceworker, es6 */
 
-self.addEventListener('push', function(event) {
-    console.log('[Service Worker] Push Received.');
-    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-    const data = JSON.parse(event.data.text());
-    const title = 'Sitters';
-    let options;
-    if("parentID" in data){ // Got an invite
-        options = {
-            body: data.sitterName,
-            icon: data.sitterImage,
-            badge: data.parentImage,
-            data: data._id
-        };
-    }
-    else{// New sitter in town
-        options = {
-            body: data.sitterName,
-            icon: data.sitterImage,
-            badge: data.parentImage,
-            data: data._id
-        };
-    }
+self.addEventListener('push', function (event) {
+        console.log('[Service Worker] Push Received.');
+        console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+        const data = JSON.parse(event.data.text());
+        const title = 'Sitters';
+        let options;
+        if ("parentID" in data) { // Got an invite
+            options = {
 
-
-
-
-    event.waitUntil(self.registration.showNotification(title, options));
-    self.clients.matchAll().then(all => all.forEach(client => {
-        client.postMessage(event.data.text());
-    }));
-});
-
-self.addEventListener('notificationclick', function(event) {
-    console.log('[Service Worker] Notification click Received.');
-    const id = event.notification.data;
-    //const path = event.target.location.host + '/invite/';
-    const path = 'http://' + event.target.location.host + '/';
-    event.notification.close();
-   // const urlToOpen = new URL(examplePage, self.location.origin).href;
-
-    const promiseChain = clients.matchAll({
-        type: 'window',
-        includeUncontrolled: true
-    })
-        .then((windowClients) => {
-            let matchingClient = null;
-
-            for (let i = 0; i < windowClients.length; i++) {
-                const windowClient = windowClients[i];
-                if (windowClient.url === path) {
-                    matchingClient = windowClient;
-                    break;
+                badge: data.parentImage,
+                data: data._id,
+            };
+            if(data.status === 'waiting'){ // new invite
+                options.icon = data.parentImage;
+                options.body = 'New invite from ' +data.parentName;
+            }
+            else{ // invite status change
+                options.icon = data.sitterImage;
+                options.body = data.sitterName + data.status + ' your invite';
+            }
+        }
+        else {// New sitter in town
+            options = {
+                body: "New Sitter In Town:\nMeet " + data.sitterName,
+                icon: data.sitterPicture,
+                badge: data.sitterPicture,
+                data: {
+                    id: data._id,
+                    type: "notification",
                 }
             }
+        }
 
-            if (matchingClient) {
-                return matchingClient.focus();
-            } else {
-                return clients.openWindow(path);
-            }
-        });
 
-    event.waitUntil(promiseChain);
-   // self.document.location = '/';
-    // event.waitUntil(
-    //     clients.openWindow(path + id)
-    // );
+        event.waitUntil(self.registration.showNotification(title, options));
+        self.clients.matchAll().then(all => all.forEach(client => {
+            client.postMessage(event.data.text());
+        }));
+    }
+);
+
+// self.addEventListener('notificationclick', function (event) {
+//     const id = event.notification.data.id;
+//     let path = 'http://' + event.target.location.host;
+//     if (event.notification.data.type === 'invite') {
+//         path += '/invite/' + id;
+//     }
+//     else {
+//         path += '/notification/' + id;
+//     }
+//
+//     event.notification.close();
+//     // const urlToOpen = new URL(examplePage, self.location.origin).href;
+//
+//     const promiseChain = clients.matchAll({
+//         type: 'window',
+//         includeUncontrolled: true
+//     })
+//         .then((windowClients) => {
+//             let matchingClient = null;
+//
+//             for (let i = 0; i < windowClients.length; i++) {
+//                 const windowClient = windowClients[i];
+//                 if (windowClient.url === path) {
+//                     matchingClient = windowClient;
+//                     break;
+//                 }
+//             }
+//
+//             if (matchingClient) {
+//                 return matchingClient.focus();
+//             } else {
+//                 return clients.openWindow(path);
+//             }
+//         });
+//
+//     event.waitUntil(promiseChain);
+// });
+
+self.addEventListener('notificationclose', function (event) {
+    // Do something as the result of the notification close
 });
 
-self.addEventListener("message", function(event) {
+self.addEventListener("message", function (event) {
     //event.source.postMessage("Responding to " + event.data);
     self.clients.matchAll().then(all => all.forEach(client => {
         client.postMessage("Responding to " + event.data);

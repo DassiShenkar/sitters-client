@@ -27,31 +27,66 @@ class Feed extends React.Component {
 
     componentWillMount() {
         const self = this;
-        self.props.feedActions.showSpinner(true);
-        NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
-            console.log('Push-notifications registered!', deviceToken)
-        });
         NotificationsAndroid.setNotificationReceivedListener((notification) => {
-            console.log("Notification received on device", notification.getData());
+            let object = JSON.parse(notification.getData().data);
+            if(typeof object.message === "undefined" && self.props.user.name){
+                let invites = self.props.user.invites;
+                if(object.status !== 'waiting') { // update invite
+                    invites.forEach(invite => {
+                        if(invite._id === object._id) {
+                            invite.status = object.status;
+                            invite.wasRead = false;
+                        }
+                    });
+                    self.props.actionCreators.setInvites(invites);
+                }
+                else {
+                    invites.push(object);
+                    self.props.actionCreators.setInvites(invites); // new invite
+
+                }
+            }
+            else { // new notification - new sitter in town
+                self.props.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            }
         });
         NotificationsAndroid.setNotificationOpenedListener((notification) => {
-            console.log("Notification opened by device user", notification.getData());
+            let object = JSON.parse(notification.getData().data);
+            if(typeof object.message === "undefined" && self.props.user.name){
+                let invites = self.props.user.invites;
+                if(object.status !== 'waiting') { // update invite
+                    invites.forEach(invite => {
+                        if(invite._id === object._id) {
+                            invite.status = object.status;
+                            invite.wasRead = false;
+                        }
+                    });
+                    self.props.actionCreators.setInvites(invites);
+                }
+                else {
+                    invites.push(object);
+                    self.props.actionCreators.setInvites(invites); // new invite
+
+                }
+            }
+            else { // new notification - new sitter in town
+                self.props.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            }
         });
+        self.props.feedActions.showSpinner(true);
         AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
             if (userId) {
                 if(self.props.user.userType === "I'm a Parent") {
                     axios({
                         method: 'post',
-                        // url: 'https://sitters-server.herokuapp.com/parent/get',
-                        url: 'https://sittersdev.herokuapp.com/parent/get',
+                        url: 'https://sitters-server.herokuapp.com/parent/get',
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId.toString()}
                     }).then(function (parent) {
                         if (parent.data) {  // user exists
                             axios({
                                 method: 'post',
-                                // url: 'https://sitters-server.herokuapp.com/parent/getMatches',
-                                url: 'https://sittersdev.herokuapp.com/parent/getMatches',
+                                url: 'https://sitters-server.herokuapp.com/parent/getMatches',
                                 headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                                 data: parent.data
                             }).then(function (sitters) {
@@ -79,8 +114,7 @@ class Feed extends React.Component {
                 } else {
                     axios({
                         method: 'post',
-                        // url: 'https://sitters-server.herokuapp.com/sitter/get',
-                        url: 'https://sittersdev.herokuapp.com/sitter/get',
+                        url: 'https://sitters-server.herokuapp.com/sitter/get',
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         data: {_id: userId}
                     })
@@ -141,6 +175,57 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     }
+});
+
+NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
+    console.log('Push-notifications registered!', deviceToken);
+    AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
+        if (userId) {
+            AsyncStorage.getItem(LocalStorage.USER_TYPE, function(error, userType) {
+                let path;
+                if (userType == 'parent') {
+                    path = 'parent/get';
+                } else {
+                    path = 'sitter/get';
+                }
+                axios({
+                    method: 'post',
+                    url: 'https://sitters-server.herokuapp.com/' + path,
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    data: {_id: userId.toString()}
+                }).then(function (user) {
+                    if (user.data) {  // user exists
+                        user.data.senderGCM = {
+                            senderId: deviceToken,
+                            valid: true
+                        };
+                        let updatePath = user.data.isParent ? 'parent/update' : 'sitter/update';
+                        axios({
+                            method: 'post',
+                            url: 'https://sitters-server.herokuapp.com/' + updatePath,
+                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                            data: user.data
+                        }).then(function (res) {
+                            if (res.data) {
+                            }
+                            else {
+                                console.log('user not created');
+                                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        });
+                    } else {
+
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                    Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                });
+            });
+        }
+    });
 });
 
 function mapStateToProps(state) {

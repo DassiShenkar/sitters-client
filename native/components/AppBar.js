@@ -2,19 +2,25 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-import { bindActionCreators } from 'redux';
-import {  connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import ImageButton from './ImageButton'
-import * as RouterActions from '../actions/RouterActions'
+import ImageButton from './ImageButton';
+import * as RouterActions from '../actions/RouterActions';
+import * as InviteActions from '../../src/actions/InviteActions';
+import * as FeedActions from '../../src/actions/FeedActions';
 
 class AppBar extends React.Component {
 
     constructor (props) {
         super(props);
-        // this.search = this.search.bind(this);
         this.menu = this.menu.bind(this);
+        this.search = this.search.bind(this);
+        this.invites = this.invites.bind(this);
+        // this.notifications = this.notifications.bind(this);
+        this.countInvites = this.countInvites.bind(this);
+        // this.countNotifications = this.countNotifications.bind(this);
     }
 
     componentDidUpdate () {
@@ -42,19 +48,6 @@ class AppBar extends React.Component {
     }
 
     render () {
-        let notify = function() {
-            if(this.props.user.invites && this.props.feed.invites.length > 0) {
-                this.props.feed.invites.map(function(invite) {
-                    if(!invite.wasRead) {
-                        return true;
-                    }
-                });
-                return false;
-            } else {
-                return false;
-            }
-        };
-
         return (
             <View style={ styles.container }>
                 <ImageButton
@@ -65,17 +58,86 @@ class AppBar extends React.Component {
                     style={this.props.user.userType === "I'm a Parent" ? styles.parentInnerContainer : styles.innerContainer}>
                     {
                         this.props.user.userType === "I'm a Parent" ?
-                        <Icon.Button name="search" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.search} /> : null
+                        <Icon.Button name="search" size={28} backgroundColor="#fff" color="#757575" onPress={this.search} /> : null
                     }
-                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Notifications} />
-                    <Icon.Button name="envelope-o" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.Inbox} />
-                    <Icon.Button name="ellipsis-v" size={28} backgroundColor="#fff" color="#8c8c8c" onPress={this.menu} />
+                    <Icon.Button name="bell-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Notifications} />
+
+                    <Icon.Button name="envelope-o" size={28} backgroundColor="#fff" color="#757575" onPress={Actions.Inbox} >
+                        {
+
+                            <View style={this.countInvites() === 0 ? {} : styles.IconBadge}>
+                                <Text style={{color:'#fff'}}>{this.countInvites()}</Text>
+                            </View>
+                        }
+                    </Icon.Button>
+                    <Icon.Button name="ellipsis-v" size={28} backgroundColor="#fff" color="#757575" onPress={this.menu} />
                 </View>
             </View>
         );
     }
 
+    countInvites () {
+        if(this.props.user.invites && this.props.user.invites.length > 0) {
+            var count = 0;
+            this.props.user.invites.map(function(invite) {
+                if(!invite.wasRead) {
+                    count++;
+                }
+            });
+            return count;
+        } else {
+            return 0;
+        }
+    };
+
+
+
+    // countNotifications () {
+    //     console.log(this.props.user.invites);
+    //     if(this.props.user.notifications && this.props.user.notifications.length > 0) {
+    //         var count = 0;
+    //         this.props.user.notifications.map(function(notification) {
+    //             if(notification) {
+    //                 count++;
+    //             }
+    //         });
+    //         console.log(count);
+    //         return count;
+    //     } else {
+    //         return 0;
+    //     }
+    // };
+
+    invites () {
+        console.log('invites');
+        if(this.props.user.invites && this.props.user.invites.length > 0) {
+            this.props.user.invites.map(function(invite) {
+                if(!invite.wasRead) {
+                    console.log('true');
+                    return true;
+                }
+            });
+            return false;
+        } else {
+            return false;
+        }
+    };
+
+    // notifications () {
+    //     if(this.props.user.invites && this.props.user.invites.length > 0) {
+    //         this.props.user.invites.map(function(invite) {
+    //             if(!invite.wasRead) {
+    //                 return true;
+    //             }
+    //         });
+    //         return false;
+    //     } else {
+    //         return false;
+    //     }
+    // };
+
     search() {
+        this.props.feedActions.setSitterIndex(0);
         Actions.SearchByPrice({active: 1});
     }
 
@@ -84,12 +146,20 @@ class AppBar extends React.Component {
     }
 }
 
+    // {
+    //     this.notifications() ?
+    //         <View style={styles.IconBadge}>
+    //             <Text style={{color:'#fff'}}>{this.countNotifications}</Text>
+    //         </View> : null
+    // }
+    // </Icon.Button>
+
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        borderBottomColor: '#8c8c8c',
+        borderBottomColor: '#757575',
         borderTopColor: '#fff',
         borderLeftColor: '#fff',
         borderRightColor: '#fff',
@@ -101,6 +171,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginRight: 20
+    },
+    IconBadge: {
+        position:'absolute',
+        top:1,
+        right:1,
+        minWidth:20,
+        height:20,
+        borderRadius:15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#f86966'
     },
     parentInnerContainer: {
         width: 160,
@@ -117,13 +198,16 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        router: state.router
+        router: state.router,
+        user: state.user
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        routerActions: bindActionCreators(RouterActions, dispatch)
+        routerActions: bindActionCreators(RouterActions, dispatch),
+        inviteActions: bindActionCreators(InviteActions, dispatch),
+        feedActions: bindActionCreators(FeedActions, dispatch)
     };
 }
 

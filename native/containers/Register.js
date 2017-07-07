@@ -112,7 +112,8 @@ class Register extends Component {
                 email:  this.props.register.partnerEmail ? this.props.register.partnerEmail : ' ',
                 name:  this.props.register.partnerName ? this.props.register.partnerName : ' '
             },
-            isParent: true
+            isParent: true,
+            senderGCM: {}
         };
         self.setUserInDB(parent, 'parent/create');
     }
@@ -177,7 +178,8 @@ class Register extends Component {
                 allowNotification: true,
                 allowSuggestions: true,
                 allowShowOnSearch: true
-            }
+            },
+            senderGCM: {}
         };
         self.setUserInDB(sitter, 'sitter/create');
     }
@@ -201,11 +203,9 @@ class Register extends Component {
             };
         }
         user.isParent = path === 'parent/create';
-        console.log(user);
         axios({
             method: 'post',
-            url: 'https://sittersdev.herokuapp.com/' + path,
-            // url: 'https://sitters-server.herokuapp.com/' + path,
+            url: 'https://sitters-server.herokuapp.com/' + path,
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: user
         }).then(function (res) {
@@ -229,10 +229,11 @@ const styles = StyleSheet.create({
         margin: 20
     },
     button: {
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         width: 70,
         alignSelf : 'flex-end',
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
         color: '#fff',
         padding: 5,
         borderRadius: 10,

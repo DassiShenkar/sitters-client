@@ -30,7 +30,6 @@ class SitterProfileView extends React.Component {
         axios({
             method: 'post',
             url: 'https://sitters-server.herokuapp.com/sitter/get',
-            // url: 'https://sittersdev.herokuapp.com/sitter/get',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
             data: {_id: sitterID}
         }).then(function (sitter) {
@@ -47,7 +46,6 @@ class SitterProfileView extends React.Component {
 
     componentDidUpdate () {
         var self = this;
-        console.log(self.props.router.validFlag);
         if(self.props.router.validFlag) {
             this.props.routerActions.changeValidFlag(false);
             Actions.Feed();
@@ -63,20 +61,19 @@ class SitterProfileView extends React.Component {
         const lastInvite = this.props.sitterProfile.lastInvite?
             <View>
                 <Text style={styles.detailHeader}>Last Invited:</Text>
-                <Text>{this.props.sitterProfile.sitter.lastInvite}</Text>
+                <Text style={styles.greyText}>{this.props.sitterProfile.sitter.lastInvite}</Text>
             </View> : null;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (key, index) {
             return (
                 self.props.sitterProfile.sitter.workingHours[key].length > 0 ?
-                <View key={index}>
+                <View key={index} style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                     <Text style={styles.dayKey}>{key[0].toUpperCase() + key.slice(1)}</Text>
-                    <Text>{self.props.sitterProfile.sitter.workingHours[key].map(function(item) {
+                    <Text style={styles.greyText}>{self.props.sitterProfile.sitter.workingHours[key].map(function(item) {
                         return item + " ";
                     })}</Text>
                 </View> : null
             )
         });
-        // TODO: add address and last invite
         return (
             <View style={styles.container}>
                     <AppBar
@@ -88,33 +85,44 @@ class SitterProfileView extends React.Component {
                                 <View style={styles.innerContainer}>
                                     <View>
                                         <Image source={{uri: coverPhoto}} style={styles.coverPhoto}>
-                                            <View style={styles.sitterContainer}>
-                                                <View style={styles.backgroundCircle}>
-                                                    <Image
-                                                        style={styles.profilePicture}
-                                                        source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
-                                                    />
+                                            <View style={styles.backgroundImage}>
+                                                <View style={styles.sitterContainer}>
+                                                    <View style={styles.backgroundCircle}>
+                                                        <Image
+                                                            style={styles.profilePicture}
+                                                            source={ this.props.sitterProfile.sitter.profilePicture ? { uri: this.props.sitterProfile.sitter.profilePicture } : null }
+                                                        />
+                                                    </View>
+                                                    <Text style={styles.sitterText}>
+                                                        { this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }
+                                                    </Text>
                                                 </View>
-                                                <Text style={styles.sitterText}>
-                                                    { this.props.sitterProfile.sitter.name }, { this.props.sitterProfile.sitter.age }
-                                                </Text>
                                             </View>
                                         </Image>
                                         <View style={styles.infoBar}>
-                                            <Text style={styles.infoText}>
-                                                { this.props.sitterProfile.distance > 999 ? 'Proximity\n' + this.props.sitterProfile.distance / 1000 + ' KM' : 'Proximity:\n' + this.props.sitterProfile.distance + ' Meters' }
-                                            </Text>
-                                            <Text style={styles.infoText}>
-                                                { 'Hour Fee\n' + this.props.sitterProfile.sitter.hourFee + '$'}
-                                            </Text>
-                                            <Text style={styles.infoText}>
-                                                { 'Experience\n' + this.props.sitterProfile.sitter.experience + " Years" }
-                                            </Text>
+                                            <View style={styles.tabSeparator}>
+                                                <Text style={styles.infoText}>
+                                                    { this.props.sitterProfile.distance > 999 ? this.props.sitterProfile.distance / 1000 + ' KM' : this.props.sitterProfile.distance + ' Meters' }
+                                                </Text>
+                                                <Text style={styles.infoSmallText}>Proximity</Text>
+                                            </View>
+                                            <View style={styles.tabSeparator}>
+                                                <Text style={styles.infoText}>
+                                                    { this.props.sitterProfile.sitter.hourFee + '$' }
+                                                </Text>
+                                                <Text style={styles.infoSmallText}>Hour Fee</Text>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.infoText}>
+                                                    { this.props.sitterProfile.sitter.experience + " Years" }
+                                                </Text>
+                                                <Text style={styles.infoSmallText}>Experience</Text>
+                                            </View>
                                         </View>
                                     </View>
                                     <View style={styles.detailContainer}>
                                         <Text style={styles.detailHeader}>Address</Text>
-                                        <Text>{ sitterAddress }</Text>
+                                        <Text style={styles.greyText}>{ sitterAddress }</Text>
                                         {lastInvite}
                                         <Text style={styles.detailHeader}>Availability</Text>
                                         { workingHours }
@@ -123,7 +131,7 @@ class SitterProfileView extends React.Component {
                                         <View>
                                             {
                                                 this.props.sitterProfile.sitter.hobbies ? this.props.sitterProfile.sitter.hobbies.map(function (hobbie) {
-                                                    return <Text key={ hobbie }>{ hobbie + ' ' }</Text>;
+                                                    return <Text style={styles.greyText} key={ hobbie }>{ hobbie + ' ' }</Text>;
                                                 }) : null
                                             }
                                         </View>
@@ -132,7 +140,7 @@ class SitterProfileView extends React.Component {
                                         <View>
                                             {
                                                 this.props.sitterProfile.sitter.education ? this.props.sitterProfile.sitter.education.map(function (education) {
-                                                    return <Text key={ education }>{ education + ' ' }</Text>;
+                                                    return <Text style={styles.greyText} key={ education }>{ education + ' ' }</Text>;
                                                 }) : null
                                             }
                                         </View>
@@ -141,7 +149,7 @@ class SitterProfileView extends React.Component {
                                         <View>
                                             {
                                                 this.props.sitterProfile.sitter.languages ? this.props.sitterProfile.sitter.languages.map(function (lang) {
-                                                    return <Text key={ lang }>{ lang + ' ' }</Text>;
+                                                    return <Text style={styles.greyText} key={ lang }>{ lang + ' ' }</Text>;
                                                 }) : null
                                             }
                                         </View>
@@ -150,12 +158,13 @@ class SitterProfileView extends React.Component {
                                         <View>
                                             {
                                                 this.props.sitterProfile.sitter.expertise ? this.props.sitterProfile.sitter.expertise.map(function (expertise) {
-                                                    return <Text key={ expertise }>{ expertise + ' '}</Text>;
+                                                    return <Text style={styles.greyText} key={ expertise }>{ expertise + ' '}</Text>;
                                                 }) : null
                                             }
                                         </View>
                                         <Text
-                                            style={styles.detailHeader}>Reviews({ this.props.sitterProfile.sitter.reviews.length })</Text>
+                                            style={styles.detailHeader}>Reviews({ this.props.sitterProfile.sitter.reviews.length })
+                                        </Text>
                                         <View>
                                             <ListView
                                                 enableEmptySections={true}
@@ -166,15 +175,12 @@ class SitterProfileView extends React.Component {
                                         </View>
                                     </View>
                                 </View>
+                                <View style={styles.actionBar}>
+                                    <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#4dd0e1" onPress={Actions.pop} />
+                                    <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#ffca00" onPress={(e) => this.navToInvite(e, id)} />
+                                </View>
                             </ScrollView>
                     }
-                {
-                    this.props.feed.showSpinner ? null :
-                        <View style={styles.actionBar}>
-                            <Icon.Button name="remove" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={Actions.pop} />
-                            <Icon.Button name="envelope" size={48} backgroundColor="#fff" color="#8c8c8c" onPress={(e) => this.navToInvite(e, id)} />
-                        </View>
-                }
             </View>
         );
     }
@@ -192,17 +198,20 @@ const styles = StyleSheet.create({
         flex:1
     },
     sitterContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 20
+        padding: 60
     },
     profilePicture: {
         width: 100,
         height: 100,
         justifyContent: 'center',
         alignSelf: 'center',
-        borderRadius:100,
+        borderRadius:100
+    },
+    backgroundImage: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     backgroundCircle: {
         width: 110,
@@ -213,42 +222,60 @@ const styles = StyleSheet.create({
     },
     sitterText: {
         color: '#fff',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 10,
-        textShadowColor: '#000',
-        textShadowOffset: {width: 2, height: 2}
+        marginBottom: 10
     },
     dayKey: {
-        color: '#f7a1a1',
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
         marginBottom: 2,
         marginTop: 2
     },
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
-        backgroundColor: '#8E8E8E'
+        backgroundColor: '#f86966'
+    },
+    tabSeparator: {
+        borderRightColor: '#757575',
+        borderRightWidth: 1,
+        paddingRight: 25
     },
     infoBar: {
         flex: 1,
         flexDirection: 'row',
         padding: 10,
         justifyContent: 'space-between',
-        width: '100%',
-        backgroundColor: '#f7a1a1'
+        width: '100%'
     },
     infoText: {
         fontSize: 20,
-        color: '#fff'
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
+        alignSelf: 'center'
+    },
+    infoSmallText: {
+        fontSize: 16,
+        color: '#757575',
+        fontFamily: 'OpenSans-Regular',
+        alignSelf: 'center'
     },
     detailContainer: {
         margin: 15
     },
     detailHeader: {
         fontSize: 16,
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         paddingBottom: 5,
         paddingTop: 5
+    },
+    greyText: {
+       fontSize: 14,
+        fontFamily: 'OpenSans-Regular',
+        color: '#757575'
     },
     actionBar: {
         width: '100%',
@@ -258,7 +285,8 @@ const styles = StyleSheet.create({
     },
     textButton: {
         fontSize: 20,
-        backgroundColor: '#f7a1a1',
+        backgroundColor: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         color: '#fff',
         padding: 5,
         borderRadius: 10,

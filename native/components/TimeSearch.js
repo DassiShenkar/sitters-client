@@ -7,6 +7,7 @@ import dateFormat from 'dateformat'
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as _ from "lodash";
+import RadioForm from 'react-native-simple-radio-button';
 
 import ImageButton from '../components/ImageButton'
 import AndroidDatePicker from '../components/AndroidDatePicker'
@@ -30,31 +31,40 @@ export default class TimeSearch extends React.Component {
     }
 
     render () {
-        let sitterIndex = this.props.feed.sitterIndex;
-        let sitterId = this.props.sitters.length ? this.props.sitters[sitterIndex]._id : 0;
-        const profilePicture = this.props.sitters.length ? this.props.sitters[sitterIndex].profilePicture : null;
-        const name = this.props.sitters.length ? this.props.sitters[sitterIndex].name : null;
-        const age = this.props.sitters.length ? this.props.sitters[sitterIndex].age : null;
-        const availableNow = this.props.sitters.length ? this.props.sitters[sitterIndex].availableNow : null;
-        const hourFee = this.props.sitters.length ? this.props.sitters[sitterIndex].hourFee : null;
-        const coverPhoto = this.props.sitters.length ? this.props.sitters[sitterIndex].coverPhoto : null;
+        const sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        const sitterId = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex]._id : 0 : 0 : 0;
+        const profilePicture = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].profilePicture : null : null : null;
+        const name = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].name : null : null : null;
+        const age = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].age : null : null: null;
+        const availableNow = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].availableNow : null : null : null;
+        const hourFee = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].hourFee : null : null : null;
+        const coverPhoto = this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] ? this.props.sitters[sitterIndex].coverPhoto : null : null : null;
         const config = {
             velocityThreshold: 0.1,
             directionalOffsetThreshold: 80
         };
+        const radio_props = [
+            {label: strings.AVAILABILITY[0], value: 0 },
+            {label: strings.AVAILABILITY[1], value: 1 }
+        ];
         return (
             <View style={styles.container}>
                 <GestureRecognizer
-                    onSwipeLeft={(e) => this.navToInvite(e, sitterId)}
-                    onSwipeRight={(e) => this.nextSitter(e)}
+                    onSwipeLeft={this.navToInvite}
+                    onSwipeRight={this.nextSitter}
                     config={config}>
-                    <Picker
-                        style={styles.picker}
-                        selectedValue={ this.props.searchBy.availability ?  this.props.searchBy.availability: strings.AVAILABILITY[0] }
-                        onValueChange={(availability) => { this.changeAvailability(availability) }}>
-                        <Picker.Item label={ strings.AVAILABILITY[1] } value={ strings.AVAILABILITY[1] }/>
-                        <Picker.Item label={ strings.AVAILABILITY[0] } value={ strings.AVAILABILITY[0] }/>
-                    </Picker>
+                    <View style={styles.picker}>
+                        <RadioForm
+                            radio_props={radio_props}
+                            initial={this.props.searchBy.availability ? this.props.searchBy.availability === strings.AVAILABILITY[1] ? 1 : 0 : 0}
+                            onPress={(value) => {this.changeAvailability(radio_props[value].label)}}
+                            formHorizontal={false}
+                            labelHorizontal={true}
+                            animation={true}
+                            buttonColor={'#f86966'}
+                            labelColor={'#f86966'}
+                            labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
+                    </View>
                     {
                         this.props.searchBy.availability ?  this.props.searchBy.availability === strings.AVAILABILITY[1] ?
                         <View style={styles.searchByContainer}>
@@ -78,22 +88,24 @@ export default class TimeSearch extends React.Component {
                         this.props.sitters.length > 0 ?
                             <View>
                                 <Image source={{uri: coverPhoto}}>
-                                    <View style={styles.feedContainer}>
-                                        <View style={styles.backgroundCircle}>
-                                            <ImageButton
-                                                onPress={ (e) => {this.navToProfile(e, sitterId)} }
-                                                styles={styles.sitterImage}
-                                                src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                    <View style={styles.backgroundImage}>
+                                        <View style={styles.feedContainer}>
+                                            <View style={styles.backgroundCircle}>
+                                                <ImageButton
+                                                    onPress={ (e) => {this.navToProfile(e, sitterId)} }
+                                                    styles={styles.sitterImage}
+                                                    src={this.props.sitters.length > 0 ? { uri: profilePicture } : {} } />
+                                            </View>
+                                            <View style={styles.feedTextView}>
+                                                <Text style={styles.sitterText}>{name + ', ' + age}</Text>
+                                                { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
+                                                <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                            </View>
                                         </View>
-                                        <View style={styles.feedTextView}>
-                                            <Text style={styles.sitterText}>{name + ', ' + age}</Text>
-                                            { availableNow ? <Text style={styles.sitterText}>Available now!</Text> : null}
-                                            <Text style={styles.sitterText}>{ hourFee + '$' }</Text>
+                                        <View style={styles.feedButtons}>
+                                            <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#ffca00" onPress={this.navToInvite} />
+                                            <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#4dd0e1" onPress={this.nextSitter} />
                                         </View>
-                                    </View>
-                                    <View style={styles.feedButtons}>
-                                        <Icon.Button name="envelope" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.navToInvite(e, sitterId)} />
-                                        <Icon.Button name="remove" size={48} backgroundColor="rgba(0, 0, 0, 0)" color="#fff" onPress={(e) => this.nextSitter(e, sitterId)} />
                                     </View>
                                 </Image>
                             </View>
@@ -135,13 +147,13 @@ export default class TimeSearch extends React.Component {
         Actions.SitterProfileView({ sitterId: sitterId });
     }
 
-    navToInvite(e) {
-        let sitterIndex = this.props.feed.sitterIndex;
-        let sitter = this.props.sitters[sitterIndex];
+    navToInvite() {
+        let sitterIndex = this.props.feed.sitterIndex ? this.props.feed.sitterIndex : 0;
+        let sitter =  this.props.sitters.length ? this.props.sitters.length > 0 ? this.props.sitters[sitterIndex] : 0 : 0;
         Actions.SitterSendInvite({ sitter: sitter });
     }
 
-    nextSitter(e) {
+    nextSitter() {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
         Actions.SearchByTime({active: 2});
@@ -152,8 +164,8 @@ export default class TimeSearch extends React.Component {
     }
 
     filter(){
-        let day = this.props.searchBy.inviteDay.toLowerCase();
-        let newValue = this.props.searchBy.workingHours;
+        let day = this.props.searchBy.inviteDay ? this.props.searchBy.inviteDay.toLowerCase() : null;
+        let newValue = this.props.searchBy.workingHours ? this.props.searchBy.workingHours : [];
         if(this.props.sitters){
             let sitters = [];
             for(let sitter of this.props.feed.matches){
@@ -163,6 +175,7 @@ export default class TimeSearch extends React.Component {
             }
             this.props.feedActions.setFilteredMatches(sitters);
         }
+        this.props.feedActions.setSitterIndex(0);
         Actions.SearchByTime({newSearch: false, active: 2});
     }
 }
@@ -175,7 +188,7 @@ const styles = StyleSheet.create({
     searchByContainer: {
         margin: 15,
         justifyContent: 'flex-start',
-        marginBottom: 55,
+        marginBottom: 37
     },
     dummy:{
         height: 160
@@ -191,7 +204,8 @@ const styles = StyleSheet.create({
         padding: 5
     },
     pickerText: {
-        color: '#f7a1a1',
+        color: '#f86966',
+        fontFamily: 'OpenSans-Regular',
         fontSize: 16,
         fontWeight: 'bold'
     },
@@ -224,8 +238,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         margin: 5,
         color: '#fff',
-        textShadowColor: '#000',
-        textShadowOffset: {width: 2, height: 2}
+        fontFamily: 'Raleway-Regular'
     },
     feedButtons: {
         flexDirection: 'row',
@@ -239,14 +252,18 @@ const styles = StyleSheet.create({
     },
     picker: {
         width: 150,
-        marginLeft: 5,
-        alignSelf : 'flex-start',
+        marginLeft: 15,
+        alignSelf : 'flex-start'
     },
     notFoundText: {
         width: '100%',
         fontSize: 22,
         paddingLeft: 80,
         paddingTop: 50,
-        color: '#f7a1a1'
+        fontFamily: 'OpenSans-Regular',
+        color: '#f86966'
+    },
+    backgroundImage: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     }
 });
