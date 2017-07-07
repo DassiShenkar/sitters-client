@@ -147,7 +147,7 @@ class SitterList extends React.Component {
                                     </ul>
                                 </div>
                             </td>
-                            <td className="motto">{'\"' + motto + '\"'}</td>
+                            <td className="motto">{motto ? '\"' + motto + '\"' : ''}</td>
                             <td className="personality">
                                 <ul>
                                     <li className="label label-dark">{personality[0]}</li>
