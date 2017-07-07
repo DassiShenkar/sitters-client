@@ -68,21 +68,23 @@ class MainNav extends React.Component {
                 <Navbar.Text pullRight>
                     <Image src={this.props.user.profilePicture} alt={this.props.user.name} circle/>
                 </Navbar.Text>
-                <Navbar.Collapse>
+                <Navbar.Collapse className="nav-icons">
                     <Nav pullRight>
                         {this.props.user.isParent ? <NavItem onClick={this.nav.bind(this, "searchBy")}><span
                             className="icon-search"/></NavItem> : null}
                         {this.props.user.isParent ?
                             <OverlayTrigger trigger="focus" placement="bottom" overlay={notifications}>
                                 <NavItem>
-                                    <span className="icon-bell-o"/>
+                                    <span className="icon-bell-o">
                                     {newNotifications.length > 0 ? <Badge>{newNotifications.length}</Badge> : ''}
+                                    </span>
                                 </NavItem>
                             </OverlayTrigger> : null}
                         <OverlayTrigger trigger="focus" placement="bottom" overlay={invites}>
                             <NavItem>
-                                <span className="icon-envelope-o"/>
+                                <span className="icon-envelope-o">
                                 {newInvites.length > 0 ? <Badge>{newInvites.length}</Badge> : ''}
+                                </span>
                             </NavItem>
                         </OverlayTrigger>
                         <DropdownMenu title={this.props.user.name} {...this.props}/>
