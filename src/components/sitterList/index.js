@@ -115,7 +115,7 @@ class SitterList extends React.Component {
                         {sitterIndex > 0 ?
                             <span onClick={this.prevSitter} className={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated': 'glyphicon glyphicon-menu-left'}/> : ''}
                         {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ?
-                            <span onClick={this.nextSitter} className={sitterIndex === 0 ? 'glyphicon glyphicon-menu-right faa-float animated': 'glyphicon glyphicon-menu-right'}/> : ''}
+                            <span onClick={this.nextSitter} className='glyphicon glyphicon-menu-right faa-float animated'/> : ''}
                     </div>
                     <SitterActionBar {...this.props}/>
                 </div>
@@ -147,7 +147,7 @@ class SitterList extends React.Component {
                                     </ul>
                                 </div>
                             </td>
-                            <td className="motto">{'\"' + motto + '\"'}</td>
+                            <td className="motto">{motto ? '\"' + motto + '\"' : ''}</td>
                             <td className="personality">
                                 <ul>
                                     <li className="label label-dark">{personality[0]}</li>
