@@ -43,8 +43,8 @@ self.addEventListener('push', function (event) {
         else {// New sitter in town
             options = {
                 body: "New Sitter In Town:\nMeet " + data.sitterName,
-                icon: data.sitterPicture,
-                badge: data.sitterPicture,
+                icon: data.sitterImage,
+                badge: data.sitterImage,
                 data: {
                     id: data._id,
                     type: "notification",
