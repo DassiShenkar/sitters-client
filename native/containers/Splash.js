@@ -21,6 +21,7 @@ class Splash extends React.Component {
 
     componentWillMount () {
         var self = this;
+        ReactNative.I18nManager.allowRTL(false);
         setTimeout(function() {
             self.ifExists();
         }, 1000);

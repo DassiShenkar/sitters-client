@@ -61,9 +61,9 @@ export default class SitterList extends React.Component {
                     <View style={styles.infoContainer}>
                         {
                             friendCount ? friendCount > 0 ?
-                            <View>
+                            <View style={{ alignItems: 'center', alignSelf: 'center' }}>
                                 <Text style={styles.infoText}>MUTUAL FRIENDS ({friendCount})</Text>
-                                <View style={{ flexDirection: 'row' }}>{this.addFriends()}</View>
+                                <View style={{ alignItems: 'center', alignSelf: 'center' ,flexDirection: 'row' }}>{this.addFriends()}</View>
                             </View> : null  : null
                         }
                         {

@@ -16,8 +16,16 @@ export default class ListItem extends React.Component {
         let text = function() {
             switch(self.props.status) {
                 case 'waiting': return <Text>Waiting Invitation</Text>;
-                case 'accepted': return  userType === "I'm a Parent" ? <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Accepted your invite</Text> : <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Invite accepted</Text>;
-                case 'declined': return  userType === "I'm a Parent" ? <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Declied your invite</Text> : <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Invite declied</Text>;
+                case 'accepted': return userType === "I'm a Parent" ? <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Accepted your invite</Text> : <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Invite accepted</Text>;
+                case 'declined': return userType === "I'm a Parent" ? <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Declied your invite</Text> : <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>Invite declied</Text>;
+                default: return null;
+            }
+        };
+        let badge = function() {
+            switch(self.props.status) {
+                case 'waiting': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#ffca00', color: '#ffca00'}}>*</Text>;
+                case 'accepted': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#4dd0e1', color: '#4dd0e1'}}>*</Text>;
+                case 'declined': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#f86966', color: '#f86966'}}>*</Text>;
                 default: return null;
             }
         };
@@ -27,9 +35,14 @@ export default class ListItem extends React.Component {
                     <Image
                         source={{ uri: userType === "I'm a Parent" ? this.props.sitterImage : this.props.parentImage }}
                         style={styles.image} />
-                    <View>
-                        <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>{ userType === "I'm a Parent" ? this.props.sitterName : this.props.parentName }</Text>
-                        <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>{ text() }</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={{marginTop: 20}}>
+                            {badge()}
+                        </View>
+                        <View style={{marginLeft: 10}}>
+                            <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>{ userType === "I'm a Parent" ? this.props.sitterName : this.props.parentName }</Text>
+                            <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>{ text() }</Text>
+                        </View>
                     </View>
                     <Text style={{fontFamily: 'OpenSans-Regular', color: '#757575'}}>{ this.props.date.slice(0, 10) }</Text>
                 </View>
