@@ -37,7 +37,7 @@ class Map extends React.Component {
                         const infoWindow = new googleMaps.InfoWindow({
                             content: ` <div>
                         <h3>` + parent.name + `</h3>
-                            <Image className="info-window-img" src='` + parent.profilePicture + `' circle/>
+                            <Image class="info-window-img" src='` + parent.profilePicture + `' circle/>
                             <p>` + address + `</p>
                     </div>`
                         });
@@ -80,14 +80,14 @@ class Map extends React.Component {
                         const infoWindow = new googleMaps.InfoWindow({
                             content: ` <div>
                         <h3>` + sitter.name + `</h3>
-                            <Image className="info-window-img" src='` + sitter.profilePicture + `' circle/>
+                            <Image class="info-window-img" src='` + sitter.profilePicture + `' circle/>
                             <p>Motto: ` + sitter.motto + `</p>
                             <p>Last Invite: ` + sitter.lastInvite + `</p>
                             <p>Distance: `+ distance + ` KM</p>
                             <p>Hour Fee: ` + sitter.hourFee + `$</p>
                     </div>`
                         });
-
+                        infoWindow.open(map, marker);
                         // Open InfoWindow when Marker will be clicked
                         googleMaps.event.addListener(marker, "click", () => {
                             self.props.router.push(sitterProfileURL);
@@ -122,10 +122,10 @@ class Map extends React.Component {
                     const infoWindow = new googleMaps.InfoWindow({
                         content: ` <div>
                         <h3>` + this.props.user.name + `</h3>
-                        <Image className="info-window-img" src='` + this.props.user.profilePicture + `' circle/>
+                        <Image class="info-window-img" src='` + this.props.user.profilePicture + `' circle/>
                     </div>`
                     });
-
+                    infoWindow.open(map, marker);
 
                     // Change icon when Marker will be hovered
                     googleMaps.event.addListener(marker, "mouseover", () => {
