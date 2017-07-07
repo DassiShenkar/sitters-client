@@ -80,6 +80,8 @@ export default class SingleInvite extends React.Component {
                                circle={true}/>
                         <h2 className="sitter-name">{invite.sitterName}</h2>
                         <form id="invite">
+                            <ControlLabel>STATUS</ControlLabel>
+                            <p>{invite.status}</p>
                             <ControlLabel>DATE</ControlLabel>
                             <p>{invite.date}</p>
                             <ControlLabel>START TIME</ControlLabel>
