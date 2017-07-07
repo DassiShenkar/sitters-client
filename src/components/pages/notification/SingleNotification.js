@@ -3,7 +3,6 @@ import {Image, PageHeader} from "react-bootstrap";
 import MatchBanner from "../../banners/matchBanner";
 import strings from "../../../static/strings";
 import axios from 'axios';
-import * as _ from "lodash";
 import './style.css';
 
 export default class SingleNotification extends React.Component {
@@ -47,27 +46,24 @@ export default class SingleNotification extends React.Component {
     render() {
         const notificationID = this.props.router.params.notificationId;
         const notification = this.props.user.notifications.filter((notification) => notification._id === notificationID)[0];
-        const sitter = _.find(this.props.feed.matches, (sitter) => {
-            return sitter._id === notification.sitterID;
-        });
         const style = {
-            backgroundImage: 'url(' + sitter.coverPhoto + ')',
+            backgroundImage: 'url(' + notification.sitter.coverPhoto + ')',
             height: '400px'
         };
         return (
             <div id="single-notification-page" className="page">
-                <PageHeader>Meet The New Sitter - {notification.sitterName}</PageHeader>
+                <PageHeader>Meet The New Sitter - {notification.sitter.sitterName}</PageHeader>
                 <div className="match" style={style}>
                     <div className="cover-overlay"/>
                     <div className="sitter-info">
                         <Image className="profilePic"
-                               src={sitter.profilePicture}
-                               alt={sitter.name}
+                               src={notification.sitter.profilePicture}
+                               alt={notification.sitter.sitterName}
                                circle/>
-                        <h1 className="sitterName">{sitter.name}</h1>
+                        <h1 className="sitterName">{notification.sitter.sitterName}</h1>
                     </div>
                 </div>
-                <MatchBanner parent={this.props.user} sitter={sitter} matchScore={sitter.match}/>
+                <MatchBanner parent={this.props.user} sitter={notification.sitter} matchScore={notification.match}/>
             </div>
         )
     }
