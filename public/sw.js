@@ -33,11 +33,11 @@ self.addEventListener('push', function (event) {
             };
             if(data.status === 'waiting'){ // new invite
                 options.icon = data.parentImage;
-                options.body = 'New invite from ' +data.parentName;
+                options.body = 'New invite from ' + data.parentName;
             }
             else{ // invite status change
                 options.icon = data.sitterImage;
-                options.body = data.sitterName + data.status + ' your invite';
+                options.body = data.sitterName + ' ' + data.status + ' your invite';
             }
         }
         else {// New sitter in town
