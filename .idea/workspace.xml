@@ -6,12 +6,8 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="Heroku deploy">
+    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/banners/matchBanner/style.css" afterPath="$PROJECT_DIR$/src/components/banners/matchBanner/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/pages/profile/style.css" afterPath="$PROJECT_DIR$/src/components/pages/profile/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panels/nav/style.css" afterPath="$PROJECT_DIR$/src/components/panels/nav/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sitterList/style.css" afterPath="$PROJECT_DIR$/src/components/sitterList/style.css" />
     </list>
     <list id="85a6bbbf-6823-4eaa-9f01-6d5066ec34c3" name="Not important" comment="" />
     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
@@ -40,21 +36,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="strings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/static/strings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+            <state relative-caret-position="255">
+              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="store.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="store.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+            <state relative-caret-position="85">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -239,13 +235,13 @@
         <option value="$PROJECT_DIR$/src/components/base/controllers/textInputBase/index.js" />
         <option value="$PROJECT_DIR$/src/components/pages/login/index.js" />
         <option value="$PROJECT_DIR$/public/sw.js" />
-        <option value="$PROJECT_DIR$/src/static/strings.js" />
         <option value="$PROJECT_DIR$/src/components/ReactBarChart.js" />
         <option value="$PROJECT_DIR$/src/reducers/sitterProfile.js" />
         <option value="$PROJECT_DIR$/src/actions/SitterProfileActions.js" />
         <option value="$PROJECT_DIR$/src/components/panels/nav/index.js" />
         <option value="$PROJECT_DIR$/src/components/pages/profile/index.js" />
         <option value="$PROJECT_DIR$/src/components/sitterList/index.js" />
+        <option value="$PROJECT_DIR$/src/static/strings.js" />
       </list>
     </option>
   </component>
@@ -970,14 +966,7 @@
       <workItem from="1499330023503" duration="1398000" />
       <workItem from="1499351254178" duration="763000" />
       <workItem from="1499417230705" duration="9916000" />
-      <workItem from="1499518877589" duration="4756000" />
-    </task>
-    <task id="LOCAL-00033" summary="Deploy">
-      <created>1493890185818</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1493890185818</updated>
+      <workItem from="1499518877589" duration="5275000" />
     </task>
     <task id="LOCAL-00034" summary="Deploy">
       <created>1493890893414</created>
@@ -1315,14 +1304,21 @@
       <option name="project" value="LOCAL" />
       <updated>1499525872851</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Deploy heroku">
+      <created>1499526330626</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1499526330626</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301322000" />
+    <option name="totallyTimeSpent" value="301841000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1370" height="735" extended-state="1" />
+    <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1345,7 +1341,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.456" sideWeight="0.4911374" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2656" sideWeight="0.4911374" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21861152" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
@@ -1384,7 +1380,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="specific classes and ids for btns" />
     <MESSAGE value="singleInvite page design" />
     <MESSAGE value="Added parent location to searchBy" />
     <MESSAGE value="Added Click on calendar invite go to invite page" />
@@ -1409,7 +1404,8 @@
     <MESSAGE value="Fixed new sitter bug" />
     <MESSAGE value="Heroku deploy" />
     <MESSAGE value="Fixed sitter index" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed sitter index" />
+    <MESSAGE value="Deploy heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deploy heroku" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1771,18 +1767,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/strings.js">
+    <entry file="file://$PROJECT_DIR$/src/store.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        <state relative-caret-position="85">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store.js">
+    <entry file="file://$PROJECT_DIR$/src/static/strings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding />
         </state>
       </provider>
