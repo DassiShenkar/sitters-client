@@ -3,10 +3,13 @@
 
 .feed-match #sitter-profile .motto {
   font-family: 'Raleway', sans-serif;
-  font-size: 24px; }
+  font-size: 32px; }
 
 .feed-match #sitter-profile .personality {
-  font-size: 18px; }
+  font-size: 20px;
+  letter-spacing: 1.2px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400; }
   .feed-match #sitter-profile .personality ul {
     padding: 0;
     display: flex;
@@ -20,10 +23,6 @@
     margin-left: .8em; }
   .feed-match #sitter-profile .personality .label-dark, .feed-match #sitter-profile .personality .label-regular, .feed-match #sitter-profile .personality .label-light {
     background: #f86966; }
-  .feed-match #sitter-profile .personality .label-regular {
-    opacity: 0.75; }
-  .feed-match #sitter-profile .personality .label-light {
-    opacity: 0.5; }
 
 .feed-match #sitter-profile .mutual-friends {
   float: right;
