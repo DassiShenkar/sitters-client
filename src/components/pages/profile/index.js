@@ -42,6 +42,19 @@ class SitterProfile extends React.Component {
             });
     }
 
+    componentWillUnmount(){
+        this.props.actions.sitterProfileActions.setSitter( {
+            workingHours:{},
+            hobbies: [],
+            languages: [],
+            education: [],
+            address: {},
+            reviews: [],
+            expertise: [],
+            mobility: []
+        });
+    }
+
     addReview() {
         this.props.actions.feedActions.showReviewPopup(true);
     }
