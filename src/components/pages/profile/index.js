@@ -79,8 +79,6 @@ class SitterProfile extends React.Component {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
-
-
         return (
             <div id="sitter-profile">
                 <div className="match" style={style} onMouseEnter={this.displayMatchInfo.bind(this, true)} onMouseLeave={this.displayMatchInfo.bind(this, false)}>
