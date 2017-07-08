@@ -40,3 +40,9 @@ export function displayMatchInfo(shouldDisplayMatchInfo) {
     }
 }
 
+export function setMatchData(matchData) {
+    return {
+        type: 'SET_MATCH_DATA',
+        matchData
+    }
+}

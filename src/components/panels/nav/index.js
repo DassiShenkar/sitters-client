@@ -32,6 +32,7 @@ class MainNav extends React.Component {
             }
             else if(!("parentID" in object && self.props.user.name) && ("sitterID" in object && self.props.user.name)){ // new notification - new sitter in town
                 self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+                self.props.actions.sitterProfileActions.setMatchData(object.match);
             }
         });
     }

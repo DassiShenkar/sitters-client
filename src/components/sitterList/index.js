@@ -23,6 +23,7 @@ class SitterList extends React.Component {
     nextSitter(e) {
         e.preventDefault();
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? this.props.feed.filteredMatches.length - 1 : this.props.feed.sitterIndex + 1;
+        this.props.actions.sitterProfileActions.setMatchData(this.props.feed.filteredMatches[index].match);
         if (strings.ACTIVATE_BLACKLIST) {
             let parent = this.props.user;
             parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
