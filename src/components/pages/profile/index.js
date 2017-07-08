@@ -91,7 +91,7 @@ class SitterProfile extends React.Component {
                         <h1 className="sitterName">{this.props.sitterProfile.sitter.name ? this.props.sitterProfile.sitter.name : ''}</h1>
                     </div>
                     {this.props.sitterProfile.shouldDisplayMatchInfo ?
-                        <MatchBanner parent={this.props.user} sitter={this.props.sitterProfile.sitter} matchScore={this.props.sitterProfile.matchData}/>
+                        <MatchBanner parent={this.props.user} sitter={this.props.sitterProfile.sitter} matchScore={this.props.feed.matches[this.props.feed.sitterIndex].match}/>
                         : ''
                     }
                     <SitterActionBar {...this.props}/>

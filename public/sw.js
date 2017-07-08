@@ -42,11 +42,11 @@ self.addEventListener('push', function (event) {
         }
         else {// New sitter in town
             options = {
-                body: "New Sitter In Town:\nMeet " + data.sitterName,
-                icon: data.sitterImage,
-                badge: data.sitterImage,
+                body: "New Sitter In Town:\nMeet " + data.notification.sitterName,
+                icon: data.notification.sitterImage,
+                badge: data.notification.sitterImage,
                 data: {
-                    id: data._id,
+                    id: data.notification._id,
                     type: "notification",
                 }
             }
