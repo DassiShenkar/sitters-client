@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="" />
+    <list default="true" id="bf45c5e0-5879-4de4-b286-4dfe2593faad" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/static/strings.js" afterPath="$PROJECT_DIR$/src/static/strings.js" />
+    </list>
     <ignored path="D:\Shenkar\finalProject\sitters-client\.idea\shelf/" />
     <ignored path="D:\projects\final project\sitters-client\.idea\shelf/" />
     <ignored path="D:\projects\final project\sitters-client-new\.idea\shelf/" />
@@ -93,8 +95,8 @@
       <file leaf-file-name="strings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/static/strings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="70" lean-forward="false" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
+            <state relative-caret-position="102">
+              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -536,7 +538,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
-    <property name="SearchEverywhereHistoryKey" value="feed&#9;null&#9;null&#10;login&#9;null&#9;null&#10;register&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/forms/Register.js&#10;singleInvi&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/pages/invite/SingleInvite.js&#10;nav&#9;null&#9;null&#10;settings&#9;null&#9;null&#10;sw&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/public/sw.js&#10;singleInvite&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/pages/invite/SingleInvite.js&#10;sitterFeed&#9;null&#9;null&#10;sitter&#9;null&#9;null&#10;sitterProfile&#9;null&#9;null&#10;parentfeed&#9;null&#9;null&#10;searchByTime&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/native/containers/SearchByTime.js&#10;invite&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/invite/Invite.js&#10;SP&#9;null&#9;null&#10;Google&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/controllers/maps/GoogleMaps.js&#10;colors&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/style/colors.scss&#10;SI&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/invite/SingleInvite.js&#10;Single&#9;null&#9;null&#10;Invite&#9;null&#9;null&#10;Notifi&#9;null&#9;null&#10;main&#9;null&#9;null&#10;strings&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/static/strings.js&#10;package&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;Settings&#9;null&#9;null&#10;sitterA&#9;null&#9;null&#10;sea&#9;null&#9;null&#10;SL&#9;null&#9;null&#10;pF&#9;null&#9;null&#10;.gi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/.gitignore&#10;action&#9;null&#9;null&#10;use&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/user.js&#10;sitterL&#9;null&#9;null&#10;profi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/sitterProfile.js&#10;Reg&#9;null&#9;null&#10;Feed&#9;null&#9;null&#10;Parent&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/ParentForm.js&#10;sitterPro&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/sitterProfile.js&#10;mainnav&#9;null&#9;null&#10;Drop&#9;null&#9;null&#10;Review&#9;null&#9;null&#10;RI&#9;null&#9;null&#10;SF&#9;null&#9;null&#10;search&#9;null&#9;null&#10;Login&#9;null&#9;null&#10;Regi&#9;null&#9;null&#10;Sitter&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/SitterForm.js&#10;Logo&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;BaseF&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="strings&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/static/strings.js&#10;feed&#9;null&#9;null&#10;login&#9;null&#9;null&#10;register&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/forms/Register.js&#10;singleInvi&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/pages/invite/SingleInvite.js&#10;nav&#9;null&#9;null&#10;settings&#9;null&#9;null&#10;sw&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/public/sw.js&#10;singleInvite&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/pages/invite/SingleInvite.js&#10;sitterFeed&#9;null&#9;null&#10;sitter&#9;null&#9;null&#10;sitterProfile&#9;null&#9;null&#10;parentfeed&#9;null&#9;null&#10;searchByTime&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/native/containers/SearchByTime.js&#10;invite&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/invite/Invite.js&#10;SP&#9;null&#9;null&#10;Google&#9;FILE&#9;file://D:/projects/final project/sitters-client-new/src/components/controllers/maps/GoogleMaps.js&#10;colors&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/style/colors.scss&#10;SI&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/pages/invite/SingleInvite.js&#10;Single&#9;null&#9;null&#10;Invite&#9;null&#9;null&#10;Notifi&#9;null&#9;null&#10;main&#9;null&#9;null&#10;package&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/package.json&#10;Settings&#9;null&#9;null&#10;sitterA&#9;null&#9;null&#10;sea&#9;null&#9;null&#10;SL&#9;null&#9;null&#10;pF&#9;null&#9;null&#10;.gi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/.gitignore&#10;action&#9;null&#9;null&#10;use&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/user.js&#10;sitterL&#9;null&#9;null&#10;profi&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/sitterProfile.js&#10;Reg&#9;null&#9;null&#10;Feed&#9;null&#9;null&#10;Parent&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/ParentForm.js&#10;sitterPro&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/reducers/sitterProfile.js&#10;mainnav&#9;null&#9;null&#10;Drop&#9;null&#9;null&#10;Review&#9;null&#9;null&#10;RI&#9;null&#9;null&#10;SF&#9;null&#9;null&#10;search&#9;null&#9;null&#10;Login&#9;null&#9;null&#10;Regi&#9;null&#9;null&#10;Sitter&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/components/forms/SitterForm.js&#10;Logo&#9;null&#9;null&#10;inde&#9;FILE&#9;file://D:/Shenkar/finalProject/sitters-client/src/index.js&#10;BaseF&#9;null&#9;null" />
     <property name="js.eslint.eslintPackage" value="D:\Shenkar\finalProject\sitters-client\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
@@ -1061,7 +1063,7 @@
       <workItem from="1498984175010" duration="21147000" />
       <workItem from="1499065729984" duration="20668000" />
       <workItem from="1499104517320" duration="120000" />
-      <workItem from="1499468912964" duration="42000" />
+      <workItem from="1499468912964" duration="709000" />
     </task>
     <task id="LOCAL-00026" summary="forms ready for data">
       <created>1493750636213</created>
@@ -1410,11 +1412,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264476000" />
+    <option name="totallyTimeSpent" value="265143000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1435,7 +1437,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48429036" sideWeight="0.4911374" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48429036" sideWeight="0.4911374" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1879,8 +1881,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/static/strings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="70" lean-forward="false" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="70" />
+        <state relative-caret-position="102">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
