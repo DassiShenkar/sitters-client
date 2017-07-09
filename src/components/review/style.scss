@@ -1,8 +1,14 @@
-.review-modal{
+#edit-review {
 
-  .control-label, .pink{
-    display:flex;
+  .modal-dialog {
+    width: 720px;
   }
+
+  .modal-title {
+    color: #f86966;
+    text-align: left;
+  }
+
   .submit-review {
     display: block;
     border-radius: 40px;
@@ -25,7 +31,45 @@
   }
 }
 
+.review-modal {
 
-.pink{
+  .sitter-info {
+
+    h4 {
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 36px;
+      margin-bottom: 28px;
+    }
+
+    .sitter-image {
+      width: 187px;
+      height: 187px;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+  form {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .control-label, .pink {
+    display: flex;
+  }
+
+  .control-label {
+    color: #757575;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.pink {
   color: #f86966;
+  margin-bottom: 16px;
+  font-size: 24px;
 }

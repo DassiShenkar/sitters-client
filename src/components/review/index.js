@@ -67,7 +67,7 @@ class Review extends React.Component {
         let sitterIndex = this.props.feed.sitterIndex;
         let sitter = this.props.feed.filteredMatches[sitterIndex];
         return (
-            <div>
+            <div id="edit-review">
                 <Modal
                      show={this.props.feed.showReviewPopup}
                     onHide={this.closePopup.bind(this)}
@@ -75,13 +75,15 @@ class Review extends React.Component {
                     aria-labelledby="contained-modal-title"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title">Send Review</Modal.Title>
+                        <Modal.Title id="contained-modal-title">Review</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div className="review-modal">
-                            <form>
+                            <div className="sitter-info">
                                 <Image className="sitter-image" src={sitter? sitter.profilePicture: ''}  circle={true}/>
                                 <h4 className="sitter-name">{sitter? sitter.name: ''}</h4>
+                            </div>
+                            <form>
                                 <ControlLabel>Punctioal</ControlLabel>
                                 <Rating
                                     empty="glyphicon glyphicon-heart-empty"
@@ -111,10 +113,10 @@ class Review extends React.Component {
                                     onChange={this.onChangeRate.bind(this,"general")}
                                     initialRate={this.props.feed.review.rates.general}/>
                                 <ControlLabel>Review</ControlLabel>
-                                <FormControl componentClass="textarea" placeholder="textarea" onChange={this.handleChange.bind(this)} />
-                                <Button className="submit-review" title="Send Review" bsStyle="primary" onClick={this.sendReview}>Send Review</Button>
+                                <FormControl componentClass="textarea" placeholder="Notes" onChange={this.handleChange.bind(this)} />
                             </form>
                         </div>
+                        <Button className="submit-review" title="Send Review" bsStyle="primary" onClick={this.sendReview}>Send Review</Button>
                     </Modal.Body>
                 </Modal>
             </div>
