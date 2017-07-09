@@ -63,9 +63,6 @@ class Register extends Component {
                 setLangs.push(language.name.toLowerCase());
         });
         let totalScore = 0;
-        this.props.register.personalityQuestions.forEach(function(question){
-            totalScore += question.value;
-        });
         this.props.register.items.forEach(function(o){
             if(typeof o.label !== "undefined") {
                 personality.push(o.label);
@@ -130,9 +127,7 @@ class Register extends Component {
                 setLangs.push(language.name.toLowerCase());
         });
         let totalScore = 0;
-        this.props.register.personalityQuestions.forEach(function(question){
-            totalScore += question.value;
-        });
+
         this.props.register.items.forEach(function(o){
             if(typeof o.label !== "undefined") {
                 personality.push(o.label);

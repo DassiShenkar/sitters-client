@@ -27,6 +27,76 @@ class Feed extends React.Component {
 
     componentWillMount() {
         const self = this;
+        AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
+            if (userId) {
+                AsyncStorage.getItem(LocalStorage.USER_TYPE, function(error, userType) {
+                        // let user = self.props.user;
+                        // user.senderGCM = {
+                        //     senderId: gcmKey,
+                        //     valid: true
+                        // };
+                        // let updatePath = user.isParent ? 'parent/update' : 'sitter/update';
+                        // axios({
+                        //     method: 'post',
+                        //     url: 'https://sitters-server.herokuapp.com/' + updatePath,
+                        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                        //     data: user
+                        // }).then(function (res) {
+                        //     if (res.data) {
+                        //     }
+                        //     else {
+                        //         console.log('user not created');
+                        //         Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        //     }
+                        // }).catch(function (error) {
+                        //     console.log(error);
+                        //     Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        // });
+                        //
+                        // let path;
+                        // if (userType == 'parent') {
+                        //     path = 'parent/get';
+                        // } else {
+                        //     path = 'sitter/get';
+                        // }
+                        // axios({
+                        //     method: 'post',
+                        //     url: 'https://sitters-server.herokuapp.com/' + path,
+                        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                        //     data: {_id: userId.toString()}
+                        // }).then(function (user) {
+                        //     if (user.data) {  // user exists
+                        //         user.data.senderGCM = {
+                        //             senderId: gcmKey,
+                        //             valid: true
+                        //         };
+                        //         let updatePath = user.data.isParent ? 'parent/update' : 'sitter/update';
+                        //         axios({
+                        //             method: 'post',
+                        //             url: 'https://sitters-server.herokuapp.com/' + updatePath,
+                        //             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                        //             data: user.data
+                        //         }).then(function (res) {
+                        //             if (res.data) {
+                        //             }
+                        //             else {
+                        //                 console.log('user not created');
+                        //                 Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        //             }
+                        //         }).catch(function (error) {
+                        //             console.log(error);
+                        //             Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        //         });
+                        //     } else {
+                        //
+                        //     }
+                        // }).catch(function(error) {
+                        //     console.log(error);
+                        //     Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+                        // });
+                });
+            }
+        });
         NotificationsAndroid.setNotificationReceivedListener((notification) => {
             let object = JSON.parse(notification.getData().data);
             if(typeof object.message === "undefined" && self.props.user.name){
@@ -47,7 +117,13 @@ class Feed extends React.Component {
                 }
             }
             else { // new notification - new sitter in town
-                self.props.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+                console.log(self.props.user.isParent);
+                console.log(object);
+                if(self.props.user.isParent) {
+                    console.log(self.props.user.notifications);
+                    self.props.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+                    console.log(self.props.user.notifications);
+                }
             }
         });
         NotificationsAndroid.setNotificationOpenedListener((notification) => {
@@ -102,6 +178,34 @@ class Feed extends React.Component {
                                 Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
                             });
                             self.props.actionCreators.setParentData(parent.data);
+                            AsyncStorage.getItem(LocalStorage.GCM_KEY, function(error, gcmKey) {
+                                parent.data.senderGCM = {
+                                    senderId: gcmKey,
+                                    valid: true
+                                };
+                                axios({
+                                    method: 'post',
+                                    url: 'https://sitters-server.herokuapp.com/parent/update',
+                                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                    data: parent.data
+                                }).then(function (res) {
+                                    if (res.data) {
+                                    }
+                                    else {
+                                        console.log('user not created');
+                                        Actions.ErrorPage({
+                                            errorNum: 500,
+                                            errorMsg: 'Server Error \nPlease try again later'
+                                        });
+                                    }
+                                }).catch(function (error) {
+                                    console.log(error);
+                                    Actions.ErrorPage({
+                                        errorNum: 500,
+                                        errorMsg: 'Server Error \nPlease try again later'
+                                    });
+                                });
+                            });
                         }
                         else { // user not exist
                             console.log('user not exist');
@@ -124,6 +228,37 @@ class Feed extends React.Component {
                                 self.props.settingsActions.setSuggestions(sitter.data.settings.allowSuggestions);
                                 self.props.settingsActions.setShowOnSearch(sitter.data.settings.allowShowOnSearch);
                                 self.props.actionCreators.setSitterData(sitter.data);
+                                AsyncStorage.getItem(LocalStorage.GCM_KEY, function(error, gcmKey) {
+                                    sitter.data.senderGCM = {
+                                        senderId: gcmKey,
+                                        valid: true
+                                    };
+                                    axios({
+                                        method: 'post',
+                                        url: 'https://sitters-server.herokuapp.com/sitter/update',
+                                        headers: {
+                                            'Access-Control-Allow-Origin': '*',
+                                            'Content-Type': 'application/json'
+                                        },
+                                        data: sitter.data
+                                    }).then(function (res) {
+                                        if (res.data) {
+                                        }
+                                        else {
+                                            console.log('user not created');
+                                            Actions.ErrorPage({
+                                                errorNum: 500,
+                                                errorMsg: 'Server Error \nPlease try again later'
+                                            });
+                                        }
+                                    }).catch(function (error) {
+                                        console.log(error);
+                                        Actions.ErrorPage({
+                                            errorNum: 500,
+                                            errorMsg: 'Server Error \nPlease try again later'
+                                        });
+                                    });
+                                });
                             }
                             else { // user not exist
                                 console.log('user not exist');
@@ -171,61 +306,15 @@ class Feed extends React.Component {
     }
 }
 
+NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
+    console.log('Push-notifications registered!', deviceToken);
+    LocalStorage.setToLocalStorage(LocalStorage.GCM_KEY, deviceToken);
+});
+
 const styles = StyleSheet.create({
     container: {
         flex: 1
     }
-});
-
-NotificationsAndroid.setRegistrationTokenUpdateListener((deviceToken) => {
-    console.log('Push-notifications registered!', deviceToken);
-    AsyncStorage.getItem(LocalStorage.USER_KEY, function(error, userId) {
-        if (userId) {
-            AsyncStorage.getItem(LocalStorage.USER_TYPE, function(error, userType) {
-                let path;
-                if (userType == 'parent') {
-                    path = 'parent/get';
-                } else {
-                    path = 'sitter/get';
-                }
-                axios({
-                    method: 'post',
-                    url: 'https://sitters-server.herokuapp.com/' + path,
-                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                    data: {_id: userId.toString()}
-                }).then(function (user) {
-                    if (user.data) {  // user exists
-                        user.data.senderGCM = {
-                            senderId: deviceToken,
-                            valid: true
-                        };
-                        let updatePath = user.data.isParent ? 'parent/update' : 'sitter/update';
-                        axios({
-                            method: 'post',
-                            url: 'https://sitters-server.herokuapp.com/' + updatePath,
-                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            data: user.data
-                        }).then(function (res) {
-                            if (res.data) {
-                            }
-                            else {
-                                console.log('user not created');
-                                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                            }
-                        }).catch(function (error) {
-                            console.log(error);
-                            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                        });
-                    } else {
-
-                    }
-                }).catch(function(error) {
-                    console.log(error);
-                    Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                });
-            });
-        }
-    });
 });
 
 function mapStateToProps(state) {

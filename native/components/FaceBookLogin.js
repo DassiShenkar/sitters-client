@@ -79,6 +79,7 @@ export default class FaceBookLogin extends React.Component {
 
     async handleResponse (result) {
         const self = this;
+        console.log(self.props.user.userType);
         if(self.props.user.userType === "I'm a Parent") {
             axios({
                 method: 'post',

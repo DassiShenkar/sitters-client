@@ -40,7 +40,7 @@ class AppBar extends React.Component {
                 Actions.Settings();
                 break;
             case 'login':
-                Actions.Login();
+                Actions.Splash();
                 break;
             default:
                 break;
@@ -207,7 +207,7 @@ function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(RouterActions, dispatch),
         inviteActions: bindActionCreators(InviteActions, dispatch),
-        feedActions: bindActionCreators(FeedActions, dispatch)
+        feedActions: bindActionCreators(FeedActions, dispatch),
     };
 }
 

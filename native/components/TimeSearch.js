@@ -61,6 +61,8 @@ export default class TimeSearch extends React.Component {
                             formHorizontal={false}
                             labelHorizontal={true}
                             animation={true}
+                            buttonSize={12}
+                            buttonOuterSize={20}
                             buttonColor={'#f86966'}
                             labelColor={'#f86966'}
                             labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
@@ -156,7 +158,7 @@ export default class TimeSearch extends React.Component {
     nextSitter() {
         let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? 0 : this.props.feed.sitterIndex + 1;
         this.props.feedActions.setSitterIndex(index);
-        Actions.SearchByTime({active: 2});
+        Actions.SearchByTime({active: 1});
     }
 
     dateCallback(value) {
@@ -176,7 +178,7 @@ export default class TimeSearch extends React.Component {
             this.props.feedActions.setFilteredMatches(sitters);
         }
         this.props.feedActions.setSitterIndex(0);
-        Actions.SearchByTime({newSearch: false, active: 2});
+        Actions.SearchByTime({newSearch: false, active: 1});
     }
 }
 

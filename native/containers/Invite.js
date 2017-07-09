@@ -41,13 +41,19 @@ class Invite extends React.Component {
     //     }
     }
 
-    updateInvite(user, invite){
+    updateInvite(user, invite, action){
+        console.log(invite);
+        var inviteObj = {
+            isParent: user.isParent,
+            invite: invite,
+            action: action
+        };
         const self = this;
         axios({
             method: 'post',
             url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: invite
+            data: inviteObj
         }).then(function (res) {
             if (res.data) {  // invite updated
                 self.props.inviteActions.setInvites(user.invites);
@@ -68,7 +74,7 @@ class Invite extends React.Component {
         const inviteIndex = _.findIndex(user.invites, function(o) { return o._id === invite._id; });
         user.invites[inviteIndex].status = status;
         console.log(user.invites[inviteIndex]);
-        this.updateInvite(user, invite);
+        this.updateInvite(user, invite, 'status');
         Actions.pop();
     }
 

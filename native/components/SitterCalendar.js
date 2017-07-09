@@ -16,7 +16,9 @@ class SitterCalendar extends React.Component {
         let invites = this.props.user.invites ? this.props.user.invites.length > 0 ? this.props.user.invites : [] : [];
         let markedDates = {};
         invites.map(function(invite) {
-           markedDates[dateFormat(invite.date, "yyyy-mm-dd")] = [{marked: true}]
+            if(invite.status === 'accepted') {
+                markedDates[dateFormat(invite.date, "yyyy-mm-dd")] = [{marked: true}]
+            }
         });
         return (
             <ScrollView>

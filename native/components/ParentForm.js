@@ -1,12 +1,12 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, View, Picker, StyleSheet  } from 'react-native';
+import { Text, TextInput, View, StyleSheet  } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import Form from 'react-native-form';
 import BaseForm from './BaseForm';
-import TextButton from './TextButton';
 import strings from '../../src/static/strings';
 import MyMultiSelect from './MyMultiSelect'
+import RadioForm from 'react-native-simple-radio-button';
 
 export default class ParentForm extends React.Component {
 
@@ -21,21 +21,39 @@ export default class ParentForm extends React.Component {
     }
 
     render () {
-        const callback = this.props.callback;
-        const self = this;
+        const radio_props = [
+            {label: strings.GENDER_WITH_BOTH[0], value: 0 },
+            {label: strings.GENDER_WITH_BOTH[1], value: 1 },
+            {label: strings.GENDER_WITH_BOTH[2], value: 2 }
+        ];
+        const gender_props = [
+            {label: strings.GENDER[0], value: 0 },
+            {label: strings.GENDER[1], value: 1 }
+        ];
         return (
             <Form ref="parentForm">
                 <BaseForm
                     { ...this.props }/>
                 <Text style={styles.text}>Preffered Sitter Gender</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={ this.props.register.watchChildGender ?  this.props.register.watchChildGender: strings.GENDER_WITH_BOTH[0] }
-                    onValueChange={(gender) => { this.props.actions.registerActions.changeGenderWatchChild(gender) }}>
-                    <Picker.Item label={ strings.GENDER_WITH_BOTH[2] } value={ strings.GENDER_WITH_BOTH[2] }/>
-                    <Picker.Item label={ strings.GENDER_WITH_BOTH[1] } value={ strings.GENDER_WITH_BOTH[1] }/>
-                    <Picker.Item label={ strings.GENDER_WITH_BOTH[0] } value={ strings.GENDER_WITH_BOTH[0] }/>
-                </Picker>
+                <View style={{marginBottom: 10, marginLeft: 10, marginTop: 10}}>
+                    <RadioForm
+                        radio_props={radio_props}
+                        initial={
+                                this.props.register.watchChildGender ?
+                                    this.props.register.watchChildGender === strings.GENDER_WITH_BOTH[2] ? 2 :
+                                     this.props.register.watchChildGender === strings.GENDER_WITH_BOTH[1] ? 1 :
+                                    0 : 0
+                            }
+                        onPress={(value) => {this.props.actions.registerActions.changeGenderWatchChild(radio_props[value].label)}}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        animation={true}
+                        buttonSize={12}
+                        buttonOuterSize={20}
+                        buttonColor={'#f86966'}
+                        labelColor={'#f86966'}
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
+                </View>
                 <Text style={styles.text}>Max price</Text>
                 <TextInput
                     style={styles.textInput}
@@ -67,7 +85,7 @@ export default class ParentForm extends React.Component {
                     placeholder="child Age"
                     value={ this.props.register.childAge ? this.props.register.childAge : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeChildAge(text)} />
-                <Text style={styles.text}>Child Expertise</Text>
+                <Text style={styles.text}>Child Difficulties</Text>
                 <MyMultiSelect
                     style={{ marginBottom: 10 }}
                     items={strings.EXPERTISE}
@@ -110,13 +128,24 @@ export default class ParentForm extends React.Component {
                     value={ this.props.register.parterEmail ? this.props.register.parterEmail : null}
                     onChangeText={(text) => this.props.actions.registerActions.changePartnerEmail(text)} />
                 <Text style={styles.text}>Partner gender</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={ this.props.user.partnerGender ?  this.props.user.partnerGender : 'Female' }
-                    onValueChange={(gender) => { this.props.actions.registerActions.changePartnerGender(gender) }}>
-                    <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] } />
-                    <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] } />
-                </Picker>
+                <View style={{marginBottom: 10, marginLeft: 10, marginTop: 10}}>
+                    <RadioForm
+                        radio_props={gender_props}
+                        initial={
+                                    this.props.user.partnerGender ?
+                                        this.props.user.partnerGender === strings.GENDER[1] ? 1 : 0 :
+                                        0
+                                }
+                        onPress={(value) => {this.props.actions.registerActions.changePartnerGender(gender_props[value].label)}}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        animation={true}
+                        buttonSize={12}
+                        buttonOuterSize={20}
+                        buttonColor={'#f86966'}
+                        labelColor={'#f86966'}
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
+                </View>
             </Form>
         );
     }
@@ -175,6 +204,23 @@ export default class ParentForm extends React.Component {
         this.props.actions.registerActions.changeChildSpecialNeeds(array);
     }
 }
+
+// <Picker
+//     style={styles.picker}
+//     selectedValue={ this.props.register.watchChildGender ?  this.props.register.watchChildGender: strings.GENDER_WITH_BOTH[0] }
+//     onValueChange={(gender) => { this.props.actions.registerActions.changeGenderWatchChild(gender) }}>
+//     <Picker.Item label={ strings.GENDER_WITH_BOTH[2] } value={ strings.GENDER_WITH_BOTH[2] }/>
+//     <Picker.Item label={ strings.GENDER_WITH_BOTH[1] } value={ strings.GENDER_WITH_BOTH[1] }/>
+//     <Picker.Item label={ strings.GENDER_WITH_BOTH[0] } value={ strings.GENDER_WITH_BOTH[0] }/>
+// </Picker>
+
+// <Picker
+//     style={styles.picker}
+//     selectedValue={ this.props.user.partnerGender ?  this.props.user.partnerGender : 'Female' }
+//     onValueChange={(gender) => { this.props.actions.registerActions.changePartnerGender(gender) }}>
+//     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] } />
+//     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] } />
+// </Picker>
 
 const styles = StyleSheet.create({
     text: {

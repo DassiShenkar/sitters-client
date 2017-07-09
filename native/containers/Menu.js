@@ -8,6 +8,7 @@ var FBLoginManager = require('NativeModules').FBLoginManager;
 
 import MenuItem from '../components/MenuItem';
 import * as RouterActions from '../actions/RouterActions';
+import * as LogoutActions from '../actions/LogoutActions';
 import LocalStorage from '../utils/LocalStorage';
 
 class Menu extends React.Component {
@@ -62,6 +63,7 @@ class Menu extends React.Component {
         LocalStorage.clearAll();
         FBLoginManager.logOut();
         console.log('logout');
+        this.props.logoutActions.logout();
         this.props.routerActions.changeValidFlag(true);
         this.props.routerActions.addScene('login');
         Actions.pop();
@@ -101,7 +103,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        routerActions: bindActionCreators(RouterActions, dispatch)
+        routerActions: bindActionCreators(RouterActions, dispatch),
+        logoutActions: bindActionCreators(LogoutActions, dispatch)
     };
 }
 

@@ -1,9 +1,10 @@
 "use strict";
 import React, { Component } from 'react';
-import { Text, TextInput, Image, View, Picker, StyleSheet } from 'react-native';
+import { Text, TextInput, Image, View, StyleSheet } from 'react-native';
 import {AgeFromDate} from 'age-calculator';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import MyMultiSelect from './MyMultiSelect'
+import RadioForm from 'react-native-simple-radio-button';
 
 import strings from '../../src/static/strings';
 
@@ -22,6 +23,10 @@ export default class BaseForm extends React.Component {
 
     render () {
         const self = this;
+        const radio_props = [
+            {label: strings.GENDER[0], value: 0 },
+            {label: strings.GENDER[1], value: 1 }
+        ];
         let addressString = this.props.register.address ? this.props.register.address.street + ' ' + this.props.register.address.houseNumber + ', ' + this.props.register.address.city : null;
         return (
             <View>
@@ -91,13 +96,26 @@ export default class BaseForm extends React.Component {
                         }} />
                 </View>
                 <Text style={styles.text}>Gender</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={this.props.user.gender ? this.props.user.gender : this.props.register.gender ?  this.props.register.gender : 'Female' }
-                    onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
-                    <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
-                    <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
-                </Picker>
+                <View style={{marginBottom: 10, marginLeft: 10, marginTop: 10}}>
+                    <RadioForm
+                        radio_props={radio_props}
+                        initial={
+                                    this.props.user.gender ?
+                                        this.props.user.gender === strings.GENDER[1] ? 1 : 0 :
+                                        this.props.register.gender ?
+                                            this.props.register.gender === strings.GENDER[1] ? 1 : 0 :
+                                            0
+                                }
+                        onPress={(value) => {this.props.actions.registerActions.changeGender(radio_props[value].label)}}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        animation={true}
+                        buttonSize={12}
+                        buttonOuterSize={20}
+                        buttonColor={'#f86966'}
+                        labelColor={'#f86966'}
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
+                </View>
                 <Text style={styles.text}>Languages</Text>
                 <MyMultiSelect
                     style={{ marginBottom: 10 }}
@@ -171,6 +189,15 @@ export default class BaseForm extends React.Component {
         this.props.actions.registerActions.changeUserAddress(data.description);
     }
 }
+
+//
+// <Picker
+//     style={styles.picker}
+//     selectedValue={this.props.user.gender ? this.props.user.gender : this.props.register.gender ?  this.props.register.gender : 'Female' }
+//     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
+//     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
+//     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
+// </Picker>
 
 const styles = StyleSheet.create({
     text: {

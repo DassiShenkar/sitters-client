@@ -4,10 +4,9 @@ import { View, TextInput, Text, Picker, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import BaseForm from './BaseForm';
 import Form from 'react-native-form';
-import TextButton from './TextButton';
 import strings from '../../src/static/strings';
 import MyMultiSelect from './MyMultiSelect'
-
+import RadioForm from 'react-native-simple-radio-button';
 
 export default class SitterForm extends React.Component {
 
@@ -28,7 +27,10 @@ export default class SitterForm extends React.Component {
     }
 
     render () {
-        const callback = this.props.callback;
+        const gender_props = [
+            {label: strings.BOOLEAN[0], value: 0 },
+            {label: strings.BOOLEAN[1], value: 1 }
+        ];
         return (
             <Form ref="sitterForm">
                 <BaseForm 
@@ -85,13 +87,24 @@ export default class SitterForm extends React.Component {
                     value={ this.props.register.hourFee ? this.props.register.hourFee : null }
                     onChangeText={(text) => this.props.actions.registerActions.changeSitterHourFee(text)} />
                 <Text style={styles.text}>Immediate Availability</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={ this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability : null }
-                    onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterImmediateAvailability(availability) }}>
-                    <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
-                    <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
-                </Picker>
+                <View style={{marginBottom: 10, marginLeft: 10, marginTop: 10}}>
+                    <RadioForm
+                        radio_props={gender_props}
+                        initial={
+                                    this.props.register.sitterImmediateAvailability ?
+                                        this.props.register.sitterImmediateAvailability === strings.BOOLEAN[1] ? 1 : 0 :
+                                        0
+                                }
+                        onPress={(value) => {this.props.actions.registerActions.changeSitterImmediateAvailability(gender_props[value].label)}}
+                        formHorizontal={false}
+                        labelHorizontal={true}
+                        animation={true}
+                        buttonSize={12}
+                        buttonOuterSize={20}
+                        buttonColor={'#f86966'}
+                        labelColor={'#f86966'}
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
+                </View>
                 <Text style={styles.text}>Mobility?</Text>
                 <MyMultiSelect
                     style={{ marginBottom: 10 }}
@@ -274,9 +287,17 @@ export default class SitterForm extends React.Component {
     }
 }
 
+// <Picker
+//     style={styles.picker}
+//     selectedValue={ this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability : null }
+//     onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterImmediateAvailability(availability) }}>
+//     <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
+//     <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
+// </Picker>
+
 const styles = StyleSheet.create({
     text: {
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 16,
         marginLeft: 10,
         fontWeight: 'bold',
@@ -286,7 +307,7 @@ const styles = StyleSheet.create({
         width: '80%',
         marginBottom: 10,
         marginLeft: 5,
-        color: '#f7a1a1',
+        color: '#f86966',
         fontFamily: 'OpenSans-Regular'
     },
     picker: {
@@ -296,7 +317,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     header: {
-        color: '#f7a1a1',
+        color: '#f86966',
         fontSize: 19,
         marginLeft: 10,
         fontWeight: 'bold',

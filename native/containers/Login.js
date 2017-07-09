@@ -4,6 +4,7 @@ import { View, Image, Text, Picker, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
 import RadioForm from 'react-native-simple-radio-button';
+import strings from '../../src/static/strings';
 
 import FaceBookLogin from '../components/FaceBookLogin'
 import Logo from '../components/Logo'
@@ -17,29 +18,30 @@ class Login extends React.Component {
 
     render () {
         const radio_props = [
-            {label: "I'm a Parent", value: 0 },
-            {label: "I'm a Sitter", value: 1 }
+            {label: strings.USER_TYPE[0], value: 0 },
+            {label: strings.USER_TYPE[1], value: 1 }
         ];
-
+        console.log(this.props.user.userType);
         return (
             <View style={ styles.container }>
                 <Logo
                     companyName="Sitters" />
                 <Text style={ styles.text }>A Booking Platform for Parents and Sitters</Text>
                 <View style={styles.innerContainer}>
-
                 </View>
                 <View style={styles.picker}>
                     <RadioForm
                         radio_props={radio_props}
-                        initial={this.props.user.userType ? this.props.user.userType === "I'm a Sitter" ? 1 : 0 : 0}
+                        initial={this.props.user.userType ? this.props.user.userType === strings.USER_TYPE[0] ? 0 : 1 : 0}
                         onPress={(value) => {this.props.actionCreators.changeUserType(radio_props[value].label)}}
                         formHorizontal={false}
                         labelHorizontal={true}
                         animation={true}
+                        buttonSize={12}
+                        buttonOuterSize={20}
                         buttonColor={'#f86966'}
                         labelColor={'#f86966'}
-                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular',}} />
+                        labelStyle={{fontSize: 16, fontFamily: 'OpenSans-Regular'}} />
                 </View>
                 <FaceBookLogin
                     { ...this.props } />
@@ -47,6 +49,15 @@ class Login extends React.Component {
         );
     }
 }
+
+
+// <Picker
+//     style={styles.picker}
+//     selectedValue={ this.props.user.userType ?  this.props.user.userType : strings.USER_TYPE[0] }
+//     onValueChange={(userType) => { this.props.actionCreators.changeUserType(userType) }}>
+//     <Picker.Item label={ strings.USER_TYPE[0] } value={ strings.USER_TYPE[0] } />
+//     <Picker.Item label={ strings.USER_TYPE[1] } value={ strings.USER_TYPE[1] } />
+// </Picker>
 
 const styles = StyleSheet.create({
     container: {

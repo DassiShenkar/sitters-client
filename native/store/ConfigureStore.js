@@ -67,7 +67,13 @@ export default function configureStore() {
             sitterHobbies: [],
             sitterExpertise: [],
             sitterSpecialNeeds: [],
-            sitterEducation: []
+            address: "",
+            items: [],
+            havePartner: strings.BOOLEAN[1],
+            partnerGender: strings.GENDER[0],
+            watchChildGender: strings.GENDER_WITH_BOTH[0],
+            sitterImmediateAvailability: strings.BOOLEAN[0],
+            view: 'step1'
         },
         settings: {
             enableNotifications: true,
@@ -105,15 +111,22 @@ export default function configureStore() {
         },
             distance: "",
             expandReview: false
-        },
-
+        }
     };
 
     const enhancers = compose(
         window.devToolsExtension ? window.devToolsExtension() : f => f
     );
 
-    const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, calendar, routing: routerReducer});
+    // const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, calendar, routing: routerReducer});
+    const appReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, calendar, routing: routerReducer});
+
+    const rootReducer = (state, action) => {
+        if (action.type === 'USER_LOGOUT') {
+            // state = undefined
+        }
+        return appReducer(state, action)
+    };
 
     const store = createStore(
         rootReducer,

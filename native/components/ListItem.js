@@ -24,7 +24,7 @@ export default class ListItem extends React.Component {
         let badge = function() {
             switch(self.props.status) {
                 case 'waiting': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#ffca00', color: '#ffca00'}}>*</Text>;
-                case 'accepted': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#4dd0e1', color: '#4dd0e1'}}>*</Text>;
+                case 'accepted': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#64dd17', color: '#4dd0e1'}}>*</Text>;
                 case 'declined': return <Text style={{padding: 4, height: 3, width: 3, borderRadius:50, backgroundColor: '#f86966', color: '#f86966'}}>*</Text>;
                 default: return null;
             }

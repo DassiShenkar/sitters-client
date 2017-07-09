@@ -6,6 +6,7 @@ export default class LocalStorage {
     static FACEBOOK_KEY = '@FacebookAccessToken:key';
     static USER_KEY = '@User:key';
     static USER_TYPE = '@UserType:key';
+    static GCM_KEY = '@GCM:key';
 
     static async setToLocalStorage(key, data){
         try {
