@@ -104,7 +104,7 @@ class Invite extends React.Component {
                     aria-labelledby="contained-modal-title"
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title">SEND INVITE</Modal.Title>
+                        <Modal.Title id="contained-modal-title">Invite</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div>
