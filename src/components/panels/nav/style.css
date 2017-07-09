@@ -25,12 +25,17 @@ nav#main-nav {
     margin-bottom: 0;
     margin-top: 7.5px;
     margin-left: 0; }
+  nav#main-nav .nav-icons li:last-child {
+    margin-left: 8px; }
   nav#main-nav .badge {
     background-color: #f86966;
-    border-radius: 50%;
-    margin-left: -3px; }
+    position: absolute;
+    left: 12px;
+    bottom: 11px; }
   nav#main-nav .icon-chevron-left {
     margin-right: 8px; }
+  nav#main-nav .icon-envelope-o, nav#main-nav .icon-bell-o {
+    position: relative; }
 
 .popover-title {
   font-family: "Open Sans", Helvetica, Arial, cursive;

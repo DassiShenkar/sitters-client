@@ -42,6 +42,19 @@ class SitterProfile extends React.Component {
             });
     }
 
+    componentWillUnmount(){
+        this.props.actions.sitterProfileActions.setSitter( {
+            workingHours:{},
+            hobbies: [],
+            languages: [],
+            education: [],
+            address: {},
+            reviews: [],
+            expertise: [],
+            mobility: []
+        });
+    }
+
     addReview() {
         this.props.actions.feedActions.showReviewPopup(true);
     }
@@ -79,8 +92,6 @@ class SitterProfile extends React.Component {
         const style = {
             backgroundImage: 'url(' + coverPhoto + ')'
         };
-
-
         return (
             <div id="sitter-profile">
                 <div className="match" style={style} onMouseEnter={this.displayMatchInfo.bind(this, true)} onMouseLeave={this.displayMatchInfo.bind(this, false)}>
@@ -96,7 +107,6 @@ class SitterProfile extends React.Component {
                         <MatchBanner parent={this.props.user} sitter={this.props.sitterProfile.sitter} matchScore={this.props.feed.matches[this.props.feed.sitterIndex].match}/>
                         : ''
                     }
-
                     <SitterActionBar {...this.props}/>
                 </div>
                 <Table className="info-table" responsive>

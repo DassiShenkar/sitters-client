@@ -33,20 +33,20 @@ self.addEventListener('push', function (event) {
             };
             if(data.status === 'waiting'){ // new invite
                 options.icon = data.parentImage;
-                options.body = 'New invite from ' +data.parentName;
+                options.body = 'New invite from ' + data.parentName;
             }
             else{ // invite status change
                 options.icon = data.sitterImage;
-                options.body = data.sitterName + data.status + ' your invite';
+                options.body = data.sitterName + ' ' + data.status + ' your invite';
             }
         }
         else {// New sitter in town
             options = {
-                body: "New Sitter In Town:\nMeet " + data.sitterName,
-                icon: data.sitterPicture,
-                badge: data.sitterPicture,
+                body: "New Sitter In Town:\nMeet " + data.notification.sitterName,
+                icon: data.notification.sitterImage,
+                badge: data.notification.sitterImage,
                 data: {
-                    id: data._id,
+                    id: data.notification._id,
                     type: "notification",
                 }
             }

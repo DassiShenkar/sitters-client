@@ -56,10 +56,7 @@ function user(state = {}, action) {
                 pushNotifications: data.pushNotifications,
                 preferedGender: data.preferedGender,
                 partner: data.partner,
-                senderGCM: {
-                    senderId: String,
-                    valid: Boolean
-                }
+                senderGCM: data.senderGCM
             };
 
         case 'SET_SITTER_DATA' :
@@ -99,7 +96,8 @@ function user(state = {}, action) {
                 maxAge: sitterData.maxAge,
                 minAge: sitterData.minAge,
                 education: sitterData.education,
-                multipleInvites: sitterData.multipleInvites
+                multipleInvites: sitterData.multipleInvites,
+                senderGCM: data.senderGCM
             };
         case 'CHANGE_USER_ADDRESS' :
             return {

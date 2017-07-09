@@ -13,7 +13,7 @@
     font-size: 14px;
     margin-bottom: 24px;
   }
-  .recharts-default-tooltip{
+  .recharts-default-tooltip {
     background-color: #000 !important;
   }
 }
@@ -31,7 +31,11 @@
 }
 
 .personality {
-  font-size: 18px;
+
+  font-size: 20px;
+  letter-spacing: 1.2px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
 
   ul {
     padding: 0;
@@ -53,14 +57,6 @@
   .label-dark, .label-regular, .label-light {
     background: #f86966;
   }
-
-  .label-regular {
-    background: #fa8f8c;
-  }
-
-  .label-light {
-    background: #fbb4b3;
-  }
 }
 
 .match-images img {
@@ -71,4 +67,12 @@
 .recharts-wrapper {
   display: block;
   margin: 0 auto;
+}
+
+.recharts-text {
+  fill: #fff;
+}
+
+.recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line {
+  stroke: #fff;
 }

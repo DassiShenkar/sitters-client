@@ -8,6 +8,7 @@ import List from '../../lists/List';
 
 //style
 import './style.css';
+import * as _ from "lodash";
 
 class MainNav extends React.Component {
 
@@ -30,8 +31,17 @@ class MainNav extends React.Component {
                     self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
                 }
             }
-            else if(!("parentID" in object && self.props.user.name) && ("sitterID" in object && self.props.user.name)){ // new notification - new sitter in town
-                self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object)); // add new notification to state
+            else if(!("parentID" in object.notification && self.props.user.name) && ("sitterID" in object.notification && self.props.user.name)){ // new notification - new sitter in town
+                self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object.notification)); // add new notification to state
+                // self.props.actions.sitterProfileActions.setMatchData(object.match);
+                let matches = self.props.feed.matches;
+                matches.push(object.sitter);
+                // matches = _.sortBy(matches, ['matchScore'], ['desc']);
+                matches = _.orderBy(matches, ['matchScore'], ['desc']);
+                const index = _.findIndex(matches, function(o) { return o._id === object.sitter._id; });
+                self.props.actions.feedActions.setMatches(matches);
+                self.props.actions.feedActions.setFilteredMatches(matches);
+                self.props.actions.feedActions.setSitterIndex(index);
             }
         });
     }

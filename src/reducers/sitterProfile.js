@@ -30,7 +30,11 @@ function sitterProfile(state = {}, action) {
                 ...state,
                 shouldDisplayMatchInfo: action.shouldDisplayMatchInfo
             };
-
+        case 'SET_MATCH_DATA':
+            return {
+                ...state,
+                matchData: action.matchData
+            };
         default:
             return state;
     }
