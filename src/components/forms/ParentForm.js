@@ -53,22 +53,14 @@ class Form extends React.Component {
         this.props.register.items.forEach(function(o){
             personality.push(o.label);
         });
-        let partner;
-        if(this.props.register.havePartner){
-            partner = {
-                gender: this.props.register.partnerGender,
-                email:  this.props.register.partnerEmail,
-                name:  this.props.register.partnerName
-            };
-            parent.partner = partner;
-        }
+
         parent = {
             _id : this.props.user.facebookID,
-            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
-            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
-            age: this.props.register.age != null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
-            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
-            coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
+            name: this.props.register.name !== "" && this.props.register.age !== null ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email !== "" && this.props.register.age !== null ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age !== ""  && this.props.register.age !== null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
+            gender: this.props.register.gender !== "" && this.props.register.gender !== null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
+            coverPhoto: this.props.user.coverPhoto? this.props.user.coverPhoto.source: "",
             timezone: this.props.user.timezone? this.props.user.timezone: "",
             profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
@@ -98,6 +90,13 @@ class Form extends React.Component {
             }
         };
 
+        if(this.props.register.havePartner === "True"){
+            parent.partner = {
+                gender: this.props.register.partnerGender,
+                email:  this.props.register.partnerEmail,
+                name:  this.props.register.partnerName
+            };
+        }
         geocodeByAddress(this.props.user.address,  (err, latLng) => {
             if (err) { console.log('Oh no!', err) }
             else{
@@ -173,7 +172,7 @@ class Form extends React.Component {
     }
 
     getLanguagesFromFacebook(languages){
-        if(languages){
+        if(languages.length > 0){
             return languages;
         }
         else if(this.props.user.languages){
