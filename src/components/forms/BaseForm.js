@@ -46,15 +46,17 @@ class BaseForm extends React.Component {
                            action={this.props.actions.registerActions.changeName}
                            inputType={'name'} {...this.props}
                            reducer={'register'}
+                           value={this.props.register.name}
                            required={true}/>
                 <TextInput label="Email"
                            type="email"
                            placeholder='example@gmail.com'
-                           defaultValue={this.props.user.email ? this.props.user.email : ''}
+                           defaultValue={this.props.user.email}
                            action={this.props.actions.registerActions.changeEmail}
                            inputType={'email'} {...this.props}
                            reducer={'register'}
-                           required={true}/>
+                           required={true}
+                           value={this.props.register.email}/>
                 <TextInput label="Age"
                            type="number"
                            placeholder="0"
@@ -62,14 +64,15 @@ class BaseForm extends React.Component {
                            action={this.props.actions.registerActions.changeAge}
                            inputType={'age'} {...this.props}
                            reducer={'register'}
-                           required={true}/>
+                           required={true}
+                           value={this.props.register.age}/>
                 <ControlLabel>Address</ControlLabel>
                 <PlacesAutocomplete value={this.props.register.address} inputProps={inputProps} />
                 <ControlLabel>Gender</ControlLabel>
                 <RadioGroup options={strings.GENDER}
+                            defaultValue={this.props.register.gender? this.props.register.gender: this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1)}
                             action={this.props.actions.registerActions.changeGender}
                             radioType={'gender'}
-                            value={this.props.register.gender? this.props.register.gender: this.props.user.gender[0].toUpperCase() + this.props.user.gender.slice(1)}
                             required={true}
                             />
             </div>
