@@ -1,12 +1,10 @@
 //external sources
 import React from 'react';
-import axios from 'axios';
 
 //components
 import FacebookLogin from 'react-facebook-login';
 import Form from 'react-bootstrap/lib/Form';
 import ReactPlayer from 'react-player';
-
 import RadioGroup from '../../controllers/radio/radioGroup/index';
 
 //style
@@ -14,74 +12,13 @@ import './style.css';
 
 //statics
 import strings from '../../../static/strings';
+import LoginBase from "../../base/pages/login/index";
 
-class Login extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.login = this.login.bind(this);
-    }
-
-    componentWillMount(){
-        document.getElementsByTagName('html')[0].style.overflow="hidden";
-    }
-
-    componentWillUnmount(){
-        document.getElementsByTagName('html')[0].removeAttribute("style");
-    }
-    login(facebookUser) {
-        if (facebookUser.status === "not_authorized") {
-            this.props.router.push('/notAuthorized');
-        }
-        const self = this;
-        axios({
-            method: 'post',
-            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: {_id: facebookUser.id}
-        })
-            .then(function (response) {
-                if (response.data) {  // user exists
-                    if (facebookUser.friends.data.length > response.data.friends.length) {
-                        let user = response.data;
-                        user.friends = facebookUser.friends.data;
-                        const path = user.isParent ? "parent/updateMutualFriends" : "sitter/updateMutualFriends";
-                        axios({
-                            method: 'post',
-                            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + path,
-                            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            data: user
-                        })
-                            .then(function (response) {
-
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
-                    }
-                    document.cookie = ("auth_token=" + facebookUser.id);
-                    document.cookie = ("is_parent=" + response.data.isParent);
-                    self.props.actions.actionCreators.changeIsParentFlag(response.data.isParent);
-                    if (response.data.isParent)
-                        self.props.actions.actionCreators.setParentData(response.data);
-                    else
-                        self.props.actions.actionCreators.setSitterData(response.data);
-                    self.props.router.push('/');
-                }
-                else { // user not exist
-                    self.props.actions.actionCreators.createUser(facebookUser);
-                    self.props.router.push('/register')
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
+class Login extends LoginBase {
     render() {
         const userTypeRadio = <RadioGroup options={strings.USER_TYPE}
                                           defaultValue={this.props.user.userType || strings.USER_TYPE[0]}
-                                          action={this.props.actions.actionCreators.changeUserType}
+                                          action={this.props.actions.loginActions.changeUserType}
                                           radioType={'userType'}
                                           value={ this.props.user.userType }
                                           required={true}/>;

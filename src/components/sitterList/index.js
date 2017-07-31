@@ -114,9 +114,11 @@ class SitterList extends React.Component {
                     </div>
                     <div className="arrows">
                         {sitterIndex > 0 ?
-                            <span onClick={this.prevSitter} className={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated': 'glyphicon glyphicon-menu-left'}/> : ''}
+                            <span onClick={this.prevSitter}
+                                  className={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated' : 'glyphicon glyphicon-menu-left'}/> : ''}
                         {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ?
-                            <span onClick={this.nextSitter} className='glyphicon glyphicon-menu-right faa-float animated'/> : ''}
+                            <span onClick={this.nextSitter}
+                                  className='glyphicon glyphicon-menu-right faa-float animated'/> : ''}
                     </div>
                     <SitterActionBar {...this.props}/>
                 </div>
@@ -134,21 +136,19 @@ class SitterList extends React.Component {
                             <td>
                                 <div className="mutual-friends">
                                     <ul>
-                                        {mutualFriends ? mutualFriends.map((friend, index) => {
-                                                if(index < 3) {
-                                                return (<li key={index} className={'mutual-friend ' + index}>
-                                                    <Image
-                                                        src={friend.picture}
-                                                        title={friend.name}
-                                                        circle/>
-                                                </li>);
-                                                }
-                                            }) : ''}
+                                        {mutualFriends ? mutualFriends.split(0, 3).map((friend, index) => {
+                                            return (<li key={index} className={'mutual-friend ' + index}>
+                                                <Image
+                                                    src={friend.picture}
+                                                    title={friend.name}
+                                                    circle/>
+                                            </li>);
+                                        }) : ''}
                                         <div className="clear"/>
                                     </ul>
                                 </div>
                             </td>
-                            <td className="motto">{motto ? '\"' + motto + '\"' : ''}</td>
+                            <td className="motto">{motto ? '"' + motto + '"' : ''}</td>
                             <td className="personality">
                                 <ul>
                                     <li className="label label-dark">{personality[0]}</li>
@@ -171,4 +171,5 @@ class SitterList extends React.Component {
         )
     }
 }
+
 export default SitterList;
