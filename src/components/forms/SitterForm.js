@@ -54,7 +54,7 @@ class Form extends React.Component {
     }
 
     getLanguagesFromFacebook(languages){
-        if(languages){
+        if(languages.length > 0){
             return languages;
         }
         else if(this.props.user.languages){
@@ -115,10 +115,10 @@ class Form extends React.Component {
         });
         let sitter = {
             _id: this.props.user.facebookID,
-            name: this.props.register.name != null ? this.props.register.name : this.props.user.name,
-            email: this.props.register.email != null ? this.props.register.email : this.props.user.email,
-            age: this.props.register.age != null ? Number(this.props.register.age) : this.calcAge(this.props.user.birthday),
-            gender: this.props.register.gender != null ? this.props.register.gender.toLowerCase() : this.props.user.gender,
+            name: this.props.register.name !== "" && this.props.register.age !== null ? this.props.register.name : this.props.user.name,
+            email: this.props.register.email !== "" && this.props.register.age !== null ? this.props.register.email : this.props.user.email,
+            age: this.props.register.age !== ""  && this.props.register.age !== null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
+            gender: this.props.register.gender !== "" && this.props.register.gender !== null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto?this.props.user.coverPhoto.source: "",
             timezone: this.props.user.timezone? this.props.user.timezone: "",
             profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
@@ -258,6 +258,8 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="0"
                                    action={this.props.actions.registerActions.changeSitterExperience}
+                                   defaultValue={this.props.register.sitterExperience}
+                                   value={this.props.register.sitterExperience}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -265,7 +267,7 @@ class Form extends React.Component {
                         <RadioGroup options={strings.BOOLEAN}
                                     action={this.props.actions.registerActions.changeSitterImmediateAvailability}
                                     radioType={'sitterImmediateAvailability'}
-                                    value={this.props.register.sitterImmediateAvailability}
+                                    defaultValue={this.props.register.sitterImmediateAvailability? this.props.register.sitterImmediateAvailability: strings.BOOLEAN[1]}
                                     required={true}/>
                         <ControlLabel>Education</ControlLabel>
                         <SelectInput
@@ -309,6 +311,8 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="0"
                                    action={this.props.actions.registerActions.changeSitterMinimumAge}
+                                   defaultValue={this.props.register.sitterMinAge}
+                                   value={this.props.register.sitterMinAge}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -316,6 +320,8 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="12"
                                    action={this.props.actions.registerActions.changeSitterMaximumAge}
+                                   defaultValue={this.props.register.sitterMaxAge}
+                                   value={this.props.register.sitterMaxAge}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -323,6 +329,8 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="0"
                                    action={this.props.actions.registerActions.changeSitterHourFee}
+                                   defaultValue={this.props.register.hourFee}
+                                   value={this.props.register.hourFee}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -345,7 +353,7 @@ class Form extends React.Component {
                                        reducer={'register'}
                         />
                         <ControlLabel>Your Motto</ControlLabel>
-                        <FormControl required maxlength="140" componentClass="textarea" placeholder="motto" onChange={(e) => this.props.actions.registerActions.changeSitterMotto(e.target.value)} />
+                        <FormControl required maxLength="140" componentClass="textarea" placeholder="motto" onChange={(e) => this.props.actions.registerActions.changeSitterMotto(e.target.value)} />
                         <DragAndDropContainer {...this.props}/>
                         {strings.STEPS.indexOf(this.props.register.view) === (strings.STEPS.length -1)?
                             <Button onClick={this.handleSubmitSitter} type="submit" className="next-btn" value="Sign Up">Sign Up</Button>: ''}

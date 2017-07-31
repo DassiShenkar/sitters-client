@@ -165,7 +165,7 @@ class EditProfileParent extends React.Component {
                                     action={this.props.actions.editProfileActions.changePartnerGenderEP}
                                     radioType={'partnerGender'}
                                     value={this.props.editProfile.partnerGender}
-                                    required={true}/>;
+                                    required={true}/>
                     </section>
             }
             else if (view === "step3") {

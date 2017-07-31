@@ -14,7 +14,7 @@ export default class TextInput extends TextInputBase {
             value = this.props.value;
         else
             // value = this.props[this.props.reducer][this.props.inputType] ? this.props[this.props.reducer][this.props.inputType] : this.props[this.props.reducer][this.props.inputType] === ''? '': this.props.defaultValue;
-            value = this.props.defaultValue
+            value = this.props.defaultValue;
             return (
             <div className="text-input">
                 <ControlLabel>{this.props.label}</ControlLabel>

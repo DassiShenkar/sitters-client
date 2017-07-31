@@ -97,7 +97,7 @@ function user(state = {}, action) {
                 minAge: sitterData.minAge,
                 education: sitterData.education,
                 multipleInvites: sitterData.multipleInvites,
-                senderGCM: data.senderGCM
+                senderGCM: sitterData.senderGCM
             };
         case 'CHANGE_USER_ADDRESS' :
             return {
