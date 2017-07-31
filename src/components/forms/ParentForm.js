@@ -206,13 +206,17 @@ class Form extends React.Component {
                         <TextInput label="Partner Name"
                                    placeholder='Name'
                                    defaultValue={this.props.register.partnerName}
+                                   value={this.props.register.partnerName}
                                    action={this.props.actions.registerActions.changePartnerName}
+                                   inputType={'partnerName'}
                                    {...this.props}
                                    reducer={'register'}/>
                         <TextInput label="Partner Email"
                                    type="email"
                                    placeholder='Email'
-                                   defaultValue={this.props.register.partnerEmail ? this.props.user.partnerEmail : ''}
+                                   defaultValue={this.props.register.partnerEmail}
+                                   value={this.props.register.partnerEmail}
+                                   inputType={'partnerEmail'}
                                    action={this.props.actions.registerActions.changePartnerEmail}
                                    {...this.props}
                                    reducer={'register'}/>
@@ -220,7 +224,7 @@ class Form extends React.Component {
                         <RadioGroup options={strings.GENDER}
                                     action={this.props.actions.registerActions.changePartnerGender}
                                     radioType={'partnerGender'}
-                                    value={this.props.register.partnerGender}
+                                    defaultValue={this.props.register.partnerGender? this.props.register.partnerGender: strings.GENDER[0]}
                                     required={true}/>
                     </section>;
                 registerView =
@@ -230,7 +234,7 @@ class Form extends React.Component {
                         <RadioGroup options={strings.BOOLEAN}
                                     action={this.props.actions.registerActions.changeHavePartner}
                                     radioType={'partner'}
-                                    value={this.props.register.havePartner}
+                                    defaultValue={this.props.register.havePartner? this.props.register.havePartner: strings.BOOLEAN[1]}
                                     required={true}
                         />
                         {this.props.register.havePartner === 'True'? partner: ""}
@@ -243,6 +247,8 @@ class Form extends React.Component {
                         <TextInput label="Child Name"
                                    placeholder="Child Name"
                                    action={this.props.actions.registerActions.changeChildName}
+                                   defaultValue={this.props.register.childName}
+                                   value={this.props.register.childName}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -250,6 +256,8 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="0"
                                    action={this.props.actions.registerActions.changeChildAge}
+                                   defaultValue={this.props.register.childAge}
+                                   value={this.props.register.childAge}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
@@ -287,12 +295,15 @@ class Form extends React.Component {
                                    type="number"
                                    placeholder="0"
                                    action={this.props.actions.registerActions.changeChildMaxPriceForWatch}
+                                   defaultValue={this.props.register.watchMaxPrice}
+                                   value={this.props.register.watchMaxPrice}
                                    {...this.props}
                                    reducer={'register'}
                                    required={true}/>
                         <ControlLabel>Preferred Sitter</ControlLabel>
                         <RadioGroup options={strings.GENDER_WITH_BOTH}
                                     action={this.props.actions.registerActions.changeGenderWatchChild}
+                                    defaultValue={this.props.register.watchChildGender? this.props.register.watchChildGender: strings.GENDER_WITH_BOTH[0]}
                                     radioType={'genderWatch'}
                                     value={this.props.register.watchChildGender}/>
                         <ControlLabel>Languages</ControlLabel>
