@@ -136,7 +136,7 @@ class SitterList extends React.Component {
                             <td>
                                 <div className="mutual-friends">
                                     <ul>
-                                        {mutualFriends ? mutualFriends.split(0, 3).map((friend, index) => {
+                                        {mutualFriends ? mutualFriends.map((friend, index) => {
                                             return (<li key={index} className={'mutual-friend ' + index}>
                                                 <Image
                                                     src={friend.picture}
