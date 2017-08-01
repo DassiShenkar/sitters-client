@@ -1,6 +1,8 @@
-#single-invite {
+@import "../../../style/colors.scss";
+@import "../../../style/fonts.scss";
 
-  color: #757575;
+#single-invite {
+  color: $text;
 
   .invite-container {
     display: flex;
@@ -12,7 +14,7 @@
     flex: 1;
 
     .control-label {
-      color: #f86966;
+      color: $brand;
       font-size: 14px;
     }
   }
@@ -42,35 +44,35 @@
     display: block;
     border-radius: 40px;
     background: #fff;
-    color: #f86966;
-    border-color: #f86966;
+    color: $brand;
+    border-color: $brand;
     margin: 48px 15px 48px 0;
     padding: 8px 15px;
   }
 
   .invite-btn:hover {
-    background: #f86966;
+    background: $brand;
     color: #fff;
   }
 
   .invite-btn:active {
     outline: 0;
     box-shadow: none;
-    border-color: #f86966;
+    border-color: $brand;
   }
 
   #decline-btn {
-    border-color: #4dd0e1;
-    color: #4dd0e1;
+    border-color: $primary-cold;
+    color: $primary-cold;
   }
 
   #decline-btn:hover {
-    background: #4dd0e1;
+    background: $primary-cold;
     color: #fff;
   }
 
   #decline-btn:active {
-    border-color: #4dd0e1;
+    border-color: $primary-cold;
   }
 }
 

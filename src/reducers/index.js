@@ -7,13 +7,17 @@ import feed from './feed';
 import settings from './settings';
 import searchBy from './searchBy';
 import range from './range';
-import invite from './invite';
+import invites from './invite';
 import sitterProfile from './sitterProfile';
 import workingHours from './workingHours'
 import sitterFeed from './sitterFeed'
 import editProfile from './editProfile'
-import login from './../../src/components/pages/login/reducer'
 
-const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, sitterFeed, editProfile, login,  routing: routerReducer});
+//new reducers
+import login from './../../src/components/pages/login/reducer'
+import invite from './../../src/components/pages/invite/reducer'
+
+
+const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invites, invite,  workingHours, sitterFeed, editProfile, login,  routing: routerReducer});
 
 export default rootReducer;

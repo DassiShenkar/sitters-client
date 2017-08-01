@@ -42,12 +42,7 @@ export function changeRecurringDate(recurringDate,recurringDay,recurringIsoValue
     }
 }
 
-export function setInvites(invites) {
-    return {
-        type: 'SET_INVITES',
-        invites
-    }
-}
+
 
 export function changeRecurring(recurring) {
     return {
