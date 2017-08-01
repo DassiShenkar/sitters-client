@@ -63,6 +63,13 @@
         left: 50%;
         display: block;
 
+        $index: 0;
+        @if $index >= 3 {
+          li {
+            display: none;
+          }
+        }
+
         li {
           float: left;
           margin-left: 8px;
