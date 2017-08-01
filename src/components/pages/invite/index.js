@@ -1,13 +1,18 @@
+//external sources
 import React from 'react';
+
+//components
+import InviteBase from '../../base/pages/invite/index'
 import {Button, ControlLabel, Image, PageHeader} from "react-bootstrap";
 import GoogleMaps from "../../controllers/maps/GoogleMaps";
+
+//style
 import './style.css';
-import InviteBase from '../../base/pages/invite/index'
 
 export default class Invite extends InviteBase {
     render() {
         const inviteID = this.props.router.params.inviteId;
-        const invite = this.props.user.invites.filter((invite) => invite._id === inviteID)[0];
+        const invite = this.props.user.invites.filter((invite) => invite._id === inviteID)[0]; // get the current invite
         const buttons = !this.props.user.isParent && invite.status === 'waiting' ?
             (<div className="invite-buttons-container">
                 <Button title="Accept" id="accept-btn" className="invite-btn"

@@ -6,13 +6,14 @@ import FacebookLogin from 'react-facebook-login';
 import Form from 'react-bootstrap/lib/Form';
 import ReactPlayer from 'react-player';
 import RadioGroup from '../../controllers/radio/radioGroup/index';
+import LoginBase from "../../base/pages/login/index";
 
 //style
 import './style.css';
 
 //statics
 import strings from '../../../static/strings';
-import LoginBase from "../../base/pages/login/index";
+
 
 class Login extends LoginBase {
     render() {
