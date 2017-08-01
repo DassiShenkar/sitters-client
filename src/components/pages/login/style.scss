@@ -1,3 +1,5 @@
+@import "../../../style/colors";
+
 #login-page {
   text-align: center;
 
@@ -14,7 +16,7 @@
   header {
     h1 {
       font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
-      color: #f86966;
+      color: $brand;
       font-size: 136px;
     }
     .tagline {
@@ -62,8 +64,8 @@
   }
 
   .kep-login-facebook.metro:hover {
-    background: #f86966;
-    border-color: #f86966;
+    background: $brand;
+    border-color: $brand;
     color: #fff;
   }
 
