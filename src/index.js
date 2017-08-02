@@ -16,7 +16,7 @@ import SitterProfile from "./components/pages/profile/index";
 import ReviewList from "./components/reviewList/index";
 import SingleReview from "./components/review/SingleReview";
 import SingleInvite from "./components/pages/invite/index";
-import SingleNotification from "./components/pages/notification/SingleNotification";
+import SingleNotification from "./components/pages/notification/index";
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
 import Thanks from "./components/Thanks";
