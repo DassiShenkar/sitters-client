@@ -17,12 +17,7 @@ import strings from '../../../static/strings';
 
 class Login extends LoginBase {
     render() {
-        const userTypeRadio = <RadioGroup options={strings.USER_TYPE}
-                                          defaultValue={this.props.user.userType || strings.USER_TYPE[0]}
-                                          action={this.props.actions.loginActions.changeUserType}
-                                          radioType={'userType'}
-                                          value={ this.props.user.userType }
-                                          required={true}/>;
+        const shouldShowRadio = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") === '';
         return (
             <div id="login-page">
                 <ReactPlayer url='./Shoes.mp4' playing loop controls={false} width={"auto"} height={"auto"} style={{"width": "auto", "height": "auto"}}/>
@@ -32,7 +27,13 @@ class Login extends LoginBase {
                         <h3 className="tagline">{strings.APP_DESCRIPTION}</h3>
                     </header>
                     <Form id="login-form" horizontal>
-                        {document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") !== '' ? '' : userTypeRadio}
+                        <RadioGroup options={strings.USER_TYPE}
+                                    defaultValue={this.props.user.userType || strings.USER_TYPE[0]}
+                                    action={this.props.actions.loginActions.changeUserType}
+                                    radioType={'userType'}
+                                    value={ this.props.user.userType }
+                                    required={true}
+                                    className={shouldShowRadio ? 'user-type-radio' : 'hide'}/>;
                         <FacebookLogin
                             appId="268453370262293"
                             autoLoad={false}
