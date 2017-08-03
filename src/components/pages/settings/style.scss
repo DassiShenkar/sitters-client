@@ -1,3 +1,6 @@
+@import "../../../style/colors.scss";
+@import "../../../style/fonts.scss";
+
 #settings-page{
 
   #settings-form{
@@ -7,35 +10,34 @@
   .submit-settings {
     display: block;
     border-radius: 40px;
-    background: #fff;
-    color: #f86966;
-    border-color: #f86966;
+    background: $white;
+    color: $brand;
+    border-color: $brand;
     margin: 48px 0;
     padding: 8px 15px;
   }
 
   .submit-settings:hover {
-    background: #f86966;
-    color: #fff;
+    background: $brand;
+    color: $white;
   }
 
   .submit-settings:active {
     outline: 0;
     box-shadow: none;
-    border-color: #f86966;
+    border-color: $brand;
   }
-
 
   .react-toggle {
     margin-left: 15px;
   }
 
   .react-toggle--checked .react-toggle-track {
-    background-color: #f86966;
+    background-color: $brand;
   }
 
   .react-toggle--checked .react-toggle-thumb {
-    border-color: #f86966;
+    border-color: $brand;
   }
 
   label{

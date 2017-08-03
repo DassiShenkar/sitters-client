@@ -7,6 +7,7 @@ const strings = {
     DEBUG: true,
     ACTIVATE_BLACKLIST: false,
     ACTIVATE_MEDIAN: false,
+    GOOGLE_WEB_WORKERS_API_KEY: "BA9TXkOAudBsHZCtma-VftBiXmAc-Ho4M7SwAXRpZDR-DsE6pdMP_HVTTQaa3vkQuHLcB6hB87yiunJFUEa4Pas",
     DEVELOPERS: "Arel Gindos, Dassi Rosen, Gregory K",
     GOOGLE_APIKEY: "AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0",
     APP_DESCRIPTION: "A Booking Platform for Parents and Sitters",

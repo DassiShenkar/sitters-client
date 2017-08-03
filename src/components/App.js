@@ -6,7 +6,6 @@ import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
 import * as FeedActions from '../actions/FeedActions';
-import * as SettingsActions from '../actions/SettingsActions';
 import * as SearchByActions from '../actions/SearchByActions';
 import * as RangeActions from '../actions/RangeActions';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
@@ -19,6 +18,7 @@ import * as SitterFeedActions from '../actions/SitterFeedActions';
 //new actions
 import * as LoginActions from './base/pages/login/action';
 import * as SitterProfileActions from './base/pages/sitterProfile/action';
+import * as SettingsActions from './base/pages/settings/action';
 
 //components
 import Main from './Main'
@@ -54,7 +54,6 @@ function mapDispatchToProps(dispatch) {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch),
-            settingsActions: bindActionCreators(SettingsActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
             rangeActions: bindActionCreators(RangeActions, dispatch),
@@ -64,8 +63,10 @@ function mapDispatchToProps(dispatch) {
             sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
             personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch),
             editProfileActions: bindActionCreators(EditProfileActions, dispatch),
+
             loginActions: bindActionCreators(LoginActions, dispatch),
-            sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch)
+            sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
+            settingsActions: bindActionCreators(SettingsActions, dispatch)
         }
     };
 }

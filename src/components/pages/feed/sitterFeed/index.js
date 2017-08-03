@@ -26,9 +26,9 @@ class SitterFeed extends React.Component {
             })
                 .then(function (sitter) {
                     if (sitter.data) {  // user exists
-                        self.props.actions.settingsActions.setNotifications(sitter.data.settings.allowNotification);
-                        self.props.actions.settingsActions.setSuggestions(sitter.data.settings.allowSuggestions);
-                        self.props.actions.settingsActions.setShowOnSearch(sitter.data.settings.allowShowOnSearch);
+                        // self.props.actions.settingsActions.setNotifications(sitter.data.settings.allowNotification);
+                        // self.props.actions.settingsActions.setSuggestions(sitter.data.settings.allowSuggestions);
+                        // self.props.actions.settingsActions.setShowOnSearch(sitter.data.settings.allowShowOnSearch);
                         self.props.actions.actionCreators.setSitterData(sitter.data);
                     }
                     else { // user not exist
