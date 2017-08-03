@@ -14,7 +14,7 @@ import sitterFeed from './sitterFeed'
 import editProfile from './editProfile'
 
 //new reducers
-import login from './../../src/components/pages/login/reducer'
+import login from '../components/base/pages/login/reducer'
 import invite from './../../src/components/pages/invite/reducer'
 
 

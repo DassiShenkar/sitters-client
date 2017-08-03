@@ -2,9 +2,9 @@
 import React from 'react';
 
 //utils
-import {updateMutualFriends} from './../../../../utils/axios';
 import {post} from '../../../../utils/serverCalls';
 import {sittersApi} from "../../../../sittersAPI/sittersAPI";
+import * as _ from "lodash";
 
 export default class LoginBase extends React.Component {
 
@@ -22,7 +22,7 @@ export default class LoginBase extends React.Component {
     }
 
     login(facebookUser) {
-        if (facebookUser.status === "not_authorized") { // if user not authorized move to notAuthorized page
+        if (facebookUser.status === "not_authorized") {
             this.props.router.push('/notAuthorized');
         }
         const self = this;
@@ -31,7 +31,7 @@ export default class LoginBase extends React.Component {
                 if (facebookUser.friends.data.length > user.data.friends.length) {
                     let user = user.data;
                     user.friends = facebookUser.friends.data;
-                    updateMutualFriends(user, user.isParent ? "parent/updateMutualFriends" : "sitter/updateMutualFriends"); // update friends in db
+                    post(user.isParent ? sittersApi.UPDATE_PARENT_MUTUAL_FRIENDS : sittersApi.UPDATE_SITTER_MUTUAL_FRIENDS, user,  _.noop); // update friends in db
                 }
                 document.cookie = ("auth_token=" + facebookUser.id); // save token for future login
                 document.cookie = ("is_parent=" + user.data.isParent);

@@ -1,6 +1,7 @@
 import React from 'react';
 import * as _ from "lodash";
-import {updateInvite} from "../../../../utils/axios";
+import {post} from '../../../../utils/serverCalls';
+import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 
 export default class InviteBase extends React.Component {
     constructor() {
@@ -25,7 +26,7 @@ export default class InviteBase extends React.Component {
 
     updateInvite(user, invite, action) {
         const self = this;
-        updateInvite(user, invite, action, function(result){ // update invite in server
+        post(sittersApi.UPDATE_INVITE, {'invite': invite, action: action, isParent: user.isParent},function(result){ // update invite in server
             if(result.data) // if server update successfully
                 self.props.actions.inviteActions.setInvites(user.invites); // if server call success, update the invite in the state.
             else

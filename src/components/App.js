@@ -15,7 +15,7 @@ import * as WorkingHours from '../actions/WorkingHoursActions';
 import * as PersonalityQuestions from '../actions/PersonalityQuestionsActions';
 import * as SitterFeedActions from '../actions/SitterFeedActions';
 import * as EditProfileActions from '../actions/EditProfileActions';
-import * as LoginActions from '../../src/components/pages/login/action';
+import * as LoginActions from './base/pages/login/action';
 
 //components
 import Main from './Main'
