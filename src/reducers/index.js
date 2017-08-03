@@ -15,7 +15,7 @@ import editProfile from './editProfile'
 
 //new reducers
 import login from '../components/base/pages/login/reducer'
-import invite from './../../src/components/pages/invite/reducer'
+import invite from '../components/base/pages/invite/reducer'
 
 
 const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invites, invite,  workingHours, sitterFeed, editProfile, login,  routing: routerReducer});
