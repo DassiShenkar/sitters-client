@@ -1,6 +1,9 @@
+@import "../../../style/colors.scss";
+@import "../../../style/fonts.scss";
+
 nav#main-nav {
 
-  background: #fff;
+  background: $white;
   border: none;
   box-shadow: 0 1px 5px 0 rgba(41, 85, 115, .21);
   margin-bottom: 0;
@@ -18,13 +21,13 @@ nav#main-nav {
 
   ul > li > a > span:before {
     font-size: 18px;
-    color: #000;
+    color: $black;
     opacity: 0.5;
   }
 
   .navbar-brand {
-    color: #f86966;
-    font-family: "Poiret One", "Helvetica Neue", Helvetica, Arial, cursive;
+    color: $brand;
+    font-family: $poiretOne;
     font-weight: bold;
     font-size: 28px;
   }
@@ -44,7 +47,7 @@ nav#main-nav {
   }
 
   .badge {
-    background-color: #f86966;
+    background-color: $brand;
     position: absolute;
     left: 12px;
     bottom: 11px;
@@ -60,11 +63,11 @@ nav#main-nav {
 }
 
 .popover-title {
-  font-family: "Open Sans", Helvetica, Arial, cursive;
+  font-family: $openSans;
   font-weight: bold;
   letter-spacing: 1.2px;
-  color: #f86966;
-  background-color: #fff;
+  color: $brand;
+  background-color: $white;
 }
 
 .popover-content {
@@ -74,7 +77,7 @@ nav#main-nav {
     margin-bottom: 0;
 
     li.item {
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 1px solid $white-light;
     }
 
     .item-link {
@@ -101,22 +104,21 @@ nav#main-nav {
       }
 
       .waiting:before {
-        color: #ffca00;
+        color: $primary-warm;
       }
 
       .accepted:before {
-        color: #64dd17;
+        color: $green-accept;
       }
 
       .declined:before {
-        color: #f86966;
+        color: $brand;
       }
-
     }
 
     .item-link:hover {
       text-decoration: none;
-      background-color: #f5f5f5;
+      background-color: $white-light;
     }
     li.item:last-child {
       border: none;

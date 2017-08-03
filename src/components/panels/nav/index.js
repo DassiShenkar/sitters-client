@@ -1,56 +1,17 @@
 //external sources
 import React from 'react';
-import {browserHistory} from 'react-router';
+
 //Components
-import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap/lib';
+import MainNavBase from "../../base/panels/nav/index";
+import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
 import List from '../../lists/List';
 
 //style
 import './style.css';
-import * as _ from "lodash";
 
-class MainNav extends React.Component {
-
-    componentWillMount(){
-        const self = this;
-        navigator.serviceWorker.addEventListener('message', function(event) {
-            let object = JSON.parse(event.data);
-            if("parentID" in object && self.props.user.name){
-                if(object.status !== 'waiting') { // update invite
-                    let invites = self.props.user.invites;
-                    invites.forEach(invite => {
-                        if(invite._id === object._id) {
-                            invite.status = object.status;
-                            invite.wasRead = false;
-                        }
-                    });
-                    self.props.actions.actionCreators.setInvites(invites);
-                }
-                else {
-                    self.props.actions.actionCreators.setInvites(self.props.user.invites.concat(object)); // new invite
-                }
-            }
-            else if(!("parentID" in object.notification && self.props.user.name) && ("sitterID" in object.notification && self.props.user.name)){ // new notification - new sitter in town
-                self.props.actions.actionCreators.setNotifications(self.props.user.notifications.concat(object.notification)); // add new notification to state
-                // self.props.actions.sitterProfileActions.setMatchData(object.match);
-                let matches = self.props.feed.matches;
-                matches.push(object.sitter);
-                // matches = _.sortBy(matches, ['matchScore'], ['desc']);
-                matches = _.orderBy(matches, ['matchScore'], ['desc']);
-                const index = _.findIndex(matches, function(o) { return o._id === object.sitter._id; });
-                self.props.actions.feedActions.setMatches(matches);
-                self.props.actions.feedActions.setFilteredMatches(matches);
-                self.props.actions.feedActions.setSitterIndex(index);
-            }
-        });
-    }
-    nav(view) {
-        this.props.router.getCurrentLocation().pathname === '/'? this.props.action(view):browserHistory.goBack();
-    }
-
+class MainNav extends MainNavBase {
     render() {
-
         const notifications = (<Popover id="popover-trigger-click-root-close" title="NOTIFICATIONS">
             <List items={this.props.user.notifications} type='notification' isParent={this.props.user.isParent}/>
         </Popover>);
@@ -61,9 +22,8 @@ class MainNav extends React.Component {
 
         const newInvites = this.props.user.invites.filter(invite => (this.props.user.isParent && !invite.wasRead && invite.status !== 'waiting') || (!this.props.user.isParent && !invite.wasRead && invite.status === 'waiting'));
         let newNotifications = [];
-        if(this.props.user.notifications){
+        if(this.props.user.notifications)
             newNotifications = this.props.user.notifications.filter(notification => !notification.wasRead);
-        }
 
         return (
             <Navbar id="main-nav" fluid collapseOnSelect>
