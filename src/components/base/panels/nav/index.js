@@ -3,9 +3,6 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import * as _ from "lodash";
 
-//style
-import './style.css';
-
 export default class MainNavBase extends React.Component {
     componentWillMount(){
         const self = this;
