@@ -17,7 +17,7 @@ export default class SitterProfileBase extends React.Component {
                 self.props.actions.sitterProfileActions.setSitter(sitter.data);
                 let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
                 let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
-                self.props.actions.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
+                self.props.actions.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'})); // calculate distance from parent to sitter
             }
         });
     }
