@@ -12,7 +12,7 @@ import App from "./components/App";
 import Feed from "./components/pages/feed/index";
 import Login from "./components/pages/login/index";
 import Register from "./components/forms/Register";
-import SitterProfile from "./components/pages/profile/index";
+import SitterProfile from "./components/pages/sitterProfile/index";
 import ReviewList from "./components/reviewList/index";
 import SingleReview from "./components/review/SingleReview";
 import SingleInvite from "./components/pages/invite/index";

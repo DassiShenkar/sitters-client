@@ -12,13 +12,6 @@ export function setMatchScore(matchScore) {
     }
 }
 
-export function setDistance(distance) {
-    return {
-        type: 'SET_DISTANCE',
-        distance
-    }
-}
-
 export function setReviewDescription(reviewDescription) {
     return {
         type: 'SET_REVIEW_DESCRIPTION',
@@ -30,13 +23,6 @@ export function setExpandReview(expandReview) {
     return {
         type: 'SET_EXPAND_REVIEW',
         expandReview
-    }
-}
-
-export function displayMatchInfo(shouldDisplayMatchInfo) {
-    return {
-        type: 'SET_MATCH_DATA_VIEW',
-        shouldDisplayMatchInfo
     }
 }
 

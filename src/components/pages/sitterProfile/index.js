@@ -1,7 +1,5 @@
 // external sources
 import React from "react";
-import geodist from "geodist";
-import axios from "axios";
 import * as _ from "lodash";
 
 // components
@@ -10,59 +8,14 @@ import SitterActionBar from "../../panels/actionPanel";
 import ReviewList from "../../reviewList/index";
 import Invite from "../../invite/Invite";
 import AccordionPanel from "../../controllers/accordion/index";
-import strings from "../../../static/strings";
 import Review from "../../review/index";
 import MatchBanner from "../../banners/matchBanner";
+import SitterProfileBase from "../../base/pages/sitterProfile/index";
 
 // style
 import './style.css';
 
-class SitterProfile extends React.Component {
-
-    componentWillMount() {
-        let self = this;
-        let sitterID = location.href.split('sitter/')[1];
-
-        axios({
-            method: 'post',
-            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'sitter/get',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: {_id: sitterID}
-        })
-            .then(function (sitter) {
-                if (sitter.data) {
-                    self.props.actions.sitterProfileActions.setSitter(sitter.data);
-                    let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
-                    let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
-                    self.props.actions.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
-                }
-            })
-            .catch(function (error) {
-                console.log(error);//TODO: in case of sitter wasn't found
-            });
-    }
-
-    componentWillUnmount(){
-        this.props.actions.sitterProfileActions.setSitter( {
-            workingHours:{},
-            hobbies: [],
-            languages: [],
-            education: [],
-            address: {},
-            reviews: [],
-            expertise: [],
-            mobility: []
-        });
-    }
-
-    addReview() {
-        this.props.actions.feedActions.showReviewPopup(true);
-    }
-
-    displayMatchInfo(shouldDisplay) {
-        this.props.actions.sitterProfileActions.displayMatchInfo(shouldDisplay);
-    }
-
+export default class SitterProfile extends SitterProfileBase {
     render() {
         let self = this;
         const workingHours = Object.keys(this.props.sitterProfile.sitter.workingHours).map(function (day, index) {
@@ -160,5 +113,3 @@ class SitterProfile extends React.Component {
         )
     }
 }
-
-export default SitterProfile;

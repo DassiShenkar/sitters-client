@@ -14,7 +14,6 @@ import './style.css';
 //statics
 import strings from '../../../static/strings';
 
-
 class Login extends LoginBase {
     render() {
         const shouldShowRadio = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1") === '';

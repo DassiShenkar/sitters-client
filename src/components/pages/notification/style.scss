@@ -1,8 +1,10 @@
+@import "../../../style/colors.scss";
+
 #single-notification-page {
 
   h4 {
     font-size: 14px;
-    color: #f86966;
+    color: $brand;
     text-align: center;
     font-weight: bold;
   }
@@ -21,7 +23,7 @@
   }
 
   .recharts-rectangle {
-    fill: #f86966;
+    fill: $brand;
   }
 
 }

@@ -9,13 +9,16 @@ import * as FeedActions from '../actions/FeedActions';
 import * as SettingsActions from '../actions/SettingsActions';
 import * as SearchByActions from '../actions/SearchByActions';
 import * as RangeActions from '../actions/RangeActions';
-import * as SitterProfileActions from '../actions/SitterProfileActions';
+import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
+import * as EditProfileActions from '../actions/EditProfileActions';
 import * as InviteActions from '../actions/InviteActions';
 import * as WorkingHours from '../actions/WorkingHoursActions';
 import * as PersonalityQuestions from '../actions/PersonalityQuestionsActions';
 import * as SitterFeedActions from '../actions/SitterFeedActions';
-import * as EditProfileActions from '../actions/EditProfileActions';
+
+//new actions
 import * as LoginActions from './base/pages/login/action';
+import * as SitterProfileActions from './base/pages/sitterProfile/action';
 
 //components
 import Main from './Main'
@@ -55,13 +58,14 @@ function mapDispatchToProps(dispatch) {
             feedActions: bindActionCreators(FeedActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
             rangeActions: bindActionCreators(RangeActions, dispatch),
-            sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
+            sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
             inviteActions: bindActionCreators(InviteActions, dispatch),
             workingHoursActions: bindActionCreators(WorkingHours, dispatch),
             sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
             personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch),
             editProfileActions: bindActionCreators(EditProfileActions, dispatch),
-            loginActions: bindActionCreators(LoginActions, dispatch)
+            loginActions: bindActionCreators(LoginActions, dispatch),
+            sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch)
         }
     };
 }
