@@ -1,3 +1,5 @@
+@import "../../../style/colors.scss";
+
 #sitterActionBar {
   position: absolute;
   bottom: -36px;
@@ -13,8 +15,8 @@
 
   .action-btn {
     border-radius: 50%;
-    border: 4px solid #f5f5f5;
-    background: #fff;
+    border: 4px solid $white-light;
+    background: $white;
     width: 64px;
     height: 64px;
     font-size: 28px;
@@ -25,16 +27,16 @@
   }
 
   .icon-heart {
-    color: #f86966;
+    color: $brand;
     font-size: 32px;
   }
 
   .icon-user {
-    color: #4dd0e1;
+    color: $primary-cold;
   }
 
   .icon-envelope {
-    color: #ffca00;
+    color: $primary-warm;
   }
 
   .icon-heart:before, .icon-envelope:before, .icon-user:before {
@@ -46,29 +48,29 @@
   }
 
   #send-invite-btn:hover, #send-invite-btn:active {
-  border-color: #ffca00;
+  border-color: $primary-warm;
 }
 
   #sitter-profile-btn:hover, #sitter-profile-btn:active {
-    border-color: #4dd0e1;
+    border-color: $primary-cold;
   }
 
   #add-review-btn:hover, #add-review-btn:active {
-    border-color: #f86966;
+    border-color: $brand;
   }
 
   .action-btn.selected {
-    border-color: #4dd0e1;
+    border-color: $primary-cold;
   }
   .action-btn.unselected {
-    border-color: #f5f5f5;
+    border-color: $white-light;
   }
 
   .action-btn.disabled, .action-btn.disabled:hover {
-    border-color: #f5f5f5;
+    border-color: $white-light;
     cursor: not-allowed;
     span:before {
-      color: #f5f5f5;
+      color: $white-light;
     }
   }
 
