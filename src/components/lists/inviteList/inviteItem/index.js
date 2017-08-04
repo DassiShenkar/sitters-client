@@ -8,7 +8,7 @@ import {Image} from 'react-bootstrap';
 import './style.css';
 import {Link} from "react-router";
 
-class InviteItem extends React.Component {
+export default class InviteItem extends React.Component {
     render() {
         const invite = this.props.invite;
 
@@ -31,5 +31,3 @@ class InviteItem extends React.Component {
 
     }
 }
-
-export default InviteItem;

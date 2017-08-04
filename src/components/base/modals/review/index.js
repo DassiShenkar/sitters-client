@@ -3,8 +3,8 @@ import React from 'react';
 import uuid from 'uuid';
 
 //utils
-import {post} from '../../../utils/serverCalls';
-import {sittersApi} from "../../../sittersAPI/sittersAPI";
+import {post} from '../../../../utils/serverCalls';
+import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 
 export default class ReviewBase extends React.Component {
     constructor(props) {

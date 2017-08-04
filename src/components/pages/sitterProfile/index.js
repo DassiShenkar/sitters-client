@@ -5,10 +5,10 @@ import * as _ from "lodash";
 // components
 import {Image, Table, Panel, Accordion} from "react-bootstrap";
 import SitterActionBar from "../../panels/actionPanel";
-import ReviewList from "../../reviewList/index";
-import Invite from "../../invite/Invite";
+import ReviewList from "../../lists/reviewList/index";
+import Invite from "../../modals/invite/Invite";
 import AccordionPanel from "../../controllers/accordion/index";
-import Review from "../../review/index";
+import Review from "../../modals/review/index";
 import MatchBanner from "../../banners/matchBanner";
 import SitterProfileBase from "../../base/pages/sitterProfile/index";
 

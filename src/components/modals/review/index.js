@@ -2,7 +2,7 @@
 import React from 'react';
 
 //components
-import ReviewBase from "../base/review/index";
+import ReviewBase from "../../base/modals/review/index";
 import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
 import Rating from "react-rating";
 

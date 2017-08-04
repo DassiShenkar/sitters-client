@@ -8,7 +8,7 @@ import Rating from "react-rating";
 //style
 import './style.css';
 
-class ReviewItem extends React.Component {
+export default class ReviewItem extends React.Component {
     render() {
         const {review} = this.props;
         const date = new Date(review.date);
@@ -56,5 +56,3 @@ class ReviewItem extends React.Component {
         )
     }
 }
-
-export default ReviewItem;

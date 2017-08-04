@@ -4,13 +4,13 @@ import dateFormat from 'dateformat';
 //style
 import './style.css';
 import {Button, FormControl, Modal} from "react-bootstrap";
-import DatePicker from "../controllers/datePicker/index";
-import TimeInput from "../controllers/timePicker/index";
-import GoogleMaps from "../controllers/googleMaps/index";
+import DatePicker from "../../controllers/datePicker/index";
+import TimeInput from "../../controllers/timePicker/index";
+import GoogleMaps from "../../controllers/googleMaps/index";
 import axios from 'axios';
-import strings from "../../static/strings";
+import strings from "../../../static/strings";
 import clone from 'clone';
-import RadioGroup from "../controllers/radio/index";
+import RadioGroup from "../../controllers/radio/index";
 
 
 class Invite extends React.Component {

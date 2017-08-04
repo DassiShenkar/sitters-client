@@ -4,8 +4,8 @@ import {Link} from 'react-router';
 
 //components
 import {Image, Table} from 'react-bootstrap';
-import SitterActionBar from '../panels/actionPanel';
-import SitterListBase from "../base/sitterList/index";
+import SitterActionBar from '../../panels/actionPanel/index';
+import SitterListBase from "../../base/lists/sitterList/index";
 
 //style
 import './style.css';

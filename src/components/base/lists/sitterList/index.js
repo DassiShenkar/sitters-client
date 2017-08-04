@@ -2,12 +2,12 @@
 import React from 'react';
 
 //utils
-import {post} from '../../../utils/serverCalls';
-import {sittersApi} from "../../../sittersAPI/sittersAPI";
+import {post} from '../../../../utils/serverCalls';
+import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 import * as _ from "lodash";
 
 // statics
-import strings from '../../../static/strings';
+import strings from '../../../../static/strings';
 
 export default class SitterListBase extends React.Component {
 

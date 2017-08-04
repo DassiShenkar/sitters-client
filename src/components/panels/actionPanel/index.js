@@ -2,7 +2,7 @@
 import React from "react";
 
 //component
-import Invite from "../../invite/Invite";
+import Invite from "../../modals/invite/Invite";
 import ActionBarBase from "../../base/panels/actionPanel/index";
 
 // style

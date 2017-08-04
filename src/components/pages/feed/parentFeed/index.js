@@ -4,9 +4,9 @@ import React from 'react';
 //components
 import ParentFeedBase from "../../../base/pages/feed/parentFeed/index";
 import Loadable from 'react-loading-overlay';
-import Review from "../../../review/index";
+import Review from "../../../modals/review/index";
 import SearchByTab from "../../../panels/searchPanel/index";
-import SitterList from "../../../sitterList/index";
+import SitterList from "../../../lists/sitterList/index";
 
 //style
 import './style.css';

@@ -8,7 +8,7 @@ import moment from 'moment';
 
 //style
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import InvitesModal from "../../../inviteList/inviteModal/index";
+import InvitesModal from "../../../modals/invites/index";
 import {PageHeader} from "react-bootstrap";
 import SitterFeedBase from "../../../base/pages/feed/sitterFeed/index";
 

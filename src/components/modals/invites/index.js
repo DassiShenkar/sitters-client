@@ -2,7 +2,7 @@
 import React from 'react';
 
 // components
-import InviteList from '../index'
+import InviteList from '../../lists/inviteList/index'
 
 //style
 import './style.css';

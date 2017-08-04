@@ -2,11 +2,10 @@
 import React from 'react';
 
 // components
-
+import InviteItem from "./inviteItem/index";
 
 //style
-// import '../style.css';
-import InviteItem from "./inviteItem/index";
+import './style.css';
 
 class InvitesList extends React.Component{
     constructor(props){
