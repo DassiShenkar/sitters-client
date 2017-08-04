@@ -2,6 +2,7 @@ export const sittersApi = {
     GET_USER: 'user/getUser',
     GET_SITTER: 'sitter/get',
     GET_PARENT: 'parent/get',
+    GET_MATCHES: 'parent/getMatches',
     UPDATE_PARENT_MUTUAL_FRIENDS: 'parent/updateMutualFriends',
     UPDATE_SITTER_MUTUAL_FRIENDS: 'sitter/updateMutualFriends',
     UPDATE_INVITE: 'invite/updateInvite',

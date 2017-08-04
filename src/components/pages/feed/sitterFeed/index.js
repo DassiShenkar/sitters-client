@@ -10,9 +10,10 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import InvitesModal from "../../../inviteList/inviteModal/index";
 import {PageHeader} from "react-bootstrap";
+import SitterFeedBase from "../../../base/pages/feed/sitterFeed/index";
 
 BigCalendar.momentLocalizer(moment);
-class SitterFeed extends React.Component {
+class SitterFeed extends SitterFeedBase {
     componentWillMount() {
         let self = this;
         const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");

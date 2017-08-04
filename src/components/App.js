@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
-import * as FeedActions from '../actions/FeedActions';
 import * as RangeActions from '../actions/RangeActions';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
 import * as InviteActions from '../actions/InviteActions';
@@ -19,6 +18,8 @@ import * as SitterProfileActions from './base/pages/sitterProfile/action';
 import * as SettingsActions from './base/pages/settings/action';
 import * as SearchByActions from './base/panels/searchPanel/action';
 import * as EditProfileActions from './base/pages/editProfile/action';
+import * as FeedActions from './base/pages/feed/action';
+
 
 //components
 import Main from './Main'
@@ -54,8 +55,6 @@ function mapDispatchToProps(dispatch) {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch),
-            feedActions: bindActionCreators(FeedActions, dispatch),
-            searchByActions: bindActionCreators(SearchByActions, dispatch),
             rangeActions: bindActionCreators(RangeActions, dispatch),
             sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
             inviteActions: bindActionCreators(InviteActions, dispatch),
@@ -66,7 +65,9 @@ function mapDispatchToProps(dispatch) {
             loginActions: bindActionCreators(LoginActions, dispatch),
             sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
             settingsActions: bindActionCreators(SettingsActions, dispatch),
-            editProfileActions: bindActionCreators(EditProfileActions, dispatch)
+            searchByActions: bindActionCreators(SearchByActions, dispatch),
+            editProfileActions: bindActionCreators(EditProfileActions, dispatch),
+            feedActions: bindActionCreators(FeedActions, dispatch)
         }
     };
 }

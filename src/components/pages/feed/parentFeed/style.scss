@@ -1,9 +1,11 @@
+@import "../../../../style/colors.scss";
+
 #parent-feed {
 
   .arrows {
     .glyphicon-menu-left, .glyphicon-menu-right {
       font-size: 72px;
-      color: #fff;
+      color: $white;
       position: absolute;
       top: 177px;
       bottom: 0;
@@ -12,7 +14,7 @@
 
     .glyphicon-menu-left:hover, .glyphicon-menu-right:hover {
       cursor: pointer;
-      color: #f5f5f5;
+      color: $white-light;
     }
 
     .glyphicon-menu-left {
