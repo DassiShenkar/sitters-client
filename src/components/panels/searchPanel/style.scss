@@ -1,3 +1,5 @@
+@import "../../../style/colors.scss";
+
 #search-panel {
 
   width: 80%;
@@ -5,7 +7,7 @@
 
   .page-header {
     h1 {
-      color: #757575;
+      color: $text;
       font-family: 'Open Sans', sans-serif;
     }
   }
@@ -37,22 +39,20 @@
 
 .nav {
   path {
-    fill: #f86966;
+    fill: $brand;
   }
-  //margin-bottom: 48px;
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
-  background-color: #f86966;
+  background-color: $brand;
   path {
-    fill: #fff;
+    fill: $white;
   }
 }
 
 .nav .active-search-by {
-  background-color: #f86966;
+  background-color: $brand;
   path {
-    fill: #fff;
+    fill: $white;
   }
 }
-

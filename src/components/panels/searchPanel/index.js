@@ -1,27 +1,27 @@
 //external sources
 import React from 'react'
 
+//components
 import {Nav, NavItem, PageHeader} from 'react-bootstrap';
 import Range from '../../controllers/range/index'
+import DatePicker from '../../controllers/datePicker/index';
+import RadioGroup from "../../controllers/radio/radioGroup/index";
+import GoogleMaps from "../../controllers/maps/GoogleMaps";
+import CheckBoxInput from "../../controllers/checkbox/index";
+import SearchByBase from "../../base/panels/searchPanel/index";
 
-//components
+//icons
 import Location from '../../icons/Location'
 import Clock from '../../icons/Clock'
 import Dollar from '../../icons/Dollar'
-import DatePicker from '../../controllers/datePicker/index';
+
+//statics
+import strings from "../../../static/strings";
 
 //style
 import './style.css';
-import RadioGroup from "../../controllers/radio/radioGroup/index";
-import strings from "../../../static/strings";
-import GoogleMaps from "../../controllers/maps/GoogleMaps";
-import CheckBoxInput from "../../controllers/checkbox/index";
 
-class SearchByTab extends React.Component {
-    handleSelect(selectedKey) {
-        this.props.actions.searchByActions.setView(selectedKey);
-    }
-
+export default class SearchBy extends SearchByBase {
     render() {
         let navView = null;
         if (this.props.searchBy.searchView !== null) {
@@ -89,5 +89,3 @@ class SearchByTab extends React.Component {
         }
     }
 }
-
-export default SearchByTab;

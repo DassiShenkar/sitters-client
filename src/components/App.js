@@ -6,7 +6,6 @@ import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
 import * as FeedActions from '../actions/FeedActions';
-import * as SearchByActions from '../actions/SearchByActions';
 import * as RangeActions from '../actions/RangeActions';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
 import * as EditProfileActions from '../actions/EditProfileActions';
@@ -19,6 +18,7 @@ import * as SitterFeedActions from '../actions/SitterFeedActions';
 import * as LoginActions from './base/pages/login/action';
 import * as SitterProfileActions from './base/pages/sitterProfile/action';
 import * as SettingsActions from './base/pages/settings/action';
+import * as SearchByActions from './base/panels/searchPanel/action';
 
 //components
 import Main from './Main'
