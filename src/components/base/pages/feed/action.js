@@ -83,17 +83,3 @@ export function setSpinnetText(spinnerText) {
         spinnerText
     }
 }
-
-export function setParentData(userData) {
-    return {
-        type: 'SET_PARENT_DATA',
-        userData
-    }
-}
-
-export function setSitterData(sitterData) {
-    return {
-        type: 'SET_SITTER_DATA',
-        sitterData
-    }
-}
