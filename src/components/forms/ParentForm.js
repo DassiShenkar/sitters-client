@@ -4,9 +4,9 @@ import BaseForm from './BaseForm';
 import axios from 'axios';
 import strings from '../../static/strings';
 import {AgeFromDate} from 'age-calculator';
-import RadioGroup from "../controllers/radio/radioGroup/index";
+import RadioGroup from "../controllers/radio/index";
 import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
-import SelectInput from "../controllers/select/SelectInput";
+import SelectInput from "../controllers/select/index";
 import {geocodeByAddress} from "react-places-autocomplete";
 
 //style

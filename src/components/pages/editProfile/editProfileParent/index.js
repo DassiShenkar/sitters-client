@@ -4,9 +4,9 @@ import React from 'react';
 //components
 import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
 import TextInput from "../../../controllers/textInput/index";
-import RadioGroup from "../../../controllers/radio/radioGroup/index";
+import RadioGroup from "../../../controllers/radio/index";
 import strings from "../../../../static/strings";
-import SelectInput from "../../../controllers/select/SelectInput";
+import SelectInput from "../../../controllers/select/index";
 import EditProfileParentBase from "../../../base/pages/editProfile/editProfileParent/index";
 
 export default class EditProfileParent extends EditProfileParentBase {

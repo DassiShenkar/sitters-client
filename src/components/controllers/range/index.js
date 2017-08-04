@@ -3,8 +3,7 @@ import React from 'react';
 
 // components
 import Slider from "rc-slider";
-
-import RangeBase from '../../base/controllers/rangeBase/index'
+import RangeBase from '../../base/controllers/range/index'
 
 // style
 import 'rc-slider/assets/index.css';

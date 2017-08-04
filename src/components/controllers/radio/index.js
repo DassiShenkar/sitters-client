@@ -2,7 +2,7 @@
 import React from 'react';
 
 // components
-import RadioOption from "../radioOption/index";
+import RadioOption from "./radioOption/index";
 
 //style
 import './style.css';
@@ -12,12 +12,11 @@ export default class RadioGroup extends React.Component {
     render() {
         const options = this.props.options.map((option) => {
             return (
-                <RadioOption key={this.props.options.indexOf(option)}
+                <RadioOption key={this.props.options.indexOf(option)} // one radio for each option delivered
                              option={option}
                              defaultValue={this.props.defaultValue}
                              action={this.props.action}
-                             radioType={this.props.radioType}
-                />
+                             radioType={this.props.radioType}/>
             )
         });
         return (

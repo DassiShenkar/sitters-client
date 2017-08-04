@@ -3,8 +3,7 @@ import React from 'react';
 
 // components
 import {ControlLabel, FormControl} from 'react-bootstrap';
-
-import TextInputBase from '../../base/controllers/textInputBase/index.js';
+import TextInputBase from '../../base/controllers/textInput/index.js';
 
 export default class TextInput extends TextInputBase {
 
@@ -13,9 +12,8 @@ export default class TextInput extends TextInputBase {
         if(this.props.value !== "")
             value = this.props.value;
         else
-            // value = this.props[this.props.reducer][this.props.inputType] ? this.props[this.props.reducer][this.props.inputType] : this.props[this.props.reducer][this.props.inputType] === ''? '': this.props.defaultValue;
             value = this.props.defaultValue;
-            return (
+        return (
             <div className="text-input">
                 <ControlLabel>{this.props.label}</ControlLabel>
                 <FormControl type={this.props.type !== '' ? this.props.type : 'text'}

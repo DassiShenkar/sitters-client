@@ -2,21 +2,13 @@
 import React from 'react';
 
 // components
-import {NavDropdown, MenuItem}  from 'react-bootstrap/lib';
+import {NavDropdown, MenuItem}  from 'react-bootstrap';
+import DropDownMenuBase from "../../base/controllers/dropDownMenu/index";
 
 // style
 import './style.css';
 
-export default class DropdownMenu extends React.Component {
-    nav(target) {
-        if (target === 'logout') {
-            document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            document.cookie = 'is_parent=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            target = 'login';
-        }
-        this.props.router.push('/' + target);
-    }
-
+export default class DropdownMenu extends DropDownMenuBase {
     render() {
         return (
             <NavDropdown id="actions-dropdown" title={this.props.title? this.props.title: ""}>

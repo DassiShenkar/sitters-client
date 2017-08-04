@@ -3,8 +3,7 @@ import React from 'react';
 
 // components
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
-
-import CheckBoxBase from '../../base/controllers/checkboxBase/index'
+import CheckBoxBase from '../../base/controllers/checkBox/index'
 
 export default class CheckBoxInput extends CheckBoxBase {
     render() {

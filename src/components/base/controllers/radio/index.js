@@ -1,7 +1,7 @@
-// external sources
-import {Component} from 'react';
+//external sources
+import React from 'react';
 
-export default class RadioInputBase extends Component {
+export default class RadioInputBase extends React.Component {
     constructor(props) {
         super(props);
         this.handleRadio = this.handleRadio.bind(this);

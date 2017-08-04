@@ -7,7 +7,7 @@ import PlacesAutocomplete from 'react-places-autocomplete'
 import 'react-select/dist/react-select.css';
 
 import TextInput from '../controllers/textInput/index';
-import RadioGroup from '../controllers/radio/radioGroup/index';
+import RadioGroup from '../controllers/radio/index';
 
 // statics
 import strings from '../../static/strings';

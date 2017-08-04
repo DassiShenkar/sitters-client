@@ -1,7 +1,10 @@
+// external sources
 import React from 'react';
-import Day from "./Day";
-class WorkingHours extends React.Component {
 
+//components
+import Day from "./day/index";
+
+class WorkingHours extends React.Component {
     render() {
         const days = this.props.days.map((day) => {
             return (

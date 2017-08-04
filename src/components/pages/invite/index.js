@@ -4,7 +4,7 @@ import React from 'react';
 //components
 import InviteBase from '../../base/pages/invite/index'
 import {Button, ControlLabel, Image, PageHeader} from "react-bootstrap";
-import GoogleMaps from "../../controllers/maps/GoogleMaps";
+import GoogleMaps from "../../controllers/googleMaps/index";
 
 //style
 import './style.css';

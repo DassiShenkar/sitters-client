@@ -1,6 +1,10 @@
+// external sources
 import React from 'react';
-import CheckBoxInput from "../checkbox/index";
+
+//components
+import CheckBoxInput from "../../checkbox/index";
 import {ControlLabel} from "react-bootstrap";
+
 class WorkingHours extends React.Component {
     render() {
         return (

@@ -1,13 +1,10 @@
 //external sources
 import React from 'react';
 
-//base component
-import RadioInputBase from '../../../base/controllers/radioBase/index.js';
-
 //style
 import './style.css';
 
-export default class RadioOption extends RadioInputBase {
+export default class RadioOption extends React.Component {
     render() {
         return (
             <div className="radio-option" >

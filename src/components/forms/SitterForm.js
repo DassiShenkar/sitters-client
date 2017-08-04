@@ -7,8 +7,8 @@ import strings from '../../static/strings';
 import axios from 'axios';
 import geocoder from 'geocoder';
 import {Button, ControlLabel, FormControl, Nav, NavItem} from "react-bootstrap";
-import SelectInput from "../controllers/select/SelectInput";
-import RadioGroup from "../controllers/radio/radioGroup/index";
+import SelectInput from "../controllers/select/index";
+import RadioGroup from "../controllers/radio/index";
 
 import './style.css';
 import WorkingHours from "../controllers/workingHours/index";

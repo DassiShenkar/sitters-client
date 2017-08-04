@@ -1,7 +1,9 @@
+// external sources
 import React from 'react';
 import TimePicker from 'rc-time-picker';
-import TimeInputBase from '../base/controllers/timePickerBase/index'
-class TimeInput extends TimeInputBase {
+import TimeInputBase from '../../base/controllers/timePicker/index'
+
+export default class TimeInput extends TimeInputBase {
     render() {
         return (
             <TimePicker
@@ -12,4 +14,3 @@ class TimeInput extends TimeInputBase {
         );
     }
 }
-export default TimeInput;

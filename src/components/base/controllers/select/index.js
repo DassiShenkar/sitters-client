@@ -1,7 +1,6 @@
 // external sources
 import React from 'react';
 
-
 export default class SelectBase extends React.Component {
 
     constructor(props) {

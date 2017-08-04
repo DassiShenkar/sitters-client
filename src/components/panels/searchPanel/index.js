@@ -5,8 +5,8 @@ import React from 'react'
 import {Nav, NavItem, PageHeader} from 'react-bootstrap';
 import Range from '../../controllers/range/index'
 import DatePicker from '../../controllers/datePicker/index';
-import RadioGroup from "../../controllers/radio/radioGroup/index";
-import GoogleMaps from "../../controllers/maps/GoogleMaps";
+import RadioGroup from "../../controllers/radio/index";
+import GoogleMaps from "../../controllers/googleMaps/index";
 import CheckBoxInput from "../../controllers/checkbox/index";
 import SearchByBase from "../../base/panels/searchPanel/index";
 

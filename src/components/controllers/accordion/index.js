@@ -4,7 +4,6 @@ import React from "react";
 // components
 import {Accordion, Panel} from "react-bootstrap";
 
-
 class AccordionPanel extends React.Component {
     render() {
         const list = this.props.list.map((item) => {

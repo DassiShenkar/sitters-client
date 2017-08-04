@@ -5,7 +5,7 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import Form from 'react-bootstrap/lib/Form';
 import ReactPlayer from 'react-player';
-import RadioGroup from '../../controllers/radio/radioGroup/index';
+import RadioGroup from '../../controllers/radio/index';
 import LoginBase from "../../base/pages/login/index";
 
 //style

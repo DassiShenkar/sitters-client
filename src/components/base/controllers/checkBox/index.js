@@ -1,8 +1,8 @@
 // external sources
-import {Component} from 'react';
+import * as React from "react";
 import * as _ from "lodash";
 
-export default class CheckBoxBase extends Component {
+export default class CheckBoxBase extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,10 +18,7 @@ export default class CheckBoxBase extends Component {
                 if(sameHours.length > 0)
                     sitters.push(sitter);
             }
-
-                this.props.changeSitters(sitters);
-            // if(sitters.length > 0){
-            // }
+            this.props.changeSitters(sitters);
         }
     }
 }

@@ -5,7 +5,7 @@ import * as _ from "lodash";
 //components
 import {Button, ControlLabel, FormControl, Nav, NavItem, Table} from "react-bootstrap";
 import TextInput from "../../../controllers/textInput/index";
-import SelectInput from "../../../controllers/select/SelectInput";
+import SelectInput from "../../../controllers/select/index";
 import EditProfileSitterBase from "../../../base/pages/editProfile/editProfileSitter/index";
 
 //statics

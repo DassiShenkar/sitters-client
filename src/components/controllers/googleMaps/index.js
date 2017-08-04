@@ -7,32 +7,19 @@ import './style.css'
 const MY_API_KEY = "AIzaSyDHmEuwmAbej_-gf6v_-ujdAS8B5fOOlX0";
 
 class Map extends React.Component {
-    onClick(e){
-        e.preventDefault();
-        console.log('clicked');
-    }
     render(){
         const self = this;
         let coords;
         if(this.props.oneMarker){
-            // const parents = [this.props.parent];
-            coords = this.props.sitters.map((parent, index) => (
-                {
+            coords = this.props.sitters.map((parent, index) => ({
                     title: parent.name,
-                    // icon: `<Image src={sitter.profilePicture} circle/>,
                     position: {
                         lat: parent.address.latitude,
                         lng: parent.address.longitude,
                     },
                     onLoaded: (googleMaps, map, marker) => {
                         // Set Marker animation
-                         marker.setAnimation(googleMaps.Animation.BOUNCE);
-                        // const sitterProfileURL = "/sitter/" + sitter._id;
-                        // const distance = geodist({lat: self.props.center.lat, lon: self.props.center.lng}, {lat: sitter.address.latitude, lon: sitter.address.longitude},{ unit: 'km'});
-
-                        // const infoWindow = new googleMaps.InfoWindow({
-                        //     content: `<div><h3>` + parent.name + `</h3><Image className="info-window-img" src="` + parent.profilePicture + `"/><p>Child Name: ` + parent.children.name + `</p></div>`
-                        // });
+                        marker.setAnimation(googleMaps.Animation.BOUNCE);
                         const address = parent.address.street + " " + parent.address.houseNumber + ", " + parent.address.city;
                         const infoWindow = new googleMaps.InfoWindow({
                             content: ` <div>
@@ -41,32 +28,15 @@ class Map extends React.Component {
                             <p>` + address + `</p>
                     </div>`
                         });
-
-                        // Open InfoWindow when Marker will be clicked
-                        // googleMaps.event.addListener(marker, "click", () => {
-                        //     self.props.router.push(sitterProfileURL);
-                        // });
-
-                        // Change icon when Marker will be hovered
-                        // googleMaps.event.addListener(marker, "mouseover", () => {
-                        //     // marker.setIcon(iconMarkerHover)
-                        //     infoWindow.open(map, marker);
-                        // });
-                        // //
-                        // googleMaps.event.addListener(marker, "mouseout", () => {
-                        //     infoWindow.close(map, marker);
-                        // });
-                       infoWindow.open(map, marker);
+                        infoWindow.open(map, marker); // open info window by default
                     }
                 })
             );
 
         }
         else{
-            coords = this.props.sitters.map((sitter, index) => (
-                {
+            coords = this.props.sitters.map((sitter, index) => ({
                     title: sitter.name,
-                    // icon: `<Image src={sitter.profilePicture} circle/>,
                     position: {
                         lat: sitter.address.latitude,
                         lng: sitter.address.longitude,
@@ -95,7 +65,6 @@ class Map extends React.Component {
 
                         // Change icon when Marker will be hovered
                         googleMaps.event.addListener(marker, "mouseover", () => {
-                            // marker.setIcon(iconMarkerHover)
                             infoWindow.open(map, marker);
                         });
                         //
@@ -105,20 +74,12 @@ class Map extends React.Component {
                     },
                 }
             ));
-            coords.push(
-            {
+            coords.push({
                 title: this.props.user.name,
-                     //icon: <Image src={this.props.user.profilePicture}/>,
-                    position: {
-                lat: this.props.user.address.latitude,
-                    lng: this.props.user.address.longitude,
-            },
+                position: {lat: this.props.user.address.latitude, lng: this.props.user.address.longitude,},
                 onLoaded: (googleMaps, map, marker) => {
                     // Set Marker animation
                     marker.setAnimation(googleMaps.Animation.BOUNCE);
-                    // const sitterProfileURL = "/sitter/" + sitter._id;
-                    // const distance = geodist({lat: self.props.center.lat, lon: self.props.center.lng}, {lat: sitter.address.latitude, lon: sitter.address.longitude},{ unit: 'km'});
-
                     const infoWindow = new googleMaps.InfoWindow({
                         content: ` <div>
                         <h3>` + this.props.user.name + `</h3>
@@ -129,7 +90,6 @@ class Map extends React.Component {
 
                     // Change icon when Marker will be hovered
                     googleMaps.event.addListener(marker, "mouseover", () => {
-                        // marker.setIcon(iconMarkerHover)
                         infoWindow.open(map, marker);
                     });
                     //
@@ -137,7 +97,6 @@ class Map extends React.Component {
                         infoWindow.close(map, marker);
                     });
                 },
-
             })
         }
 
