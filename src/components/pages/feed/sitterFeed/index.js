@@ -1,48 +1,23 @@
 //external sources
 import React from 'react';
-import axios from 'axios';
-import strings from "../../../../static/strings";
-import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+
 //components
+import SitterFeedBase from "../../../base/pages/feed/sitterFeed/index";
+import BigCalendar from 'react-big-calendar';
+import InvitesModal from "../../../modals/invites/index";
+import {PageHeader} from "react-bootstrap";
+
+//statics
+import strings from "../../../../static/strings";
 
 //style
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import InvitesModal from "../../../modals/invites/index";
-import {PageHeader} from "react-bootstrap";
-import SitterFeedBase from "../../../base/pages/feed/sitterFeed/index";
 
+//init
 BigCalendar.momentLocalizer(moment);
-class SitterFeed extends SitterFeedBase {
-    componentWillMount() {
-        let self = this;
-        const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-        if (!userId) {
-        } else {
-            axios({
-                method: 'post',
-                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'sitter/get',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {_id: userId}
-            })
-                .then(function (sitter) {
-                    if (sitter.data) {  // user exists
-                        // self.props.actions.settingsActions.setNotifications(sitter.data.settings.allowNotification);
-                        // self.props.actions.settingsActions.setSuggestions(sitter.data.settings.allowSuggestions);
-                        // self.props.actions.settingsActions.setShowOnSearch(sitter.data.settings.allowShowOnSearch);
-                        self.props.actions.actionCreators.setSitterData(sitter.data);
-                    }
-                    else { // user not exist
-                        self.props.router.push('/login');
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
 
-    }
-
+export default class SitterFeed extends SitterFeedBase {
     render() {
         const events = [];
         const self = this;
@@ -90,5 +65,3 @@ class SitterFeed extends SitterFeedBase {
         );
     }
 }
-
-export default SitterFeed;

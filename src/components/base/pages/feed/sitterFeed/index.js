@@ -1,16 +1,9 @@
 //external sources
 import React from 'react';
-import moment from 'moment';
-
-//components
-import BigCalendar from 'react-big-calendar';
 
 //utils
 import {post} from '../../../../../utils/serverCalls';
 import {sittersApi} from "../../../../../sittersAPI/sittersAPI";
-
-//init
-BigCalendar.momentLocalizer(moment);
 
 export default class SitterFeedBase extends React.Component {
     componentWillMount() {

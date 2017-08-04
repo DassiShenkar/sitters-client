@@ -10,7 +10,6 @@ import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
 import * as InviteActions from '../actions/InviteActions';
 import * as WorkingHours from '../actions/WorkingHoursActions';
 import * as PersonalityQuestions from '../actions/PersonalityQuestionsActions';
-import * as SitterFeedActions from '../actions/SitterFeedActions';
 
 //new actions
 import * as LoginActions from './base/pages/login/action';
@@ -19,6 +18,8 @@ import * as SettingsActions from './base/pages/settings/action';
 import * as SearchByActions from './base/panels/searchPanel/action';
 import * as EditProfileActions from './base/pages/editProfile/action';
 import * as FeedActions from './base/pages/feed/action';
+import * as SitterFeedActions from './base/pages/feed/sitterFeed/action';
+
 
 
 //components
@@ -59,7 +60,6 @@ function mapDispatchToProps(dispatch) {
             sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
             inviteActions: bindActionCreators(InviteActions, dispatch),
             workingHoursActions: bindActionCreators(WorkingHours, dispatch),
-            sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
             personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch),
 
             loginActions: bindActionCreators(LoginActions, dispatch),
@@ -67,7 +67,8 @@ function mapDispatchToProps(dispatch) {
             settingsActions: bindActionCreators(SettingsActions, dispatch),
             searchByActions: bindActionCreators(SearchByActions, dispatch),
             editProfileActions: bindActionCreators(EditProfileActions, dispatch),
-            feedActions: bindActionCreators(FeedActions, dispatch)
+            feedActions: bindActionCreators(FeedActions, dispatch),
+            sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch)
         }
     };
 }

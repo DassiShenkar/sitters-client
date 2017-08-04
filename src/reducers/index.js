@@ -7,7 +7,6 @@ import range from './range';
 import invites from './invite';
 import sitterProfileOld from './sitterProfile';
 import workingHours from './workingHours'
-import sitterFeed from './sitterFeed'
 
 //new reducers
 import login from '../components/base/pages/login/reducer'
@@ -17,6 +16,7 @@ import settings from "../components/base/pages/settings/reducer";
 import searchBy from "../components/base/panels/searchPanel/reducer";
 import editProfile from "../components/base/pages/editProfile/reducer";
 import feed from '../components/base/pages/feed/reducer';
+import sitterFeed from '../components/base/pages/feed/sitterFeed/reducer';
 
 const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, sitterProfileOld, invites, invite,  workingHours, sitterFeed, editProfile, login,  routing: routerReducer});
 

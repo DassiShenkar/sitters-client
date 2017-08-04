@@ -1,19 +1,18 @@
 // external sources
 import React from 'react';
 import dateFormat from 'dateformat';
+import {Link} from "react-router";
+
 // components
 import {Image} from 'react-bootstrap';
 
 // style
 import './style.css';
-import {Link} from "react-router";
 
 export default class InviteItem extends React.Component {
     render() {
         const invite = this.props.invite;
-
         return (
-
             <Link className="invite-link"
                   to={'/invite/' + invite._id}>
                 <li className="invite-item">
@@ -28,6 +27,5 @@ export default class InviteItem extends React.Component {
                 </li>
             </Link>
         )
-
     }
 }

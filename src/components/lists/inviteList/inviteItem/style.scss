@@ -1,5 +1,7 @@
+@import "../../../../style/colors.scss";
+
 .invite-item {
-  background: #f8f8f8;
+  background: $white-shine;
   margin-bottom: 4px;
   padding: 12px 24px;
   display: flex;

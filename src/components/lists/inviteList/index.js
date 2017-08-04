@@ -3,15 +3,12 @@ import React from 'react';
 
 // components
 import InviteItem from "./inviteItem/index";
+import InvitesListBase from "../../base/lists/inviteList/index";
 
 //style
 import './style.css';
 
-class InvitesList extends React.Component{
-    constructor(props){
-        super(props);
-        console.log(props);
-    }
+export default class InvitesList extends InvitesListBase{
     render() {
         return (
             <div>
@@ -20,6 +17,3 @@ class InvitesList extends React.Component{
         )
     }
 }
-
-export default InvitesList;
-
