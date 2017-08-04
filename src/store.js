@@ -40,7 +40,6 @@ const defaultState = {
         }
     },
     register : {
-        personalityQuestions : strings.QUESTIONS,
         childHobbies: [],
         childExpertise: [],
         childSpecialNeeds: [],

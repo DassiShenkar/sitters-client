@@ -35,7 +35,6 @@ function mapStateToProps(state) {
         sitterProfile: state.sitterProfile,
         invite: state.invite,
         workingHours: state.workingHours,
-        personalityQuestions: state.personalityQuestions,
         sitterFeed: state.sitterFeed,
         editProfile: state.editProfile
     }

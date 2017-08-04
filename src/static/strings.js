@@ -22,47 +22,6 @@ const strings = {
     WEEK_DAYS: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     PERSONALITY_WORDS: ["Patient", "Witty", "Creative", "Energetic", "Sensitive", "Organized", "Playful", "Resourceful", "Calm", "Enthusiastic", "Experienced", "Authoritative"],
     HOURS: ["Mornings", "Evenings", "Afternoon"],
-    QUESTIONS: [{
-        label1: "Mature",
-        label2: "Youthful",
-        value: 2
-    }, {
-        label1: "Playful",
-        label2: "Sophisticated",
-        value: 2
-    }, {
-        label1: "Patient",
-        label2: "Witty",
-        value: 2
-    }, {
-        label1: "Soft",
-        label2: "Strict",
-        value: 2
-    }, {
-        label1: "Stay-at-home",
-        label2: "Outdoorsy",
-        value: 2
-    }, {
-        label1: "Funny",
-        label2: "Serious",
-        value: 2
-    }, {
-        label1: "Adventurous",
-        label2: "Laid back",
-        value: 2
-    }, {
-        label1: "Religious\\Spiritual",
-        label2: "Atheistic",
-        value: 2
-    }, {
-        label1: "Gracious",
-        label2: "Loud",
-        value: 2
-    }, {
-        label1: "Sensitive",
-        label2: "Authoritative",
-        value: 2
-    }],
     EDUCATION: [
         {value: 'high school', label: 'High School'},
         {value: 'college', label: 'College'},
