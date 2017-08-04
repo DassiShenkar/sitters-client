@@ -1,3 +1,4 @@
+// external sources
 import React from 'react';
 
 class Dollar extends React.Component {

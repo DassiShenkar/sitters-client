@@ -1,7 +1,9 @@
+@import "../../style/colors.scss";
+
 #box-container{
   p{
     width:400px;
     height:400px;
-    border: 1px solid black;
+    border: 1px solid $black;
   }
 }
