@@ -11,9 +11,6 @@ import {sittersApi} from "../../../../../sittersAPI/sittersAPI";
 //statics
 import strings from '../../../../../static/strings';
 
-//style
-import '../style.css';
-
 export default class ParentFormBase extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +18,7 @@ export default class ParentFormBase extends React.Component {
     };
     calcAge(birthday) {
         let date = birthday.split("/");
-        return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0;//convert "01/01/1985" to years
+        return (new AgeFromDate(new Date(parseInt(date[2],10),parseInt(date[1],10) -1, parseInt(date[0],10) -1)).age) || 0; //convert "01/01/1985" to years
     }
 
     handleSelect(selectedKey) {

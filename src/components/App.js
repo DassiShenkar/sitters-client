@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 //actions
 import * as actionCreators from '../actions/actionCreators';
-import * as ReviewActions from '../actions/ReviewActions';
-import * as RegisterActions from '../actions/RegisterActions';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
 import * as InviteActions from '../actions/InviteActions';
 
@@ -16,8 +14,7 @@ import * as SearchByActions from './base/panels/searchPanel/action';
 import * as EditProfileActions from './base/pages/editProfile/action';
 import * as FeedActions from './base/pages/feed/action';
 import * as SitterFeedActions from './base/pages/feed/sitterFeed/action';
-
-
+import * as RegisterActions from './base/pages/forms/action';
 
 //components
 import Main from './Main'
@@ -51,8 +48,6 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: {
             actionCreators: bindActionCreators(actionCreators, dispatch),
-            registerActions: bindActionCreators(RegisterActions, dispatch),
-            reviewActions: bindActionCreators(ReviewActions, dispatch),
             sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
             inviteActions: bindActionCreators(InviteActions, dispatch),
 
@@ -62,7 +57,8 @@ function mapDispatchToProps(dispatch) {
             searchByActions: bindActionCreators(SearchByActions, dispatch),
             editProfileActions: bindActionCreators(EditProfileActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
-            sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch)
+            sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
+            registerActions: bindActionCreators(RegisterActions, dispatch)
         }
     };
 }
