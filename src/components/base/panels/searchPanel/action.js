@@ -35,11 +35,11 @@ export function changeAvailability(availability) {
     }
 }
 
-
-export function changeWorkingHours(workingHours) {
+export function changeWorkingHours(workingHours, day) {
     return {
-        type: 'CHNGE_WORKING_HOURS',
-        workingHours
+        type: 'CHANGE_WORKING_HOUR_DAY',
+        workingHours,
+        day
     }
 }
 

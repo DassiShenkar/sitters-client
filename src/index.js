@@ -11,7 +11,7 @@ import store, {history} from './store';
 import App from "./components/App";
 import Feed from "./components/pages/feed/index";
 import Login from "./components/pages/login/index";
-import Register from "./components/forms/Register";
+import Register from "./components/pages/forms/index";
 import SitterProfile from "./components/pages/sitterProfile/index";
 import SingleInvite from "./components/pages/invite/index";
 import SingleNotification from "./components/pages/notification/index";

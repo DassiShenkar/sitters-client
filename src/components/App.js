@@ -5,11 +5,8 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import * as ReviewActions from '../actions/ReviewActions';
 import * as RegisterActions from '../actions/RegisterActions';
-import * as RangeActions from '../actions/RangeActions';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
 import * as InviteActions from '../actions/InviteActions';
-import * as WorkingHours from '../actions/WorkingHoursActions';
-import * as PersonalityQuestions from '../actions/PersonalityQuestionsActions';
 
 //new actions
 import * as LoginActions from './base/pages/login/action';
@@ -56,11 +53,8 @@ function mapDispatchToProps(dispatch) {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             registerActions: bindActionCreators(RegisterActions, dispatch),
             reviewActions: bindActionCreators(ReviewActions, dispatch),
-            rangeActions: bindActionCreators(RangeActions, dispatch),
             sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
             inviteActions: bindActionCreators(InviteActions, dispatch),
-            workingHoursActions: bindActionCreators(WorkingHours, dispatch),
-            personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch),
 
             loginActions: bindActionCreators(LoginActions, dispatch),
             sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),

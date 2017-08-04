@@ -1,16 +1,16 @@
 import React from 'react';
-import TextInput from '../controllers/textInput/index';
-import BaseForm from './BaseForm';
+import TextInput from '../../../controllers/textInput/index';
+import BaseForm from '../base/BaseForm';
 import 'react-select/dist/react-select.css';
 import {AgeFromDate} from 'age-calculator';
-import strings from '../../static/strings';
+import strings from '../../../../static/strings';
 import axios from 'axios';
 import geocoder from 'geocoder';
 import {Button, ControlLabel, FormControl, Nav, NavItem} from "react-bootstrap";
-import SelectInput from "../controllers/select/index";
-import RadioGroup from "../controllers/radio/index";
+import SelectInput from "../../../controllers/select/index";
+import RadioGroup from "../../../controllers/radio/index";
 
-import './style.css';
+import '../style.css';
 import WorkingHours from "../controllers/workingHours/index";
 import CheckBoxInput from "../controllers/checkbox/index";
 import DragAndDropContainer from "../dragAndDropContainer/index";
