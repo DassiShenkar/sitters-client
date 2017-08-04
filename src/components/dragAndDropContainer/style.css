@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
 #box-container p {
   width: 400px;
   height: 400px;
-  border: 1px solid black; }
+  border: 1px solid #000; }

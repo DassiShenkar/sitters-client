@@ -1,38 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
 #search-panel {
   width: 80%;
   margin: 0 auto; }
   #search-panel .page-header h1 {
     color: #757575;
     font-family: 'Open Sans', sans-serif; }
-
-#time-search {
-  margin: 0;
-  margin-top: 48px;
-  padding: 0;
-  height: 240px; }
-  #time-search label {
-    margin: 16px 0;
-    display: flex; }
-
-#range-search {
-  height: 240px;
-  padding: 0;
-  margin: 0;
-  margin-top: 48px; }
-
-#search-range {
-  width: 360px;
-  margin: 48px 0; }
-
-.nav path {
-  fill: #f86966; }
-
-.nav > li > a:hover, .nav > li > a:focus {
-  background-color: #f86966; }
-  .nav > li > a:hover path, .nav > li > a:focus path {
-    fill: #fff; }
-
-.nav .active-search-by {
-  background-color: #f86966; }
-  .nav .active-search-by path {
-    fill: #fff; }
+  #search-panel #time-search {
+    margin: 0;
+    margin-top: 48px;
+    padding: 0;
+    height: 240px; }
+    #search-panel #time-search label {
+      margin: 16px 0;
+      display: flex; }
+  #search-panel #range-search {
+    height: 240px;
+    padding: 0;
+    margin: 0;
+    margin-top: 48px; }
+  #search-panel #search-range {
+    width: 360px;
+    margin: 48px 0; }
+  #search-panel .nav path {
+    fill: #f86966; }
+  #search-panel .nav > li > a {
+    border-right: 1px solid #fff; }
+    #search-panel .nav > li > a span[class^="icon"]::before {
+      font-size: 24px;
+      color: #f86966; }
+  #search-panel .nav > li > a:hover, #search-panel .nav > li > a:focus {
+    background-color: #f86966; }
+    #search-panel .nav > li > a:hover path, #search-panel .nav > li > a:focus path {
+      fill: #fff; }
+    #search-panel .nav > li > a:hover span[class^="icon"]::before, #search-panel .nav > li > a:focus span[class^="icon"]::before {
+      color: #fff; }
+  #search-panel .nav .active-search-by {
+    background-color: #f86966; }
+    #search-panel .nav .active-search-by path {
+      fill: #fff; }
+    #search-panel .nav .active-search-by span[class^="icon"]::before {
+      color: #fff; }

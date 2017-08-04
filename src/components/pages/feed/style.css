@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
 #feed-page .page-header {
   padding-bottom: 0;
   margin-bottom: 0; }
@@ -36,11 +39,11 @@ ol.progtrckr li.progtrckr-todo {
   border-bottom: 4px solid silver; }
 
 ol.progtrckr li.progtrckr-doing {
-  color: black;
+  color: #000;
   border-bottom: 4px solid #CCCCCC; }
 
 ol.progtrckr li.progtrckr-done {
-  color: black;
+  color: #000;
   border-bottom: 4px solid #5cb85c; }
 
 ol.progtrckr li:after {
@@ -55,7 +58,7 @@ ol.progtrckr li:before {
 ol.progtrckr li.progtrckr-todo:before {
   content: "\039F";
   color: silver;
-  background-color: white;
+  background-color: #fff;
   width: 1.2em;
   line-height: 1.4em; }
 
@@ -64,7 +67,7 @@ ol.progtrckr li.progtrckr-todo:hover:before {
 
 ol.progtrckr li.progtrckr-doing:before {
   content: "\2022";
-  color: white;
+  color: #fff;
   background-color: #CCCCCC;
   width: 1.2em;
   line-height: 1.2em;
@@ -75,7 +78,7 @@ ol.progtrckr li.progtrckr-doing:hover:before {
 
 ol.progtrckr li.progtrckr-done:before {
   content: "\2713";
-  color: white;
+  color: #fff;
   background-color: #5cb85c;
   width: 1.2em;
   line-height: 1.2em;
@@ -89,7 +92,7 @@ ol.progtrckr li.progtrckr-done:hover:before {
   #sitter-feed h1 {
     margin-bottom: 48px;
     color: #757575;
-    font-family: "Open Sans", Helvetica, Arial, cursive; }
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive; }
   #sitter-feed .rbc-calendar {
     height: 400px; }
   #sitter-feed .rbc-event {

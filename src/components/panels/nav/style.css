@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
 nav#main-nav {
   background: #fff;
   border: none;
@@ -38,7 +41,7 @@ nav#main-nav {
     position: relative; }
 
 .popover-title {
-  font-family: "Open Sans", Helvetica, Arial, cursive;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
   font-weight: bold;
   letter-spacing: 1.2px;
   color: #f86966;
@@ -69,7 +72,7 @@ nav#main-nav {
       .popover-content ul .item-link .waiting:before {
         color: #ffca00; }
       .popover-content ul .item-link .accepted:before {
-        color: #aeea00; }
+        color: #64dd17; }
       .popover-content ul .item-link .declined:before {
         color: #f86966; }
     .popover-content ul .item-link:hover {
