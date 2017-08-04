@@ -1,9 +1,12 @@
+//external sources
 import React from 'react';
 
+//components
 import {Image} from 'react-bootstrap';
-
-import './style.css';
 import Rating from "react-rating";
+
+//style
+import './style.css';
 
 class ReviewItem extends React.Component {
     render() {

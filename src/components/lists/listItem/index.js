@@ -5,7 +5,7 @@ import React from 'react';
 import {Image} from 'react-bootstrap';
 import {Link} from 'react-router';
 
-class ListItem extends React.Component {
+export default class ListItem extends React.Component {
     render() {
         let item = this.props.item;
         const url = this.props.type === 'invite' ? this.props.type + '/' + item._id : 'sitter/' + item.sitterID;
@@ -23,5 +23,3 @@ class ListItem extends React.Component {
         );
     }
 }
-
-export default ListItem;

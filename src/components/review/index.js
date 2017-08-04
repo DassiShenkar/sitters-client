@@ -1,68 +1,16 @@
+//external sources
 import React from 'react';
-import uuid from 'uuid';
+
+//components
+import ReviewBase from "../base/review/index";
+import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
+import Rating from "react-rating";
+
 
 //style
 import './style.css';
-import {Button, ControlLabel, FormControl, Image, Modal} from "react-bootstrap";
-import axios from 'axios';
-import Rating from "react-rating";
-import strings from "../../static/strings";
 
-
-class Review extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.sendReview = this.sendReview.bind(this);
-    }
-
-    handleChange(e){
-        this.props.actions.feedActions.changeReviewText(e.target.value);
-    }
-
-    sendReview(e) {
-        e.preventDefault();
-        let sitter = this.props.feed.filteredMatches[this.props.feed.sitterIndex];
-            let review = {
-                _id: uuid.v1(),
-                sitterID:   sitter._id,
-                parentID:   this.props.user._id,
-                parentImage:    this.props.user.profilePicture,
-                parentName: this.props.user.name,
-                description:  this.props.feed.review.text,
-                rates: this.props.feed.review.rates
-            };
-            sitter.reviews.push(review);
-
-            let self = this;
-            axios({
-                method: 'post',
-                url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'sitter/update',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: sitter
-            }).then(function (res) {
-                console.log(res);
-                if (res.data) {
-                    console.log("review added");
-                    self.props.actions.feedActions.showReviewPopup(false);
-                }
-                else { // invite not created
-                    //TODO: think about error when user not created
-                }
-            })
-                .catch(function (error) {
-                    console.log(error);
-                    //TODO: think about error when user not created
-                });
-    };
-
-    closePopup(){
-        this.props.actions.feedActions.showReviewPopup(false)
-    }
-    onChangeRate(category,rate){
-        this.props.actions.feedActions.changeReviewRate(category,rate)
-    }
-
+export default class Review extends ReviewBase {
     render() {
         let sitterIndex = this.props.feed.sitterIndex;
         let sitter = this.props.feed.filteredMatches[sitterIndex];
@@ -123,5 +71,3 @@ class Review extends React.Component {
         )
     }
 }
-
-export default Review;

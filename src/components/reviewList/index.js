@@ -1,7 +1,10 @@
+//external sources
 import React from 'react';
+
+//components
 import ReviewItem from './reviewItem/index';
 
-class ReviewList extends React.Component {
+export default class ReviewList extends React.Component {
     render() {
         return (
             <div className="review-list">
@@ -10,5 +13,3 @@ class ReviewList extends React.Component {
         )
     }
 }
-
-export default ReviewList;

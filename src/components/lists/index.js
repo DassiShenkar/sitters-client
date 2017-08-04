@@ -2,9 +2,9 @@
 import React from 'react';
 
 //components
-import ListItem from './item/ListItem';
+import ListItem from './listItem/index';
 
-class List extends React.Component {
+export default class List extends React.Component {
     render() {
         return (
             <ul>{this.props.items.map((item, index) => {
@@ -13,4 +13,3 @@ class List extends React.Component {
         )
     }
 }
-export default List;

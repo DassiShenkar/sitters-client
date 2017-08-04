@@ -13,8 +13,6 @@ import Feed from "./components/pages/feed/index";
 import Login from "./components/pages/login/index";
 import Register from "./components/forms/Register";
 import SitterProfile from "./components/pages/sitterProfile/index";
-import ReviewList from "./components/reviewList/index";
-import SingleReview from "./components/review/SingleReview";
 import SingleInvite from "./components/pages/invite/index";
 import SingleNotification from "./components/pages/notification/index";
 import EditProfile from "./components/pages/editProfile/index";
@@ -33,8 +31,6 @@ const router = (
                 <Route path="/notification/:notificationId" component={SingleNotification}/>
                 <Route path="/settings" component={Settings}/>
                 <Route path="/sitter/:sitterId" component={SitterProfile}/>
-                <Route path="/reviews" component={ReviewList}/>
-                <Route path="/review/:reviewId" component={SingleReview}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/editProfile" component={EditProfile}/>
                 <Route path="/login" component={Login}/>

@@ -5,7 +5,7 @@ import React from 'react';
 import MainNavBase from "../../base/panels/nav/index";
 import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
-import List from '../../lists/List';
+import List from '../../lists/index';
 
 //style
 import './style.css';
