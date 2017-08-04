@@ -10,6 +10,11 @@ function sitterProfile(state = {}, action) {
                 ...state,
                 shouldDisplayMatchInfo: action.shouldDisplayMatchInfo
             };
+        case 'SET_SITTER' :
+            return {
+                ...state,
+                sitter: action.sitter
+            };
         default:
             return state;
     }

@@ -11,3 +11,10 @@ export function displayMatchInfo(shouldDisplayMatchInfo) {
         shouldDisplayMatchInfo
     }
 }
+
+export function setSitter(sitter) {
+    return {
+        type: 'SET_SITTER',
+        sitter
+    }
+}
