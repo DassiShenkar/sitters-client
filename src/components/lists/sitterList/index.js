@@ -10,6 +10,7 @@ import Icon from "../../icon";
 
 //style
 import './style.css';
+import '../../../style/animations.min.css';
 
 class SitterList extends SitterListBase {
     render() {

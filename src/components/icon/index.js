@@ -1,6 +1,9 @@
 // external sources
 import React from 'react';
 
+// style
+import './style.css';
+
 export default class Icon extends React.Component {
     render() {
         return (

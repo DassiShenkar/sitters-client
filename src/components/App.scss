@@ -1,3 +1,5 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css");
+
 html {
   margin: 0;
   padding: 0;
@@ -25,7 +27,7 @@ ul {
   list-style: none;
 }
 
-.popover-content table{
+.popover-content table {
   color: #757575;
 
   .bg-primary {
