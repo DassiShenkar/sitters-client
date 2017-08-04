@@ -17,9 +17,9 @@ import SingleInvite from "./components/pages/invite/index";
 import SingleNotification from "./components/pages/notification/index";
 import EditProfile from "./components/pages/editProfile/index";
 import Settings from "./components/pages/settings/index";
-import Thanks from "./components/Thanks";
-import NotAuthorized from "./components/NotAuthorized";
-import NotFound from "./components/NotFound";
+import Thanks from "./components/base/pages/thanks/index";
+import NotAuthorized from "./components/base/pages/notAuthorized/index";
+import NotFound from "./components/base/pages/notFound/index";
 
 const router = (
     <Provider store={store}>
