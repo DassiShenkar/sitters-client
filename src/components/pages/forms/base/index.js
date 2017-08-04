@@ -6,14 +6,14 @@ import PlacesAutocomplete from 'react-places-autocomplete'
 // components
 import 'react-select/dist/react-select.css';
 
-import TextInput from '../controllers/textInput/index';
-import RadioGroup from '../controllers/radio/index';
+import TextInput from '../../../controllers/textInput/index';
+import RadioGroup from '../../../controllers/radio/index';
 
 // statics
-import strings from '../../static/strings';
+import strings from '../../../../static/strings';
 
 // style
-import './style.css';
+import '../style.css';
 import {ControlLabel} from "react-bootstrap";
 
 

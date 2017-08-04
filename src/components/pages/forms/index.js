@@ -1,13 +1,12 @@
 // external sources
 import React from 'react';
 
+// components
+import ParentForm from './parentForm/index';
+import SitterForm from './sitterForm/index';
 import { PageHeader } from 'react-bootstrap';
 
-// components
-import ParentForm from './ParentForm';
-import SitterForm from './SitterForm';
-
-class Register extends React.Component {
+export default class Register extends React.Component {
     render() {
         let form = this.props.user.userType === "I'm a Parent" ?  <ParentForm {...this.props}/> : <SitterForm {...this.props}/>;
         return (
@@ -18,4 +17,3 @@ class Register extends React.Component {
         );
     }
 }
-export default Register;

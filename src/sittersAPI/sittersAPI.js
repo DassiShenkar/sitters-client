@@ -1,5 +1,7 @@
 export const sittersApi = {
     CREATE_INVITE: 'invite/create',
+    CREATE_PARENT: 'parent/create',
+    CREATE_SITTER: 'sitter/create',
     GET_USER: 'user/getUser',
     GET_SITTER: 'sitter/get',
     GET_PARENT: 'parent/get',

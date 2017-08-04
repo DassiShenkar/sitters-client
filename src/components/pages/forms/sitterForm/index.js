@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from '../../../controllers/textInput/index';
-import BaseForm from '../base/BaseForm';
+import BaseForm from '../base/index';
 import 'react-select/dist/react-select.css';
 import {AgeFromDate} from 'age-calculator';
 import strings from '../../../../static/strings';
