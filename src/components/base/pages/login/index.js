@@ -36,7 +36,6 @@ export default class LoginBase extends React.Component {
                 document.cookie = ("auth_token=" + facebookUser.id); // save token for future login
                 document.cookie = ("is_parent=" + user.data.isParent);
                 self.props.actions.actionCreators.changeIsParentFlag(user.data.isParent);
-                user.data.isParent ? self.props.actions.actionCreators.setParentData(user.data) : self.props.actions.actionCreators.setSitterData(user.data);
                 self.props.router.push('/'); // route to feed page
             }
             else { // user not registered

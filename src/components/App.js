@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 //actions
 import * as actionCreators from '../actions/actionCreators';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
-import * as InviteActions from '../actions/InviteActions';
 
 //new actions
 import * as LoginActions from './base/pages/login/action';
@@ -15,6 +14,7 @@ import * as EditProfileActions from './base/pages/editProfile/action';
 import * as FeedActions from './base/pages/feed/action';
 import * as SitterFeedActions from './base/pages/feed/sitterFeed/action';
 import * as RegisterActions from './base/pages/forms/action';
+import * as InviteActions from './base/modals/invite/action';
 
 //components
 import Main from './Main'
@@ -49,7 +49,6 @@ function mapDispatchToProps(dispatch) {
         actions: {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
-            inviteActions: bindActionCreators(InviteActions, dispatch),
 
             loginActions: bindActionCreators(LoginActions, dispatch),
             sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
@@ -58,7 +57,8 @@ function mapDispatchToProps(dispatch) {
             editProfileActions: bindActionCreators(EditProfileActions, dispatch),
             feedActions: bindActionCreators(FeedActions, dispatch),
             sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
-            registerActions: bindActionCreators(RegisterActions, dispatch)
+            registerActions: bindActionCreators(RegisterActions, dispatch),
+            inviteActions: bindActionCreators(InviteActions, dispatch)
         }
     };
 }

@@ -1,9 +1,10 @@
-function invites(state = [], action) {
+function invite(state = {}, action) {
     switch (action.type) {
-        case 'UPDATE_DATE' :
-            return [...state, {
-                date: action.date
-            }];
+        case 'CHANGE_RANGE' :
+            return {...state,
+                priceMinRange: action.priceMinRange,
+                priceMaxRange: action.priceMaxRange
+            };
         case 'CHANGE_INVITE_FROM_TIME' :
             return {
                 ...state,
@@ -21,6 +22,19 @@ function invites(state = [], action) {
                 inviteDay: action.inviteDay,
                 isoValue: action.isoValue
             };
+        case 'SET_VIEW' :
+            return {
+                ...state,
+                searchView: action.searchView
+            };
+        case 'CHANGE_AVAILABILITY' :
+            return {
+                ...state,
+                availability: action.availability
+            };
+        case 'CHANGE_WORKING_HOUR_DAY' :
+            return {...state,
+                [action.day.toLowerCase()] : action.workingHours};
         case 'SET_NOTES' :
             return {
                 ...state,
@@ -43,4 +57,4 @@ function invites(state = [], action) {
     }
 }
 
-export default invites;
+export default invite;

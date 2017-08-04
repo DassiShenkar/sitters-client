@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import user from './user';
-import invites from './invite';
 import sitterProfileOld from './sitterProfile';
 
 
@@ -17,6 +16,6 @@ import feed from '../components/base/pages/feed/reducer';
 import sitterFeed from '../components/base/pages/feed/sitterFeed/reducer';
 import register from '../components/base/pages/forms/reducer';
 
-const rootReducer = combineReducers({user, register, feed, settings, searchBy, sitterProfile, sitterProfileOld, invites, invite, sitterFeed, editProfile, login,  routing: routerReducer});
+const rootReducer = combineReducers({user, register, feed, settings, searchBy, sitterProfile, sitterProfileOld, invite, sitterFeed, editProfile, login,  routing: routerReducer});
 
 export default rootReducer;
