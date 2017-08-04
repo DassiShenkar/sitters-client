@@ -1,19 +1,21 @@
+//external sources
 import React from 'react';
+
+//components
+import ParentFormBase from "../../../base/pages/forms/parentForm/index";
 import TextInput from '../../../controllers/textInput/index';
 import BaseForm from '../base/index';
-import axios from 'axios';
-import strings from '../../../../static/strings';
-import {AgeFromDate} from 'age-calculator';
 import RadioGroup from "../../../controllers/radio/index";
 import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
 import SelectInput from "../../../controllers/select/index";
-import {geocodeByAddress} from "react-places-autocomplete";
+import DragAndDropContainer from "../../../dragAndDropContainer/index";
+
+//statics
+import strings from '../../../../static/strings';
 
 //style
 import '../style.css';
-import * as _ from "lodash";
-import DragAndDropContainer from "../dragAndDropContainer/index";
-import ParentFormBase from "../../../base/pages/forms/parentForm/index";
+
 
 export default class ParentForm extends ParentFormBase {
     render() {

@@ -14,7 +14,6 @@ import strings from '../../../../../static/strings';
 //style
 import '../style.css';
 
-
 export default class ParentFormBase extends React.Component {
     constructor(props) {
         super(props);
@@ -152,95 +151,10 @@ export default class ParentFormBase extends React.Component {
                                     });
                                 }
                             });
-                            // axios({
-                            //     method: 'post',
-                            //     url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
-                            //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            //     data: {_id: self.props.user.facebookID}
-                            // })
-                            //     .then(function (response) {
-                            // if (response.data) {  // user exists
-                            //     // let parent = response.data;
-                            //     // parent.friends = self.props.user.friends.data;
-                            //     axios({
-                            //         method: 'post',
-                            //         url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/updateMutualFriends',
-                            //         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                            //         data: response.data
-                            //     })
-                            //         .then(function (response) {
-                            //             document.cookie = ("auth_token="+self.props.user.facebookID);
-                            //             document.cookie = ("is_parent=true");
-                            //             self.props.actions.actionCreators.changeIsParentFlag(true);
-                            //             self.props.router.push('/');
-                            //         })
-                            //         .catch(function (error) {
-                            //             console.log(error);
-                            //         });
-                            // }
-                            // })
-                            // .catch(function (error) {
-                            //     console.log(error);
-                            // });
-                            // }
-
                         }
-                        //     else { // user not created
-                        //         //TODO: think about error when user not created
-                        //     }
-                        // });
-
-
-                        // axios({
-                        //     method: 'post',
-                        //     url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/create',
-                        //     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                        //     data: parent
-                        // }).then(function (res) {
-                        // if (res.data) {  // user created
-                        //     if(self.props.user.friends.length > 0){
-                        //         axios({
-                        //             method: 'post',
-                        //             url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'user/getUser',
-                        //             headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                        //             data: {_id: self.props.user.facebookID}
-                        //         })
-                        //             .then(function (response) {
-                        //                 if (response.data) {  // user exists
-                        //                     // let parent = response.data;
-                        //                     // parent.friends = self.props.user.friends.data;
-                        //                     axios({
-                        //                         method: 'post',
-                        //                         url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/updateMutualFriends',
-                        //                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                        //                         data: response.data
-                        //                     })
-                        //                         .then(function (response) {
-                        //                             document.cookie = ("auth_token="+self.props.user.facebookID);
-                        //                             document.cookie = ("is_parent=true");
-                        //                             self.props.actions.actionCreators.changeIsParentFlag(true);
-                        //                             self.props.router.push('/');
-                        //                         })
-                        //                         .catch(function (error) {
-                        //                             console.log(error);
-                        //                         });
-                        //                 }
-                        //             })
-                        //             .catch(function (error) {
-                        //                 console.log(error);
-                        //             });
-                        //     }
-                        //
-                        // }
-                        // else { // user not created
-                        //     //TODO: think about error when user not created
-                        // }
-                        // })
-                        //     .catch(function (error) {
-                        //         console.log(error);
-                        //         //TODO: think about error when user not created
-                        //     });
                     }
                 });
             }
-        }
+        });
+    }
+}
