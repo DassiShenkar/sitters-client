@@ -6,6 +6,7 @@ import MainNavBase from "../../base/panels/nav/index";
 import {Navbar, Nav, NavItem, Badge, Image, OverlayTrigger, Popover}  from 'react-bootstrap';
 import DropdownMenu from '../../controllers/dropdownMenu/index';
 import List from '../../lists/genericList/index';
+import Icon from '../../icon';
 
 //style
 import './style.css';
@@ -31,7 +32,7 @@ class MainNav extends MainNavBase {
                     <Navbar.Brand>
                         <a href="/"
                            onClick={this.nav.bind(this, null)}>{this.props.router.getCurrentLocation().pathname !== '/' ?
-                            <span className="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
+                            <Icon name="glyphicon glyphicon-menu-left"/> : 'Sitters'}</a>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Navbar.Header>
@@ -45,16 +46,16 @@ class MainNav extends MainNavBase {
                         {this.props.user.isParent ?
                             <OverlayTrigger trigger="focus" placement="bottom" overlay={notifications}>
                                 <NavItem>
-                                    <span className="icon-bell-o">
+                                    <Icon name="icon-bell-o">
                                     {newNotifications.length > 0 ? <Badge>{newNotifications.length}</Badge> : ''}
-                                    </span>
+                                    </Icon>
                                 </NavItem>
                             </OverlayTrigger> : null}
                         <OverlayTrigger trigger="focus" placement="bottom" overlay={invites}>
                             <NavItem>
-                                <span className="icon-envelope-o">
+                                <Icon name="icon-envelope-o">
                                 {newInvites.length > 0 ? <Badge>{newInvites.length}</Badge> : ''}
-                                </span>
+                                </Icon>
                             </NavItem>
                         </OverlayTrigger>
                         <DropdownMenu title={this.props.user.name} {...this.props}/>

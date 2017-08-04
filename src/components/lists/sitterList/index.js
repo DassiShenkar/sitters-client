@@ -6,6 +6,7 @@ import {Link} from 'react-router';
 import {Image, Table} from 'react-bootstrap';
 import SitterActionBar from '../../panels/actionPanel/index';
 import SitterListBase from "../../base/lists/sitterList/index";
+import Icon from "../../icon";
 
 //style
 import './style.css';
@@ -40,11 +41,11 @@ class SitterList extends SitterListBase {
                     </div>
                     <div className="arrows">
                         {sitterIndex > 0 ?
-                            <span onClick={this.prevSitter}
-                                  className={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated' : 'glyphicon glyphicon-menu-left'}/> : ''}
+                            <Icon onClick={this.prevSitter}
+                                  name={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated' : 'glyphicon glyphicon-menu-left'}/> : ''}
                         {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ?
-                            <span onClick={this.nextSitter}
-                                  className='glyphicon glyphicon-menu-right faa-float animated'/> : ''}
+                            <Icon action={this.nextSitter}
+                                  name='glyphicon glyphicon-menu-right faa-float animated'/> : ''}
                     </div>
                     <SitterActionBar {...this.props}/>
                 </div>

@@ -9,11 +9,7 @@ import RadioGroup from "../../controllers/radio/index";
 import GoogleMaps from "../../controllers/googleMaps/index";
 import CheckBoxInput from "../../controllers/checkbox/index";
 import SearchByBase from "../../base/panels/searchPanel/index";
-
-//icons
-import Location from '../../icons/Location'
-import Clock from '../../icons/Clock'
-import Dollar from '../../icons/Dollar'
+import Icon from "../../icon/index";
 
 //statics
 import strings from "../../../static/strings";
@@ -78,9 +74,9 @@ export default class SearchBy extends SearchByBase {
                     <div className="search-nav">
                         <PageHeader>Quick Search</PageHeader>
                         <Nav justified onSelect={this.handleSelect.bind(this)}>
-                            <NavItem className={this.props.searchBy.searchView === "time"? "active-search-by":""} eventKey="time"><Clock/></NavItem>
-                            <NavItem className={this.props.searchBy.searchView === "location"? "active-search-by":""} eventKey="location" title="location"><Location/></NavItem>
-                            <NavItem className={this.props.searchBy.searchView === "rate"? "active-search-by":""} eventKey="rate"><Dollar/></NavItem>
+                            <NavItem className={this.props.searchBy.searchView === "time"? "active-search-by":""} eventKey="time"><Icon name="icon-clock-2"/></NavItem>
+                            <NavItem className={this.props.searchBy.searchView === "location"? "active-search-by":""} eventKey="location" title="location"><Icon name="icon-location"/></NavItem>
+                            <NavItem className={this.props.searchBy.searchView === "rate"? "active-search-by":""} eventKey="rate"><Icon name="icon-usd"/></NavItem>
                         </Nav>
                         {navView}
                     </div>

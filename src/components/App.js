@@ -1,6 +1,7 @@
 //external sources
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 //actions
 import * as actionCreators from '../actions/actionCreators';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
@@ -49,7 +50,6 @@ function mapDispatchToProps(dispatch) {
         actions: {
             actionCreators: bindActionCreators(actionCreators, dispatch),
             sitterProfileActionsOld: bindActionCreators(SitterProfileActionsOld, dispatch),
-
             loginActions: bindActionCreators(LoginActions, dispatch),
             sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
             settingsActions: bindActionCreators(SettingsActions, dispatch),

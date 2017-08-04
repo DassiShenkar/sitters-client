@@ -11,48 +11,68 @@
       font-family: 'Open Sans', sans-serif;
     }
   }
-}
 
-#time-search {
-  margin: 0;
-  margin-top: 48px;
-  padding: 0;
-  height: 240px;
+  #time-search {
+    margin: 0;
+    margin-top: 48px;
+    padding: 0;
+    height: 240px;
 
-  label {
-    margin: 16px 0;
-    display: flex;
+    label {
+      margin: 16px 0;
+      display: flex;
+    }
+  }
+
+  #range-search {
+    height: 240px;
+    padding: 0;
+    margin: 0;
+    margin-top: 48px;
+  }
+
+  #search-range {
+    width: 360px;
+    margin: 48px 0;
+  }
+
+  .nav {
+    path {
+      fill: $brand;
+    }
+  }
+
+  .nav > li > a {
+
+    border-right: 1px solid $white;
+
+    span[class^="icon"]::before {
+      font-size: 24px;
+      color: $brand;
+    }
+  }
+
+  .nav > li > a:hover, .nav > li > a:focus {
+    background-color: $brand;
+    path {
+      fill: $white;
+    }
+
+    span[class^="icon"]::before {
+      color: $white;
+    }
+  }
+
+  .nav .active-search-by {
+    background-color: $brand;
+    path {
+      fill: $white;
+    }
+
+    span[class^="icon"]::before {
+      color: $white;
+    }
   }
 }
 
-#range-search {
-  height: 240px;
-  padding: 0;
-  margin: 0;
-  margin-top: 48px;
-}
 
-#search-range {
-  width: 360px;
-  margin: 48px 0;
-}
-
-.nav {
-  path {
-    fill: $brand;
-  }
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-  background-color: $brand;
-  path {
-    fill: $white;
-  }
-}
-
-.nav .active-search-by {
-  background-color: $brand;
-  path {
-    fill: $white;
-  }
-}
