@@ -6,9 +6,6 @@ import uuid from 'uuid';
 import {post} from '../../../utils/serverCalls';
 import {sittersApi} from "../../../sittersAPI/sittersAPI";
 
-//style
-import './style.css';
-
 export default class ReviewBase extends React.Component {
     constructor(props) {
         super(props);

@@ -4,7 +4,7 @@ import * as _ from "lodash";
 
 //components
 import {Image} from 'react-bootstrap';
-import ReactBarChart from '../../ReactBarChart';
+import ReactBarChart from '../../charts/barChart/index';
 
 // style
 import './style.css';

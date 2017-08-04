@@ -9,9 +9,6 @@ import * as _ from "lodash";
 // statics
 import strings from '../../../static/strings';
 
-//style
-import './style.css';
-
 export default class SitterListBase extends React.Component {
 
     constructor(props) {
