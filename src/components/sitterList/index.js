@@ -1,93 +1,19 @@
+//external sources
 import React from 'react';
 import {Link} from 'react-router';
 
 //components
 import {Image, Table} from 'react-bootstrap';
 import SitterActionBar from '../panels/actionPanel';
+import SitterListBase from "../base/sitterList/index";
 
 //style
 import './style.css';
 
-// statics
-import strings from '../../static/strings';
-import * as axios from "axios";
-
-class SitterList extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.nextSitter = this.nextSitter.bind(this);
-        this.prevSitter = this.prevSitter.bind(this);
-    }
-
-    nextSitter(e) {
-        e.preventDefault();
-        let index = this.props.feed.sitterIndex === (this.props.feed.filteredMatches.length - 1) ? this.props.feed.filteredMatches.length - 1 : this.props.feed.sitterIndex + 1;
-        //this.props.actions.sitterProfileActions.setMatchData(this.props.feed.filteredMatches[index].match);
-        if (strings.ACTIVATE_BLACKLIST) {
-            let parent = this.props.user;
-            parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
-            this.props.actions.actionCreators.setUserData(parent);
-            //Todo: call blacklistSitter(parentID, sitterID) for this parent
-            axios({
-                method: 'post',
-                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: parent
-            }).then(function (res) {
-                if (res.data) {  // user created
-                    console.log('updated blacklist');
-                }
-                else { // user not created
-                    console.log("user not created");
-                    //TODO: think about error when user not created
-                }
-            })
-                .catch(function (error) {
-                    alert(error);
-                    //TODO: think about error when user not created
-                });
-
-        }
-        this.props.actions.feedActions.setSitterIndex(index);
-    }
-
-    prevSitter(e) {
-        e.preventDefault();
-        const index = this.props.feed.sitterIndex === 0 ? 0 : this.props.feed.sitterIndex - 1;
-        if (strings.ACTIVATE_BLACKLIST) {
-            let parent = this.props.user;
-            parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id);
-            this.props.actions.actionCreators.setUserData(parent);
-            //Todo: call blacklistSitter(parentID, sitterID) for this parent
-            axios({
-                method: 'post',
-                url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: parent
-            }).then(function (res) {
-                if (res.data) {  // user created
-                    console.log('updated blacklist');
-                }
-                else { // user not created
-                    console.log("user not created");
-                    //TODO: think about error when user not created
-                }
-            })
-                .catch(function (error) {
-                    alert(error);
-                    //TODO: think about error when user not created
-                });
-
-        }
-        this.props.actions.feedActions.setSitterIndex(index);
-    }
-
-
+class SitterList extends SitterListBase {
     render() {
 
         const sitterIndex = this.props.feed.sitterIndex === undefined ? 0 : this.props.feed.sitterIndex;
-        // const consider = this.props.sitters.length > 0 ? this.props.sitters[sitterIndex].name.split(' ')[0] + ' also considers ' + (this.props.sitters[sitterIndex].gender === 'male' ? 'himself:' : 'herself:') : '';
         const coverPhoto = this.props.sitters.length > 0 ? this.props.feed.filteredMatches[sitterIndex].coverPhoto : null;
         const mutualFriends = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].match.mutualFriends : null;
         const personality = this.props.sitters.length > 0 ? this.props.feed.matches[sitterIndex].personality : [];

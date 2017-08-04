@@ -1,3 +1,6 @@
+@import "../../style/colors.scss";
+@import "../../style/fonts.scss";
+
 .feed-match {
 
   #sitter-profile {
@@ -7,7 +10,7 @@
     }
 
     .motto {
-      font-family: 'Raleway', sans-serif;
+      font-family: $raleway;
       font-size: 32px;
     }
 
@@ -15,7 +18,7 @@
 
       font-size: 17px;
       letter-spacing: 1.2px;
-      font-family: 'Raleway', sans-serif;
+      font-family: $raleway;
       font-weight: 400;
 
       ul {
@@ -36,16 +39,8 @@
       }
 
       .label-dark, .label-regular, .label-light {
-        background: #f86966;
+        background: $brand;
       }
-
-      //.label-regular {
-      //  opacity: 0.75;
-      //}
-
-      //.label-light {
-      //  opacity: 0.5;
-      //}
     }
 
     .mutual-friends {
