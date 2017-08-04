@@ -1,10 +1,10 @@
 //external sources
 import React from 'react';
-import { PageHeader } from 'react-bootstrap';
 
 //components
-import EditProfileParent from './editProfileParent';
-import EditProfileSitter from './editProfileSitter';
+import EditProfileParent from './editProfileParent/index';
+import { PageHeader } from 'react-bootstrap';
+import EditProfileSitter from './editProfileSitter/index';
 
 class EditProfile extends React.Component {
     render() {

@@ -1,102 +1,15 @@
+//external sources
 import React from 'react';
-import axios from 'axios';
+
+//components
 import {Button, ControlLabel, Nav, NavItem} from "react-bootstrap";
-//style
-import './style.css';
+import TextInput from "../../../controllers/textInput/index";
+import RadioGroup from "../../../controllers/radio/radioGroup/index";
+import strings from "../../../../static/strings";
+import SelectInput from "../../../controllers/select/SelectInput";
+import EditProfileParentBase from "../../../base/pages/editProfile/editProfileParent/index";
 
-import TextInput from "../../controllers/textInput/index";
-import RadioGroup from "../../controllers/radio/radioGroup/index";
-import strings from "../../../static/strings";
-import SelectInput from "../../controllers/select/SelectInput";
-
-class EditProfileParent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmitParent = this.handleSubmitParent.bind(this);
-        this.convertStringArrayToMultiSelect = this.convertStringArrayToMultiSelect.bind(this);
-    };
-
-    handleSubmitParent(e) {
-        e.preventDefault();
-        const self = this;
-        let parent = this.props.user;
-        let expertise = [], hobbies = [], specialNeeds = [], languages = [];
-        if(this.props.editProfile.languages.length > 0){
-            this.props.editProfile.languages.forEach(function(o){
-                languages.push(o.value);
-            })
-        }
-        if(this.props.editProfile.childExpertise.length > 0){
-            this.props.editProfile.childExpertise.forEach(function(o){
-                expertise.push(o.value);
-            })
-        }
-        if(this.props.editProfile.childSpecialNeeds.length > 0){
-            this.props.editProfile.childSpecialNeeds.forEach(function(o){
-                specialNeeds.push(o.value);
-            })
-        }
-        if(this.props.editProfile.childHobbies.length > 0){
-            this.props.editProfile.childHobbies.forEach(function(o){
-                hobbies.push(o.value);
-            })
-        }
-        parent.name = this.props.editProfile.name !== ""? this.props.editProfile.name: this.props.user.name;
-        parent.email = this.props.editProfile.email !== ""? this.props.editProfile.email: this.props.user.email;
-        parent.age = this.props.editProfile.age !== ""? this.props.editProfile.age: this.props.user.age;
-        parent.maxPrice = this.props.editProfile.watchMaxPrice !== ""? this.props.editProfile.watchMaxPrice: this.props.user.maxPrice;
-        parent.children = {
-            name:  this.props.editProfile.childName !== ""? this.props.editProfile.childName: this.props.user.children.name,
-            age: this.props.editProfile.childAge !== ""? this.props.editProfile.childAge: this.props.user.children.age,
-            expertise: expertise,
-            hobbies: hobbies,
-            specialNeeds: specialNeeds
-        };
-        parent.languages = languages;
-        parent.partner ={
-            name: this.props.editProfile.partnerName !== ""? this.props.editProfile.partnerName: this.props.user.partner.name,
-            age: this.props.editProfile.partnerAge !== ""? this.props.editProfile.partnerAge: this.props.user.partner.age,
-            email: this.props.editProfile.partnerEmail !== ""? this.props.editProfile.partnerEmail: this.props.user.partner.email
-        };
-        axios({
-            method: 'post',
-            url: (strings.DEBUG?strings.LOCALHOST : strings.WEBSITE ) + 'parent/update',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: parent
-        }).then(function (res) {
-            if (res.data) {  // user updated
-                self.props.router.push('/');
-            }
-            else { // user not updated
-                //TODO: think about error when user not created
-            }
-        })
-            .catch(function (error) {
-                console.log(error);
-                //TODO: think about error when user not created
-            });
-    }
-    handleSelect(selectedKey) {
-        this.props.actions.registerActions.changeRegisterView(selectedKey);
-    }
-    convertStringArrayToMultiSelect(array, stateArray){
-        if(array.length === 0 && stateArray.length === 0){
-            return array;
-        }
-        else if(stateArray.length > 0)
-            return stateArray;
-        else {
-            let arr =  [];
-            array.forEach(function(element){
-                arr.push({value:element.toLowerCase(), label:element});
-            });
-            return arr;
-        }
-    }
-    next(){
-        let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
-        this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
-    }
+export default class EditProfileParent extends EditProfileParentBase {
     render() {
         let registerView = null;
         if (this.props.register.view !== null) {
@@ -266,5 +179,3 @@ class EditProfileParent extends React.Component {
         );
     };
 }
-
-export default EditProfileParent;

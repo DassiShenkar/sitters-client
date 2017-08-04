@@ -1,106 +1,20 @@
+//external sources
 import React from 'react';
-
-import 'react-select/dist/react-select.css';
-import axios from 'axios';
-import {Button, ControlLabel, FormControl, Nav, NavItem, Table} from "react-bootstrap";
-import './style.css';
 import * as _ from "lodash";
-import TextInput from "../../controllers/textInput/index";
-import SelectInput from "../../controllers/select/SelectInput";
-import strings from "../../../static/strings";
 
-class Form extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmitSitter = this.handleSubmitSitter.bind(this);
-        this.convertStringArrayToMultiSelect = this.convertStringArrayToMultiSelect.bind(this);
-    }
+//components
+import {Button, ControlLabel, FormControl, Nav, NavItem, Table} from "react-bootstrap";
+import TextInput from "../../../controllers/textInput/index";
+import SelectInput from "../../../controllers/select/SelectInput";
+import EditProfileSitterBase from "../../../base/pages/editProfile/editProfileSitter/index";
 
-    convertStringArrayToMultiSelect(array, stateArray){
-        if(array.length === 0 && stateArray.length === 0){
-            return array;
-        }
-        else if(stateArray.length > 0)
-            return stateArray;
-        else {
-            let arr =  [];
-            array.forEach(function(element){
-                arr.push({value:element.toLowerCase(), label:element});
-            });
-            return arr;
-        }
-    }
+//statics
+import strings from "../../../../static/strings";
 
-    handleSubmitSitter(e) {// get all the form params and create sitter
-        e.preventDefault();
-        const self = this;
-        let sitter = this.props.user;
-        let expertise = [], hobbies = [], specialNeeds = [], education = [], languages = [];
-        if (this.props.editProfile.languages.length > 0) {
-            this.props.editProfile.languages.forEach(function (o) {
-                languages.push(o.value);
-            })
-        }
-        if (this.props.editProfile.sitterExpertise.length > 0) {
-            this.props.editProfile.sitterExpertise.forEach(function (o) {
-                expertise.push(o.value);
-            })
-        }
-        if (this.props.editProfile.sitterSpecialNeeds.length > 0) {
-            this.props.editProfile.sitterSpecialNeeds.forEach(function (o) {
-                specialNeeds.push(o.value);
-            })
-        }
-        if (this.props.editProfile.sitterHobbies.length > 0) {
-            this.props.editProfile.sitterHobbies.forEach(function (o) {
-                hobbies.push(o.value);
-            })
-        }
-        if (this.props.editProfile.sitterEducation.length > 0) {
-            this.props.editProfile.sitterEducation.forEach(function (o) {
-                education.push(o.value);
-            });
-        }
-        sitter.name = this.props.editProfile.name !== "" ? this.props.editProfile.name : this.props.user.name;
-        sitter.email = this.props.editProfile.email !== "" ? this.props.editProfile.email : this.props.user.email;
-        sitter.age = this.props.editProfile.age !== "" ? this.props.editProfile.age : this.props.user.age;
-        sitter.motto = this.props.editProfile.sitterMotto !== "" ? this.props.editProfile.sitterMotto : this.props.user.motto;
-        sitter.expertise = expertise;
-        sitter.hobbies = hobbies;
-        sitter.specialNeeds = specialNeeds;
-        sitter.languages = languages;
-        sitter.education = education;
-        sitter.hourFee = this.props.editProfile.hourFee !== "" ? this.props.editProfile.hourFee : this.props.user.hourFee;
-        sitter.experience = this.props.editProfile.sitterExperience !== "" ? this.props.editProfile.sitterExperience : this.props.user.experience;
-        sitter.minAge = this.props.editProfile.sitterMinAge !== "" ? this.props.editProfile.sitterMinAge : this.props.user.minAge;
-        sitter.maxAge = this.props.editProfile.sitterMaxAge !== "" ? this.props.editProfile.sitterMaxAge : this.props.user.maxAge;
+//style
+import 'react-select/dist/react-select.css';
 
-        axios({
-            method: 'post',
-            url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + 'sitter/update',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: sitter
-        }).then(function (res) {
-            if (res.data) {  // user updated
-                self.props.router.push('/');
-            }
-            else { // user not updated
-                //TODO: think about error when user not created
-            }
-        })
-            .catch(function (error) {
-                console.log(error);
-                //TODO: think about error when user not created
-            });
-    }
-    handleSelect(selectedKey) {
-        this.props.actions.registerActions.changeRegisterView(selectedKey);
-    }
-
-    next(){
-        let registerViewIndex = strings.STEPS.indexOf(this.props.register.view) +1;
-        this.props.actions.registerActions.changeRegisterView(strings.STEPS[registerViewIndex])
-    }
+export default class EditProfileSitter extends EditProfileSitterBase {
     render() {
         let registerView = null;
         if (this.props.register.view !== null) {
@@ -293,5 +207,3 @@ class Form extends React.Component {
         );
     };
 }
-
-export default Form;

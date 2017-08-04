@@ -8,7 +8,6 @@ import * as RegisterActions from '../actions/RegisterActions';
 import * as FeedActions from '../actions/FeedActions';
 import * as RangeActions from '../actions/RangeActions';
 import * as SitterProfileActionsOld from '../actions/SitterProfileActionsOld';
-import * as EditProfileActions from '../actions/EditProfileActions';
 import * as InviteActions from '../actions/InviteActions';
 import * as WorkingHours from '../actions/WorkingHoursActions';
 import * as PersonalityQuestions from '../actions/PersonalityQuestionsActions';
@@ -19,6 +18,7 @@ import * as LoginActions from './base/pages/login/action';
 import * as SitterProfileActions from './base/pages/sitterProfile/action';
 import * as SettingsActions from './base/pages/settings/action';
 import * as SearchByActions from './base/panels/searchPanel/action';
+import * as EditProfileActions from './base/pages/editProfile/action';
 
 //components
 import Main from './Main'
@@ -62,11 +62,11 @@ function mapDispatchToProps(dispatch) {
             workingHoursActions: bindActionCreators(WorkingHours, dispatch),
             sitterFeedActions: bindActionCreators(SitterFeedActions, dispatch),
             personalityQuestionsActions: bindActionCreators(PersonalityQuestions, dispatch),
-            editProfileActions: bindActionCreators(EditProfileActions, dispatch),
 
             loginActions: bindActionCreators(LoginActions, dispatch),
             sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
-            settingsActions: bindActionCreators(SettingsActions, dispatch)
+            settingsActions: bindActionCreators(SettingsActions, dispatch),
+            editProfileActions: bindActionCreators(EditProfileActions, dispatch)
         }
     };
 }
