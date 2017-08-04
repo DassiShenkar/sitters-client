@@ -5,6 +5,7 @@ import * as _ from "lodash";
 //components
 import {Image} from 'react-bootstrap';
 import ReactBarChart from '../../charts/barChart/index';
+import TagsList from '../../lists/tagsList';
 
 // style
 import './style.css';
@@ -27,18 +28,7 @@ class MatchBanner extends React.Component {
                 </div>
                 <div className="personality">
                     <h4>PERSONALITY MATCH</h4>
-                    <ul>
-                        <li className="label label-dark">{matchingWords[0]}</li>
-                        <li className="label label-dark">{matchingWords[1]}</li>
-                    </ul>
-                    <ul>
-                        <li className="label label-regular">{matchingWords[2]}</li>
-                        <li className="label label-regular">{matchingWords[3]}</li>
-                    </ul>
-                    <ul>
-                        <li className="label label-light">{matchingWords[4]}</li>
-                        <li className="label label-light">{matchingWords[5]}</li>
-                    </ul>
+                    <TagsList items={matchingWords}/>
                 </div>
             </div>
         )

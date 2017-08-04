@@ -1,0 +1,29 @@
+@import "../../../style/base.scss";
+
+.tags-list {
+
+  font-size: 17px;
+  letter-spacing: 1.2px;
+  font-family: $raleway;
+  font-weight: 400;
+
+  ul {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 216px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ul li {
+    width: 120px;
+    background: $brand;
+  }
+
+  ul li:last-child {
+    margin-left: .8em;
+  }
+
+}
+

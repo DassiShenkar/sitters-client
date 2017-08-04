@@ -8,9 +8,6 @@ import Review from "../../../modals/review/index";
 import SearchByTab from "../../../panels/searchPanel/index";
 import SitterList from "../../../lists/sitterList/index";
 
-//style
-import './style.css';
-
 export default class ParentFeed extends ParentFeedBase {
     render() {
         let navView = null;

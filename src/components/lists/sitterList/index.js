@@ -7,6 +7,7 @@ import {Image, Table} from 'react-bootstrap';
 import SitterActionBar from '../../panels/actionPanel/index';
 import SitterListBase from "../../base/lists/sitterList/index";
 import Icon from "../../icon";
+import TagsTable from "../tagsList";
 
 //style
 import './style.css';
@@ -78,18 +79,19 @@ class SitterList extends SitterListBase {
                             </td>
                             <td className="motto">{motto ? '"' + motto + '"' : ''}</td>
                             <td className="personality">
-                                <ul>
-                                    <li className="label label-dark">{personality[0]}</li>
-                                    <li className="label label-dark">{personality[1]}</li>
-                                </ul>
-                                <ul>
-                                    <li className="label label-regular">{personality[2]}</li>
-                                    <li className="label label-regular">{personality[3]}</li>
-                                </ul>
-                                <ul>
-                                    <li className="label label-light">{personality[4]}</li>
-                                    <li className="label label-light">{personality[5]}</li>
-                                </ul>
+                                <TagsTable items={personality}/>
+                                {/*<ul>*/}
+                                    {/*<li className="label label-dark">{personality[0]}</li>*/}
+                                    {/*<li className="label label-dark">{personality[1]}</li>*/}
+                                {/*</ul>*/}
+                                {/*<ul>*/}
+                                    {/*<li className="label label-regular">{personality[2]}</li>*/}
+                                    {/*<li className="label label-regular">{personality[3]}</li>*/}
+                                {/*</ul>*/}
+                                {/*<ul>*/}
+                                    {/*<li className="label label-light">{personality[4]}</li>*/}
+                                    {/*<li className="label label-light">{personality[5]}</li>*/}
+                                {/*</ul>*/}
                             </td>
                         </tr>
                         </tbody>
