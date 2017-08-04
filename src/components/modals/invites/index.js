@@ -2,16 +2,14 @@
 import React from 'react';
 
 // components
+import InvitesModalBase from "../../base/modals/invites/index";
 import InviteList from '../../lists/inviteList/index'
+import {Modal} from "react-bootstrap";
 
 //style
 import './style.css';
-import {Modal} from "react-bootstrap";
 
-class InvitesModal extends React.Component{
-    closePopup(){
-        this.props.actions.feedActions.showInvitesPopup(false)
-    }
+export default class InvitesModal extends InvitesModalBase{
     render() {
         return (
         <div>
@@ -27,7 +25,6 @@ class InvitesModal extends React.Component{
                 <Modal.Body>
                     <ul className="invites-list">
                         <InviteList invites={this.props.user.invites}  isParent={this.props.user.isParent}/>
-                        {/*{this.props.user.invites.map((invite, index) => <InviteItem {...this.props}  key={index} invite={invite}/>)}*/}
                     </ul>
                 </Modal.Body>
             </Modal>
@@ -36,6 +33,3 @@ class InvitesModal extends React.Component{
         )
     }
 }
-
-export default InvitesModal;
-
