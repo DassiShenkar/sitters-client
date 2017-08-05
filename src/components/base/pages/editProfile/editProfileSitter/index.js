@@ -74,7 +74,7 @@ export default class EditProfileSitterBase extends React.Component {
         sitter.minAge = this.props.editProfile.sitterMinAge !== "" ? this.props.editProfile.sitterMinAge : this.props.user.minAge;
         sitter.maxAge = this.props.editProfile.sitterMaxAge !== "" ? this.props.editProfile.sitterMaxAge : this.props.user.maxAge;
 
-        post(sittersApi.UPDATE_SITTER, sitter, function(result){
+        post(sittersApi.UPDATE_USER, sitter, function(result){
             if (result.data)   // user updated
                 self.props.router.push('/');
         });

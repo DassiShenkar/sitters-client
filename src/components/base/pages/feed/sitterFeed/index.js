@@ -10,7 +10,7 @@ export default class SitterFeedBase extends React.Component {
         let self = this;
         const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");
         if (userId) {
-            post(sittersApi.GET_SITTER, {_id: userId}, function(sitter){
+            post(sittersApi.GET_USER, {_id: userId}, function(sitter){
                 if (sitter.data)   // user exists
                     self.props.actions.actionCreators.setSitterData(sitter.data);
                 else // user not exist

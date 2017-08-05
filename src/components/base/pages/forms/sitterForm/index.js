@@ -165,12 +165,12 @@ export default class SitterFormBase extends React.Component {
                     longitude: latLng.lng,
                     latitude: latLng.lat
                 };
-                post(sittersApi.CREATE_SITTER, sitter, (res) => {
+                post(sittersApi.CREATE_USER, sitter, (res) => {
                     if (res.data) {  // user created
                         if(self.props.user.friends.length > 0){
                             post(sittersApi.GET_USER, {_id: self.props.user.facebookID}, (response) => {
                                 if (response.data) {  // get user from db
-                                    post(sittersApi.UPDATE_SITTER_MUTUAL_FRIENDS, response.data, (response) =>{
+                                    post(sittersApi.UPDATE_FRIENDS, response.data, (response) =>{
                                         document.cookie = ("auth_token="+self.props.user.facebookID); // save token for future login
                                         document.cookie = ("is_parent=false");
                                         self.props.actions.actionCreators.changeIsParentFlag(false);

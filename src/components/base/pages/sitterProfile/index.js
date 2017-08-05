@@ -12,7 +12,7 @@ export default class SitterProfileBase extends React.Component {
         let self = this;
         let sitterID = location.href.split('sitter/')[1];
 
-        post(sittersApi.GET_SITTER, {_id: sitterID}, function(sitter){
+        post(sittersApi.GET_USER, {_id: sitterID}, function(sitter){
             if (sitter.data) {
                 self.props.actions.sitterProfileActions.setSitter(sitter.data);
                 let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};

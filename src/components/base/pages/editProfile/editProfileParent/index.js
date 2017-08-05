@@ -58,7 +58,7 @@ export default class EditProfileParentBase extends React.Component {
             email: this.props.editProfile.partnerEmail !== ""? this.props.editProfile.partnerEmail: this.props.user.partner.email
         };
 
-        post(sittersApi.UPDATE_PARENT, parent, function(result){
+        post(sittersApi.UPDATE_USER, parent, function(result){
             if (result.data)   // user updated
                 self.props.router.push('/');
         });

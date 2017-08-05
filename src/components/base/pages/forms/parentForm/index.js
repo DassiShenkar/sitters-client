@@ -135,12 +135,12 @@ export default class ParentFormBase extends React.Component {
                     latitude: latLng.lat
                 };
 
-                post(sittersApi.CREATE_PARENT, parent, (result) => {
+                post(sittersApi.CREATE_USER, parent, (result) => {
                     if (result.data) {  // user created
                         if(self.props.user.friends.length > 0){
                             post(sittersApi.GET_USER, {_id: self.props.user.facebookID}, (response) =>{
                                 if (response.data) {  // get user from db
-                                    post(sittersApi.UPDATE_PARENT_MUTUAL_FRIENDS, response.data, (response) =>{
+                                    post(sittersApi.UPDATE_FRIENDS, response.data, (response) =>{
                                         document.cookie = ("auth_token="+self.props.user.facebookID); // set token for future login
                                         document.cookie = ("is_parent=true");
                                         self.props.actions.actionCreators.changeIsParentFlag(true);

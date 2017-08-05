@@ -74,7 +74,7 @@ export default class SettingsBase extends React.Component {
         if (subscription && !isSubscribed) {
             let user = this.props.user;
             user.pushNotifications = JSON.parse(JSON.stringify(subscription));
-            post(this.props.user.isParent? sittersApi.UPDATE_PARENT: sittersApi.UPDATE_SITTER, user,_.noop);
+            post(this.props.user.isParent? sittersApi.UPDATE_USER: sittersApi.UPDATE_USER, user,_.noop);
         }
     }
 
@@ -132,7 +132,7 @@ export default class SettingsBase extends React.Component {
                 allowShowOnSearch: this.props.settings.enableShowOnSearch
             };
         const self = this;
-        post(this.props.user.isParent? sittersApi.UPDATE_PARENT: sittersApi.UPDATE_SITTER, user, function(result){
+        post(this.props.user.isParent? sittersApi.UPDATE_USER: sittersApi.UPDATE_USER, user, function(result){
             if (result.data) // settings updated
                 self.props.router.push('/');
             else

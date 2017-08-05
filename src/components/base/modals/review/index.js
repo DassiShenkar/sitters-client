@@ -30,7 +30,7 @@ export default class ReviewBase extends React.Component {
         };
         sitter.reviews.push(review);
         let self = this;
-        post(sittersApi.UPDATE_SITTER, sitter, function(result){
+        post(sittersApi.UPDATE_USER, sitter, function(result){
             if (result.data)
                 self.props.actions.feedActions.showReviewPopup(false); // close review modal
         });

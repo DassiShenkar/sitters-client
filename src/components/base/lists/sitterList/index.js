@@ -24,7 +24,7 @@ export default class SitterListBase extends React.Component {
             let parent = this.props.user;
             parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id); // add sitter to parent blacklist
             this.props.actions.actionCreators.setUserData(parent);
-            post(sittersApi.UPDATE_PARENT, parent, _.noop); // update parent blacklist in db
+            post(sittersApi.UPDATE_USER, parent, _.noop); // update parent blacklist in db
         }
         this.props.actions.feedActions.setSitterIndex(index);
     }
@@ -36,7 +36,7 @@ export default class SitterListBase extends React.Component {
             let parent = this.props.user;
             parent.blacklist.push(this.props.feed.matches[this.props.feed.sitterIndex]._id); // add sitter to parent blacklist
             this.props.actions.actionCreators.setUserData(parent);
-            post(sittersApi.UPDATE_PARENT, parent, _.noop); // update parent blacklist in db
+            post(sittersApi.UPDATE_USER, parent, _.noop); // update parent blacklist in db
         }
         this.props.actions.feedActions.setSitterIndex(index);
     }

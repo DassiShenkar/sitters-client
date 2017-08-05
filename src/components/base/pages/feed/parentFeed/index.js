@@ -13,7 +13,7 @@ export default class ParentFeedBase extends React.Component {s
             let self = this;
             const userId = document.cookie.replace(/(?:(?:^|.*;\s*)auth_token\s*=\s*([^;]*).*$)|^.*$/, "$1");
             if (userId) {
-                post(sittersApi.GET_PARENT, {_id: userId}, function(parent){
+                post(sittersApi.GET_USER, {_id: userId}, function(parent){
                     if (parent.data) {  // parent exists
                         self.props.actions.feedActions.showSpinner(true);
                         post(sittersApi.GET_MATCHES, parent.data, function(sitters){ // get matches from server
