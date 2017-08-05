@@ -20,6 +20,6 @@ export default class NotificationBase extends React.Component {
             }
         });
         if (shouldUpdate)
-            post(this.props.user.isParent? sittersApi.UPDATE_USER: sittersApi.UPDATE_USER, user, _.noop);
+            post(sittersApi.UPDATE_USER, user, _.noop);
     }
 }

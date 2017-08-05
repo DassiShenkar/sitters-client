@@ -31,7 +31,7 @@ export default class LoginBase extends React.Component {
                 if (facebookUser.friends.data.length > user.data.friends.length) {
                     let user = user.data;
                     user.friends = facebookUser.friends.data;
-                    post(user.isParent ? sittersApi.UPDATE_FRIENDS : sittersApi.UPDATE_FRIENDS, user,  _.noop); // update friends in db
+                    post(sittersApi.UPDATE_FRIENDS, user,  _.noop); // update friends in db
                 }
                 document.cookie = ("auth_token=" + facebookUser.id); // save token for future login
                 document.cookie = ("is_parent=" + user.data.isParent);
