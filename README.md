@@ -34,7 +34,7 @@ Watch your open invites
 
 Watch schedule workout
 
-##Run Locally
+## Run Locally
 
 To run the app locally you need to have node.js installed. Check if you already have node on your computer.
 
