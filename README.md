@@ -1,8 +1,8 @@
-#Sitters front end
+# Sitters front end
 
 A client web app that rely on Trust Based Recommender Platform to match sitters with parents.
 
-##Watch the app in action(Web)
+## Watch the app in action(Web)
 
 Go to https://sitters-platform.herokuapp.com via any popular browser (chrome, firefox, edge or safari) from your personal computer, tablet/mobile device.
 
@@ -10,7 +10,7 @@ Go to https://sitters-platform.herokuapp.com via any popular browser (chrome, fi
 ##Watch the app in action(Android)
 Download Sitters application via Google Play.
 
-####Parents
+#### Parents
 
 Sign in with Facebook
 
@@ -22,7 +22,7 @@ Send an invite
 
 Get notifications on change status
 
-####Sitters
+#### Sitters
 
 Sign in with facebook
 
