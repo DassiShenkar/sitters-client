@@ -43,8 +43,8 @@ class SitterList extends SitterListBase {
                     </div>
                     <div className="arrows">
                         {sitterIndex > 0 ?
-                            <Icon onClick={this.prevSitter}
-                                  name={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated' : 'glyphicon glyphicon-menu-left'}/> : ''}
+                            <Icon action={this.prevSitter}
+                                  name={sitterIndex === this.props.sitters.length - 1 ? 'glyphicon glyphicon-menu-left faa-float animated' : 'glyphicon glyphicon-menu-left faa-float'}/> : ''}
                         {sitterIndex >= 0 && sitterIndex < this.props.sitters.length - 1 ?
                             <Icon action={this.nextSitter}
                                   name='glyphicon glyphicon-menu-right faa-float animated'/> : ''}
