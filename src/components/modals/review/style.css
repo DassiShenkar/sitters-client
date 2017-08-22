@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
+#edit-review .modal-dialog {
+  width: 720px; }
+
+#edit-review .modal-title {
+  color: #f86966;
+  text-align: left; }
+
+#edit-review .submit-review {
+  display: block;
+  border-radius: 40px;
+  background: #fff;
+  color: #f86966;
+  border-color: #f86966;
+  margin: 48px auto;
+  padding: 8px 15px; }
+
+#edit-review .submit-review:hover {
+  background: #f86966;
+  color: #fff; }
+
+#edit-review .submit-review:active {
+  outline: 0;
+  box-shadow: none;
+  border-color: #f86966; }
+
+.review-modal .sitter-info h4 {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 36px;
+  margin-bottom: 28px; }
+
+.review-modal .sitter-info .sitter-image {
+  width: 187px;
+  height: 187px;
+  margin: 0 auto;
+  display: block; }
+
+.review-modal form {
+  width: 90%;
+  margin: 0 auto; }
+
+.review-modal .control-label, .review-modal .pink {
+  display: flex; }
+
+.review-modal .control-label {
+  color: #757575;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.pink {
+  color: #f86966;
+  margin-bottom: 16px;
+  font-size: 24px; }

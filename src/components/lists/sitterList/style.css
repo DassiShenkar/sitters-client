@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
+.feed-match .match .arrows {
+  display: flex;
+  flex-direction: row; }
+  .feed-match .match .arrows span {
+    margin: 204px 36px;
+    flex: 1; }
+  .feed-match .match .arrows span[class*="right"] {
+    text-align: right; }
+  .feed-match .match .arrows span[class*="left"] {
+    text-align: left; }
+  .feed-match .match .arrows span:hover {
+    cursor: pointer; }
+  .feed-match .match .arrows span::before {
+    font-size: 72px; }
+
+.feed-match #sitter-profile td {
+  padding-top: 28px; }
+
+.feed-match #sitter-profile .motto {
+  font-family: "Raleway", sans-serif;
+  font-size: 32px; }
+
+.feed-match #sitter-profile .mutual-friends {
+  float: right;
+  position: relative;
+  left: -50%;
+  text-align: left;
+  display: block;
+  border: none; }
+  .feed-match #sitter-profile .mutual-friends ul {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    display: block; }
+    .feed-match #sitter-profile .mutual-friends ul li {
+      float: left;
+      margin-left: 8px; }
+      .feed-match #sitter-profile .mutual-friends ul li img {
+        width: 64px;
+        height: 64px; }
+    .feed-match #sitter-profile .mutual-friends ul li:first-child {
+      margin-left: 0; }

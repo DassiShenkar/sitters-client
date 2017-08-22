@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
+#register-form, .sitter-form {
+  color: #555; }
+  #register-form .rc-slider-track, .sitter-form .rc-slider-track {
+    background-color: #e9e9e9; }
+  #register-form li > a, .sitter-form li > a {
+    color: #f86966; }
+  #register-form input, .sitter-form input {
+    margin: 8px 0; }
+  #register-form h4, .sitter-form h4 {
+    margin: 24px 0;
+    font-size: 28px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee; }
+  #register-form .answer, .sitter-form .answer {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 24px 0; }
+    #register-form .answer label, .sitter-form .answer label {
+      width: 200px; }
+    #register-form .answer .right-label, .sitter-form .answer .right-label {
+      text-align: right; }
+  #register-form .rc-slider-dot, .sitter-form .rc-slider-dot {
+    border-color: #96dbfa; }
+  #register-form .submit, .sitter-form .submit {
+    margin-bottom: 96px;
+    text-align: center; }
+  #register-form .next-btn, .sitter-form .next-btn {
+    display: block;
+    border-radius: 40px;
+    background: #fff;
+    color: #f86966;
+    border-color: #f86966;
+    margin: 48px 0;
+    padding: 8px 15px; }
+  #register-form .next-btn:hover, .sitter-form .next-btn:hover {
+    background: #f86966;
+    color: #fff; }
+  #register-form .next-btn:active, .sitter-form .next-btn:active {
+    outline: 0;
+    box-shadow: none;
+    border-color: #f86966; }
+  #register-form .things_to_drag div, .sitter-form .things_to_drag div {
+    margin-right: 8px !important; }
+  #register-form .presentation a:active, #register-form a:hover, #register-form a:focus, .sitter-form .presentation a:active, .sitter-form a:hover, .sitter-form a:focus {
+    background-color: #f86966;
+    color: #fff; }
+  #register-form li.active-register-nav, .sitter-form li.active-register-nav {
+    background-color: #f86966;
+    border-right: 1px solid #fff; }
+    #register-form li.active-register-nav a, .sitter-form li.active-register-nav a {
+      color: #fff; }
