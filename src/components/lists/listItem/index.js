@@ -4,7 +4,7 @@ import React from 'react';
 // components
 import {Image} from 'react-bootstrap';
 import {Link} from 'react-router';
-import {Icon} from '../../icon';
+import Icon from '../../icon';
 
 export default class ListItem extends React.Component {
     render() {
@@ -17,7 +17,9 @@ export default class ListItem extends React.Component {
                            alt={this.props.isParent ? item.sitterName : item.parentName} circle/>
                     <div className="item-info">
                         <p><strong>{this.props.isParent ? 'Introducing: ' + item.sitterName : item.parentName}</strong></p>
-                        {this.props.type === 'invite' ? <p><Icon name={'icon-circle ' + item.status}/>{item.status + ' ' + item.date}</p> : <p>New Sitter In Town!</p>}
+                        {this.props.type === 'invite' ? <p>
+                                <Icon name={'icon-circle ' + item.status}/>
+                                {item.status + ' ' + item.date}</p> : <p>New Sitter In Town!</p>}
                     </div>
                 </Link>
             </li>
