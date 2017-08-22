@@ -3,7 +3,7 @@ import React from "react";
 import geodist from "geodist";
 
 //utils
-import {post} from '../../../../utils/serverCalls';
+import {request} from '../../../../utils/requestHandler';
 import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 
 export default class SitterProfileBase extends React.Component {
@@ -12,7 +12,7 @@ export default class SitterProfileBase extends React.Component {
         let self = this;
         let sitterID = location.href.split('sitter/')[1];
 
-        post(sittersApi.GET_USER, {_id: sitterID}, function(sitter){
+        request('post', sittersApi.GET_USER, {_id: sitterID}, function(sitter){
             if (sitter.data) {
                 self.props.actions.sitterProfileActions.setSitter(sitter.data);
                 let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};

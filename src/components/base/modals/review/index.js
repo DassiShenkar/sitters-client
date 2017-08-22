@@ -3,7 +3,7 @@ import React from 'react';
 import uuid from 'uuid';
 
 //utils
-import {post} from '../../../../utils/serverCalls';
+import {request} from '../../../../utils/requestHandler';
 import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 
 export default class ReviewBase extends React.Component {
@@ -30,7 +30,7 @@ export default class ReviewBase extends React.Component {
         };
         sitter.reviews.push(review);
         let self = this;
-        post(sittersApi.UPDATE_USER, sitter, function(result){
+        request('put', sittersApi.UPDATE_USER, sitter, function(result){
             if (result.data)
                 self.props.actions.feedActions.showReviewPopup(false); // close review modal
         });

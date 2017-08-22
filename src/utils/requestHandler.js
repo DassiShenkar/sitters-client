@@ -1,9 +1,9 @@
 import axios from 'axios';
 import strings from '../static/strings';
 
-export function post(endpoint, data, callback) {
+export function request(method, endpoint, data, callback) {
     axios({
-        method: 'post',
+        method: method,
         url: (strings.DEBUG ? strings.LOCALHOST : strings.WEBSITE ) + endpoint,
         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
         data: data

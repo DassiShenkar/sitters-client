@@ -2,7 +2,7 @@
 import React from 'react';
 
 //utils
-import {post} from '../../../../../utils/serverCalls';
+import {request} from '../../../../../utils/requestHandler';
 import {sittersApi} from "../../../../../sittersAPI/sittersAPI";
 
 //statics
@@ -58,7 +58,7 @@ export default class EditProfileParentBase extends React.Component {
             email: this.props.editProfile.partnerEmail !== ""? this.props.editProfile.partnerEmail: this.props.user.partner.email
         };
 
-        post(sittersApi.UPDATE_USER, parent, function(result){
+        request('put', sittersApi.UPDATE_USER, parent, function(result){
             if (result.data)   // user updated
                 self.props.router.push('/');
         });

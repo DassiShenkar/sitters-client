@@ -6,7 +6,7 @@ import {geocodeByAddress} from "react-places-autocomplete";
 import * as _ from "lodash";
 
 //utils
-import {post} from '../../../../../utils/serverCalls';
+import {request} from '../../../../../utils/requestHandler';
 import {sittersApi} from "../../../../../sittersAPI/sittersAPI";
 
 //statics
@@ -165,12 +165,12 @@ export default class SitterFormBase extends React.Component {
                     longitude: latLng.lng,
                     latitude: latLng.lat
                 };
-                post(sittersApi.CREATE_USER, sitter, (res) => {
+                request('post', sittersApi.CREATE_USER, sitter, (res) => {
                     if (res.data) {  // user created
                         if(self.props.user.friends.length > 0){
-                            post(sittersApi.GET_USER, {_id: self.props.user.facebookID}, (response) => {
+                            request('post', sittersApi.GET_USER, {_id: self.props.user.facebookID}, (response) => {
                                 if (response.data) {  // get user from db
-                                    post(sittersApi.UPDATE_FRIENDS, response.data, (response) =>{
+                                    request('put', sittersApi.UPDATE_FRIENDS, response.data, (response) =>{
                                         document.cookie = ("auth_token="+self.props.user.facebookID); // save token for future login
                                         document.cookie = ("is_parent=false");
                                         self.props.actions.actionCreators.changeIsParentFlag(false);

@@ -5,7 +5,7 @@ import React from 'react';
 import strings from "../../../../static/strings";
 
 //utils
-import {post} from '../../../../utils/serverCalls';
+import {request} from '../../../../utils/requestHandler';
 import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 import * as _ from "lodash";
 
@@ -74,7 +74,7 @@ export default class SettingsBase extends React.Component {
         if (subscription && !isSubscribed) {
             let user = this.props.user;
             user.pushNotifications = JSON.parse(JSON.stringify(subscription));
-            post(sittersApi.UPDATE_USER, user,_.noop);
+            request('put', sittersApi.UPDATE_USER, user,_.noop);
         }
     }
 
@@ -132,7 +132,7 @@ export default class SettingsBase extends React.Component {
                 allowShowOnSearch: this.props.settings.enableShowOnSearch
             };
         const self = this;
-        post(sittersApi.UPDATE_USER, user, function(result){
+        request('put', sittersApi.UPDATE_USER, user, function(result){
             if (result.data) // settings updated
                 self.props.router.push('/');
             else

@@ -5,7 +5,7 @@ import dateFormat from 'dateformat';
 import clone from 'clone';
 
 //utils
-import {post} from '../../../../utils/serverCalls';
+import {request} from '../../../../utils/requestHandler';
 import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 
 export default class InviteBase extends React.Component {
@@ -60,7 +60,7 @@ export default class InviteBase extends React.Component {
         this.props.actions.inviteActions.changeRecurringDate(dateFormat(new Date(), "mm/dd/yyyy"), dateFormat(new Date(), "dddd"), new Date().toISOString());
         const self = this;
 
-        post(sittersApi.CREATE_INVITE, invites, function(result){
+        request('post', sittersApi.CREATE_INVITE, invites, function(result){
             if (result.data) {  // invite created
                 self.props.actions.feedActions.showInvitePopup(false);
                 self.props.actions.inviteActions.changeRecurring("No");

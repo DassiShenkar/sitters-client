@@ -2,7 +2,7 @@
 import React from 'react';
 
 //utils
-import {post} from '../../../../utils/serverCalls';
+import {request} from '../../../../utils/requestHandler';
 import {sittersApi} from "../../../../sittersAPI/sittersAPI";
 import * as _ from "lodash";
 
@@ -20,6 +20,6 @@ export default class NotificationBase extends React.Component {
             }
         });
         if (shouldUpdate)
-            post(sittersApi.UPDATE_USER, user, _.noop);
+            request('put', sittersApi.UPDATE_USER, user, _.noop);
     }
 }
