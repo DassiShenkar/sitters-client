@@ -81,7 +81,6 @@ export default class ParentFormBase extends React.Component {
             age: this.props.register.age !== ""  && this.props.register.age !== null ? Number(this.props.register.age): this.calcAge(this.props.user.birthday),
             gender: this.props.register.gender !== "" && this.props.register.gender !== null ? this.props.register.gender.toLowerCase(): this.props.user.gender,
             coverPhoto: this.props.user.coverPhoto? this.props.user.coverPhoto.source: "",
-            timezone: this.props.user.timezone? this.props.user.timezone: "",
             profilePicture: this.props.user.picture? this.props.user.picture.data.url: "",
             maxPrice: Number(this.props.register.watchMaxPrice),
             children: {
@@ -91,7 +90,6 @@ export default class ParentFormBase extends React.Component {
                 hobbies: hobbies,
                 specialNeeds: specialNeeds,
             },
-            userType: "I'm a Parent",
             personality: personality,
             notifications: [],
             invites: [],

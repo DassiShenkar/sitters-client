@@ -5,5 +5,5 @@ export const sittersApi = {
     UPDATE_FRIENDS: 'user/updateFriends',
     GET_MATCHES: 'parent/getMatches',
     CREATE_INVITE: 'invite/create',
-    UPDATE_INVITE: 'invite/updateInvite'
+    UPDATE_INVITE: 'invite/update'
 };
