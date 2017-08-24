@@ -28,10 +28,12 @@ export default class LoginBase extends React.Component {
         const self = this;
         request('post', sittersApi.GET_USER, {_id: facebookUser.id} , function (user) {
             if (user) {
-                if (facebookUser.friends.data.length > user.data.friends.length) {
-                    let user = user.data;
-                    user.friends = facebookUser.friends.data;
-                    request('put', sittersApi.UPDATE_FRIENDS, user,  _.noop); // update friends in db
+                if(user.friends) {
+                    if (facebookUser.friends.data.length > user.data.friends.length) {
+                        let user = user.data;
+                        user.friends = facebookUser.friends.data;
+                        request('put', sittersApi.UPDATE_FRIENDS, user,  _.noop); // update friends in db
+                    }
                 }
                 document.cookie = ("auth_token=" + facebookUser.id); // save token for future login
                 document.cookie = ("is_parent=" + user.data.isParent);
