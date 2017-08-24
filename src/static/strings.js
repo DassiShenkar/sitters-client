@@ -1,10 +1,10 @@
 const strings = {
     APP_NAME: "Sitters",
-    VERSION: "Alpha",
+    VERSION: "2.0.0",
     CLIENT: "http://localhost:3000/",
     LOCALHOST: "http://localhost:4444/",
     WEBSITE: "https://sitters-server.herokuapp.com/",
-    DEBUG: false,
+    DEBUG: true,
     ACTIVATE_BLACKLIST: false,
     ACTIVATE_MEDIAN: false,
     GOOGLE_WEB_WORKERS_API_KEY: "BA9TXkOAudBsHZCtma-VftBiXmAc-Ho4M7SwAXRpZDR-DsE6pdMP_HVTTQaa3vkQuHLcB6hB87yiunJFUEa4Pas",

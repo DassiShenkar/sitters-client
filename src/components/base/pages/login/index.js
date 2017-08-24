@@ -28,20 +28,20 @@ export default class LoginBase extends React.Component {
         const self = this;
         request('post', sittersApi.GET_USER, {_id: facebookUser.id} , function (user) {
             if (user) {
-                if(user.friends) {
-                    if (facebookUser.friends.data.length > user.data.friends.length) {
-                        let user = user.data;
-                        user.friends = facebookUser.friends.data;
-                        request('put', sittersApi.UPDATE_FRIENDS, user,  _.noop); // update friends in db
-                    }
+                let userData = user.data;
+                if(facebookUser.friends.data.length > 0) {
+                    userData.friends = facebookUser.friends.data;
+                    request('put', sittersApi.UPDATE_FRIENDS, userData,  function () {
+                        userData.isParent ? self.props.actionCreators.setParent(user) : self.props.actionCreators.setSitter(user);
+                    });// update friends in db
                 }
                 document.cookie = ("auth_token=" + facebookUser.id); // save token for future login
-                document.cookie = ("is_parent=" + user.data.isParent);
-                self.props.actions.actionCreators.changeIsParentFlag(user.data.isParent);
+                document.cookie = ("is_parent=" + userData.isParent);
+                self.props.actions.actionCreators.changeIsParentFlag(userData.isParent);
                 self.props.router.push('/'); // route to feed page
             }
             else { // user not registered
-                self.props.actions.actionCreators.createUser(facebookUser);
+                self.props.actions.loginActions.createUser(facebookUser);
                 self.props.router.push('/register'); // route to register page
             }
         });
