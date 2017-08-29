@@ -7,7 +7,7 @@ A client web app that rely on Trust Based Recommender Platform to match sitters 
 Go to https://sitters-platform.herokuapp.com via any popular browser (chrome, firefox, edge or safari) from your personal computer, tablet/mobile device.
 
 
-##Watch the app in action(Android)
+## Watch the app in action(Android)
 Download Sitters application via Google Play.
 
 #### Parents
