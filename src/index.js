@@ -35,11 +35,9 @@ const router = (
                 <Route path="/editProfile" component={EditProfile}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/notAuthorized" component={NotAuthorized}/>
-                <Route path="/*" component={NotFound}/>
             </Route>
             <Route path="/thank_you" component={Thanks}/>
             <Route path="*" component={NotFound}/>
-            <Route path="/*" component={NotFound}/>
         </Router>
     </Provider>
 );

@@ -5,7 +5,7 @@ import React from 'react';
 import {request} from '../../../../../utils/requestHandler';
 import {sittersApi} from "../../../../../sittersAPI/sittersAPI";
 
-export default class ParentFeedBase extends React.Component {s
+export default class ParentFeedBase extends React.Component {
     componentWillMount() {
         if (this.props.feed.matches.length === 0 && !('name' in this.props.user)) {
             this.props.actions.feedActions.setSpinnetText("Finding Sitters that Match your needs...");
