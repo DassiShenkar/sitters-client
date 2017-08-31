@@ -10,10 +10,11 @@ import SitterForm from '../components/SitterForm';
 import AppBar from '../components/AppBar';
 import TextButton from '../components/TextButton';
 import * as actionCreators from '../../src/actions/actionCreators';
-import * as RegisterActions from '../../src/actions/RegisterActions';
-import * as WorkingHoursActions from '../../src/actions/WorkingHoursActions';
+import * as RegisterActions from '../../src/components/base/pages/forms/action';
+import * as WorkingHoursActions from '../../src/components/base/modals/invite/action';
 import * as LocationActions from '../actions/LocationActions';
-import axios from 'axios';
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 class EditProfile extends Component {
 
@@ -22,6 +23,27 @@ class EditProfile extends Component {
         this.parentCallback = this.parentCallback.bind(this);
         this.sitterCallback = this.sitterCallback.bind(this);
         this.setUserInDB = this.setUserInDB.bind(this);
+    }
+
+    async setUserInDB(user, path) {
+        const self = this;
+        user.address = {
+            city: self.props.user.address.city,
+            street: self.props.user.address.street,
+            houseNumber: self.props.user.address.houseNumber,
+            longitude: self.props.user.address.longitude,
+            latitude: self.props.user.address.latitude
+        };
+        user.isParent = path === 'parent/update';
+        requestHandler.request('put', sittersApi.sittersApi.UPDATE_USER, user, (res) => {
+            if (res.data) {  // user created
+                path === 'parent/update' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
+                Actions.Feed();
+            } else { // user not created
+                console.log('user not created');
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+            }
+        });
     }
 
     render () {
@@ -150,37 +172,6 @@ class EditProfile extends Component {
         sitter.workingHours = this.props.workingHours;
         sitter.motto = this.props.register.sitterMotto ? this.props.register.sitterMotto : '';
         self.setUserInDB(sitter, 'sitter/update');
-    }
-
-    async setUserInDB(user, path) {
-        const self = this;
-        user.address = {
-            city: self.props.user.address.city,
-            street: self.props.user.address.street,
-            houseNumber: self.props.user.address.houseNumber,
-            longitude: self.props.user.address.longitude,
-            latitude: self.props.user.address.latitude
-        };
-        user.isParent = path === 'parent/update';
-        console.log(user);
-        axios({
-            method: 'post',
-            url: 'https://sitters-server.herokuapp.com/' + path,
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: user
-        }).then(function (res) {
-            if (res.data) {  // user created
-                path === 'parent/update' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
-                Actions.Feed();
-            }
-            else { // user not created
-                console.log('user not created');
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-            }
-        }).catch(function (error) {
-            console.log(error);
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-        });
     }
 }
 

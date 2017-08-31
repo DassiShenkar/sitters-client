@@ -190,15 +190,6 @@ export default class BaseForm extends React.Component {
     }
 }
 
-//
-// <Picker
-//     style={styles.picker}
-//     selectedValue={this.props.user.gender ? this.props.user.gender : this.props.register.gender ?  this.props.register.gender : 'Female' }
-//     onValueChange={(gender) => { this.props.actions.registerActions.changeGender(gender) }}>
-//     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] }/>
-//     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] }/>
-// </Picker>
-
 const styles = StyleSheet.create({
     text: {
         fontFamily: 'OpenSans-Regular',

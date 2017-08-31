@@ -4,23 +4,23 @@ import { View, Modal, Image, Text, TextInput, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import uuid from 'uuid';
 import MapView from 'react-native-maps';
 
 import AndroidDatePicker from '../components/AndroidDatePicker'
 import AndroidTimePicker from '../components/AndroidTimePicker'
 import TextButton from '../components/TextButton'
-import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
-import * as InviteActions from '../../src/actions/InviteActions';
+import * as SitterProfileActions from '../../src/components/base/pages/sitterProfile/action';
+import * as InviteActions from '../../src/components/base/pages/invite/action';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RouterActions from '../actions/RouterActions';
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 class SitterSendInvite extends React.Component {
 
     constructor (props) {
         super(props);
-        // this.openMap = this.openMap.bind(this);
         this.sendInvite = this.sendInvite.bind(this);
         this.dateCallback = this.dateCallback.bind(this);
         this.startCallback = this.startCallback.bind(this);
@@ -35,8 +35,6 @@ class SitterSendInvite extends React.Component {
                 street: this.props.user.address.street,
                 houseNumber: this.props.user.address.houseNumber
             },
-            // startTime:  this.props.invite.fromTime.format('HH:mm'),
-            // endTime:    this.props.invite.toTime.format('HH:mm'),
             startTime:  this.props.invite.fromTime,
             endTime:    this.props.invite.toTime,
             date:       this.props.invite.inviteDate,
@@ -52,28 +50,16 @@ class SitterSendInvite extends React.Component {
             parentImage: this.props.user.profilePicture
         }];
         let self = this;
-        axios({
-            method: 'post',
-            url: 'https://sitters-server.herokuapp.com/invite/create',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: invite
-        }).then(function (res) {
-            console.log(res);
+        requestHandler.request('post', sittersApi.sittersApi.CREATE_INVITE, invite, (res) => {
             if (res.data) {  // invite created
                 self.props.routerActions.changeValidFlag(true);
                 Actions.pop();
             }
             else { // invite not created
                 console.log(error);
-                //TODO: think about error when user not created
-            }
-        })
-            .catch(function (error) {
-                console.log(error);
-                Actions.pop();
                 Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-                //TODO: think about error when user not created
-            });
+            }
+        });
     };
 
     render () {

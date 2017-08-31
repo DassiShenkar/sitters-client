@@ -50,15 +50,6 @@ class Login extends React.Component {
     }
 }
 
-
-// <Picker
-//     style={styles.picker}
-//     selectedValue={ this.props.user.userType ?  this.props.user.userType : strings.USER_TYPE[0] }
-//     onValueChange={(userType) => { this.props.actionCreators.changeUserType(userType) }}>
-//     <Picker.Item label={ strings.USER_TYPE[0] } value={ strings.USER_TYPE[0] } />
-//     <Picker.Item label={ strings.USER_TYPE[1] } value={ strings.USER_TYPE[1] } />
-// </Picker>
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

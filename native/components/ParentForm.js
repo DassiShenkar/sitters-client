@@ -205,23 +205,6 @@ export default class ParentForm extends React.Component {
     }
 }
 
-// <Picker
-//     style={styles.picker}
-//     selectedValue={ this.props.register.watchChildGender ?  this.props.register.watchChildGender: strings.GENDER_WITH_BOTH[0] }
-//     onValueChange={(gender) => { this.props.actions.registerActions.changeGenderWatchChild(gender) }}>
-//     <Picker.Item label={ strings.GENDER_WITH_BOTH[2] } value={ strings.GENDER_WITH_BOTH[2] }/>
-//     <Picker.Item label={ strings.GENDER_WITH_BOTH[1] } value={ strings.GENDER_WITH_BOTH[1] }/>
-//     <Picker.Item label={ strings.GENDER_WITH_BOTH[0] } value={ strings.GENDER_WITH_BOTH[0] }/>
-// </Picker>
-
-// <Picker
-//     style={styles.picker}
-//     selectedValue={ this.props.user.partnerGender ?  this.props.user.partnerGender : 'Female' }
-//     onValueChange={(gender) => { this.props.actions.registerActions.changePartnerGender(gender) }}>
-//     <Picker.Item label={ strings.GENDER[0] } value={ strings.GENDER[0] } />
-//     <Picker.Item label={ strings.GENDER[1] } value={ strings.GENDER[1] } />
-// </Picker>
-
 const styles = StyleSheet.create({
     text: {
         color: '#f86966',

@@ -4,15 +4,16 @@ import { View, Modal, Image, Text, TextInput, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import * as _ from "lodash";
 import MapView from 'react-native-maps';
 
 import TextButton from '../components/TextButton'
-import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
-import * as InviteActions from '../../src/actions/InviteActions';
+import * as SitterProfileActions from '../../src/components/base/pages/sitterProfile/action';
+import * as InviteActions from '../../src/components/base/pages/invite/action';
 import * as actionCreators from '../../src/actions/actionCreators';
 import * as RouterActions from '../actions/RouterActions';
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 class Invite extends React.Component {
 
@@ -21,24 +22,12 @@ class Invite extends React.Component {
         this.updateInvite = this.updateInvite.bind(this);
     }
 
-    // <Button title="Accept" onClick={this.changeInviteStatus.bind(this, invite, "accepted")} >Accept</Button>
-    // <Button title="Decline" onClick={this.changeInviteStatus.bind(this, invite, "declined")} >Declined</Button>
-
     componentWillMount(){
         const inviteID = this.props.inviteId;
         let user = this.props.user;
         const  inviteIndex = _.findIndex(user.invites, function(o) { return o._id === inviteID; });
         user.invites[inviteIndex].wasRead = true;
         this.props.inviteActions.setInvites(user.invites);
-    //
-    //     const shouldUpdate = !!((user.isParent && user.invites[inviteIndex].status !== "waiting" && !user.invites[inviteIndex].wasRead)
-    //     || (!user.isParent && user.invites[inviteIndex].status === "waiting" && !user.invites[inviteIndex].wasRead));
-    //
-    //     if(shouldUpdate){
-    //         user.invites[inviteIndex].wasRead = true;
-    //         this.props.inviteActions.setInvites(user.invites);
-    //         this.updateInvite(user);
-    //     }
     }
 
     updateInvite(user, invite, action){
@@ -49,22 +38,13 @@ class Invite extends React.Component {
             action: action
         };
         const self = this;
-        axios({
-            method: 'post',
-            url: 'https://sitters-server.herokuapp.com/invite/updateInvite',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: inviteObj
-        }).then(function (res) {
+        requestHandler.request('put', sittersApi.sittersApi.UPDATE_INVITE, inviteObj, (res) => {
             if (res.data) {  // invite updated
                 self.props.inviteActions.setInvites(user.invites);
-            }
-            else {
+            } else {
                 console.log("invite not updated");
                 Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
             }
-        }).catch(function (error) {
-            console.log(error);
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
         });
     }
 

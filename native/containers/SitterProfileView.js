@@ -4,17 +4,18 @@ import React, { Component } from 'react';
 import { ScrollView, Image, Text, View, ListView, StyleSheet } from 'react-native'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import geodist from "geodist";
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AppBar from '../components/AppBar';
 import Review from '../components/Review';
-import * as sitterProfileActions from '../../src/actions/SitterProfileActions';
-import * as FeedActions from '../../src/actions/FeedActions';
+import * as sitterProfileActions from '../../src/components/base/pages/sitterProfile/action';
+import * as FeedActions from '../../src/components/base/pages/feed/action';
 import * as RouterActions from '../actions/RouterActions';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen from '../components/LoadingScreen'
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 class SitterProfileView extends React.Component {
 
@@ -27,20 +28,16 @@ class SitterProfileView extends React.Component {
         let sitterID = this.props.sitterId;
         let self = this;
         self.props.feedActions.showSpinner(true);
-        axios({
-            method: 'post',
-            url: 'https://sitters-server.herokuapp.com/sitter/get',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: {_id: sitterID}
-        }).then(function (sitter) {
-            self.props.sitterProfileActions.setSitter(sitter.data);
-            let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
-            let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
-            self.props.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
-            self.props.feedActions.showSpinner(false);
-        }).catch(function (error) {
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-            console.log(error);//TODO: in case of sitter wasn't found
+        requestHandler.request('post', sittersApi.sittersApi.GET_USER, {_id: sitterID}, (sitter) => {
+            if(sitter.data) {
+                self.props.sitterProfileActions.setSitter(sitter.data);
+                let parentCoord = {lat: self.props.user.address.latitude, lon: self.props.user.address.longitude};
+                let sitterCoord = {lat: sitter.data.address.latitude, lon: sitter.data.address.longitude};
+                self.props.sitterProfileActions.setDistance(geodist(parentCoord, sitterCoord, {unit: 'meters'}));
+                self.props.feedActions.showSpinner(false);
+            } else {
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+            }
         });
     }
 

@@ -5,15 +5,15 @@ import { View, Modal, Text, Image, TextInput, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import StarRating from 'react-native-star-rating';
 import uuid from 'uuid';
 
 import TextButton from '../components/TextButton'
-import * as SitterProfileActions from '../../src/actions/SitterProfileActions';
-import * as ReviewActions from '../../src/actions/ReviewActions';
+import * as SitterProfileActions from '../../src/components/base/pages/sitterProfile/action';
 import * as actionCreators from '../../src/actions/actionCreators';
-import * as FeedActions from '../../src/actions/FeedActions';
+import * as FeedActions from '../../src/components/base/pages/feed/action';
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 const rateItems = [
     {name: 'Punctual', value: 'punctioal'},
@@ -46,24 +46,14 @@ class RateSitter extends React.Component {
             rates: this.props.feed.review.rates
         };
         sitter.reviews.push(review);
-        axios({
-            method: 'post',
-            url: 'https://sitters-server.herokuapp.com/sitter/update',
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: sitter
-        }).then(function (res) {
+        requestHandler.request('put', sittersApi.sittersApi.UPDATE_USER, sitter, (res) => {
             if (res.data) {
                 console.log('Added review');
                 Actions.pop();
-            }
-            else {
+            } else {
                 console.log("review not created");
                 Actions.pop();
             }
-        }).catch(function (error) {
-            console.log(error);
-            alert("review not sent");
-            Actions.pop();
         });
     }
 
@@ -105,7 +95,6 @@ class RateSitter extends React.Component {
     }
 
     reviewDescription(userName, text) {
-        this.props.reviewActions.addReview(userName, text);
         this.props.sitterProfileActions.setReviewDescription(text);
     }
 
@@ -201,8 +190,7 @@ function mapDispatchToProps(dispatch) {
     return {
         actionCreators: bindActionCreators(actionCreators, dispatch),
         sitterProfileActions: bindActionCreators(SitterProfileActions, dispatch),
-        reviewActions: bindActionCreators(ReviewActions, dispatch),
-        feedActions: bindActionCreators(FeedActions, dispatch),
+        feedActions: bindActionCreators(FeedActions, dispatch)
     };
 }
 

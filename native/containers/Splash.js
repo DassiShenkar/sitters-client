@@ -3,11 +3,12 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
-import axios from 'axios';
 
 import LocalStorage from '../utils/LocalStorage';
 import Logo from '../components/Logo'
 import * as actionCreators from '../../src/actions/actionCreators';
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 const ReactNative = require('react-native');
 
@@ -56,38 +57,22 @@ class Splash extends React.Component {
 
     getUserFromDb(self, userId, userType) {
         if(userType === 'parent'){
-            axios({
-                method: 'post',
-                url: 'https://sitters-server.herokuapp.com/parent/get',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {_id: userId.toString()}
-            }).then(function (res) {
+            requestHandler.request('post', sittersApi.sittersApi.GET_USER, {_id: userId.toString()}, (res) => {
                 if (res.data) {  // user exists
                     self.props.actionCreators.setParentData(res.data);
                     Actions.Feed();
                 } else { // user not exist
                     Actions.Login();
                 }
-            }).catch(function (error) {
-                console.log(error);
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
             });
         } else {
-            axios({
-                method: 'post',
-                url: 'https://sitters-server.herokuapp.com/sitter/get',
-                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-                data: {_id: userId.toString()}
-            }).then(function (res) {
+            requestHandler.request('post', sittersApi.sittersApi.GET_USER, {_id: userId.toString()}, (res) => {
                 if (res.data) {  // user exists
                     self.props.actionCreators.setSitterData(res.data);
                     Actions.Feed();
                 } else { // user not exist
                     Actions.Login();
                 }
-            }).catch(function (error) {
-                console.log(error);
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error, please try again later'});
             });
         }
     }

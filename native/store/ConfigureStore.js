@@ -8,16 +8,16 @@ import strings from '../../src/static/strings';
 import router from '../reducers/router'
 import location from '../reducers/location'
 import calendar from '../reducers/calendar'
-import reviews from '../../src/reducers/reviews';
+// import reviews from '../../src/components/base/pages//reducer;
 import user from '../../src/reducers/user';
-import register from '../../src/reducers/register';
-import feed from '../../src/reducers/feed';
-import settings from '../../src/reducers/settings';
-import searchBy from '../../src/reducers/searchBy';
-import range from '../../src/reducers/range';
-import invite from '../../src/reducers/invite';
+import register from '../../src/components/base/pages/forms/reducer';
+import feed from '../../src/components/base/pages/feed/reducer';
+import settings from '../../src/components/base/pages/settings/reducer';
+import searchBy from '../../src/components/base/modals/invite/reducer';
+import range from '../../src/components/base/modals/invite/reducer';
+import invite from '../../src/components/base/pages/invite/reducer';
 import sitterProfile from '../../src/reducers/sitterProfile';
-import workingHours from '../../src/reducers/workingHours';
+import workingHours from '../../src/components/base/modals/invite/reducer';
 
 
 export default function configureStore() {
@@ -60,7 +60,6 @@ export default function configureStore() {
             }
         },
         register : {
-            personalityQuestions : strings.QUESTIONS,
             childHobbies: [],
             childExpertise: [],
             childSpecialNeeds: [],
@@ -118,13 +117,9 @@ export default function configureStore() {
         window.devToolsExtension ? window.devToolsExtension() : f => f
     );
 
-    // const rootReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, calendar, routing: routerReducer});
-    const appReducer = combineReducers({user, reviews, register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, calendar, routing: routerReducer});
+    const appReducer = combineReducers({user, /*reviews,*/ register, feed, settings, searchBy, range, sitterProfile, invite, workingHours, router, location, calendar, routing: routerReducer});
 
     const rootReducer = (state, action) => {
-        if (action.type === 'USER_LOGOUT') {
-            // state = undefined
-        }
         return appReducer(state, action)
     };
 

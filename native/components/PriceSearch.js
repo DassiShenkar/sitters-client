@@ -107,7 +107,7 @@ export default class PriceSearch extends React.Component {
 
     filter(value) {
         let sitters = this.props.feed.matches ? this.props.feed.matches : [];
-        this.props.rangeActions.changeRange(1, Math.floor(value));
+        this.props.searchByActions.changeRange(1, Math.floor(value));
         this.props.feedActions.setFilteredMatches(sitters.filter(sitter => sitter.hourFee >= 1 && sitter.hourFee <= Math.floor(value)));
         this.props.feedActions.setSitterIndex(0);
         Actions.SearchByPrice({active: 3});

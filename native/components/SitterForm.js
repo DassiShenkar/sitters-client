@@ -287,14 +287,6 @@ export default class SitterForm extends React.Component {
     }
 }
 
-// <Picker
-//     style={styles.picker}
-//     selectedValue={ this.props.register.sitterImmediateAvailability ? this.props.register.sitterImmediateAvailability : null }
-//     onValueChange={ (availability) => { this.props.actions.registerActions.changeSitterImmediateAvailability(availability) }}>
-//     <Picker.Item label={ strings.BOOLEAN[0] } value={ strings.BOOLEAN[0] } />
-//     <Picker.Item label={ strings.BOOLEAN[1] } value={ strings.BOOLEAN[1] } />
-// </Picker>
-
 const styles = StyleSheet.create({
     text: {
         color: '#f86966',

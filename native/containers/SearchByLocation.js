@@ -10,9 +10,8 @@ import LocationSearch from '../components/LocationSearch';
 import TabButtons from '../components/TabButtons';
 import AppBar from '../components/AppBar';
 import * as actionCreators from '../../src/actions/actionCreators';
-import * as SearchByActions from '../../src/actions/SearchByActions';
-import * as RangeActions from '../../src/actions/RangeActions';
-import * as FeedActions from '../../src/actions/FeedActions';
+import * as SearchByActions from '../../src/components/base/modals/invite/action';
+import * as FeedActions from '../../src/components/base/pages/feed/action';
 import * as RouterActions from '../actions/RouterActions';
 
 class SearchByLocation extends React.Component {
@@ -61,7 +60,6 @@ function mapDispatchToProps(dispatch) {
         actionCreators: bindActionCreators(actionCreators, dispatch),
         feedActions: bindActionCreators(FeedActions, dispatch),
         searchByActions: bindActionCreators(SearchByActions, dispatch),
-        rangeActions: bindActionCreators(RangeActions, dispatch),
         routerActions: bindActionCreators(RouterActions, dispatch)
     };
 }

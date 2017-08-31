@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import {  connect } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 import {AgeFromDate} from 'age-calculator';
 import { Actions } from 'react-native-router-flux'
 
@@ -10,10 +10,12 @@ import ParentForm from '../components/ParentForm';
 import SitterForm from '../components/SitterForm';
 import TextButton from '../components/TextButton';
 import * as actionCreators from '../../src/actions/actionCreators';
-import * as RegisterActions from '../../src/actions/RegisterActions';
-import * as WorkingHoursActions from '../../src/actions/WorkingHoursActions';
+import * as RegisterActions from '../../src/components/base/pages/forms/action';
+import * as WorkingHoursActions from '../../src/components/base/modals/invite/action';
 import * as LocationActions from '../actions/LocationActions';
 import * as _ from "lodash";
+import * as requestHandler from '../../src/utils/requestHandler'
+import * as sittersApi from '../../src/sittersAPI/sittersAPI'
 
 class Register extends Component {
 
@@ -22,6 +24,36 @@ class Register extends Component {
         this.parentCallback = this.parentCallback.bind(this);
         this.sitterCallback = this.sitterCallback.bind(this);
         this.setUserInDB = this.setUserInDB.bind(this);
+    }
+
+    async setUserInDB(user, path) {
+        const self = this;
+        if(self.props.user.address) {
+            let add = self.props.user.address.split(',');
+            const street = add[0].split(' ');
+            let houseNumber = street.pop();
+            if (Number.isNaN(houseNumber)) {
+                street.push(houseNumber);
+                houseNumber = 0;
+            }
+            user.address = {
+                city: self.props.user.address.split(',')[1],
+                street: _.join(street, " "),
+                houseNumber: Number(houseNumber),
+                longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
+                latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
+            };
+        }
+        user.isParent = path === 'parent/create';
+        requestHandler.request('post', sittersApi.sittersApi.CREATE_USER, user, (res) => {
+            if (res.data) {  // user created
+                path === 'parent/create' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
+                Actions.Feed();
+            } else { // user not created
+                console.log('user not created');
+                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
+            }
+        });
     }
     
     render () {
@@ -177,45 +209,6 @@ class Register extends Component {
             senderGCM: {}
         };
         self.setUserInDB(sitter, 'sitter/create');
-    }
-
-    async setUserInDB(user, path) {
-        const self = this;
-        if(self.props.user.address) {
-            let add = self.props.user.address.split(',');
-            const street = add[0].split(' ');
-            let houseNumber = street.pop();
-            if (Number.isNaN(houseNumber)) {
-                street.push(houseNumber);
-                houseNumber = 0;
-            }
-            user.address = {
-                city: self.props.user.address.split(',')[1],
-                street: _.join(street, " "),
-                houseNumber: Number(houseNumber),
-                longitude: this.props.location.location.lng ? this.props.location.location.lng : 0,
-                latitude: this.props.location.location.lat ? this.props.location.location.lat : 0
-            };
-        }
-        user.isParent = path === 'parent/create';
-        axios({
-            method: 'post',
-            url: 'https://sitters-server.herokuapp.com/' + path,
-            headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            data: user
-        }).then(function (res) {
-            if (res.data) {  // user created
-                path === 'parent/create' ? self.props.actions.actionCreators.setParentData(res.data) : self.props.actions.actionCreators.setSitterData(res.data);
-                Actions.Feed();
-            }
-            else { // user not created
-                console.log('user not created');
-                Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-            }
-        }).catch(function (error) {
-            console.log(error);
-            Actions.ErrorPage({errorNum: 500, errorMsg: 'Server Error \nPlease try again later'});
-        });
     }
 }
 
